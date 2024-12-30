@@ -1,7 +1,8 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 
+import { ThemedText } from '@/components/ThemedText';
 import songs from '@/songs';
 
 export async function generateStaticParams() {
@@ -17,23 +18,24 @@ export default function Page() {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>{song.fields.Song}</Text>
-      <Text style={styles.lyrics}>{song.fields.Lyrics}</Text>
-    </ScrollView>
+    <>
+      <Stack.Screen options={{ title: song.fields.Song }} />
+      <ScrollView style={styles.container}>
+        <ThemedText style={styles.lyrics}>{song.fields.Lyrics}</ThemedText>
+      </ScrollView>
+    </>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 40,
+    paddingBottom: 40,
   },
   lyrics: {
-    fontSize: 18,
+    fontSize: 21,
+    lineHeight: 25,
   },
 });

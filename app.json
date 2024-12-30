@@ -16,7 +16,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.dainorelis"
     },
     "web": {
       "bundler": "metro",
@@ -35,9 +36,13 @@
         }
       ],
       [
-        "expo-asset",
+        "expo-font",
         {
-          "assets": ["songs"]
+          "fonts": [
+            "./assets/fonts/klavika-bold/fonts/KlavikaBold.ttf",
+            "./assets/fonts/klavika-regular/fonts/KlavikaRegular.ttf",
+            "./assets/fonts/modekan/fonts/Modekan.ttf"
+          ]
         }
       ]
     ],

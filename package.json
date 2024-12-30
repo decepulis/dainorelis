@@ -4,13 +4,16 @@
   "version": "1.0.0",
   "scripts": {
     "update-songs": "ts-node ./scripts/update-songs.ts",
-    "start": "npm run update-songs && expo start",
-    "android": "npm run update-songs && expo run:android",
-    "ios": "npm run update-songs && expo run:ios",
-    "web": "npm run update-songs && expo start --web",
+    "dev": "npm run update-songs && expo start",
+    "dev:android": "npm run update-songs && expo run:android",
+    "dev:ios": "npm run update-songs && expo run:ios",
+    "dev:web": "npm run update-songs && expo start --web",
+    "build:web": "npm run update-songs && expo export --platform web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "jest": {
     "preset": "jest-expo"

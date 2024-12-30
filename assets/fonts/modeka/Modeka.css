@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Modeka';
+    src: url('fonts/Modeka.eot');
+    src: url('fonts/Modeka.eot') format('embedded-opentype'),
+         url('fonts/Modeka.woff2') format('woff2'),
+         url('fonts/Modeka.woff') format('woff'),
+         url('fonts/Modeka.ttf') format('truetype'),
+         url('fonts/Modeka.svg#Modeka') format('svg');
+}

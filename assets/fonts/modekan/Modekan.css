@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Modekan';
+    src: url('fonts/Modekan.eot');
+    src: url('fonts/Modekan.eot') format('embedded-opentype'),
+         url('fonts/Modekan.woff2') format('woff2'),
+         url('fonts/Modekan.woff') format('woff'),
+         url('fonts/Modekan.ttf') format('truetype'),
+         url('fonts/Modekan.svg#Modekan') format('svg');
+}

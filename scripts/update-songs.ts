@@ -33,7 +33,7 @@ async function updateSongs() {
     const validSongFile = SongFileSchema.parse(songFile);
 
     // Write the song file
-    fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(validSongFile) + fileFooter);
+    fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(validSongFile, null, 2) + fileFooter);
     console.log('✅ Songs fetched and saved to songs.ts');
   } catch (e) {
     console.error('❌ Error fetching songs.', e);
