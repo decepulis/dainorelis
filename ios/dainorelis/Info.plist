@@ -59,7 +59,7 @@
     <array>
       <string>KlavikaBold.ttf</string>
       <string>KlavikaRegular.ttf</string>
-      <string>Modekan.ttf</string>
+      <string>ModekanUppercase.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>

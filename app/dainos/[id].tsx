@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <>
       <Stack.Screen options={{ title: song.fields.Song }} />
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
         <ThemedText style={styles.lyrics}>{song.fields.Lyrics}</ThemedText>
       </ScrollView>
     </>

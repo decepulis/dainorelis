@@ -1,9 +1,10 @@
+import React, { forwardRef } from 'react';
 import { Text, type TextProps } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-export function ThemedText({ style, ...rest }: TextProps) {
+export const ThemedText = forwardRef<Text, TextProps>(({ style, ...rest }, ref) => {
   const color = useThemeColor('text');
 
-  return <Text style={[{ color, fontFamily: 'KlavikaRegular' }, style]} {...rest} />;
-}
+  return <Text ref={ref} style={[{ color, fontFamily: 'KlavikaRegular' }, style]} {...rest} />;
+});

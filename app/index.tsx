@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Pressable, SectionList, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import { Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Link, Stack } from 'expo-router';
 
@@ -41,13 +42,13 @@ const removeAccents = (value: string) =>
 
 const sections = groupSongsByLetter(songs);
 
-const ListItem = ({ item }: { item: SongFile[number] }) => (
+const ListItem = memo(({ item }: { item: SongFile[number] }) => (
   <Link href={`/dainos/${item.id}`} asChild>
     <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
   </Link>
-);
+));
 
-const SectionHeader = ({ title }: { title: string }) => {
+const SectionHeader = memo(({ title }: { title: string }) => {
   const backgroundColor = useThemeColor('text');
   return (
     <View style={styles.headerContainer}>
@@ -56,31 +57,12 @@ const SectionHeader = ({ title }: { title: string }) => {
       <View style={[{ backgroundColor }, styles.line]} />
     </View>
   );
-};
-
-const SearchInput = ({ searchText, setSearchText }: { searchText: string; setSearchText: (text: string) => void }) => {
-  const color = useThemeColor('text');
-  return (
-    <View style={styles.textInputContainer}>
-      <View style={styles.textInputIcon}>
-        <Ionicons name="search" size={18} color={color} />
-      </View>
-      <TextInput
-        style={[{ color: color, borderColor: color }, styles.textInput]}
-        value={searchText}
-        onChangeText={setSearchText}
-        autoCorrect={false}
-      />
-      {searchText ? (
-        <Pressable onPress={() => setSearchText('')} style={styles.textClearButton}>
-          <Text>&times;</Text>
-        </Pressable>
-      ) : null}
-    </View>
-  );
-};
+});
 
 export default function Index() {
+  const primary = useThemeColor('primary');
+  const background = useThemeColor('background');
+
   const [searchText, setSearchText] = useState('');
   const searchResults = useMemo(
     () =>
@@ -93,18 +75,46 @@ export default function Index() {
         : null,
     [searchText]
   );
+  const renderSections = useMemo(() => searchResults || sections, [searchResults]);
+
+  // when searchResults changes, scroll SectionList to the top
+  // todo this doesn't work
+  const sectionListRef = useRef<SectionList>(null);
+  useEffect(() => {
+    if (renderSections.length > 0) {
+      sectionListRef.current?.scrollToLocation({ sectionIndex: 0, itemIndex: 0 });
+    }
+  }, [searchResults]);
 
   return (
     <>
-      <Stack.Screen options={{ title: 'Dainorėlis' }} />
+      <Stack.Screen
+        options={{
+          title: 'Dainorėlis',
+          headerSearchBarOptions: {
+            autoCapitalize: 'none',
+            cancelButtonText: '×',
+            placeholder: '',
+            barTintColor: background,
+            onChangeText: (e) => setSearchText(e.nativeEvent.text),
+            onBlur: () => setSearchText(''),
+            onCancelButtonPress: () => setSearchText(''),
+            onClose: () => setSearchText(''),
+          },
+        }}
+      />
       <View style={styles.container}>
         <SectionList
-          sections={searchResults || sections}
+          ref={sectionListRef}
+          contentInsetAdjustmentBehavior="automatic"
+          sections={renderSections}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ListItem item={item} />}
           renderSectionHeader={({ section }) => (searchResults ? null : <SectionHeader title={section.title} />)}
           stickySectionHeadersEnabled={false}
-          ListHeaderComponent={<SearchInput searchText={searchText} setSearchText={setSearchText} />}
+          // clumsily use listHeaderComponent/listFooterComponent to add padding to the top/bottom of the list
+          ListHeaderComponent={searchResults ? <View style={{ height: 20 }} /> : null}
+          ListFooterComponent={<View style={{ height: useSafeAreaInsets().bottom }} />}
         />
       </View>
     </>
@@ -120,7 +130,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginTop: 40,
-    marginBottom: 20,
   },
   textInputIcon: {
     position: 'absolute',
@@ -134,7 +143,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textInput: {
-    height: 40,
+    height: 50,
+    fontSize: 18,
     borderWidth: 1,
     paddingLeft: 40,
     fontFamily: 'KlavikaRegular',
@@ -149,7 +159,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
     textAlign: 'center',
-    fontSize: 18,
   },
   item: {
     fontSize: 21,
