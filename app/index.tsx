@@ -1,10 +1,8 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
+import { SectionList, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Link, Stack } from 'expo-router';
-
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { ThemedText } from '@/components/ThemedText';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -60,13 +58,12 @@ const SectionHeader = memo(({ title }: { title: string }) => {
 });
 
 export default function Index() {
-  const primary = useThemeColor('primary');
   const background = useThemeColor('background');
 
   const [searchText, setSearchText] = useState('');
   const searchResults = useMemo(
     () =>
-      searchText && searchText.length >= 2
+      searchText
         ? songs
             .filter((song) =>
               removeAccents(song.fields.Song).toLowerCase().includes(removeAccents(searchText).toLowerCase())
@@ -78,11 +75,15 @@ export default function Index() {
   const renderSections = useMemo(() => searchResults || sections, [searchResults]);
 
   // when searchResults changes, scroll SectionList to the top
-  // todo this doesn't work
   const sectionListRef = useRef<SectionList>(null);
   useEffect(() => {
+    // todo: this is really unreliable
     if (renderSections.length > 0) {
-      sectionListRef.current?.scrollToLocation({ sectionIndex: 0, itemIndex: 0 });
+      sectionListRef.current?.scrollToLocation({
+        animated: false,
+        sectionIndex: 0,
+        itemIndex: 0,
+      });
     }
   }, [searchResults]);
 
@@ -90,16 +91,12 @@ export default function Index() {
     <>
       <Stack.Screen
         options={{
-          title: 'Dainorėlis',
           headerSearchBarOptions: {
             autoCapitalize: 'none',
-            cancelButtonText: '×',
             placeholder: '',
             barTintColor: background,
             onChangeText: (e) => setSearchText(e.nativeEvent.text),
-            onBlur: () => setSearchText(''),
             onCancelButtonPress: () => setSearchText(''),
-            onClose: () => setSearchText(''),
           },
         }}
       />
@@ -179,6 +176,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 20,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
   line: {
     flex: 1,

@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
   },
   lyrics: {
     fontSize: 21,
-    lineHeight: 25,
+    lineHeight: 28,
   },
 });

@@ -1,6 +1,6 @@
-import { KeyboardAvoidingView, Platform, SafeAreaView, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { KeyboardAvoidingView, Platform, Text } from 'react-native';
 
+import { ImageBackground } from 'expo-image';
 import { Stack } from 'expo-router';
 
 import { ThemeProvider } from '@react-navigation/native';
@@ -28,7 +28,16 @@ export default function RootLayout() {
             headerLargeTitle: true,
             headerLargeTitleStyle: { color: '#fff', fontFamily: 'Modekan' },
           }}
-        />
+        >
+          <Stack.Screen name="index" options={{ title: 'Dainorėlis' }} />
+          <Stack.Screen
+            name="dainos/[id]"
+            options={{
+              // this title is dynamically set within the component
+              title: '',
+            }}
+          />
+        </Stack>
       </KeyboardAvoidingView>
     </ThemeProvider>
   );

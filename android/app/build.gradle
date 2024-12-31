@@ -86,13 +86,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.dainorelis'
+    namespace 'com.dainorelis.dainorelis'
     defaultConfig {
-        applicationId 'com.anonymous.dainorelis'
+        applicationId 'com.dainorelis.dainorelis'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "2.0.0"
     }
     signingConfigs {
         debug {
