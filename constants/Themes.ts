@@ -1,4 +1,4 @@
-import type { Theme } from '@react-navigation/native';
+import type { Theme as LibTheme } from '@react-navigation/native';
 
 const fonts: Theme['fonts'] = {
   regular: {
@@ -19,12 +19,18 @@ const fonts: Theme['fonts'] = {
   },
 };
 
+export interface Theme extends LibTheme {
+  colors: LibTheme['colors'] & {
+    cardDark: string;
+  };
+}
 export const LightTheme: Theme = {
   dark: false,
   colors: {
     primary: '#70997F',
     background: '#FEF9F7',
     card: '#FFF',
+    cardDark: '#ECE9E8',
     text: '#121314',
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
@@ -37,6 +43,7 @@ export const DarkTheme: Theme = {
     primary: '#2f4236',
     background: '#121314',
     card: '#242628',
+    cardDark: '#2A2A2E',
     text: '#FEF9F7',
     border: '#FEF9F7',
     notification: 'rgb(255, 69, 58)',

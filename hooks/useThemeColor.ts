@@ -1,5 +1,4 @@
-import type { Theme } from '@react-navigation/native';
-
+import type { Theme } from '@/constants/Themes';
 /**
  * Learn more about light and dark modes:
  * https://docs.expo.dev/guides/color-schemes/

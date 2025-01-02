@@ -43,7 +43,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         fonts: [
           './assets/fonts/klavika-bold/fonts/KlavikaBold.ttf',
           './assets/fonts/klavika-regular/fonts/KlavikaRegular.ttf',
-          './assets/fonts/modekan/fonts/ModekanUppercase.ttf',
         ],
       },
     ],

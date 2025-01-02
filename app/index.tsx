@@ -1,52 +1,47 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { SectionList, StyleSheet, View } from 'react-native';
+import React, { memo, useMemo, useState } from 'react';
+import { FlatList, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
-import { ThemedText } from '@/components/ThemedText';
+import { Ionicons } from '@expo/vector-icons';
+import SegmentedControl from '@react-native-segmented-control/segmented-control';
+
+import ThemedText from '@/components/ThemedText';
+import useStorage from '@/hooks/useStorage';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { SongFile } from '@/schemas/songs';
 import songs from '@/songs';
+import removeAccents from '@/utils/removeAccents';
 
-const groupSongsByLetter = (songs: SongFile) => {
-  const groupedSongs: { title: string; data: SongFile }[] = [];
+// const groupSongsByLetter = (songs: SongFile) => {
+//   const groupedSongs: { title: string; data: SongFile }[] = [];
 
-  songs.forEach((song) => {
-    const firstLetter = song.fields.Song?.charAt(0).toUpperCase() || '#';
-    const group = groupedSongs.find((group) => group.title === firstLetter);
+//   songs.forEach((song) => {
+//     const firstLetter = song.fields.Song?.charAt(0).toUpperCase() || '#';
+//     const group = groupedSongs.find((group) => group.title === firstLetter);
 
-    if (group) {
-      group.data.push(song);
-    } else {
-      groupedSongs.push({ title: firstLetter, data: [song] });
-    }
-  });
+//     if (group) {
+//       group.data.push(song);
+//     } else {
+//       groupedSongs.push({ title: firstLetter, data: [song] });
+//     }
+//   });
 
-  return groupedSongs.sort((a, b) => a.title.localeCompare(b.title));
-};
+//   return groupedSongs.sort((a, b) => a.title.localeCompare(b.title));
+// };
 
-const removeAccents = (value: string) =>
-  value
-    .replace(/ą/g, 'a')
-    .replace(/č/g, 'c')
-    .replace(/ė/g, 'e')
-    .replace(/ę/g, 'e')
-    .replace(/į/g, 'i')
-    .replace(/š/g, 's')
-    .replace(/ų/g, 'u')
-    .replace(/ū/g, 'u')
-    .replace(/ž/g, 'z');
+// const sections = groupSongsByLetter(songs);
 
-const sections = groupSongsByLetter(songs);
-
-const ListItem = memo(({ item }: { item: SongFile[number] }) => (
+const _ListItem = ({ item }: { item: SongFile[number] }) => (
   <Link href={`/dainos/${item.id}`} asChild>
     <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
   </Link>
-));
+);
+const ListItem = memo(_ListItem);
 
-const SectionHeader = memo(({ title }: { title: string }) => {
+const _SectionHeader = ({ title }: { title: string }) => {
   const backgroundColor = useThemeColor('text');
   return (
     <View style={styles.headerContainer}>
@@ -55,63 +50,131 @@ const SectionHeader = memo(({ title }: { title: string }) => {
       <View style={[{ backgroundColor }, styles.line]} />
     </View>
   );
-});
+};
+const SectionHeader = memo(_SectionHeader);
+
+type ListHeaderComponentProps = {
+  filter: string;
+  setFilter: (value: 'Visos' | 'Mano') => void;
+  searchText: string;
+  setSearchText: (value: string) => void;
+};
+const _ListHeaderComponent = ({ filter, setFilter, searchText, setSearchText }: ListHeaderComponentProps) => {
+  const inset = useSafeAreaInsets();
+  const color = useThemeColor('text');
+  const cardDark = useThemeColor('cardDark');
+  const primary = useThemeColor('primary');
+
+  return (
+    <>
+      <View
+        style={[
+          styles.headerImageContainer,
+          {
+            height: 150 + inset.top,
+            backgroundColor: primary,
+            paddingTop: (3 * inset.top) / 4,
+          },
+        ]}
+      >
+        <Image source="miskas.jpg" style={StyleSheet.absoluteFill} contentFit="cover" contentPosition="bottom" />
+        <Image source="logo_white.png" style={styles.headerLogo} contentFit="contain" />
+      </View>
+      <View style={styles.searchContainer}>
+        <SegmentedControl
+          backgroundColor={cardDark}
+          style={styles.searchFilter}
+          tintColor={primary}
+          fontStyle={{ color, fontSize: 16, fontFamily: 'KlavikaRegular' }}
+          activeFontStyle={{ fontSize: 16, fontFamily: 'KlavikaBold', fontWeight: '700' }}
+          selectedIndex={filter === 'Visos' ? 0 : 1}
+          onValueChange={setFilter as (value: string) => void}
+          values={['Visos', 'Mano']}
+        />
+        <View style={styles.searchInputContainer}>
+          <TextInput
+            style={[{ backgroundColor: cardDark, color }, styles.searchInput]}
+            clearButtonMode="while-editing"
+            autoCorrect={false}
+            value={searchText}
+            onChangeText={setSearchText}
+            inputMode="search"
+            returnKeyType="search"
+          />
+          <View style={styles.searchInputIconContainer}>
+            <Ionicons name="search" size={18} color={color} />
+          </View>
+        </View>
+      </View>
+    </>
+  );
+};
+const ListHeaderComponent = memo(_ListHeaderComponent);
 
 export default function Index() {
-  const background = useThemeColor('background');
+  const inset = useSafeAreaInsets();
 
+  const primary = useThemeColor('primary');
+  const { value: favorites } = useStorage('favorites');
+  const [filter, setFilter] = useState<'Visos' | 'Mano'>('Visos');
   const [searchText, setSearchText] = useState('');
+
+  // todo: empty state when no filters / no search
+  const filteredSongs = useMemo(
+    () => (filter === 'Visos' ? songs : songs.filter((song) => favorites.includes(song.id))),
+    [favorites, filter]
+  );
+
   const searchResults = useMemo(
     () =>
       searchText
-        ? songs
-            .filter((song) =>
-              removeAccents(song.fields.Song).toLowerCase().includes(removeAccents(searchText).toLowerCase())
-            )
-            .map((song) => ({ title: '', data: [song] }))
+        ? filteredSongs.filter((song) =>
+            removeAccents(song.fields.Song).toLowerCase().includes(removeAccents(searchText).toLowerCase())
+          )
         : null,
-    [searchText]
+    [searchText, filteredSongs]
   );
-  const renderSections = useMemo(() => searchResults || sections, [searchResults]);
 
   // when searchResults changes, scroll SectionList to the top
-  const sectionListRef = useRef<SectionList>(null);
-  useEffect(() => {
-    // todo: this is really unreliable
-    if (renderSections.length > 0) {
-      sectionListRef.current?.scrollToLocation({
-        animated: false,
-        sectionIndex: 0,
-        itemIndex: 0,
-      });
-    }
-  }, [searchResults]);
+  // const sectionListRef = useRef<SectionList>(null);
+  // useEffect(() => {
+  //   // todo: this is really unreliable
+  //   if (renderSections.length > 0) {
+  //     sectionListRef.current?.scrollToLocation({
+  //       animated: false,
+  //       sectionIndex: 0,
+  //       itemIndex: 0,
+  //     });
+  //   }
+  // }, [renderSections.length, searchResults]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          headerSearchBarOptions: {
-            autoCapitalize: 'none',
-            placeholder: '',
-            barTintColor: background,
-            onChangeText: (e) => setSearchText(e.nativeEvent.text),
-            onCancelButtonPress: () => setSearchText(''),
-          },
+          title: '',
+          header: () => <View style={{ height: inset.top, backgroundColor: 'transparent' }} />,
+          headerTransparent: true,
         }}
       />
       <View style={styles.container}>
-        <SectionList
-          ref={sectionListRef}
-          contentInsetAdjustmentBehavior="automatic"
-          sections={renderSections}
+        <FlatList
+          // ref={sectionListRef}
+          contentInsetAdjustmentBehavior="never"
+          data={searchResults || filteredSongs}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ListItem item={item} />}
-          renderSectionHeader={({ section }) => (searchResults ? null : <SectionHeader title={section.title} />)}
-          stickySectionHeadersEnabled={false}
-          // clumsily use listHeaderComponent/listFooterComponent to add padding to the top/bottom of the list
-          ListHeaderComponent={searchResults ? <View style={{ height: 20 }} /> : null}
-          ListFooterComponent={<View style={{ height: useSafeAreaInsets().bottom }} />}
+          // renderSectionHeader={({ section }) => (searchResults ? null : <SectionHeader title={section.title} />)}
+          // stickySectionHeadersEnabled={false}
+          ListHeaderComponent={
+            <ListHeaderComponent
+              filter={filter}
+              setFilter={setFilter}
+              searchText={searchText}
+              setSearchText={setSearchText}
+            />
+          }
+          ListFooterComponent={<View style={{ height: inset.bottom }} />}
         />
       </View>
     </>
@@ -122,13 +185,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  textInputContainer: {
+  headerImageContainer: {
     position: 'relative',
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 80,
   },
-  textInputIcon: {
+  headerLogo: { width: '100%', height: '100%' },
+  searchContainer: { paddingHorizontal: 20, paddingTop: 30, paddingBottom: 30 },
+  searchFilter: { height: 40, borderRadius: 6 },
+  searchInputContainer: {
+    marginTop: 10,
+    position: 'relative',
+  },
+  searchInput: {
+    fontSize: 16,
+    fontFamily: 'KlavikaRegular',
+    height: 40,
+    borderRadius: 6,
+    paddingLeft: 40,
+  },
+  searchInputIconContainer: {
     position: 'absolute',
     left: 10,
     top: 0,
@@ -137,25 +214,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
-  },
-  textInput: {
-    height: 50,
-    fontSize: 18,
-    borderWidth: 1,
-    paddingLeft: 40,
-    fontFamily: 'KlavikaRegular',
-  },
-  textClearButton: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    paddingRight: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    textAlign: 'center',
   },
   item: {
     fontSize: 21,

@@ -1,12 +1,12 @@
-import { KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 
-import { ImageBackground } from 'expo-image';
 import { Stack } from 'expo-router';
 
 import { ThemeProvider } from '@react-navigation/native';
 
 import { DarkTheme, LightTheme } from '@/constants/Themes';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { StorageProvider } from '@/hooks/useStorage';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function RootLayout() {
@@ -15,30 +15,29 @@ export default function RootLayout() {
   const background = useThemeColor('background');
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-      <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: background }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <Stack
-          screenOptions={{
-            headerTitleStyle: { color: '#fff' },
-            headerTintColor: '#fff',
-            headerStyle: { backgroundColor: primary },
-            headerLargeTitle: true,
-            headerLargeTitleStyle: { color: '#fff', fontFamily: 'Modekan' },
-          }}
+    <StorageProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+        <KeyboardAvoidingView
+          style={{ flex: 1, backgroundColor: background }}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
-          <Stack.Screen name="index" options={{ title: 'Dainorėlis' }} />
-          <Stack.Screen
-            name="dainos/[id]"
-            options={{
-              // this title is dynamically set within the component
-              title: '',
+          <Stack
+            screenOptions={{
+              headerTitleStyle: { color: '#fff' },
+              headerTintColor: '#fff',
+              headerStyle: { backgroundColor: primary },
             }}
-          />
-        </Stack>
-      </KeyboardAvoidingView>
-    </ThemeProvider>
+          >
+            {/* we unset the title here, though we'll be re-setting it dynamically within the dainos/[id].tsx component */}
+            <Stack.Screen
+              name="dainos/[id]"
+              options={{
+                title: '',
+              }}
+            />
+          </Stack>
+        </KeyboardAvoidingView>
+      </ThemeProvider>
+    </StorageProvider>
   );
 }

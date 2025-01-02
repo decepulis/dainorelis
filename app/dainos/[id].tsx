@@ -1,8 +1,11 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useMemo } from 'react';
+import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
+import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { ThemedText } from '@/components/ThemedText';
+import ThemedText from '@/components/ThemedText';
+import useStorage from '@/hooks/useStorage';
 import songs from '@/songs';
 
 export async function generateStaticParams() {
@@ -11,15 +14,42 @@ export async function generateStaticParams() {
 
 export default function Page() {
   const { id } = useLocalSearchParams();
-  const song = songs.find((song) => song.id === id);
+  const song = useMemo(() => songs.find((song) => song.id === id), [id]);
+
+  const { value: favorites, setValue: setFavorites, loading } = useStorage('favorites');
+  const isFavorite = useMemo(() => song?.id && favorites.includes(song.id), [favorites, song]);
+
   if (!song) {
     // todo: better error state
     return null;
   }
 
+  const addToFavorites = () => {
+    if (!loading) {
+      setFavorites([...favorites, song.id]);
+    }
+  };
+  const removeFromFavorites = () => {
+    if (!loading) {
+      setFavorites(favorites.filter((id) => id !== song.id));
+    }
+  };
+
   return (
     <>
-      <Stack.Screen options={{ title: song.fields.Song }} />
+      <Stack.Screen
+        options={{
+          title: song.fields.Song,
+          headerRight: () => (
+            <Pressable disabled={loading} onPress={isFavorite ? removeFromFavorites : addToFavorites}>
+              <Image
+                source="icon_fav_white.png"
+                style={{ opacity: loading || !isFavorite ? 0.5 : 1, width: 20, height: 20 }}
+              />
+            </Pressable>
+          ),
+        }}
+      />
       <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
         <ThemedText style={styles.lyrics}>{song.fields.Lyrics}</ThemedText>
       </ScrollView>
