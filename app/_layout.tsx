@@ -16,6 +16,7 @@ export default function RootLayout() {
 
   return (
     <StorageProvider>
+      {/* todo ios flash of dark theme */}
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
         <KeyboardAvoidingView
           style={{ flex: 1, backgroundColor: background }}

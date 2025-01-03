@@ -7,38 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DE7541D71754CBC9C7BFF47 /* KlavikaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31B3B58AF9354D7F873CBB52 /* KlavikaBold.ttf */; };
-		1344E5482F5D492A8FE10CC1 /* ModekanUppercase.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57D5ED4B9D2B4159AB5E1366 /* ModekanUppercase.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		13C3BB1C8089432AB05FA8E8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A9A10D0EC725505AC9D1B52D /* PrivacyInfo.xcprivacy */; };
-		2B93604A38414FEEA88F1613 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67560F0C4A74E42B8701898 /* noop-file.swift */; };
+		2018E16B04B24A568040F94B /* KlavikaRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B838D5217A343D58F280931 /* KlavikaRegular.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
+		548BA5B4DF2C42279C19D268 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1D16514F164BAA9C94C2E8 /* noop-file.swift */; };
 		96905EF65AED1B983A6B3ABC /* libPods-Dainorlis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Dainorlis.a */; };
-		B125FC8D6B37435285F2EEE8 /* KlavikaRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E582FC30EC5B47A4B30D25F5 /* KlavikaRegular.ttf */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		EC0C136FB5074524A2AF57D8 /* KlavikaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B7A08E0A7374D65845E2783 /* KlavikaBold.ttf */; };
+		FCDB6591823DA23124082A3F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 418FF977527534DC9729A6C4 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0F050A4AB447F89CB734F2 /* Dainorlis-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "Dainorlis-Bridging-Header.h"; path = "Dainorlis/Dainorlis-Bridging-Header.h"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Dainorlis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dainorlis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Dainorlis/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Dainorlis/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dainorlis/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Dainorlis/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Dainorlis/main.m; sourceTree = "<group>"; };
-		31B3B58AF9354D7F873CBB52 /* KlavikaBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = KlavikaBold.ttf; path = "../assets/fonts/klavika-bold/fonts/KlavikaBold.ttf"; sourceTree = "<group>"; };
-		57D5ED4B9D2B4159AB5E1366 /* ModekanUppercase.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = ModekanUppercase.ttf; path = ../assets/fonts/modekan/fonts/ModekanUppercase.ttf; sourceTree = "<group>"; };
+		418FF977527534DC9729A6C4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B7A08E0A7374D65845E2783 /* KlavikaBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = KlavikaBold.ttf; path = "../assets/fonts/klavika-bold/fonts/KlavikaBold.ttf"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
-		A52F446132DA4FEFAD32CADF /* Dainorlis-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "Dainorlis-Bridging-Header.h"; path = "Dainorlis/Dainorlis-Bridging-Header.h"; sourceTree = "<group>"; };
-		A9A10D0EC725505AC9D1B52D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9B838D5217A343D58F280931 /* KlavikaRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = KlavikaRegular.ttf; path = "../assets/fonts/klavika-regular/fonts/KlavikaRegular.ttf"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Dainorlis/SplashScreen.storyboard; sourceTree = "<group>"; };
+		AC1D16514F164BAA9C94C2E8 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Dainorlis/noop-file.swift"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		E582FC30EC5B47A4B30D25F5 /* KlavikaRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = KlavikaRegular.ttf; path = "../assets/fonts/klavika-regular/fonts/KlavikaRegular.ttf"; sourceTree = "<group>"; };
-		E67560F0C4A74E42B8701898 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Dainorlis/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,11 +63,21 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				E67560F0C4A74E42B8701898 /* noop-file.swift */,
-				A52F446132DA4FEFAD32CADF /* Dainorlis-Bridging-Header.h */,
-				A9A10D0EC725505AC9D1B52D /* PrivacyInfo.xcprivacy */,
+				AC1D16514F164BAA9C94C2E8 /* noop-file.swift */,
+				0E0F050A4AB447F89CB734F2 /* Dainorlis-Bridging-Header.h */,
+				418FF977527534DC9729A6C4 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Dainorlis;
+			sourceTree = "<group>";
+		};
+		17F4A5C1456C4F9BB38B3297 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B7A08E0A7374D65845E2783 /* KlavikaBold.ttf */,
+				9B838D5217A343D58F280931 /* KlavikaRegular.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -79,17 +87,6 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Dainorlis.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		51D99F5CC092412292EF958D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				31B3B58AF9354D7F873CBB52 /* KlavikaBold.ttf */,
-				E582FC30EC5B47A4B30D25F5 /* KlavikaRegular.ttf */,
-				57D5ED4B9D2B4159AB5E1366 /* ModekanUppercase.ttf */,
-			);
-			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -108,7 +105,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
-				51D99F5CC092412292EF958D /* Resources */,
+				17F4A5C1456C4F9BB38B3297 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -165,13 +162,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Dainorlis" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				202FC26BC19C25B29993E859 /* [Expo] Configure project */,
+				2ADA5CCDF0D620DC733240C3 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				BD15B22300C4BFD84BFA7F93 /* [CP] Embed Pods Frameworks */,
+				13DC5BFEC452FBA9DBBB29B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,10 +218,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				0DE7541D71754CBC9C7BFF47 /* KlavikaBold.ttf in Resources */,
-				B125FC8D6B37435285F2EEE8 /* KlavikaRegular.ttf in Resources */,
-				1344E5482F5D492A8FE10CC1 /* ModekanUppercase.ttf in Resources */,
-				13C3BB1C8089432AB05FA8E8 /* PrivacyInfo.xcprivacy in Resources */,
+				EC0C136FB5074524A2AF57D8 /* KlavikaBold.ttf in Resources */,
+				2018E16B04B24A568040F94B /* KlavikaRegular.ttf in Resources */,
+				FCDB6591823DA23124082A3F /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +264,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		202FC26BC19C25B29993E859 /* [Expo] Configure project */ = {
+		13DC5BFEC452FBA9DBBB29B6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2ADA5CCDF0D620DC733240C3 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -329,24 +343,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BD15B22300C4BFD84BFA7F93 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,7 +353,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				2B93604A38414FEEA88F1613 /* noop-file.swift in Sources */,
+				548BA5B4DF2C42279C19D268 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +383,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.v2;
 				PRODUCT_NAME = Dainorlis;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -415,7 +411,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.v2;
 				PRODUCT_NAME = Dainorlis;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

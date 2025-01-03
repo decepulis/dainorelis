@@ -44,6 +44,7 @@ export default function Page() {
             <Pressable disabled={loading} onPress={isFavorite ? removeFromFavorites : addToFavorites}>
               <Image
                 source="icon_fav_white.png"
+                // todo higher contrast indicator
                 style={{ opacity: loading || !isFavorite ? 0.5 : 1, width: 20, height: 20 }}
               />
             </Pressable>

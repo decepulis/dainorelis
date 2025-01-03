@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>myapp</string>
-          <string>com.dainorelis.dainorelis</string>
+          <string>com.dainorelis.v2</string>
         </array>
       </dict>
       <dict>
@@ -59,7 +59,6 @@
     <array>
       <string>KlavikaBold.ttf</string>
       <string>KlavikaRegular.ttf</string>
-      <string>ModekanUppercase.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>

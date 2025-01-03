@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.dainorelis.dainorelis'
+    namespace 'com.dainorelis.v2'
     defaultConfig {
-        applicationId 'com.dainorelis.dainorelis'
+        applicationId 'com.dainorelis.v2'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

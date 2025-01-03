@@ -12,14 +12,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
-    bundleIdentifier: 'com.dainorelis.dainorelis',
+    bundleIdentifier: 'com.dainorelis.v2',
   },
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#70997F',
     },
-    package: 'com.dainorelis.dainorelis',
+    package: 'com.dainorelis.v2',
   },
   web: {
     bundler: 'metro',
@@ -53,12 +53,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           // bundling everything, just in case.
           // todo: slim down to only what we're shipping
           './assets/images/miskas.jpg',
-          './assets/images/miskas2.jpg',
-          './assets/images/miskas2light.jpg',
-          './assets/images/miskas2dark.jpg',
-          './assets/images/icon_book_white.png',
           './assets/images/icon_fav_white.png',
-          './assets/images/icon_settings_white.png',
+          './assets/images/icon_fav_black.png',
           './assets/images/logo_white.png',
         ],
       },
