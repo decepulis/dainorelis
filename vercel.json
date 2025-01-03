@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "http://dainorelisapp.com/",
+      "permanent": false
+    }
+  ]
+}
