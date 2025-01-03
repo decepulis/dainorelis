@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
-import { SongFileSchema } from '../schemas/songs';
+import { SongFileSchema } from '../lib/schemas/songs';
 
 const outputDir = path.join(__dirname, '..');
 const songFilePath = path.join(outputDir, 'songs.ts');

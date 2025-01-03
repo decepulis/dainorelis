@@ -4,8 +4,8 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import ThemedText from '@/components/ThemedText';
-import useStorage from '@/hooks/useStorage';
+import ThemedText from '@/lib/components/ThemedText';
+import useStorage from '@/lib/hooks/useStorage';
 import songs from '@/songs';
 
 export async function generateStaticParams() {

@@ -13,8 +13,8 @@ import Constants from 'expo-constants';
 
 import { getDefaultHeaderHeight } from '@react-navigation/elements';
 
-import { useThemeColor } from '@/hooks/useThemeColor';
-import easeInOutSine from '@/utils/easeInOutSine';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import easeInOutSine from '@/lib/utils/easeInOutSine';
 
 import AnimatedImage from './AnimatedImage';
 

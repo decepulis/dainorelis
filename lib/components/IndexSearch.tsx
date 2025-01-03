@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
 
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 export const indexSearchHeight = 130;
 

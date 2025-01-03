@@ -4,10 +4,10 @@ import { Stack } from 'expo-router';
 
 import { ThemeProvider } from '@react-navigation/native';
 
-import { DarkTheme, LightTheme } from '@/constants/Themes';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { StorageProvider } from '@/hooks/useStorage';
-import { useThemeColor } from '@/hooks/useThemeColor';
+import { DarkTheme, LightTheme } from '@/lib/constants/Themes';
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
+import { StorageProvider } from '@/lib/hooks/useStorage';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from 'react';
-import { Pressable, SectionList, StyleSheet, View } from 'react-native';
+import { Pressable, SectionList, StyleSheet, View, useColorScheme } from 'react-native';
 import { useAnimatedRef } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -7,13 +7,13 @@ import Constants from 'expo-constants';
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
-import IndexHeader, { useIndexHeaderEndHeight, useIndexHeaderStartHeight } from '@/components/IndexHeader';
-import IndexSearch, { indexSearchHeight } from '@/components/IndexSearch';
-import ThemedText from '@/components/ThemedText';
-import useStorage from '@/hooks/useStorage';
-import { Song, SongFile } from '@/schemas/songs';
+import IndexHeader, { useIndexHeaderEndHeight, useIndexHeaderStartHeight } from '@/lib/components/IndexHeader';
+import IndexSearch, { indexSearchHeight } from '@/lib/components/IndexSearch';
+import ThemedText from '@/lib/components/ThemedText';
+import useStorage from '@/lib/hooks/useStorage';
+import { Song, SongFile } from '@/lib/schemas/songs';
+import removeAccents from '@/lib/utils/removeAccents';
 import songs from '@/songs';
-import removeAccents from '@/utils/removeAccents';
 
 const groupSongsByLetter = (songs: SongFile) => {
   const songsByLetter: { [letter: string]: Song[] } = {};
@@ -33,14 +33,20 @@ const groupSongsByLetter = (songs: SongFile) => {
   return sections;
 };
 
-const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => (
-  <Link href={`/dainos/${item.id}`} asChild>
-    <Pressable style={styles.itemContainer}>
-      <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
-      {isFavorite && <Image source="icon_fav_white" style={styles.itemFavorite} />}
-    </Pressable>
-  </Link>
-);
+const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
+  const colorScheme = useColorScheme();
+
+  return (
+    <Link href={`/dainos/${item.id}`} asChild>
+      <Pressable style={styles.itemContainer}>
+        <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
+        {isFavorite && (
+          <Image source={colorScheme === 'dark' ? 'icon_fav_white' : 'icon_fav_black'} style={styles.itemFavorite} />
+        )}
+      </Pressable>
+    </Link>
+  );
+};
 const ListItem = memo(_ListItem);
 
 const _SectionHeader = ({ title }: { title: string }) => {
