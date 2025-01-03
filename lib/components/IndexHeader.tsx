@@ -19,8 +19,9 @@ import easeInOutSine from '@/lib/utils/easeInOutSine';
 import AnimatedImage from './AnimatedImage';
 
 export function useIndexHeaderStartHeight() {
+  const { height } = useWindowDimensions();
   const inset = useSafeAreaInsets();
-  return 200 + inset.top;
+  return Math.max(200 + inset.top, height / 4);
 }
 export function useIndexHeaderEndHeight() {
   const inset = useSafeAreaInsets();
@@ -69,7 +70,7 @@ const _IndexHeader = ({ scrollRef, children }: IndexHeaderProps) => {
   // logo scale animation
   // todo: use scale instead of width...?
   const logoAspectRatio = 784 / 250; // width  / height
-  const logoStartWidth = width - 80; // 80 px horizontal padding
+  const logoStartWidth = Math.min(width - 80, 320);
   const logoEndHeight = headerEndHeight - Constants.statusBarHeight - 5;
   const logoEndWidth = logoEndHeight * logoAspectRatio; // 5px vertical padding
   const logoAnimatedStyle = useAnimatedStyle(() => ({

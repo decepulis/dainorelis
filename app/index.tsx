@@ -10,6 +10,7 @@ import { Link, Stack } from 'expo-router';
 import IndexHeader, { useIndexHeaderEndHeight, useIndexHeaderStartHeight } from '@/lib/components/IndexHeader';
 import IndexSearch, { indexSearchHeight } from '@/lib/components/IndexSearch';
 import ThemedText from '@/lib/components/ThemedText';
+import maxWidth from '@/lib/constants/maxWidth';
 import useStorage from '@/lib/hooks/useStorage';
 import { Song, SongFile } from '@/lib/schemas/songs';
 import removeAccents from '@/lib/utils/removeAccents';
@@ -39,10 +40,12 @@ const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: b
   return (
     <Link href={`/dainos/${item.id}`} asChild>
       <Pressable style={styles.itemContainer}>
-        <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
-        {isFavorite && (
-          <Image source={colorScheme === 'dark' ? 'icon_fav_white' : 'icon_fav_black'} style={styles.itemFavorite} />
-        )}
+        <View style={styles.itemInnerContainer}>
+          <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
+          {isFavorite && (
+            <Image source={colorScheme === 'dark' ? 'icon_fav_white' : 'icon_fav_black'} style={styles.itemFavorite} />
+          )}
+        </View>
       </Pressable>
     </Link>
   );
@@ -50,7 +53,11 @@ const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: b
 const ListItem = memo(_ListItem);
 
 const _SectionHeader = ({ title }: { title: string }) => {
-  return <ThemedText style={styles.header}>{title}</ThemedText>;
+  return (
+    <View style={styles.headerContainer}>
+      <ThemedText style={styles.header}>{title}</ThemedText>
+    </View>
+  );
 };
 const SectionHeader = memo(_SectionHeader);
 
@@ -144,10 +151,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemContainer: {
+    paddingHorizontal: 20,
+  },
+  itemInnerContainer: {
+    paddingVertical: 20,
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 20,
   },
   item: {
     fontSize: 21,
@@ -158,12 +171,17 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: -4,
   },
+  headerContainer: {
+    paddingHorizontal: 20,
+  },
   header: {
     fontSize: 21,
-    paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 20,
     fontFamily: 'KlavikaBold',
     fontWeight: 'bold',
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
   },
 });

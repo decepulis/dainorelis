@@ -5,6 +5,7 @@ import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
 import ThemedText from '@/lib/components/ThemedText';
+import maxWidth from '@/lib/constants/maxWidth';
 import useStorage from '@/lib/hooks/useStorage';
 import songs from '@/songs';
 
@@ -41,7 +42,7 @@ export default function Page() {
         options={{
           title: song.fields.Song,
           headerRight: () => (
-            <Pressable disabled={loading} onPress={isFavorite ? removeFromFavorites : addToFavorites}>
+            <Pressable hitSlop={24} disabled={loading} onPress={isFavorite ? removeFromFavorites : addToFavorites}>
               <Image
                 source="icon_fav_white.png"
                 // todo higher contrast indicator
@@ -68,5 +69,8 @@ const styles = StyleSheet.create({
   lyrics: {
     fontSize: 21,
     lineHeight: 28,
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
   },
 });

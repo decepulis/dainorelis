@@ -18,6 +18,7 @@ export default function RootLayout() {
     <StorageProvider>
       {/* todo ios flash of dark theme */}
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+        {/* todo: this is weird on ipad */}
         <KeyboardAvoidingView
           style={{ flex: 1, backgroundColor: background }}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
