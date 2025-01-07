@@ -2,10 +2,12 @@ import React, { memo } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
-import SegmentedControl from '@react-native-segmented-control/segmented-control';
 
 import maxWidth from '@/lib/constants/maxWidth';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+
+import { fonts } from '../constants/themes';
+import SegmentedControl from './SegmentedControl';
 
 export const indexSearchHeight = 130;
 
@@ -24,13 +26,8 @@ const _IndexSearch = ({ filter, setFilter, searchText, setSearchText }: IndexSea
   return (
     <View style={[{ borderColor: color, backgroundColor: background }, styles.searchContainer]}>
       <View style={styles.innerSearchContainer}>
+        {/* TODO how do you do a translation, here?? */}
         <SegmentedControl
-          backgroundColor={cardDark}
-          style={styles.searchFilter}
-          sliderStyle={styles.searchFilterSlider}
-          tintColor={primary}
-          fontStyle={{ color, fontSize: 16, fontFamily: 'KlavikaRegular' }}
-          activeFontStyle={{ fontSize: 16, fontFamily: 'KlavikaRegular', fontWeight: 'normal', color: '#fff' }}
           selectedIndex={filter === 'Visos' ? 0 : 1}
           onValueChange={setFilter as (value: string) => void}
           values={['Visos', 'Mano']}
@@ -67,15 +64,13 @@ const styles = StyleSheet.create({
     maxWidth,
     marginHorizontal: 'auto',
   },
-  searchFilter: { height: 40, borderRadius: 6 },
-  searchFilterSlider: { borderRadius: 4 },
   searchInputContainer: {
     marginTop: 10,
     position: 'relative',
   },
   searchInput: {
     fontSize: 16,
-    fontFamily: 'KlavikaRegular',
+    fontFamily: fonts.regular.fontFamily,
     height: 40,
     borderRadius: 6,
     paddingLeft: 40,

@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useMemo, useState } from 'react';
-import { Pressable, SectionList, StyleSheet, View, useColorScheme } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Pressable, SectionList, StyleSheet, View, useColorScheme, useWindowDimensions } from 'react-native';
 import { useAnimatedRef } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import Constants from 'expo-constants';
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
@@ -11,6 +11,7 @@ import IndexHeader, { useIndexHeaderEndHeight, useIndexHeaderStartHeight } from 
 import IndexSearch, { indexSearchHeight } from '@/lib/components/IndexSearch';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
+import { fonts } from '@/lib/constants/themes';
 import useStorage from '@/lib/hooks/useStorage';
 import { Song, SongFile } from '@/lib/schemas/songs';
 import removeAccents from '@/lib/utils/removeAccents';
@@ -34,6 +35,9 @@ const groupSongsByLetter = (songs: SongFile) => {
   return sections;
 };
 
+const itemPaddingVertical = 20;
+const itemFontSize = 21;
+
 const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
   const colorScheme = useColorScheme();
 
@@ -43,7 +47,7 @@ const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: b
         <View style={styles.itemInnerContainer}>
           <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
           {isFavorite && (
-            <Image source={colorScheme === 'dark' ? 'icon_fav_white' : 'icon_fav_black'} style={styles.itemFavorite} />
+            <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.itemFavorite} />
           )}
         </View>
       </Pressable>
@@ -61,6 +65,25 @@ const _SectionHeader = ({ title }: { title: string }) => {
 };
 const SectionHeader = memo(_SectionHeader);
 
+const _NoHits = () => {
+  const { t } = useTranslation();
+  return <ThemedText>{t('noHits')}</ThemedText>;
+};
+const NoHits = memo(_NoHits);
+
+const _NoFavorites = () => {
+  const colorScheme = useColorScheme();
+  const { t } = useTranslation();
+  return (
+    <ThemedText>
+      {t('noFavorites1')}
+      <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.noResultsFavorite} />
+      {t('noFavorites2')}
+    </ThemedText>
+  );
+};
+const NoFavorites = memo(_NoFavorites);
+
 export default function Index() {
   const inset = useSafeAreaInsets();
   const listRef = useAnimatedRef<SectionList>();
@@ -71,8 +94,7 @@ export default function Index() {
   const [filter, setFilter] = useState<'Visos' | 'Mano'>('Visos');
   const [searchText, setSearchText] = useState('');
 
-  // todo: empty state when no filters / no search
-  // todo: debounce this
+  // TODO: debounce this
   // apply filters and search to song list
   const { filteredSections, showHeaders } = useMemo(() => {
     let filteredSongs = songs;
@@ -85,7 +107,7 @@ export default function Index() {
     // then, filter by the search query
     if (searchText) {
       filteredSongs = filteredSongs.filter((song) =>
-        removeAccents(song.fields.Song).toLowerCase().includes(removeAccents(searchText).toLowerCase())
+        removeAccents(song.fields.Song.toLowerCase()).includes(removeAccents(searchText.toLowerCase()))
       );
     }
 
@@ -99,6 +121,33 @@ export default function Index() {
     return { filteredSections, showHeaders };
   }, [favorites, filter, searchText]);
 
+  // for a few reasons, it's useful to know how many items we have
+  const itemCount = useMemo(
+    () => filteredSections.reduce((acc, section) => acc + section.data.length, 0),
+    [filteredSections]
+  );
+  const resultStatus: 'results' | 'no-hits' | 'no-favorites' = useMemo(() => {
+    if (searchText.length > 0 && itemCount === 0) {
+      return 'no-hits';
+    }
+    if (filter === 'Mano' && itemCount === 0) {
+      return 'no-favorites';
+    }
+    return 'results';
+  }, [filter, itemCount, searchText]);
+
+  // no matter how many search results are available,
+  // we always want to be able to hide the header by scrolling
+  // so we add space below the last item to account for missing items
+  const { height } = useWindowDimensions();
+  const noHeaderPadding = useMemo(() => (showHeaders ? 0 : 20), [showHeaders]);
+  const whiteSpaceToAdd = useMemo(() => {
+    const itemHeight = itemPaddingVertical * 2 + itemFontSize;
+    const itemsHeight = itemCount * itemHeight;
+    const maxWhiteSpaceToAdd = height - headerEndHeight - indexSearchHeight;
+    return Math.max(maxWhiteSpaceToAdd - itemsHeight - noHeaderPadding, inset.bottom);
+  }, [headerEndHeight, height, inset.bottom, itemCount, noHeaderPadding]);
+
   // when searchResults changes, scroll SectionList to the top
   useEffect(() => {
     if (filteredSections.length === 0) return;
@@ -107,15 +156,14 @@ export default function Index() {
     listRef.current?.scrollToLocation({
       sectionIndex: 0,
       itemIndex: 0,
-      viewOffset: -1 * (indexSearchHeight + headerEndHeight - Constants.statusBarHeight - 30),
+      viewOffset: indexSearchHeight + headerEndHeight,
     });
-  }, [filteredSections, headerEndHeight, listRef, searchText.length]);
+  }, [filteredSections, headerEndHeight, inset.top, listRef, searchText.length]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Dainos',
           header: () => (
             <IndexHeader scrollRef={listRef}>
               <IndexSearch
@@ -132,14 +180,18 @@ export default function Index() {
       <View style={styles.container}>
         <SectionList
           ref={listRef}
-          style={{ paddingTop: headerStartHeight + indexSearchHeight + (showHeaders ? 0 : 20) }}
           contentInsetAdjustmentBehavior="never"
           sections={filteredSections}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ListItem item={item} isFavorite={favorites.includes(item.id)} />}
           renderSectionHeader={({ section }) => (showHeaders ? <SectionHeader title={section.title} /> : null)}
           stickySectionHeadersEnabled={false}
-          ListFooterComponent={<View style={{ height: inset.bottom }} />}
+          ListHeaderComponent={<View style={{ height: headerStartHeight + indexSearchHeight + noHeaderPadding }} />}
+          ListFooterComponent={
+            <View style={[styles.listFooter, { height: whiteSpaceToAdd }]}>
+              {resultStatus === 'no-hits' ? <NoHits /> : resultStatus === 'no-favorites' ? <NoFavorites /> : null}
+            </View>
+          }
         />
       </View>
     </>
@@ -154,7 +206,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   itemInnerContainer: {
-    paddingVertical: 20,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
@@ -163,7 +214,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   item: {
-    fontSize: 21,
+    paddingVertical: itemPaddingVertical,
+    fontSize: itemFontSize,
   },
   itemFavorite: {
     width: 20,
@@ -178,10 +230,20 @@ const styles = StyleSheet.create({
     fontSize: 21,
     paddingTop: 40,
     paddingBottom: 20,
-    fontFamily: 'KlavikaBold',
-    fontWeight: 'bold',
+    fontFamily: fonts.bold.fontFamily,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
+  },
+  noResultsFavorite: {
+    width: 18,
+    height: 18,
+    position: 'relative',
+    top: -3,
+  },
+  listFooter: {
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    alignItems: 'center',
   },
 });

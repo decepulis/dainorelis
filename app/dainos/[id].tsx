@@ -21,7 +21,7 @@ export default function Page() {
   const isFavorite = useMemo(() => song?.id && favorites.includes(song.id), [favorites, song]);
 
   if (!song) {
-    // todo: better error state
+    // TODO: better error state
     return null;
   }
 
@@ -44,14 +44,15 @@ export default function Page() {
           headerRight: () => (
             <Pressable hitSlop={24} disabled={loading} onPress={isFavorite ? removeFromFavorites : addToFavorites}>
               <Image
-                source="icon_fav_white.png"
-                // todo higher contrast indicator
+                source="fav_white"
+                // TODO higher contrast indicator
                 style={{ opacity: loading || !isFavorite ? 0.5 : 1, width: 20, height: 20 }}
               />
             </Pressable>
           ),
         }}
       />
+      {/* TODO padding on scroll view makes android unhappy */}
       <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
         <ThemedText style={styles.lyrics}>{song.fields.Lyrics}</ThemedText>
       </ScrollView>

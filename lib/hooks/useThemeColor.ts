@@ -1,9 +1,9 @@
-import type { Theme } from '@/lib/constants/Themes';
+import type { Theme } from '@/lib/constants/themes';
 /**
  * Learn more about light and dark modes:
  * https://docs.expo.dev/guides/color-schemes/
  */
-import { DarkTheme, LightTheme } from '@/lib/constants/Themes';
+import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 export function useThemeColor(colorName: keyof Theme['colors']) {

@@ -9,6 +9,10 @@ const schemas = {
     validator: z.array(z.string()),
     defaultValue: [] as string[],
   },
+  language: {
+    validator: z.enum(['en', 'lt']),
+    defaultValue: 'lt',
+  },
 };
 
 // after that, this gets a bit complicated.

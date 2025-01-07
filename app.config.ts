@@ -50,12 +50,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-asset',
       {
         assets: [
-          // bundling everything, just in case.
-          // todo: slim down to only what we're shipping
           './assets/images/miskas.jpg',
-          './assets/images/icon_fav_white.png',
-          './assets/images/icon_fav_black.png',
           './assets/images/logo_white.png',
+          './assets/images/icon/fav_white.png',
+          './assets/images/icon/fav_black.png',
+          './assets/images/icon/settings_white.png',
+          './assets/images/icon/book_white.png',
+          './assets/images/profiles/daina.jpg',
+          './assets/images/profiles/dar.jpg',
+          './assets/images/profiles/jonas.jpg',
+          './assets/images/profiles/kes.jpg',
+          './assets/images/profiles/shar.jpg',
         ],
       },
     ],

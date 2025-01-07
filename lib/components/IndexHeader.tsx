@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { SectionList, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Pressable, SectionList, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -9,13 +9,15 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import Constants from 'expo-constants';
+import { Link } from 'expo-router';
 
+import { Ionicons } from '@expo/vector-icons';
 import { getDefaultHeaderHeight } from '@react-navigation/elements';
 
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import easeInOutSine from '@/lib/utils/easeInOutSine';
 
+import easeOutSine from '../utils/easeOutSine';
 import AnimatedImage from './AnimatedImage';
 
 export function useIndexHeaderStartHeight() {
@@ -26,11 +28,11 @@ export function useIndexHeaderStartHeight() {
 export function useIndexHeaderEndHeight() {
   const inset = useSafeAreaInsets();
   const { height, width } = useWindowDimensions();
-  // todo this is slightly off on android
+  // TODO this is slightly off on android
   return getDefaultHeaderHeight({ height, width }, false, inset.top);
 }
 
-// todo: maybe disable this on web and ipad
+// TODO: maybe disable this on web and ipad
 type IndexHeaderProps = {
   scrollRef: AnimatedRef<SectionList<any>>;
   children?: React.ReactNode;
@@ -49,48 +51,80 @@ const _IndexHeader = ({ scrollRef, children }: IndexHeaderProps) => {
 
   // header height animation
   const headerAnimatedStyle = useAnimatedStyle(() => ({
-    height: Math.max(headerStartHeight - scrollOffset.value, headerEndHeight),
+    height: Math.min(Math.max(headerStartHeight - scrollOffset.value, headerEndHeight), headerStartHeight),
   }));
 
   // background fade animation
-  // todo: scale instead of top/bottom?
   const backgroundStartOpacity = 1;
   const backgroundEndOpacity = 0;
   const backgroundAnimatedStyle = useAnimatedStyle(() => ({
-    top: Math.min(-1 * 0.5 * scrollOffset.value, 0),
-    bottom: Math.min(-1 * 0.5 * scrollOffset.value, 0),
+    transform: [
+      {
+        translateY: interpolate(
+          scrollOffset.value,
+          [0, scrollOffsetEnd],
+          [0, -scrollOffsetEnd / 1.5],
+          Extrapolation.CLAMP
+        ),
+      },
+    ],
     opacity: interpolate(
       easeInOutSine(scrollOffset.value, scrollOffsetEnd),
-      [0, 1],
+      [0, 1], // [0, 1] instead of [0, scrollOffsetEnd] since that's what easeInOutSine returns
       [backgroundStartOpacity, backgroundEndOpacity],
       Extrapolation.CLAMP
     ),
   }));
 
+  // button fade animation
+  // button fades halfway in
+  const buttonStartOpacity = 0;
+  const buttonEndOpacity = 1;
+  const buttonAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      easeInOutSine(scrollOffset.value, scrollOffsetEnd),
+      [0, 1], // [0, 1] instead of [0, scrollOffsetEnd] since that's what easeInOutSine returns
+      [buttonStartOpacity, buttonEndOpacity],
+      Extrapolation.CLAMP
+    ),
+  }));
+
   // logo scale animation
-  // todo: use scale instead of width...?
+  // TODO: use scale instead of width...?
   const logoAspectRatio = 784 / 250; // width  / height
   const logoStartWidth = Math.min(width - 80, 320);
-  const logoEndHeight = headerEndHeight - Constants.statusBarHeight - 5;
-  const logoEndWidth = logoEndHeight * logoAspectRatio; // 5px vertical padding
+  const logoEndHeight = headerEndHeight - inset.top - 5; // 5px vertical padding
+  const logoEndWidth = logoEndHeight * logoAspectRatio;
+
   const logoAnimatedStyle = useAnimatedStyle(() => ({
-    width: interpolate(scrollOffset.value, [0, scrollOffsetEnd], [logoStartWidth, logoEndWidth], Extrapolation.CLAMP),
+    width: interpolate(
+      easeOutSine(scrollOffset.value, scrollOffsetEnd),
+      [0, 1], // [0, 1] instead of [0, scrollOffsetEnd] since that's what easeOutSine returns,
+      [logoStartWidth, logoEndWidth],
+      Extrapolation.CLAMP
+    ),
   }));
 
   return (
     <View>
-      <Animated.View
-        style={[
-          styles.headerImageContainer,
-          {
-            backgroundColor: primary,
-            paddingTop: 5 + (3 * inset.top) / 4,
-          },
-          headerAnimatedStyle,
-        ]}
-      >
-        <AnimatedImage source="miskas" style={[styles.headerBackground, backgroundAnimatedStyle]} contentFit="cover" />
-        <AnimatedImage source="logo_white" style={[styles.headerLogo, logoAnimatedStyle]} contentFit="contain" />
+      <Animated.View style={[styles.headerImageContainer, { backgroundColor: primary }, headerAnimatedStyle]}>
+        <AnimatedImage
+          source="miskas"
+          style={[styles.headerBackground, { height: headerStartHeight }, backgroundAnimatedStyle]}
+          contentFit="cover"
+        />
+        <AnimatedImage
+          source="logo_white"
+          style={[{ top: inset.top }, styles.headerLogo, logoAnimatedStyle]}
+          contentFit="contain"
+        />
+        <Animated.View style={[{ top: inset.top }, styles.headerButtonContainer, buttonAnimatedStyle]}>
+          <Link href="/apie-mus" asChild>
+            <Pressable hitSlop={24}>
+              <Ionicons name="information-circle-outline" size={24} color="#fff" style={styles.headerButton} />
+            </Pressable>
+          </Link>
+        </Animated.View>
       </Animated.View>
       {children}
     </View>
@@ -103,15 +137,28 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 2,
     overflow: 'hidden',
   },
   headerBackground: {
     position: 'absolute',
+    top: 0,
     left: 0,
     right: 0,
   },
-  headerLogo: { height: '100%' },
+  headerLogo: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    transform: [{ translateX: '-50%' }],
+  },
+  headerButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerButton: {},
 });
 
 export default IndexHeader;

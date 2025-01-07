@@ -3,11 +3,12 @@ import { Text, type TextProps } from 'react-native';
 
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
+import { fonts } from '../constants/themes';
+
 const ThemedText = forwardRef<Text, TextProps>(({ style, ...rest }, ref) => {
   const color = useThemeColor('text');
 
-  // todo try merriweather, lato
-  return <Text ref={ref} style={[{ color, fontFamily: 'KlavikaRegular' }, style]} {...rest} />;
+  return <Text ref={ref} style={[{ color, fontFamily: fonts.regular.fontFamily }, style]} {...rest} />;
 });
 
 ThemedText.displayName = 'ThemedText';

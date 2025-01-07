@@ -42,5 +42,3 @@ async function updateSongs() {
 }
 
 updateSongs();
-
-// todo: figure out exactly how inefficient it is to load all the songs in a single file

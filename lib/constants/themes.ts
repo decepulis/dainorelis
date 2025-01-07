@@ -1,6 +1,6 @@
 import type { Theme as LibTheme } from '@react-navigation/native';
 
-const fonts: Theme['fonts'] = {
+export const fonts: Theme['fonts'] = {
   regular: {
     fontFamily: 'KlavikaRegular',
     fontWeight: 'normal',
@@ -28,9 +28,9 @@ export const LightTheme: Theme = {
   dark: false,
   colors: {
     primary: '#70997F',
-    background: '#e2e4dd',
+    background: '#e4e4dd',
     card: '#FFF',
-    cardDark: '#D0CECF',
+    cardDark: '#D6D6D2',
     text: '#121314',
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
