@@ -1,11 +1,22 @@
 import { initReactI18next } from 'react-i18next';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import i18n from 'i18next';
+import i18n, { LanguageDetectorAsyncModule } from 'i18next';
 
-const getLanguagePreferences = async () => {
-  const language = await AsyncStorage.getItem('language');
-  return language || 'lt';
+const getLanguageFromAsyncStorage: LanguageDetectorAsyncModule = {
+  type: 'languageDetector',
+  async: true,
+  init: () => {},
+  detect: async function () {
+    let language = 'lt';
+    const languageJSON = await AsyncStorage.getItem('language');
+    if (languageJSON) {
+      const langaugeJSONParsed = JSON.parse(languageJSON);
+      if (langaugeJSONParsed === 'en') language = 'en';
+    }
+
+    return Promise.resolve(language);
+  },
 };
 
 const en = {
@@ -13,8 +24,8 @@ const en = {
   allSongs: 'All',
   favoriteSongs: 'Favorites',
   noHits: 'No search results',
-  noFavorites1: 'When viewing a song, press the',
-  noFavorites2: 'icon to set a favorite',
+  noFavorites1: 'When viewing a song, press',
+  noFavorites2: 'to set a favorite',
   aboutUs: 'About us',
   aboutWriteToUsTitle: 'Write to us',
   aboutWriteToUsText: 'If you have any questions or suggestions, or just want to say hello, write to us at',
@@ -28,7 +39,7 @@ const lt = {
   allSongs: 'Visos',
   favoriteSongs: 'Mano',
   noHits: 'Nerasta',
-  noFavorites1: 'Peržiūrėdami dainą, paspauskite',
+  noFavorites1: 'Žiūrėdami dainą, paspauskite',
   noFavorites2: 'pažymėti kaip „mano“',
   aboutUs: 'Apie mus',
   aboutWriteToUsTitle: 'Parašykite mums',
@@ -39,17 +50,22 @@ const lt = {
   aboutOurTeamTitle: 'Mūsų komanda',
 };
 
-// Initialize i18n
-i18n.use(initReactI18next).init({
-  resources: {
-    en: { translation: en },
-    lt: { translation: lt },
-  },
-  lng: await getLanguagePreferences(),
-  fallbackLng: 'lt',
-  interpolation: {
-    escapeValue: false, // React already escapes values
-  },
-});
-
+export async function initI18n() {
+  await i18n
+    .use(initReactI18next)
+    .use(getLanguageFromAsyncStorage)
+    .init({
+      resources: {
+        en: { translation: en },
+        lt: { translation: lt },
+      },
+      fallbackLng: 'lt',
+      interpolation: {
+        escapeValue: false, // React already escapes values
+      },
+      react: {
+        useSuspense: false,
+      },
+    });
+}
 export default i18n;

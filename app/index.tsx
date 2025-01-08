@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SectionList, StyleSheet, View, useColorScheme, useWindowDimensions } from 'react-native';
 import { useAnimatedRef } from 'react-native-reanimated';
@@ -38,7 +38,7 @@ const groupSongsByLetter = (songs: SongFile) => {
 const itemPaddingVertical = 20;
 const itemFontSize = 21;
 
-const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
+const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -54,35 +54,31 @@ const _ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: b
     </Link>
   );
 };
-const ListItem = memo(_ListItem);
 
-const _SectionHeader = ({ title }: { title: string }) => {
+const SectionHeader = ({ title }: { title: string }) => {
   return (
     <View style={styles.headerContainer}>
       <ThemedText style={styles.header}>{title}</ThemedText>
     </View>
   );
 };
-const SectionHeader = memo(_SectionHeader);
 
-const _NoHits = () => {
+const NoHits = () => {
   const { t } = useTranslation();
-  return <ThemedText>{t('noHits')}</ThemedText>;
+  return <ThemedText style={styles.errorText}>{t('noHits')}</ThemedText>;
 };
-const NoHits = memo(_NoHits);
 
-const _NoFavorites = () => {
+const NoFavorites = () => {
   const colorScheme = useColorScheme();
   const { t } = useTranslation();
   return (
-    <ThemedText>
-      {t('noFavorites1')}
-      <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.noResultsFavorite} />
+    <ThemedText style={styles.errorText}>
+      {t('noFavorites1')}{' '}
+      <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.noResultsFavorite} />{' '}
       {t('noFavorites2')}
     </ThemedText>
   );
 };
-const NoFavorites = memo(_NoFavorites);
 
 export default function Index() {
   const inset = useSafeAreaInsets();
@@ -235,11 +231,15 @@ const styles = StyleSheet.create({
     maxWidth,
     marginHorizontal: 'auto',
   },
+  errorText: {
+    fontSize: 18,
+    lineHeight: 22.5,
+    textAlign: 'center',
+    opacity: 0.8,
+  },
   noResultsFavorite: {
-    width: 18,
-    height: 18,
-    position: 'relative',
-    top: -3,
+    width: 14,
+    height: 14,
   },
   listFooter: {
     paddingHorizontal: 20,

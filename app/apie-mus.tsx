@@ -7,13 +7,12 @@ import { Link, Stack, router } from 'expo-router';
 
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
-import i18n from '@/lib/constants/i18n';
 import { fonts } from '@/lib/constants/themes';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 export default function Page() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
 
   const onLanguageChange = useCallback(
@@ -22,7 +21,7 @@ export default function Page() {
       setLanguage(language);
       i18n.changeLanguage(language);
     },
-    [setLanguage]
+    [setLanguage, i18n]
   );
 
   const isPresented = router.canGoBack();
