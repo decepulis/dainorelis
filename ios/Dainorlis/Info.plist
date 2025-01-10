@@ -57,8 +57,10 @@
     </array>
     <key>UIAppFonts</key>
     <array>
-      <string>KlavikaBold.ttf</string>
-      <string>KlavikaRegular.ttf</string>
+      <string>TitilliumWeb-Bold.ttf</string>
+      <string>TitilliumWeb-BoldItalic.ttf</string>
+      <string>TitilliumWeb-Italic.ttf</string>
+      <string>TitilliumWeb-Regular.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>

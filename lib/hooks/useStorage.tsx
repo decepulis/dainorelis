@@ -3,6 +3,8 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import z from 'zod';
 
+// todo migrate to mmkv
+
 // if you wanna store anything in async storage, define it here
 const schemas = {
   favorites: {
@@ -12,6 +14,10 @@ const schemas = {
   language: {
     validator: z.enum(['en', 'lt']),
     defaultValue: 'lt',
+  },
+  showChords: {
+    validator: z.boolean(),
+    defaultValue: false,
   },
 };
 
@@ -54,14 +60,14 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     const { validator } = schemas[key];
     const validValue = validator.parse(value);
 
-    // then, set the value in Storage
-    await AsyncStorage.setItem(key, JSON.stringify(validValue));
-
-    // finally, update state
+    // then, optimistically update state
     setValues((prev) => ({
       ...prev,
       [key]: { ...prev[key], value: validValue, loading: false },
     }));
+
+    // finally, set the value in Storage
+    await AsyncStorage.setItem(key, JSON.stringify(validValue));
   }, []);
 
   // on load, initialize all the values using the setValue function we just wrote
@@ -77,6 +83,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
             if (e instanceof z.ZodError) {
               // treat parsing errors as if the key doesn't exist in local storage
               console.error(`Error parsing ${key} from AsyncStorage:`, e.errors);
+              // todo fix ts
               setValue(key, schemas[key].defaultValue);
             } else {
               throw e;

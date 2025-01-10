@@ -101,17 +101,18 @@ const styles = StyleSheet.create({
   section: { marginBottom: 40 },
   header: {
     fontFamily: fonts.bold.fontFamily,
-    fontSize: 27,
+    fontWeight: fonts.bold.fontWeight,
+    fontSize: 26,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 15,
-    paddingBottom: 10,
+    paddingBottom: 5,
   },
   paragraph: {
     fontSize: 18,
-    lineHeight: 22.5,
+    lineHeight: 27,
   },
   profiles: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' },
-  profile: { width: 130, textAlign: 'center', alignItems: 'center', margin: 10 },
+  profile: { width: 130, alignItems: 'center', margin: 10 },
   profileImage: { width: '100%', aspectRatio: 1, borderRadius: 9999 },
-  profileText: { paddingTop: 10 },
+  profileText: { paddingTop: 10, textAlign: 'center' },
 });

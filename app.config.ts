@@ -41,8 +41,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-font',
       {
         fonts: [
-          './assets/fonts/klavika-bold/fonts/KlavikaBold.ttf',
-          './assets/fonts/klavika-regular/fonts/KlavikaRegular.ttf',
+          './assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf',
+          './assets/fonts/Titillium_Web/TitilliumWeb-BoldItalic.ttf',
+          './assets/fonts/Titillium_Web/TitilliumWeb-Italic.ttf',
+          './assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf',
         ],
       },
     ],

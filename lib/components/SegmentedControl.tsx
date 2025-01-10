@@ -26,12 +26,13 @@ export default function SegmentedControl({
         color,
         fontSize: 16,
         fontFamily: fonts.regular.fontFamily,
+        fontWeight: fonts.regular.fontWeight,
         ...fontStyle,
       }}
       activeFontStyle={{
         fontSize: 16,
         fontFamily: fonts.regular.fontFamily,
-        fontWeight: 'normal',
+        fontWeight: fonts.regular.fontWeight,
         color: DarkTheme.colors.text,
         ...activeFontStyle,
       }}

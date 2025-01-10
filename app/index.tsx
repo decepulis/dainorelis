@@ -21,7 +21,7 @@ const groupSongsByLetter = (songs: SongFile) => {
   const songsByLetter: { [letter: string]: Song[] } = {};
 
   songs.forEach((song) => {
-    const firstLetter = song.fields.Song?.charAt(0).toUpperCase() || '#';
+    const firstLetter = song.fields.Name?.charAt(0).toUpperCase() || '#';
     const letterSongs = songsByLetter[firstLetter] || [];
     const newLetterSongs = [...letterSongs, song];
     songsByLetter[firstLetter] = newLetterSongs;
@@ -35,8 +35,8 @@ const groupSongsByLetter = (songs: SongFile) => {
   return sections;
 };
 
-const itemPaddingVertical = 20;
-const itemFontSize = 21;
+const itemPaddingVertical = 15;
+const itemFontSize = 20;
 
 const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
   const colorScheme = useColorScheme();
@@ -45,7 +45,7 @@ const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: bo
     <Link href={`/dainos/${item.id}`} asChild>
       <Pressable style={styles.itemContainer}>
         <View style={styles.itemInnerContainer}>
-          <ThemedText style={styles.item}>{item.fields.Song}</ThemedText>
+          <ThemedText style={styles.item}>{item.fields.Name}</ThemedText>
           {isFavorite && (
             <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.itemFavorite} />
           )}
@@ -90,7 +90,7 @@ export default function Index() {
   const [filter, setFilter] = useState<'Visos' | 'Mano'>('Visos');
   const [searchText, setSearchText] = useState('');
 
-  // TODO: debounce this
+  // TODO: debounce this or useTransition
   // apply filters and search to song list
   const { filteredSections, showHeaders } = useMemo(() => {
     let filteredSongs = songs;
@@ -103,7 +103,7 @@ export default function Index() {
     // then, filter by the search query
     if (searchText) {
       filteredSongs = filteredSongs.filter((song) =>
-        removeAccents(song.fields.Song.toLowerCase()).includes(removeAccents(searchText.toLowerCase()))
+        removeAccents(song.fields.Name.toLowerCase()).includes(removeAccents(searchText.toLowerCase()))
       );
     }
 
@@ -223,10 +223,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   header: {
-    fontSize: 21,
-    paddingTop: 40,
-    paddingBottom: 20,
+    fontSize: itemFontSize,
+    paddingTop: 45,
+    paddingBottom: 15,
     fontFamily: fonts.bold.fontFamily,
+    fontWeight: fonts.bold.fontWeight,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',

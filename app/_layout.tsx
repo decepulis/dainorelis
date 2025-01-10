@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { ThemeProvider } from '@react-navigation/native';
 
+import HeaderTitle from '@/lib/components/HeaderTitle';
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
@@ -45,9 +46,10 @@ function App({ onLayout }: AppProps) {
         >
           <Stack
             screenOptions={{
-              headerTitleStyle: { color: '#fff' },
               headerTintColor: '#fff',
               headerStyle: { backgroundColor: primary },
+              headerBackButtonDisplayMode: 'minimal',
+              headerTitle: HeaderTitle,
             }}
           >
             <Stack.Screen name="index" options={{ title: t('songs') }} />

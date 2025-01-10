@@ -1,21 +1,35 @@
 import type { Theme as LibTheme } from '@react-navigation/native';
 
-export const fonts: Theme['fonts'] = {
+type Fonts = Theme['fonts'] & {
+  regularItalic: {
+    fontFamily: string;
+  };
+  boldItalic: {
+    fontFamily: string;
+  };
+};
+export const fonts: Fonts = {
   regular: {
-    fontFamily: 'KlavikaRegular',
+    fontFamily: 'TitilliumWeb-Regular',
     fontWeight: 'normal',
   },
+  regularItalic: {
+    fontFamily: 'TitilliumWeb-Italic',
+  },
   medium: {
-    fontFamily: 'KlavikaRegular',
+    fontFamily: 'TitilliumWeb-Regular',
     fontWeight: 'normal',
   },
   bold: {
-    fontFamily: 'KlavikaBold',
-    fontWeight: '700',
+    fontFamily: 'TitilliumWeb-Bold',
+    fontWeight: '400',
+  },
+  boldItalic: {
+    fontFamily: 'TitilliumWeb-BoldItalic',
   },
   heavy: {
-    fontFamily: 'KlavikaBold',
-    fontWeight: '700',
+    fontFamily: 'TitilliumWeb-Bold',
+    fontWeight: '400',
   },
 };
 

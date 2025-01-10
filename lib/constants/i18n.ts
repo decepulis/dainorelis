@@ -33,6 +33,9 @@ const en = {
   aboutOurGoalText:
     'We created the "Dainorėlis App" so that Lithuanians around the world could easily find the lyrics of their favorite folk songs. We hope this collection will inspire you to sing anywhere and any time!',
   aboutOurTeamTitle: 'Our team',
+  showChords: 'Show chords',
+  musicBy: 'Music by',
+  wordsBy: 'Words by',
 };
 const lt = {
   songs: 'Dainos',
@@ -48,6 +51,9 @@ const lt = {
   aboutOurGoalText:
     'Mes sukūrėme „Dainorėlis App“, kad lietuviai po visą pasaulį galėtų lengvai rasti savo mylimų liaudės dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
   aboutOurTeamTitle: 'Mūsų komanda',
+  showChords: 'Rodyti akordus',
+  musicBy: 'Muzika: ',
+  wordsBy: 'Žodžiai: ',
 };
 
 export async function initI18n() {
