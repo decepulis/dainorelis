@@ -7,6 +7,7 @@ import { Link, Stack, router } from 'expo-router';
 
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
+import maxWidth from '@/lib/constants/maxWidth';
 import { fonts } from '@/lib/constants/themes';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -26,7 +27,7 @@ export default function Page() {
 
   const isPresented = router.canGoBack();
   const text = useThemeColor('text');
-  const showCloseButton = (Platform.OS === 'ios' || Platform.OS === 'web') && isPresented;
+  const showCloseButton = Platform.OS === 'ios' && isPresented;
   return (
     <>
       <Stack.Screen
@@ -66,23 +67,23 @@ export default function Page() {
           <ThemedText style={[styles.header, { borderColor: text }]}>{t('aboutOurTeamTitle')}</ThemedText>
           <View style={styles.profiles}>
             <View style={styles.profile}>
-              <Image source="dar" style={styles.profileImage} />
+              <Image source={require('@/assets/images/profiles/dar.jpg')} style={styles.profileImage} />
               <ThemedText style={styles.profileText}>Darius Čepulis</ThemedText>
             </View>
             <View style={styles.profile}>
-              <Image source="jonas" style={styles.profileImage} />
+              <Image source={require('@/assets/images/profiles/jonas.jpg')} style={styles.profileImage} />
               <ThemedText style={styles.profileText}>Jonas Čyvas</ThemedText>
             </View>
             <View style={styles.profile}>
-              <Image source="shar" style={styles.profileImage} />
+              <Image source={require('@/assets/images/profiles/shar.jpg')} style={styles.profileImage} />
               <ThemedText style={styles.profileText}>Šarūnas Daugirdas</ThemedText>
             </View>
             <View style={styles.profile}>
-              <Image source="kes" style={styles.profileImage} />
+              <Image source={require('@/assets/images/profiles/kes.jpg')} style={styles.profileImage} />
               <ThemedText style={styles.profileText}>Kęstutis Daugirdas</ThemedText>
             </View>
             <View style={styles.profile}>
-              <Image source="daina" style={styles.profileImage} />
+              <Image source={require('@/assets/images/profiles/daina.jpg')} style={styles.profileImage} />
               <ThemedText style={styles.profileText}>Daina Bandžiulytė</ThemedText>
             </View>
           </View>
@@ -98,21 +99,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 40,
   },
-  section: { marginBottom: 40 },
+  section: {
+    marginBottom: 40,
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
+  },
   header: {
-    fontFamily: fonts.bold.fontFamily,
-    fontWeight: fonts.bold.fontWeight,
-    fontSize: 26,
+    ...fonts.bold,
+    fontSize: 25,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 15,
     paddingBottom: 5,
   },
   paragraph: {
-    fontSize: 18,
-    lineHeight: 27,
+    fontSize: 16,
+    lineHeight: 24,
   },
   profiles: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' },
-  profile: { width: 130, alignItems: 'center', margin: 10 },
-  profileImage: { width: '100%', aspectRatio: 1, borderRadius: 9999 },
+  profile: { alignItems: 'center', margin: 10 },
+  profileImage: { width: 130, height: 130, borderRadius: 9999 },
   profileText: { paddingTop: 10, textAlign: 'center' },
 });

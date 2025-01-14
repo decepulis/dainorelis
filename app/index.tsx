@@ -35,8 +35,8 @@ const groupSongsByLetter = (songs: SongFile) => {
   return sections;
 };
 
-const itemPaddingVertical = 15;
-const itemFontSize = 20;
+const itemPaddingVertical = 19;
+const itemFontSize = 19;
 
 const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
   const colorScheme = useColorScheme();
@@ -47,7 +47,14 @@ const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: bo
         <View style={styles.itemInnerContainer}>
           <ThemedText style={styles.item}>{item.fields.Name}</ThemedText>
           {isFavorite && (
-            <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.itemFavorite} />
+            <Image
+              source={
+                colorScheme === 'dark'
+                  ? require('@/assets/images/icon/fav_white.png')
+                  : require('@/assets/images/icon/fav_black.png')
+              }
+              style={styles.itemFavorite}
+            />
           )}
         </View>
       </Pressable>
@@ -74,7 +81,14 @@ const NoFavorites = () => {
   return (
     <ThemedText style={styles.errorText}>
       {t('noFavorites1')}{' '}
-      <Image source={colorScheme === 'dark' ? 'fav_white' : 'fav_black'} style={styles.noResultsFavorite} />{' '}
+      <Image
+        source={
+          colorScheme === 'dark'
+            ? require('@/assets/images/icon/fav_white.png')
+            : require('@/assets/images/icon/fav_black.png')
+        }
+        style={styles.noResultsFavorite}
+      />{' '}
       {t('noFavorites2')}
     </ThemedText>
   );
@@ -210,6 +224,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   item: {
+    letterSpacing: -0.1,
     paddingVertical: itemPaddingVertical,
     fontSize: itemFontSize,
   },
@@ -223,17 +238,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   header: {
+    ...fonts.bold,
     fontSize: itemFontSize,
     paddingTop: 45,
     paddingBottom: 15,
-    fontFamily: fonts.bold.fontFamily,
-    fontWeight: fonts.bold.fontWeight,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
   },
   errorText: {
-    fontSize: 18,
+    fontSize: 17,
     lineHeight: 22.5,
     textAlign: 'center',
     opacity: 0.8,

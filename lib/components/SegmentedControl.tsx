@@ -23,16 +23,14 @@ export default function SegmentedControl({
       sliderStyle={{ borderRadius: 4, ...sliderStyle }}
       tintColor={primary}
       fontStyle={{
+        ...fonts.regular,
+        fontSize: 15,
         color,
-        fontSize: 16,
-        fontFamily: fonts.regular.fontFamily,
-        fontWeight: fonts.regular.fontWeight,
         ...fontStyle,
       }}
       activeFontStyle={{
-        fontSize: 16,
-        fontFamily: fonts.regular.fontFamily,
-        fontWeight: fonts.regular.fontWeight,
+        ...fonts.regular,
+        fontSize: 15,
         color: DarkTheme.colors.text,
         ...activeFontStyle,
       }}

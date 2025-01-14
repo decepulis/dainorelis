@@ -1,12 +1,20 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, LayoutChangeEvent, Platform } from 'react-native';
+import { KeyboardAvoidingView, LayoutChangeEvent, Platform, Pressable } from 'react-native';
 
 import * as NavigationBar from 'expo-navigation-bar';
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
+import {
+  FiraSans_400Regular,
+  FiraSans_400Regular_Italic,
+  FiraSans_700Bold,
+  FiraSans_700Bold_Italic,
+  useFonts,
+} from '@expo-google-fonts/fira-sans';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { ThemeProvider } from '@react-navigation/native';
 
 import HeaderTitle from '@/lib/components/HeaderTitle';
@@ -15,6 +23,16 @@ import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+
+function HomeButton() {
+  return (
+    <Link href="/">
+      <Pressable hitSlop={24} style={{ paddingHorizontal: 20 }}>
+        <FontAwesome6 name="chevron-left" size={18} color="#fff" />
+      </Pressable>
+    </Link>
+  );
+}
 
 type AppProps = {
   onLayout?: (e: LayoutChangeEvent) => void;
@@ -33,6 +51,9 @@ function App({ onLayout }: AppProps) {
     }
   }, [background]);
 
+  // the web is weird with back buttons. Let's make it consistent
+  const showHomeButton = Platform.OS === 'web';
+
   return (
     <StorageProvider>
       {/* TODO ios flash of dark theme */}
@@ -50,10 +71,11 @@ function App({ onLayout }: AppProps) {
               headerStyle: { backgroundColor: primary },
               headerBackButtonDisplayMode: 'minimal',
               headerTitle: HeaderTitle,
+              headerLeft: showHomeButton ? HomeButton : undefined, // by default, all pages go home
             }}
           >
-            <Stack.Screen name="index" options={{ title: t('songs') }} />
-            <Stack.Screen name="apie-mus" options={{ title: t('aboutUs'), presentation: 'modal' }} />
+            <Stack.Screen name="index" options={{ title: '', headerLeft: undefined }} />
+            <Stack.Screen name="apie" options={{ title: '', presentation: 'modal' }} />
             {/* we unset the title here, though we'll be re-setting it dynamically within the dainos/[id].tsx component */}
             <Stack.Screen
               name="dainos/[id]"
@@ -74,11 +96,17 @@ SplashScreen.preventAutoHideAsync();
 
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
-  duration: 1000,
+  duration: 400,
   fade: true,
 });
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const [fontIsReady, fontError] = useFonts({
+    FiraSans_400Regular,
+    FiraSans_400Regular_Italic,
+    FiraSans_700Bold,
+    FiraSans_700Bold_Italic,
+  });
 
   useEffect(() => {
     async function prepare() {
@@ -97,7 +125,7 @@ export default function RootLayout() {
   }, []);
 
   const dismissSplashScreen = useCallback(() => {
-    if (appIsReady) {
+    if (appIsReady && (fontIsReady || fontError)) {
       // This tells the splash screen to hide immediately! If we call this after
       // `setAppIsReady`, then we may see a blank screen while the app is
       // loading its initial state and rendering its first pixels. So instead,
@@ -105,9 +133,9 @@ export default function RootLayout() {
       // performed layout.
       SplashScreen.hide();
     }
-  }, [appIsReady]);
+  }, [appIsReady, fontIsReady, fontError]);
 
-  if (!appIsReady) {
+  if (!appIsReady || !(fontIsReady || fontError)) {
     return null;
   }
 

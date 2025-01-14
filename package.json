@@ -20,6 +20,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/fira-sans": "^0.2.3",
     "@expo/vector-icons": "^14.0.2",
     "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-native-segmented-control/segmented-control": "^2.5.7",

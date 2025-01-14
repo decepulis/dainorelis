@@ -69,9 +69,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   searchInput: {
-    fontSize: 16,
-    fontFamily: fonts.regular.fontFamily,
-    fontWeight: fonts.regular.fontWeight,
+    ...fonts.regular,
     height: 40,
     borderRadius: 6,
     paddingLeft: 40,

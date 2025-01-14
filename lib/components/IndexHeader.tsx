@@ -76,19 +76,6 @@ const _IndexHeader = ({ scrollRef, children }: IndexHeaderProps) => {
     ),
   }));
 
-  // button fade animation
-  // button fades halfway in
-  const buttonStartOpacity = 0;
-  const buttonEndOpacity = 1;
-  const buttonAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      easeInOutSine(scrollOffset.value, scrollOffsetEnd),
-      [0, 1], // [0, 1] instead of [0, scrollOffsetEnd] since that's what easeInOutSine returns
-      [buttonStartOpacity, buttonEndOpacity],
-      Extrapolation.CLAMP
-    ),
-  }));
-
   // logo scale animation
   // TODO: use scale instead of width...?
   const logoAspectRatio = 784 / 250; // width  / height
@@ -109,17 +96,17 @@ const _IndexHeader = ({ scrollRef, children }: IndexHeaderProps) => {
     <View>
       <Animated.View style={[styles.headerImageContainer, { backgroundColor: primary }, headerAnimatedStyle]}>
         <AnimatedImage
-          source="miskas"
+          source={require('@/assets/images/miskas.jpg')}
           style={[styles.headerBackground, { height: headerStartHeight }, backgroundAnimatedStyle]}
           contentFit="cover"
         />
         <AnimatedImage
-          source="logo_white"
+          source={require('@/assets/images/logo_white.png')}
           style={[{ top: inset.top }, styles.headerLogo, logoAnimatedStyle]}
           contentFit="contain"
         />
-        <Animated.View style={[{ top: inset.top }, styles.headerButtonContainer, buttonAnimatedStyle]}>
-          <Link href="/apie-mus" asChild>
+        <Animated.View style={[{ top: inset.top, height: headerEndHeight - inset.top }, styles.headerButtonContainer]}>
+          <Link href="/apie" asChild>
             <Pressable hitSlop={24}>
               <Ionicons name="information-circle-outline" size={24} color="#fff" style={styles.headerButton} />
             </Pressable>

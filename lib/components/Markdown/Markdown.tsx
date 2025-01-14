@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, Fragment } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import MarkdownLib, { MarkdownIt } from 'react-native-markdown-display';
 
 import { fonts } from '@/lib/constants/themes';
@@ -31,27 +31,23 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   // 'text'
 ]);
 
-const lineHeight = 28;
+const lineHeight = 27;
 const chordHeight = 16;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
-    lineHeight: lineHeight,
+    fontSize: 19,
+    // line height set dynamically down below
   },
   strong: {
-    fontFamily: fonts.bold.fontFamily,
-    fontWeight: fonts.bold.fontWeight,
+    ...fonts.bold,
   },
   em: {
     // todo not working on android
-    fontFamily: fonts.regularItalic.fontFamily,
-    fontStyle: 'italic',
+    ...fonts.regularItalic,
   },
   strongEm: {
-    fontFamily: fonts.boldItalic.fontFamily,
-    fontWeight: fonts.bold.fontWeight,
-    fontStyle: 'italic',
+    ...fonts.boldItalic,
   },
 });
 
@@ -73,7 +69,19 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
     ),
     text: (node) => {
       return (
-        <Text key={node.key} style={styles.text}>
+        <Text
+          key={node.key}
+          style={[
+            styles.text,
+            {
+              lineHeight: Platform.select({
+                default: lineHeight,
+                // android doesn't automatically make chord-lines taller, so we just make all lines taller
+                android: showChords ? lineHeight + chordHeight : lineHeight,
+              }),
+            },
+          ]}
+        >
           {node.content}
         </Text>
       );
@@ -102,14 +110,21 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
       if (href) {
         return (
           <Fragment key={node.key}>
-            <View style={{ height: lineHeight + chordHeight, width: 0 }}>
+            <View
+              style={{
+                height: lineHeight + chordHeight,
+                width: 0,
+                // @ts-expect-error this works for the web
+                verticalAlign: 'bottom',
+              }}
+            >
               <Text
                 style={{
+                  ...fonts.bold,
                   fontSize: chordHeight,
                   width: chordHeight,
-                  lineHeight: chordHeight * 1.5,
-                  fontFamily: fonts.bold.fontFamily,
-                  fontWeight: fonts.bold.fontWeight,
+                  // just kinda eyeballing it
+                  lineHeight: chordHeight * Platform.select({ ios: 1.7, android: 1.8, default: 1 }),
                 }}
               >
                 {href}

@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams } from 'expo-router';
@@ -62,9 +62,10 @@ export default function Page() {
               hitSlop={24}
               disabled={favoritesLoading}
               onPress={isFavorite ? removeFromFavorites : addToFavorites}
+              style={{ marginLeft: 24 }}
             >
               <Image
-                source="fav_white"
+                source={require('@/assets/images/icon/fav_white.png')}
                 // TODO higher contrast indicator
                 style={{ opacity: favoritesLoading || !isFavorite ? 0.5 : 1, width: 20, height: 20 }}
               />
@@ -81,7 +82,13 @@ export default function Page() {
                 disabled={showChordsLoading}
                 value={showChords}
                 onValueChange={setShowChords}
-                trackColor={{ false: cardDark, true: primary }}
+                trackColor={{
+                  false: cardDark,
+                  true: Platform.select({
+                    default: cardDark,
+                    ios: primary,
+                  }),
+                }}
               />
               <ThemedText style={styles.showChordsText}>{t('showChords')}</ThemedText>
             </View>
@@ -127,8 +134,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   showChordsText: {
-    fontSize: 18,
-    lineHeight: 24,
+    fontSize: 17,
+    lineHeight: 25,
   },
   hr: {
     height: StyleSheet.hairlineWidth,

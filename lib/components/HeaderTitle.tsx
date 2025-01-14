@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 
 import { fonts } from '../constants/themes';
 import ThemedText from './ThemedText';
@@ -15,18 +15,17 @@ export default function HeaderTitle({ children, tintColor }: HeaderTitleProps): 
     .filter(Boolean);
 
   return (
-    <View>
+    <View style={{ alignSelf: Platform.select({ default: 'center', android: 'flex-start' }) }}>
       {parts.map((part, index) => (
         <ThemedText
           key={index}
           numberOfLines={parts.length === 1 && index === 0 ? 2 : 1}
           style={{
+            ...(index === 0 ? fonts.bold : fonts.regular),
             color: tintColor,
-            fontFamily: index === 0 ? fonts.bold.fontFamily : fonts.regular.fontFamily,
-            fontWeight: index === 0 ? fonts.bold.fontWeight : fonts.regular.fontWeight,
-            fontSize: parts.length === 1 ? 18 : index === 0 ? 17 : 15,
-            lineHeight: parts.length === 1 ? 18 * 1.25 : index === 0 ? 17 * 1.25 : 15 * 1.25,
-            textAlign: 'center',
+            fontSize: parts.length === 1 ? 17 : index === 0 ? 16 : 14,
+            lineHeight: parts.length === 1 ? 17 * 1.25 : index === 0 ? 16 * 1.25 : 14 * 1.25,
+            textAlign: Platform.select({ default: 'center', android: 'left' }),
             // nudge it down just a bit if it's the only part
             position: 'relative',
             top: parts.length === 1 ? 1 : 0,

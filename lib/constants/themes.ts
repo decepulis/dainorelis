@@ -1,37 +1,37 @@
+import { Platform, TextStyle } from 'react-native';
+
 import type { Theme as LibTheme } from '@react-navigation/native';
 
-type Fonts = Theme['fonts'] & {
-  regularItalic: {
-    fontFamily: string;
-  };
-  boldItalic: {
-    fontFamily: string;
-  };
-};
-export const fonts: Fonts = {
+export const fonts = {
   regular: {
-    fontFamily: 'TitilliumWeb-Regular',
+    fontFamily: Platform.select({ ios: 'FiraSans-Regular', default: 'FiraSans_400Regular' }),
     fontWeight: 'normal',
   },
   regularItalic: {
-    fontFamily: 'TitilliumWeb-Italic',
+    fontFamily: Platform.select({ ios: 'FiraSans-Italic', default: 'FiraSans_400Regular_Italic' }),
+    fontWeight: 'normal',
+    fontStyle: 'italic',
   },
   medium: {
-    fontFamily: 'TitilliumWeb-Regular',
+    // instead of loading a medium font, we re-use the 400
+    fontFamily: Platform.select({ ios: 'FiraSans-Regular', default: 'FiraSans_400Regular' }),
     fontWeight: 'normal',
   },
   bold: {
-    fontFamily: 'TitilliumWeb-Bold',
-    fontWeight: '400',
+    fontFamily: Platform.select({ ios: 'FiraSans-Bold', default: 'FiraSans_700Bold' }),
+    fontWeight: Platform.select({ default: '700', android: 'normal' }),
   },
   boldItalic: {
-    fontFamily: 'TitilliumWeb-BoldItalic',
+    fontFamily: Platform.select({ ios: 'FiraSans-BoldItalic', default: 'FiraSans_700Bold_Italic' }),
+    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontStyle: 'italic',
   },
   heavy: {
-    fontFamily: 'TitilliumWeb-Bold',
-    fontWeight: '400',
+    // instead of loading a heavy font, we re-use the 700
+    fontFamily: Platform.select({ ios: 'FiraSans-Bold', default: 'FiraSans_700Bold' }),
+    fontWeight: Platform.select({ default: '700', android: 'normal' }),
   },
-};
+} as { [weight: string]: TextStyle };
 
 export interface Theme extends LibTheme {
   colors: LibTheme['colors'] & {
@@ -49,7 +49,7 @@ export const LightTheme: Theme = {
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
   },
-  fonts,
+  fonts: fonts as Theme['fonts'], // shhh it's fine
 };
 export const DarkTheme: Theme = {
   dark: false,
@@ -62,5 +62,5 @@ export const DarkTheme: Theme = {
     border: '#FEF9F7',
     notification: 'rgb(255, 69, 58)',
   },
-  fonts,
+  fonts: fonts as Theme['fonts'], // shhh it's fine
 };

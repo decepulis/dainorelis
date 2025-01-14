@@ -37,35 +37,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         backgroundColor: '#70997F',
       },
     ],
-    [
-      'expo-font',
-      {
-        fonts: [
-          './assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf',
-          './assets/fonts/Titillium_Web/TitilliumWeb-BoldItalic.ttf',
-          './assets/fonts/Titillium_Web/TitilliumWeb-Italic.ttf',
-          './assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf',
-        ],
-      },
-    ],
-    [
-      'expo-asset',
-      {
-        assets: [
-          './assets/images/miskas.jpg',
-          './assets/images/logo_white.png',
-          './assets/images/icon/fav_white.png',
-          './assets/images/icon/fav_black.png',
-          './assets/images/icon/settings_white.png',
-          './assets/images/icon/book_white.png',
-          './assets/images/profiles/daina.jpg',
-          './assets/images/profiles/dar.jpg',
-          './assets/images/profiles/jonas.jpg',
-          './assets/images/profiles/kes.jpg',
-          './assets/images/profiles/shar.jpg',
-        ],
-      },
-    ],
   ],
   experiments: {
     typedRoutes: true,

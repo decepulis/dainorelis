@@ -55,13 +55,6 @@
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>
-    <key>UIAppFonts</key>
-    <array>
-      <string>TitilliumWeb-Bold.ttf</string>
-      <string>TitilliumWeb-BoldItalic.ttf</string>
-      <string>TitilliumWeb-Italic.ttf</string>
-      <string>TitilliumWeb-Regular.ttf</string>
-    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

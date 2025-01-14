@@ -8,13 +8,7 @@ import { fonts } from '../constants/themes';
 const ThemedText = forwardRef<Text, TextProps>(({ style, ...rest }, ref) => {
   const color = useThemeColor('text');
 
-  return (
-    <Text
-      ref={ref}
-      style={[{ color, fontFamily: fonts.regular.fontFamily, fontWeight: fonts.regular.fontWeight }, style]}
-      {...rest}
-    />
-  );
+  return <Text ref={ref} style={[{ color, ...fonts.regular }, style]} {...rest} />;
 });
 
 ThemedText.displayName = 'ThemedText';
