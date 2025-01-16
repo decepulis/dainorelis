@@ -12,11 +12,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 
 import { Ionicons } from '@expo/vector-icons';
-import { getDefaultHeaderHeight } from '@react-navigation/elements';
 
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import easeInOutSine from '@/lib/utils/easeInOutSine';
 
+import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 import easeOutSine from '../utils/easeOutSine';
 import AnimatedImage from './AnimatedImage';
 
@@ -24,12 +24,6 @@ export function useIndexHeaderStartHeight() {
   const { height } = useWindowDimensions();
   const inset = useSafeAreaInsets();
   return Math.max(200 + inset.top, height / 4);
-}
-export function useIndexHeaderEndHeight() {
-  const inset = useSafeAreaInsets();
-  const { height, width } = useWindowDimensions();
-  // TODO this is slightly off on android
-  return getDefaultHeaderHeight({ height, width }, false, inset.top);
 }
 
 // TODO: maybe disable this on web and ipad
@@ -43,7 +37,7 @@ const _IndexHeader = ({ scrollRef, children }: IndexHeaderProps) => {
   const { width } = useWindowDimensions();
 
   const headerStartHeight = useIndexHeaderStartHeight();
-  const headerEndHeight = useIndexHeaderEndHeight();
+  const headerEndHeight = useDefaultHeaderHeight();
 
   // @ts-expect-error SectionList is an acceptable thing to have here
   const scrollOffset = useScrollViewOffset(scrollRef);

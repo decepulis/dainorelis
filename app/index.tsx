@@ -7,12 +7,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
-import IndexHeader, { useIndexHeaderEndHeight, useIndexHeaderStartHeight } from '@/lib/components/IndexHeader';
+import { FontAwesome6 } from '@expo/vector-icons';
+
+import IndexHeader, { useIndexHeaderStartHeight } from '@/lib/components/IndexHeader';
 import IndexSearch, { indexSearchHeight } from '@/lib/components/IndexSearch';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import { fonts } from '@/lib/constants/themes';
+import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
 import useStorage from '@/lib/hooks/useStorage';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song, SongFile } from '@/lib/schemas/songs';
 import removeAccents from '@/lib/utils/removeAccents';
 import songs from '@/songs';
@@ -39,23 +43,16 @@ const itemPaddingVertical = 19;
 const itemFontSize = 19;
 
 const ListItem = ({ item, isFavorite }: { item: SongFile[number]; isFavorite: boolean }) => {
-  const colorScheme = useColorScheme();
+  const primary = useThemeColor('primary');
 
   return (
     <Link href={`/dainos/${item.id}`} asChild>
       <Pressable style={styles.itemContainer}>
         <View style={styles.itemInnerContainer}>
           <ThemedText style={styles.item}>{item.fields.Name}</ThemedText>
-          {isFavorite && (
-            <Image
-              source={
-                colorScheme === 'dark'
-                  ? require('@/assets/images/icon/fav_white.png')
-                  : require('@/assets/images/icon/fav_black.png')
-              }
-              style={styles.itemFavorite}
-            />
-          )}
+          {isFavorite ? (
+            <FontAwesome6 name="heart" size={20} color={primary} solid style={styles.itemFavorite} />
+          ) : null}
         </View>
       </Pressable>
     </Link>
@@ -98,7 +95,7 @@ export default function Index() {
   const inset = useSafeAreaInsets();
   const listRef = useAnimatedRef<SectionList>();
   const headerStartHeight = useIndexHeaderStartHeight();
-  const headerEndHeight = useIndexHeaderEndHeight();
+  const headerEndHeight = useDefaultHeaderHeight();
 
   const { value: favorites } = useStorage('favorites');
   const [filter, setFilter] = useState<'Visos' | 'Mano'>('Visos');
@@ -231,8 +228,6 @@ const styles = StyleSheet.create({
   itemFavorite: {
     width: 20,
     height: 20,
-    position: 'relative',
-    top: -4,
   },
   headerContainer: {
     paddingHorizontal: 20,

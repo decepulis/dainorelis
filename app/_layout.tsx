@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, LayoutChangeEvent, Platform, Pressable } from 'react-native';
+import { KeyboardAvoidingView, LayoutChangeEvent, Platform } from 'react-native';
 
 import * as NavigationBar from 'expo-navigation-bar';
-import { Link, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
@@ -14,25 +13,14 @@ import {
   FiraSans_700Bold_Italic,
   useFonts,
 } from '@expo-google-fonts/fira-sans';
-import { FontAwesome6 } from '@expo/vector-icons';
 import { ThemeProvider } from '@react-navigation/native';
 
-import HeaderTitle from '@/lib/components/HeaderTitle';
+import HomeButton from '@/lib/components/HomeButton';
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
-
-function HomeButton() {
-  return (
-    <Link href="/">
-      <Pressable hitSlop={24} style={{ paddingHorizontal: 20 }}>
-        <FontAwesome6 name="chevron-left" size={18} color="#fff" />
-      </Pressable>
-    </Link>
-  );
-}
 
 type AppProps = {
   onLayout?: (e: LayoutChangeEvent) => void;
@@ -41,15 +29,14 @@ function App({ onLayout }: AppProps) {
   const colorScheme = useColorScheme();
   const background = useThemeColor('background');
   const primary = useThemeColor('primary');
-  const { t } = useTranslation();
 
   // Keep android navigation bar color in sync with the app
   useLayoutEffect(() => {
     if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(background);
+      NavigationBar.setBackgroundColorAsync(primary);
       NavigationBar.setButtonStyleAsync('light');
     }
-  }, [background]);
+  }, [primary]);
 
   // the web is weird with back buttons. Let's make it consistent
   const showHomeButton = Platform.OS === 'web';
@@ -70,19 +57,14 @@ function App({ onLayout }: AppProps) {
               headerTintColor: '#fff',
               headerStyle: { backgroundColor: primary },
               headerBackButtonDisplayMode: 'minimal',
-              headerTitle: HeaderTitle,
+              // todo custom back button image
               headerLeft: showHomeButton ? HomeButton : undefined, // by default, all pages go home
             }}
           >
+            {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
             <Stack.Screen name="index" options={{ title: '', headerLeft: undefined }} />
             <Stack.Screen name="apie" options={{ title: '', presentation: 'modal' }} />
-            {/* we unset the title here, though we'll be re-setting it dynamically within the dainos/[id].tsx component */}
-            <Stack.Screen
-              name="dainos/[id]"
-              options={{
-                title: '',
-              }}
-            />
+            <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
           </Stack>
         </KeyboardAvoidingView>
       </ThemeProvider>
