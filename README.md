@@ -26,7 +26,7 @@ For Android and iOS to work, you'll probably have to do some setup. Here's some 
 
 ### Release
 
-lol idk
+- [Create a production build locally](https://docs.expo.dev/guides/local-app-production/#app-submission-using-app-store-connect)
 
 ### Make changes
 

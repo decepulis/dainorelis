@@ -213,10 +213,14 @@ const styles = StyleSheet.create({
     letterSpacing: -0.1,
     paddingVertical: itemPaddingVertical,
     fontSize: itemFontSize,
+    flex: 1,
   },
   itemFavorite: {
     width: 20,
     height: 20,
+    flexShrink: 0,
+    flexBasis: 20,
+    marginLeft: 20,
   },
   headerContainer: {
     paddingHorizontal: 20,

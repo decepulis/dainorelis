@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Image } from 'expo-image';
 import { Link, Stack, router } from 'expo-router';
@@ -46,6 +47,8 @@ team.sort((a, b) => a.lastName.localeCompare(b.lastName));
 export default function Page() {
   const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
+  const inset = useSafeAreaInsets();
+  const cardDark = useThemeColor('cardDark');
 
   const onLanguageChange = useCallback(
     (v: string) => {
@@ -74,7 +77,7 @@ export default function Page() {
             ),
         }}
       />
-      <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
+      <ScrollView style={[styles.container, { paddingBottom: inset.bottom }]}>
         <View style={styles.section}>
           <SegmentedControl
             values={['Lietuvių', 'English']}
@@ -100,7 +103,7 @@ export default function Page() {
           <View style={styles.profiles}>
             {team.map((member, idx) => (
               <View key={idx} style={styles.profile}>
-                <Image source={member.image} style={styles.profileImage} />
+                <Image source={member.image} style={[styles.profileImage, { backgroundColor: cardDark }]} />
                 <ThemedText style={styles.profileText}>
                   {member.firstName} {member.lastName}
                 </ThemedText>
@@ -118,6 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 30,
     paddingVertical: 40,
+    position: 'relative',
   },
   section: {
     marginBottom: 40,

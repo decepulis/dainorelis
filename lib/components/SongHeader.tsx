@@ -3,8 +3,6 @@ import { Platform, StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { StatusBar } from 'expo-status-bar';
-
 import { fonts } from '../constants/themes';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 import { useThemeColor } from '../hooks/useThemeColor';
@@ -66,7 +64,6 @@ const _SongHeader = ({
 
   return (
     <>
-      <StatusBar style="light" />
       <Animated.View
         style={[
           {

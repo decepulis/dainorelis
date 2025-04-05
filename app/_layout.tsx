@@ -47,13 +47,8 @@ function App({ onLayout }: AppProps) {
       {/* TODO sentry? */}
       {/* TODO ios flash of dark theme */}
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-        {/* TODO: this is weird on ipad */}
-        {/* TODO: this causes a rave on android (Pixel 9 Fold) */}
-        <KeyboardAvoidingView
-          style={{ flex: 1, backgroundColor: background }}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          onLayout={onLayout}
-        >
+        <StatusBar backgroundColor={primary} translucent={false} />
+        <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
           <Stack
             screenOptions={{
               headerTintColor: '#fff',
@@ -65,7 +60,8 @@ function App({ onLayout }: AppProps) {
           >
             {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
             <Stack.Screen name="index" options={{ title: '', headerLeft: undefined }} />
-            <Stack.Screen name="apie" options={{ title: '', presentation: 'modal' }} />
+            {/* TODO: I want to use modal but it's weird on iOS */}
+            <Stack.Screen name="apie" options={{ title: '', presentation: 'containedModal' }} />
             <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
           </Stack>
         </KeyboardAvoidingView>
@@ -123,10 +119,5 @@ export default function RootLayout() {
     return null;
   }
 
-  return (
-    <>
-      <StatusBar style="light" translucent={true} />
-      <App onLayout={dismissSplashScreen} />
-    </>
-  );
+  return <App onLayout={dismissSplashScreen} />;
 }
