@@ -12,14 +12,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
-    bundleIdentifier: 'com.dainorelis.v2',
+    bundleIdentifier: 'com.dainorelis.dainorelis',
   },
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#70997F',
     },
-    package: 'com.dainorelis.v2',
+    package: 'com.dainorelis.dainorelis',
   },
   web: {
     bundler: 'metro',

@@ -3,7 +3,22 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 
-import { SongFileSchema } from '../lib/schemas/songs';
+import { Song, SongFile, SongFileSchema } from '../lib/schemas/songs';
+
+const fieldFlags: Record<keyof Song['fields'], boolean> = {
+  Name: true,
+  Lyrics: true,
+  Videos: false,
+  Audio: false,
+  PDFs: false,
+  Tags: false,
+  Sources: false,
+  'Recommended Key': false,
+  'Music Author': true,
+  'Text Author': true,
+  'LT Description': false,
+  'EN Description': false,
+} as const;
 
 const outputDir = path.join(__dirname, '..');
 const songFilePath = path.join(outputDir, 'songs.ts');
@@ -83,6 +98,7 @@ async function getPDFs() {
     })
     .all();
 }
+
 function getRecordsForField(field: FieldSet[string], records: Records<FieldSet>): FieldSet[string] | FieldSet[] {
   if (!Array.isArray(field)) return field;
 
@@ -96,6 +112,17 @@ function getRecordsForField(field: FieldSet[string], records: Records<FieldSet>)
     .filter((r) => r !== null);
 }
 
+/**
+ * When `Variant Name` is not defined, we default to `Variantas ${idx + 1}`
+ */
+function assignVariantNames(records: FieldSet[string] | FieldSet[], prefix: string, startIdx = 0) {
+  if (!Array.isArray(records)) return records;
+  return records.map((record, idx) => ({
+    ...record,
+    'Variant Name': record['Variant Name'] ?? `${prefix} ${startIdx + idx + 1}`,
+  }));
+}
+
 // get those songs
 async function updateSongs() {
   try {
@@ -107,21 +134,44 @@ async function updateSongs() {
       getPDFs(),
     ]);
 
-    const songFile = songs.map((song) => ({
-      id: song.id,
-      fields: {
-        ...song.fields,
-        Lyrics: getRecordsForField(song.fields.Lyrics, lyrics),
-        Videos: getRecordsForField(song.fields.Videos, videos),
-        Audio: getRecordsForField(song.fields.Audio, audio),
-        PDFs: getRecordsForField(song.fields.PDFs, pdfs),
-      },
-    }));
+    const songFile = songs.map((song) => {
+      const Lyrics = assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Variantas');
+      const lyricCount = Array.isArray(Lyrics) ? Lyrics.length : 0;
+      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Variantas', lyricCount);
+
+      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas');
+      const audioCount = Array.isArray(Audio) ? Audio.length : 0;
+      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas', audioCount);
+
+      return {
+        id: song.id,
+        fields: {
+          ...song.fields,
+          Lyrics,
+          Videos,
+          Audio,
+          PDFs,
+        },
+      };
+    });
     const validSongFile = SongFileSchema.parse(songFile);
+    const filteredSongFile = validSongFile.map((song) => {
+      return {
+        id: song.id,
+        fields: Object.fromEntries(
+          Object.entries(song.fields).filter(([key]) => fieldFlags[key as keyof Song['fields']])
+        ),
+      };
+    }) as SongFile;
 
     // Write the song file
-    fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(validSongFile, null, 2) + fileFooter);
+    fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(filteredSongFile, null, 2) + fileFooter);
     console.log('✅ Songs fetched and saved to songs.ts');
+    console.log(
+      Object.entries(fieldFlags)
+        .map(([key, value]) => `  - ${value ? 'Enabled  ' : 'Disabled '} ${key}`)
+        .join('\n')
+    );
   } catch (e) {
     console.error('❌ Error fetching songs.', e);
     console.log('\nℹ️  Falling back to saved songs');

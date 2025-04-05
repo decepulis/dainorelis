@@ -1,4 +1,4 @@
-package com.dainorelis.v2
+package com.dainorelis.dainorelis
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

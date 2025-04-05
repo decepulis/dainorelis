@@ -19,18 +19,25 @@ npm run dev:android
 ```
 
 For Android and iOS to work, you'll probably have to do some setup. Here's some reading to get you started:
+
 - [Development builds](https://docs.expo.dev/develop/development-builds/introduction/)
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/).
+
+### Release
+
+lol idk
 
 ### Make changes
 
 [Routes](https://docs.expo.dev/router/introduction) live in the **app** directory. Those routes' components/hooks/utils/whatever live in the **lib** directory.
 
 After making changes to assets or libraries, you might have to sync some stuff up with
+
 ```bash
 npx expo prebuild --clean
 ```
+
 before continuing with the dev commands up above
 
 ## Learn more

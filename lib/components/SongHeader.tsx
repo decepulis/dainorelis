@@ -8,8 +8,13 @@ import { StatusBar } from 'expo-status-bar';
 import { fonts } from '../constants/themes';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 import { useThemeColor } from '../hooks/useThemeColor';
-import splitTitle from '../utils/splitTitle';
+import { Audio } from '../schemas/audio';
+import { Lyrics } from '../schemas/lyrics';
+import { PDFs } from '../schemas/pdfs';
+import { Song } from '../schemas/songs';
+import { Videos } from '../schemas/videos';
 import HomeButton from './HomeButton';
+import SongMenu from './SongMenu';
 import ThemedText from './ThemedText';
 
 const timing = {
@@ -17,48 +22,63 @@ const timing = {
 };
 
 type SongHeaderProps = {
-  title?: string;
+  title: string[];
   isTitleBehind: boolean;
+  song: Song;
+  variants: (Lyrics | PDFs)[];
+  activeVariant: Lyrics | PDFs;
+  setActiveVariantIndex: (v: number) => void;
+  media: (Audio | Videos)[];
+  activeMedia: Audio | Videos | null;
+  setActiveMediaIndex: (v: number | null) => void;
 };
-const _SongHeader = ({ title, isTitleBehind }: SongHeaderProps) => {
+const _SongHeader = ({
+  title,
+  isTitleBehind,
+  song,
+  variants,
+  activeVariant,
+  setActiveVariantIndex,
+  media,
+  activeMedia,
+  setActiveMediaIndex,
+}: SongHeaderProps) => {
   const height = useDefaultHeaderHeight();
   const inset = useSafeAreaInsets();
 
   const background = useThemeColor('background');
   const primary = useThemeColor('primary');
-  const sv = useSharedValue(isTitleBehind);
+  const titleSv = useSharedValue(isTitleBehind);
 
   useEffect(() => {
-    sv.value = isTitleBehind;
-  }, [isTitleBehind, sv]);
+    titleSv.value = isTitleBehind;
+  }, [isTitleBehind, titleSv]);
 
-  // todo reduce motion
-  const animatedHeaderStyle = useAnimatedStyle(() => ({
-    backgroundColor: withTiming(sv.value ? primary : background, timing),
-  }));
+  // TODO reduce motion
+  // const animatedHeaderStyle = useAnimatedStyle(() => ({
+  //   backgroundColor: withTiming(titleSv.value ? primary : background, timing),
+  // }));
 
   const animatedTitleStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(sv.value ? 1 : 0, timing),
-    transform: [{ translateY: withTiming(sv.value ? 0 : 5, timing) }],
+    opacity: withTiming(titleSv.value ? 1 : 0, timing),
+    transform: [{ translateY: withTiming(titleSv.value ? 0 : 5, timing) }],
   }));
-
-  // if the header title has parentheses, break it up!
-  const parts = splitTitle(title);
 
   return (
     <>
-      <StatusBar style={isTitleBehind ? 'light' : 'auto'} />
+      <StatusBar style="light" />
       <Animated.View
         style={[
           {
             height,
             paddingTop: inset.top,
+            backgroundColor: primary,
           },
           styles.header,
-          animatedHeaderStyle,
+          // animatedHeaderStyle,
         ]}
       >
-        <HomeButton color={isTitleBehind ? '#fff' : primary} timing={timing} />
+        <HomeButton />
         <Animated.View
           style={[
             {
@@ -68,26 +88,37 @@ const _SongHeader = ({ title, isTitleBehind }: SongHeaderProps) => {
             animatedTitleStyle,
           ]}
         >
-          {parts.map((part, index) => (
-            <ThemedText
-              key={index}
-              numberOfLines={parts.length === 1 && index === 0 ? 2 : 1}
-              style={[
-                {
-                  ...(index === 0 ? fonts.bold : fonts.regular),
-                  fontSize: parts.length === 1 ? 17 : index === 0 ? 16 : 14,
-                  lineHeight: parts.length === 1 ? 17 * 1.25 : index === 0 ? 16 * 1.25 : 14 * 1.25,
-                  textAlign: Platform.select({ default: 'center', android: 'left' }),
-                  position: 'relative',
-                  top: parts.length === 1 ? 1 : 0,
-                  color: '#fff',
-                },
-              ]}
-            >
-              {part}
-            </ThemedText>
-          ))}
+          {title
+            ? title.map((part, index) => (
+                <ThemedText
+                  key={index}
+                  numberOfLines={title.length === 1 && index === 0 ? 2 : 1}
+                  style={[
+                    {
+                      ...(index === 0 ? fonts.bold : fonts.regular),
+                      fontSize: title.length === 1 ? 17 : index === 0 ? 16 : 14,
+                      lineHeight: title.length === 1 ? 17 * 1.25 : index === 0 ? 16 * 1.25 : 14 * 1.25,
+                      textAlign: Platform.select({ default: 'center', android: 'left' }),
+                      position: 'relative',
+                      top: title.length === 1 ? 1 : 0,
+                      color: '#fff',
+                    },
+                  ]}
+                >
+                  {part}
+                </ThemedText>
+              ))
+            : null}
         </Animated.View>
+        <SongMenu
+          song={song}
+          variants={variants}
+          activeVariant={activeVariant}
+          setActiveVariantIndex={setActiveVariantIndex}
+          media={media}
+          activeMedia={activeMedia}
+          setActiveMediaIndex={setActiveMediaIndex}
+        />
       </Animated.View>
     </>
   );
@@ -98,6 +129,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     position: 'relative',
   },
   title: {

@@ -1,10 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SectionList, StyleSheet, View, useColorScheme, useWindowDimensions } from 'react-native';
+import { Pressable, SectionList, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { useAnimatedRef } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -73,20 +72,10 @@ const NoHits = () => {
 };
 
 const NoFavorites = () => {
-  const colorScheme = useColorScheme();
   const { t } = useTranslation();
   return (
     <ThemedText style={styles.errorText}>
-      {t('noFavorites1')}{' '}
-      <Image
-        source={
-          colorScheme === 'dark'
-            ? require('@/assets/images/icon/fav_white.png')
-            : require('@/assets/images/icon/fav_black.png')
-        }
-        style={styles.noResultsFavorite}
-      />{' '}
-      {t('noFavorites2')}
+      {t('noFavorites1')} <FontAwesome6 name="heart" size={14} /> {t('noFavorites2')}
     </ThemedText>
   );
 };
@@ -98,7 +87,7 @@ export default function Index() {
   const headerEndHeight = useDefaultHeaderHeight();
 
   const { value: favorites } = useStorage('favorites');
-  const [filter, setFilter] = useState<'Visos' | 'Mano'>('Visos');
+  const [filter, setFilter] = useState<'allSongs' | 'favoriteSongs'>('allSongs');
   const [searchText, setSearchText] = useState('');
 
   // TODO: debounce this or useTransition
@@ -107,7 +96,7 @@ export default function Index() {
     let filteredSongs = songs;
     let showHeaders = true;
     // first, filter by the filters
-    if (filter === 'Mano') {
+    if (filter === 'favoriteSongs') {
       filteredSongs = songs.filter((song) => favorites.includes(song.id));
     }
 
@@ -137,7 +126,7 @@ export default function Index() {
     if (searchText.length > 0 && itemCount === 0) {
       return 'no-hits';
     }
-    if (filter === 'Mano' && itemCount === 0) {
+    if (filter === 'favoriteSongs' && itemCount === 0) {
       return 'no-favorites';
     }
     return 'results';
@@ -246,10 +235,6 @@ const styles = StyleSheet.create({
     lineHeight: 22.5,
     textAlign: 'center',
     opacity: 0.8,
-  },
-  noResultsFavorite: {
-    width: 14,
-    height: 14,
   },
   listFooter: {
     paddingHorizontal: 20,

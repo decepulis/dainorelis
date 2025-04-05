@@ -5,12 +5,43 @@ import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import { Image } from 'expo-image';
 import { Link, Stack, router } from 'expo-router';
 
+import { FontAwesome6 } from '@expo/vector-icons';
+
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import { fonts } from '@/lib/constants/themes';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+
+const team = [
+  {
+    firstName: 'Darius',
+    lastName: 'Čepulis',
+    image: require('@/assets/images/profiles/dar.jpg'),
+  },
+  {
+    firstName: 'Jonas',
+    lastName: 'Čyvas',
+    image: require('@/assets/images/profiles/jonas.jpg'),
+  },
+  {
+    firstName: 'Šarūnas',
+    lastName: 'Daugirdas',
+    image: require('@/assets/images/profiles/shar.jpg'),
+  },
+  {
+    firstName: 'Kęstutis',
+    lastName: 'Daugirdas',
+    image: require('@/assets/images/profiles/kes.jpg'),
+  },
+  {
+    firstName: 'Daina',
+    lastName: 'Bandžiulytė',
+    image: require('@/assets/images/profiles/daina.jpg'),
+  },
+];
+team.sort((a, b) => a.lastName.localeCompare(b.lastName));
 
 export default function Page() {
   const { t, i18n } = useTranslation();
@@ -37,7 +68,7 @@ export default function Page() {
             !showCloseButton ? null : (
               <Link asChild href="../">
                 <Pressable hitSlop={24}>
-                  <ThemedText style={{ color: '#fff', fontSize: 24 }}>×</ThemedText>
+                  <FontAwesome6 name="xmark" size={18} color={'#fff'} />
                 </Pressable>
               </Link>
             ),
@@ -67,26 +98,14 @@ export default function Page() {
         <View style={[styles.section]}>
           <ThemedText style={[styles.header, { borderColor: text }]}>{t('aboutOurTeamTitle')}</ThemedText>
           <View style={styles.profiles}>
-            <View style={styles.profile}>
-              <Image source={require('@/assets/images/profiles/dar.jpg')} style={styles.profileImage} />
-              <ThemedText style={styles.profileText}>Darius Čepulis</ThemedText>
-            </View>
-            <View style={styles.profile}>
-              <Image source={require('@/assets/images/profiles/jonas.jpg')} style={styles.profileImage} />
-              <ThemedText style={styles.profileText}>Jonas Čyvas</ThemedText>
-            </View>
-            <View style={styles.profile}>
-              <Image source={require('@/assets/images/profiles/shar.jpg')} style={styles.profileImage} />
-              <ThemedText style={styles.profileText}>Šarūnas Daugirdas</ThemedText>
-            </View>
-            <View style={styles.profile}>
-              <Image source={require('@/assets/images/profiles/kes.jpg')} style={styles.profileImage} />
-              <ThemedText style={styles.profileText}>Kęstutis Daugirdas</ThemedText>
-            </View>
-            <View style={styles.profile}>
-              <Image source={require('@/assets/images/profiles/daina.jpg')} style={styles.profileImage} />
-              <ThemedText style={styles.profileText}>Daina Bandžiulytė</ThemedText>
-            </View>
+            {team.map((member, idx) => (
+              <View key={idx} style={styles.profile}>
+                <Image source={member.image} style={styles.profileImage} />
+                <ThemedText style={styles.profileText}>
+                  {member.firstName} {member.lastName}
+                </ThemedText>
+              </View>
+            ))}
           </View>
         </View>
       </ScrollView>

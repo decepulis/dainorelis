@@ -6,6 +6,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
+// TODO should I load more to support bold fonts in iOS?
 import {
   FiraSans_400Regular,
   FiraSans_400Regular_Italic,
@@ -43,6 +44,7 @@ function App({ onLayout }: AppProps) {
 
   return (
     <StorageProvider>
+      {/* TODO sentry? */}
       {/* TODO ios flash of dark theme */}
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
         {/* TODO: this is weird on ipad */}
@@ -57,7 +59,7 @@ function App({ onLayout }: AppProps) {
               headerTintColor: '#fff',
               headerStyle: { backgroundColor: primary },
               headerBackButtonDisplayMode: 'minimal',
-              // todo custom back button image
+              // TODO custom back button image
               headerLeft: showHomeButton ? HomeButton : undefined, // by default, all pages go home
             }}
           >

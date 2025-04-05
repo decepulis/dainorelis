@@ -1,4 +1,4 @@
-package com.dainorelis.v2
+package com.dainorelis.dainorelis
 
 import android.app.Application
 import android.content.res.Configuration

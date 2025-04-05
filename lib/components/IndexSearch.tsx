@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -9,15 +10,16 @@ import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { fonts } from '../constants/themes';
 import SegmentedControl from './SegmentedControl';
 
-export const indexSearchHeight = 130;
+export const indexSearchHeight = 115;
 
 type IndexSearchProps = {
   filter: string;
-  setFilter: (value: 'Visos' | 'Mano') => void;
+  setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
   searchText: string;
   setSearchText: (value: string) => void;
 };
-const _IndexSearch = ({ filter, setFilter, searchText, setSearchText }: IndexSearchProps) => {
+const _IndexSearch = ({ filter, setFilter, setSearchText }: IndexSearchProps) => {
+  const { t } = useTranslation();
   const color = useThemeColor('text');
   const background = useThemeColor('background');
   const cardDark = useThemeColor('cardDark');
@@ -26,18 +28,16 @@ const _IndexSearch = ({ filter, setFilter, searchText, setSearchText }: IndexSea
   return (
     <View style={[{ borderColor: color, backgroundColor: background }, styles.searchContainer]}>
       <View style={styles.innerSearchContainer}>
-        {/* TODO how do you do a translation, here?? */}
         <SegmentedControl
-          selectedIndex={filter === 'Visos' ? 0 : 1}
-          onValueChange={setFilter as (value: string) => void}
-          values={['Visos', 'Mano']}
+          selectedIndex={filter === 'allSongs' ? 0 : 1}
+          onValueChange={(value) => setFilter(value === t('allSongs') ? 'allSongs' : 'favoriteSongs')}
+          values={[t('allSongs'), t('favoriteSongs')]}
         />
         <View style={styles.searchInputContainer}>
           <TextInput
             style={[{ backgroundColor: cardDark, color }, styles.searchInput]}
             clearButtonMode="while-editing"
             autoCorrect={false}
-            value={searchText}
             onChangeText={setSearchText}
             returnKeyType="done"
             selectionColor={primary}

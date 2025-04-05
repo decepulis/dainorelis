@@ -25,7 +25,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="myapp"/>
-        <data android:scheme="com.dainorelis.v2"/>
+        <data android:scheme="com.dainorelis.dainorelis"/>
         <data android:scheme="exp+dainorelis"/>
       </intent-filter>
     </activity>
