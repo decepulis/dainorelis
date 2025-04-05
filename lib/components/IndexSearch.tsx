@@ -1,0 +1,89 @@
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, TextInput, View } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
+
+import maxWidth from '@/lib/constants/maxWidth';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
+
+import { fonts } from '../constants/themes';
+import SegmentedControl from './SegmentedControl';
+
+export const indexSearchHeight = 115;
+
+type IndexSearchProps = {
+  filter: string;
+  setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
+  searchText: string;
+  setSearchText: (value: string) => void;
+};
+const _IndexSearch = ({ filter, setFilter, setSearchText }: IndexSearchProps) => {
+  const { t } = useTranslation();
+  const color = useThemeColor('text');
+  const background = useThemeColor('background');
+  const cardDark = useThemeColor('cardDark');
+  const primary = useThemeColor('primary');
+
+  return (
+    <View style={[{ borderColor: color, backgroundColor: background }, styles.searchContainer]}>
+      <View style={styles.innerSearchContainer}>
+        <SegmentedControl
+          selectedIndex={filter === 'allSongs' ? 0 : 1}
+          onValueChange={(value) => setFilter(value === t('allSongs') ? 'allSongs' : 'favoriteSongs')}
+          values={[t('allSongs'), t('favoriteSongs')]}
+        />
+        <View style={styles.searchInputContainer}>
+          <TextInput
+            style={[{ backgroundColor: cardDark, color }, styles.searchInput]}
+            clearButtonMode="while-editing"
+            autoCorrect={false}
+            onChangeText={setSearchText}
+            returnKeyType="done"
+            selectionColor={primary}
+          />
+          <View style={styles.searchInputIconContainer}>
+            <Ionicons name="search" size={18} color={color} />
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+const IndexSearch = memo(_IndexSearch);
+
+const styles = StyleSheet.create({
+  searchContainer: {
+    paddingHorizontal: 20,
+    height: indexSearchHeight,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    justifyContent: 'center',
+  },
+  innerSearchContainer: {
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
+  },
+  searchInputContainer: {
+    marginTop: 10,
+    position: 'relative',
+  },
+  searchInput: {
+    ...fonts.regular,
+    height: 40,
+    borderRadius: 6,
+    paddingLeft: 40,
+  },
+  searchInputIconContainer: {
+    position: 'absolute',
+    left: 10,
+    top: 0,
+    bottom: 0,
+    width: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default IndexSearch;
