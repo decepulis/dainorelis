@@ -15,6 +15,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/fira-sans';
 import { ThemeProvider } from '@react-navigation/native';
+import * as Sentry from '@sentry/react-native';
 
 import HomeButton from '@/lib/components/HomeButton';
 import { initI18n } from '@/lib/constants/i18n';
@@ -22,6 +23,14 @@ import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+
+Sentry.init({
+  // dsn: 'https://0060635b7f59078447df538b9ba69214@o4509108229242880.ingest.us.sentry.io/4509108230225920',
+  dsn: 'https://32e018a748671fa59063479f82810140@o4509108229242880.ingest.us.sentry.io/4509108265680896',
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
 
 type AppProps = {
   onLayout?: (e: LayoutChangeEvent) => void;
@@ -44,7 +53,6 @@ function App({ onLayout }: AppProps) {
 
   return (
     <StorageProvider>
-      {/* TODO sentry? */}
       {/* TODO ios flash of dark theme */}
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
         <StatusBar backgroundColor={primary} translucent={false} />
@@ -79,7 +87,7 @@ SplashScreen.setOptions({
   duration: 400,
   fade: true,
 });
-export default function RootLayout() {
+export default Sentry.wrap(function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [fontIsReady, fontError] = useFonts({
     FiraSans_400Regular,
@@ -120,4 +128,4 @@ export default function RootLayout() {
   }
 
   return <App onLayout={dismissSplashScreen} />;
-}
+});
