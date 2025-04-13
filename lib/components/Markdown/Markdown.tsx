@@ -1,8 +1,6 @@
 import { ComponentPropsWithoutRef, Fragment } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import MarkdownLib, { MarkdownIt } from 'react-native-markdown-display';
-
-import { fonts } from '@/lib/constants/themes';
 
 import ThemedText from '../ThemedText';
 
@@ -39,16 +37,6 @@ const styles = StyleSheet.create({
     fontSize: 19,
     // line height set dynamically down below
   },
-  strong: {
-    ...fonts.bold,
-  },
-  em: {
-    // todo not working on android
-    ...fonts.regularItalic,
-  },
-  strongEm: {
-    ...fonts.boldItalic,
-  },
 });
 
 type Props = {
@@ -67,10 +55,15 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
         <ThemedText>{children}</ThemedText>
       </View>
     ),
-    text: (node) => {
+    text: (node, _children, parent) => {
+      const parentTypes = parent.map((p) => p.sourceType);
+      const strong = parentTypes.includes('strong');
+      const em = parentTypes.includes('em');
       return (
-        <Text
+        <ThemedText
           key={node.key}
+          bold={strong}
+          italic={em}
           style={[
             styles.text,
             {
@@ -83,25 +76,25 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
           ]}
         >
           {node.content}
-        </Text>
+        </ThemedText>
       );
     },
     strong: (node, children, parent) => {
       const parentTypes = parent.map((p) => p.sourceType);
       const strongAndEm = parentTypes.includes('em');
       return (
-        <Text key={node.key} style={[styles.text, strongAndEm ? styles.strongEm : styles.strong]}>
+        <ThemedText key={node.key} style={styles.text} bold italic={strongAndEm}>
           {children}
-        </Text>
+        </ThemedText>
       );
     },
     em: (node, children, parent) => {
       const parentTypes = parent.map((p) => p.sourceType);
       const strongAndEm = parentTypes.includes('strong');
       return (
-        <Text key={node.key} style={[styles.text, strongAndEm ? styles.strongEm : styles.em]}>
+        <ThemedText key={node.key} style={styles.text} bold={strongAndEm} italic>
           {children}
-        </Text>
+        </ThemedText>
       );
     },
     link: (node, children) => {
@@ -118,9 +111,9 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
                 verticalAlign: 'bottom',
               }}
             >
-              <Text
+              <ThemedText
+                bold
                 style={{
-                  ...fonts.bold,
                   fontSize: chordHeight,
                   width: chordHeight,
                   // just kinda eyeballing it
@@ -128,13 +121,13 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
                 }}
               >
                 {href}
-              </Text>
+              </ThemedText>
             </View>
             {children}
           </Fragment>
         );
       } else {
-        return <Text key={node.key}>{children}</Text>;
+        return <ThemedText key={node.key}>{children}</ThemedText>;
       }
     },
   };

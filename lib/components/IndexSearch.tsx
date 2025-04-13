@@ -1,89 +1,95 @@
-import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, useColorScheme } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { Ionicons } from '@expo/vector-icons';
-
-import maxWidth from '@/lib/constants/maxWidth';
-import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import { BlurView } from 'expo-blur';
 
 import { fonts } from '../constants/themes';
+import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
+import { useThemeColor } from '../hooks/useThemeColor';
 import SegmentedControl from './SegmentedControl';
+import SystemView from './SystemView';
 
-export const indexSearchHeight = 115;
-
-type IndexSearchProps = {
-  filter: string;
+type Props = {
+  filter: 'allSongs' | 'favoriteSongs';
   setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
-  searchText: string;
-  setSearchText: (value: string) => void;
+  setSearchText: (text: string) => void;
+  setSearchHeight: (height: number) => void;
+  margin: number;
+  padding: number;
+  scrollY: Animated.SharedValue<number>;
 };
-const _IndexSearch = ({ filter, setFilter, setSearchText }: IndexSearchProps) => {
+export default function IndexSearch({
+  filter,
+  setFilter,
+  setSearchText,
+  setSearchHeight,
+  margin,
+  padding,
+  scrollY,
+}: Props) {
   const { t } = useTranslation();
-  const color = useThemeColor('text');
-  const background = useThemeColor('background');
-  const cardDark = useThemeColor('cardDark');
   const primary = useThemeColor('primary');
+  const text = useThemeColor('text');
+  const isDark = useColorScheme() === 'dark';
+
+  // hard coding this for now
+  const howFarThisIsFromTheTop = useSharedValue(250);
+
+  const fadeInStyle = useAnimatedStyle(() => ({
+    opacity:
+      scrollY.value > howFarThisIsFromTheTop.value
+        ? withTiming(1, { duration: 150 })
+        : withTiming(0, { duration: 150 }),
+  }));
 
   return (
-    <View style={[{ borderColor: color, backgroundColor: background }, styles.searchContainer]}>
-      <View style={styles.innerSearchContainer}>
-        <SegmentedControl
-          selectedIndex={filter === 'allSongs' ? 0 : 1}
-          onValueChange={(value) => setFilter(value === t('allSongs') ? 'allSongs' : 'favoriteSongs')}
-          values={[t('allSongs'), t('favoriteSongs')]}
+    <View style={{ position: 'relative' }}>
+      <Animated.View style={[StyleSheet.absoluteFill, fadeInStyle]}>
+        <SystemView
+          variant="primary"
+          style={[StyleSheet.absoluteFill, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: primary }]}
         />
-        <View style={styles.searchInputContainer}>
-          <TextInput
-            style={[{ backgroundColor: cardDark, color }, styles.searchInput]}
-            clearButtonMode="while-editing"
-            autoCorrect={false}
-            onChangeText={setSearchText}
-            returnKeyType="done"
-            selectionColor={primary}
-          />
-          <View style={styles.searchInputIconContainer}>
-            <Ionicons name="search" size={18} color={color} />
-          </View>
-        </View>
+      </Animated.View>
+      <View
+        onLayout={(event) => {
+          setSearchHeight(event.nativeEvent.layout.height);
+        }}
+        style={{
+          paddingHorizontal: margin + padding - 5,
+          paddingVertical: padding / 4,
+        }}
+      >
+        <SegmentedControl
+          options={[
+            { label: t('allSongs'), value: 'allSongs' },
+            { label: t('favoriteSongs'), value: 'favoriteSongs' },
+          ]}
+          value={filter}
+          onValueChange={(value) => {
+            setFilter(value as 'allSongs' | 'favoriteSongs');
+          }}
+        />
+        <TextInput
+          style={[
+            fonts.regular, // a11y bold
+            {
+              // TODO theme
+              backgroundColor: isDark ? `rgba(255,255,255,0.125)` : `rgba(0,0,0,0.075)`,
+              color: text,
+              marginTop: padding / 4,
+              paddingHorizontal: padding,
+              height: 40,
+              borderRadius: 15,
+            },
+          ]}
+          clearButtonMode="while-editing"
+          autoCorrect={false}
+          onChangeText={setSearchText}
+          returnKeyType="done"
+          selectionColor={primary}
+        />
       </View>
     </View>
   );
-};
-const IndexSearch = memo(_IndexSearch);
-
-const styles = StyleSheet.create({
-  searchContainer: {
-    paddingHorizontal: 20,
-    height: indexSearchHeight,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    justifyContent: 'center',
-  },
-  innerSearchContainer: {
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
-  },
-  searchInputContainer: {
-    marginTop: 10,
-    position: 'relative',
-  },
-  searchInput: {
-    ...fonts.regular,
-    height: 40,
-    borderRadius: 6,
-    paddingLeft: 40,
-  },
-  searchInputIconContainer: {
-    position: 'absolute',
-    left: 10,
-    top: 0,
-    bottom: 0,
-    width: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default IndexSearch;
+}

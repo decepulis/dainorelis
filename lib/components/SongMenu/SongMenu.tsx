@@ -1,6 +1,5 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
@@ -12,6 +11,9 @@ import { PDFs } from '@/lib/schemas/pdfs';
 import { Song } from '@/lib/schemas/songs';
 import { Videos } from '@/lib/schemas/videos';
 import isLyrics from '@/lib/utils/isLyrics';
+
+import Button, { styles as buttonStyles } from '../Button';
+import SystemView from '../SystemView';
 
 type Props = {
   song: Song;
@@ -57,15 +59,10 @@ function _SongMenu({
   }, [favoritesLoading, favorites, setFavorites, song.id]);
 
   const actions: (MenuAction | null)[] = [
-    {
-      id: 'favorite',
-      title: isFavorite ? t('removeFromFavorites') : t('addToFavorites'),
-      state: isFavorite ? 'on' : 'off',
-    },
     hasChords
       ? {
           id: 'chords',
-          title: showChords ? t('showChords') : t('hideChords'),
+          title: t('showChords'),
           state: showChords ? 'on' : 'off',
         }
       : null,
@@ -99,9 +96,8 @@ function _SongMenu({
     (e: NativeActionEvent) => {
       const { event } = e.nativeEvent;
       const [id, subId] = event.split('-');
-      if (id === 'favorite') {
-        if (isFavorite) removeFromFavorites();
-        else addToFavorites();
+      if (id === 'chords') {
+        setShowChords(!showChords);
       } else if (id === 'variants') {
         setActiveVariantIndex(Number(subId));
       } else if (id === 'recordings') {
@@ -110,31 +106,26 @@ function _SongMenu({
         console.log('info');
       }
     },
-    [isFavorite, removeFromFavorites, addToFavorites, setActiveVariantIndex, setActiveMediaIndex]
+    [setShowChords, showChords, setActiveVariantIndex, setActiveMediaIndex]
   );
 
-  // just favorites? show just a heart
-  if (filteredActions.length === 1) {
-    return (
-      <Pressable
-        style={{ paddingHorizontal: 20, width: 60 }}
-        hitSlop={24}
-        onPress={isFavorite ? removeFromFavorites : addToFavorites}
-      >
-        <FontAwesome6 name="heart" solid={isFavorite} size={20} color="white" />
-      </Pressable>
-    );
-  }
-
   return (
-    <MenuView
-      style={{ paddingHorizontal: 20, width: 60 }}
-      hitSlop={{ top: 24, bottom: 24, left: 24, right: 24 }}
-      actions={filteredActions}
-      onPressAction={onPressAction}
-    >
-      <FontAwesome6 name="bars" size={20} color="white" />
-    </MenuView>
+    <>
+      {filteredActions.length ? (
+        <MenuView
+          hitSlop={{ top: 28, bottom: 28, left: 28, right: 28 }}
+          actions={filteredActions}
+          onPressAction={onPressAction}
+        >
+          <SystemView variant="primary" shadow={false} style={buttonStyles.container}>
+            <FontAwesome6 name="bars" size={14} color="white" />
+          </SystemView>
+        </MenuView>
+      ) : null}
+      <Button onPress={isFavorite ? removeFromFavorites : addToFavorites}>
+        <FontAwesome6 name="heart" solid={isFavorite} size={14} color="white" />
+      </Button>
+    </>
   );
 }
 

@@ -1,0 +1,63 @@
+import { forwardRef } from 'react';
+import { Platform, StyleProp, View, ViewStyle, useColorScheme } from 'react-native';
+
+import { BlurView } from 'expo-blur';
+
+import { useThemeColor } from '../hooks/useThemeColor';
+
+type Props = {
+  children?: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+  variant: 'primary' | 'background';
+  shadow?: boolean;
+} & View['props'];
+
+/**
+ * A view that gets blurry on iOS but stays solid on Android
+ */
+const SystemView = forwardRef<View, Props>(
+  ({ children, style, variant = 'background', shadow = true, ...rest }, ref) => {
+    const isDark = useColorScheme() === 'dark';
+    const primary = useThemeColor('primary');
+    const card = useThemeColor('card');
+
+    if (Platform.OS === 'ios') {
+      return (
+        <BlurView
+          ref={ref as any}
+          intensity={66}
+          tint={variant === 'primary' ? 'systemChromeMaterialDark' : isDark ? 'dark' : 'extraLight'}
+          style={[
+            {
+              backgroundColor: variant === 'primary' ? `${primary}88` : `${card}66`,
+            },
+            style,
+          ]}
+          {...rest}
+        >
+          {children}
+        </BlurView>
+      );
+    }
+    return (
+      <View
+        ref={ref}
+        style={[
+          {
+            backgroundColor: variant === 'primary' ? primary : card,
+            boxShadow: shadow ? '0px 0px 10px rgba(0, 0, 0, 0.2)' : undefined,
+          },
+          style,
+        ]}
+        {...rest}
+      >
+        {children}
+      </View>
+    );
+  }
+);
+
+// Add display name for better debugging
+SystemView.displayName = 'SystemView';
+
+export default SystemView;

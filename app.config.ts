@@ -20,6 +20,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
+    versionCode: 2,
   },
   web: {
     bundler: 'metro',
@@ -43,6 +44,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
         resizeMode: 'contain',
         backgroundColor: '#70997F',
+        dark: {
+          backgroundColor: '#53745e',
+        },
       },
     ],
   ],

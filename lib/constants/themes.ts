@@ -13,9 +13,13 @@ export const fonts = {
     fontStyle: 'italic',
   },
   medium: {
-    // instead of loading a medium font, we re-use the 400
-    fontFamily: Platform.select({ ios: 'FiraSans-Regular', default: 'FiraSans_400Regular' }),
-    fontWeight: 'normal',
+    fontFamily: Platform.select({ ios: 'FiraSans-Medium', default: 'FiraSans_500Medium' }),
+    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+  },
+  mediumItalic: {
+    fontFamily: Platform.select({ ios: 'FiraSans-MediumItalic', default: 'FiraSans_500Medium_Italic' }),
+    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontStyle: 'italic',
   },
   bold: {
     fontFamily: Platform.select({ ios: 'FiraSans-Bold', default: 'FiraSans_700Bold' }),
@@ -27,24 +31,30 @@ export const fonts = {
     fontStyle: 'italic',
   },
   heavy: {
-    // instead of loading a heavy font, we re-use the 700
-    fontFamily: Platform.select({ ios: 'FiraSans-Bold', default: 'FiraSans_700Bold' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'FiraSans-ExtraBold', default: 'FiraSans_800ExtraBold' }),
+    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+  },
+  heavyItalic: {
+    fontFamily: Platform.select({ ios: 'FiraSans-ExtraBoldItalic', default: 'FiraSans_800ExtraBold_Italic' }),
+    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontStyle: 'italic',
   },
 } as { [weight: string]: TextStyle };
 
 export interface Theme extends LibTheme {
   colors: LibTheme['colors'] & {
-    cardDark: string;
+    card0: string;
+    card2: string;
   };
 }
 export const LightTheme: Theme = {
   dark: false,
   colors: {
     primary: '#70997F',
-    background: '#e4e4dd',
-    card: '#FFF',
-    cardDark: '#D6D6D2',
+    background: '#e4e4dd', // bright
+    card: '#f1f1ee', // brighter
+    card2: '#f8f8f7', // brightest
+    card0: '#D6D6D2',
     text: '#121314',
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
@@ -55,9 +65,10 @@ export const DarkTheme: Theme = {
   dark: false,
   colors: {
     primary: '#53745e',
-    background: '#121314',
-    card: '#242628',
-    cardDark: '#2A2A2E',
+    background: '#121314', // dark
+    card: '#242628', // brighter
+    card2: '#343638', // brightest
+    card0: '#2A2A2E',
     text: '#FEF9F7',
     border: '#FEF9F7',
     notification: 'rgb(255, 69, 58)',

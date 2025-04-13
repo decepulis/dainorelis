@@ -1,40 +1,114 @@
-import { ComponentPropsWithoutRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { LayoutChangeEvent, Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import LibSegmentedControl from '@react-native-segmented-control/segmented-control';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
-import { DarkTheme, fonts } from '../constants/themes';
-import { useThemeColor } from '../hooks/useThemeColor';
+import { fonts } from '../constants/themes';
+import SystemView from './SystemView';
+import ThemedText from './ThemedText';
 
-export default function SegmentedControl({
-  style,
-  sliderStyle,
-  fontStyle,
-  activeFontStyle,
-  ...rest
-}: ComponentPropsWithoutRef<typeof LibSegmentedControl>) {
-  const color = useThemeColor('text');
-  const cardDark = useThemeColor('cardDark');
-  const primary = useThemeColor('primary');
+type Option = {
+  label: string;
+  value: string;
+};
+
+type Props = {
+  options: Option[];
+  value: string;
+  onValueChange: (value: string) => void;
+};
+
+const SegmentedControl = ({ options, value, onValueChange }: Props) => {
+  const card0 = useThemeColor('card0');
+  const isDark = useColorScheme() === 'dark';
+
+  const optionWidth = useSharedValue(0);
+  const activeIndex = options.findIndex((option) => option.value === value);
+  const translateX = useSharedValue(0);
+
+  // Calculate the indicator position when active index changes
+  useEffect(() => {
+    const targetIndex = activeIndex >= 0 ? activeIndex : 0;
+    translateX.value = withTiming(targetIndex * optionWidth.value, { duration: 200 });
+  }, [activeIndex, translateX, optionWidth]);
+
+  const animatedIndicatorStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+      width: optionWidth.value,
+    };
+  });
+
+  const onContainerLayout = (event: LayoutChangeEvent) => {
+    const containerWidth = event.nativeEvent.layout.width;
+    // Calculate equal width for each option
+    const equalWidth = (containerWidth - 6) / options.length; // Subtract padding
+    optionWidth.value = equalWidth;
+
+    // Set initial position for the indicator
+    translateX.value = activeIndex * equalWidth;
+  };
 
   return (
-    <LibSegmentedControl
-      backgroundColor={cardDark}
-      style={[{ height: 40, borderRadius: 6 }, style]}
-      sliderStyle={{ borderRadius: 4, ...sliderStyle }}
-      tintColor={primary}
-      fontStyle={{
-        ...fonts.regular,
-        fontSize: 15,
-        color,
-        ...fontStyle,
-      }}
-      activeFontStyle={{
-        ...fonts.regular,
-        fontSize: 15,
-        color: DarkTheme.colors.text,
-        ...activeFontStyle,
-      }}
-      {...rest}
-    />
+    <View
+      style={[
+        styles.container,
+        {
+          // TODO theme
+          backgroundColor: isDark ? `rgba(255,255,255,0.125)` : `rgba(0,0,0,0.075)`,
+        },
+      ]}
+      onLayout={onContainerLayout}
+    >
+      <Animated.View style={[styles.indicator, animatedIndicatorStyle]}>
+        <SystemView style={StyleSheet.absoluteFill} variant={isDark ? 'primary' : 'background'} />
+      </Animated.View>
+
+      {options.map((option) => (
+        <Pressable
+          hitSlop={{ top: 14, bottom: 14 }}
+          key={option.value}
+          style={styles.option}
+          onPress={() => onValueChange(option.value)}
+        >
+          <ThemedText style={[styles.optionText, option.value === value ? fonts.medium : fonts.regular]}>
+            {option.label}
+          </ThemedText>
+        </Pressable>
+      ))}
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    borderRadius: 25,
+    padding: 3,
+    position: 'relative',
+    width: '100%', // Ensure container takes full width
+  },
+  indicator: {
+    position: 'absolute',
+    height: '100%',
+    borderRadius: 20,
+    overflow: 'hidden',
+    top: 3,
+    bottom: 3,
+    left: 3,
+    zIndex: 0,
+  },
+  option: {
+    flex: 1, // Equal width for all options
+    paddingVertical: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+  optionText: {
+    fontSize: 14,
+  },
+});
+
+export default SegmentedControl;

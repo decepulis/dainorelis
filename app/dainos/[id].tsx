@@ -1,16 +1,31 @@
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { useAnimatedRef } from 'react-native-reanimated';
+import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import Lyrics from '@/lib/components/Lyrics';
+import Header, { useHeaderScroll } from '@/lib/components/Header';
+import Markdown from '@/lib/components/Markdown';
 import Player from '@/lib/components/Player';
-import SongHeader from '@/lib/components/SongHeader';
+import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
+import SongMenu from '@/lib/components/SongMenu';
+import ThemedText from '@/lib/components/ThemedText';
+import maxWidth from '@/lib/constants/maxWidth';
+import { fonts } from '@/lib/constants/themes';
+import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
+import useStorage from '@/lib/hooks/useStorage';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Audio } from '@/lib/schemas/audio';
 import { Lyrics as LyricsType } from '@/lib/schemas/lyrics';
 import { PDFs } from '@/lib/schemas/pdfs';
 import { Song } from '@/lib/schemas/songs';
 import { Videos } from '@/lib/schemas/videos';
 import getTitle from '@/lib/utils/getTitle';
+import isLyrics from '@/lib/utils/isLyrics';
 import songs from '@/songs';
 
 export async function generateStaticParams() {
@@ -18,8 +33,16 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const { t } = useTranslation();
+  const text = useThemeColor('text');
+  const inset = useSafeAreaInsets();
+  const defaultHeaderHeight = useDefaultHeaderHeight();
+  const { value: showChords } = useStorage('showChords');
+
   const { id } = useLocalSearchParams();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
+
+  const hasAttribution = !!song.fields['Music Author'] || !!song.fields['Text Author'];
 
   // Variants
   // TODO persist last used variant in storage
@@ -29,10 +52,6 @@ export default function Page() {
     [song]
   );
   const activeVariant = useMemo(() => variants[activeVariantIndex], [variants, activeVariantIndex]);
-
-  // Title
-  const title = useMemo(() => getTitle(song, variants, activeVariant), [song, variants, activeVariant]);
-  const [isTitleBehind, setIsTitleBehind] = useState(false);
 
   // Media
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
@@ -45,34 +64,99 @@ export default function Page() {
     [activeMediaIndex, media]
   );
 
-  // PROP DRILLING! I tried doing this with context but SongHeader being rendered at the root made it complicated
+  // Title
+  const titleRef = useRef<View>(null);
+  const { scrollHandler, isTitleBehind } = useHeaderScroll(titleRef);
+  const title = useMemo(() => getTitle(song, variants, activeVariant), [song, variants, activeVariant]);
+
   return (
     <Fragment>
       <Stack.Screen
         options={{
           header: () => (
-            <SongHeader
+            <Header
               title={title}
               isTitleBehind={isTitleBehind}
-              song={song}
-              variants={variants}
-              activeVariant={activeVariant}
-              setActiveVariantIndex={setActiveVariantIndex}
-              media={media}
-              activeMedia={activeMedia}
-              setActiveMediaIndex={setActiveMediaIndex}
+              controls={
+                <SongMenu
+                  song={song}
+                  variants={variants}
+                  activeVariant={activeVariant}
+                  setActiveVariantIndex={setActiveVariantIndex}
+                  media={media}
+                  activeMedia={activeMedia}
+                  setActiveMediaIndex={setActiveMediaIndex}
+                />
+              }
             />
           ),
+          headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
         }}
       />
-      <Lyrics
-        song={song}
-        title={title}
-        activeVariant={activeVariant}
-        isTitleBehind={isTitleBehind}
-        setIsTitleBehind={setIsTitleBehind}
-      />
+      <ScrollViewWithHeader onScroll={scrollHandler} style={[styles.scroll]}>
+        <View style={styles.container}>
+          <View style={styles.titleContainer} ref={titleRef}>
+            {title.map((part, index) => (
+              <ThemedText
+                key={index}
+                bold={index === 0}
+                style={[styles.title, index === 0 ? styles.mainTitle : styles.subtitle]}
+              >
+                {part}
+              </ThemedText>
+            ))}
+          </View>
+          {isLyrics(activeVariant) ? (
+            <Markdown showLinksAsChords showChords={showChords}>
+              {activeVariant['Lyrics & Chords']}
+            </Markdown>
+          ) : null}
+          {hasAttribution ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+          {song.fields['Music Author'] ? (
+            <ThemedText>
+              {t('musicBy')}
+              {song.fields['Music Author']}
+            </ThemedText>
+          ) : null}
+          {song.fields['Text Author'] ? (
+            <ThemedText>
+              {t('wordsBy')}
+              {song.fields['Text Author']}
+            </ThemedText>
+          ) : null}
+        </View>
+      </ScrollViewWithHeader>
       {activeMedia ? <Player asset={activeMedia} onClose={() => setActiveMediaIndex(null)} /> : null}
     </Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+  },
+  container: {
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 80,
+  },
+  titleContainer: {
+    marginTop: 40,
+    marginBottom: 20,
+  },
+  title: {},
+  mainTitle: {
+    fontSize: 30,
+  },
+  subtitle: {
+    fontSize: 18,
+  },
+  hr: {
+    height: StyleSheet.hairlineWidth,
+    marginTop: 40,
+    marginBottom: 40,
+  },
+});
