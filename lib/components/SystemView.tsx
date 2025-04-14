@@ -10,7 +10,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
   variant: 'primary' | 'background';
   shadow?: boolean;
-} & View['props'];
+} & BlurView['props'];
 
 /**
  * A view that gets blurry on iOS but stays solid on Android

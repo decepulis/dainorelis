@@ -1,9 +1,11 @@
 import React, { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent, Platform, StyleSheet, View } from 'react-native';
+import { LayoutRectangle, NativeScrollEvent, NativeSyntheticEvent, Platform, StyleSheet, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
+  SharedValue,
   interpolate,
+  useAnimatedScrollHandler,
   useAnimatedStyle,
   useScrollViewOffset,
   useSharedValue,
@@ -12,14 +14,12 @@ import Animated, {
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Link, router, usePathname } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
-import throttle from 'just-throttle';
 
 import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
 
-import { fonts } from '../constants/themes';
 import Button from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
@@ -28,66 +28,44 @@ const timing = {
   duration: 150,
 };
 
-export function useHeaderScroll(titleRef: React.RefObject<View>) {
-  const defaultHeaderHeight = useDefaultHeaderHeight();
-  const [isTitleBehind, setIsTitleBehind] = useState(false);
-
-  const scrollHandler: ComponentPropsWithoutRef<typeof Animated.ScrollView>['onScroll'] = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const titleEl = titleRef.current;
-      if (titleEl) {
-        const scrollY = e.nativeEvent.contentOffset.y;
-        // todo should probably do this with an onlayout...
-        titleEl.measure((_x, _y, _width, titleHeight, _pageX, pageY) => {
-          if (pageY + titleHeight - defaultHeaderHeight > scrollY) setIsTitleBehind(false);
-          else setIsTitleBehind(true);
-        });
-      }
-    },
-    [defaultHeaderHeight, titleRef]
-  );
-
-  return useMemo(
-    () => ({ scrollHandler: throttle(scrollHandler, 100), isTitleBehind }),
-    [scrollHandler, isTitleBehind]
-  );
-}
-
 interface HeaderProps {
   scrollRef?: AnimatedRef<AnimatedScrollView>;
+  titleLayout?: SharedValue<LayoutRectangle | null>;
   children?: React.ReactNode;
   title?: string[];
   controls?: React.ReactNode;
-  isTitleBehind?: boolean;
   center?: boolean;
   hideBack?: boolean;
+  opaque?: boolean;
 }
 export default function Header({
   scrollRef,
+  titleLayout,
   children,
   title,
   controls,
-  isTitleBehind = true,
   center,
   hideBack,
+  opaque,
 }: HeaderProps) {
   const inset = useSafeAreaInsets();
   const defaultHeaderHeight = useDefaultHeaderHeight();
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
   const canGoBack = router.canGoBack();
 
-  const titleSv = useSharedValue(isTitleBehind);
-  useEffect(() => {
-    titleSv.value = isTitleBehind;
-  }, [isTitleBehind, titleSv]);
-
-  const animatedTitleStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(titleSv.value && (typeof scrollRef === 'undefined' || scrollOffset.value) ? 1 : 0, timing),
-    transform: [{ translateY: withTiming(titleSv.value ? 0 : 5, timing) }],
-  }));
+  const animatedTitleStyle = useAnimatedStyle(() => {
+    let isTitleBehind = true;
+    if (titleLayout?.value) {
+      isTitleBehind = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+    }
+    return {
+      opacity: withTiming(isTitleBehind ? 1 : 0, timing),
+      transform: [{ translateY: withTiming(isTitleBehind ? 0 : 5, timing) }],
+    };
+  });
 
   const headerStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
+    opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
   }));
 
   return (

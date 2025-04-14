@@ -1,8 +1,16 @@
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, TextInput, View, useColorScheme } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-
-import { BlurView } from 'expo-blur';
+import { LayoutChangeEvent, StyleSheet, TextInput, View } from 'react-native';
+import Animated, {
+  AnimatedRef,
+  Extrapolation,
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+  useScrollViewOffset,
+  useSharedValue,
+} from 'react-native-reanimated';
+import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 import { fonts } from '../constants/themes';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
@@ -11,40 +19,53 @@ import SegmentedControl from './SegmentedControl';
 import SystemView from './SystemView';
 
 type Props = {
+  scrollRef: AnimatedRef<AnimatedScrollView>;
   filter: 'allSongs' | 'favoriteSongs';
   setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
   setSearchText: (text: string) => void;
   setSearchHeight: (height: number) => void;
   margin: number;
   padding: number;
-  scrollY: Animated.SharedValue<number>;
+  scrollY: SharedValue<number>;
 };
 export default function IndexSearch({
+  scrollRef,
   filter,
   setFilter,
   setSearchText,
   setSearchHeight,
   margin,
   padding,
-  scrollY,
 }: Props) {
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
-  const isDark = useColorScheme() === 'dark';
+  const card2 = useThemeColor('card2');
+  const scrollOffset = useScrollViewOffset(scrollRef);
+  const defaultHeaderHeight = useDefaultHeaderHeight();
 
   // hard coding this for now
   const howFarThisIsFromTheTop = useSharedValue(250);
+  const figureOutHowFarThisIsFromTheTop = useCallback(
+    (event: LayoutChangeEvent) => {
+      event.target.measureInWindow((_x, y, _width, _height) => {
+        howFarThisIsFromTheTop.value = y - defaultHeaderHeight;
+      });
+    },
+    [defaultHeaderHeight]
+  );
 
   const fadeInStyle = useAnimatedStyle(() => ({
-    opacity:
-      scrollY.value > howFarThisIsFromTheTop.value
-        ? withTiming(1, { duration: 150 })
-        : withTiming(0, { duration: 150 }),
+    opacity: interpolate(
+      scrollOffset.value,
+      [howFarThisIsFromTheTop.value, howFarThisIsFromTheTop.value + padding],
+      [0, 1],
+      Extrapolation.CLAMP
+    ),
   }));
 
   return (
-    <View style={{ position: 'relative' }}>
+    <View style={{ position: 'relative' }} onLayout={figureOutHowFarThisIsFromTheTop}>
       <Animated.View style={[StyleSheet.absoluteFill, fadeInStyle]}>
         <SystemView
           variant="primary"
@@ -75,7 +96,7 @@ export default function IndexSearch({
             fonts.regular, // a11y bold
             {
               // TODO theme
-              backgroundColor: isDark ? `rgba(255,255,255,0.125)` : `rgba(0,0,0,0.075)`,
+              backgroundColor: `${card2}bb`,
               color: text,
               marginTop: padding / 4,
               paddingHorizontal: padding,

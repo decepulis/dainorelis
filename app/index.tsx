@@ -1,8 +1,7 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { LayoutChangeEvent, LayoutRectangle, Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
 import { useWindowDimensions } from 'react-native';
-import { useAnimatedRef, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated';
+import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -15,10 +14,8 @@ import Button from '@/lib/components/Button';
 import Header, { useHeaderScroll } from '@/lib/components/Header';
 import IndexSearch from '@/lib/components/IndexSearch';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SegmentedControl from '@/lib/components/SegmentedControl';
 import SystemView from '@/lib/components/SystemView';
 import ThemedText from '@/lib/components/ThemedText';
-import { fonts } from '@/lib/constants/themes';
 import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -84,15 +81,11 @@ export default function Index() {
   const lastSection = filteredSongs[filteredSongs.length - 1];
 
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
-  const titleRef = useRef<View>(null);
-  // const { scrollHandler, isTitleBehind } = useHeaderScroll(titleRef);
+  const titleLayout = useSharedValue<LayoutRectangle | null>(null);
+  const calculateTitleHeight = useCallback((event: LayoutChangeEvent) => {
+    titleLayout.value = event.nativeEvent.layout;
+  }, []);
 
-  const scrollY = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollY.value = event.contentOffset.y;
-    },
-  });
   return (
     <>
       <Stack.Screen
@@ -100,6 +93,7 @@ export default function Index() {
           header: () => (
             <Header
               scrollRef={scrollRef}
+              titleLayout={titleLayout}
               controls={
                 <Link href="/nustatymai" asChild>
                   <Button>
@@ -107,7 +101,6 @@ export default function Index() {
                   </Button>
                 </Link>
               }
-              isTitleBehind={true}
               center
               hideBack
             >
@@ -120,12 +113,13 @@ export default function Index() {
       <View style={styles.container}>
         <Image
           style={[StyleSheet.absoluteFillObject, { height: Math.min(400 + inset.top, height / 2) }]}
+          // TODO include this in bundle so it doesn't flash in
           source={require('@/assets/images/miskas-fade-9.png')}
           contentFit="cover"
         ></Image>
-        <ScrollViewWithHeader ref={scrollRef} onScroll={scrollHandler} stickyHeaderIndices={[1]}>
+        <ScrollViewWithHeader ref={scrollRef} stickyHeaderIndices={[1]}>
           <View
-            ref={titleRef}
+            onLayout={calculateTitleHeight}
             style={[
               styles.logoContainer,
               {
@@ -141,21 +135,21 @@ export default function Index() {
             />
           </View>
           <IndexSearch
+            scrollRef={scrollRef}
             filter={filter}
             setFilter={setFilter}
             setSearchText={setSearchText}
             setSearchHeight={setSearchHeight}
             margin={margin}
             padding={padding}
-            scrollY={scrollY}
           />
           <SystemView
             variant="background"
             style={[
               styles.blurContainer,
               {
-                marginTop: -(searchHeight + padding),
-                paddingTop: searchHeight + padding,
+                marginTop: -(searchHeight + padding - padding / 4),
+                paddingTop: searchHeight + padding - padding / 4,
                 marginBottom: inset.bottom + 40,
               },
             ]}

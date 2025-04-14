@@ -15,6 +15,10 @@ const schemas = {
     validator: z.enum(['en', 'lt']),
     defaultValue: 'lt',
   },
+  theme: {
+    validator: z.enum(['auto', 'dark', 'light']),
+    defaultValue: 'auto',
+  },
   showChords: {
     validator: z.boolean(),
     defaultValue: false,
@@ -67,6 +71,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     }));
 
     // finally, set the value in Storage
+    // todo: error behavior
     await AsyncStorage.setItem(key, JSON.stringify(validValue));
   }, []);
 

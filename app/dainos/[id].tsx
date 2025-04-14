@@ -1,7 +1,7 @@
-import { Fragment, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { useAnimatedRef } from 'react-native-reanimated';
+import { LayoutChangeEvent, LayoutRectangle, ScrollView, StyleSheet, View } from 'react-native';
+import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -35,8 +35,6 @@ export async function generateStaticParams() {
 export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
-  const inset = useSafeAreaInsets();
-  const defaultHeaderHeight = useDefaultHeaderHeight();
   const { value: showChords } = useStorage('showChords');
 
   const { id } = useLocalSearchParams();
@@ -65,8 +63,11 @@ export default function Page() {
   );
 
   // Title
-  const titleRef = useRef<View>(null);
-  const { scrollHandler, isTitleBehind } = useHeaderScroll(titleRef);
+  const scrollRef = useAnimatedRef<AnimatedScrollView>();
+  const titleLayout = useSharedValue<LayoutRectangle | null>(null);
+  const calculateTitleHeight = useCallback((event: LayoutChangeEvent) => {
+    titleLayout.value = event.nativeEvent.layout;
+  }, []);
   const title = useMemo(() => getTitle(song, variants, activeVariant), [song, variants, activeVariant]);
 
   return (
@@ -75,8 +76,10 @@ export default function Page() {
         options={{
           header: () => (
             <Header
+              scrollRef={scrollRef}
+              titleLayout={titleLayout}
               title={title}
-              isTitleBehind={isTitleBehind}
+              opaque
               controls={
                 <SongMenu
                   song={song}
@@ -93,9 +96,9 @@ export default function Page() {
           headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
         }}
       />
-      <ScrollViewWithHeader onScroll={scrollHandler} style={[styles.scroll]}>
+      <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
         <View style={styles.container}>
-          <View style={styles.titleContainer} ref={titleRef}>
+          <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
             {title.map((part, index) => (
               <ThemedText
                 key={index}

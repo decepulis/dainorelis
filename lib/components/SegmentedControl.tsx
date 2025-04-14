@@ -1,28 +1,58 @@
-import React, { useEffect, useRef } from 'react';
-import { LayoutChangeEvent, Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import React, { ComponentPropsWithoutRef, useEffect } from 'react';
+import { LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import { fonts } from '../constants/themes';
-import SystemView from './SystemView';
-import ThemedText from './ThemedText';
 
-type Option = {
+const timing = {
+  duration: 150,
+};
+
+type OptionType = {
   label: string;
   value: string;
 };
 
+type OptionProps = {
+  isSelected: boolean;
+  option: OptionType;
+  onPress: ComponentPropsWithoutRef<typeof Pressable>['onPress'];
+};
+const Option = ({ isSelected, option, onPress }: OptionProps) => {
+  const text = useThemeColor('text');
+  // Animated style for the text
+  const textStyle = useAnimatedStyle(() => {
+    const font = isSelected ? fonts.medium : fonts.regular;
+    return {
+      color: withTiming(isSelected ? '#fff' : text, timing),
+      ...font,
+    };
+  });
+
+  return (
+    <Pressable hitSlop={{ top: 14, bottom: 14 }} key={option.value} style={styles.option} onPress={onPress}>
+      <Animated.Text style={[styles.optionText, textStyle]}>{option.label}</Animated.Text>
+    </Pressable>
+  );
+};
+
 type Props = {
-  options: Option[];
+  options: OptionType[];
   value: string;
   onValueChange: (value: string) => void;
 };
 
 const SegmentedControl = ({ options, value, onValueChange }: Props) => {
-  const card0 = useThemeColor('card0');
-  const isDark = useColorScheme() === 'dark';
-
+  const primary = useThemeColor('primary');
+  const card2 = useThemeColor('card2');
   const optionWidth = useSharedValue(0);
   const activeIndex = options.findIndex((option) => option.value === value);
   const translateX = useSharedValue(0);
@@ -30,15 +60,13 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   // Calculate the indicator position when active index changes
   useEffect(() => {
     const targetIndex = activeIndex >= 0 ? activeIndex : 0;
-    translateX.value = withTiming(targetIndex * optionWidth.value, { duration: 200 });
+    translateX.value = withTiming(targetIndex * optionWidth.value, timing);
   }, [activeIndex, translateX, optionWidth]);
 
-  const animatedIndicatorStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: translateX.value }],
-      width: optionWidth.value,
-    };
-  });
+  const animatedIndicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }],
+    width: optionWidth.value,
+  }));
 
   const onContainerLayout = (event: LayoutChangeEvent) => {
     const containerWidth = event.nativeEvent.layout.width;
@@ -51,31 +79,16 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   };
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          // TODO theme
-          backgroundColor: isDark ? `rgba(255,255,255,0.125)` : `rgba(0,0,0,0.075)`,
-        },
-      ]}
-      onLayout={onContainerLayout}
-    >
-      <Animated.View style={[styles.indicator, animatedIndicatorStyle]}>
-        <SystemView style={StyleSheet.absoluteFill} variant={isDark ? 'primary' : 'background'} />
-      </Animated.View>
+    <View style={[styles.container, { backgroundColor: `${card2}bb` }]} onLayout={onContainerLayout}>
+      <Animated.View style={[styles.indicator, { backgroundColor: primary }, animatedIndicatorStyle]} />
 
-      {options.map((option) => (
-        <Pressable
-          hitSlop={{ top: 14, bottom: 14 }}
-          key={option.value}
-          style={styles.option}
+      {options.map((option, index) => (
+        <Option
+          key={index}
+          isSelected={option.value === value}
+          option={option}
           onPress={() => onValueChange(option.value)}
-        >
-          <ThemedText style={[styles.optionText, option.value === value ? fonts.medium : fonts.regular]}>
-            {option.label}
-          </ThemedText>
-        </Pressable>
+        />
       ))}
     </View>
   );
@@ -85,6 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     borderRadius: 25,
+    overflow: 'hidden',
     padding: 3,
     position: 'relative',
     width: '100%', // Ensure container takes full width

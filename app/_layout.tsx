@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { KeyboardAvoidingView, LayoutChangeEvent, Platform } from 'react-native';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, Platform, useColorScheme } from 'react-native';
 
 import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
@@ -22,8 +22,7 @@ import * as Sentry from '@sentry/react-native';
 
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
-import { StorageProvider } from '@/lib/hooks/useStorage';
+import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 Sentry.init({
@@ -35,10 +34,9 @@ Sentry.init({
 });
 
 type AppProps = {
-  onLayout?: (e: LayoutChangeEvent) => void;
+  onLayout: (e: LayoutChangeEvent) => void;
 };
 function App({ onLayout }: AppProps) {
-  const colorScheme = useColorScheme();
   const background = useThemeColor('background');
   const primary = useThemeColor('primary');
 
@@ -51,20 +49,17 @@ function App({ onLayout }: AppProps) {
   }, [primary]);
 
   return (
-    <StorageProvider>
-      {/* TODO ios flash of dark theme */}
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-        <StatusBar style="light" backgroundColor={primary} translucent={false} />
-        <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
-          <Stack>
-            {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
-            <Stack.Screen name="index" options={{ title: '' }} />
-            <Stack.Screen name="nustatymai" options={{ title: '' }} />
-            <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
-          </Stack>
-        </KeyboardAvoidingView>
-      </ThemeProvider>
-    </StorageProvider>
+    <>
+      <StatusBar style="light" backgroundColor={primary} translucent={false} />
+      <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
+        <Stack>
+          {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
+          <Stack.Screen name="index" options={{ title: '' }} />
+          <Stack.Screen name="nustatymai" options={{ title: '' }} />
+          <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
+        </Stack>
+      </KeyboardAvoidingView>
+    </>
   );
 }
 
@@ -77,8 +72,11 @@ SplashScreen.setOptions({
   duration: 400,
   fade: true,
 });
-export default Sentry.wrap(function RootLayout() {
-  const [appIsReady, setAppIsReady] = useState(false);
+function AppWithLoading() {
+  const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
+  const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
+  const [didAppLayout, setDidAppLayout] = useState(false);
+  const { value: colorSchemePreference, loading: isColorSchemePreferenceLoading } = useStorage('theme');
   const [fontIsReady, fontError] = useFonts({
     FiraSans_400Regular,
     FiraSans_400Regular_Italic,
@@ -90,36 +88,50 @@ export default Sentry.wrap(function RootLayout() {
     FiraSans_800ExtraBold_Italic,
   });
 
+  // keep color scheme in sync with storage
+  useEffect(() => {
+    if (isColorSchemePreferenceLoading) return;
+    Appearance.setColorScheme(colorSchemePreference === 'auto' ? null : colorSchemePreference);
+    // due to batching, I might be setting this too early. tbd.
+    setIsColorSchemeSet(true);
+  }, [colorSchemePreference, isColorSchemePreferenceLoading]);
+
+  // do async work that needs to be done before the splash screen here
   useEffect(() => {
     async function prepare() {
       try {
-        // do async work that needs to be done before the splash screen here
         await initI18n();
       } catch (e) {
         console.warn(e);
       } finally {
-        // Tell the application to render
-        setAppIsReady(true);
+        setAsyncWorkIsDone(true);
       }
     }
 
     prepare();
   }, []);
 
-  const dismissSplashScreen = useCallback(() => {
-    if (appIsReady && (fontIsReady || fontError)) {
-      // This tells the splash screen to hide immediately! If we call this after
-      // `setAppIsReady`, then we may see a blank screen while the app is
-      // loading its initial state and rendering its first pixels. So instead,
-      // we hide the splash screen once we know the root view has already
-      // performed layout.
+  // hide the splash screen when we're good to go
+  useEffect(() => {
+    if (asyncWorkIsDone && isColorSchemeSet && (fontIsReady || fontError) && didAppLayout) {
       SplashScreen.hide();
     }
-  }, [appIsReady, fontIsReady, fontError]);
+  }, [asyncWorkIsDone, isColorSchemeSet, fontIsReady, fontError, didAppLayout]);
 
-  if (!appIsReady || !(fontIsReady || fontError)) {
-    return null;
+  if (asyncWorkIsDone && isColorSchemeSet && (fontIsReady || fontError)) {
+    return <App onLayout={() => setDidAppLayout(true)} />;
   }
+  return null;
+}
 
-  return <App onLayout={dismissSplashScreen} />;
+export default Sentry.wrap(function RootLayout() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <StorageProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+        <AppWithLoading />
+      </ThemeProvider>
+    </StorageProvider>
+  );
 });
