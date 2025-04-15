@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithoutRef, useEffect } from 'react';
-import { LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, Platform, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   interpolateColor,
   useAnimatedStyle,
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     padding: 3,
     position: 'relative',
     width: '100%', // Ensure container takes full width
+    boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
   },
   indicator: {
     position: 'absolute',

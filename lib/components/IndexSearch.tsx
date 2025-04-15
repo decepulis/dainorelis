@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, LayoutChangeEvent, Platform, StyleSheet, TextInput, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -12,6 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
+import maxWidth from '../constants/maxWidth';
 import { fonts } from '../constants/themes';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 import { useThemeColor } from '../hooks/useThemeColor';
@@ -22,16 +23,17 @@ type Props = {
   scrollRef: AnimatedRef<AnimatedScrollView>;
   filter: 'allSongs' | 'favoriteSongs';
   setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
+  searchText?: string;
   setSearchText: (text: string) => void;
   setSearchHeight: (height: number) => void;
   margin: number;
   padding: number;
-  scrollY: SharedValue<number>;
 };
 export default function IndexSearch({
   scrollRef,
   filter,
   setFilter,
+  searchText,
   setSearchText,
   setSearchHeight,
   margin,
@@ -77,6 +79,9 @@ export default function IndexSearch({
           setSearchHeight(event.nativeEvent.layout.height);
         }}
         style={{
+          maxWidth: maxWidth,
+          width: '100%',
+          marginHorizontal: 'auto',
           paddingHorizontal: margin + padding - 5,
           paddingVertical: padding / 4,
         }}
@@ -95,17 +100,18 @@ export default function IndexSearch({
           style={[
             fonts.regular, // a11y bold
             {
-              // TODO theme
               backgroundColor: `${card2}bb`,
               color: text,
               marginTop: padding / 4,
               paddingHorizontal: padding,
               height: 40,
               borderRadius: 15,
+              boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
             },
           ]}
           clearButtonMode="while-editing"
           autoCorrect={false}
+          defaultValue={searchText}
           onChangeText={setSearchText}
           returnKeyType="done"
           selectionColor={primary}

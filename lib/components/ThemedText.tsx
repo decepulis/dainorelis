@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Text, TextProps, TextStyle } from 'react-native';
+import { Text, TextProps } from 'react-native';
 
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 

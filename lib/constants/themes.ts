@@ -53,7 +53,7 @@ export const LightTheme: Theme = {
     primary: '#70997F',
     background: '#e4e4dd', // bright
     card: '#f1f1ee', // brighter
-    card2: '#f8f8f7', // brightest
+    card2: '#ffffff', // brightest
     card0: '#D6D6D2',
     text: '#121314',
     border: '#121314',

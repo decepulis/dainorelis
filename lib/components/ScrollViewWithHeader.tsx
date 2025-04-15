@@ -15,7 +15,10 @@ const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewP
           top: defaultHeaderHeight - inset.top,
           ...scrollIndicatorInsets,
         }}
-        contentContainerStyle={{ marginTop: defaultHeaderHeight, marginBottom: inset.bottom }}
+        contentContainerStyle={{
+          // todo this chops stuff off on android :(
+          marginTop: defaultHeaderHeight,
+        }}
         {...props}
       >
         {children}

@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState, useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, LayoutRectangle, Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
@@ -16,10 +17,12 @@ import IndexSearch from '@/lib/components/IndexSearch';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SystemView from '@/lib/components/SystemView';
 import ThemedText from '@/lib/components/ThemedText';
+import maxWidth from '@/lib/constants/maxWidth';
 import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song, SongFile } from '@/lib/schemas/songs';
+import removeAccents from '@/lib/utils/removeAccents';
 import songs from '@/songs';
 
 const groupSongsByLetter = (songs: SongFile) => {
@@ -48,7 +51,7 @@ function HeaderTitle() {
   const defaultHeaderHeight = useDefaultHeaderHeight();
   return (
     <Image
-      source={require('@/assets/images/logo_white.png')}
+      source={require('@/assets/images/logo_white_v2.png')}
       style={[
         headerStyles.title,
         {
@@ -59,10 +62,32 @@ function HeaderTitle() {
     />
   );
 }
-
 const headerStyles = StyleSheet.create({
   title: {
     aspectRatio: 747 / 177,
+  },
+});
+
+const NoHits = () => {
+  const { t } = useTranslation();
+  return <ThemedText style={errorStyles.text}>{t('noHits')}</ThemedText>;
+};
+
+const NoFavorites = () => {
+  const { t } = useTranslation();
+  return (
+    <ThemedText style={errorStyles.text}>
+      {t('noFavorites1')} <FontAwesome6 name="heart" size={14} /> {t('noFavorites2')}
+    </ThemedText>
+  );
+};
+
+const errorStyles = StyleSheet.create({
+  text: {
+    fontSize: 17,
+    lineHeight: 22.5,
+    textAlign: 'center',
+    opacity: 0.8,
   },
 });
 
@@ -74,17 +99,66 @@ export default function Index() {
   const primary = useThemeColor('primary');
   const { value: favorites } = useStorage('favorites');
   const [filter, setFilter] = useState<'allSongs' | 'favoriteSongs'>('allSongs');
+  const [_pending, startTransition] = useTransition();
   const [searchText, setSearchText] = useState('');
   const [searchHeight, setSearchHeight] = useState(80); // Default initial value
-
-  const filteredSongs = groupSongsByLetter(songs);
-  const lastSection = filteredSongs[filteredSongs.length - 1];
 
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = useCallback((event: LayoutChangeEvent) => {
     titleLayout.value = event.nativeEvent.layout;
   }, []);
+
+  const { filteredSections, showHeaders } = useMemo(() => {
+    let filteredSongs = songs;
+    let showHeaders = true;
+    // first, filter by the filters
+    if (filter === 'favoriteSongs') {
+      filteredSongs = songs.filter((song) => favorites.includes(song.id));
+    }
+
+    // then, filter by the search query
+    if (searchText) {
+      filteredSongs = filteredSongs.filter((song) => {
+        const songName = song.fields.Name;
+        if (songName) {
+          return removeAccents(songName.toLowerCase()).includes(removeAccents(searchText.toLowerCase()));
+        }
+        return false;
+      });
+    }
+
+    if (filteredSongs.length < 10) {
+      showHeaders = false;
+    }
+
+    // finally, sort into sections
+    const filteredSections = groupSongsByLetter(filteredSongs);
+
+    return { filteredSections, showHeaders };
+  }, [favorites, filter, searchText]);
+
+  // for a few reasons, it's useful to know how many items we have
+  const itemCount = useMemo(
+    () => filteredSections.reduce((acc, section) => acc + section.data.length, 0),
+    [filteredSections]
+  );
+  const resultStatus: 'results' | 'no-hits' | 'no-favorites' = useMemo(() => {
+    if (searchText.length > 0 && itemCount === 0) {
+      return 'no-hits';
+    }
+    if (filter === 'favoriteSongs' && itemCount === 0) {
+      return 'no-favorites';
+    }
+    return 'results';
+  }, [filter, itemCount, searchText]);
+
+  const lastSection = filteredSections[filteredSections.length - 1];
+
+  // we could do this with css aspect ratio, but we need the height for other reasons...
+  const logoContainerAspectRatio = 747 / 177;
+  const logoContainerWidth = Math.min(width - 80, 320);
+  const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
 
   return (
     <>
@@ -103,6 +177,7 @@ export default function Index() {
               }
               center
               hideBack
+              shadow={false}
             >
               <HeaderTitle />
             </Header>
@@ -112,9 +187,10 @@ export default function Index() {
       />
       <View style={styles.container}>
         <Image
-          style={[StyleSheet.absoluteFillObject, { height: Math.min(400 + inset.top, height / 2) }]}
+          style={[StyleSheet.absoluteFillObject, { height: (logoContainerHeight + 160 + inset.top) * 1.75 }]}
           // TODO include this in bundle so it doesn't flash in
           source={require('@/assets/images/miskas-fade-9.png')}
+          // TODO this break on widescreen (see iPad)
           contentFit="cover"
         ></Image>
         <ScrollViewWithHeader ref={scrollRef} stickyHeaderIndices={[1]}>
@@ -124,13 +200,14 @@ export default function Index() {
               styles.logoContainer,
               {
                 marginTop: 80 - defaultHeaderHeight + inset.top,
-                width: Math.min(width - 80, 320),
+                width: logoContainerWidth,
+                height: logoContainerHeight,
               },
             ]}
           >
             <Image
               style={StyleSheet.absoluteFillObject}
-              source={require('@/assets/images/logo_white.png')}
+              source={require('@/assets/images/logo_white_v2.png')}
               contentFit="contain"
             />
           </View>
@@ -138,64 +215,76 @@ export default function Index() {
             scrollRef={scrollRef}
             filter={filter}
             setFilter={setFilter}
-            setSearchText={setSearchText}
+            searchText={searchText}
+            setSearchText={(text) => startTransition(() => setSearchText(text))}
             setSearchHeight={setSearchHeight}
             margin={margin}
             padding={padding}
           />
-          <SystemView
-            variant="background"
-            style={[
-              styles.blurContainer,
-              {
-                marginTop: -(searchHeight + padding - padding / 4),
-                paddingTop: searchHeight + padding - padding / 4,
-                marginBottom: inset.bottom + 40,
-              },
-            ]}
-          >
-            <SectionList
-              scrollEnabled={false}
-              sections={filteredSongs}
-              renderSectionHeader={({ section }) => (
-                <ThemedText
-                  bold
-                  style={[
-                    styles.sectionHeader,
-                    {
-                      borderBottomWidth: StyleSheet.hairlineWidth,
-                      borderBottomColor: `${text}80`,
-                    },
-                  ]}
-                >
-                  {section.title}
-                </ThemedText>
-              )}
-              renderItem={({ item, section, index }) => {
-                const isLast = section.title === lastSection.title && index === lastSection.data.length - 1;
-                return (
-                  <Link
-                    style={[
-                      styles.itemContainer,
-                      {
-                        borderBottomColor: `${text}66`,
-                        borderBottomWidth: isLast ? 0 : StyleSheet.hairlineWidth,
-                      },
-                    ]}
-                    href={`/dainos/${item.id}`}
-                    asChild
-                  >
-                    <Pressable>
-                      <ThemedText style={styles.itemText}>{item.fields.Name}</ThemedText>
-                      {favorites.includes(item.id) ? (
-                        <FontAwesome6 name="heart" size={20} color={primary} solid style={styles.itemHeart} />
-                      ) : null}
-                    </Pressable>
-                  </Link>
-                );
-              }}
-            />
-          </SystemView>
+          <View style={{ width: '100%', maxWidth: maxWidth, marginHorizontal: 'auto' }}>
+            <SystemView
+              variant="background"
+              style={[
+                styles.blurContainer,
+                {
+                  minHeight:
+                    height - logoContainerHeight - searchHeight - defaultHeaderHeight - inset.top - inset.bottom,
+                  marginTop: -(searchHeight + padding - padding / 4),
+                  paddingTop: searchHeight + padding - padding / 4,
+                  marginBottom: inset.bottom,
+                },
+              ]}
+            >
+              <SectionList
+                scrollEnabled={false}
+                sections={filteredSections}
+                renderSectionHeader={({ section }) =>
+                  showHeaders ? (
+                    <ThemedText
+                      bold
+                      style={[
+                        styles.sectionHeader,
+                        {
+                          borderBottomWidth: StyleSheet.hairlineWidth,
+                          borderBottomColor: `${text}80`,
+                        },
+                      ]}
+                    >
+                      {section.title}
+                    </ThemedText>
+                  ) : null
+                }
+                renderItem={({ item, section, index }) => {
+                  const isLast = section.title === lastSection.title && index === lastSection.data.length - 1;
+                  return (
+                    <Link
+                      style={[
+                        styles.itemContainer,
+                        {
+                          borderBottomColor: `${text}66`,
+                          borderBottomWidth: isLast ? 0 : StyleSheet.hairlineWidth,
+                        },
+                      ]}
+                      href={`/dainos/${item.id}`}
+                      asChild
+                    >
+                      <Pressable>
+                        <ThemedText style={styles.itemText}>{item.fields.Name}</ThemedText>
+                        {favorites.includes(item.id) ? (
+                          <FontAwesome6 name="heart" size={20} color={primary} solid style={styles.itemHeart} />
+                        ) : null}
+                      </Pressable>
+                    </Link>
+                  );
+                }}
+                ListFooterComponent={
+                  <View style={[styles.listFooter]}>
+                    {resultStatus === 'no-hits' ? <NoHits /> : resultStatus === 'no-favorites' ? <NoFavorites /> : null}
+                  </View>
+                }
+              />
+            </SystemView>
+          </View>
         </ScrollViewWithHeader>
       </View>
     </>
@@ -207,7 +296,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: {
-    aspectRatio: 747 / 177,
     marginHorizontal: 'auto',
     marginBottom: 80 + padding,
     position: 'relative',
@@ -242,5 +330,10 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     flexBasis: 20,
     marginLeft: 20,
+  },
+  listFooter: {
+    paddingHorizontal: 20,
+    paddingVertical: 40,
+    alignItems: 'center',
   },
 });

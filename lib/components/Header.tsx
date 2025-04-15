@@ -37,6 +37,7 @@ interface HeaderProps {
   center?: boolean;
   hideBack?: boolean;
   opaque?: boolean;
+  shadow?: boolean;
 }
 export default function Header({
   scrollRef,
@@ -47,6 +48,7 @@ export default function Header({
   center,
   hideBack,
   opaque,
+  shadow = true,
 }: HeaderProps) {
   const inset = useSafeAreaInsets();
   const defaultHeaderHeight = useDefaultHeaderHeight();
@@ -77,7 +79,7 @@ export default function Header({
             styles.backButtonContainer,
             {
               top: inset.top,
-              alignItems: inset.top ? 'flex-start' : 'center',
+              alignItems: inset.top > 30 ? 'flex-start' : 'center',
             },
           ]}
         >
@@ -91,6 +93,7 @@ export default function Header({
       <Animated.View style={typeof scrollRef !== 'undefined' ? headerStyle : undefined}>
         <SystemView
           variant="primary"
+          shadow={shadow}
           style={[
             styles.background,
             {
@@ -108,7 +111,7 @@ export default function Header({
               {
                 top: inset.top,
                 // this results in text too high on iOS, even if it is technically correct
-                justifyContent: inset.top ? 'flex-start' : 'center',
+                justifyContent: inset.top > 30 ? 'flex-start' : 'center',
                 alignItems: center ? 'center' : Platform.select({ default: 'center', android: 'flex-start' }),
               },
             ]}
@@ -144,7 +147,7 @@ export default function Header({
             styles.controlsContainer,
             {
               top: inset.top,
-              alignItems: inset.top ? 'flex-start' : 'center',
+              alignItems: inset.top > 30 ? 'flex-start' : 'center',
             },
           ]}
         >
