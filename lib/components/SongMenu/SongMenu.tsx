@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -24,7 +24,7 @@ type Props = {
   activeMedia: Audio | Videos | null;
   setActiveMediaIndex: (v: number | null) => void;
 };
-function _SongMenu({
+export default function SongMenu({
   song,
   variants,
   activeVariant,
@@ -128,6 +128,3 @@ function _SongMenu({
     </>
   );
 }
-
-const SongMenu = memo(_SongMenu);
-export default SongMenu;

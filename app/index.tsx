@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState, useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, Pressable, SectionList, StyleSheet, TextInput, View } from 'react-native';
+import { LayoutChangeEvent, LayoutRectangle, Pressable, SectionList, StyleSheet, View } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
@@ -12,7 +12,7 @@ import { Link, Stack } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 import Button from '@/lib/components/Button';
-import Header, { useHeaderScroll } from '@/lib/components/Header';
+import Header from '@/lib/components/Header';
 import IndexSearch from '@/lib/components/IndexSearch';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SystemView from '@/lib/components/SystemView';
@@ -105,9 +105,12 @@ export default function Index() {
 
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
-  const calculateTitleHeight = useCallback((event: LayoutChangeEvent) => {
-    titleLayout.value = event.nativeEvent.layout;
-  }, []);
+  const calculateTitleHeight = useCallback(
+    (event: LayoutChangeEvent) => {
+      titleLayout.value = event.nativeEvent.layout;
+    },
+    [titleLayout]
+  );
 
   const { filteredSections, showHeaders } = useMemo(() => {
     let filteredSongs = songs;

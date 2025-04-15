@@ -1,22 +1,18 @@
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, ScrollView, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import Header, { useHeaderScroll } from '@/lib/components/Header';
+import Header from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import Player from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SongMenu from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
-import { fonts } from '@/lib/constants/themes';
-import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Audio } from '@/lib/schemas/audio';
@@ -65,9 +61,12 @@ export default function Page() {
   // Title
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
-  const calculateTitleHeight = useCallback((event: LayoutChangeEvent) => {
-    titleLayout.value = event.nativeEvent.layout;
-  }, []);
+  const calculateTitleHeight = useCallback(
+    (event: LayoutChangeEvent) => {
+      titleLayout.value = event.nativeEvent.layout;
+    },
+    [titleLayout]
+  );
   const title = useMemo(() => getTitle(song, variants, activeVariant), [song, variants, activeVariant]);
 
   return (

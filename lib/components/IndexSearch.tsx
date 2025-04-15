@@ -1,10 +1,9 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, LayoutChangeEvent, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { LayoutChangeEvent, Platform, StyleSheet, TextInput, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
-  SharedValue,
   interpolate,
   useAnimatedStyle,
   useScrollViewOffset,
@@ -54,7 +53,7 @@ export default function IndexSearch({
         howFarThisIsFromTheTop.value = y - defaultHeaderHeight;
       });
     },
-    [defaultHeaderHeight]
+    [howFarThisIsFromTheTop, defaultHeaderHeight]
   );
 
   const fadeInStyle = useAnimatedStyle(() => ({

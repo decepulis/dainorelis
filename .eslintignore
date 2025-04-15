@@ -1,2 +1,6 @@
+ios
+android
+dist
+.expo
 app-example
 expo-env.d.ts

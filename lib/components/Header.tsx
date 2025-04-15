@@ -1,14 +1,12 @@
-import React, { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
-import { LayoutRectangle, NativeScrollEvent, NativeSyntheticEvent, Platform, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
   SharedValue,
   interpolate,
-  useAnimatedScrollHandler,
   useAnimatedStyle,
   useScrollViewOffset,
-  useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
