@@ -6,17 +6,6 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
-import {
-  FiraSans_400Regular,
-  FiraSans_400Regular_Italic,
-  FiraSans_500Medium,
-  FiraSans_500Medium_Italic,
-  FiraSans_700Bold,
-  FiraSans_700Bold_Italic,
-  FiraSans_800ExtraBold,
-  FiraSans_800ExtraBold_Italic,
-  useFonts,
-} from '@expo-google-fonts/fira-sans';
 import { ThemeProvider } from '@react-navigation/native';
 import * as Sentry from '@sentry/react-native';
 
@@ -77,16 +66,6 @@ function AppWithLoading() {
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
   const { value: colorSchemePreference, loading: isColorSchemePreferenceLoading } = useStorage('theme');
-  const [fontIsReady, fontError] = useFonts({
-    FiraSans_400Regular,
-    FiraSans_400Regular_Italic,
-    FiraSans_500Medium,
-    FiraSans_500Medium_Italic,
-    FiraSans_700Bold,
-    FiraSans_700Bold_Italic,
-    FiraSans_800ExtraBold,
-    FiraSans_800ExtraBold_Italic,
-  });
 
   // keep color scheme in sync with storage
   useEffect(() => {
@@ -113,12 +92,12 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (asyncWorkIsDone && isColorSchemeSet && (fontIsReady || fontError) && didAppLayout) {
+    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, fontIsReady, fontError, didAppLayout]);
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout]);
 
-  if (asyncWorkIsDone && isColorSchemeSet && (fontIsReady || fontError)) {
+  if (asyncWorkIsDone && isColorSchemeSet) {
     return <App onLayout={() => setDidAppLayout(true)} />;
   }
   return null;

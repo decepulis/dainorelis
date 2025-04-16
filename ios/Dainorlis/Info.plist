@@ -55,6 +55,17 @@
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>
+    <key>UIAppFonts</key>
+    <array>
+      <string>FiraSans_400Regular.ttf</string>
+      <string>FiraSans_400Regular_Italic.ttf</string>
+      <string>FiraSans_500Medium.ttf</string>
+      <string>FiraSans_500Medium_Italic.ttf</string>
+      <string>FiraSans_700Bold.ttf</string>
+      <string>FiraSans_700Bold_Italic.ttf</string>
+      <string>FiraSans_800ExtraBold.ttf</string>
+      <string>FiraSans_800ExtraBold_Italic.ttf</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

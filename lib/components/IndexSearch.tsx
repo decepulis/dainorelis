@@ -11,6 +11,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
+import { Ionicons } from '@expo/vector-icons';
+
 import maxWidth from '../constants/maxWidth';
 import { fonts } from '../constants/themes';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
@@ -95,26 +97,48 @@ export default function IndexSearch({
             setFilter(value as 'allSongs' | 'favoriteSongs');
           }}
         />
-        <TextInput
-          style={[
-            fonts.regular, // a11y bold
-            {
-              backgroundColor: `${card2}bb`,
-              color: text,
-              marginTop: padding / 4,
-              paddingHorizontal: padding,
-              height: 40,
-              borderRadius: 15,
-              boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
-            },
-          ]}
-          clearButtonMode="while-editing"
-          autoCorrect={false}
-          defaultValue={searchText}
-          onChangeText={setSearchText}
-          returnKeyType="done"
-          selectionColor={primary}
-        />
+        <View
+          style={{
+            marginTop: padding / 4,
+            position: 'relative',
+            backgroundColor: `${card2}bb`,
+            height: 40,
+            borderRadius: 15,
+            boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
+          }}
+        >
+          <TextInput
+            style={[
+              fonts.regular, // a11y bold
+              {
+                height: '100%',
+                color: text,
+                marginRight: 10,
+                marginLeft: 40,
+              },
+            ]}
+            clearButtonMode="while-editing"
+            autoCorrect={false}
+            defaultValue={searchText}
+            onChangeText={setSearchText}
+            returnKeyType="done"
+            selectionColor={primary}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              left: 10,
+              top: 0,
+              bottom: 0,
+              width: 20,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Ionicons name="search" size={18} color={text} />
+          </View>
+        </View>
       </View>
     </View>
   );

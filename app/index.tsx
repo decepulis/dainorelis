@@ -51,7 +51,7 @@ function HeaderTitle() {
   const defaultHeaderHeight = useDefaultHeaderHeight();
   return (
     <Image
-      source={require('@/assets/images/logo_white_v2.png')}
+      source="logo_white_v2"
       style={[
         headerStyles.title,
         {
@@ -191,8 +191,7 @@ export default function Index() {
       <View style={styles.container}>
         <Image
           style={[StyleSheet.absoluteFillObject, { height: (logoContainerHeight + 160 + inset.top) * 1.75 }]}
-          // TODO include this in bundle so it doesn't flash in
-          source={require('@/assets/images/miskas-fade-9.png')}
+          source="miskas_fade_9"
           // TODO this break on widescreen (see iPad)
           contentFit="cover"
         ></Image>
@@ -208,11 +207,7 @@ export default function Index() {
               },
             ]}
           >
-            <Image
-              style={StyleSheet.absoluteFillObject}
-              source={require('@/assets/images/logo_white_v2.png')}
-              contentFit="contain"
-            />
+            <Image style={StyleSheet.absoluteFillObject} source="logo_white_v2" contentFit="contain" />
           </View>
           <IndexSearch
             scrollRef={scrollRef}
@@ -231,7 +226,8 @@ export default function Index() {
                 styles.blurContainer,
                 {
                   minHeight:
-                    height - defaultHeaderHeight - logoContainerHeight - searchHeight - inset.top - inset.bottom,
+                    // TODO this calculation isn't really working on android so I'm probably doing something wrong
+                    height - defaultHeaderHeight - logoContainerHeight - searchHeight - inset.top - inset.bottom - 40,
                   marginTop: -(searchHeight + padding - padding / 4),
                   paddingTop: searchHeight + padding - padding / 4,
                   marginBottom: Math.max(inset.bottom, margin),

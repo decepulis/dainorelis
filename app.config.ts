@@ -20,7 +20,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 2,
+    versionCode: 4,
   },
   web: {
     bundler: 'metro',
@@ -47,6 +47,27 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         // dark: {
         //   backgroundColor: '#53745e',
         // },
+      },
+    ],
+    [
+      'expo-asset',
+      {
+        assets: ['./assets/images/logo_white_v2.png', './assets/images/miskas_fade_9.png'],
+      },
+    ],
+    [
+      'expo-font',
+      {
+        fonts: [
+          'node_modules/@expo-google-fonts/fira-sans/400Regular/FiraSans_400Regular.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/400Regular_Italic/FiraSans_400Regular_Italic.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/500Medium/FiraSans_500Medium.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/500Medium_Italic/FiraSans_500Medium_Italic.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/700Bold/FiraSans_700Bold.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/700Bold_Italic/FiraSans_700Bold_Italic.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/800ExtraBold/FiraSans_800ExtraBold.ttf',
+          'node_modules/@expo-google-fonts/fira-sans/800ExtraBold_Italic/FiraSans_800ExtraBold_Italic.ttf',
+        ],
       },
     ],
   ],
