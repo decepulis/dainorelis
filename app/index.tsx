@@ -231,10 +231,10 @@ export default function Index() {
                 styles.blurContainer,
                 {
                   minHeight:
-                    height - logoContainerHeight - searchHeight - defaultHeaderHeight - inset.top - inset.bottom,
+                    height - defaultHeaderHeight - logoContainerHeight - searchHeight - inset.top - inset.bottom,
                   marginTop: -(searchHeight + padding - padding / 4),
                   paddingTop: searchHeight + padding - padding / 4,
-                  marginBottom: inset.bottom,
+                  marginBottom: Math.max(inset.bottom, margin),
                 },
               ]}
             >
@@ -281,9 +281,15 @@ export default function Index() {
                   );
                 }}
                 ListFooterComponent={
-                  <View style={[styles.listFooter]}>
-                    {resultStatus === 'no-hits' ? <NoHits /> : resultStatus === 'no-favorites' ? <NoFavorites /> : null}
-                  </View>
+                  resultStatus !== 'results' ? (
+                    <View style={[styles.listFooter]}>
+                      {resultStatus === 'no-hits' ? (
+                        <NoHits />
+                      ) : resultStatus === 'no-favorites' ? (
+                        <NoFavorites />
+                      ) : null}
+                    </View>
+                  ) : null
                 }
               />
             </SystemView>

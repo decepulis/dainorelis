@@ -70,65 +70,67 @@ export default function Page() {
           headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
         }}
       />
-      <ScrollViewWithHeader style={[styles.container]}>
-        <View style={[styles.section, styles.settings]}>
-          <View style={styles.setting}>
+      <ScrollViewWithHeader>
+        <View style={[styles.container]}>
+          <View style={[styles.section, styles.settings]}>
+            <View style={styles.setting}>
+              <ThemedText bold style={[styles.header, { borderColor: text }]}>
+                {t('settings')}
+              </ThemedText>
+              <ThemedText>{t('language')}</ThemedText>
+              <SegmentedControl
+                options={[
+                  { label: 'Lietuvių', value: 'lt' },
+                  { label: 'English', value: 'en' },
+                ]}
+                value={language}
+                onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
+              />
+            </View>
+            <View style={styles.setting}>
+              <ThemedText>{t('theme')}</ThemedText>
+              <SegmentedControl
+                options={[
+                  { label: t('autoTheme'), value: 'auto' },
+                  { label: t('darkTheme'), value: 'dark' },
+                  { label: t('lightTheme'), value: 'light' },
+                ]}
+                value={theme}
+                onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
+              />
+            </View>
+          </View>
+          <View style={styles.section}>
             <ThemedText bold style={[styles.header, { borderColor: text }]}>
-              {t('settings')}
+              {t('settingsWriteToUsTitle')}
             </ThemedText>
-            <ThemedText>{t('language')}</ThemedText>
-            <SegmentedControl
-              options={[
-                { label: 'Lietuvių', value: 'lt' },
-                { label: 'English', value: 'en' },
-              ]}
-              value={language}
-              onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
-            />
+            <ThemedText style={styles.paragraph}>
+              {t('settingsWriteToUsText') + ' '}
+              <Link href="mailto:info@dainorelisapp.com" asChild>
+                <ThemedText style={{ textDecorationLine: 'underline' }}>info@dainorelisapp.com</ThemedText>
+              </Link>
+            </ThemedText>
           </View>
-          <View style={styles.setting}>
-            <ThemedText>{t('theme')}</ThemedText>
-            <SegmentedControl
-              options={[
-                { label: t('autoTheme'), value: 'auto' },
-                { label: t('darkTheme'), value: 'dark' },
-                { label: t('lightTheme'), value: 'light' },
-              ]}
-              value={theme}
-              onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
-            />
+          <View style={styles.section}>
+            <ThemedText style={[styles.header, { borderColor: text }]} bold>
+              {t('settingsOurGoalTitle')}
+            </ThemedText>
+            <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
           </View>
-        </View>
-        <View style={styles.section}>
-          <ThemedText bold style={[styles.header, { borderColor: text }]}>
-            {t('settingsWriteToUsTitle')}
-          </ThemedText>
-          <ThemedText style={styles.paragraph}>
-            {t('settingsWriteToUsText') + ' '}
-            <Link href="mailto:info@dainorelisapp.com" asChild>
-              <ThemedText style={{ textDecorationLine: 'underline' }}>info@dainorelisapp.com</ThemedText>
-            </Link>
-          </ThemedText>
-        </View>
-        <View style={styles.section}>
-          <ThemedText style={[styles.header, { borderColor: text }]} bold>
-            {t('settingsOurGoalTitle')}
-          </ThemedText>
-          <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-        </View>
-        <View style={[styles.section]}>
-          <ThemedText style={[styles.header, { borderColor: text }]} bold>
-            {t('settingsOurTeamTitle')}
-          </ThemedText>
-          <View style={styles.profiles}>
-            {teamInRandomOrder.map((member, idx) => (
-              <View key={idx} style={styles.profile}>
-                <Image source={member.image} style={[styles.profileImage, { backgroundColor: card }]} />
-                <ThemedText style={styles.profileText}>
-                  {member.firstName} {member.lastName}
-                </ThemedText>
-              </View>
-            ))}
+          <View style={[styles.section]}>
+            <ThemedText style={[styles.header, { borderColor: text }]} bold>
+              {t('settingsOurTeamTitle')}
+            </ThemedText>
+            <View style={styles.profiles}>
+              {teamInRandomOrder.map((member, idx) => (
+                <View key={idx} style={styles.profile}>
+                  <Image source={member.image} style={[styles.profileImage, { backgroundColor: card }]} />
+                  <ThemedText style={styles.profileText}>
+                    {member.firstName} {member.lastName}
+                  </ThemedText>
+                </View>
+              ))}
+            </View>
           </View>
         </View>
       </ScrollViewWithHeader>
@@ -165,8 +167,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
   },
-  profiles: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' },
+  profiles: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    maxWidth: 450,
+    marginHorizontal: 'auto',
+  },
   profile: { alignItems: 'center', margin: 10 },
-  profileImage: { width: 130, height: 130, borderRadius: 9999 },
-  profileText: { paddingTop: 10, textAlign: 'center' },
+  profileImage: { width: 120, height: 120, borderRadius: 9999 },
+  profileText: { width: 130, paddingTop: 10, textAlign: 'center' },
 });

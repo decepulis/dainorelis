@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
+import { Platform } from 'react-native';
 import Animated, { AnimatedScrollViewProps } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 
 const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewProps>(
-  ({ children, scrollIndicatorInsets, ...props }, ref) => {
+  ({ children, scrollIndicatorInsets, contentContainerStyle, ...props }, ref) => {
     const defaultHeaderHeight = useDefaultHeaderHeight();
     const inset = useSafeAreaInsets();
     return (
@@ -15,10 +16,13 @@ const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewP
           top: defaultHeaderHeight - inset.top,
           ...scrollIndicatorInsets,
         }}
-        contentContainerStyle={{
-          // todo this chops stuff off on android :(
-          marginTop: defaultHeaderHeight,
-        }}
+        contentContainerStyle={[
+          {
+            marginTop: defaultHeaderHeight,
+            paddingBottom: Platform.OS === 'android' ? defaultHeaderHeight : 0,
+          },
+          contentContainerStyle,
+        ]}
         {...props}
       >
         {children}
