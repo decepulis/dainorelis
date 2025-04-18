@@ -2,6 +2,8 @@ import React, { ComponentPropsWithoutRef, useEffect } from 'react';
 import { LayoutChangeEvent, Platform, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import * as Haptics from 'expo-haptics';
+
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import { fonts } from '../constants/themes';
@@ -81,7 +83,10 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
           key={index}
           isSelected={option.value === value}
           option={option}
-          onPress={() => onValueChange(option.value)}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            onValueChange(option.value);
+          }}
         />
       ))}
     </View>

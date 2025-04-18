@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import * as Haptics from 'expo-haptics';
+
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
 
@@ -49,11 +51,13 @@ export default function SongMenu({
 
   const addToFavorites = useCallback(() => {
     if (!favoritesLoading) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       setFavorites([...favorites, song.id]);
     }
   }, [favoritesLoading, favorites, setFavorites, song.id]);
   const removeFromFavorites = useCallback(() => {
     if (!favoritesLoading) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
       setFavorites(favorites.filter((id) => id !== song.id));
     }
   }, [favoritesLoading, favorites, setFavorites, song.id]);
