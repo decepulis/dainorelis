@@ -1,39 +1,115 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, Platform, useColorScheme } from 'react-native';
+
+import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from '@react-navigation/native';
+import * as Sentry from '@sentry/react-native';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { initI18n } from '@/lib/constants/i18n';
+import { DarkTheme, LightTheme } from '@/lib/constants/themes';
+import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+Sentry.init({
+  dsn: 'https://32e018a748671fa59063479f82810140@o4509108229242880.ingest.us.sentry.io/4509108265680896',
+  sampleRate: __DEV__ ? 0 : 1,
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
+
+type AppProps = {
+  onLayout: (e: LayoutChangeEvent) => void;
+};
+function App({ onLayout }: AppProps) {
+  const background = useThemeColor('background');
+  const primary = useThemeColor('primary');
+
+  // Keep android navigation bar color in sync with the app
+  useLayoutEffect(() => {
+    if (Platform.OS === 'android') {
+      NavigationBar.setBackgroundColorAsync(primary);
+      NavigationBar.setButtonStyleAsync('light');
     }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+  }, [primary]);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <>
+      <StatusBar style="light" backgroundColor={primary} translucent={false} />
+      <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
+        <Stack>
+          {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
+          <Stack.Screen name="index" options={{ title: '' }} />
+          <Stack.Screen name="nustatymai" options={{ title: '' }} />
+          <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
+        </Stack>
+      </KeyboardAvoidingView>
+    </>
   );
 }
+
+// Wrapping App is the Root Layout, which manages resource loading and the splash screen
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
+// Set the animation options. This is optional.
+SplashScreen.setOptions({
+  duration: 400,
+  fade: true,
+});
+function AppWithLoading() {
+  const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
+  const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
+  const [didAppLayout, setDidAppLayout] = useState(false);
+  const { value: colorSchemePreference } = useStorage('theme');
+
+  // keep color scheme in sync with storage
+  useEffect(() => {
+    Appearance.setColorScheme(colorSchemePreference === 'auto' ? null : colorSchemePreference);
+    // due to batching, I might be setting this too early. tbd.
+    setIsColorSchemeSet(true);
+  }, [colorSchemePreference]);
+
+  // do async work that needs to be done before the splash screen here
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await initI18n();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAsyncWorkIsDone(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  // hide the splash screen when we're good to go
+  useEffect(() => {
+    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout) {
+      SplashScreen.hide();
+    }
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout]);
+
+  if (asyncWorkIsDone && isColorSchemeSet) {
+    return <App onLayout={() => setDidAppLayout(true)} />;
+  }
+  return null;
+}
+
+export default Sentry.wrap(function RootLayout() {
+  const colorScheme = useColorScheme();
+
+  return (
+    <StorageProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+        <AppWithLoading />
+      </ThemeProvider>
+    </StorageProvider>
+  );
+});
