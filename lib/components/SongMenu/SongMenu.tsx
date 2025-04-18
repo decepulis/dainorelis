@@ -37,7 +37,7 @@ export default function SongMenu({
 }: Props) {
   const { t } = useTranslation();
 
-  const { value: showChords, setValue: setShowChords, loading: showChordsLoading } = useStorage('showChords');
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
 
   const hasChords = activeVariant ? isLyrics(activeVariant) && !!activeVariant['Show Chords'] : null;
   const hasLyrics = Array.isArray(song.fields.Lyrics) && song.fields.Lyrics.length > 1;
@@ -46,21 +46,17 @@ export default function SongMenu({
   const hasPDFs = Array.isArray(song.fields.PDFs) && song.fields.PDFs.length > 0;
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
 
-  const { value: favorites, setValue: setFavorites, loading: favoritesLoading } = useStorage('favorites');
+  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
   const isFavorite = favorites.includes(song.id);
 
   const addToFavorites = useCallback(() => {
-    if (!favoritesLoading) {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      setFavorites([...favorites, song.id]);
-    }
-  }, [favoritesLoading, favorites, setFavorites, song.id]);
+    Haptics.selectionAsync();
+    setFavorites([...favorites, song.id]);
+  }, [favorites, setFavorites, song.id]);
   const removeFromFavorites = useCallback(() => {
-    if (!favoritesLoading) {
-      setFavorites(favorites.filter((id) => id !== song.id));
-    }
-  }, [favoritesLoading, favorites, setFavorites, song.id]);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+    setFavorites(favorites.filter((id) => id !== song.id));
+  }, [favorites, setFavorites, song.id]);
 
   const actions: (MenuAction | null)[] = [
     hasChords

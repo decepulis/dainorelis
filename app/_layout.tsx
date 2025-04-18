@@ -65,15 +65,14 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
-  const { value: colorSchemePreference, loading: isColorSchemePreferenceLoading } = useStorage('theme');
+  const { value: colorSchemePreference } = useStorage('theme');
 
   // keep color scheme in sync with storage
   useEffect(() => {
-    if (isColorSchemePreferenceLoading) return;
     Appearance.setColorScheme(colorSchemePreference === 'auto' ? null : colorSchemePreference);
     // due to batching, I might be setting this too early. tbd.
     setIsColorSchemeSet(true);
-  }, [colorSchemePreference, isColorSchemePreferenceLoading]);
+  }, [colorSchemePreference]);
 
   // do async work that needs to be done before the splash screen here
   useEffect(() => {
