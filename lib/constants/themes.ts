@@ -44,17 +44,15 @@ export const fonts = {
 export interface Theme extends LibTheme {
   colors: LibTheme['colors'] & {
     card0: string;
-    card2: string;
   };
 }
 export const LightTheme: Theme = {
   dark: false,
   colors: {
     primary: '#70997F',
-    background: '#e4e4dd', // bright
-    card: '#f1f1ee', // brighter
-    card2: '#ffffff', // brightest
-    card0: '#D6D6D2',
+    card0: '#e4e4dd', // darker
+    background: '#f1f1ee', // normal
+    card: '#ffffff', // brighter
     text: '#121314',
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
@@ -65,10 +63,9 @@ export const DarkTheme: Theme = {
   dark: false,
   colors: {
     primary: '#53745e',
+    card0: '#080910', // darker
     background: '#121314', // dark
-    card: '#242628', // brighter
-    card2: '#343638', // brightest
-    card0: '#2A2A2E',
+    card: '#343638', // brighter
     text: '#FEF9F7',
     border: '#FEF9F7',
     notification: 'rgb(255, 69, 58)',

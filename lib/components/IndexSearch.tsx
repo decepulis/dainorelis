@@ -43,7 +43,7 @@ export default function IndexSearch({
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
-  const card2 = useThemeColor('card2');
+  const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
   const defaultHeaderHeight = useDefaultHeaderHeight();
 
@@ -101,7 +101,7 @@ export default function IndexSearch({
           style={{
             marginTop: padding / 4,
             position: 'relative',
-            backgroundColor: `${card2}bb`,
+            backgroundColor: `${card}bb`,
             height: 40,
             borderRadius: 15,
             boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,

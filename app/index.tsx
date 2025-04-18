@@ -95,6 +95,7 @@ export default function Index() {
   const inset = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const defaultHeaderHeight = useDefaultHeaderHeight();
+  const card0 = useThemeColor('card0');
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
   const { value: favorites } = useStorage('favorites');
@@ -188,7 +189,7 @@ export default function Index() {
           headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
         }}
       />
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: card0 }]}>
         <Image
           style={[StyleSheet.absoluteFillObject, { height: (logoContainerHeight + 160 + inset.top) * 1.75 }]}
           source="miskas_fade_9"

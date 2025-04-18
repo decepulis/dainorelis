@@ -48,7 +48,7 @@ type Props = {
 
 const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   const primary = useThemeColor('primary');
-  const card2 = useThemeColor('card2');
+  const card = useThemeColor('card');
   const optionWidth = useSharedValue(0);
   const activeIndex = options.findIndex((option) => option.value === value);
   const translateX = useSharedValue(0);
@@ -75,7 +75,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: `${card2}bb` }]} onLayout={onContainerLayout}>
+    <View style={[styles.container, { backgroundColor: `${card}bb` }]} onLayout={onContainerLayout}>
       <Animated.View style={[styles.indicator, { backgroundColor: primary }, animatedIndicatorStyle]} />
 
       {options.map((option, index) => (
