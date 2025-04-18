@@ -99,8 +99,8 @@ export default function Index() {
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
   const { value: favorites } = useStorage('favorites');
-  const [filter, setFilter] = useState<'allSongs' | 'favoriteSongs'>('allSongs');
   const [_pending, startTransition] = useTransition();
+  const [filter, setFilter] = useState<'allSongs' | 'favoriteSongs'>('allSongs');
   const [searchText, setSearchText] = useState('');
   const [searchHeight, setSearchHeight] = useState(80); // Default initial value
 
@@ -213,7 +213,7 @@ export default function Index() {
           <IndexSearch
             scrollRef={scrollRef}
             filter={filter}
-            setFilter={setFilter}
+            setFilter={(filter) => startTransition(() => setFilter(filter))}
             searchText={searchText}
             setSearchText={(text) => startTransition(() => setSearchText(text))}
             setSearchHeight={setSearchHeight}

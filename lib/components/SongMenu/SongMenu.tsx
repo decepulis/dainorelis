@@ -57,10 +57,10 @@ export default function SongMenu({
   }, [favoritesLoading, favorites, setFavorites, song.id]);
   const removeFromFavorites = useCallback(() => {
     if (!favoritesLoading) {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
       setFavorites(favorites.filter((id) => id !== song.id));
     }
   }, [favoritesLoading, favorites, setFavorites, song.id]);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
 
   const actions: (MenuAction | null)[] = [
     hasChords

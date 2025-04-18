@@ -84,7 +84,13 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
           isSelected={option.value === value}
           option={option}
           onPress={() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            setTimeout(() => {
+              // there's no guarantee that the animation will be done in 150ms;
+              // some things may delay it
+              // but this will at least be closer than triggering the haptics immediately
+              // and by the time withTiming would call its AnimationCallback it would be too late
+              Haptics.selectionAsync();
+            }, timing.duration - 100);
             onValueChange(option.value);
           }}
         />
