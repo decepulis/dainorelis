@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import maxWidth from '../constants/maxWidth';
 import { fonts } from '../constants/themes';
+import useA11yBoldText from '../hooks/useA11yBoldText';
 import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
 import { useThemeColor } from '../hooks/useThemeColor';
 import SegmentedControl from './SegmentedControl';
@@ -46,6 +47,7 @@ export default function IndexSearch({
   const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
   const defaultHeaderHeight = useDefaultHeaderHeight();
+  const isBoldTextEnabled = useA11yBoldText();
 
   // hard coding this for now
   const howFarThisIsFromTheTop = useSharedValue(250);
@@ -109,7 +111,7 @@ export default function IndexSearch({
         >
           <TextInput
             style={[
-              fonts.regular, // a11y bold
+              isBoldTextEnabled ? fonts.bold : fonts.regular,
               {
                 height: '100%',
                 color: text,

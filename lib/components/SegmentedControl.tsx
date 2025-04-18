@@ -7,6 +7,7 @@ import * as Haptics from 'expo-haptics';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import { fonts } from '../constants/themes';
+import useA11yBoldText from '../hooks/useA11yBoldText';
 
 const timing = {
   duration: 150,
@@ -24,9 +25,16 @@ type OptionProps = {
 };
 const Option = ({ isSelected, option, onPress }: OptionProps) => {
   const text = useThemeColor('text');
+  const isBoldTextEnabled = useA11yBoldText();
   // Animated style for the text
   const textStyle = useAnimatedStyle(() => {
-    const font = isSelected ? fonts.medium : fonts.regular;
+    const font = isSelected
+      ? isBoldTextEnabled
+        ? fonts.bold
+        : fonts.medium
+      : isBoldTextEnabled
+        ? fonts.medium
+        : fonts.regular;
     return {
       color: withTiming(isSelected ? '#fff' : text, timing),
       ...font,
