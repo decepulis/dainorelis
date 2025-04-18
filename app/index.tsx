@@ -39,7 +39,7 @@ const groupSongsByLetter = (songs: SongFile) => {
     title: letter,
     data: songs,
   }));
-  sections.sort((a, b) => a.title.localeCompare(b.title));
+  sections.sort((a, b) => a.title.localeCompare(b.title, 'lt'));
   return sections;
 };
 
