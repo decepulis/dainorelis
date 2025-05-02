@@ -1,10 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, Platform, useColorScheme } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, useColorScheme } from 'react-native';
 
-import * as NavigationBar from 'expo-navigation-bar';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 
 import { ThemeProvider } from '@react-navigation/native';
 import * as Sentry from '@sentry/react-native';
@@ -17,9 +15,6 @@ import { useThemeColor } from '@/lib/hooks/useThemeColor';
 Sentry.init({
   dsn: 'https://32e018a748671fa59063479f82810140@o4509108229242880.ingest.us.sentry.io/4509108265680896',
   sampleRate: __DEV__ ? 0 : 1,
-
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
 });
 
 type AppProps = {
@@ -27,19 +22,9 @@ type AppProps = {
 };
 function App({ onLayout }: AppProps) {
   const background = useThemeColor('background');
-  const primary = useThemeColor('primary');
-
-  // Keep android navigation bar color in sync with the app
-  useLayoutEffect(() => {
-    if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(primary);
-      NavigationBar.setButtonStyleAsync('light');
-    }
-  }, [primary]);
 
   return (
     <>
-      <StatusBar style="light" backgroundColor={primary} translucent={false} />
       <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
         <Stack>
           {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}

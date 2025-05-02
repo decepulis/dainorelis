@@ -1,7 +1,14 @@
 import React, { useCallback, useMemo, useState, useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, Pressable, SectionList, StyleSheet, View } from 'react-native';
-import { useWindowDimensions } from 'react-native';
+import {
+  LayoutChangeEvent,
+  LayoutRectangle,
+  Pressable,
+  SectionList,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

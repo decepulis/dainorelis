@@ -13,6 +13,7 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Link, router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
@@ -52,6 +53,7 @@ export default function Header({
   const defaultHeaderHeight = useDefaultHeaderHeight();
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
   const canGoBack = router.canGoBack();
+  const align = Platform.OS === 'ios' && inset.top >= 30 ? 'flex-start' : 'center';
 
   const animatedTitleStyle = useAnimatedStyle(() => {
     let isTitleBehind = true;
@@ -70,6 +72,7 @@ export default function Header({
 
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
       {hideBack ? null : (
         <View
           style={[
@@ -77,7 +80,7 @@ export default function Header({
             styles.backButtonContainer,
             {
               top: inset.top,
-              alignItems: inset.top > 30 ? 'flex-start' : 'center',
+              alignItems: align,
             },
           ]}
         >
@@ -109,7 +112,7 @@ export default function Header({
               {
                 top: inset.top,
                 // this results in text too high on iOS, even if it is technically correct
-                justifyContent: inset.top > 30 ? 'flex-start' : 'center',
+                justifyContent: align,
                 alignItems: center ? 'center' : Platform.select({ default: 'center', android: 'flex-start' }),
               },
             ]}
@@ -145,7 +148,7 @@ export default function Header({
             styles.controlsContainer,
             {
               top: inset.top,
-              alignItems: inset.top > 30 ? 'flex-start' : 'center',
+              alignItems: align,
             },
           ]}
         >
@@ -164,6 +167,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   titleContainer: {
+    // TODO: align title with content on android tablet
     position: 'absolute',
     left: 70,
     right: 70,

@@ -21,6 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: 4,
+    edgeToEdgeEnabled: true,
   },
   web: {
     bundler: 'metro',

@@ -10,6 +10,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -47,6 +48,7 @@ export default function IndexSearch({
   const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
   const defaultHeaderHeight = useDefaultHeaderHeight();
+  const inset = useSafeAreaInsets();
   const isBoldTextEnabled = useA11yBoldText();
 
   // hard coding this for now
@@ -54,10 +56,14 @@ export default function IndexSearch({
   const figureOutHowFarThisIsFromTheTop = useCallback(
     (event: LayoutChangeEvent) => {
       event.target.measureInWindow((_x, y, _width, _height) => {
-        howFarThisIsFromTheTop.value = y - defaultHeaderHeight;
+        // No, I don't understand why this works either
+        howFarThisIsFromTheTop.value = Platform.select({
+          android: y - inset.top,
+          default: y - defaultHeaderHeight,
+        });
       });
     },
-    [howFarThisIsFromTheTop, defaultHeaderHeight]
+    [howFarThisIsFromTheTop, defaultHeaderHeight, inset]
   );
 
   const fadeInStyle = useAnimatedStyle(() => ({

@@ -1,6 +1,5 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
-import SoundPlayer, { SoundPlayerEventData } from 'react-native-sound-player';
 import WebView from 'react-native-webview';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -27,6 +26,7 @@ export function usePlayerDimensions({ asset }: { asset: Audio | Videos }) {
   }
 }
 
+// TODO rebuild with expo-audio
 function AudioPlayer({ asset, onClose }: { asset: Audio; onClose: () => void }) {
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
@@ -34,64 +34,15 @@ function AudioPlayer({ asset, onClose }: { asset: Audio; onClose: () => void }) 
 
   const [state, setState] = useState<'loading' | 'ready' | 'playing' | 'error'>('loading');
 
-  const play = useCallback(() => {
-    try {
-      SoundPlayer.play();
-      SoundPlayer.setSpeaker(true);
-      setState('playing');
-    } catch (e) {
-      console.error(`cannot play sound file`, e);
-      setState('error');
-    }
-  }, []);
+  const play = useCallback(() => {}, []);
 
-  const pause = useCallback(() => {
-    try {
-      SoundPlayer.pause();
-      setState('ready');
-    } catch (e) {
-      console.error(`cannot pause sound file`, e);
-      setState('error');
-    }
-  }, []);
+  const pause = useCallback(() => {}, []);
 
-  const restart = useCallback(() => {
-    try {
-      SoundPlayer.seek(0);
-    } catch (e) {
-      console.error(`cannot seek sound file`, e);
-      setState('error');
-    }
-  }, []);
+  const restart = useCallback(() => {}, []);
 
   const close = useCallback(() => {
-    SoundPlayer.stop();
     onClose();
   }, [onClose]);
-
-  useEffect(() => {
-    // set up loading
-    setState('loading');
-    const url = asset.File[0].url;
-    const onFinishedLoadingUrl = ({ success }: SoundPlayerEventData) => {
-      if (success) setState('ready');
-      else setState('error');
-    };
-    const finishedLoadingUrlListener = SoundPlayer.addEventListener('FinishedLoadingURL', onFinishedLoadingUrl);
-    SoundPlayer.loadUrl(url);
-
-    // set up restart
-    const onFinishedPlaying = () => {
-      setState('ready');
-      restart();
-    };
-    const finishedPlayingListener = SoundPlayer.addEventListener('FinishedPlaying', onFinishedPlaying);
-
-    return () => {
-      finishedLoadingUrlListener.remove();
-      finishedPlayingListener.remove();
-    };
-  }, [asset, restart]);
 
   return (
     <View style={[{ borderColor: text, width, height }, styles.container, styles.audioContainer]}>
