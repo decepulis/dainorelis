@@ -26,6 +26,7 @@ import SystemView from '@/lib/components/SystemView';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
+import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song, SongFile } from '@/lib/schemas/songs';
@@ -53,12 +54,13 @@ const groupSongsByLetter = (songs: SongFile) => {
 const margin = 20;
 const padding = 20;
 
-function HeaderTitle() {
+function HeaderTitle({ onLoadEnd }: { onLoadEnd?: () => void }) {
   const inset = useSafeAreaInsets();
   const defaultHeaderHeight = useDefaultHeaderHeight();
   return (
     <Image
-      source="logo_white_v2"
+      source={require('@/assets/images/logo_white_v2.png')}
+      onLoadEnd={onLoadEnd}
       style={[
         headerStyles.title,
         {
@@ -102,6 +104,7 @@ export default function Index() {
   const inset = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const defaultHeaderHeight = useDefaultHeaderHeight();
+  const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const card0 = useThemeColor('card0');
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
@@ -190,7 +193,7 @@ export default function Index() {
               hideBack
               shadow={false}
             >
-              <HeaderTitle />
+              <HeaderTitle onLoadEnd={() => setDidLogoLoad(true)} />
             </Header>
           ),
           headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
@@ -198,10 +201,19 @@ export default function Index() {
       />
       <View style={[styles.container, { backgroundColor: card0 }]}>
         <Image
-          style={[StyleSheet.absoluteFillObject, { height: (logoContainerHeight + 160 + inset.top) * 1.75 }]}
-          source="miskas_fade_9"
-          // TODO this break on widescreen (see iPad)
+          style={[
+            {
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              height: (logoContainerHeight + 160 + inset.top) * 1.75,
+            },
+          ]}
+          source={require('@/assets/images/miskas_fade_9.png')}
+          onLoadEnd={() => setDidBackgroundLoad(true)}
           contentFit="cover"
+          contentPosition="bottom"
         ></Image>
         <ScrollViewWithHeader ref={scrollRef} stickyHeaderIndices={[1]}>
           <View
@@ -215,7 +227,12 @@ export default function Index() {
               },
             ]}
           >
-            <Image style={StyleSheet.absoluteFillObject} source="logo_white_v2" contentFit="contain" />
+            <Image
+              style={StyleSheet.absoluteFillObject}
+              source={require('@/assets/images/logo_white_v2.png')}
+              contentFit="contain"
+              onLoadEnd={() => setDidLogoLoad(true)}
+            />
           </View>
           <IndexSearch
             scrollRef={scrollRef}

@@ -5,7 +5,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: 'Dainorėlis',
   slug: 'dainorelis',
   version: '2.0.0',
-  orientation: 'portrait',
+  orientation: 'default',
   icon: './assets/images/icon.png',
   scheme: 'myapp',
   userInterfaceStyle: 'automatic',
@@ -45,15 +45,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
         resizeMode: 'contain',
         backgroundColor: '#70997F',
-        // dark: {
-        //   backgroundColor: '#53745e',
-        // },
-      },
-    ],
-    [
-      'expo-asset',
-      {
-        assets: ['./assets/images/logo_white_v2.png', './assets/images/miskas_fade_9.png'],
       },
     ],
     [

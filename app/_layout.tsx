@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, useColorScheme } from 'react-native';
+import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, Platform, useColorScheme } from 'react-native';
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 
 import { ThemeProvider } from '@react-navigation/native';
 import * as Sentry from '@sentry/react-native';
 
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
+import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
+import useIsAndroidStatusBarHidden from '@/lib/hooks/useIsAndroidStatusBarHidden';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
@@ -22,9 +25,11 @@ type AppProps = {
 };
 function App({ onLayout }: AppProps) {
   const background = useThemeColor('background');
+  const isAndroidStatusBarHidden = useIsAndroidStatusBarHidden();
 
   return (
     <>
+      {Platform.OS === 'android' ? <StatusBar hidden={isAndroidStatusBarHidden} animated /> : null}
       <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
         <Stack>
           {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
@@ -50,6 +55,7 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
+  const { didBackgroundLoad, didLogoLoad } = useDidImagesLoad();
   const { value: colorSchemePreference } = useStorage('theme');
 
   // keep color scheme in sync with storage
@@ -63,7 +69,7 @@ function AppWithLoading() {
   useEffect(() => {
     async function prepare() {
       try {
-        await initI18n();
+        await Promise.all([initI18n()]);
       } catch (e) {
         console.warn(e);
       } finally {
@@ -76,10 +82,10 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout) {
+    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didBackgroundLoad && didLogoLoad) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout]);
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad]);
 
   if (asyncWorkIsDone && isColorSchemeSet) {
     return <App onLayout={() => setDidAppLayout(true)} />;
@@ -92,9 +98,11 @@ export default Sentry.wrap(function RootLayout() {
 
   return (
     <StorageProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-        <AppWithLoading />
-      </ThemeProvider>
+      <DidImagesLoadProvider>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+          <AppWithLoading />
+        </ThemeProvider>
+      </DidImagesLoadProvider>
     </StorageProvider>
   );
 });

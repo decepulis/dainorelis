@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { LayoutChangeEvent, NativeMethods, Platform, StyleSheet, TextInput, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -10,7 +10,6 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -48,22 +47,19 @@ export default function IndexSearch({
   const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
   const defaultHeaderHeight = useDefaultHeaderHeight();
-  const inset = useSafeAreaInsets();
+
   const isBoldTextEnabled = useA11yBoldText();
 
-  // hard coding this for now
   const howFarThisIsFromTheTop = useSharedValue(250);
   const figureOutHowFarThisIsFromTheTop = useCallback(
     (event: LayoutChangeEvent) => {
-      event.target.measureInWindow((_x, y, _width, _height) => {
-        // No, I don't understand why this works either
-        howFarThisIsFromTheTop.value = Platform.select({
-          android: y - inset.top,
-          default: y - defaultHeaderHeight,
-        });
+      const scrollEl = scrollRef.current as NativeMethods | null;
+      if (!scrollEl) return;
+      event.target.measureLayout(scrollEl, (_x, y) => {
+        howFarThisIsFromTheTop.value = y - defaultHeaderHeight;
       });
     },
-    [howFarThisIsFromTheTop, defaultHeaderHeight, inset]
+    [defaultHeaderHeight, howFarThisIsFromTheTop, scrollRef]
   );
 
   const fadeInStyle = useAnimatedStyle(() => ({
