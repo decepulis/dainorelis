@@ -91,6 +91,7 @@ export default function IndexSearch({
           paddingVertical: padding / 4,
         }}
       >
+        {/* TODO add dainu svente button */}
         <SegmentedControl
           options={[
             { label: t('allSongs'), value: 'allSongs' },

@@ -7,8 +7,8 @@ import { PDFsSchema } from './pdfs';
 export const SongSchema = z.object({
   id: z.string(),
   fields: z.object({
-    Name: z.string().optional(),
-    Lyrics: z.array(LyricsSchema).optional(),
+    Name: z.string(),
+    Lyrics: z.array(LyricsSchema),
     Videos: z.array(VideosSchema).optional(),
     Audio: z.array(AudioSchema).optional(),
     PDFs: z.array(PDFsSchema).optional(),

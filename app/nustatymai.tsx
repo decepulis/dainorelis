@@ -112,13 +112,23 @@ export default function Page() {
             </ThemedText>
           </View>
           <View style={styles.section}>
+            <ThemedText bold style={[styles.header, { borderColor: text }]}>
+              {t('settingsSpecialThanksTitle')}
+            </ThemedText>
+            <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>
+              {t('settingsSpecialThanksSimtmecioDainorelis')}
+            </ThemedText>
+            <ThemedText style={[styles.paragraph]}>{t('settingsSpecialThanksXIDainuSvente')}</ThemedText>
+          </View>
+          <View style={styles.section}>
             <ThemedText style={[styles.header, { borderColor: text }]} bold>
+              {t('settingsAboutUsTitle')}
+            </ThemedText>
+            <ThemedText style={[styles.subheader, { marginTop: 10 }]} italic bold>
               {t('settingsOurGoalTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-          </View>
-          <View style={[styles.section]}>
-            <ThemedText style={[styles.header, { borderColor: text }]} bold>
+            <ThemedText style={styles.subheader} italic bold>
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
@@ -146,7 +156,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   section: {
-    marginBottom: 40,
+    marginBottom: 50,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
@@ -162,6 +172,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 15,
     paddingBottom: 5,
+  },
+  subheader: {
+    fontSize: 20,
+    marginTop: 20,
+    marginBottom: 10,
   },
   paragraph: {
     fontSize: 16,

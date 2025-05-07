@@ -58,6 +58,10 @@ export default function SongMenu({
     setFavorites(favorites.filter((id) => id !== song.id));
   }, [favorites, setFavorites, song.id]);
 
+  // TODO feedback menu
+  // TODO share sheet (dainorelis.app web app)
+  // TODO if only two items, no need for a menu
+  // TODO determine how many items fit on screen
   const actions: (MenuAction | null)[] = [
     hasChords
       ? {

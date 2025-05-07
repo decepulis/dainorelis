@@ -1,9 +1,7 @@
 import { z } from 'zod';
 
-import { simpleAirtableAttachmentSchema } from './attachment';
-
 export const PDFsSchema = z.object({
   'Variant Name': z.string(),
-  File: simpleAirtableAttachmentSchema,
+  URL: z.string().url(),
 });
 export type PDFs = z.infer<typeof PDFsSchema>;

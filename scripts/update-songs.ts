@@ -10,7 +10,7 @@ const fieldFlags: Record<keyof Song['fields'], boolean> = {
   Lyrics: true,
   Videos: false,
   Audio: false,
-  PDFs: false,
+  PDFs: true,
   Tags: false,
   Sources: false,
   'Recommended Key': false,
@@ -68,7 +68,7 @@ async function getLyrics() {
   return await base('Lyrics & Chords')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'Lyrics & Chords', 'Show Chords'],
+      fields: ['Variant Name', 'Lyrics & Chords', 'Show Chords', 'Notes'],
     })
     .all();
 }
@@ -80,21 +80,19 @@ async function getVideos() {
     })
     .all();
 }
-// todo: mirror to r2 storage
 async function getAudio() {
   return await base('Audio')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'File'],
+      fields: ['Variant Name', 'URL'],
     })
     .all();
 }
-// todo: mirror to r2 storage
 async function getPDFs() {
   return await base('PDFs')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'File'],
+      fields: ['Variant Name', 'URL'],
     })
     .all();
 }
@@ -113,14 +111,18 @@ function getRecordsForField(field: FieldSet[string], records: Records<FieldSet>)
 }
 
 /**
- * When `Variant Name` is not defined, we default to `Variantas ${idx + 1}`
+ * When `Variant Name` is not defined, we default to `Žodžiai ${idx + 1}`
  */
-function assignVariantNames(records: FieldSet[string] | FieldSet[], prefix: string, startIdx = 0) {
+function assignVariantNames(records: FieldSet[string] | FieldSet[], prefix: string) {
   if (!Array.isArray(records)) return records;
-  return records.map((record, idx) => ({
-    ...record,
-    'Variant Name': record['Variant Name'] ?? `${prefix} ${startIdx + idx + 1}`,
-  }));
+  return records.map((record, idx) => {
+    let name = record['Variant Name'] ?? prefix;
+    if (records.length > 1) name += ` ${idx + 1}`;
+    return {
+      ...record,
+      'Variant Name': name,
+    };
+  });
 }
 
 // get those songs
@@ -135,13 +137,10 @@ async function updateSongs() {
     ]);
 
     const songFile = songs.map((song) => {
-      const Lyrics = assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Variantas');
-      const lyricCount = Array.isArray(Lyrics) ? Lyrics.length : 0;
-      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Variantas', lyricCount);
-
-      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas');
-      const audioCount = Array.isArray(Audio) ? Audio.length : 0;
-      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas', audioCount);
+      const Lyrics = assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai');
+      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Dokumentas');
+      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Audio įrašas');
+      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Video įrašas');
 
       return {
         id: song.id,

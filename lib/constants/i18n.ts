@@ -29,8 +29,13 @@ const en = {
   noFavorites1: 'No favorites. When viewing a song, press',
   noFavorites2: 'to set a favorite',
   settings: 'Settings',
+  settingsSpecialThanksTitle: 'Special thanks',
+  settingsSpecialThanksSimtmecioDainorelis:
+    'Benita Mincevičiūtė ir Ieva Brogienė and the Skautijos Šimtmečio Dainorėlis team',
+  settingsSpecialThanksXIDainuSvente: 'The XI Dainų Šventė team',
   settingsWriteToUsTitle: 'Write to us',
   settingsWriteToUsText: 'If you have any questions or suggestions, or just want to say hello, write to us at',
+  settingsAboutUsTitle: 'About us',
   settingsOurGoalTitle: 'Our goal',
   settingsOurGoalText:
     'We created the "Dainorėlis App" so that Lithuanians around the world could easily find the lyrics of their favorite folk songs. We hope this collection will inspire you to sing anywhere and any time!',
@@ -59,8 +64,13 @@ const lt = {
   noFavorites1: 'Žiūrėdami dainą, spauskite',
   noFavorites2: 'pažymėti kaip „mano“',
   settings: 'Nustatymai',
+  settingsSpecialThanksTitle: 'Nuoširdi padėka',
+  settingsSpecialThanksSimtmecioDainorelis:
+    'Benita Mincevičiūtei ir Ieva Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
+  settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti? Rašykite mums el. paštu',
+  settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:
     'Mes sukūrėme „Dainorėlis App“, kad lietuviai po visą pasaulį galėtų lengvai rasti savo mylimų liaudės dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',

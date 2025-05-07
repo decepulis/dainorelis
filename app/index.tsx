@@ -338,19 +338,19 @@ const styles = StyleSheet.create({
   sectionHeader: {
     marginLeft: padding,
     paddingRight: padding,
-    paddingVertical: 18,
-    fontSize: 18,
+    paddingVertical: 16,
+    fontSize: 16,
   },
   itemContainer: {
     marginLeft: padding,
     paddingRight: padding,
-    paddingVertical: 18,
+    paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   itemText: {
-    fontSize: 18,
+    fontSize: 16,
     letterSpacing: -0.1,
     flex: 1,
   },

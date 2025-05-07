@@ -98,6 +98,7 @@ export default function Page() {
       <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
         <View style={styles.container}>
           <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
+            {/* TODO title in different font? */}
             {title.map((part, index) => (
               <ThemedText
                 key={index}
@@ -113,7 +114,9 @@ export default function Page() {
               {activeVariant['Lyrics & Chords']}
             </Markdown>
           ) : null}
+          {/* add notes field */}
           {hasAttribution ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+          {/* what if music and text are by the same author? */}
           {song.fields['Music Author'] ? (
             <ThemedText>
               {t('musicBy')}
