@@ -57,6 +57,7 @@ type Props = {
 const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   const primary = useThemeColor('primary');
   const card = useThemeColor('card');
+  const separator = useThemeColor('separator');
   const optionWidth = useSharedValue(0);
   const activeIndex = options.findIndex((option) => option.value === value);
   const translateX = useSharedValue(0);
@@ -83,7 +84,24 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: `${card}bb` }]} onLayout={onContainerLayout}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: `${card}bb`,
+          ...Platform.select({
+            ios: {
+              borderWidth: StyleSheet.hairlineWidth,
+              borderColor: separator,
+            },
+            default: {
+              boxShadow: '0 0 10px rgba(0, 0, 0, 0.05)',
+            },
+          }),
+        },
+      ]}
+      onLayout={onContainerLayout}
+    >
       <Animated.View style={[styles.indicator, { backgroundColor: primary }, animatedIndicatorStyle]} />
 
       {options.map((option, index) => (
@@ -114,7 +132,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: 3,
     position: 'relative',
-    width: '100%', // Ensure container takes full width
+    flexShrink: 1,
     boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
   },
   indicator: {

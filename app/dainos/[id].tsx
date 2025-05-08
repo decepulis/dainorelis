@@ -6,7 +6,7 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import Header from '@/lib/components/Header';
+import { HeaderBackground, HeaderButtonContainer, HeaderTitle } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import Player from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
@@ -36,8 +36,6 @@ export default function Page() {
   const { id } = useLocalSearchParams();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
 
-  const hasAttribution = !!song.fields['Music Author'] || !!song.fields['Text Author'];
-
   // Variants
   // TODO persist last used variant in storage
   const [activeVariantIndex, setActiveVariantIndex] = useState(0);
@@ -46,6 +44,13 @@ export default function Page() {
     [song]
   );
   const activeVariant = useMemo(() => variants[activeVariantIndex], [variants, activeVariantIndex]);
+  const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
+
+  // Footnotes
+  const hasMusicAuthor = !!song.fields['Music Author'];
+  const hasTextAuthor = !!song.fields['Text Author'];
+  const hasSameAuthor = hasMusicAuthor && hasTextAuthor && song.fields['Music Author'] === song.fields['Text Author'];
+  const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
   // Media
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
@@ -73,26 +78,21 @@ export default function Page() {
     <Fragment>
       <Stack.Screen
         options={{
-          header: () => (
-            <Header
-              scrollRef={scrollRef}
-              titleLayout={titleLayout}
-              title={title}
-              opaque
-              controls={
-                <SongMenu
-                  song={song}
-                  variants={variants}
-                  activeVariant={activeVariant}
-                  setActiveVariantIndex={setActiveVariantIndex}
-                  media={media}
-                  activeMedia={activeMedia}
-                  setActiveMediaIndex={setActiveMediaIndex}
-                />
-              }
-            />
+          headerBackground: () => <HeaderBackground opaque />,
+          headerTitle: () => <HeaderTitle scrollRef={scrollRef} titleLayout={titleLayout} title={title} />,
+          headerRight: () => (
+            <HeaderButtonContainer>
+              <SongMenu
+                song={song}
+                variants={variants}
+                activeVariant={activeVariant}
+                setActiveVariantIndex={setActiveVariantIndex}
+                media={media}
+                activeMedia={activeMedia}
+                setActiveMediaIndex={setActiveMediaIndex}
+              />
+            </HeaderButtonContainer>
           ),
-          headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
         }}
       />
       <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
@@ -110,20 +110,26 @@ export default function Page() {
             ))}
           </View>
           {isLyrics(activeVariant) ? (
-            <Markdown showLinksAsChords showChords={showChords}>
+            <Markdown showLinksAsChords showChords={hasChords && showChords}>
               {activeVariant['Lyrics & Chords']}
             </Markdown>
           ) : null}
-          {/* add notes field */}
-          {hasAttribution ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
-          {/* what if music and text are by the same author? */}
-          {song.fields['Music Author'] ? (
+          {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+          {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
+          {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+          {hasSameAuthor ? (
+            <ThemedText>
+              {t('musicAndWordsBy')}
+              {song.fields['Music Author']}
+            </ThemedText>
+          ) : null}
+          {!hasSameAuthor && hasMusicAuthor ? (
             <ThemedText>
               {t('musicBy')}
               {song.fields['Music Author']}
             </ThemedText>
           ) : null}
-          {song.fields['Text Author'] ? (
+          {!hasSameAuthor && hasTextAuthor ? (
             <ThemedText>
               {t('wordsBy')}
               {song.fields['Text Author']}

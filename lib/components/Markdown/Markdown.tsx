@@ -34,7 +34,7 @@ const chordHeight = 16;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 19,
+    fontSize: 18,
     // line height set dynamically down below
   },
 });
@@ -48,7 +48,7 @@ type Props = {
  * Lyrics are rendered using a controlled subset of markdown
  */
 export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
-  // todo support real links for descriptions
+  // TODO support real links for descriptions
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
     paragraph: (node, children, _parent, styles) => (
       <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
@@ -59,6 +59,7 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
       const parentTypes = parent.map((p) => p.sourceType);
       const strong = parentTypes.includes('strong');
       const em = parentTypes.includes('em');
+      // TODO BLOCKER uh-oh this breaks on multi-line ios
       return (
         <ThemedText
           key={node.key}
@@ -114,8 +115,9 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
               <ThemedText
                 bold
                 style={{
+                  opacity: 0.6,
                   fontSize: chordHeight,
-                  width: chordHeight,
+                  width: chordHeight * 1.5,
                   // just kinda eyeballing it
                   lineHeight: chordHeight * Platform.select({ ios: 1.7, android: 1.8, default: 1 }),
                 }}

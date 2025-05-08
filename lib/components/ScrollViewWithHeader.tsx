@@ -3,23 +3,23 @@ import { Platform } from 'react-native';
 import Animated, { AnimatedScrollViewProps } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewProps>(
   ({ children, scrollIndicatorInsets, contentContainerStyle, ...props }, ref) => {
-    const defaultHeaderHeight = useDefaultHeaderHeight();
+    const headerHeight = useHeaderHeight();
     const inset = useSafeAreaInsets();
     return (
       <Animated.ScrollView
         ref={ref}
         scrollIndicatorInsets={{
-          top: defaultHeaderHeight - inset.top,
+          top: headerHeight - inset.top,
           ...scrollIndicatorInsets,
         }}
         contentContainerStyle={[
           {
-            marginTop: defaultHeaderHeight,
-            paddingBottom: Platform.OS === 'android' ? defaultHeaderHeight : 0,
+            marginTop: headerHeight,
+            paddingBottom: Platform.OS === 'android' ? headerHeight : 0,
           },
           contentContainerStyle,
         ]}

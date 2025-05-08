@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
+import { LayoutRectangle, Platform, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -12,14 +12,12 @@ import Animated, {
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Link, router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { Link } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
-import useDefaultHeaderHeight from '@/lib/hooks/useDefaultHeaderHeight';
-
-import Button from './Button';
+import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
@@ -27,33 +25,40 @@ const timing = {
   duration: 150,
 };
 
-interface HeaderProps {
+type HeaderBackgroundProps = {
+  scrollRef?: AnimatedRef<AnimatedScrollView>;
+  opaque?: boolean;
+  shadow?: boolean;
+};
+
+export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBackgroundProps) {
+  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+
+  const headerStyle = useAnimatedStyle(() => ({
+    opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
+  }));
+
+  // TODO BLOCKER manage status bar color & tint color dynamically
+  return (
+    <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
+      <SystemView variant="primary" shadow={shadow} style={{ flex: 1 }}></SystemView>
+    </Animated.View>
+  );
+}
+
+const useAlign = () => {
+  const inset = useSafeAreaInsets();
+  return Platform.OS === 'ios' && inset.top >= 30 ? 'flex-start' : 'center';
+};
+
+type HeaderTitleProps = {
   scrollRef?: AnimatedRef<AnimatedScrollView>;
   titleLayout?: SharedValue<LayoutRectangle | null>;
   children?: React.ReactNode;
   title?: string[];
-  controls?: React.ReactNode;
-  center?: boolean;
-  hideBack?: boolean;
-  opaque?: boolean;
-  shadow?: boolean;
-}
-export default function Header({
-  scrollRef,
-  titleLayout,
-  children,
-  title,
-  controls,
-  center,
-  hideBack,
-  opaque,
-  shadow = true,
-}: HeaderProps) {
-  const inset = useSafeAreaInsets();
-  const defaultHeaderHeight = useDefaultHeaderHeight();
+};
+export const HeaderTitle = ({ scrollRef, titleLayout, children, title }: HeaderTitleProps) => {
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
-  const canGoBack = router.canGoBack();
-  const align = Platform.OS === 'ios' && inset.top >= 30 ? 'flex-start' : 'center';
 
   const animatedTitleStyle = useAnimatedStyle(() => {
     let isTitleBehind = true;
@@ -66,126 +71,63 @@ export default function Header({
     };
   });
 
-  const headerStyle = useAnimatedStyle(() => ({
-    opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
-  }));
-
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      {hideBack ? null : (
-        <View
-          style={[
-            styles.buttonContainer,
-            styles.backButtonContainer,
-            {
-              top: inset.top,
-              alignItems: align,
-            },
-          ]}
-        >
-          <Link href={canGoBack ? '../' : '/'} asChild>
-            <Button>
-              <FontAwesome6 name="chevron-left" size={18} color="white" />
-            </Button>
-          </Link>
-        </View>
-      )}
-      <Animated.View style={typeof scrollRef !== 'undefined' ? headerStyle : undefined}>
-        <SystemView
-          variant="primary"
-          shadow={shadow}
-          style={[
-            styles.background,
-            {
-              height: defaultHeaderHeight,
-              paddingTop: inset.top,
-            },
-          ]}
-        >
-          {/* TODO the title will be too wide when >1 button is used */}
-          {/* TODO dynamically decide how many buttons fit */}
-          <Animated.View
+    <Animated.View style={animatedTitleStyle}>
+      {title ? (
+        title.map((part, index) => (
+          <ThemedText
+            key={index}
+            numberOfLines={title.length === 1 && index === 0 ? 2 : 1}
+            bold={index === 0}
             style={[
-              animatedTitleStyle,
-              styles.titleContainer,
               {
-                top: inset.top,
-                // this results in text too high on iOS, even if it is technically correct
-                justifyContent: align,
-                alignItems: center ? 'center' : Platform.select({ default: 'center', android: 'flex-start' }),
+                fontSize: title.length === 1 ? 17 : index === 0 ? 16 : 14,
+                lineHeight: title.length === 1 ? 28 : index === 0 ? 16 * 1.25 : 14 * 1.25,
+                textAlign: Platform.select({ default: 'center', android: 'left' }),
+                position: 'relative',
+                top: title.length === 1 ? 1 : 0,
+                color: '#fff',
               },
             ]}
           >
-            {title
-              ? title.map((part, index) => (
-                  <ThemedText
-                    key={index}
-                    numberOfLines={title.length === 1 && index === 0 ? 2 : 1}
-                    bold={index === 0}
-                    style={[
-                      {
-                        fontSize: title.length === 1 ? 17 : index === 0 ? 16 : 14,
-                        lineHeight: title.length === 1 ? 28 : index === 0 ? 16 * 1.25 : 14 * 1.25,
-                        textAlign: Platform.select({ default: 'center', android: 'left' }),
-                        position: 'relative',
-                        top: title.length === 1 ? 1 : 0,
-                        color: '#fff',
-                      },
-                    ]}
-                  >
-                    {part}
-                  </ThemedText>
-                ))
-              : children}
-          </Animated.View>
-        </SystemView>
-      </Animated.View>
-      {controls && (
-        <View
-          style={[
-            styles.buttonContainer,
-            styles.controlsContainer,
-            {
-              top: inset.top,
-              alignItems: align,
-            },
-          ]}
-        >
-          {controls}
-        </View>
+            {part}
+          </ThemedText>
+        ))
+      ) : typeof children === 'string' ? (
+        <ThemedText>{children}</ThemedText>
+      ) : (
+        children
       )}
+    </Animated.View>
+  );
+};
+
+export const HeaderLeft: NativeStackNavigationOptions['headerLeft'] = ({ href, canGoBack }) => {
+  if (!canGoBack) return null;
+
+  return (
+    <Link href={href || '../'} asChild>
+      <Button>
+        <FontAwesome6 name="chevron-left" size={16} color="white" />
+      </Button>
+    </Link>
+  );
+};
+
+const gap = buttonSlop.left + buttonSlop.right;
+
+type HeaderButtonContainerProps = {
+  children?: React.ReactNode;
+};
+export const HeaderButtonContainer = ({ children }: HeaderButtonContainerProps) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        gap,
+      }}
+    >
+      {children}
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  background: {
-    position: 'relative',
-  },
-  titleContainer: {
-    // TODO: align title with content on android tablet
-    position: 'absolute',
-    left: 70,
-    right: 70,
-    bottom: 0,
-    flexDirection: 'column',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    zIndex: 1,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
-    gap: 14,
-  },
-  backButtonContainer: {
-    left: 20,
-  },
-  controlsContainer: {
-    right: 20,
-  },
-});
+};

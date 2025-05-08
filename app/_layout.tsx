@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, Platform, useColorScheme } from 'react-native';
+import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, useColorScheme } from 'react-native';
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -8,10 +8,10 @@ import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from '@react-navigation/native';
 import * as Sentry from '@sentry/react-native';
 
+import { HeaderLeft } from '@/lib/components/Header';
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
-import useIsAndroidStatusBarHidden from '@/lib/hooks/useIsAndroidStatusBarHidden';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
@@ -25,17 +25,22 @@ type AppProps = {
 };
 function App({ onLayout }: AppProps) {
   const background = useThemeColor('background');
-  const isAndroidStatusBarHidden = useIsAndroidStatusBarHidden();
 
   return (
     <>
-      {Platform.OS === 'android' ? <StatusBar hidden={isAndroidStatusBarHidden} animated /> : null}
+      <StatusBar style="light" />
       <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
-        <Stack>
-          {/* we're unsetting all the titles here so we can set them dynamically within the pages... or provide a custom header within that page */}
-          <Stack.Screen name="index" options={{ title: '' }} />
-          <Stack.Screen name="nustatymai" options={{ title: '' }} />
-          <Stack.Screen name="dainos/[id]" options={{ title: '' }} />
+        <Stack
+          screenOptions={{
+            headerTransparent: true,
+            title: '',
+            headerLeft: HeaderLeft,
+            headerTintColor: '#fff',
+          }}
+        >
+          <Stack.Screen name="index" />
+          <Stack.Screen name="nustatymai" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="dainos/[id]" />
         </Stack>
       </KeyboardAvoidingView>
     </>

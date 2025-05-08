@@ -3,6 +3,8 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import SystemView from './SystemView';
 
+export const buttonSlop = { top: 28, bottom: 28, left: 7, right: 7 };
+
 type Props = {
   children: React.ReactNode;
 } & ComponentPropsWithoutRef<typeof Pressable>;
@@ -11,7 +13,7 @@ const Button = forwardRef<React.ElementRef<typeof Pressable>, Props>((props, ref
   const { children, ...rest } = props;
 
   return (
-    <Pressable hitSlop={28} ref={ref} {...rest}>
+    <Pressable hitSlop={buttonSlop} ref={ref} {...rest}>
       <SystemView variant="primary" shadow={false} style={styles.container}>
         {children}
       </SystemView>

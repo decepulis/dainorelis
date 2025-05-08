@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
-import Header from '@/lib/components/Header';
+import { HeaderBackground } from '@/lib/components/Header';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
@@ -47,6 +47,7 @@ export default function Page() {
   const { value: theme, setValue: setTheme } = useStorage('theme');
 
   const card = useThemeColor('card');
+  const separator = useThemeColor('separator');
 
   const onLanguageChange = useCallback(
     (language: 'en' | 'lt') => {
@@ -56,8 +57,6 @@ export default function Page() {
     [setLanguage, i18n]
   );
 
-  const text = useThemeColor('text');
-
   // I don't want to decide who put the most into this project,
   // so I'm just going to randomize what order the team shows in every time this component mounts
   const [teamInRandomOrder] = useState(() => [...team].sort(() => Math.random() - 0.5));
@@ -66,18 +65,17 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
-          header: () => <Header title={[]} />,
-          headerTransparent: true, // I know it's not transparent, but this is what positions the header correctly
+          headerBackground: () => <HeaderBackground opaque />,
         }}
       />
       <ScrollViewWithHeader>
         <View style={[styles.container]}>
           <View style={[styles.section, styles.settings]}>
+            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+              {t('settingsTitle')}
+            </ThemedText>
             <View style={styles.setting}>
-              <ThemedText bold style={[styles.header, { borderColor: text }]}>
-                {t('settings')}
-              </ThemedText>
-              <ThemedText>{t('language')}</ThemedText>
+              <ThemedText style={styles.settingTitle}>{t('language')}</ThemedText>
               <SegmentedControl
                 options={[
                   { label: 'Lietuvių', value: 'lt' },
@@ -88,7 +86,7 @@ export default function Page() {
               />
             </View>
             <View style={styles.setting}>
-              <ThemedText>{t('theme')}</ThemedText>
+              <ThemedText style={styles.settingTitle}>{t('theme')}</ThemedText>
               <SegmentedControl
                 options={[
                   { label: t('autoTheme'), value: 'auto' },
@@ -101,7 +99,7 @@ export default function Page() {
             </View>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: text }]}>
+            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>
@@ -112,7 +110,7 @@ export default function Page() {
             </ThemedText>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: text }]}>
+            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsSpecialThanksTitle')}
             </ThemedText>
             <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>
@@ -121,7 +119,7 @@ export default function Page() {
             <ThemedText style={[styles.paragraph]}>{t('settingsSpecialThanksXIDainuSvente')}</ThemedText>
           </View>
           <View style={styles.section}>
-            <ThemedText style={[styles.header, { borderColor: text }]} bold>
+            <ThemedText style={[styles.header, { borderColor: separator }]} bold>
               {t('settingsAboutUsTitle')}
             </ThemedText>
             <ThemedText style={[styles.subheader, { marginTop: 10 }]} italic bold>
@@ -154,6 +152,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 40,
     position: 'relative',
+    width: '100%',
+    maxWidth: maxWidth,
+    marginHorizontal: 'auto',
   },
   section: {
     marginBottom: 50,
@@ -165,10 +166,17 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   setting: {
-    gap: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+  },
+  settingTitle: {
+    flexBasis: 65,
+    flexGrow: 0,
+    flexShrink: 0,
   },
   header: {
-    fontSize: 25,
+    fontSize: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 15,
     paddingBottom: 5,

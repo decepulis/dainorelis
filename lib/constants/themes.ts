@@ -1,4 +1,4 @@
-import { Platform, TextStyle } from 'react-native';
+import { Platform, PlatformColor, TextStyle } from 'react-native';
 
 import type { Theme as LibTheme } from '@react-navigation/native';
 
@@ -44,6 +44,7 @@ export const fonts = {
 export interface Theme extends LibTheme {
   colors: LibTheme['colors'] & {
     card0: string;
+    separator: string;
   };
 }
 export const LightTheme: Theme = {
@@ -56,6 +57,14 @@ export const LightTheme: Theme = {
     text: '#121314',
     border: '#121314',
     notification: 'rgb(255, 69, 58)',
+    ...Platform.select({
+      ios: {
+        separator: PlatformColor('separator') as unknown as string,
+      },
+      default: {
+        separator: `#12131480`,
+      },
+    }),
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
@@ -69,6 +78,14 @@ export const DarkTheme: Theme = {
     text: '#FEF9F7',
     border: '#FEF9F7',
     notification: 'rgb(255, 69, 58)',
+    ...Platform.select({
+      ios: {
+        separator: PlatformColor('separator') as unknown as string,
+      },
+      default: {
+        separator: `#FEF9F780`,
+      },
+    }),
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };

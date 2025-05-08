@@ -22,7 +22,7 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Aisim sesės į darželį, uždainuosim sau dainelį,\nŽalių rūtų prisiskinsim, sava širdį nuraminsim.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2 k.\n\nNeklausykim mes apuokų, kur iš mūsų dainų juokias.\nIr dainų pabliaut nežystu, prie jaunų mergaičių drįstu.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2 k.\n\nMes sesutės netekėsim, kaip žalios rožės žydėsim,\nIr kaip baltosios lelijos, kaip daržely pinavijos.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2 k."
+          "Lyrics & Chords": "Aisim sesės į darželį, uždainuosim sau dainelį,\nŽalių rūtų prisiskinsim, sava širdį nuraminsim.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2k.\n\nNeklausykim mes apuokų, kur iš mūsų dainų juokias.\nIr dainų pabliaut nežystu, prie jaunų mergaičių drįstu.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2k.\n\nMes sesutės netekėsim, kaip žalios rožės žydėsim,\nIr kaip baltosios lelijos, kaip daržely pinavijos.\nEikš Eikš či sesute, stok stok či žibuti,\ntrauk su mumis dainuoti, trauk, trauk, trauk. 2k."
         }
       ]
     }
@@ -34,39 +34,8 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "[Pražydo,](C)[ ](F)[pražydo,](E)[ ](G)  \nPrie kelio begėdės alyvos,\nNuraudo, nuraudo, nuraudo,\nVirpėdamos ilgisi draugo.\n\n_[Vaikšto vaikšto,](Am) [po vieną, po du,](G)  \n[Ieško ieško](Am) [laimingų žiedų.](G)  \n[Nemyli](F) [- myli buria ratu,](G)  \n[Laukia](F) [laukia meilės kartu.](G)_\n\nVėlyvos, vėlyvos, vėlyvos\nPavasarį tavo alyvos,\nNespėjo žydėti, nespėjo,\nRuduo pirma laiko atėjo.\n\nPradingo, pradingo, pradingo\nPavasario krūmas spalvingas.\nKas žino, kas žino, kas žino,\nKur mūsų svajonių alyvos.",
+          "Lyrics & Chords": "[Pražydo](C)[, ](F)[pražydo,](E)[ ](G)  \nPrie kelio begėdės alyvos,\nNuraudo, nuraudo, nuraudo,\nVirpėdamos ilgisi draugo.\n\n_[Vaikšto vaikšto,](Am) [po vieną, po du,](G)  \n[Ieško ieško](Am) [laimingų žiedų.](G)  \n[Nemyli](F) [- myli buria ratu,](G)  \n[Laukia](F) [laukia meilės kartu.](G)_\n\nVėlyvos, vėlyvos, vėlyvos\nPavasarį tavo alyvos,\nNespėjo žydėti, nespėjo,\nRuduo pirma laiko atėjo.\n\nPradingo, pradingo, pradingo\nPavasario krūmas spalvingas.\nKas žino, kas žino, kas žino,\nKur mūsų svajonių alyvos.",
           "Show Chords": true
-        }
-      ]
-    }
-  },
-  {
-    "id": "recK4Bz4nTlFj1uJD",
-    "fields": {
-      "Name": "An(t) kalno rugiai",
-      "Lyrics": [
-        {
-          "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "An(t) kalno rugiai,\nSode obuoliai.\n_Uliavojo_ trys sesutės\nŠienelį grėbdamos.\n\n- Eik, sesele, namo,\nJaunoji, namo,\nŽada tave tėvutėlis\nUž čigono duoti.\n\n- Nei aš eisiu namo,\nNei aš eisiu už jo,\nŽino mano tėvutėlis\nČigonėlio darbą.\n\n- Eik, sesele, namo,\nVyresnioji, namo.\nŽada tave tėvutėlis\nUž bajoro duoti.\n\n- Nei aš eisiu namo,\nNei aš eisiu už jo,\nŽino mano tėvutėlis\nBajorėjo darbą.\n\n- Eik, sese, namo,\nJaunesnioji, namo,\nŽada tave tėvutėlis\nUž artojo duoti.\n\n- Tai aš eisiu namo,\nTai aš eisiu už jo,\nŽino mano tėvutėlis\nArotojėlio darbą."
-        }
-      ]
-    }
-  },
-  {
-    "id": "recfxlADrR8ItSBvd",
-    "fields": {
-      "Name": "An(t) tėvulio dvarelio",
-      "Lyrics": [
-        {
-          "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "An(t) tėvulio dvarelio\nStov‘ nauja _stainelė,_\nToje naujoje _stainelėj_\nSakalai ulbėjo.\n\nTai ne sakalų balsas,\nNe girios paukštelių,\nTai tik tėvulio sūnelis\nSu žirgeliu kalba.\n\n- Oi tu žirge, žirgeli,\nŽirge juodbėrėli,\nNuo šios _slaunos subatėlės_\nDaugiau nejodysiu.\n\nVeža tėvas sūnelį\nSvetimon šalelėn\n-Krenta byra ašarėlės\nPer skaistus veidelius.",
-          "Notes": "_Stainelė_ - žirgų tvartas, gardas, užtvara;\n_slaunos_ - (čia) šventos;\n_subatėlės_ - šeštadienio."
-        }
-      ],
-      "PDFs": [
-        {
-          "Variant Name": "Dokumentas",
-          "URL": "https://media.dainorelis.app/ant%20tevulio%20dvarelio.pdf"
         }
       ]
     }
@@ -269,6 +238,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recK4Bz4nTlFj1uJD",
+    "fields": {
+      "Name": "Ant kalno rugiai",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "An(t) kalno rugiai,\nSode obuoliai.\n_Uliavojo_ trys sesutės\nŠienelį grėbdamos.\n\n- Eik, sesele, namo,\nJaunoji, namo,\nŽada tave tėvutėlis\nUž čigono duoti.\n\n- Nei aš eisiu namo,\nNei aš eisiu už jo,\nŽino mano tėvutėlis\nČigonėlio darbą.\n\n- Eik, sesele, namo,\nVyresnioji, namo.\nŽada tave tėvutėlis\nUž bajoro duoti.\n\n- Nei aš eisiu namo,\nNei aš eisiu už jo,\nŽino mano tėvutėlis\nBajorėjo darbą.\n\n- Eik, sese, namo,\nJaunesnioji, namo,\nŽada tave tėvutėlis\nUž artojo duoti.\n\n- Tai aš eisiu namo,\nTai aš eisiu už jo,\nŽino mano tėvutėlis\nArotojėlio darbą."
+        }
+      ]
+    }
+  },
+  {
     "id": "recsqhyFoAI9zgkHZ",
     "fields": {
       "Name": "Ant melsvų ežero bangų",
@@ -300,6 +281,25 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Ant Nemuno kranto\nKareivis gulėjo,\nPakėlęs galvelę\nĮ dangų žiūrėjo.\n\nKelkis kareivėli,\nGana tau gulėti.\nJau tavo pulkelis\nViešu keliu traukia.\n\nJau tavo pulkelis\nViešu keliu traukia,\nJau tavo galvelės\nPriešo kulkos laukia.\n\nTegul jie sau traukia\nIr manęs nelaukia,\nO aš, kareivėlis\nSaldaus miego noriu.\n\nNepakeliu kojų,\nNei baltų rankelių,\nNegaliu rašyti\nMergeliai laiškelio.\n\nPrašysiu paukštelio,\nRaibo sakalėlio,\nKad jis parašytų\nMergeliai laiškelį.\n\nAtsakė paukštelis\nRaibas sakalėlis:\nNegaliu rašyti\nMergelei laiškelio.\n\nPrašysiu žuvelės\nMargos lydekėlės,\nKad ji parašytų\nMergelei laiškelį.\n\nAtsakė žuvelė\nMarga lydekėlė\nNegaliu rašyti\nMergelei laiškelio."
+        }
+      ]
+    }
+  },
+  {
+    "id": "recfxlADrR8ItSBvd",
+    "fields": {
+      "Name": "Ant tėvulio dvarelio",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "An(t) tėvulio dvarelio\nStov‘ nauja _stainelė,_\nToje naujoje _stainelėj_\nSakalai ulbėjo.\n\nTai ne sakalų balsas,\nNe girios paukštelių,\nTai tik tėvulio sūnelis\nSu žirgeliu kalba.\n\n- Oi tu žirge, žirgeli,\nŽirge juodbėrėli,\nNuo šios _slaunos subatėlės_\nDaugiau nejodysiu.\n\nVeža tėvas sūnelį\nSvetimon šalelėn\n-Krenta byra ašarėlės\nPer skaistus veidelius.",
+          "Notes": "_Stainelė_ - žirgų tvartas, gardas, užtvara;\n_slaunos_ - (čia) šventos;\n_subatėlės_ - šeštadienio."
+        }
+      ],
+      "PDFs": [
+        {
+          "Variant Name": "Dokumentas",
+          "URL": "https://media.dainorelis.app/ant%20tevulio%20dvarelio.pdf"
         }
       ]
     }
@@ -3228,18 +3228,6 @@ const songs: SongFile = [
       ],
       "Music Author": "A. Kaniava",
       "Text Author": "A. Kaniava"
-    }
-  },
-  {
-    "id": "recnG5c1yP0q6WHVI",
-    "fields": {
-      "Name": "Klausia žvirblis čiulbuonėlis",
-      "Lyrics": [
-        {
-          "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Klausia žvirblis čiulbuonėlis\nPas tą pilką karvelėlį,\nKaip, kaip aguonėles sėja kaip,\nKaip aguonėles sėja.\n\nŠitaip, šitaip, va ir va-kur, 2 k.\nTaip, taip aguonėles sėja. 2 k.\n\nDyksta,\n\nAuga,\n\nŽydi,\n\nNoksta,\n\nKrečia,\n\nValgo,\n\nGardžios."
-        }
-      ]
     }
   },
   {
@@ -7417,7 +7405,7 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "[Galbūt per daug ir per ilgai mes kariavom,](C) [ ](G)\n[Galbūt per ilgai kartojom žodį „šlovė“ jė ė jė ė](C) [ ](G)  \n[Gal kartais per daug iš kitų reikalavom](C) [ ](G)  \n[Ir kartais per tyliai mes norėjom nugalėt.](C) [ ](G)\n\n[Bet ir aš ten buvau,](F)  \n[Laimingas pergalės dainas dainavau,](G) [ ](C)  \n[Iškėlęs du pirštus į dangų laikiau,](F)\n[Nes nugalėtojų jau niekas neteis,](G) [ ](C)  \nĮ juos akmens nepaleis  \n[Viskas buvo seniai -](F)  \n[Tu per ilgai per ramiai gyvenai.](G) [ ](C)\n\n[Nes mano gyvas kraujas vėl atsigaus,](F)\n[Kaip atsigauna žolė po gero lietaus jė ė jė ė](G)\n\n_[Nesikankink dėl medalio,](C)\n[Bet verta kovot ligi galo dėl savo garbės.](G)\n[Pabandom iš naujo,](F)  \n[Nors esam pasauly tik trys milijonai.](G)\n[Neliek savo kraujo dėl aukso,](C)\n[Nes būsi legenda, kol nepraradom vilties,](G)\n[Net jeigu ir vėl](F)  \n[Tik per klaidą netapom mes čempionais.](G)\n\nIr aš tūkstantį kartų sakiau savo draugui\n„Mes geri, mes galingi mes šiandien laimėsim“.\nJis sakė „nė velnio“\nIr jis tūkstantį kartų buvo teisus, bet\nBet geriau negyvent negu visai netikėti jė ė.\nNenuleidžiam galvos, net jeigu mums nesiseka\nDevynis kartus iš eilės.\nJuk mes ne iš tų,\nKur pralaimi dar nenugalėti.\nIr nebelieka jau baimės\nKada viskas nurimo ir baigės\nGali numirt iš nevilties ar iš laimės\nNet jei žaidi tik šachmatais arba dartais\nJuk būna, kad kartais\nLieki vienas be draugo\nIr jauti jog kažkas tave saugo,\nMes per vieną naktį dideli užaugom\nIr mes galingi iš naujo jė ė jė ė jė ė.",
+          "Lyrics & Chords": "[Galbūt per daug ir per ilgai mes kariavom,](C) [ ](G)\n[Galbūt per ilgai kartojom žodį „šlovė“ jė ė jė ė](C) [ ](G)  \n[Gal kartais per daug iš kitų reikalavom](C) [ ](G)  \n[Ir kartais per tyliai mes norėjom nugalėt.](C) [ ](G)\n\n[Bet ir aš ten buvau,](F)  \n[Laimingas pergalės dainas dainavau,](G) [ ](C)  \n[Iškėlęs du pirštus į dangų laikiau,](F)\n[Nes nugalėtojų jau niekas neteis,](G) [ ](C)  \nĮ juos akmens nepaleis  \n[Viskas buvo seniai -](F)  \n[Tu per ilgai per ramiai gyvenai.](G) [ ](C)\n\n[Nes mano gyvas kraujas vėl atsigaus,](F)\n[Kaip atsigauna žolė po gero lietaus jė ė jė ė](G)\n\n[Nesikankink dėl medalio,](C)\n[Bet verta kovot ligi galo dėl savo garbės.](G)\n[Pabandom iš naujo,](F)  \n[Nors esam pasauly tik trys milijonai.](G)\n[Neliek savo kraujo dėl aukso,](C)\n[Nes būsi legenda, kol nepraradom vilties,](G)\n[Net jeigu ir vėl](F)  \n[Tik per klaidą netapom mes čempionais.](G)\n\nIr aš tūkstantį kartų sakiau savo draugui\n„Mes geri, mes galingi mes šiandien laimėsim“.\nJis sakė „nė velnio“\nIr jis tūkstantį kartų buvo teisus, bet\nBet geriau negyvent negu visai netikėti jė ė.\nNenuleidžiam galvos, net jeigu mums nesiseka\nDevynis kartus iš eilės.\nJuk mes ne iš tų,\nKur pralaimi dar nenugalėti.\nIr nebelieka jau baimės\nKada viskas nurimo ir baigės\nGali numirt iš nevilties ar iš laimės\nNet jei žaidi tik šachmatais arba dartais\nJuk būna, kad kartais\nLieki vienas be draugo\nIr jauti jog kažkas tave saugo,\nMes per vieną naktį dideli užaugom\nIr mes galingi iš naujo jė ė jė ė jė ė.",
           "Show Chords": true
         }
       ],

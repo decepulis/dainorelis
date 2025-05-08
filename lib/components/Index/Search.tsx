@@ -12,14 +12,14 @@ import Animated, {
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 import { Ionicons } from '@expo/vector-icons';
+import { useHeaderHeight } from '@react-navigation/elements';
 
-import maxWidth from '../constants/maxWidth';
-import { fonts } from '../constants/themes';
-import useA11yBoldText from '../hooks/useA11yBoldText';
-import useDefaultHeaderHeight from '../hooks/useDefaultHeaderHeight';
-import { useThemeColor } from '../hooks/useThemeColor';
-import SegmentedControl from './SegmentedControl';
-import SystemView from './SystemView';
+import maxWidth from '../../constants/maxWidth';
+import { fonts } from '../../constants/themes';
+import useA11yBoldText from '../../hooks/useA11yBoldText';
+import { useThemeColor } from '../../hooks/useThemeColor';
+import SegmentedControl from '../SegmentedControl';
+import SystemView from '../SystemView';
 
 type Props = {
   scrollRef: AnimatedRef<AnimatedScrollView>;
@@ -44,9 +44,10 @@ export default function IndexSearch({
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
+  const separator = useThemeColor('separator');
   const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
-  const defaultHeaderHeight = useDefaultHeaderHeight();
+  const headerHeight = useHeaderHeight();
 
   const isBoldTextEnabled = useA11yBoldText();
 
@@ -56,10 +57,10 @@ export default function IndexSearch({
       const scrollEl = scrollRef.current as NativeMethods | null;
       if (!scrollEl) return;
       event.target.measureLayout(scrollEl, (_x, y) => {
-        howFarThisIsFromTheTop.value = y - defaultHeaderHeight;
+        howFarThisIsFromTheTop.value = y - headerHeight;
       });
     },
-    [defaultHeaderHeight, howFarThisIsFromTheTop, scrollRef]
+    [headerHeight, howFarThisIsFromTheTop, scrollRef]
   );
 
   const fadeInStyle = useAnimatedStyle(() => ({
@@ -72,6 +73,7 @@ export default function IndexSearch({
   }));
 
   return (
+    // TODO if this is wide enough, make it horizontal
     <View style={{ position: 'relative' }} onLayout={figureOutHowFarThisIsFromTheTop}>
       <Animated.View style={[StyleSheet.absoluteFill, fadeInStyle]}>
         <SystemView
@@ -109,7 +111,15 @@ export default function IndexSearch({
             backgroundColor: `${card}bb`,
             height: 40,
             borderRadius: 15,
-            boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
+            ...Platform.select({
+              ios: {
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: separator,
+              },
+              default: {
+                boxShadow: '0 0 10px rgba(0, 0, 0, 0.05)',
+              },
+            }),
           }}
         >
           <TextInput

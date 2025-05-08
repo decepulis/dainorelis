@@ -14,7 +14,7 @@ import { Song } from '@/lib/schemas/songs';
 import { Videos } from '@/lib/schemas/videos';
 import isLyrics from '@/lib/utils/isLyrics';
 
-import Button, { styles as buttonStyles } from '../Button';
+import Button, { buttonSlop, styles as buttonStyles } from '../Button';
 import SystemView from '../SystemView';
 
 type Props = {
@@ -58,16 +58,16 @@ export default function SongMenu({
     setFavorites(favorites.filter((id) => id !== song.id));
   }, [favorites, setFavorites, song.id]);
 
-  // TODO feedback menu
+  // TODO BLOCKER feedback menu
   // TODO share sheet (dainorelis.app web app)
   // TODO if only two items, no need for a menu
-  // TODO determine how many items fit on screen
   const actions: (MenuAction | null)[] = [
     hasChords
       ? {
           id: 'chords',
           title: t('showChords'),
           state: showChords ? 'on' : 'off',
+          attributes: { keepsMenuPresented: true },
         }
       : null,
     hasLyrics || hasPDFs
@@ -115,20 +115,16 @@ export default function SongMenu({
 
   return (
     <>
-      {filteredActions.length ? (
-        <MenuView
-          hitSlop={{ top: 28, bottom: 28, left: 28, right: 28 }}
-          actions={filteredActions}
-          onPressAction={onPressAction}
-        >
-          <SystemView variant="primary" shadow={false} style={buttonStyles.container}>
-            <FontAwesome6 name="bars" size={14} color="white" />
-          </SystemView>
-        </MenuView>
-      ) : null}
       <Button onPress={isFavorite ? removeFromFavorites : addToFavorites}>
         <FontAwesome6 name="heart" solid={isFavorite} size={14} color="white" />
       </Button>
+      {filteredActions.length ? (
+        <MenuView hitSlop={buttonSlop} actions={filteredActions} onPressAction={onPressAction}>
+          <SystemView variant="primary" shadow={false} style={buttonStyles.container}>
+            <FontAwesome6 name="ellipsis" size={15} color="white" />
+          </SystemView>
+        </MenuView>
+      ) : null}
     </>
   );
 }
