@@ -5,6 +5,7 @@ import { Link } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
+import maxWidth from '@/lib/constants/maxWidth';
 import { Song } from '@/lib/schemas/songs';
 
 import ThemedText from '../ThemedText';
@@ -12,50 +13,68 @@ import { padding } from './constants';
 
 type Props = {
   item: Song;
-  isLast: boolean;
   title?: React.ReactNode;
   primary: string;
-  separator: string;
   favorites: string[];
+  background: string;
+  separator: string;
+  isLast?: boolean;
 };
-export function ListItem({ item, isLast, title, primary, separator, favorites }: Props) {
+export function ListItem({ item, title, background, primary, favorites, separator, isLast }: Props) {
   // TODO slide to favorite
   return (
-    <Link href={`/dainos/${item.id}`} asChild>
-      <RectButton rippleColor={primary}>
-        <View
-          style={[
-            styles.itemContainer,
-            {
-              borderBottomColor: separator,
-              borderBottomWidth: isLast || Platform.OS !== 'ios' ? 0 : StyleSheet.hairlineWidth,
-            },
-          ]}
+    <View style={styles.outerContainer}>
+      <Link href={`/dainos/${item.id}`} asChild>
+        <RectButton
+          style={{
+            backgroundColor: background,
+          }}
         >
-          <ThemedText style={styles.itemText}>{title || item.fields.Name}</ThemedText>
-          {favorites.includes(item.id) ? (
-            <FontAwesome6 name="heart" size={fontSize} color={primary} solid style={styles.itemHeart} />
-          ) : null}
-        </View>
-      </RectButton>
-    </Link>
+          <View
+            style={[
+              styles.container,
+              styles.itemContainer,
+              {
+                borderBottomColor: separator,
+                borderBottomWidth: Platform.OS === 'ios' && !isLast ? StyleSheet.hairlineWidth : 0,
+              },
+            ]}
+          >
+            <ThemedText style={styles.itemText}>{title || item.fields.Name}</ThemedText>
+            {favorites.includes(item.id) ? (
+              <FontAwesome6 name="heart" size={fontSize} color={primary} solid style={styles.itemHeart} />
+            ) : null}
+          </View>
+        </RectButton>
+      </Link>
+    </View>
   );
 }
 
-export function ListHeader({ title, separator }: { title: string; separator: string }) {
+export function ListHeader({ title, background, separator }: { title: string; background: string; separator: string }) {
   return (
-    <ThemedText
-      bold
+    <View
       style={[
-        styles.sectionHeader,
+        styles.outerContainer,
         {
-          borderBottomWidth: Platform.OS !== 'ios' ? 0 : StyleSheet.hairlineWidth,
-          borderBottomColor: separator,
+          backgroundColor: background,
         },
       ]}
     >
-      {title}
-    </ThemedText>
+      <View
+        style={[
+          styles.container,
+          {
+            borderBottomColor: separator,
+            borderBottomWidth: Platform.OS === 'ios' ? StyleSheet.hairlineWidth : 0,
+          },
+        ]}
+      >
+        <ThemedText bold style={[styles.sectionHeader]}>
+          {title}
+        </ThemedText>
+      </View>
+    </View>
   );
 }
 
@@ -65,16 +84,20 @@ const lineHeight = fontSize * 1.2;
 export const listItemHeight = paddingVertical * 2 + lineHeight;
 
 const styles = StyleSheet.create({
-  sectionHeader: {
+  outerContainer: {
+    width: '100%',
+    maxWidth,
+    marginHorizontal: 'auto',
+  },
+  container: {
+    paddingVertical,
     marginLeft: padding,
     paddingRight: padding,
-    paddingVertical,
+  },
+  sectionHeader: {
     fontSize,
   },
   itemContainer: {
-    marginLeft: padding,
-    paddingRight: padding,
-    paddingVertical,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

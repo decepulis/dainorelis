@@ -44,13 +44,7 @@ const Option = ({ isSelected, option, onPress }: OptionProps) => {
   });
 
   return (
-    <RectButton
-      hitSlop={{ top: 14, bottom: 14 }}
-      key={option.value}
-      style={styles.option}
-      rippleColor={primary}
-      onPress={onPress}
-    >
+    <RectButton hitSlop={{ top: 14, bottom: 14 }} key={option.value} style={styles.option} onPress={onPress}>
       <Animated.Text style={[styles.optionText, textStyle]}>{option.label}</Animated.Text>
     </RectButton>
   );

@@ -4,19 +4,21 @@ import Animated, { AnimatedScrollViewProps } from 'react-native-reanimated';
 
 import { useHeaderHeight } from '@react-navigation/elements';
 
+export const useContentContainerStyle = () => {
+  const headerHeight = useHeaderHeight();
+  return {
+    marginTop: headerHeight,
+    paddingBottom: Platform.OS === 'android' ? headerHeight : 0,
+  };
+};
+
 const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewProps>(
-  ({ children, contentContainerStyle, ...props }, ref) => {
-    const headerHeight = useHeaderHeight();
+  ({ children, contentContainerStyle: argContentContainerStyle, ...props }, ref) => {
+    const contentContainerStyle = useContentContainerStyle();
     return (
       <Animated.ScrollView
         ref={ref}
-        contentContainerStyle={[
-          {
-            marginTop: headerHeight,
-            paddingBottom: Platform.OS === 'android' ? headerHeight : 0,
-          },
-          contentContainerStyle,
-        ]}
+        contentContainerStyle={[contentContainerStyle, argContentContainerStyle]}
         {...props}
       >
         {children}

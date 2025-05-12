@@ -10,7 +10,6 @@ import Animated, {
   useScrollViewOffset,
   useSharedValue,
 } from 'react-native-reanimated';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
@@ -27,42 +26,44 @@ import { useThemeColor } from '../../hooks/useThemeColor';
 import { buttonSlop, styles as buttonStyles } from '../Button';
 import SegmentedControl from '../SegmentedControl';
 import SystemView from '../SystemView';
+import { padding } from './constants';
+
+const paddingVertical = padding / 4;
 
 type Props = {
-  scrollRef: AnimatedRef<AnimatedScrollView>;
-  filter: 'allSongs' | 'favoriteSongs';
-  setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
+  scrollRef: AnimatedRef<Animated.FlatList<any>>;
+  isFavorites: boolean;
+  setIsFavorites: (value: boolean) => void;
   isSongFestivalMode: boolean;
   setIsSongFestivalMode: (value: boolean) => void;
   setSearchText: (text: string) => void;
   setSearchHeight: (height: number) => void;
-  padding: number;
 };
-export default function IndexSearch({
+export default function Search({
   scrollRef,
-  filter,
-  setFilter,
+  isFavorites,
+  setIsFavorites,
   isSongFestivalMode,
   setIsSongFestivalMode,
   setSearchText,
   setSearchHeight,
-  padding,
 }: Props) {
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
   const separator = useThemeColor('separator');
   const card = useThemeColor('card');
-  const scrollOffset = useScrollViewOffset(scrollRef);
+  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
   const headerHeight = useHeaderHeight();
   const { setDidSongFestivalLoad } = useDidImagesLoad();
 
   const isBoldTextEnabled = useA11yBoldText();
 
-  const howFarThisIsFromTheTop = useSharedValue(250);
+  const howFarThisIsFromTheTop = useSharedValue<number | null>(null);
   const figureOutHowFarThisIsFromTheTop = useCallback(
     (event: LayoutChangeEvent) => {
-      const scrollEl = scrollRef.current as NativeMethods | null;
+      const scrollEl = scrollRef?.current?.getNativeScrollRef() as NativeMethods;
       if (!scrollEl) return;
       event.target.measureLayout(scrollEl, (_x, y) => {
         howFarThisIsFromTheTop.value = y - headerHeight;
@@ -72,17 +73,39 @@ export default function IndexSearch({
   );
 
   const fadeInStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      scrollOffset.value,
-      [howFarThisIsFromTheTop.value, howFarThisIsFromTheTop.value + padding],
-      [0, 1],
-      Extrapolation.CLAMP
-    ),
+    opacity: howFarThisIsFromTheTop.value
+      ? interpolate(
+          scrollOffset.value,
+          [howFarThisIsFromTheTop.value, howFarThisIsFromTheTop.value + padding],
+          [0, 1],
+          Extrapolation.CLAMP
+        )
+      : 0,
   }));
+
+  const scrollToTop = useCallback(
+    (isSearch = false) => {
+      const scrollEl = scrollRef?.current;
+      if (!scrollEl) return;
+      if (isSearch && howFarThisIsFromTheTop.value) {
+        scrollEl.scrollToOffset({ offset: howFarThisIsFromTheTop.value + padding, animated: true });
+      } else {
+        scrollEl.scrollToOffset({ offset: 0, animated: true });
+      }
+    },
+    [howFarThisIsFromTheTop, scrollRef]
+  );
 
   return (
     // TODO if this is wide enough, make it horizontal
-    <View style={{ position: 'relative' }} onLayout={figureOutHowFarThisIsFromTheTop}>
+    <View
+      style={{
+        position: 'relative',
+        marginBottom: padding - paddingVertical,
+      }}
+      onLayout={figureOutHowFarThisIsFromTheTop}
+    >
+      {/* background once sticky */}
       <Animated.View style={[StyleSheet.absoluteFill, fadeInStyle]}>
         <SystemView
           variant="primary"
@@ -91,14 +114,14 @@ export default function IndexSearch({
       </Animated.View>
       <View
         onLayout={(event) => {
-          setSearchHeight(event.nativeEvent.layout.height);
+          setSearchHeight(event.nativeEvent.layout.height + (padding - paddingVertical) * 2);
         }}
         style={{
           maxWidth: maxWidth,
           width: '100%',
           marginHorizontal: 'auto',
           paddingHorizontal: padding - 5,
-          paddingVertical: padding / 4,
+          paddingVertical,
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: buttonSlop.left }}>
@@ -107,19 +130,21 @@ export default function IndexSearch({
               { label: t('allSongs'), value: 'allSongs' },
               { label: t('favoriteSongs'), value: 'favoriteSongs' },
             ]}
-            value={filter}
+            value={isFavorites ? 'favoriteSongs' : 'allSongs'}
             onValueChange={(value) => {
-              setFilter(value as 'allSongs' | 'favoriteSongs');
+              setIsFavorites(value === 'favoriteSongs');
+              scrollToTop();
             }}
           />
           <BorderlessButton
-            // TODO why is this not rippling?
-            rippleColor={primary}
+            // TODO why is this not rippling? also is button slop working?
+            hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
+              setIsSongFestivalMode(!isSongFestivalMode);
               Haptics.impactAsync(
                 isSongFestivalMode ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Medium
               );
-              setIsSongFestivalMode(!isSongFestivalMode);
+              scrollToTop();
             }}
           >
             <View
@@ -133,6 +158,8 @@ export default function IndexSearch({
                       borderColor: separator,
                     },
                     default: {
+                      borderWidth: 1,
+                      borderColor: isSongFestivalMode ? card : 'transparent',
                       boxShadow: '0 0 10px rgba(0, 0, 0, 0.05)',
                     },
                   }),
@@ -182,7 +209,11 @@ export default function IndexSearch({
             ]}
             clearButtonMode="while-editing"
             autoCorrect={false}
-            onChangeText={setSearchText}
+            onChangeText={(t) => {
+              setSearchText(t);
+              scrollToTop(true);
+            }}
+            onFocus={() => scrollToTop(true)}
             returnKeyType="done"
             selectionColor={primary}
           />

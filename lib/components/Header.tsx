@@ -10,7 +10,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
 import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -27,12 +26,13 @@ const timing = {
 };
 
 type HeaderBackgroundProps = {
-  scrollRef?: AnimatedRef<AnimatedScrollView>;
+  scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
   opaque?: boolean;
   shadow?: boolean;
 };
 
 export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBackgroundProps) {
+  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
 
   const headerStyle = useAnimatedStyle(() => ({
@@ -48,14 +48,14 @@ export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBac
 }
 
 const titleFontSize = 17;
-const titleLineHeight = 28;
+const titleLineHeight = 1.65;
 const titleWithSubtitleFontSize = 16;
-const titleWithSubtitleLineHeight = 16 * 1.25;
+const titleWithSubtitleLineHeight = 1.25;
 const subtitleFontSize = 14;
-const subtitleLineHeight = 14 * 1.25;
+const subtitleLineHeight = 1.25;
 
 type HeaderTitleProps = {
-  scrollRef?: AnimatedRef<AnimatedScrollView>;
+  scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
   titleLayout?: SharedValue<LayoutRectangle | null>;
   showTitle?: boolean;
   children?: React.ReactNode;
@@ -77,6 +77,7 @@ export const HeaderTitle = ({
   const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
 
+  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
 
   const hasSubtitleOrVariantName = !!subtitle || !!variantName;
@@ -120,7 +121,7 @@ export const HeaderTitle = ({
           scale: withTiming(animateTitleIn ? 1 : titleWithSubtitleFontSize / subtitleFontSize, timing),
         },
         {
-          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleLineHeight, timing),
+          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleFontSize, timing),
         },
       ],
     };
@@ -137,7 +138,9 @@ export const HeaderTitle = ({
               style={[
                 {
                   fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
-                  lineHeight: hasSubtitleOrVariantName ? titleWithSubtitleLineHeight : titleLineHeight,
+                  lineHeight: hasSubtitleOrVariantName
+                    ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
+                    : titleFontSize * titleLineHeight,
                   textAlign: Platform.select({ ios: 'center', default: 'left' }),
                   position: 'relative',
                   top: !variantName ? 1 : 0,
@@ -158,7 +161,7 @@ export const HeaderTitle = ({
               style={[
                 {
                   fontSize: subtitleFontSize,
-                  lineHeight: subtitleLineHeight,
+                  lineHeight: subtitleFontSize * subtitleLineHeight,
                   textAlign: Platform.select({ ios: 'center', default: 'left' }),
                   position: 'relative',
                   top: 0,
@@ -189,7 +192,7 @@ export const HeaderTitle = ({
               style={[
                 {
                   fontSize: subtitleFontSize,
-                  lineHeight: subtitleLineHeight,
+                  lineHeight: subtitleFontSize * subtitleLineHeight,
                   textAlign: Platform.select({ ios: 'center', default: 'left' }),
                   position: 'relative',
                   top: 0,

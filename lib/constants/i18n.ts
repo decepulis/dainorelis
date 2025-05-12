@@ -65,7 +65,7 @@ const en = {
   shareSong: 'Share',
   feedbackUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSdNf7wjGeafKFHlHOG6doyrb_sWHTDif0TXW7qxiuWTbkhfHg/viewform?usp=pp_url&entry.1630106308=',
-  songFestival: '2025 Lithuanian Song Festival',
+  songFestival: 'XI North American Lithuanian Song Festival',
   songFestivalRepertoire0: 'National Anthems & Prayer',
   songFestivalRepertoire1: 'Part I: We were born Lithuanian',
   songFestivalRepertoire2: 'Part II: The place of my dreams',
@@ -114,7 +114,7 @@ const lt = {
   shareSong: 'Bendrinti dainą',
   feedbackUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSdfp7P-qYInjfLFxHQyw8uW-PHmGh43HyzXfo34rVwPft4noA/viewform?usp=pp_url&entry.1630106308=',
-  songFestival: '2025 Dainų Šventė',
+  songFestival: 'XI-toji Šiaurės Amerikos Dainų Šventė',
   songFestivalRepertoire0: 'Himnai ir malda',
   songFestivalRepertoire1: 'Pirma dalis: Lietuviais esame mes gimę',
   songFestivalRepertoire2: 'Antra dalis: Ten mano svajos...',
