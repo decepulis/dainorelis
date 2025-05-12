@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, View } from 'react-native';
+import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
 import { Link } from 'expo-router';
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   container: {
-    paddingVertical,
+    paddingVertical: PixelRatio.roundToNearestPixel(paddingVertical),
     marginLeft: padding,
     paddingRight: padding,
   },
