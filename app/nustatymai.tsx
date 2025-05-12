@@ -5,7 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 
-import { HeaderBackground } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft } from '@/lib/components/Header';
+import { padding } from '@/lib/components/Index/constants';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
@@ -65,6 +66,7 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
+          headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
         }}
       />
@@ -149,28 +151,29 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 30,
-    paddingVertical: 40,
+    paddingHorizontal: padding,
+    paddingVertical: padding * 2,
     position: 'relative',
     width: '100%',
     maxWidth: maxWidth,
     marginHorizontal: 'auto',
   },
   section: {
-    marginBottom: 50,
+    marginBottom: padding * 2,
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
   },
   settings: {
-    gap: 20,
+    gap: padding,
   },
   setting: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 20,
+    gap: padding,
   },
   settingTitle: {
+    // set so that "language" would fit on most screens
     flexBasis: 65,
     flexGrow: 0,
     flexShrink: 0,
@@ -178,13 +181,13 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: 15,
-    paddingBottom: 5,
+    marginBottom: padding / 2,
+    paddingBottom: padding / 4,
   },
   subheader: {
-    fontSize: 20,
-    marginTop: 20,
-    marginBottom: 10,
+    fontSize: padding,
+    marginTop: padding,
+    marginBottom: padding / 2,
   },
   paragraph: {
     fontSize: 16,
@@ -197,7 +200,7 @@ const styles = StyleSheet.create({
     maxWidth: 450,
     marginHorizontal: 'auto',
   },
-  profile: { alignItems: 'center', margin: 10 },
+  profile: { alignItems: 'center', margin: padding / 2 },
   profileImage: { width: 120, height: 120, borderRadius: 9999 },
-  profileText: { width: 130, paddingTop: 10, textAlign: 'center' },
+  profileText: { width: 130, paddingTop: padding / 2, textAlign: 'center' },
 });

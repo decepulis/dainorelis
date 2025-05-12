@@ -25,7 +25,7 @@ const SystemView = forwardRef<View, Props>(
       return (
         <BlurView
           ref={ref as any}
-          intensity={variant === 'primary' ? 66 : 100}
+          intensity={variant === 'primary' ? 65 : 85}
           tint={variant === 'primary' ? 'systemChromeMaterialDark' : isDark ? 'dark' : 'extraLight'}
           style={[
             {

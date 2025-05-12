@@ -1,2 +1,1 @@
-export const margin = 20;
-export const padding = 20;
+export const padding = 22.5;

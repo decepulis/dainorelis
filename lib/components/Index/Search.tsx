@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, NativeMethods, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { BorderlessButton } from 'react-native-gesture-handler';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -11,13 +12,19 @@ import Animated, {
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
+import * as Haptics from 'expo-haptics';
+import { Image } from 'expo-image';
+
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
+
+import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 
 import maxWidth from '../../constants/maxWidth';
 import { fonts } from '../../constants/themes';
 import useA11yBoldText from '../../hooks/useA11yBoldText';
 import { useThemeColor } from '../../hooks/useThemeColor';
+import { buttonSlop, styles as buttonStyles } from '../Button';
 import SegmentedControl from '../SegmentedControl';
 import SystemView from '../SystemView';
 
@@ -25,20 +32,20 @@ type Props = {
   scrollRef: AnimatedRef<AnimatedScrollView>;
   filter: 'allSongs' | 'favoriteSongs';
   setFilter: (value: 'allSongs' | 'favoriteSongs') => void;
-  searchText?: string;
+  isSongFestivalMode: boolean;
+  setIsSongFestivalMode: (value: boolean) => void;
   setSearchText: (text: string) => void;
   setSearchHeight: (height: number) => void;
-  margin: number;
   padding: number;
 };
 export default function IndexSearch({
   scrollRef,
   filter,
   setFilter,
-  searchText,
+  isSongFestivalMode,
+  setIsSongFestivalMode,
   setSearchText,
   setSearchHeight,
-  margin,
   padding,
 }: Props) {
   const { t } = useTranslation();
@@ -48,6 +55,7 @@ export default function IndexSearch({
   const card = useThemeColor('card');
   const scrollOffset = useScrollViewOffset(scrollRef);
   const headerHeight = useHeaderHeight();
+  const { setDidSongFestivalLoad } = useDidImagesLoad();
 
   const isBoldTextEnabled = useA11yBoldText();
 
@@ -89,28 +97,68 @@ export default function IndexSearch({
           maxWidth: maxWidth,
           width: '100%',
           marginHorizontal: 'auto',
-          paddingHorizontal: margin + padding - 5,
+          paddingHorizontal: padding - 5,
           paddingVertical: padding / 4,
         }}
       >
-        {/* TODO add dainu svente button */}
-        <SegmentedControl
-          options={[
-            { label: t('allSongs'), value: 'allSongs' },
-            { label: t('favoriteSongs'), value: 'favoriteSongs' },
-          ]}
-          value={filter}
-          onValueChange={(value) => {
-            setFilter(value as 'allSongs' | 'favoriteSongs');
-          }}
-        />
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: buttonSlop.left }}>
+          <SegmentedControl
+            options={[
+              { label: t('allSongs'), value: 'allSongs' },
+              { label: t('favoriteSongs'), value: 'favoriteSongs' },
+            ]}
+            value={filter}
+            onValueChange={(value) => {
+              setFilter(value as 'allSongs' | 'favoriteSongs');
+            }}
+          />
+          <BorderlessButton
+            // TODO why is this not rippling?
+            rippleColor={primary}
+            onPress={() => {
+              Haptics.impactAsync(
+                isSongFestivalMode ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Medium
+              );
+              setIsSongFestivalMode(!isSongFestivalMode);
+            }}
+          >
+            <View
+              style={[
+                buttonStyles.container,
+                {
+                  backgroundColor: isSongFestivalMode ? 'black' : `${card}bb`,
+                  ...Platform.select({
+                    ios: {
+                      borderWidth: StyleSheet.hairlineWidth,
+                      borderColor: separator,
+                    },
+                    default: {
+                      boxShadow: '0 0 10px rgba(0, 0, 0, 0.05)',
+                    },
+                  }),
+                },
+              ]}
+            >
+              <Image
+                source={require('@/assets/images/ds2025_logo_image.png')}
+                style={{
+                  width: '75%',
+                  height: '75%',
+                }}
+                onLoad={() => setDidSongFestivalLoad(true)}
+                contentFit="contain"
+                contentPosition="center"
+              />
+            </View>
+          </BorderlessButton>
+        </View>
         <View
           style={{
             marginTop: padding / 4,
             position: 'relative',
-            backgroundColor: `${card}bb`,
             height: 40,
             borderRadius: 15,
+            backgroundColor: `${card}bb`,
             ...Platform.select({
               ios: {
                 borderWidth: StyleSheet.hairlineWidth,
@@ -134,7 +182,6 @@ export default function IndexSearch({
             ]}
             clearButtonMode="while-editing"
             autoCorrect={false}
-            defaultValue={searchText}
             onChangeText={setSearchText}
             returnKeyType="done"
             selectionColor={primary}

@@ -24,9 +24,24 @@ For Android and iOS to work, you'll probably have to do some setup. Here's some 
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/).
 
+### Run a production build locally
+
+If you don't want to deal with the Test Flight or Google Play Console to test a production build on your own device, try this:
+
+```
+# Android
+npx expo run:android --variant release --device
+
+# iOS
+npx expo run:ios --configuration Release --device
+```
+
 ### Release
 
-- [Create a production build locally](https://docs.expo.dev/guides/local-app-production/#app-submission-using-app-store-connect)
+If you _do_ want to deal with TestFlight or Google Play Console to test a production build on your device (or other peoples' devices)... or if you're just ready to release a new version of the app, check this out:
+
+- [Create a production build locally](https://docs.expo.dev/guides/local-app-production/)
+
   > You may have to make `SENTRY_AUTH_TOKEN` available in your environment.
 
 ### Make changes

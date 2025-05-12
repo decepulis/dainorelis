@@ -3,11 +3,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Image } from 'expo-image';
 
-export default function HeaderLogo({ onLoadEnd, headerHeight }: { headerHeight; onLoadEnd?: () => void }) {
+export default function HeaderLogo({ onLoadEnd, headerHeight }: { headerHeight: number; onLoadEnd?: () => void }) {
   const inset = useSafeAreaInsets();
   return (
     <Image
-      source={require('@/assets/images/logo_white.png')}
+      source={require('@/assets/images/logo_white_v3.png')}
       onLoadEnd={onLoadEnd}
       style={[
         headerStyles.title,

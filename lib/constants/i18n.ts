@@ -1,21 +1,25 @@
 import { initReactI18next } from 'react-i18next';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import i18n, { LanguageDetectorAsyncModule } from 'i18next';
+import i18n, { LanguageDetectorModule } from 'i18next';
 
-const getLanguageFromAsyncStorage: LanguageDetectorAsyncModule = {
+import { storage } from '../hooks/useStorage';
+
+const getLanguageFromStorage: LanguageDetectorModule = {
   type: 'languageDetector',
-  async: true,
   init: () => {},
-  detect: async function () {
-    let language = 'lt';
-    const languageJSON = await AsyncStorage.getItem('language');
+  detect: function () {
+    let language = 'lt'; // default to lithuanian
+    const languageJSON = storage.getString('language');
     if (languageJSON) {
-      const langaugeJSONParsed = JSON.parse(languageJSON);
-      if (langaugeJSONParsed === 'en') language = 'en';
+      try {
+        const languageParsed = JSON.parse(languageJSON);
+        if (languageParsed === 'en') language = 'en';
+      } catch (e) {
+        console.error('Error parsing language from MMKV:', e);
+      }
     }
 
-    return Promise.resolve(language);
+    return language;
   },
 };
 
@@ -23,8 +27,7 @@ const en = {
   songs: 'Songs',
   allSongs: 'All Songs',
   favoriteSongs: 'Favorites',
-  addToFavorites: 'Add favorite',
-  removeFromFavorites: 'Remove favorite',
+  favoriteSong: 'Favorite',
   noResults: 'No results.',
   noHits: 'Check the spelling or try a new search.',
   noFavorites1: 'No favorites. When viewing a song, press',
@@ -53,19 +56,30 @@ const en = {
   musicAndWordsBy: 'Music and words by ',
   variantsMenuTitle: 'Versions',
   variant: 'Version',
+  lyrics: 'Lyrics',
+  sheetMusic: 'Sheet music',
   mediaMenuTitle: 'Recordings',
   media: 'Recording',
+  feedback: 'Feedback',
+  aboutSong: 'About this song',
+  shareSong: 'Share',
+  feedbackUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSdNf7wjGeafKFHlHOG6doyrb_sWHTDif0TXW7qxiuWTbkhfHg/viewform?usp=pp_url&entry.1630106308=',
+  songFestival: '2025 Lithuanian Song Festival',
+  songFestivalRepertoire0: 'National Anthems & Prayer',
+  songFestivalRepertoire1: 'Part I: We were born Lithuanian',
+  songFestivalRepertoire2: 'Part II: The place of my dreams',
+  songFestivalRepertoire3: 'Part III: And the sun rose, again awakening the world',
+  songFestivalRepertoire4: "Part IV: Let's open the hope chest of song & dance",
 };
 const lt = {
   songs: 'Dainos',
   allSongs: 'Visos',
-  favoriteSongs: 'Mano',
-  addToFavorites: 'Pažymėti „mano“',
-  removeFromFavorites: 'Pašalinti „mano“',
+  favoriteSongs: 'Mėgstamos',
   noResults: 'Rezultatų nėra.',
   noHits: 'Patikrinkite rašybą arba pabandykite naują paiešką.',
   noFavorites1: 'Žiūrėdami dainą, spauskite',
-  noFavorites2: 'pažymėti kaip „mano“',
+  noFavorites2: 'mygtuką ir pažymekit kaip „mėgstama“',
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
@@ -79,10 +93,10 @@ const lt = {
     'Mes sukūrėme „Dainorėlis App“, kad lietuviai po visą pasaulį galėtų lengvai rasti savo mylimų liaudės dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
   settingsOurTeamTitle: 'Mūsų komanda',
   language: 'Kalba',
-  theme: 'Tema',
+  theme: 'Režimas',
   autoTheme: 'Auto',
-  darkTheme: 'Tamsi',
-  lightTheme: 'Šviesi',
+  darkTheme: 'Tamsus',
+  lightTheme: 'Šviesus',
   showChords: 'Rodyti akordus',
   hideChords: 'Nerodyti akordų',
   musicBy: 'Muzika: ',
@@ -90,14 +104,28 @@ const lt = {
   musicAndWordsBy: 'Muzika ir žodžiai: ',
   variantsMenuTitle: 'Variantai',
   variant: 'Variantas',
+  lyrics: 'Žodžiai',
+  sheetMusic: 'Natos',
   mediaMenuTitle: 'Įrašai',
   media: 'Įrašas',
+  feedback: 'Palikti atsiliepimą',
+  favoriteSong: 'Mėgstama',
+  aboutSong: 'Rodyti aprašymą',
+  shareSong: 'Bendrinti dainą',
+  feedbackUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSdfp7P-qYInjfLFxHQyw8uW-PHmGh43HyzXfo34rVwPft4noA/viewform?usp=pp_url&entry.1630106308=',
+  songFestival: '2025 Dainų Šventė',
+  songFestivalRepertoire0: 'Himnai ir malda',
+  songFestivalRepertoire1: 'Pirma dalis: Lietuviais esame mes gimę',
+  songFestivalRepertoire2: 'Antra dalis: Ten mano svajos...',
+  songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
+  songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
 };
 
 export async function initI18n() {
   await i18n
     .use(initReactI18next)
-    .use(getLanguageFromAsyncStorage)
+    .use(getLanguageFromStorage)
     .init({
       resources: {
         en: { translation: en },

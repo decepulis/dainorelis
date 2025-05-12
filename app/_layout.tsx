@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Appearance, KeyboardAvoidingView, LayoutChangeEvent, useColorScheme } from 'react-native';
+import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 
 import { ThemeProvider } from '@react-navigation/native';
 import * as Sentry from '@sentry/react-native';
 
-import { HeaderLeft } from '@/lib/components/Header';
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
@@ -28,13 +27,11 @@ function App({ onLayout }: AppProps) {
 
   return (
     <>
-      <StatusBar style="light" />
-      <KeyboardAvoidingView behavior={'padding'} style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
+      <View style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
         <Stack
           screenOptions={{
             headerTransparent: true,
             title: '',
-            headerLeft: HeaderLeft,
             headerTintColor: '#fff',
           }}
         >
@@ -42,7 +39,7 @@ function App({ onLayout }: AppProps) {
           <Stack.Screen name="nustatymai" options={{ presentation: 'modal' }} />
           <Stack.Screen name="dainos/[id]" />
         </Stack>
-      </KeyboardAvoidingView>
+      </View>
     </>
   );
 }
@@ -60,7 +57,7 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
-  const { didBackgroundLoad, didLogoLoad } = useDidImagesLoad();
+  const { didBackgroundLoad, didLogoLoad, didSongFestivalLoad } = useDidImagesLoad();
   const { value: colorSchemePreference } = useStorage('theme');
 
   // keep color scheme in sync with storage
@@ -87,10 +84,17 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didBackgroundLoad && didLogoLoad) {
+    if (
+      asyncWorkIsDone &&
+      isColorSchemeSet &&
+      didAppLayout &&
+      didBackgroundLoad &&
+      didLogoLoad &&
+      didSongFestivalLoad
+    ) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad]);
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad, didSongFestivalLoad]);
 
   if (asyncWorkIsDone && isColorSchemeSet) {
     return <App onLayout={() => setDidAppLayout(true)} />;
@@ -102,12 +106,14 @@ export default Sentry.wrap(function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <StorageProvider>
-      <DidImagesLoadProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-          <AppWithLoading />
-        </ThemeProvider>
-      </DidImagesLoadProvider>
-    </StorageProvider>
+    <GestureHandlerRootView>
+      <StorageProvider>
+        <DidImagesLoadProvider>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+            <AppWithLoading />
+          </ThemeProvider>
+        </DidImagesLoadProvider>
+      </StorageProvider>
+    </GestureHandlerRootView>
   );
 });

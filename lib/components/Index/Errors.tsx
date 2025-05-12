@@ -18,7 +18,7 @@ export const NoFavorites = ({ isSearch }: { isSearch?: boolean }) => {
   const { t } = useTranslation();
   return (
     <ThemedText style={styles.text}>
-      {isSearch && t('noResults')} {t('noFavorites1')} <FontAwesome6 name="heart" size={14} /> {t('noFavorites2')}
+      {isSearch && t('noResults')} {t('noFavorites1')} <FontAwesome6 name="ellipsis" size={14} /> {t('noFavorites2')}
     </ThemedText>
   );
 };

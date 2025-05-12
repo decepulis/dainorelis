@@ -1,17 +1,26 @@
 import { Fragment, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
+import Pdf from 'react-native-pdf';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 
+import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { HeaderBackground, HeaderButtonContainer, HeaderTitle } from '@/lib/components/Header';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { useHeaderHeight } from '@react-navigation/elements';
+import * as Sentry from '@sentry/react-native';
+
+import Button from '@/lib/components/Button';
+import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import { padding } from '@/lib/components/Index/constants';
 import Markdown from '@/lib/components/Markdown';
 import Player from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SongMenu from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
+import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -20,8 +29,8 @@ import { Lyrics as LyricsType } from '@/lib/schemas/lyrics';
 import { PDFs } from '@/lib/schemas/pdfs';
 import { Song } from '@/lib/schemas/songs';
 import { Videos } from '@/lib/schemas/videos';
-import getTitle from '@/lib/utils/getTitle';
 import isLyrics from '@/lib/utils/isLyrics';
+import useTitle from '@/lib/utils/useTitle';
 import songs from '@/songs';
 
 export async function generateStaticParams() {
@@ -31,19 +40,23 @@ export async function generateStaticParams() {
 export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
-  const { value: showChords } = useStorage('showChords');
+  const headerHeight = useHeaderHeight();
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
 
   const { id } = useLocalSearchParams();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
 
   // Variants
-  // TODO persist last used variant in storage
+  // TODO blocker persist last used variant in storage
   const [activeVariantIndex, setActiveVariantIndex] = useState(0);
   const variants: (LyricsType | PDFs)[] = useMemo(
     () => [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])],
     [song]
   );
   const activeVariant = useMemo(() => variants[activeVariantIndex], [variants, activeVariantIndex]);
+  const hasMultipleVariants = useMemo(() => variants.length > 1, [variants]);
+
+  // chords
   const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
 
   // Footnotes
@@ -72,71 +85,111 @@ export default function Page() {
     },
     [titleLayout]
   );
-  const title = useMemo(() => getTitle(song, variants, activeVariant), [song, variants, activeVariant]);
+  const { title, subtitle, variantName } = useTitle(song, activeVariant);
 
   return (
     <Fragment>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground opaque />,
-          headerTitle: () => <HeaderTitle scrollRef={scrollRef} titleLayout={titleLayout} title={title} />,
+          // TODO can I force this to re-render when activeVariant changes?
+          headerTitle: () => (
+            <HeaderTitle
+              scrollRef={scrollRef}
+              titleLayout={titleLayout}
+              showTitle={isLyrics(activeVariant) ? undefined : true}
+              titleWrapper={
+                hasMultipleVariants
+                  ? ({ children }) => (
+                      <VariantMenu
+                        variants={variants}
+                        activeVariantIndex={activeVariantIndex}
+                        setActiveVariantIndex={setActiveVariantIndex}
+                      >
+                        {children}
+                      </VariantMenu>
+                    )
+                  : undefined
+              }
+              title={title}
+              subtitle={subtitle}
+              variantName={variantName}
+            />
+          ),
+          headerLeft: (props) => <HeaderLeft {...props} />,
           headerRight: () => (
             <HeaderButtonContainer>
-              <SongMenu
-                song={song}
-                variants={variants}
-                activeVariant={activeVariant}
-                setActiveVariantIndex={setActiveVariantIndex}
-                media={media}
-                activeMedia={activeMedia}
-                setActiveMediaIndex={setActiveMediaIndex}
-              />
+              <SongMenu song={song} />
             </HeaderButtonContainer>
           ),
         }}
       />
-      <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
-        <View style={styles.container}>
-          <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
-            {/* TODO title in different font? */}
-            {title.map((part, index) => (
-              <ThemedText
-                key={index}
-                bold={index === 0}
-                style={[styles.title, index === 0 ? styles.mainTitle : styles.subtitle]}
-              >
-                {part}
-              </ThemedText>
-            ))}
-          </View>
-          {isLyrics(activeVariant) ? (
+      {isLyrics(activeVariant) ? (
+        <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
+          <View style={styles.container}>
+            <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
+              <View style={styles.titleAndSubtitle}>
+                <ThemedText bold style={[styles.mainTitle]}>
+                  {title}
+                </ThemedText>
+                {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
+              </View>
+              {hasChords ? (
+                <Button
+                  onPress={() => setShowChords(!showChords)}
+                  haptics={showChords ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
+                >
+                  <FontAwesome6 name="guitar" solid={showChords} size={16} color="white" />
+                </Button>
+              ) : null}
+            </View>
+
             <Markdown showLinksAsChords showChords={hasChords && showChords}>
               {activeVariant['Lyrics & Chords']}
             </Markdown>
-          ) : null}
-          {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
-          {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
-          {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
-          {hasSameAuthor ? (
-            <ThemedText>
-              {t('musicAndWordsBy')}
-              {song.fields['Music Author']}
-            </ThemedText>
-          ) : null}
-          {!hasSameAuthor && hasMusicAuthor ? (
-            <ThemedText>
-              {t('musicBy')}
-              {song.fields['Music Author']}
-            </ThemedText>
-          ) : null}
-          {!hasSameAuthor && hasTextAuthor ? (
-            <ThemedText>
-              {t('wordsBy')}
-              {song.fields['Text Author']}
-            </ThemedText>
-          ) : null}
+            {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+            {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
+            {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+            {hasSameAuthor ? (
+              <ThemedText>
+                {t('musicAndWordsBy')}
+                {song.fields['Music Author']}
+              </ThemedText>
+            ) : null}
+            {!hasSameAuthor && hasMusicAuthor ? (
+              <ThemedText>
+                {t('musicBy')}
+                {song.fields['Music Author']}
+              </ThemedText>
+            ) : null}
+            {!hasSameAuthor && hasTextAuthor ? (
+              <ThemedText>
+                {t('wordsBy')}
+                {song.fields['Text Author']}
+              </ThemedText>
+            ) : null}
+          </View>
+        </ScrollViewWithHeader>
+      ) : (
+        // TODO this not falling behind the menu bar makes me sad
+        <View style={{ flex: 1, paddingTop: headerHeight }}>
+          {/* TODO isTitleBehind on scroll */}
+          {/* TODO BLOCKER scroll is off on load? */}
+          <Pdf
+            source={{ uri: activeVariant.URL, cache: true }}
+            style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
+            // https://github.com/wonday/react-native-pdf/issues/837
+            trustAllCerts={Platform.OS === 'android' ? false : undefined}
+            onError={(error) => {
+              Sentry.captureException(error);
+            }}
+            // TODO blocker do I throw an error when there's no internet?
+            // TODO custom loading indicator
+            // renderActivityIndicator={}
+            // onLoadProgress={}
+          />
         </View>
-      </ScrollViewWithHeader>
+      )}
       {activeMedia ? <Player asset={activeMedia} onClose={() => setActiveMediaIndex(null)} /> : null}
     </Fragment>
   );
@@ -150,16 +203,22 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 80,
+    paddingLeft: padding,
+    paddingRight: padding,
+    paddingBottom: padding * 4,
   },
   titleContainer: {
-    marginTop: 40,
-    marginBottom: 20,
+    marginTop: padding * 2,
+    marginBottom: padding,
+    flexDirection: 'row',
+    gap: padding,
+    alignItems: 'center',
   },
-  title: {},
+  titleAndSubtitle: {
+    flex: 1,
+  },
   mainTitle: {
+    flex: 1,
     fontSize: 30,
   },
   subtitle: {
@@ -167,7 +226,7 @@ const styles = StyleSheet.create({
   },
   hr: {
     height: StyleSheet.hairlineWidth,
-    marginTop: 40,
-    marginBottom: 40,
+    marginTop: padding * 2,
+    marginBottom: padding * 2,
   },
 });

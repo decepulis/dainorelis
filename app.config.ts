@@ -13,6 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
+    buildNumber: '250512',
   },
   android: {
     adaptiveIcon: {
@@ -20,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 4,
+    versionCode: 250512,
     edgeToEdgeEnabled: true,
   },
   web: {
@@ -59,6 +60,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           'node_modules/@expo-google-fonts/fira-sans/700Bold_Italic/FiraSans_700Bold_Italic.ttf',
           'node_modules/@expo-google-fonts/fira-sans/800ExtraBold/FiraSans_800ExtraBold.ttf',
           'node_modules/@expo-google-fonts/fira-sans/800ExtraBold_Italic/FiraSans_800ExtraBold_Italic.ttf',
+        ],
+      },
+    ],
+    [
+      './plugins/withAndroidDrawables',
+      {
+        drawableFiles: [
+          './assets/images/icons/description_20px.xml',
+          './assets/images/icons/feedback_20px.xml',
+          './assets/images/icons/format_quote_20px.xml',
+          './assets/images/icons/menu_book_20px.xml',
+          './assets/images/icons/share_20px.xml',
         ],
       },
     ],

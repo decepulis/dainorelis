@@ -16,7 +16,8 @@ import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import List from '@/lib/components/Index/List';
 import Results from '@/lib/components/Index/Results';
 import Search from '@/lib/components/Index/Search';
-import { margin, padding } from '@/lib/components/Index/constants';
+import SongFestivalList from '@/lib/components/Index/SongFestivalList';
+import { padding } from '@/lib/components/Index/constants';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SystemView from '@/lib/components/SystemView';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -44,13 +45,14 @@ export default function Index() {
 
   // set up stuff for search results
   const [filter, setFilter] = useState<'allSongs' | 'favoriteSongs'>('allSongs');
+  const [isSongFestivalMode, setIsSongFestivalMode] = useState(false);
   const [searchText, setSearchText] = useState('');
 
   // we could do this with css aspect ratio, but we need the height for other reasons...
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(width - 80, 360);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
-  const logoContainerPaddingTop = 80 + inset.top - headerHeight;
+  const logoContainerPaddingTop = 80 + inset.top - headerHeight + 10;
   const logoContainerPaddingBottom = 80 + padding;
   const searchHeightWithPadding = searchHeight + padding - padding / 4;
 
@@ -69,7 +71,7 @@ export default function Index() {
             <HeaderButtonContainer>
               <Link href="/nustatymai" asChild>
                 <Button>
-                  <FontAwesome6 name="sliders" size={14} color="#fff" />
+                  <FontAwesome6 name="sliders" size={16} color="#fff" />
                 </Button>
               </Link>
             </HeaderButtonContainer>
@@ -78,14 +80,19 @@ export default function Index() {
       />
       <View style={[styles.container, { backgroundColor: card0 }]}>
         <Image
-          style={{ position: 'absolute', top: 0, left: 0, right: 0, height }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
+          }}
           source={require('@/assets/images/miskas_fade_9.png')}
           onLoadEnd={() => setDidBackgroundLoad(true)}
           contentFit="cover"
           contentPosition="bottom"
         ></Image>
-        {/* TODO enable keyboardDismissMode="interactive" when keyboard padding isn't so janky */}
-        <ScrollViewWithHeader keyboardDismissMode="on-drag" ref={scrollRef} stickyHeaderIndices={[1]}>
+        <ScrollViewWithHeader keyboardDismissMode="interactive" ref={scrollRef} stickyHeaderIndices={[1]}>
           <View
             onLayout={calculateTitleHeight}
             style={[
@@ -100,7 +107,7 @@ export default function Index() {
           >
             <Image
               style={StyleSheet.absoluteFillObject}
-              source={require('@/assets/images/logo_white.png')}
+              source={require('@/assets/images/logo_white_v3.png')}
               contentFit="contain"
               onLoadEnd={() => setDidLogoLoad(true)}
             />
@@ -108,11 +115,16 @@ export default function Index() {
           <Search
             scrollRef={scrollRef}
             filter={filter}
-            setFilter={setFilter}
-            searchText={searchText}
+            setFilter={(filter) => startTransition(() => setFilter(filter))}
+            isSongFestivalMode={isSongFestivalMode}
+            setIsSongFestivalMode={(isSongFestivalMode) =>
+              startTransition(() => {
+                setIsSongFestivalMode(isSongFestivalMode);
+                setSearchText('');
+              })
+            }
             setSearchText={(text) => startTransition(() => setSearchText(text))}
             setSearchHeight={setSearchHeight}
-            margin={margin}
             padding={padding}
           />
           <View style={{ width: '100%', maxWidth: maxWidth, marginHorizontal: 'auto' }}>
@@ -121,20 +133,26 @@ export default function Index() {
               style={[
                 styles.blurContainer,
                 {
-                  marginBottom: Math.max(inset.bottom, margin),
+                  marginBottom: Math.max(inset.bottom, padding),
                   minHeight:
                     height -
                     headerHeight -
                     logoContainerPaddingTop -
                     logoContainerHeight -
                     logoContainerPaddingBottom -
-                    inset.bottom,
+                    Math.max(inset.bottom, padding),
                   marginTop: -searchHeightWithPadding,
                   paddingTop: searchHeightWithPadding,
                 },
               ]}
             >
-              {searchText.length > 2 ? <Results searchText={searchText} filter={filter} /> : <List filter={filter} />}
+              {searchText.length > 2 ? (
+                <Results searchText={searchText} filter={filter} isSongFestivalMode={isSongFestivalMode} />
+              ) : isSongFestivalMode ? (
+                <SongFestivalList filter={filter} />
+              ) : (
+                <List filter={filter} />
+              )}
             </SystemView>
           </View>
         </ScrollViewWithHeader>
@@ -152,8 +170,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   blurContainer: {
-    marginHorizontal: margin,
-    borderRadius: 20,
+    borderRadius: padding,
     overflow: 'hidden',
   },
 });

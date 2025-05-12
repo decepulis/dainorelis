@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 
 import Fuse, { FuseResult, IFuseOptions } from 'fuse.js/basic';
 
 import useStorage from '@/lib/hooks/useStorage';
 import lyricIndexJson from '@/lyric-index.json';
+import songFestivalIndex from '@/song-festival';
 import songs from '@/songs';
 import titleIndexJson from '@/title-index.json';
 
 import { Song } from '../../schemas/songs';
 import { NoFavorites, NoHits } from './Errors';
-import ListItem from './ListItem';
+import { ListItem } from './ListItem';
+
+const songFestivalIndices = songFestivalIndex.flatMap((part) => part.data);
+const songFestivalIds = songFestivalIndices.map((songIndex) => songs[songIndex].id);
 
 // set up fuse
 const fuseSettings: IFuseOptions<unknown> = {
@@ -45,12 +49,12 @@ const lyricFuse = new Fuse(
 type Props = {
   searchText: string;
   filter: 'allSongs' | 'favoriteSongs';
+  isSongFestivalMode: boolean;
 };
-export default function Results({ searchText, filter }: Props) {
-  const [searchResults, setSearchResults] = useState<FuseResult<Song>[]>([]);
+export default function Results({ searchText, filter, isSongFestivalMode }: Props) {
   const { value: favorites } = useStorage('favorites');
 
-  useEffect(() => {
+  const searchResults: FuseResult<Song>[] = useMemo(() => {
     if (searchText.length > 0) {
       const titleSearchResults = titleFuse.search<Song>(searchText, { limit: 20 });
       const lyricSearchResults = lyricFuse.search<Song>(searchText, { limit: 20 });
@@ -59,16 +63,21 @@ export default function Results({ searchText, filter }: Props) {
       );
       const allResults = [...titleSearchResults, ...lyricResultsThatAreNotTitleResults];
       const filteredResults = allResults.filter((result) => {
+        let favoriteFilter = true;
         if (filter === 'favoriteSongs') {
-          return favorites.includes(result.item.id);
+          favoriteFilter = favorites.includes(result.item.id);
         }
-        return true;
+        let songFestivalFilter = true;
+        if (isSongFestivalMode) {
+          songFestivalFilter = songFestivalIds.includes(result.item.id);
+        }
+        return favoriteFilter && songFestivalFilter;
       });
-      setSearchResults(filteredResults);
+      return filteredResults;
     } else {
-      setSearchResults([]);
+      return [];
     }
-  }, [favorites, filter, searchText]);
+  }, [favorites, filter, isSongFestivalMode, searchText]);
   return (
     <FlatList
       scrollEnabled={false}

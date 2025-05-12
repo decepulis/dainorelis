@@ -1,36 +1,66 @@
 import { useMemo } from 'react';
-import { SectionList, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import { FlashList } from '@shopify/flash-list';
 
 import useStorage from '@/lib/hooks/useStorage';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song, SongFile } from '@/lib/schemas/songs';
 import songs from '@/songs';
 
 import { NoFavorites } from './Errors';
-import ListHeader from './ListHeader';
-import ListItem from './ListItem';
+import { ListHeader, ListItem, listItemHeight } from './ListItem';
 
+/**
+ * an output compatible with SectionList
+ */
 const groupSongsByLetter = (songs: SongFile) => {
-  const songsByLetter: { [letter: string]: Song[] } = {};
+  const songsByLetter = new Map<string, Song[]>();
 
   songs.forEach((song) => {
-    const firstLetter = song.fields.Name?.charAt(0).toUpperCase() || '#';
-    const letterSongs = songsByLetter[firstLetter] || [];
+    const firstLetter = song.fields.Name.charAt(0).toUpperCase() || '#';
+    const letterSongs = songsByLetter.get(firstLetter) || [];
     const newLetterSongs = [...letterSongs, song];
-    songsByLetter[firstLetter] = newLetterSongs;
+    songsByLetter.set(firstLetter, newLetterSongs);
   });
 
-  const sections = Object.entries(songsByLetter).map(([letter, songs]) => ({
-    title: letter,
-    data: songs,
-  }));
-  sections.sort((a, b) => a.title.localeCompare(b.title, 'lt'));
+  const sections = Array.from(songsByLetter.entries()).map(([letter, songs]) => {
+    return {
+      title: letter,
+      // assume these are sorted by airtable
+      data: songs,
+    };
+  });
   return sections;
+};
+
+type SongItem = { type: 'song'; item: Song; id: string };
+type HeaderItem = { type: 'header'; item: string; id: string };
+const isHeaderItem = (item: SongItem | HeaderItem): item is HeaderItem => item.type === 'header';
+
+/**
+ * unroll section list for FlashList
+ */
+const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
+  const items: (SongItem | HeaderItem)[] = [];
+  sections.forEach((section) => {
+    items.push({ type: 'header', item: section.title, id: section.title });
+    section.data.forEach((song) => {
+      items.push({ type: 'song', item: song, id: song.id });
+    });
+  });
+  if (items.length <= 10) {
+    items.filter((item) => !isHeaderItem(item));
+  }
+  return items;
 };
 
 type Props = {
   filter: 'allSongs' | 'favoriteSongs';
 };
 export default function List({ filter }: Props) {
+  const primary = useThemeColor('primary');
+  const separator = useThemeColor('separator');
   const { value: favorites } = useStorage('favorites');
 
   const filteredSongs = useMemo(() => {
@@ -40,23 +70,31 @@ export default function List({ filter }: Props) {
     return songs;
   }, [filter, favorites]);
 
-  const songsByLetter = useMemo(() => {
-    return groupSongsByLetter(filteredSongs);
+  const listItems = useMemo(() => {
+    return unrollSectionList(groupSongsByLetter(filteredSongs));
   }, [filteredSongs]);
 
-  const lastSection = useMemo(() => songsByLetter[songsByLetter.length - 1], [songsByLetter]);
-
+  // TODO this is INSANELY slow on Android
   return (
-    <SectionList
+    <FlashList
       scrollEnabled={false}
-      sections={songsByLetter}
-      renderSectionHeader={({ section }) => <ListHeader title={section.title} />}
-      renderItem={({ item, section, index }) => {
-        const isLast = section.title === lastSection.title && index === lastSection.data.length - 1;
-        return <ListItem item={item} isLast={isLast} />;
-      }}
-      ListFooterComponent={
-        filter === 'favoriteSongs' && songsByLetter.length === 0 ? (
+      data={listItems}
+      estimatedItemSize={listItemHeight}
+      renderItem={({ item, index }) =>
+        item.type === 'header' ? (
+          <ListHeader title={item.item} separator={separator} />
+        ) : (
+          <ListItem
+            item={item.item}
+            isLast={index === listItems.length - 1}
+            primary={primary}
+            separator={separator}
+            favorites={favorites}
+          />
+        )
+      }
+      ListEmptyComponent={
+        filter === 'favoriteSongs' ? (
           <View style={[styles.listFooter]}>
             <NoFavorites />
           </View>

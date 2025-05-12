@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LayoutRectangle, Platform, View } from 'react-native';
 import Animated, {
   AnimatedRef,
@@ -7,22 +7,23 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
   useScrollViewOffset,
+  useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Link } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 import { FontAwesome6 } from '@expo/vector-icons';
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { NativeStackHeaderLeftProps } from '@react-navigation/native-stack';
 
 import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
 const timing = {
-  duration: 150,
+  duration: 200,
 };
 
 type HeaderBackgroundProps = {
@@ -38,77 +39,187 @@ export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBac
     opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
   }));
 
-  // TODO BLOCKER manage status bar color & tint color dynamically
   return (
     <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
+      <StatusBar style="light" />
       <SystemView variant="primary" shadow={shadow} style={{ flex: 1 }}></SystemView>
     </Animated.View>
   );
 }
 
-const useAlign = () => {
-  const inset = useSafeAreaInsets();
-  return Platform.OS === 'ios' && inset.top >= 30 ? 'flex-start' : 'center';
-};
+const titleFontSize = 17;
+const titleLineHeight = 28;
+const titleWithSubtitleFontSize = 16;
+const titleWithSubtitleLineHeight = 16 * 1.25;
+const subtitleFontSize = 14;
+const subtitleLineHeight = 14 * 1.25;
 
 type HeaderTitleProps = {
   scrollRef?: AnimatedRef<AnimatedScrollView>;
   titleLayout?: SharedValue<LayoutRectangle | null>;
+  showTitle?: boolean;
   children?: React.ReactNode;
-  title?: string[];
+  titleWrapper?: React.FC<{ children: React.ReactNode }>;
+  title?: string;
+  subtitle?: string;
+  variantName?: string;
 };
-export const HeaderTitle = ({ scrollRef, titleLayout, children, title }: HeaderTitleProps) => {
+export const HeaderTitle = ({
+  scrollRef,
+  titleLayout,
+  showTitle,
+  children,
+  titleWrapper,
+  title,
+  subtitle,
+  variantName,
+}: HeaderTitleProps) => {
+  const TitleWrapper = titleWrapper ?? React.Fragment;
+  const hasTitleWrapper = !!titleWrapper;
+
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
 
+  const hasSubtitleOrVariantName = !!subtitle || !!variantName;
+  const showSubtitle = !!subtitle && !variantName;
+
+  const showTitleSv = useSharedValue(typeof showTitle === 'boolean' ? showTitle : null);
+  useEffect(() => {
+    if (typeof showTitle === 'boolean') {
+      showTitleSv.value = showTitle;
+    } else {
+      showTitleSv.value = null;
+    }
+  }, [showTitle, showTitleSv]);
+
   const animatedTitleStyle = useAnimatedStyle(() => {
-    let isTitleBehind = true;
-    if (titleLayout?.value) {
-      isTitleBehind = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+    // default to whatever the prop dragged in
+    let animateTitleIn = showTitleSv.value;
+    // if the prop is null, we need to calculate it
+    if (animateTitleIn === null) {
+      if (titleLayout?.value) {
+        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      }
     }
     return {
-      opacity: withTiming(isTitleBehind ? 1 : 0, timing),
-      transform: [{ translateY: withTiming(isTitleBehind ? 0 : 5, timing) }],
+      opacity: withTiming(animateTitleIn ? 1 : 0, timing),
+      transform: [{ translateY: withTiming(animateTitleIn ? 0 : 5, timing) }],
+    };
+  });
+  const animatedVariantNameStyle = useAnimatedStyle(() => {
+    // default to whatever the prop dragged in
+    let animateTitleIn = showTitleSv.value;
+    // if the prop is null, we need to calculate it
+    if (animateTitleIn === null) {
+      if (titleLayout?.value) {
+        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      }
+    }
+    return {
+      transform: [
+        {
+          scale: withTiming(animateTitleIn ? 1 : titleWithSubtitleFontSize / subtitleFontSize, timing),
+        },
+        {
+          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleLineHeight, timing),
+        },
+      ],
     };
   });
 
   return (
-    <Animated.View style={animatedTitleStyle}>
-      {title ? (
-        title.map((part, index) => (
-          <ThemedText
-            key={index}
-            numberOfLines={title.length === 1 && index === 0 ? 2 : 1}
-            bold={index === 0}
+    <View>
+      <TitleWrapper>
+        <Animated.View style={[animatedTitleStyle]}>
+          {title ? (
+            <ThemedText
+              numberOfLines={hasSubtitleOrVariantName ? 1 : 2}
+              bold
+              style={[
+                {
+                  fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
+                  lineHeight: hasSubtitleOrVariantName ? titleWithSubtitleLineHeight : titleLineHeight,
+                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  position: 'relative',
+                  top: !variantName ? 1 : 0,
+                  color: '#fff',
+                },
+              ]}
+            >
+              {title}
+            </ThemedText>
+          ) : typeof children === 'string' ? (
+            <ThemedText>{children}</ThemedText>
+          ) : (
+            children
+          )}
+          {showSubtitle ? (
+            <ThemedText
+              numberOfLines={1}
+              style={[
+                {
+                  fontSize: subtitleFontSize,
+                  lineHeight: subtitleLineHeight,
+                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  position: 'relative',
+                  top: 0,
+                  color: '#fff',
+                },
+              ]}
+            >
+              {subtitle}
+            </ThemedText>
+          ) : null}
+        </Animated.View>
+        {variantName ? (
+          <Animated.View
             style={[
+              animatedVariantNameStyle,
               {
-                fontSize: title.length === 1 ? 17 : index === 0 ? 16 : 14,
-                lineHeight: title.length === 1 ? 28 : index === 0 ? 16 * 1.25 : 14 * 1.25,
-                textAlign: Platform.select({ default: 'center', android: 'left' }),
-                position: 'relative',
-                top: title.length === 1 ? 1 : 0,
-                color: '#fff',
+                // width: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                transformOrigin: Platform.select({ ios: 'bottom center', default: 'bottom left' }),
+                justifyContent: Platform.select({ ios: 'center', default: 'flex-start' }),
+                gap: 4,
               },
             ]}
           >
-            {part}
-          </ThemedText>
-        ))
-      ) : typeof children === 'string' ? (
-        <ThemedText>{children}</ThemedText>
-      ) : (
-        children
-      )}
-    </Animated.View>
+            <ThemedText
+              numberOfLines={1}
+              style={[
+                {
+                  fontSize: subtitleFontSize,
+                  lineHeight: subtitleLineHeight,
+                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  position: 'relative',
+                  top: 0,
+                  color: '#fff',
+                },
+              ]}
+            >
+              {variantName}
+            </ThemedText>
+            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={12} color="white" /> : null}
+          </Animated.View>
+        ) : null}
+      </TitleWrapper>
+    </View>
   );
 };
 
-export const HeaderLeft: NativeStackNavigationOptions['headerLeft'] = ({ href, canGoBack }) => {
-  if (!canGoBack) return null;
+type HeaderLeftProps = {
+  modal?: boolean;
+} & NativeStackHeaderLeftProps;
 
+export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   return (
-    <Link href={href || '../'} asChild>
+    <Link href={href || canGoBack ? '../' : '/'} asChild>
       <Button>
-        <FontAwesome6 name="chevron-left" size={16} color="white" />
+        {modal ? (
+          <FontAwesome6 name="xmark" size={18} color="white" />
+        ) : (
+          <FontAwesome6 name="chevron-left" size={17} color="white" />
+        )}
       </Button>
     </Link>
   );

@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef, useEffect } from 'react';
-import { LayoutChangeEvent, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import * as Haptics from 'expo-haptics';
@@ -21,10 +22,11 @@ type OptionType = {
 type OptionProps = {
   isSelected: boolean;
   option: OptionType;
-  onPress: ComponentPropsWithoutRef<typeof Pressable>['onPress'];
+  onPress: ComponentPropsWithoutRef<typeof RectButton>['onPress'];
 };
 const Option = ({ isSelected, option, onPress }: OptionProps) => {
   const text = useThemeColor('text');
+  const primary = useThemeColor('primary');
   const isBoldTextEnabled = useA11yBoldText();
   // Animated style for the text
   const textStyle = useAnimatedStyle(() => {
@@ -42,9 +44,15 @@ const Option = ({ isSelected, option, onPress }: OptionProps) => {
   });
 
   return (
-    <Pressable hitSlop={{ top: 14, bottom: 14 }} key={option.value} style={styles.option} onPress={onPress}>
+    <RectButton
+      hitSlop={{ top: 14, bottom: 14 }}
+      key={option.value}
+      style={styles.option}
+      rippleColor={primary}
+      onPress={onPress}
+    >
       <Animated.Text style={[styles.optionText, textStyle]}>{option.label}</Animated.Text>
-    </Pressable>
+    </RectButton>
   );
 };
 
@@ -115,7 +123,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
               // some things may delay it
               // but this will at least be closer than triggering the haptics immediately
               // and by the time withTiming would call its AnimationCallback it would be too late
-              Haptics.selectionAsync();
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             }, timing.duration - 100);
             onValueChange(option.value);
           }}
@@ -150,6 +158,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 20,
     zIndex: 1,
   },
   optionText: {
