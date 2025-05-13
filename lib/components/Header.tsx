@@ -47,9 +47,9 @@ export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBac
   );
 }
 
-const titleFontSize = 17;
+const titleFontSize = 16;
 const titleLineHeight = 1.65;
-const titleWithSubtitleFontSize = 16;
+const titleWithSubtitleFontSize = 15;
 const titleWithSubtitleLineHeight = 1.25;
 const subtitleFontSize = 14;
 const subtitleLineHeight = 1.25;
@@ -118,7 +118,7 @@ export const HeaderTitle = ({
     return {
       transform: [
         {
-          scale: withTiming(animateTitleIn ? 1 : titleWithSubtitleFontSize / subtitleFontSize, timing),
+          scale: withTiming(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, timing),
         },
         {
           translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleFontSize, timing),
@@ -128,7 +128,7 @@ export const HeaderTitle = ({
   });
 
   return (
-    <View>
+    <View style={{ paddingHorizontal: buttonSlop.left }}>
       <TitleWrapper>
         <Animated.View style={[animatedTitleStyle]}>
           {title ? (

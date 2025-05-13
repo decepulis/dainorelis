@@ -117,7 +117,8 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
                 style={{
                   opacity: 0.6,
                   fontSize: chordHeight,
-                  width: chordHeight * 1.5,
+                  // just kinda eyeballing it
+                  width: chordHeight * 2,
                   // just kinda eyeballing it
                   lineHeight: chordHeight * Platform.select({ ios: 1.7, android: 1.8, default: 1 }),
                 }}

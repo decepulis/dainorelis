@@ -4,39 +4,39 @@ import type { Theme as LibTheme } from '@react-navigation/native';
 
 export const fonts = {
   regular: {
-    fontFamily: Platform.select({ ios: 'FiraSans-Regular', default: 'FiraSans_400Regular' }),
-    fontWeight: 'normal',
+    fontFamily: Platform.select({ ios: 'Nunito-Medium', default: 'Nunito_500Medium' }),
+    fontWeight: Platform.select({ default: '500', android: 'normal' }),
   },
   regularItalic: {
-    fontFamily: Platform.select({ ios: 'FiraSans-Italic', default: 'FiraSans_400Regular_Italic' }),
-    fontWeight: 'normal',
+    fontFamily: Platform.select({ ios: 'Nunito-MediumItalic', default: 'Nunito_500Medium_Italic' }),
+    fontWeight: Platform.select({ default: '500', android: 'normal' }),
     fontStyle: 'italic',
   },
   medium: {
-    fontFamily: Platform.select({ ios: 'FiraSans-Medium', default: 'FiraSans_500Medium' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-Semibold', default: 'Nunito_600SemiBold' }),
+    fontWeight: Platform.select({ default: '600', android: 'normal' }),
   },
   mediumItalic: {
-    fontFamily: Platform.select({ ios: 'FiraSans-MediumItalic', default: 'FiraSans_500Medium_Italic' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-SemiboldItalic', default: 'Nunito_600SemiBold_Italic' }),
+    fontWeight: Platform.select({ default: '600', android: 'normal' }),
     fontStyle: 'italic',
   },
   bold: {
-    fontFamily: Platform.select({ ios: 'FiraSans-Bold', default: 'FiraSans_700Bold' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-ExtraBold', default: 'Nunito_800ExtraBold' }),
+    fontWeight: Platform.select({ default: '800', android: 'normal' }),
   },
   boldItalic: {
-    fontFamily: Platform.select({ ios: 'FiraSans-BoldItalic', default: 'FiraSans_700Bold_Italic' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-ExtraBoldItalic', default: 'Nunito_800ExtraBold_Italic' }),
+    fontWeight: Platform.select({ default: '800', android: 'normal' }),
     fontStyle: 'italic',
   },
   heavy: {
-    fontFamily: Platform.select({ ios: 'FiraSans-ExtraBold', default: 'FiraSans_800ExtraBold' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-Black', default: 'Nunito_900Black' }),
+    fontWeight: Platform.select({ default: '900', android: 'normal' }),
   },
   heavyItalic: {
-    fontFamily: Platform.select({ ios: 'FiraSans-ExtraBoldItalic', default: 'FiraSans_800ExtraBold_Italic' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-BlackItalic', default: 'Nunito_900Black_Italic' }),
+    fontWeight: Platform.select({ default: '900', android: 'normal' }),
     fontStyle: 'italic',
   },
 } as { [weight: string]: TextStyle };

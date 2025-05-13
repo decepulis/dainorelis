@@ -79,7 +79,7 @@ export function ListHeader({ title, background, separator }: { title: string; ba
 }
 
 const paddingVertical = (3 * padding) / 4;
-const fontSize = 18;
+const fontSize = 17;
 const lineHeight = fontSize * 1.2;
 export const listItemHeight = paddingVertical * 2 + lineHeight;
 

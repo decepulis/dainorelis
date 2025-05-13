@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     flex: 1,
-    fontSize: 30,
+    fontSize: 28,
   },
   subtitle: {
     fontSize: 18,

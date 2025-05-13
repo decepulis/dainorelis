@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
-    buildNumber: '250512',
+    buildNumber: '25051202',
   },
   android: {
     adaptiveIcon: {
@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 250512,
+    versionCode: 25051202,
     edgeToEdgeEnabled: true,
   },
   web: {
@@ -52,14 +52,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-font',
       {
         fonts: [
-          'node_modules/@expo-google-fonts/fira-sans/400Regular/FiraSans_400Regular.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/400Regular_Italic/FiraSans_400Regular_Italic.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/500Medium/FiraSans_500Medium.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/500Medium_Italic/FiraSans_500Medium_Italic.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/700Bold/FiraSans_700Bold.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/700Bold_Italic/FiraSans_700Bold_Italic.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/800ExtraBold/FiraSans_800ExtraBold.ttf',
-          'node_modules/@expo-google-fonts/fira-sans/800ExtraBold_Italic/FiraSans_800ExtraBold_Italic.ttf',
+          'node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf',
+          'node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf',
+          'node_modules/@expo-google-fonts/nunito/600SemiBold/Nunito_600SemiBold.ttf',
+          'node_modules/@expo-google-fonts/nunito/600SemiBold_Italic/Nunito_600SemiBold_Italic.ttf',
+          'node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf',
+          'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
+          'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',
+          'node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf',
         ],
       },
     ],
