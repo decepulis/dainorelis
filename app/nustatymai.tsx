@@ -72,32 +72,34 @@ export default function Page() {
       />
       <ScrollViewWithHeader>
         <View style={[styles.container]}>
-          <View style={[styles.section, styles.settings]}>
+          <View style={[styles.section]}>
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsTitle')}
             </ThemedText>
-            <View style={styles.setting}>
-              <ThemedText style={styles.settingTitle}>{t('language')}</ThemedText>
-              <SegmentedControl
-                options={[
-                  { label: 'Lietuvių', value: 'lt' },
-                  { label: 'English', value: 'en' },
-                ]}
-                value={language}
-                onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
-              />
-            </View>
-            <View style={styles.setting}>
-              <ThemedText style={styles.settingTitle}>{t('theme')}</ThemedText>
-              <SegmentedControl
-                options={[
-                  { label: t('autoTheme'), value: 'auto' },
-                  { label: t('darkTheme'), value: 'dark' },
-                  { label: t('lightTheme'), value: 'light' },
-                ]}
-                value={theme}
-                onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
-              />
+            <View style={styles.settings}>
+              <View style={styles.setting}>
+                <ThemedText style={styles.settingTitle}>{t('language')}</ThemedText>
+                <SegmentedControl
+                  options={[
+                    { label: 'Lietuvių', value: 'lt' },
+                    { label: 'English', value: 'en' },
+                  ]}
+                  value={language}
+                  onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
+                />
+              </View>
+              <View style={styles.setting}>
+                <ThemedText style={styles.settingTitle}>{t('theme')}</ThemedText>
+                <SegmentedControl
+                  options={[
+                    { label: t('autoTheme'), value: 'auto' },
+                    { label: t('darkTheme'), value: 'dark' },
+                    { label: t('lightTheme'), value: 'light' },
+                  ]}
+                  value={theme}
+                  onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
+                />
+              </View>
             </View>
           </View>
           <View style={styles.section}>
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   settings: {
-    gap: padding,
+    gap: padding / 2,
   },
   setting: {
     flexDirection: 'row',
@@ -193,14 +195,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
   },
-  profiles: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    maxWidth: 450,
-    marginHorizontal: 'auto',
-  },
-  profile: { alignItems: 'center', margin: padding / 2 },
-  profileImage: { width: 120, height: 120, borderRadius: 9999 },
-  profileText: { width: 130, paddingTop: padding / 2, textAlign: 'center' },
+  profiles: { gap: padding / 2 },
+  profile: { flexDirection: 'row', alignItems: 'center', gap: padding / 2 },
+  profileImage: { width: padding * 2, height: padding * 2, borderRadius: 9999 },
+  profileText: { fontSize: 16, lineHeight: 24 },
 });

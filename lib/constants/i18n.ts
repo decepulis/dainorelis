@@ -83,7 +83,7 @@ const lt = {
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
-    'Benita Mincevičiūtei ir Ieva Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
+    'Benitai Mincevičiūtei ir Ievai Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
   settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti? Rašykite mums el. paštu',
