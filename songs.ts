@@ -1098,11 +1098,11 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis-chorinis.pdf"
         },
         {
-          "Variant Name": "2025 Dainų šventės versija, Suaugusiųjų ir jaunimo chorų partitūra",
+          "Variant Name": "Šventės versija, Suaugusiųjų ir jaunimo chorų partitūra",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis.pdf"
         },
         {
-          "Variant Name": "2025 Dainų šventės versija, Vaikų chorų partija",
+          "Variant Name": "Šventės versija, Vaikų chorų partija",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis-vaiku.pdf"
         }
       ],
