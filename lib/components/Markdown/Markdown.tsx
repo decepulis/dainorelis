@@ -35,6 +35,7 @@ const chordHeight = 16;
 const styles = StyleSheet.create({
   text: {
     fontSize: 18,
+    letterSpacing: -0.1,
     // line height set dynamically down below
   },
 });

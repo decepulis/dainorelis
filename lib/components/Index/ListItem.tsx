@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize,
     lineHeight,
-    letterSpacing: -0.1,
+    letterSpacing: -0.25,
     flex: 1,
   },
   itemHeart: {
