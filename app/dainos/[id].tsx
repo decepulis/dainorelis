@@ -4,6 +4,7 @@ import { LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from '
 import Pdf from 'react-native-pdf';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams } from 'expo-router';
@@ -16,7 +17,7 @@ import Button from '@/lib/components/Button';
 import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
 import { padding } from '@/lib/components/Index/constants';
 import Markdown from '@/lib/components/Markdown';
-import Player from '@/lib/components/Player';
+import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SongMenu from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
@@ -28,7 +29,6 @@ import { Audio } from '@/lib/schemas/audio';
 import { Lyrics as LyricsType } from '@/lib/schemas/lyrics';
 import { PDFs } from '@/lib/schemas/pdfs';
 import { Song } from '@/lib/schemas/songs';
-import { Videos } from '@/lib/schemas/videos';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 import songs from '@/songs';
@@ -41,6 +41,7 @@ export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
   const headerHeight = useHeaderHeight();
+  const inset = useSafeAreaInsets();
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
 
   const { id } = useLocalSearchParams();
@@ -66,15 +67,10 @@ export default function Page() {
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
   // Media
-  const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
-  const media: (Audio | Videos)[] = useMemo(
-    () => [...(song.fields.Audio || []), ...(song.fields.Videos || [])],
-    [song]
-  );
-  const activeMedia = useMemo(
-    () => (typeof activeMediaIndex === 'number' ? media[activeMediaIndex] : null),
-    [activeMediaIndex, media]
-  );
+  // TODO blocker persist last used media in storage
+  const [activeMediaIndex, setActiveMediaIndex] = useState<number>(0);
+  const media: Audio[] = useMemo(() => [...(song.fields.Audio || [])], [song]);
+  const activeMedia = useMemo(() => media[activeMediaIndex], [media, activeMediaIndex]);
 
   // Title
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
@@ -126,7 +122,16 @@ export default function Page() {
       />
       {isLyrics(activeVariant) ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
-          <View style={styles.container}>
+          <View
+            style={[
+              styles.container,
+              {
+                paddingBottom: activeMedia
+                  ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
+                  : Math.max(inset.bottom + padding * 2, padding * 4),
+              },
+            ]}
+          >
             <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
               <View style={styles.titleAndSubtitle}>
                 <ThemedText bold style={[styles.mainTitle]}>
@@ -190,7 +195,7 @@ export default function Page() {
           />
         </View>
       )}
-      {activeMedia ? <Player asset={activeMedia} onClose={() => setActiveMediaIndex(null)} /> : null}
+      <Player media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex} />
     </Fragment>
   );
 }
@@ -205,7 +210,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
     paddingLeft: padding,
     paddingRight: padding,
-    paddingBottom: padding * 4,
   },
   titleContainer: {
     marginTop: padding * 2,

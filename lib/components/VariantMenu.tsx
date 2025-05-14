@@ -47,7 +47,7 @@ export default function VariantMenu({ children, variants, activeVariantIndex, se
   );
 
   return (
-    <MenuView hitSlop={buttonSlop} actions={actions} onPressAction={onPressAction}>
+    <MenuView hitSlop={buttonSlop} actions={actions} onPressAction={onPressAction} title={t('variantsMenuTitle')}>
       {children}
     </MenuView>
   );

@@ -49,6 +49,7 @@ type Props = {
  * Lyrics are rendered using a controlled subset of markdown
  */
 export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
+  // TODO selectable text
   // TODO support real links for descriptions
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
     paragraph: (node, children, _parent, styles) => (

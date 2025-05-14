@@ -161,6 +161,8 @@ export default function Index() {
           contentPosition="bottom"
         ></Image>
         <Animated.FlatList
+          // todo reduce jank by telling it about height
+          // todo add jump-to-letter bar
           ref={listRef}
           data={listItems}
           stickyHeaderIndices={[1]}
@@ -238,6 +240,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: padding,
   },
   listFooter: {
+    // TODO blocker respect inset, app-wide
     paddingHorizontal: padding,
     paddingVertical: padding * 2,
     alignItems: 'center',

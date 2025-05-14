@@ -1,143 +1,292 @@
-import { Fragment, useCallback, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
-import WebView from 'react-native-webview';
+import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
+import { ActivityIndicator, useWindowDimensions } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
-import { DarkTheme } from '../constants/themes';
-import { useThemeColor } from '../hooks/useThemeColor';
+import maxWidth from '../constants/maxWidth';
+import useIsAppVisible from '../hooks/useAppState';
 import { Audio } from '../schemas/audio';
-import { Videos } from '../schemas/videos';
+import Button, { buttonSlop, styles as buttonStyles } from './Button';
+import { padding as appPadding } from './Index/constants';
+import MediaMenu from './MediaMenu';
+import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const isAssetVideo = (asset: Audio | Videos): asset is Videos => !(asset as Audio).File;
+const padding = buttonSlop.left + buttonSlop.right;
+const extraDurationPadding = padding / 2;
+const buttonWidth = buttonStyles.container.width;
+export const playerHeight = buttonStyles.container.height + 2 * padding;
 
-export function usePlayerDimensions({ asset }: { asset: Audio | Videos }) {
-  const { width } = useWindowDimensions();
-  const isVideo = isAssetVideo(asset);
-  if (isVideo) {
-    const videoAspectRatio = 16 / 9;
-    const videoWidth = Math.min(width, 320);
-    const videoHeight = videoWidth / videoAspectRatio;
-
-    return { width: videoWidth, height: videoHeight };
-  } else {
-    return { width, height: 60 };
-  }
-}
-
-// TODO rebuild with expo-audio
-function AudioPlayer({ asset, onClose }: { asset: Audio; onClose: () => void }) {
-  const primary = useThemeColor('primary');
-  const text = useThemeColor('text');
-  const { width, height } = usePlayerDimensions({ asset });
-
-  const [state, setState] = useState<'loading' | 'ready' | 'playing' | 'error'>('loading');
-
-  const play = useCallback(() => {}, []);
-
-  const pause = useCallback(() => {}, []);
-
-  const restart = useCallback(() => {}, []);
-
-  const close = useCallback(() => {
-    onClose();
-  }, [onClose]);
-
-  return (
-    <View style={[{ borderColor: text, width, height }, styles.container, styles.audioContainer]}>
-      {state === 'error' ? (
-        // TODO error state
-        <ThemedText>error</ThemedText>
-      ) : state === 'loading' ? (
-        // TODO loading state
-        <ThemedText>loading...</ThemedText>
-      ) : (
-        <Fragment>
-          {state === 'playing' ? (
-            <Pressable hitSlop={24} onPress={pause}>
-              <FontAwesome6 name="pause" size={24} color={primary} />
-            </Pressable>
-          ) : (
-            <Pressable hitSlop={24} onPress={play}>
-              <FontAwesome6 name="play" size={24} color={primary} />
-            </Pressable>
-          )}
-          <Pressable hitSlop={24} onPress={restart}>
-            <FontAwesome6 name="arrow-rotate-left" size={24} color={primary} />
-          </Pressable>
-        </Fragment>
-      )}
-      <Pressable hitSlop={24} onPress={close} style={styles.audioClose}>
-        <FontAwesome6 name="xmark" size={24} color={primary} />
-      </Pressable>
-    </View>
-  );
-}
-
-function VideoPlayer({ asset, onClose }: { asset: Videos; onClose: () => void }) {
-  // TODO offline error
-  // TODO no id error
-  const text = useThemeColor('text');
-  const { width, height } = usePlayerDimensions({ asset });
-  const videoId = asset['YouTube Link'].split('?v=').pop();
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?playsinline=1`;
-
-  return (
-    <View style={[{ borderColor: text }, styles.container, styles.videoContainer]}>
-      <View style={[styles.videoPlayer, { width, height }]}>
-        {/* TODO html embed...? */}
-        <WebView allowsAirPlayForMediaPlayback allowsInlineMediaPlayback source={{ uri: embedUrl }} />
-      </View>
-      <Pressable hitSlop={24} onPress={onClose} style={styles.videoClose}>
-        <FontAwesome6 name="xmark" size={24} color="#fff" />
-      </Pressable>
-    </View>
-  );
-}
-
-type Props = {
-  asset: Audio | Videos;
-  onClose: () => void;
+const springConfig: SpringConfig = {
+  mass: 1,
+  damping: 30,
+  stiffness: 300,
 };
-export default function Player({ asset, onClose }: Props) {
-  // TODO gesture to dismiss
-  const isVideo = isAssetVideo(asset);
-  return isVideo ? <VideoPlayer asset={asset} onClose={onClose} /> : <AudioPlayer asset={asset} onClose={onClose} />;
-}
 
-const styles = StyleSheet.create({
-  container: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderLeftWidth: StyleSheet.hairlineWidth,
-    borderRightWidth: StyleSheet.hairlineWidth,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    overflow: 'hidden',
-  },
-  audioContainer: {
-    paddingHorizontal: 30,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 25,
-  },
-  audioClose: {
-    marginLeft: 'auto',
-  },
-  videoContainer: {
-    backgroundColor: DarkTheme.colors.background,
-  },
-  videoPlayer: {
-    marginHorizontal: 'auto',
-    backgroundColor: 'black',
-  },
-  videoClose: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    width: 48,
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// TODO figure out a way to fling this around to get it out of the way of PDFs
+type Props = {
+  media: Audio[];
+  activeMediaIndex: number;
+  setActiveMediaIndex: (index: number) => void;
+  style?: ComponentPropsWithoutRef<typeof Animated.View>['style'];
+};
+export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
+  const inset = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isAppVisible = useIsAppVisible();
+
+  // layout
+  const playerWidth = useMemo(
+    () => Math.min(width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2), maxWidth),
+    [width, inset]
+  );
+  const durationWidth = useMemo(
+    () =>
+      playerWidth -
+      padding -
+      buttonWidth -
+      padding -
+      buttonWidth -
+      padding -
+      extraDurationPadding -
+      // duration goes here
+      extraDurationPadding -
+      padding -
+      buttonWidth -
+      padding,
+    [playerWidth]
+  );
+
+  // Manage media
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const activeMedia = media[activeMediaIndex];
+  // TODO blocker do I throw an error when there's no internet?
+  const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
+  const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
+
+  const [shouldPlayOnLoad, setShouldPlayOnLoad] = useState(false);
+  useEffect(() => {
+    if (isLoaded && shouldPlayOnLoad) {
+      player.play();
+      setShouldPlayOnLoad(false);
+    }
+  }, [isLoaded, shouldPlayOnLoad, player]);
+
+  // handle background audio
+  useEffect(() => {
+    if (!isAppVisible) {
+      player.pause();
+    }
+  }, [isAppVisible, player]);
+
+  // can't do this without setting playsInSilentMode == false
+  // (why can players like apple music do this?)
+  // TODO figure it out
+  // useEffect(() => {
+  //   setAudioModeAsync({ shouldPlayInBackground: true });
+  // }, []);
+
+  // Manage animations
+  const isOpenSv = useSharedValue(false);
+  const containerStyles = useAnimatedStyle(() => ({
+    width: withSpring(
+      isOpenSv.value ? playerWidth : padding + buttonWidth + padding + buttonWidth + padding,
+      springConfig
+    ),
+  }));
+  const opacityStyles = useAnimatedStyle(() => ({
+    opacity: withSpring(isOpenSv.value ? 1 : 0, springConfig),
+    pointerEvents: isOpenSv.value ? 'auto' : 'none',
+  }));
+  const plusStyles = useAnimatedStyle(() => ({
+    transform: [
+      {
+        rotate: withSpring(isOpenSv.value ? '0deg' : '90deg', springConfig),
+      },
+    ],
+  }));
+
+  // manage duration / gestures
+  const progressSv = useSharedValue(0);
+  const gestureStartProgressSv = useSharedValue(0);
+  const isGesturingSv = useSharedValue(false);
+  const didBumpSv = useSharedValue(false);
+
+  // sync state with time elapsed
+  useEffect(() => {
+    if (!isGesturingSv.value) {
+      progressSv.value = currentTime / duration;
+    }
+  }, [currentTime, duration, isGesturingSv, progressSv]);
+  const seekOnGestureFinalize = useCallback(
+    (time: number) => {
+      player.seekTo(time).finally(() => (isGesturingSv.value = false));
+    },
+    [isGesturingSv, player]
+  );
+
+  // override state with gesture
+  const gesture = Gesture.Pan()
+    .hitSlop(buttonSlop)
+    .minDistance(1)
+    .onStart(() => {
+      isGesturingSv.value = true;
+      gestureStartProgressSv.value = progressSv.value;
+    })
+    .onUpdate((e) => {
+      const gestureProgress = e.translationX / durationWidth;
+      const newValue = Math.max(0, Math.min(1, gestureStartProgressSv.value + gestureProgress));
+      progressSv.value = newValue;
+
+      // side-effect: bump!
+      if (!didBumpSv.value && (newValue === 0 || newValue === 1)) {
+        runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Heavy);
+        didBumpSv.value = true;
+      } else if (didBumpSv.value && newValue !== 0 && newValue !== 1) {
+        // reset state
+        didBumpSv.value = false;
+      }
+    })
+    .onFinalize(() => {
+      const seekTime = progressSv.value * duration;
+      runOnJS(seekOnGestureFinalize)(seekTime);
+    });
+
+  // commit gesture stuff to styles
+  const durationContainerStyles = useAnimatedStyle(() => ({
+    height: withSpring(isGesturingSv.value ? padding : padding / 2, { mass: 1, damping: 30, stiffness: 500 }),
+  }));
+  const durationStyles = useAnimatedStyle(() => ({
+    width: `${progressSv.value * 100}%`,
+  }));
+
+  return activeMedia ? (
+    <Animated.View
+      style={[
+        containerStyles,
+        {
+          position: 'absolute',
+          bottom: Math.max(inset.bottom, appPadding),
+          left: Math.max(inset.left, appPadding / 2),
+          height: playerHeight,
+          borderRadius: 9999,
+          overflow: 'hidden',
+          boxShadow: '0 0 20px rgba(64, 64, 64, 0.2)',
+        },
+        style,
+      ]}
+    >
+      <SystemView
+        variant="primary"
+        style={{
+          flex: 1,
+          position: 'relative',
+        }}
+      >
+        <Button
+          style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
+          onPress={() => {
+            if (!isLoaded) {
+              setShouldLoad(true);
+              setShouldPlayOnLoad(true);
+            } else if (playing) {
+              player.pause();
+            } else {
+              player.play();
+            }
+          }}
+        >
+          {/* TODO animate state change */}
+          {(isBuffering || !isLoaded) && shouldLoad ? (
+            <ActivityIndicator color="white" />
+          ) : playing ? (
+            <FontAwesome6 name="pause" size={14} color="white" />
+          ) : (
+            <FontAwesome6 name="play" size={14} color="white" />
+          )}
+        </Button>
+        <Animated.View
+          style={[
+            opacityStyles,
+            {
+              position: 'absolute',
+              left: padding + buttonWidth + padding,
+              top: padding,
+              bottom: padding,
+            },
+          ]}
+        >
+          <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
+            <Button>
+              <FontAwesome6 name="bars" size={14} color="white" />
+            </Button>
+          </MediaMenu>
+        </Animated.View>
+        <GestureDetector gesture={gesture}>
+          <Animated.View
+            style={[
+              opacityStyles,
+              {
+                position: 'absolute',
+                left: padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding,
+                width: durationWidth,
+                top: padding,
+                bottom: padding,
+                justifyContent: activeMedia['Variant Name'] ? 'space-between' : 'center',
+              },
+            ]}
+          >
+            {activeMedia['Variant Name'] ? (
+              <ThemedText style={{ color: 'white' }} numberOfLines={1}>
+                {activeMedia['Variant Name']}
+              </ThemedText>
+            ) : null}
+            <Animated.View
+              style={[
+                durationContainerStyles,
+                {
+                  backgroundColor: 'rgba(255,255,255,0.5)',
+                  borderRadius: 9999,
+                  overflow: 'hidden',
+                },
+              ]}
+            >
+              <Animated.View
+                style={[
+                  durationStyles,
+                  {
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    borderRadius: 9999,
+                    backgroundColor: 'white',
+                  },
+                ]}
+              />
+            </Animated.View>
+          </Animated.View>
+        </GestureDetector>
+        <Button
+          style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
+          onPress={() => {
+            setShouldLoad(true);
+            isOpenSv.value = !isOpenSv.value;
+          }}
+        >
+          <FontAwesome6 name="minus" size={17} color="white" />
+          <Animated.View style={[plusStyles, { position: 'absolute' }]}>
+            <FontAwesome6 name="minus" size={17} color="white" />
+          </Animated.View>
+        </Button>
+      </SystemView>
+    </Animated.View>
+  ) : null;
+}

@@ -8,8 +8,9 @@ import Animated, {
   useAnimatedStyle,
   useScrollViewOffset,
   useSharedValue,
-  withTiming,
+  withSpring,
 } from 'react-native-reanimated';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 
 import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -21,8 +22,10 @@ import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const timing = {
-  duration: 200,
+const springConfig: SpringConfig = {
+  mass: 1,
+  damping: 50,
+  stiffness: 500,
 };
 
 type HeaderBackgroundProps = {
@@ -102,8 +105,8 @@ export const HeaderTitle = ({
       }
     }
     return {
-      opacity: withTiming(animateTitleIn ? 1 : 0, timing),
-      transform: [{ translateY: withTiming(animateTitleIn ? 0 : 5, timing) }],
+      opacity: withSpring(animateTitleIn ? 1 : 0, springConfig),
+      transform: [{ translateY: withSpring(animateTitleIn ? 0 : 5, springConfig) }],
     };
   });
   const animatedVariantNameStyle = useAnimatedStyle(() => {
@@ -118,10 +121,10 @@ export const HeaderTitle = ({
     return {
       transform: [
         {
-          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, timing),
+          translateY: withSpring(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, springConfig),
         },
         {
-          scale: withTiming(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, timing),
+          scale: withSpring(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, springConfig),
         },
       ],
     };

@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 16,
-    letterSpacing: -0.25,
+    letterSpacing: -0.1,
     lineHeight: 24,
   },
   profiles: { gap: padding / 2 },

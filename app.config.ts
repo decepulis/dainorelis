@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
-    buildNumber: '25051202',
+    buildNumber: '25051401',
   },
   android: {
     adaptiveIcon: {
@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 25051202,
+    versionCode: 25051401,
     edgeToEdgeEnabled: true,
   },
   web: {
@@ -39,6 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     'expo-router',
+    'expo-audio',
     [
       'expo-splash-screen',
       {
@@ -72,6 +73,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           './assets/images/icons/format_quote_20px.xml',
           './assets/images/icons/menu_book_20px.xml',
           './assets/images/icons/share_20px.xml',
+          './assets/images/icons/music_note_20px.xml',
         ],
       },
     ],

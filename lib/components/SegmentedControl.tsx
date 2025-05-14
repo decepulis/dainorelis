@@ -1,7 +1,8 @@
 import React, { ComponentPropsWithoutRef, useEffect } from 'react';
 import { LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 
 import * as Haptics from 'expo-haptics';
 
@@ -10,8 +11,10 @@ import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { fonts } from '../constants/themes';
 import useA11yBoldText from '../hooks/useA11yBoldText';
 
-const timing = {
-  duration: 150,
+const springConfig: SpringConfig = {
+  mass: 1,
+  damping: 50,
+  stiffness: 700,
 };
 
 type OptionType = {
@@ -26,7 +29,6 @@ type OptionProps = {
 };
 const Option = ({ isSelected, option, onPress }: OptionProps) => {
   const text = useThemeColor('text');
-  const primary = useThemeColor('primary');
   const isBoldTextEnabled = useA11yBoldText();
   // Animated style for the text
   const textStyle = useAnimatedStyle(() => {
@@ -38,7 +40,7 @@ const Option = ({ isSelected, option, onPress }: OptionProps) => {
         ? fonts.medium
         : fonts.regular;
     return {
-      color: withTiming(isSelected ? '#fff' : text, timing),
+      color: withSpring(isSelected ? '#fff' : text, springConfig),
       ...font,
     };
   });
@@ -67,7 +69,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
   // Calculate the indicator position when active index changes
   useEffect(() => {
     const targetIndex = activeIndex >= 0 ? activeIndex : 0;
-    translateX.value = withTiming(targetIndex * optionWidth.value, timing);
+    translateX.value = withSpring(targetIndex * optionWidth.value, springConfig);
   }, [activeIndex, translateX, optionWidth]);
 
   const animatedIndicatorStyle = useAnimatedStyle(() => ({
@@ -97,7 +99,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
               borderColor: separator,
             },
             default: {
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.05)',
+              boxShadow: '0 0 10px rgba(64, 64, 64, 0.15)',
             },
           }),
         },
@@ -112,14 +114,16 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
           isSelected={option.value === value}
           option={option}
           onPress={() => {
-            setTimeout(() => {
-              // there's no guarantee that the animation will be done in 150ms;
-              // some things may delay it
-              // but this will at least be closer than triggering the haptics immediately
-              // and by the time withTiming would call its AnimationCallback it would be too late
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            }, timing.duration - 100);
             onValueChange(option.value);
+            if (option.value !== value) {
+              setTimeout(() => {
+                // there's no guarantee that the animation will be done in 150ms;
+                // some things may delay it
+                // but this will at least be closer than triggering the haptics immediately
+                // and by the time withSpring would call its AnimationCallback it would be too late
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              }, 50);
+            }
           }}
         />
       ))}
@@ -135,7 +139,7 @@ const styles = StyleSheet.create({
     padding: 3,
     position: 'relative',
     flexShrink: 1,
-    boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(0, 0, 0, 0.05)' : undefined,
+    boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(64, 64, 64, 0.15)' : undefined,
   },
   indicator: {
     position: 'absolute',

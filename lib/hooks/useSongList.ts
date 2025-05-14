@@ -120,6 +120,7 @@ export const useManualItems = ({ isSongFestivalMode }: { isSongFestivalMode?: bo
   return manualItems;
 };
 
+// TODO blocker (maybe?) add filter-by-mp3/pdf/chords
 type Options = {
   isFavorites: boolean;
   isSongFestivalMode: boolean;
