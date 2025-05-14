@@ -11,7 +11,7 @@ const fieldFlags: Record<keyof Song['fields'], boolean> = {
   Name: true,
   Lyrics: true,
   Videos: false,
-  Audio: false,
+  Audio: true,
   PDFs: true,
   Tags: false,
   Sources: false,
@@ -89,7 +89,7 @@ async function getAudio() {
   return await base('Audio')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'URL'],
+      fields: ['Variant Name', 'URL', 'Album', 'Artist'],
     })
     .all();
 }
@@ -203,7 +203,7 @@ export default songFestival`;
           filteredSongFile.findIndex((song) => song.fields.Name === 'Lietuviais esame mes gimę'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Čiūto'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Buvo dūda Vilniuj'),
-          filteredSongFile.findIndex((song) => song.fields.Name === 'Dzūkit, dzūkit girnelės (Malu malu)'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Dzūkit, dzūkit girnelės'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ir įšoko ožėlis'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ne dėl žalio vyno'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Už Raseinių'),
@@ -216,7 +216,13 @@ export default songFestival`;
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ar žinai tu, klajūne, keleivi'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Žąsinas'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Skaičiuotės'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Aš pasėjau linelį'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Jau saulutė leidžias'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Jonvabalis'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Greitai, greitai'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Šią naktelę, per naktelę'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Tai manoji Lietuva'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Greitakalbės'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ten mano svajos'),
         ],
       },
@@ -236,6 +242,8 @@ export default songFestival`;
           filteredSongFile.findIndex((song) => song.fields.Name === 'Kraičio drobelės'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Pradės aušrelė aušti'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Žvirbliai'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Šarkela varnela'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Kalvelis'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Džigūnas'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Kupolinis'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Viena šeima, viena tauta'),
@@ -245,6 +253,7 @@ export default songFestival`;
 
     // if any data is missing, throw an error
     if (songFestivalList.some((section) => section.data.some((index) => index === -1))) {
+      console.error(JSON.stringify(songFestivalList, null, 2));
       throw new Error('Some songs are missing from the song festival list');
     }
     // otherwise, write the song festival file

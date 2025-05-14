@@ -364,6 +364,40 @@ const songs: SongFile = [
           "Lyrics & Chords": "Ar žinai, tu klajūne, keleivi,\nKur manoji tėvelių šalis?\nApsigaubus laukais ir šilojais,\nMūsų tyro rytojaus viltis.\n\nAr žinai kokios žydros jos akys,\nKokie švelnūs pajūrio plaukai,\nKiek upelių jos kūnu čiurlena,\nKaip dainuoja ten rugio laukai?\n\n_Kai nuvyksi tenai apžiūrėki\nDangų remiančius Dievo namus,\nDuonos himną dainuojančią žemę,\nKopų smėly išartus laukus._\n\nNukeliauk į tėvelių sodybą,\nPaklausyk, kaip kalena gandrai,\nKaip iš džiaugsmo po rasą bėgioja\nBasakojai, padūkę vaikai.\n\nPabraidyki po Baltijos jūrą,\nSusiliek su beribe gamta.\nSavo bočių papėdėn sustojus\nAtsigaus ir tavoji dvasia..\n\n_Kai nuvyksi..._\n\nAr žinai, tu klajūne, keleivi,\nKur manoji tėvelių šalis?\nApsigaubus laukais ir šilojais,\nMūsų tyro rytojaus viltis.\n\nPaklausyk kaip čiurlena upeliai,\nKaip vilnyja per sodžius daina,\nNes pasauly nėra kito krašto,\nKaip manoji šalis Lietuva!"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ar-zinai-tu-klajune-keleivi-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ar-zinai-tu-klajune-narration.m4a"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
@@ -485,6 +519,36 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Aš pasėjau linelį\nTėtušėlio daržely.\n_Ritin dobila,\nRitin dobilą,\nRitin dobil ja._\n\nIr išdygo linelis\nTėtušėlio daržely.\n_Ritin dobila..._\n\nIr užaugo linelis\nTėtušelio daržely.\n_Ritin dobila..._\n\nIr pražydo dobilas\nTėtušėlio daržely.\n_Ritin dobila..._"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-satb.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/as-pasejau-lineli-narration.m4a"
         }
       ],
       "PDFs": [
@@ -998,6 +1062,36 @@ const songs: SongFile = [
           "Lyrics & Chords": "Kol dar lelijos ežere,\nKol dar virš upių kyla rūkas,\nKol baltas paukštis danguje\nDar gieda tau ir man...\n\nKol dar tarp gatvių ir namų\nNepasiklydo mano balsas,\nKol dar tavim šventai tikiu\nKol dar tikiu šventai...\n\n_Po nakties diena,\nPo lietaus miškai kvepia,\nPo mirties šviesa\nAmžina..._\n\n_Tarp Lietuvos\nIr tarp dangaus aukšto\nGieda paukštis virš mūsų\nIr giedos..._\n\nKol dar matau kol dar girdžiu,\nKol dar į kalną mano kelias,\nKartoju paprastus žodžius,\nTie žodžiai - man ir tau.\n\n_Po nakties diena…_\n\n_Gieda paukštis virš mūsų\nIr giedos..._"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano (Eb)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-piano-eb.mp3"
+        },
+        {
+          "Variant Name": "Ukranian pronunciation (Rehearsals C & D)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/baltas-paukstis-ukrainian-pronunciation-rehearsals-c-d.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Chorinė versija",
@@ -1063,6 +1157,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Beauštanti aušrelė, betekanti saulelė.\nKelk, seserėle, mano viešnele,\nAr dar tu n’išmiegojai?\n\nPinkisi vainikėlį, dėkisi ant galvelės.\nTavo sveteliai, balti broleliai,\nBalnoj’ bėrus žirgelius.\n\nPrivažiavom dvarelį, anytėlės vartelius.\nAš ir pamačiau savo vargelį\nPrie anytos vartelių.\n\nIr išėjo brolelis, išsinešė kardelį.\nO ir iškirto vartų lentelę,\nTik ne mano vargelį."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/beaustanti-ausrele-album-version.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/beaustanti-ausrele-satb-1.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-bass.mp3"
         }
       ],
       "PDFs": [
@@ -1222,6 +1350,36 @@ const songs: SongFile = [
           "Lyrics & Chords": "Buvo dūda Vilniuj.\n\nGal buvo, gal nebuvo.\n\nAš, dėdyt, nežinau ir namie nebuvau.\n\nBuvo, buvo, kaip nebuvo. "
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano & Woodwinds",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-piano-woodwinds.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -1329,6 +1487,28 @@ const songs: SongFile = [
           "Lyrics & Chords": "Čiūto!\nDaunoj lilio čiūto, 4x\nEisim, broliai, mes laukeliu,\nEisim, broliai, mes lauke(liu).\n\nČiūto!\nDaunoj lilio čiūto, 4x\nAtaūžia smarkus lietus.\n\nDaunoj lilio čiūto,\nBėgsim, broliai,\nDaunoj lilio čiūto,\nPo ūžuolu.\n\nBėgsim, broliai,\nPo ūžuolu.\nDaunoj lilio čiūto,\nČiūto.\n\nMum ūžuolas ne tėvelis,\nMum ūžuolas ne tėvelis,\nJo šakelės ne rankelės,\nJo lapeliai ne žode(liai)."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "TTBB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-ttbb.mp3"
+        },
+        {
+          "Variant Name": "Tenor 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-tenor-1.mp3"
+        },
+        {
+          "Variant Name": "Tenor 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-tenor-2.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -1345,6 +1525,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Cykiai cykiai Nemunėlis teka.\nNuocykiausiai mūs sasulė verkia.\n\nSasul, sasul, ko tep graudziai verki?\n– Žada mani už to sano duoce.\n\nAš to sano niekad(u) nemylėsiu,\nPer dvarelį akmeniu parisiu,\nPer ulyčių kurtelėm užlaisiu.\n\nCykiai cykiai Nemunėlis teka,\nNuocykiausiai mūs sasulė verkia"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/cykiai-cykiai-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-bass.mp3"
         }
       ],
       "PDFs": [
@@ -1666,6 +1880,44 @@ const songs: SongFile = [
           "Lyrics & Chords": "Oi, žirgeli, juodbėrėli\nPas mergelę mane nešk.\nOi, sadaučio sadautėlio\nLinagaučio lina go.\n\nNegailėsiu avižėlių\nPagirdysiu vandeniu.\nTrinku, trinku trinkutėla\nTrinku, trinku laduto.\n\nGreičiau, greičiau žirgužėli,\nPatkavėlėm ugnį skelk.\nTaidu, taida opa, opa\nTaidu, taida opapa.\n\nIšeis uošvis ant kiemelio,\nAtkels vario vartelius.\nTolijo tolijute,\nTolijo tatato.\n\nAš nešu jai šilko skarą\nIr žiedelį dovanų.\nNešk žirgeli, nešk į dvarą\nUžu mylių devynių.\n\nTaidu taida opapa\nTaida opa."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-satb.mp3"
+        },
+        {
+          "Variant Name": "Band track",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-band-track.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-tenor-1.mp3"
+        },
+        {
+          "Variant Name": "Tenor 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-tenor-2.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -1690,11 +1942,49 @@ const songs: SongFile = [
   {
     "id": "recB7wMn4NaF71Uul",
     "fields": {
-      "Name": "Dzūkit, dzūkit girnelės (Malu malu)",
+      "Name": "Dzūkit, dzūkit girnelės",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Malu, malu aš viena,\nPasižiūriu jau diena.\n_Dzūkit, dzūkit girnelės,\nLinksminkit jūs many. 2x_\n\nO jūs mano rankelės\nVis po sunkų darbelį.\n_Dzūkit..._\n\nO jūs mano kojelės\nVis po tamsų purvelį.\n_Dzūkit..._\n\nO jūs mano akelės\nPilnos baltų miltelių.\n_Dzūkit..._"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/dzukit-dzukit-girneles-live.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/dzukit-dzukit-girneles-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-bass.mp3"
+        },
+        {
+          "Variant Name": "Bass (low E)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-bass-low-e.mp3"
         }
       ],
       "PDFs": [
@@ -2111,11 +2401,49 @@ const songs: SongFile = [
   {
     "id": "recAk1k2DIAQbdpOK",
     "fields": {
-      "Name": "Greitai, greitai laikas bėga",
+      "Name": "Greitai, greitai",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Greitai, greitai laikas bėga\nGražių svajonių ir sapnų.\nMiške balsas suskambėjo\nIr tiktai girdis aidas jo. (2k. x 2)\n\nGreitai, greitai išvažiuosiu,\nPaliksiu tave amžinai.\nGal daugiau jau nebegrįšiu –\nUžmiršk, užmiršk, užmiršk prašau.\n\nUžmiršk be keršto, be piktumo,\nUžmiršk praėjusius laikus,\nUžmiršk, kad aš tave mylėjau,\nUžmiršk, užmiršk, užmiršk prašau.\n\nAš paslaptauti nemokėjau\nIr atviros širdies buvau,\nBet tavo būti negalėjau –\nAtleisk, atleisk, atleisk, prašau."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitai-greitai-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-piano.mp3"
+        },
+        {
+          "Variant Name": "SSA + Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-ssa-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-soprano.mp3"
+        },
+        {
+          "Variant Name": "Soprano + Descant",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-soprano-descant.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-narration.m4a"
         }
       ],
       "PDFs": [
@@ -2138,6 +2466,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Bliūdas prūde plūdur,\nTame bliūde putra,\nAnt tos putros pluta, pluta,\n\nBliūdas prūde plūdur,\nTame bliūde putra,\nAnt tos putros plutos puta.\n\nGervė gyrūnė gyrės\nGerą girą girioje gėrusi.\nGeltons gaidys garsiai,\nGarsiai gieda girininko garde.\n\nKalvis kalvaitis kala kalvėj kaltą,\nKaltą ant priekalo.\nLip vapsva į viksvą, ir ta viksva,\nIr ta viksva vis vizg."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SSA",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-ssa.mp3"
+        },
+        {
+          "Variant Name": "SAB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitakalbes-sab.mp3"
+        },
+        {
+          "Variant Name": "Piano (Eb minor)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-piano-eb-minor.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-alto.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitakalbes-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitakalbes-narration.m4a"
         }
       ],
       "PDFs": [
@@ -2294,6 +2656,36 @@ const songs: SongFile = [
           "Lyrics & Chords": "Ir įšoko ožėlis į kopūstų daržą. 2x\n\nMeilinga džiunga,\nMeilinga džiunga\nNa za ram cam cam\nCabulai, judyt budyt\nOžėli man(a).\n\nIr nuėdė ožėlis kopūstėnei lapus. 2x\n\nIr išėji kopūstėni su ilgu batagu. 2x\n\nIr užkirta ožėliui par pilvą galą. 2x"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ir-isoko-ozelis-live.mp3"
+        },
+        {
+          "Variant Name": "SSAA",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-ssaa.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-alto-2.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -2435,6 +2827,56 @@ const songs: SongFile = [
           "Lyrics & Chords": "_Jau saulutė leidžias,\nArtyn vakarėlis,\nUždengė šviesumą\nTamsus debesėlis._\n\nDarbininkai žmonės\nPo darbų parėję\nPo prakaito dienos\nSaldžiai atsilsėjo.\n\n_Jau saulutė..._\n\nSugulė žvėreliai,\nAnt aukštų kalnelių,\nSutūpė paukšteliai\nAnt medžių šakelių.\n\n_Jau saulutė... 2x_"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jau-saulute-leidzias-album-version.mp3"
+        },
+        {
+          "Variant Name": "SAB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-sab.mp3"
+        },
+        {
+          "Variant Name": "SA (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-sa-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Accompaniment",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-accompaniment.mp3"
+        },
+        {
+          "Variant Name": "Soprano (Jaunimas)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-jaunimas.mp3"
+        },
+        {
+          "Variant Name": "Soprano + Maža grupė (Jaunimas)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-maza-grupe-jaunimas.mp3"
+        },
+        {
+          "Variant Name": "Alto (Jaunimas)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-alto-jaunimas.mp3"
+        },
+        {
+          "Variant Name": "Bass (Jaunimas)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-bass-jaunimas.mp3"
+        },
+        {
+          "Variant Name": "Soprano (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Soprano + Maža grupė (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-maza-grupe-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Alto (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-alto-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-narration.m4a"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
@@ -2493,6 +2935,24 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Oh! say can you see by the dawn’s early light,\nWhat so proudly we hailed at the twilight’s last gleaming?\nWhose broad stripes and bright stars through the perilous fight,\nO’er the ramparts we watched were so gallantly streaming?\nAnd the rockets’ red glare, the bombs bursting in air,\nGave proof through the night that our flag was still there.\nOh! say does that star-spangled banner yet wave,\nO’er the land of the free and the home of the brave?"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-bass.mp3"
         }
       ],
       "PDFs": [
@@ -2576,6 +3036,24 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "_Aš vabaliukas Jonas,\nAš – tikras miško Monas…\nPernakt man reikia šviesti\nVirš skruzdėlyčių miesto. 2x_\n\nMan nevalia užmigti –\nReik palydėt, sutikti,\nPriglaust keleivį žiogą\nPo žalio miško stogu.\n\n_Aš vabaliukas Jonas,\nAš – tikras miško Monas…\nPernakt man reikia šviesti\nVirš skruzdėlyčių miesto. 2x_\n\nO kai aušra nušvinta,\nUžgesinu žibintą…\nAš tikras miško Monas,\nAš – vabaliukas Jonas.\n\n_Aš vabaliukas Jonas,\nAš – tikras miško Monas…\nPernakt man reikia šviesti\nVirš skruzdėlyčių miesto. 2x_"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jonvabalis-live.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/jonvabalis-soprano.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/jonvabalis-piano.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jonvabalis-narration.m4a"
         }
       ],
       "PDFs": [
@@ -2916,6 +3394,44 @@ const songs: SongFile = [
           "Lyrics & Chords": "Tin kalu kalu per dieną\nŽagrelę aš viena\nTin kalu kalu per dieną\nŽagrelė tin tin tin.\n\nArtojėlis du jautelius pakinkys\nGilia vagą per laukelį išvarys.\n\nTin tan tin tan\nTin tan tin tan tan\nTin tan tin tan\nTin tan tan tan tan tan\n\nTin tan tin tan\nTin tan tin tan tan\nTin tan tin tan\nTin tin tin tin tan tan tan\n\nTin kalu kalu per dieną\nTin žagrelę aš tą vieną\nTin tan tin tan tin tan\nTin žagrelę tin tin tin."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kalvelis-satb.mp3"
+        },
+        {
+          "Variant Name": "Band track (113)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-band-track-113.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-bass.mp3"
+        },
+        {
+          "Variant Name": "Soprano (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Alto (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kalvelis-alto-vaikai.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -2968,6 +3484,32 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "O Canada! Our home and native land!\nTrue patriot love in all of us command,\n\nCar ton bras sait porter l’épée,\nIl sait porter la croix!\nTon histoire est une épopée\nDes plus brillants exploits,\n\nGod keep our land glorious and free!\nO Canada, we stand on guard for thee.\n\nO Canada, we stand on guard for thee."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-bass.mp3"
         }
       ],
       "PDFs": [
@@ -3237,6 +3779,32 @@ const songs: SongFile = [
           "Lyrics & Chords": "Esu dailiai išmokyta,\nMoku gražiai austi,\nŠaudyklėlė gražiai šauna\nSiūlų neužgauna.\n\nPykšt pokšt tapu pupu klepu klepu"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kraicio-drobeles-album-version.mp3"
+        },
+        {
+          "Variant Name": "SAA",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-saa.mp3"
+        },
+        {
+          "Variant Name": "Band track",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-band-track.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-alto-2.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -3338,6 +3906,40 @@ const songs: SongFile = [
           "Lyrics & Chords": "Un tevelia dvara beržus siūbava\nMiklasias šakelas liūliau liūliau.\n\nO kas tas mikląsias šakelas kirs\nJoninių naktely ugnelų kurs?\n\nVyriausis bralalis šakelas kirs,\nJauniause sesula ugnelų kurs.\n\nŽydintis vainike, tu vainikėli\nKaip man surasti sau bernužėlį.\n\nA, a, a, kupolia, kupolia\nA, a, a, kupolėli, kupolia.\n\nŠoksim per naktely, kupolia,\nSu bernužėliais tumsioj girelėj."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kupolinis-satb.mp3"
+        },
+        {
+          "Variant Name": "Band track",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-band-track.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kupolinis-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -3402,6 +4004,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Kur sakalalis, ty gegutelė.\nSuskrido anys vienan sodelin.\nSutūpė anys un vieno medžio.\nLasė uogela nuo vienos kekės.\n\nGėrė rasalį nuo vieno lapo.\nKur mergužėla, ti bernužėlis.\nSuvažiauv anys vienan dvaralin.\nAnys susėda až viena stala.\nValgė pyragų iš vieną kasnią.\nIš vieną kupką vynelė gėrė.\n\nVienų žadelį anys kalbėja,\nVienų žadelį anys kalbėj,\nkur gegutel, ti sakalal."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kur-sakalalis-album-version.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-satb.mp3"
+        },
+        {
+          "Variant Name": "Band track",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-band-track.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-bass.mp3"
         }
       ],
       "PDFs": [
@@ -3688,6 +4324,48 @@ const songs: SongFile = [
           "Lyrics & Chords": "Lietuviais esame mes gimę,\nLietuviais norime ir būt!\nTą garbę gavome užgimę,\nJai ir neturim leist pražūt.\n\nKaip ąžuols drūts prie Nemunėlio\nLietuvis nieko neatbos,\nKaip eglė, kur prie Šešupėlės,\nIr vėtroj, ir žiemą žaliuos.\n\nLietuviais esame mes gimę,\nLietuviais norime ir būt!\nTą garbę gavome užgimę,\nJai ir neturim leist pražūt.\nJai ir neturim leist pražūt."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-satb-db.mp3"
+        },
+        {
+          "Variant Name": "Piano (Db)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-piano-db.mp3"
+        },
+        {
+          "Variant Name": "Piano (C)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/lietuviais-esame-mes-gime-piano-c.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-soprano-db.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-alto-1-db.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-alto-2-db.mp3"
+        },
+        {
+          "Variant Name": "Tenor 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-tenor-1-db.mp3"
+        },
+        {
+          "Variant Name": "Tenor 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-tenor-2-db.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-baritone-db.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-bass-db.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -3718,6 +4396,32 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Lietuva, Tėvyne mūsų,\nTu didvyrių žeme,\nIš praeities Tavo sūnūs\nTe stiprybę semia.\n\nTegul Tavo vaikai eina\nVien takais dorybės,\nTegul dirba Tavo naudai\nIr žmonių gėrybei.\n\nTegul saulė Lietuvoj\nTamsumas prašalina,\nIr šviesa, ir tiesa\nMūs žingsnius telydi!\n\nTegul meilė Lietuvos\nDega mūsų širdyse,\nVardan tos Lietuvos\nVienybė težydi!"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-satb-2024.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-piano-2024.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-soprano-2024.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-alto-2024.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-tenor-2024.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-bass-2024.mp3"
         }
       ],
       "PDFs": [
@@ -4425,6 +5129,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "O jau mano mielas\nAnksti rytą kėlė\n\nNe dėl žalio vyno,\nDėl žalio žolyno.\n\nO jau mano mielas\nBaltai burną prausė.\n\nO jau mano mielas\nMarškinėlius vilkos.\n\nO jau mano mielas\nSermėgėlę segė.\n\nO jau mano mielas\nKepurėlę dėjo.\n\nŽirgelį balnojo,\nĮ karužę jojo.\n\nVilytėlė kirto,\nGalvelę padėjo.\n\nO jau mano mielas\nGalvelę padėjo.\n\nNe dėl žalio vyno\nDėl žalio žolyn."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ne-del-zalio-vyno-live.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ne-del-zalio-vyno-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ne-del-zalio-vyno-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ne-del-zalio-vyno-bass.mp3"
         }
       ],
       "PDFs": [
@@ -5445,6 +6183,56 @@ const songs: SongFile = [
           "Lyrics & Chords": "Mane daina ir šokis,\nKaip pienės pūką\nAukštai virš žemės pakylėjęs\nSupa, suka...\n\nIr liaudiškos giesmelės\nĮpintas jaučiuos\nToks lengvas, lengvutėlis, kaip tas\nPienės pūkas....\n\nPasklidę po pasaulį, pasaulį platų\nIr žemėj svetimoj įleidę šaknis\nDainos ir šokio supūsti, suskridom čia,\nKad suktumės kaip pienės pūkas.\nMes visi!\n\nŽydėk jaunyste savo juoku, šypsena,\nUždeki mūs veidus rytmečio žara\nPakviesk tėvynę Lietuvėlę svečiuosna\nIr linksminkis Jaunyste kol jauna!\nKol jauna!"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/pienes-pukas-satb.mp3"
+        },
+        {
+          "Variant Name": "SSA + Band",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-ssa-band.mp3"
+        },
+        {
+          "Variant Name": "Band",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-band.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/pienes-pukas-piano-f.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1 + Maža grupė",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-1-maza-groupe.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2 + Maža grupė",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-2-maza-groupe.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-narration.m4a"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
@@ -5589,6 +6377,32 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Pradės aušrelė aušti,\nPradės gaidžiai giedoti,\nOi lylia, lylia, lylia,\nPradės gaidžiai giedot(i).\n\nPradės gaidžiai giedoti,\nNeduos jie man miegoti,\nOi lylia, lylia, lylia,\nNeduos jie man miegot(i).\n\nPer laukelį greitai jojau,\nPrie klėtelės apsistojau,\nLylia, oi liū-ly-lia,\nPrie klėtelės apsistoj(au).\n\nAr čia durys, ar čia siena,\nAr mergelė guli viena,\nLylia, oi liū-ly-lia,\nAr mergelė guli vien(a)?\n\nČia guli motinėlė,\nSu savo dukružėle,\nOi lylia, lylia, lylia,\nSu savo dukružėl(e).\n\nNesbarki, bernužėli,\nNežadink iš miegelio,\nOi lylia, lylia, lylia,\nNežadink iš miegel(io)."
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/prades-ausrele-austi-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/02/prades-ausrele-austi-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/02/prades-ausrele-austi-bass.mp3"
         }
       ],
       "PDFs": [
@@ -6013,6 +6827,52 @@ const songs: SongFile = [
           "Lyrics & Chords": "Šarkela, varnela,\nKeli tavo vaikeliai?\n— Du kapuos, du namuos,\nDu duoną raiko,\nDu pinigus skaito,\nDu po kiemą bėginėja,\nDu ripkelę ridinėja,\nDu ant kranto rauda."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/sarkela-varnela.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-tenor-1.mp3"
+        },
+        {
+          "Variant Name": "Tenor 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-tenor-2.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -6316,6 +7176,36 @@ const songs: SongFile = [
           "Lyrics & Chords": "Šią naktelę, per naktelę\nNemigau, nemigau.\nSu broleliu obelėlę\nSodinau, sodinau. (2k. x 2)\n\nPrigyk, prigyk, obelėle,\nValyvai, valyvai.\nNokink savo obuolėlius\nRaudonai, raudonai.\n\nAš priskinsiu obuolėlių\nRaudonų, raudonų,\nIr nunešiu mergužėlei\nDovanų, dovanų.\n\nMergužėlė, lelijėle,\nKur buvai, kur buvai?\nKad šią naktį jaunimėly\nNebuvai, nebuvai.\n\nŠią naktelę, per naktelę\nNemigau, nemigau.\nSu broleliu obelėlę\nSodinau, sodinau."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sia-naktele-satb-1.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-narration.m4a"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Natos 1",
@@ -6454,6 +7344,40 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Eini meini vienkepuri,\nIštrauk šaknį iš maguri, guri,\nEi lei ližu lažu,\nAks laps, klevo laps, klevo laps.\n\n_Ercik percik pamaguli,\nVini tėli pacekuli. Wū!\nEini beini, diki daki, daki,\nUrbi burbi, šmiki šmaki, šmaki,\nAus baus, bus medaus,\nBitė ritė paragaus.\nAus baus, bus medaus._\n\nEna bena, kuki baki,\nOrba torba, orbi maki, maki (maki!)\nĖjus, ėjus pas Motiejus,\nTumba, tumba, tumba, tumba, tumba, bėk. (tumba, bėk!)\n\nAnku dranku druli dru,\nŠatar vatar po varpu, po varpu, (po varpu!)\nĖmus dėmus šaštautėmus,\nPėdi ėdi, pėdi ėdi, ganyt kam. (ganyt kam!)"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/skaiciuotes-satb.mp3"
+        },
+        {
+          "Variant Name": "SA + Band",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-sa-band.mp3"
+        },
+        {
+          "Variant Name": "Band",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-band.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-bass.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-narration.m4a"
         }
       ],
       "PDFs": [
@@ -6880,6 +7804,19 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recny2mfxwiL5nRyH",
+    "fields": {
+      "Name": "Tai manoji Lietuva",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "**Skaitovas:**\nKur šią vasarą važiuosim?\n**Choras:**\n_Dainavon ir Kretingon!_\n\nKur šią vasarą dainuosim?\n_Romuvoj ir Neringoj!_\n\nKur užkursim skautų laužą?\n_Ir Rambyne, ir Rake!_\n\nTai manoji Lietuva –\nStovykla, daina, svaja,\nTen susirenkam draugauti,\nIškylauti ir juokauti!\n\nJonas koją užsigavo...\n_o, o_\nMarius Eglę pabučiavo...\n_uhu_\nIna buvo susiraukus...\n_m, m_\nO Antanas skuto plaukus...\n_vaje!_\n\nSuvažiuojame visi\nIr maži ir dideli.\nIr ten laužus mes kūrenam\nPrie liepsnų daina skardenam.\n\nRokas šiandien turi slogą...\n_ogą, ogą_\nOnai nuo kopūstų blogą...\n_logą, logą_\nVytas rašo mamai laišką...\n_aišką, aišką_\nPlease, atsiųsk saldainių maišą...\n_aišą, aišą!_\n\nKai dainas kartu dainuojam\nTai visi šilai linguoja.\nŠypsosi ramus Spyglys\nIr Rambyno kauburys.\n\nTai manoji Lietuva –\n_Kretinga ir Dainava!_\nTai manoji Lietuva – \n_Mūs Rambynas, Neringa!_\nTai manoji Lietuva – \n_Rako takas, Romuva!_"
+        }
+      ],
+      "Text Author": "Aušrinės Širvinskienės"
+    }
+  },
+  {
     "id": "recTcTFXaKN9F6W9q",
     "fields": {
       "Name": "Tai tu mąstai",
@@ -6988,6 +7925,58 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Jau tamsu, visur tylu\nRodos viens esu pasauly\nTa naktis neša mintis\nPer laukus į Dainavą\n\n_Ten mano svajos, ten sapnai\nTen palikau senus draugus\nTenai miškai, ežero krantai\nTyliai kalba grįžki tu pas mus_\n\nJau tamsu, visur tylu\nRodos viens esu pasauly\nNors mieste sėdžiu namie\nMintyse skrendu aš čia\n\n_Ten mano svajos..._\n\n_Ten mano svajos..._\n\n_Ten mano svajos..._"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "Dainava",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ten-mano-svajos-album-version.mp3",
+          "Album": "Aš čia gyva",
+          "Artist": "Darius Polikaitis"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-satb.mp3"
+        },
+        {
+          "Variant Name": "SSA (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-ssa-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Piano + flute",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ten-mano-svajos-piano-flute.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-bass.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1 (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano-1-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2 (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano-2-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Alto (Vaikai)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-alto-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-narration.m4a"
         }
       ],
       "PDFs": [
@@ -7484,6 +8473,36 @@ const songs: SongFile = [
           "Lyrics & Chords": "Už Raseinių, ant Dubysos,\nTeka saulė, teka;\nGeltonplaukės puikios visos\nŠneka ten, oi, šneka. (2x2)\n\nPo rasas kasas šukuoja,\nSaulė jas džiovina,\nKai užgieda, uždainuoja,\nŠirdį taip graudina. (2x2)\n\nAukštą dangų pamylėjo,\nBlaivią jo skaistybę,\nSau akis užsižavėjo\nMėlyna gilybe. (2x2)\n\nAkys melsvos, gelsvos kasos,\nŠirdys, oi, nešaltos.\nAukštas ūgis, kojos basos,\nNuo rasų taip baltos. (2x2)\n\nBet kodėl jos, žalią rūtą\nLaistydamos, liūsta?\nKam dainuojant joms Birutę,\nAšaros nedžiūsta? (2x2)\n\nKaip nedžiūtų, kad nežūtų\nTiek jaunų bernelių!\nKad be laiko tiek nebūtų\nBe vilties našlelių! (2x2)"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/uz-raseiniu-ant-dubysos-album-version.mp3"
+        },
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/uz-raseiniu-ant-dubysos-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/uz-raseiniu-ant-dubysos-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/uz-raseiniu-ant-dubysos-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/uz-raseiniu-ant-dubysos-alto.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/uz-raseiniu-ant-dubysos-tenor.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/uz-raseiniu-ant-dubysos-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -7519,6 +8538,32 @@ const songs: SongFile = [
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Užaugo liepa, lioj dautuvo.\nLygioj vetalaj, lylia ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.\n\nTurėjo liepa, lioj dautuvo,\nDevynias šakas, lylia ratilio.\n\nVisas devynias lioj dautuvo,\nVatrala laužė lylia ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.\n\nIš tų šakelių kraslalius dirbsiu,\nTuosi kraslaliuos pati sedėsiu.\n\nTurėjo liepa devynias šakas,\nVisas devynias vatrala laužė.\n\nIš tų šakelių, dautuvo,\nKraslalius dirbsiu, ratilali ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.",
           "Notes": "Kęstučio Daugirdo išplėtota lietuvių liaudies sutartinė"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SSAA",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-ssaa.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-alto-2.mp3"
         }
       ],
       "PDFs": [
@@ -7755,6 +8800,48 @@ const songs: SongFile = [
           "Lyrics & Chords": "Gintaro pilyse svajonių vedami,\nViltį širdy nešėm, kad būsim amžini.\nVienoj tautoj užgimę, ainiai Lietuvos,\nSkelbiame pasauliui: Tėvynė vis gyvuos.\n\n_Viena šeima, viena tauta.\nNes jungia mus tėvynė Lietuva.\nViena širdis, viena malda,\nĮ laimės rytą kyla mūs tėvynė Lietuva._\n\nAugame vieningi kaip ąžuolai žali,\nPer jūras šaukia žemė: būkite tvirti,\nIr šiandien atsiliepiam skambančia daina,\nTekyla ji padangėn šviesi, gyva, laisva!\n\n_Viena šeima..._"
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-soprano.mp3"
+        },
+        {
+          "Variant Name": "Soprano (Maža grupė)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-soprano-maza-grupe.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Vaikai",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-vaikai.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -7949,6 +9036,32 @@ const songs: SongFile = [
           "Lyrics & Chords": "Žąsin, žąsin, paukščiai gieda,\npaukščiai gieda,\nTu pešioji pienės žiedą,\npienės žiedą.\n\nPasikviesk žąselę Gagę\n- gir gir gir gir gir gi Gagę,\nPadainuok dainelę smagią\n- tra lia lia lia lia lia lia lia.\n\nMetė žiedą Girgitonas,\ngir gir gir gir Gir gi-tonas,\nNuaidėjo baritonas,\nba-ri ba-ri baritonas.\n\nNuaidėjo, nuskardėjo,\ngir gir gir gir gir gir ga ga,\nNėrė krūman, kas girdėjo -\ntra lia lia lia lia lia lia lia.\n\nTra lia lia, tra lia lia...\n\nŽąsin, žąsin, neišeina\n- ne-ne-ne-ne- neišeina,\nTu kaip vartai girgždi dainą\n- gir gir gir gir gir gi dainą.\n\nPasikviesk žąselę Gagę\n- gir gir gir gir gir gir Gagę,\nPadainuok dainelę smagią\n- tra lia lia lia lia lia lia lia.\n\nŠaukia žąsinas prie vartų\n- ga, ga ga!\nŽąseles, kad jam pritartų\n- ga, ga ga!\n\nBaltos žąsys atskubėjo\n- gir gir gir gir gir gir ga ga\nIr dainelė nuskambėjo\n- tra lia lia lia lia lia lia lia.\nTra lia lia, tra lia lia..."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Audio įrašas 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/zasinas-live.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-alto.mp3"
+        },
+        {
+          "Variant Name": "SA",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-sa.mp3"
+        },
+        {
+          "Variant Name": "Narration",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/zasinas-narration.m4a"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
@@ -8070,6 +9183,44 @@ const songs: SongFile = [
           "Lyrics & Chords": "Žaliojoj girelėj auga žolelės,\nŽolelėj guli daug vieversėlių.\n\nTų vieversėlių rudos kojelės,\nRudos kojelės stačios akelės.\n\nO žmonės visi, ant kalnų sustoję\nVieversėlius gaudo ir paukštiškai rėkalioja.\n\nTie vieversėliai rankelėm moja,\nRankelėm moja, aukštai lakioja.\n\nStačios akelės, raibas kuodelis,\nRudi sparneliai, rudos rankelės.\n\nO žmonės visi, ant kalnų sustoję\nVieversėlius gaudo ir paukštiškai rėkalioja.\n\nŽmonės ant kalnų rėkalioja.\nNori lakioti, su vyturiais šėlioti.\nO jų sparneliai raibi, raibi,\nO jų kakleliai laibi, laibi."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "SATB",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-satb.mp3"
+        },
+        {
+          "Variant Name": "Piano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-piano.mp3"
+        },
+        {
+          "Variant Name": "Soprano 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-soprano-1.mp3"
+        },
+        {
+          "Variant Name": "Soprano 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-soprano-2.mp3"
+        },
+        {
+          "Variant Name": "Alto 1",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-alto-1.mp3"
+        },
+        {
+          "Variant Name": "Alto 2",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-alto-2.mp3"
+        },
+        {
+          "Variant Name": "Tenor",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-tenor.mp3"
+        },
+        {
+          "Variant Name": "Baritone",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-baritone.mp3"
+        },
+        {
+          "Variant Name": "Bass",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-bass.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
@@ -8124,6 +9275,24 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Mes du žirbliai, du du du.\nPer kiemelį abudu.\nDu du du, du du du,\nPer kiemelį, per kiemelį abudu.\nDu du du, du du du,\nPer kiemelį (čir čir), per kiemelį abudu.\n\nMes du žirbliai, du du du.\nPer turgelį abudu.\nDu du du, du du du,\nPer turgelį, per turgelį abudu.\nDu du du, du du du,\nPer turgelį (čir čir), per turgelį abudu.\n\nMes du žirbliai, du du du.\nĮ turgelį lest grūdų.\nDu du du, du du du,\nĮ turgelį, į turgelį lest grūdų.\nDu du du, du du du,\nĮ turgelį (čir čir), į turgelį lest grūdų.\n\nČir...\nDu du du, du du du,\nRasim turguj (čir čir), rasim turguj daug grūdų.\nRasim turguj daug grūdų\nČir čir čir!"
+        }
+      ],
+      "Audio": [
+        {
+          "Variant Name": "SA (114)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-sa-114.mp3"
+        },
+        {
+          "Variant Name": "Band track (114)",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-band-track-114.mp3"
+        },
+        {
+          "Variant Name": "Soprano",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-soprano.mp3"
+        },
+        {
+          "Variant Name": "Alto",
+          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-alto.mp3"
         }
       ],
       "PDFs": [
