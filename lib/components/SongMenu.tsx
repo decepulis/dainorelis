@@ -29,16 +29,16 @@ export default function SongMenu({ song }: Props) {
   // TODO song info
   // TODO share sheet (dainorelis.app web app)
   const actions: (MenuAction | null)[] = [
-    {
-      id: 'info',
-      title: t('aboutSong'),
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'book',
-        default: 'menu_book_20px',
-      }),
-      attributes: { disabled: !hasDescriptions },
-    },
+    // {
+    //   id: 'info',
+    //   title: t('aboutSong'),
+    //   imageColor: isDark ? 'white' : 'black',
+    //   image: Platform.select({
+    //     ios: 'book',
+    //     default: 'menu_book_20px',
+    //   }),
+    //   attributes: { disabled: !hasDescriptions },
+    // },
     {
       id: 'feedback',
       title: t('feedback'),

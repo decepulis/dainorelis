@@ -51,7 +51,7 @@ const titleFontSize = 16;
 const titleLineHeight = 1.65;
 const titleWithSubtitleFontSize = 15;
 const titleWithSubtitleLineHeight = 1.25;
-const subtitleFontSize = 14;
+const subtitleFontSize = 13;
 const subtitleLineHeight = 1.25;
 
 type HeaderTitleProps = {
@@ -118,10 +118,10 @@ export const HeaderTitle = ({
     return {
       transform: [
         {
-          scale: withTiming(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, timing),
+          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, timing),
         },
         {
-          translateY: withTiming(animateTitleIn ? 0 : -0.5 * subtitleFontSize, timing),
+          scale: withTiming(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, timing),
         },
       ],
     };
@@ -181,7 +181,7 @@ export const HeaderTitle = ({
                 // width: '100%',
                 flexDirection: 'row',
                 alignItems: 'center',
-                transformOrigin: Platform.select({ ios: 'bottom center', default: 'bottom left' }),
+                transformOrigin: Platform.select({ ios: 'center', default: 'left center' }),
                 justifyContent: Platform.select({ ios: 'center', default: 'flex-start' }),
                 gap: 4,
               },
@@ -202,7 +202,7 @@ export const HeaderTitle = ({
             >
               {variantName}
             </ThemedText>
-            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={12} color="white" /> : null}
+            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={10} color="white" /> : null}
           </Animated.View>
         ) : null}
       </TitleWrapper>

@@ -6,7 +6,7 @@ import * as Haptics from 'expo-haptics';
 
 import SystemView from './SystemView';
 
-export const buttonSlop = { top: 14, bottom: 14, left: 7, right: 7 };
+export const buttonSlop = { top: 14, bottom: 14, left: 5, right: 5 };
 
 type Props = {
   children: React.ReactNode;

@@ -140,10 +140,10 @@ export default function Search({
             // TODO why is this not rippling? also is button slop working?
             hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
-              setIsSongFestivalMode(!isSongFestivalMode);
               Haptics.impactAsync(
                 isSongFestivalMode ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Medium
               );
+              setIsSongFestivalMode(!isSongFestivalMode);
               scrollToTop();
             }}
           >
