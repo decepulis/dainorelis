@@ -41,11 +41,12 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   const inset = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isAppVisible = useIsAppVisible();
+  const isAppWide = useMemo(() => width > maxWidth, [width]);
 
   // layout
   const playerWidth = useMemo(
-    () => Math.min(width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2), maxWidth),
-    [width, inset]
+    () => (isAppWide ? 320 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2)),
+    [isAppWide, width, inset.left, inset.right]
   );
   const durationWidth = useMemo(
     () =>
@@ -108,7 +109,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   const plusStyles = useAnimatedStyle(() => ({
     transform: [
       {
-        rotate: withSpring(isOpenSv.value ? '0deg' : '90deg', springConfig),
+        rotate: withSpring(isOpenSv.value ? '0deg' : '-90deg', springConfig),
       },
     ],
   }));
@@ -174,9 +175,9 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
         {
           position: 'absolute',
           bottom: Math.max(inset.bottom, appPadding),
-          left: Math.max(inset.left, appPadding / 2),
+          right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
           height: playerHeight,
-          borderRadius: 9999,
+          borderRadius: playerHeight / 2,
           overflow: 'hidden',
           boxShadow: '0 0 20px rgba(64, 64, 64, 0.2)',
         },
@@ -193,49 +194,23 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
         <Button
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
-            if (!isLoaded) {
-              setShouldLoad(true);
-              setShouldPlayOnLoad(true);
-            } else if (playing) {
-              player.pause();
-            } else {
-              player.play();
-            }
+            setShouldLoad(true);
+            isOpenSv.value = !isOpenSv.value;
           }}
         >
-          {/* TODO animate state change */}
-          {(isBuffering || !isLoaded) && shouldLoad ? (
-            <ActivityIndicator color="white" />
-          ) : playing ? (
-            <FontAwesome6 name="pause" size={14} color="white" />
-          ) : (
-            <FontAwesome6 name="play" size={14} color="white" />
-          )}
+          <FontAwesome6 name="minus" size={17} color="white" />
+          <Animated.View style={[plusStyles, { position: 'absolute' }]}>
+            <FontAwesome6 name="minus" size={17} color="white" />
+          </Animated.View>
         </Button>
-        <Animated.View
-          style={[
-            opacityStyles,
-            {
-              position: 'absolute',
-              left: padding + buttonWidth + padding,
-              top: padding,
-              bottom: padding,
-            },
-          ]}
-        >
-          <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
-            <Button>
-              <FontAwesome6 name="bars" size={14} color="white" />
-            </Button>
-          </MediaMenu>
-        </Animated.View>
+
         <GestureDetector gesture={gesture}>
           <Animated.View
             style={[
               opacityStyles,
               {
                 position: 'absolute',
-                left: padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding,
+                right: padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding,
                 width: durationWidth,
                 top: padding,
                 bottom: padding,
@@ -274,17 +249,46 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
             </Animated.View>
           </Animated.View>
         </GestureDetector>
+
+        <Animated.View
+          style={[
+            opacityStyles,
+            {
+              position: 'absolute',
+              right: padding + buttonWidth + padding,
+              top: padding,
+              bottom: padding,
+            },
+          ]}
+        >
+          <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
+            <Button>
+              <FontAwesome6 name="bars" size={14} color="white" />
+            </Button>
+          </MediaMenu>
+        </Animated.View>
+
         <Button
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
-            setShouldLoad(true);
-            isOpenSv.value = !isOpenSv.value;
+            if (!isLoaded) {
+              setShouldLoad(true);
+              setShouldPlayOnLoad(true);
+            } else if (playing) {
+              player.pause();
+            } else {
+              player.play();
+            }
           }}
         >
-          <FontAwesome6 name="minus" size={17} color="white" />
-          <Animated.View style={[plusStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="minus" size={17} color="white" />
-          </Animated.View>
+          {/* TODO animate state change */}
+          {(isBuffering || !isLoaded) && shouldLoad ? (
+            <ActivityIndicator color="white" />
+          ) : playing ? (
+            <FontAwesome6 name="pause" size={14} color="white" />
+          ) : (
+            <FontAwesome6 name="play" size={14} color="white" />
+          )}
         </Button>
       </SystemView>
     </Animated.View>
