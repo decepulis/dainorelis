@@ -13,6 +13,7 @@ export default function useAccessibilityInfo() {
   useEffect(() => {
     // get initial state
     AccessibilityInfo.isBoldTextEnabled().then(setIsBoldTextEnabled);
+    // TODO BLOCKER reduce motion
     AccessibilityInfo.isReduceMotionEnabled().then(setIsReduceMotionEnabled);
     AccessibilityInfo.isHighTextContrastEnabled().then(setIsHighTextContrastEnabled);
     AccessibilityInfo.isDarkerSystemColorsEnabled().then(setIsDarkerSystemColorsEnabled);

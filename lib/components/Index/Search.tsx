@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NativeMethods, Platform, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -17,6 +16,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 
+import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
@@ -144,7 +144,8 @@ export default function Search({
             }}
           />
           <BorderlessButton
-            // TODO blocker? why is this not rippling?
+            foreground
+            rippleRadius={24}
             hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
               Haptics.impactAsync(

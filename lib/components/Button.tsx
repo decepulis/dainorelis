@@ -1,8 +1,9 @@
 import { ComponentPropsWithoutRef, forwardRef, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
 
 import * as Haptics from 'expo-haptics';
+
+import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
 
 import SystemView from './SystemView';
 
@@ -42,10 +43,13 @@ const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
     };
 
     return (
+      // TODO iPad cursor hover styles
+      // TODO asymmetrical button ripple radius is a bit funny
       // TODO A11y label
       <BorderlessButton
         ref={ref}
         onPress={onPress}
+        rippleRadius={24}
         style={[
           styles.container,
           {
