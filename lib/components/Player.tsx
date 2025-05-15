@@ -45,7 +45,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
   // layout
   const playerWidth = useMemo(
-    () => (isAppWide ? 320 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2)),
+    () => (isAppWide ? 360 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2)),
     [isAppWide, width, inset.left, inset.right]
   );
   const durationWidth = useMemo(

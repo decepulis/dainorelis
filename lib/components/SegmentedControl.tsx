@@ -161,7 +161,6 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 14,
-    letterSpacing: -0.1,
   },
 });
 

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, NativeMethods, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { LayoutChangeEvent, NativeMethods, Platform, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import Animated, {
   AnimatedRef,
@@ -53,6 +53,7 @@ export default function Search({
   const text = useThemeColor('text');
   const separator = useThemeColor('separator');
   const card = useThemeColor('card');
+  const isDark = useColorScheme() === 'dark';
   // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
   const headerHeight = useHeaderHeight();
@@ -159,7 +160,7 @@ export default function Search({
                     },
                     default: {
                       borderWidth: 1,
-                      borderColor: isSongFestivalMode ? card : 'transparent',
+                      borderColor: isSongFestivalMode && isDark ? card : 'transparent',
                       boxShadow: '0 0 10px rgba(64, 64, 64, 0.15)',
                     },
                   }),
