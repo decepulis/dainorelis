@@ -31,7 +31,7 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   // 'text'
 ]);
 
-const fontSize = 20;
+const fontSize = 18;
 const lineHeight = Platform.OS === 'ios' ? fontSize * 1.33 : fontSize * 1.45;
 const chordHeight = 14;
 

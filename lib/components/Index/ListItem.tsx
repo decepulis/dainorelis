@@ -42,7 +42,9 @@ export function ListItem({ item, title, background, primary, favorites, separato
               },
             ]}
           >
-            <ThemedText style={[styles.itemText, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+            <ThemedText
+              style={[styles.itemText, styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}
+            >
               {title || item.fields.Name}
             </ThemedText>
             {favorites.includes(item.id) ? (
@@ -74,7 +76,7 @@ export function ListHeader({ title, background, separator }: { title: string; ba
           },
         ]}
       >
-        <ThemedText bold style={[styles.sectionHeader]}>
+        <ThemedText bold style={[styles.sectionHeader, styles.text]}>
           {title}
         </ThemedText>
       </View>
@@ -98,6 +100,11 @@ const styles = StyleSheet.create({
     marginLeft: padding,
     paddingRight: padding,
   },
+  text: {
+    // keep this applied to <Text /> to avoid clipping diacriticals
+    fontSize,
+    lineHeight,
+  },
   sectionHeader: {
     fontSize,
   },
@@ -107,8 +114,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   itemText: {
-    fontSize,
-    lineHeight,
     flex: 1,
   },
   itemHeart: {

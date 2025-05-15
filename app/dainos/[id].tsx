@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
@@ -41,6 +41,7 @@ export async function generateStaticParams() {
 export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
+  const primary = useThemeColor('primary');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
@@ -236,13 +237,26 @@ export default function Page() {
             style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
             // https://github.com/wonday/react-native-pdf/issues/837
             trustAllCerts={Platform.OS === 'android' ? false : undefined}
+            fitPolicy={0}
+            minScale={0.5}
+            maxScale={4}
+            spacing={padding}
             onError={(error) => {
+              console.error(error);
               Sentry.captureException(error);
             }}
-            // TODO BLOCKER do I throw an error when there's no internet?
-            // TODO custom loading indicator
-            // renderActivityIndicator={}
-            // onLoadProgress={}
+            // TODO maybe a better offline experience?
+            renderActivityIndicator={(progress) => (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <ActivityIndicator size="large" color={primary} />
+              </View>
+            )}
           />
         </View>
       )}
@@ -268,14 +282,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleAndSubtitle: {
-    flex: 1,
+    flexShrink: 1,
   },
   mainTitle: {
-    flex: 1,
     fontSize: 28,
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
   },
   hr: {
     height: StyleSheet.hairlineWidth,

@@ -79,13 +79,13 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           padding -
           buttonWidth -
           padding,
-    [playerWidth]
+    [media.length, playerWidth]
   );
 
   // Manage media
   const [shouldLoad, setShouldLoad] = useState(false);
   const activeMedia = media[activeMediaIndex];
-  // TODO BLOCKER do I throw an error when there's no internet?
+  // TODO maybe a better offline experience?
   const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
   const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
 
@@ -208,6 +208,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           position: 'relative',
         }}
       >
+        {/* TODO blocker? why are these not rippling? */}
         <Button
           hitSlop={{ top: padding, bottom: padding, left: padding }}
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}

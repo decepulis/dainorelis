@@ -144,7 +144,7 @@ export default function Search({
             }}
           />
           <BorderlessButton
-            // TODO blocker why is this not rippling?
+            // TODO blocker? why is this not rippling?
             hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
               Haptics.impactAsync(
