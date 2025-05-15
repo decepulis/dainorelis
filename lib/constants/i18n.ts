@@ -38,7 +38,8 @@ const en = {
     'Benita Mincevičiūtė ir Ieva Brogienė and the Skautijos Šimtmečio Dainorėlis team',
   settingsSpecialThanksXIDainuSvente: 'The XI Dainų Šventė team',
   settingsWriteToUsTitle: 'Write to us',
-  settingsWriteToUsText: 'If you have any questions or suggestions, or just want to say hello, write to us at',
+  settingsWriteToUsText1: 'Do you have any questions or suggestions, or just want to say hello?',
+  settingsWriteToUsText2: 'Leave us feedback here',
   settingsAboutUsTitle: 'About us',
   settingsOurGoalTitle: 'Our goal',
   settingsOurGoalText:
@@ -86,7 +87,8 @@ const lt = {
     'Benitai Mincevičiūtei ir Ievai Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
   settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
-  settingsWriteToUsText: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti? Rašykite mums el. paštu',
+  settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
+  settingsWriteToUsText2: 'Palikite atsiliepimą čia',
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:

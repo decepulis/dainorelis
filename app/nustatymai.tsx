@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
-import { Link, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 
 import { HeaderBackground, HeaderLeft } from '@/lib/components/Header';
 import { padding } from '@/lib/components/Index/constants';
@@ -11,6 +11,7 @@ import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
+import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
@@ -46,7 +47,9 @@ export default function Page() {
   const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
   const { value: theme, setValue: setTheme } = useStorage('theme');
+  const openFeedback = useOpenFeedback();
 
+  const primary = useThemeColor('primary');
   const card = useThemeColor('card');
   const separator = useThemeColor('separator');
 
@@ -106,12 +109,12 @@ export default function Page() {
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsWriteToUsTitle')}
             </ThemedText>
-            <ThemedText style={styles.paragraph}>
-              {t('settingsWriteToUsText') + ' '}
-              <Link href="mailto:info@dainorelisapp.com" asChild>
-                <ThemedText style={{ textDecorationLine: 'underline' }}>info@dainorelisapp.com</ThemedText>
-              </Link>
-            </ThemedText>
+            <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>{t('settingsWriteToUsText1')} </ThemedText>
+            <Pressable onPress={() => openFeedback()}>
+              <ThemedText style={[styles.paragraph, { textDecorationLine: 'underline', textDecorationColor: primary }]}>
+                {t('settingsWriteToUsText2')}
+              </ThemedText>
+            </Pressable>
           </View>
           <View style={styles.section}>
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>

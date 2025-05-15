@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
 
 import * as Haptics from 'expo-haptics';
-import * as WebBrowser from 'expo-web-browser';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
@@ -11,7 +10,7 @@ import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu
 import useStorage from '@/lib/hooks/useStorage';
 import { Song } from '@/lib/schemas/songs';
 
-import { useThemeColor } from '../hooks/useThemeColor';
+import useOpenFeedback from '../hooks/useOpenFeedback';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import SystemView from './SystemView';
 
@@ -20,9 +19,9 @@ type Props = {
 };
 export default function SongMenu({ song }: Props) {
   const { t } = useTranslation();
+  const openFeedback = useOpenFeedback();
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
   const isDark = useColorScheme() === 'dark';
-  const primary = useThemeColor('primary');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
@@ -75,16 +74,12 @@ export default function SongMenu({ song }: Props) {
       if (event === 'info') {
         console.log('info');
       } else if (event === 'feedback') {
-        WebBrowser.openBrowserAsync(`${t('feedbackUrl')}${encodeURIComponent(song.fields.Name)}`, {
-          controlsColor: primary,
-          presentationStyle: WebBrowser.WebBrowserPresentationStyle.PAGE_SHEET,
-          dismissButtonStyle: 'close',
-        });
+        openFeedback(song.fields.Name);
       } else if (event === 'share') {
         console.log('share');
       }
     },
-    [primary, song.fields.Name, t]
+    [openFeedback, song.fields.Name]
   );
 
   return (
