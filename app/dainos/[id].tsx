@@ -15,7 +15,6 @@ import * as Sentry from '@sentry/react-native';
 
 import Button from '@/lib/components/Button';
 import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
-import { padding } from '@/lib/components/Index/constants';
 import Markdown from '@/lib/components/Markdown';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
@@ -23,6 +22,8 @@ import SongMenu from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
+import padding from '@/lib/constants/padding';
+import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Audio } from '@/lib/schemas/audio';
@@ -43,6 +44,7 @@ export default function Page() {
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const maxWidthPadding = useMaxWidthPadding();
 
   const { id } = useLocalSearchParams();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
@@ -126,6 +128,8 @@ export default function Page() {
             style={[
               styles.container,
               {
+                paddingLeft: maxWidthPadding.paddingLeft,
+                paddingRight: maxWidthPadding.paddingRight,
                 paddingBottom: activeMedia
                   ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
                   : Math.max(inset.bottom + padding * 2, padding * 4),
@@ -208,8 +212,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth,
     marginHorizontal: 'auto',
-    paddingLeft: padding,
-    paddingRight: padding,
   },
   titleContainer: {
     marginTop: padding * 2,

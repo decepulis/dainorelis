@@ -1,7 +1,7 @@
 import React, { memo, startTransition, useCallback, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
@@ -15,9 +15,9 @@ import { NoFavorites, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import { ListHeader, ListItem } from '@/lib/components/Index/ListItem';
 import Search from '@/lib/components/Index/Search';
-import { padding } from '@/lib/components/Index/constants';
 import { useContentContainerStyle } from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
+import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useSongList, { SongListItem, useManualItems } from '@/lib/hooks/useSongList';
 import useStorage from '@/lib/hooks/useStorage';
@@ -29,7 +29,7 @@ const MemoListHeader = memo(ListHeader);
 export default function Index() {
   // just a bunch of global state
   const inset = useSafeAreaInsets();
-  const { width, height } = useWindowDimensions();
+  const { width, height } = useSafeAreaFrame();
   const headerHeight = useHeaderHeight();
   const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');

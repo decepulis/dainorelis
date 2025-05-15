@@ -1,9 +1,9 @@
 import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, useWindowDimensions } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
@@ -39,7 +39,7 @@ type Props = {
 };
 export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
   const inset = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
+  const { width } = useSafeAreaFrame();
   const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 

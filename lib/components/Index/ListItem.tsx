@@ -6,11 +6,11 @@ import { Link } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 import maxWidth from '@/lib/constants/maxWidth';
+import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { Song } from '@/lib/schemas/songs';
 
 import ThemedText from '../ThemedText';
-import { padding } from './constants';
 
 type Props = {
   item: Song;

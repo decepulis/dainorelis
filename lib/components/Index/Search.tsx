@@ -17,6 +17,7 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 
+import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 
@@ -26,7 +27,6 @@ import { useThemeColor } from '../../hooks/useThemeColor';
 import { buttonSlop } from '../Button';
 import SegmentedControl from '../SegmentedControl';
 import SystemView from '../SystemView';
-import { padding } from './constants';
 
 const paddingVertical = padding / 4;
 

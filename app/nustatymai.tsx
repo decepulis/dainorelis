@@ -6,11 +6,12 @@ import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
 
 import { HeaderBackground, HeaderLeft } from '@/lib/components/Header';
-import { padding } from '@/lib/components/Index/constants';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SegmentedControl from '@/lib/components/SegmentedControl';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
+import padding from '@/lib/constants/padding';
+import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -47,6 +48,7 @@ export default function Page() {
   const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
   const { value: theme, setValue: setTheme } = useStorage('theme');
+  const maxWidthPadding = useMaxWidthPadding();
   const openFeedback = useOpenFeedback();
 
   const primary = useThemeColor('primary');
@@ -74,7 +76,7 @@ export default function Page() {
         }}
       />
       <ScrollViewWithHeader>
-        <View style={[styles.container]}>
+        <View style={[styles.container, maxWidthPadding]}>
           <View style={[styles.section]}>
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsTitle')}
@@ -160,7 +162,6 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: padding,
     paddingVertical: padding * 2,
     position: 'relative',
     width: '100%',
@@ -169,9 +170,6 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: padding * 2,
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
   },
   settings: {
     gap: padding / 2,
