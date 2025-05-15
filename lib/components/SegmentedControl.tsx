@@ -9,7 +9,7 @@ import * as Haptics from 'expo-haptics';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import { fonts } from '../constants/themes';
-import useA11yBoldText from '../hooks/useA11yBoldText';
+import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 
 const springConfig: SpringConfig = {
   mass: 1,
@@ -29,7 +29,7 @@ type OptionProps = {
 };
 const Option = ({ isSelected, option, onPress }: OptionProps) => {
   const text = useThemeColor('text');
-  const isBoldTextEnabled = useA11yBoldText();
+  const { isBoldTextEnabled } = useAccessibilityInfo();
   // Animated style for the text
   const textStyle = useAnimatedStyle(() => {
     const font = isSelected

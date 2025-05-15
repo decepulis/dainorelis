@@ -4,7 +4,7 @@ import { Text, TextProps } from 'react-native';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import { fonts } from '../constants/themes';
-import useA11yBoldText from '../hooks/useA11yBoldText';
+import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 
 type Props = {
   bold?: boolean;
@@ -13,7 +13,7 @@ type Props = {
 const ThemedText = forwardRef<Text, Props>(({ bold, italic, style, ...rest }, ref) => {
   const color = useThemeColor('text');
 
-  const isBoldTextEnabled = useA11yBoldText();
+  const { isBoldTextEnabled } = useAccessibilityInfo();
 
   const regularFont = isBoldTextEnabled ? fonts.medium : fonts.regular;
   const regularItalicFont = isBoldTextEnabled ? fonts.mediumItalic : fonts.regularItalic;

@@ -25,6 +25,7 @@ const SystemView = forwardRef<View, Props>(
       return (
         <BlurView
           ref={ref as any}
+          // no need to listen to reduce transparency on iOS; iOS does this for us
           intensity={variant === 'primary' ? 65 : 85}
           tint={variant === 'primary' ? 'systemChromeMaterialDark' : isDark ? 'dark' : 'extraLight'}
           style={[

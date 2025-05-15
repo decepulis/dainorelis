@@ -61,6 +61,8 @@
       <string>Nunito_800ExtraBold_Italic.ttf</string>
       <string>Nunito_900Black.ttf</string>
       <string>Nunito_900Black_Italic.ttf</string>
+      <string>Nunito_700Bold.ttf</string>
+      <string>Nunito_700Bold_Italic.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>

@@ -23,7 +23,6 @@ export const NoFavorites = ({ isSearch }: { isSearch?: boolean }) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 18,
-    letterSpacing: -0.1,
     lineHeight: 17 * 1.3,
     opacity: 0.8,
   },

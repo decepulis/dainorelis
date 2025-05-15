@@ -29,14 +29,14 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   // 'text'
 ]);
 
-const lineHeight = 27;
+const fontSize = 20;
+const lineHeight = fontSize * 1.33;
 const chordHeight = 16;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 18,
-    letterSpacing: -0.1,
-    // line height set dynamically down below
+    fontSize,
+    // lineHeight set dynamically down below
   },
 });
 

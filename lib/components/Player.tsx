@@ -227,6 +227,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               style={[
                 durationContainerStyles,
                 {
+                  // TODO blocker reduce transparency?
                   backgroundColor: 'rgba(255,255,255,0.5)',
                   borderRadius: 9999,
                   overflow: 'hidden',

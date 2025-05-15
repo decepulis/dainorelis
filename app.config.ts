@@ -55,8 +55,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         fonts: [
           'node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf',
           'node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/600SemiBold/Nunito_600SemiBold.ttf',
-          'node_modules/@expo-google-fonts/nunito/600SemiBold_Italic/Nunito_600SemiBold_Italic.ttf',
+          'node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf',
+          'node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf',
           'node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf',
           'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
           'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',

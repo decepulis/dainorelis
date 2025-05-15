@@ -6,6 +6,7 @@ import { Link } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 import maxWidth from '@/lib/constants/maxWidth';
+import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { Song } from '@/lib/schemas/songs';
 
 import ThemedText from '../ThemedText';
@@ -22,6 +23,7 @@ type Props = {
 };
 export function ListItem({ item, title, background, primary, favorites, separator, isLast }: Props) {
   // TODO slide to favorite
+  const { isBoldTextEnabled } = useAccessibilityInfo();
   return (
     <View style={styles.outerContainer}>
       <Link href={`/dainos/${item.id}`} asChild>
@@ -40,7 +42,9 @@ export function ListItem({ item, title, background, primary, favorites, separato
               },
             ]}
           >
-            <ThemedText style={styles.itemText}>{title || item.fields.Name}</ThemedText>
+            <ThemedText style={[styles.itemText, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+              {title || item.fields.Name}
+            </ThemedText>
             {favorites.includes(item.id) ? (
               <FontAwesome6 name="heart" size={fontSize} color={primary} solid style={styles.itemHeart} />
             ) : null}
@@ -105,7 +109,6 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize,
     lineHeight,
-    letterSpacing: -0.15,
     flex: 1,
   },
   itemHeart: {

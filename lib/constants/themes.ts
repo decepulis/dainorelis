@@ -13,12 +13,12 @@ export const fonts = {
     fontStyle: 'italic',
   },
   medium: {
-    fontFamily: Platform.select({ ios: 'Nunito-Semibold', default: 'Nunito_600SemiBold' }),
-    fontWeight: Platform.select({ default: '600', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-Bold', default: 'Nunito_700Bold' }),
+    fontWeight: Platform.select({ default: '700', android: 'normal' }),
   },
   mediumItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-SemiboldItalic', default: 'Nunito_600SemiBold_Italic' }),
-    fontWeight: Platform.select({ default: '600', android: 'normal' }),
+    fontFamily: Platform.select({ ios: 'Nunito-BoldItalic', default: 'Nunito_700Bold_Italic' }),
+    fontWeight: Platform.select({ default: '700', android: 'normal' }),
     fontStyle: 'italic',
   },
   bold: {
@@ -68,6 +68,13 @@ export const LightTheme: Theme = {
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
+export const LightHighContrastTheme: Theme = {
+  ...LightTheme,
+  colors: {
+    ...LightTheme.colors,
+    primary: '#508062',
+  },
+};
 export const DarkTheme: Theme = {
   dark: false,
   colors: {
@@ -88,4 +95,11 @@ export const DarkTheme: Theme = {
     }),
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
+};
+export const DarkHighContrastTheme: Theme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: '#375943',
+  },
 };

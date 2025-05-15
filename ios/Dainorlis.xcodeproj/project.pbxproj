@@ -22,6 +22,8 @@
 		EF944126A4EE4F1288B1A02D /* Nunito_600SemiBold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D5D699C6CA34748925F33A6 /* Nunito_600SemiBold_Italic.ttf */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 		FB741865D2A743A1182AECF7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D99A4F4F90111C4F8623D8A0 /* PrivacyInfo.xcprivacy */; };
+		240E7C420A614825B12BB15F /* Nunito_700Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32BEFA8E4D6742C49F912F37 /* Nunito_700Bold.ttf */; };
+		1E2E1679E0DB489D829E1E4D /* Nunito_700Bold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9E96FE8CF19417BBFDE69D8 /* Nunito_700Bold_Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Dainorlis/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Dainorlis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Dainorlis-Bridging-Header.h"; path = "Dainorlis/Dainorlis-Bridging-Header.h"; sourceTree = "<group>"; };
+		32BEFA8E4D6742C49F912F37 /* Nunito_700Bold.ttf */ = {isa = PBXFileReference; name = "Nunito_700Bold.ttf"; path = "../node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B9E96FE8CF19417BBFDE69D8 /* Nunito_700Bold_Italic.ttf */ = {isa = PBXFileReference; name = "Nunito_700Bold_Italic.ttf"; path = "../node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				AD07AB1AFAC042C19F1450CA /* Nunito_800ExtraBold_Italic.ttf */,
 				DA49312E8EA04076AA66A76F /* Nunito_900Black.ttf */,
 				38A3A380CC4040D587BAD039 /* Nunito_900Black_Italic.ttf */,
+				32BEFA8E4D6742C49F912F37 /* Nunito_700Bold.ttf */,
+				B9E96FE8CF19417BBFDE69D8 /* Nunito_700Bold_Italic.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -241,6 +247,8 @@
 				5B687E9992B74A8D9B526C49 /* Nunito_900Black.ttf in Resources */,
 				E00F2DDFC89B4833A89B4A94 /* Nunito_900Black_Italic.ttf in Resources */,
 				FB741865D2A743A1182AECF7 /* PrivacyInfo.xcprivacy in Resources */,
+				240E7C420A614825B12BB15F /* Nunito_700Bold.ttf in Resources */,
+				1E2E1679E0DB489D829E1E4D /* Nunito_700Bold_Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

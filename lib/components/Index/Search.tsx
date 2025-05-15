@@ -17,11 +17,11 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 
+import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 
 import maxWidth from '../../constants/maxWidth';
 import { fonts } from '../../constants/themes';
-import useA11yBoldText from '../../hooks/useA11yBoldText';
 import { useThemeColor } from '../../hooks/useThemeColor';
 import { buttonSlop, styles as buttonStyles } from '../Button';
 import SegmentedControl from '../SegmentedControl';
@@ -59,7 +59,7 @@ export default function Search({
   const headerHeight = useHeaderHeight();
   const { setDidSongFestivalLoad } = useDidImagesLoad();
 
-  const isBoldTextEnabled = useA11yBoldText();
+  const { isBoldTextEnabled } = useAccessibilityInfo();
 
   const howFarThisIsFromTheTop = useSharedValue<number | null>(null);
   const figureOutHowFarThisIsFromTheTop = useCallback(
@@ -155,7 +155,7 @@ export default function Search({
                   backgroundColor: isSongFestivalMode ? 'black' : `${card}bb`,
                   ...Platform.select({
                     ios: {
-                      borderWidth: StyleSheet.hairlineWidth,
+                      borderWidth: isSongFestivalMode ? 1 : StyleSheet.hairlineWidth,
                       borderColor: separator,
                     },
                     default: {
