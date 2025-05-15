@@ -165,7 +165,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
       // side-effect: bump!
       if (!didBumpSv.value && (newValue === 0 || newValue === 1)) {
-        runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Heavy);
+        runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Medium);
         didBumpSv.value = true;
       } else if (didBumpSv.value && newValue !== 0 && newValue !== 1) {
         // reset state

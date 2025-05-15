@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 19,
   },
   hr: {
     height: StyleSheet.hairlineWidth,

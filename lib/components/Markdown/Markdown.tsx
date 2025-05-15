@@ -31,9 +31,9 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   // 'text'
 ]);
 
-const fontSize = 18;
-const lineHeight = Platform.OS === 'ios' ? fontSize * 1.33 : fontSize * 1.45;
-const chordHeight = 14;
+const fontSize = 19;
+const lineHeight = Platform.OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
+const chordHeight = 15;
 
 const styles = StyleSheet.create({
   text: {
@@ -122,7 +122,7 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
               <ThemedText
                 italic
                 style={{
-                  opacity: isHighContrastEnabled ? 1 : 0.7,
+                  opacity: isHighContrastEnabled ? 1 : 0.65,
                   fontSize: chordHeight,
                   // this doesn't matter they'll overlap if they need to
                   width: chordHeight * 4,

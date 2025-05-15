@@ -62,6 +62,7 @@ export default function Page() {
     },
     [setLanguage, i18n]
   );
+  const [isWriteToUsPressed, setIsWriteToUsPressed] = useState(false);
 
   // I don't want to decide who put the most into this project,
   // so I'm just going to randomize what order the team shows in every time this component mounts
@@ -83,7 +84,7 @@ export default function Page() {
             </ThemedText>
             <View style={styles.settings}>
               <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 65 * PixelRatio.getFontScale() }]}>
+                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
                   {t('language')}
                 </ThemedText>
                 <SegmentedControl
@@ -115,10 +116,21 @@ export default function Page() {
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsWriteToUsTitle')}
             </ThemedText>
-            <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>{t('settingsWriteToUsText1')} </ThemedText>
-            <Pressable onPress={() => openFeedback()} hitSlop={{ top: 10, bottom: 10, left: padding, right: padding }}>
-              <ThemedText style={[styles.paragraph, { textDecorationLine: 'underline', textDecorationColor: primary }]}>
-                {t('settingsWriteToUsText2')}
+            <Pressable
+              onPressIn={() => setIsWriteToUsPressed(true)}
+              onPressOut={() => setIsWriteToUsPressed(false)}
+              onPress={() => openFeedback()}
+              hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+            >
+              <ThemedText style={[styles.paragraph, { marginBottom: padding / 2 }]}>
+                {t('settingsWriteToUsText1')}{' '}
+                <ThemedText
+                  style={[
+                    { textDecorationLine: isWriteToUsPressed ? undefined : 'underline', textDecorationColor: primary },
+                  ]}
+                >
+                  {t('settingsWriteToUsText2')}
+                </ThemedText>
               </ThemedText>
             </Pressable>
           </View>
@@ -169,7 +181,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   section: {
-    marginBottom: padding * 2,
+    marginBottom: padding * 1.5,
   },
   settings: {
     gap: padding / 2,
@@ -180,11 +192,12 @@ const styles = StyleSheet.create({
     gap: padding,
   },
   settingTitle: {
+    fontSize: 15,
     flexGrow: 0,
     flexShrink: 0,
   },
   header: {
-    fontSize: 24,
+    fontSize: 23,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: padding / 2,
     paddingBottom: padding / 4,
@@ -195,8 +208,8 @@ const styles = StyleSheet.create({
     marginBottom: padding / 2,
   },
   paragraph: {
-    fontSize: 18,
-    lineHeight: 18 * 1.33,
+    fontSize: 17,
+    lineHeight: 17 * 1.33,
   },
   profiles: { gap: padding / 2 },
   profile: { flexDirection: 'row', alignItems: 'center', gap: padding / 2 },

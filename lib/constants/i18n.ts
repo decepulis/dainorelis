@@ -39,7 +39,7 @@ const en = {
   settingsSpecialThanksXIDainuSvente: 'The XI Dainų Šventė team',
   settingsWriteToUsTitle: 'Write to us',
   settingsWriteToUsText1: 'Do you have any questions or suggestions, or just want to say hello?',
-  settingsWriteToUsText2: 'Leave us feedback here',
+  settingsWriteToUsText2: 'Get in touch here!',
   settingsAboutUsTitle: 'About us',
   settingsOurGoalTitle: 'Our goal',
   settingsOurGoalText:
@@ -88,7 +88,7 @@ const lt = {
   settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
-  settingsWriteToUsText2: 'Palikite atsiliepimą čia',
+  settingsWriteToUsText2: 'Susisiekite su mumis čia!',
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:

@@ -63,8 +63,8 @@ export default function Index() {
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(width - 80, 360);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
-  const logoContainerPaddingTop = 80 + inset.top - headerHeight + 10;
-  const logoContainerPaddingBottom = 80 + padding;
+  const logoContainerPaddingTop = 100 + inset.top - headerHeight + 5; // idk why 5 it looks good
+  const logoContainerPaddingBottom = 100 + padding;
 
   // rendering
   const renderItem = useCallback(
