@@ -26,8 +26,10 @@ type OptionProps = {
   isSelected: boolean;
   option: OptionType;
   onPress: ComponentPropsWithoutRef<typeof RectButton>['onPress'];
+  isFirst: boolean;
+  isLast: boolean;
 };
-const Option = ({ isSelected, option, onPress }: OptionProps) => {
+const Option = ({ isSelected, option, onPress, isFirst, isLast }: OptionProps) => {
   const text = useThemeColor('text');
   const { isBoldTextEnabled } = useAccessibilityInfo();
   // Animated style for the text
@@ -46,7 +48,12 @@ const Option = ({ isSelected, option, onPress }: OptionProps) => {
   });
 
   return (
-    <RectButton hitSlop={{ top: 14, bottom: 14 }} key={option.value} style={styles.option} onPress={onPress}>
+    <RectButton
+      hitSlop={{ top: 3, bottom: 3, left: isFirst ? 3 : 0, right: isLast ? 3 : 0 }}
+      key={option.value}
+      style={styles.option}
+      onPress={onPress}
+    >
       <Animated.Text style={[styles.optionText, textStyle]}>{option.label}</Animated.Text>
     </RectButton>
   );
@@ -100,7 +107,7 @@ const SegmentedControl = ({ options, value, onValueChange, style }: Props) => {
               borderColor: separator,
             },
             default: {
-              boxShadow: '0 0 10px rgba(64, 64, 64, 0.15)',
+              boxShadow: '0 0 10px rgba(64, 64, 64, 0.1)',
             },
           }),
         },
@@ -114,6 +121,8 @@ const SegmentedControl = ({ options, value, onValueChange, style }: Props) => {
         <Option
           key={index}
           isSelected={option.value === value}
+          isFirst={index === 0}
+          isLast={index === options.length - 1}
           option={option}
           onPress={() => {
             onValueChange(option.value);
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
     padding: 3,
     position: 'relative',
     flexShrink: 1,
-    boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(64, 64, 64, 0.15)' : undefined,
+    boxShadow: Platform.OS === 'android' ? '0 0 10px rgba(64, 64, 64, 0.1)' : undefined,
   },
   indicator: {
     position: 'absolute',

@@ -2,19 +2,20 @@ import { ComponentPropsWithoutRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
 
-import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Audio } from '../schemas/audio';
-import { buttonSlop } from './Button';
+import MenuView from './MenuView';
 
 type Props = {
-  children?: React.ReactNode;
   media: Audio[];
   activeMediaIndex: number;
   setActiveMediaIndex: (index: number) => void;
   style?: ComponentPropsWithoutRef<typeof MenuView>['style'];
+  hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
 };
-export default function MediaMenu({ children, media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
+export default function MediaMenu({ media, activeMediaIndex, setActiveMediaIndex, hitSlop, style }: Props) {
   const { t } = useTranslation();
   const isDark = useColorScheme() === 'dark';
 
@@ -43,13 +44,14 @@ export default function MediaMenu({ children, media, activeMediaIndex, setActive
 
   return (
     <MenuView
+      asButton
       style={style}
-      hitSlop={buttonSlop}
+      hitSlop={hitSlop}
       actions={actions}
       onPressAction={onPressAction}
       title={t('mediaMenuTitle')}
     >
-      {children}
+      <FontAwesome6 name="bars" size={14} color="white" />
     </MenuView>
   );
 }

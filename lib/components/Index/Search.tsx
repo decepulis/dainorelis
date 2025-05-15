@@ -144,7 +144,7 @@ export default function Search({
             }}
           />
           <BorderlessButton
-            // TODO blocker why is this not rippling? also is button slop working?
+            // TODO blocker why is this not rippling?
             hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
               Haptics.impactAsync(
@@ -174,7 +174,7 @@ export default function Search({
                     default: {
                       borderWidth: 1,
                       borderColor: isSongFestivalMode && isDark ? card : 'transparent',
-                      boxShadow: '0 0 10px rgba(64, 64, 64, 0.15)',
+                      boxShadow: '0 0 10px rgba(64, 64, 64, 0.1)',
                     },
                   }),
                 },
@@ -183,8 +183,8 @@ export default function Search({
               <Image
                 source={require('@/assets/images/ds2025_logo_image.png')}
                 style={{
-                  width: '75%',
-                  height: '75%',
+                  width: '66%',
+                  height: '66%',
                 }}
                 onLoad={() => setDidSongFestivalLoad(true)}
                 contentFit="contain"
@@ -206,7 +206,7 @@ export default function Search({
                 borderColor: separator,
               },
               default: {
-                boxShadow: '0 0 10px rgba(64, 64, 64, 0.15)',
+                boxShadow: '0 0 10px rgba(64, 64, 64, 0.1)',
               },
             }),
           }}

@@ -2,12 +2,12 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
 
-import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
+import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
 import isLyrics from '../utils/isLyrics';
-import { buttonSlop } from './Button';
+import MenuView from './MenuView';
 
 type Props = {
   children?: React.ReactNode;
@@ -44,7 +44,13 @@ export default function VariantMenu({ children, variants, activeVariantIndex, se
   );
 
   return (
-    <MenuView hitSlop={buttonSlop} actions={actions} onPressAction={onPressAction} title={t('variantsMenuTitle')}>
+    <MenuView
+      // on most platforms, this menu ends up left-justified
+      hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
+      actions={actions}
+      onPressAction={onPressAction}
+      title={t('variantsMenuTitle')}
+    >
       {children}
     </MenuView>
   );

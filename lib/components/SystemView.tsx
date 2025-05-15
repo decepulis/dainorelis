@@ -47,7 +47,7 @@ const SystemView = forwardRef<View, Props>(
           {
             backgroundColor: variant === 'primary' ? primary : background,
             // TODO header overflow hidden is preventing this from drawing
-            boxShadow: shadow ? '0px 0px 10px rgba(64, 64, 64, 0.15)' : undefined,
+            boxShadow: shadow ? '0px 0px 10px rgba(64, 64, 64, 0.1)' : undefined,
           },
           style,
         ]}

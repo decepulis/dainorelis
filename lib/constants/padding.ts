@@ -1,2 +1,2 @@
-const padding = 22.5;
+const padding = 23; // use an int. android freaks otherwise.
 export default padding;

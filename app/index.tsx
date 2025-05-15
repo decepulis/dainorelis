@@ -128,9 +128,9 @@ export default function Index() {
         options={{
           headerBackground: () => <HeaderBackground scrollRef={listRef} shadow={false} />,
           headerTitleAlign: 'center',
-          headerTitle: ({ children }) => (
+          headerTitle: () => (
             <HeaderTitle scrollRef={listRef} titleLayout={titleLayout}>
-              {children || <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidLogoLoad(true)} />}
+              <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidLogoLoad(true)} />
             </HeaderTitle>
           ),
           headerRight: () => (

@@ -116,7 +116,7 @@ export default function Page() {
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>{t('settingsWriteToUsText1')} </ThemedText>
-            <Pressable onPress={() => openFeedback()}>
+            <Pressable onPress={() => openFeedback()} hitSlop={{ top: 10, bottom: 10, left: padding, right: padding }}>
               <ThemedText style={[styles.paragraph, { textDecorationLine: 'underline', textDecorationColor: primary }]}>
                 {t('settingsWriteToUsText2')}
               </ThemedText>

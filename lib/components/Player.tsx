@@ -11,20 +11,21 @@ import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
+import appPadding from '@/lib/constants/padding';
+
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import useIsAppVisible from '../hooks/useAppState';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
-import { padding as appPadding } from './Index/constants';
 import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
 const padding = buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
-const buttonWidth = buttonStyles.container.width;
-export const playerHeight = buttonStyles.container.height + 2 * padding;
+const buttonWidth = buttonStyles.button.width;
+export const playerHeight = buttonStyles.button.height + 2 * padding;
 
 const springConfig: SpringConfig = {
   mass: 1,
@@ -151,7 +152,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
   // override state with gesture
   const gesture = Gesture.Pan()
-    .hitSlop(buttonSlop)
+    .hitSlop({ ...buttonSlop, top: padding, bottom: padding })
     .minDistance(1)
     .onStart(() => {
       isGesturingSv.value = true;
@@ -195,7 +196,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           height: playerHeight,
           borderRadius: playerHeight / 2,
           overflow: 'hidden',
-          boxShadow: '0 0 20px rgba(64, 64, 64, 0.2)',
+          boxShadow: '0 0 20px rgba(64, 64, 64, 0.1)',
         },
         style,
       ]}
@@ -208,6 +209,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
         }}
       >
         <Button
+          hitSlop={{ top: padding, bottom: padding, left: padding }}
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
             setShouldLoad(true);
@@ -288,15 +290,17 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               },
             ]}
           >
-            <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
-              <Button>
-                <FontAwesome6 name="bars" size={14} color="white" />
-              </Button>
-            </MediaMenu>
+            <MediaMenu
+              hitSlop={{ top: padding, bottom: padding }}
+              media={media}
+              activeMediaIndex={activeMediaIndex}
+              setActiveMediaIndex={setActiveMediaIndex}
+            />
           </Animated.View>
         ) : null}
 
         <Button
+          hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
             if (!isLoaded) {

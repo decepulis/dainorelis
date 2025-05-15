@@ -1,18 +1,14 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
 
-import * as Haptics from 'expo-haptics';
-
 import { FontAwesome6 } from '@expo/vector-icons';
-import { MenuAction, MenuView, NativeActionEvent } from '@react-native-menu/menu';
+import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
-import useStorage from '@/lib/hooks/useStorage';
 import { Song } from '@/lib/schemas/songs';
 
 import useOpenFeedback from '../hooks/useOpenFeedback';
-import Button, { buttonSlop, styles as buttonStyles } from './Button';
-import SystemView from './SystemView';
+import MenuView from './MenuView';
 
 type Props = {
   song: Song;
@@ -22,8 +18,6 @@ export default function SongMenu({ song }: Props) {
   const openFeedback = useOpenFeedback();
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
   const isDark = useColorScheme() === 'dark';
-  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
-  const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
   // TODO song info
   // TODO share sheet (dainorelis.app web app)
@@ -60,14 +54,6 @@ export default function SongMenu({ song }: Props) {
   ];
   const filteredActions = actions.filter(Boolean) as MenuAction[];
 
-  const removeFavorite = useCallback(() => {
-    setFavorites(favorites.filter((id) => id !== song.id));
-  }, [favorites, song.id, setFavorites]);
-
-  const addFavorite = useCallback(async () => {
-    setFavorites([...favorites, song.id]);
-  }, [favorites, song.id, setFavorites]);
-
   const onPressAction = useCallback(
     (e: NativeActionEvent) => {
       const { event } = e.nativeEvent;
@@ -83,19 +69,8 @@ export default function SongMenu({ song }: Props) {
   );
 
   return (
-    <>
-      <Button
-        onPress={isFavorite ? removeFavorite : addFavorite}
-        haptics={isFavorite ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-        hitSlop={buttonSlop}
-      >
-        <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
-      </Button>
-      <MenuView hitSlop={buttonSlop} actions={filteredActions} onPressAction={onPressAction}>
-        <SystemView variant="primary" shadow={false} style={buttonStyles.container}>
-          <FontAwesome6 name="ellipsis" size={18} color="white" />
-        </SystemView>
-      </MenuView>
-    </>
+    <MenuView asButton actions={filteredActions} onPressAction={onPressAction}>
+      <FontAwesome6 name="ellipsis" size={18} color="white" />
+    </MenuView>
   );
 }

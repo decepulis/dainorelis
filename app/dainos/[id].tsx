@@ -47,11 +47,13 @@ export default function Page() {
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const { value: activeVariantIndexById, setValue: setActiveVariantIndexById } = useStorage('activeVariantIndexById');
   const { value: activeMediaIndexById, setValue: setActiveMediaIndexById } = useStorage('activeMediaIndexById');
+  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   const { id } = useLocalSearchParams();
   if (typeof id !== 'string') throw new Error('Invalid id');
 
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
+  const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
   // Variants
   const storedActiveVariantIndex = useMemo(() => activeVariantIndexById[id], [activeVariantIndexById, id]);
@@ -152,6 +154,16 @@ export default function Page() {
           headerLeft: (props) => <HeaderLeft {...props} />,
           headerRight: () => (
             <HeaderButtonContainer>
+              <Button
+                onPress={() =>
+                  isFavorite
+                    ? setFavorites(favorites.filter((id) => id !== song.id))
+                    : setFavorites([...favorites, song.id])
+                }
+                haptics={isFavorite ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
+              >
+                <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
+              </Button>
               <SongMenu song={song} />
             </HeaderButtonContainer>
           ),
