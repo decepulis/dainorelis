@@ -64,7 +64,7 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
       const parentTypes = parent.map((p) => p.sourceType);
       const strong = parentTypes.includes('strong');
       const em = parentTypes.includes('em');
-      // TODO BLOCKER uh-oh this breaks on multi-line+chords ios
+      // TODO blocker? uh-oh this breaks on multi-line+chords ios
       return (
         <ThemedText
           key={node.key}

@@ -178,8 +178,8 @@ async function updateSongs() {
         assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai')
       );
       const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos');
-      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Audio įrašas');
-      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Video įrašas');
+      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas');
+      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas');
 
       return {
         id: song.id,

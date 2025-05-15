@@ -218,7 +218,7 @@ export default function Page() {
         // TODO this not falling behind the menu bar makes me sad
         <View style={{ flex: 1, paddingTop: headerHeight }}>
           {/* TODO isTitleBehind on scroll */}
-          {/* TODO BLOCKER scroll is off on load? */}
+          {/* TODO scroll is off on load? */}
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}
             style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
@@ -227,7 +227,7 @@ export default function Page() {
             onError={(error) => {
               Sentry.captureException(error);
             }}
-            // TODO blocker do I throw an error when there's no internet?
+            // TODO BLOCKER do I throw an error when there's no internet?
             // TODO custom loading indicator
             // renderActivityIndicator={}
             // onLoadProgress={}

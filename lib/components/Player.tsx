@@ -11,7 +11,9 @@ import * as Haptics from 'expo-haptics';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 import maxWidth from '../constants/maxWidth';
+import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import useIsAppVisible from '../hooks/useAppState';
+import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import { padding as appPadding } from './Index/constants';
@@ -40,6 +42,8 @@ type Props = {
 export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
+  const text = useThemeColor('text');
+  const { isHighContrastEnabled } = useAccessibilityInfo();
   const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
@@ -68,7 +72,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   // Manage media
   const [shouldLoad, setShouldLoad] = useState(false);
   const activeMedia = media[activeMediaIndex];
-  // TODO blocker do I throw an error when there's no internet?
+  // TODO BLOCKER do I throw an error when there's no internet?
   const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
   const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
 
@@ -227,11 +231,17 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               style={[
                 durationContainerStyles,
                 {
-                  // TODO blocker reduce transparency?
-                  backgroundColor: 'rgba(255,255,255,0.5)',
                   borderRadius: 9999,
                   overflow: 'hidden',
                 },
+                isHighContrastEnabled
+                  ? {
+                      borderColor: `rgba(255,255,255,0.4)`,
+                      borderWidth: 1,
+                    }
+                  : {
+                      backgroundColor: `rgba(255,255,255,0.4)`,
+                    },
               ]}
             >
               <Animated.View

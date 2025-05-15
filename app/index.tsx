@@ -240,7 +240,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: padding,
   },
   listFooter: {
-    // TODO blocker respect inset, app-wide
     paddingHorizontal: padding,
     paddingVertical: padding * 2,
     alignItems: 'center',
