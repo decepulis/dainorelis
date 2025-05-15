@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { setAudioModeAsync } from 'expo-audio';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -71,7 +72,14 @@ function AppWithLoading() {
   useEffect(() => {
     async function prepare() {
       try {
-        await Promise.all([initI18n()]);
+        await Promise.all([
+          initI18n(),
+          setAudioModeAsync({
+            playsInSilentMode: true,
+            interruptionMode: 'doNotMix',
+            interruptionModeAndroid: 'doNotMix',
+          }),
+        ]);
       } catch (e) {
         console.warn(e);
       } finally {
