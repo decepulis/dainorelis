@@ -68,7 +68,6 @@ export default function Search({
     const viewEl = viewRef?.current as NativeMethods;
     if (!scrollEl || !viewEl) return;
     viewEl.measureLayout(scrollEl, (_x, y, width, height) => {
-      console.log({ y, headerHeight, width, height });
       howFarThisIsFromTheTop.value = y - headerHeight;
     });
   }, [headerHeight, howFarThisIsFromTheTop, scrollRef]);

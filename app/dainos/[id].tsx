@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -43,19 +43,36 @@ export default function Page() {
   const text = useThemeColor('text');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
-  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const maxWidthPadding = useMaxWidthPadding();
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const { value: activeVariantIndexById, setValue: setActiveVariantIndexById } = useStorage('activeVariantIndexById');
+  const { value: activeMediaIndexById, setValue: setActiveMediaIndexById } = useStorage('activeMediaIndexById');
 
   const { id } = useLocalSearchParams();
+  if (typeof id !== 'string') throw new Error('Invalid id');
+
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
 
   // Variants
-  // TODO blocker persist last used variant in storage
-  const [activeVariantIndex, setActiveVariantIndex] = useState(0);
+  const storedActiveVariantIndex = useMemo(() => activeVariantIndexById[id], [activeVariantIndexById, id]);
   const variants: (LyricsType | PDFs)[] = useMemo(
     () => [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])],
     [song]
   );
+  const [activeVariantIndex, setActiveVariantIndex] = useState<number>(() => {
+    // if storage didn't have an active variant index, or if the song doesn't have that many variants, set it to 0
+    if (typeof storedActiveVariantIndex === 'undefined' || storedActiveVariantIndex >= variants.length) {
+      return 0;
+    }
+    return storedActiveVariantIndex;
+  });
+  useEffect(() => {
+    // if the active variant index changes, store it in storage
+    setActiveVariantIndexById({
+      ...activeVariantIndexById,
+      [id]: activeVariantIndex,
+    });
+  }, [activeVariantIndex, id]);
   const activeVariant = useMemo(() => variants[activeVariantIndex], [variants, activeVariantIndex]);
   const hasMultipleVariants = useMemo(() => variants.length > 1, [variants]);
 
@@ -69,10 +86,27 @@ export default function Page() {
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
   // Media
-  // TODO blocker persist last used media in storage
-  const [activeMediaIndex, setActiveMediaIndex] = useState<number>(0);
+  const storedActiveMediaIndex = useMemo(() => activeMediaIndexById[id], [activeMediaIndexById, id]);
   const media: Audio[] = useMemo(() => [...(song.fields.Audio || [])], [song]);
-  const activeMedia = useMemo(() => media[activeMediaIndex], [media, activeMediaIndex]);
+  const [activeMediaIndex, setActiveMediaIndex] = useState<number>(() => {
+    // if storage didn't have an active media index, or if the song doesn't have that many media, set it to 0
+    if (typeof storedActiveMediaIndex === 'undefined' || storedActiveMediaIndex >= media.length) {
+      return 0;
+    }
+    return storedActiveMediaIndex;
+  });
+  useEffect(() => {
+    // if the active media index changes, store it in storage
+    setActiveMediaIndexById({
+      ...activeMediaIndexById,
+      [id]: activeMediaIndex,
+    });
+  }, [activeMediaIndex, id]);
+  const activeMedia = useMemo(
+    // the media array may be empty, so let's check safely
+    () => (activeMediaIndex < media.length ? media[activeMediaIndex] : null),
+    [media, activeMediaIndex]
+  );
 
   // Title
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
@@ -84,6 +118,7 @@ export default function Page() {
     [titleLayout]
   );
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
+  const showLyrics = isLyrics(activeVariant);
 
   return (
     <Fragment>
@@ -93,7 +128,7 @@ export default function Page() {
           // TODO can I force this to re-render when activeVariant changes?
           headerTitle: () => (
             <HeaderTitle
-              scrollRef={scrollRef}
+              scrollRef={showLyrics ? scrollRef : undefined}
               titleLayout={titleLayout}
               showTitle={isLyrics(activeVariant) ? undefined : true}
               titleWrapper={
@@ -122,7 +157,7 @@ export default function Page() {
           ),
         }}
       />
-      {isLyrics(activeVariant) ? (
+      {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View
             style={[

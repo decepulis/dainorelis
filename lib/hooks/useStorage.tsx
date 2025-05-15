@@ -3,7 +3,7 @@ import { MMKV } from 'react-native-mmkv';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // TODO zod 4 for perf
-import z from 'zod';
+import { z } from 'zod';
 
 // Create a single MMKV instance
 export const storage = new MMKV();
@@ -34,6 +34,14 @@ const schemas = {
   favorites: {
     validator: z.array(z.string()),
     defaultValue: [] as string[],
+  },
+  activeVariantIndexById: {
+    validator: z.record(z.number().optional()),
+    defaultValue: {} as Record<string, number>,
+  },
+  activeMediaIndexById: {
+    validator: z.record(z.number().optional()),
+    defaultValue: {} as Record<string, number>,
   },
   language: {
     validator: z.enum(['en', 'lt']),
