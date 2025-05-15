@@ -23,7 +23,7 @@ import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import maxWidth from '../../constants/maxWidth';
 import { fonts } from '../../constants/themes';
 import { useThemeColor } from '../../hooks/useThemeColor';
-import { buttonSlop, styles as buttonStyles } from '../Button';
+import { buttonSlop } from '../Button';
 import SegmentedControl from '../SegmentedControl';
 import SystemView from '../SystemView';
 import { padding } from './constants';
@@ -125,7 +125,7 @@ export default function Search({
           paddingVertical,
         }}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: buttonSlop.left }}>
+        <View style={{ flexDirection: 'row', gap: buttonSlop.left }}>
           <SegmentedControl
             options={[
               { label: t('allSongs'), value: 'allSongs' },
@@ -136,27 +136,37 @@ export default function Search({
               setIsFavorites(value === 'favoriteSongs');
               scrollToTop();
             }}
+            style={{
+              flex: 1,
+            }}
           />
           <BorderlessButton
             // TODO blocker why is this not rippling? also is button slop working?
             hitSlop={{ ...buttonSlop, right: padding }}
             onPress={() => {
               Haptics.impactAsync(
-                isSongFestivalMode ? Haptics.ImpactFeedbackStyle.Light : Haptics.ImpactFeedbackStyle.Medium
+                isSongFestivalMode ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium
               );
               setIsSongFestivalMode(!isSongFestivalMode);
               scrollToTop();
             }}
+            style={{
+              aspectRatio: 1,
+            }}
           >
             <View
               style={[
-                buttonStyles.container,
                 {
+                  flex: 1,
+                  borderRadius: 9999,
+                  overflow: 'hidden',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   backgroundColor: isSongFestivalMode ? 'black' : `${card}bb`,
                   ...Platform.select({
                     ios: {
-                      borderWidth: isSongFestivalMode ? 1 : StyleSheet.hairlineWidth,
-                      borderColor: separator,
+                      borderWidth: StyleSheet.hairlineWidth,
+                      borderColor: isSongFestivalMode ? card : separator,
                     },
                     default: {
                       borderWidth: 1,

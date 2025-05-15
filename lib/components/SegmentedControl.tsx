@@ -56,9 +56,10 @@ type Props = {
   options: OptionType[];
   value: string;
   onValueChange: (value: string) => void;
+  style?: ComponentPropsWithoutRef<typeof View>['style'];
 };
 
-const SegmentedControl = ({ options, value, onValueChange }: Props) => {
+const SegmentedControl = ({ options, value, onValueChange, style }: Props) => {
   const primary = useThemeColor('primary');
   const card = useThemeColor('card');
   const separator = useThemeColor('separator');
@@ -103,6 +104,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
             },
           }),
         },
+        style,
       ]}
       onLayout={onContainerLayout}
     >
@@ -116,13 +118,7 @@ const SegmentedControl = ({ options, value, onValueChange }: Props) => {
           onPress={() => {
             onValueChange(option.value);
             if (option.value !== value) {
-              setTimeout(() => {
-                // there's no guarantee that the animation will be done in 150ms;
-                // some things may delay it
-                // but this will at least be closer than triggering the haptics immediately
-                // and by the time withSpring would call its AnimationCallback it would be too late
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-              }, 50);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             }
           }}
         />
@@ -143,7 +139,6 @@ const styles = StyleSheet.create({
   },
   indicator: {
     position: 'absolute',
-    height: '100%',
     borderRadius: 20,
     overflow: 'hidden',
     top: 3,
@@ -153,7 +148,8 @@ const styles = StyleSheet.create({
   },
   option: {
     flex: 1, // Equal width for all options
-    paddingVertical: 6,
+    paddingVertical: 3,
+    minHeight: 32,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,

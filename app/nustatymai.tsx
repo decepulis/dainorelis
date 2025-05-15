@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { PixelRatio, Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
@@ -81,7 +81,9 @@ export default function Page() {
             </ThemedText>
             <View style={styles.settings}>
               <View style={styles.setting}>
-                <ThemedText style={styles.settingTitle}>{t('language')}</ThemedText>
+                <ThemedText style={[styles.settingTitle, { flexBasis: 65 * PixelRatio.getFontScale() }]}>
+                  {t('language')}
+                </ThemedText>
                 <SegmentedControl
                   options={[
                     { label: 'Lietuvių', value: 'lt' },
@@ -92,7 +94,9 @@ export default function Page() {
                 />
               </View>
               <View style={styles.setting}>
-                <ThemedText style={styles.settingTitle}>{t('theme')}</ThemedText>
+                <ThemedText style={[styles.settingTitle, { flexBasis: 65 * PixelRatio.getFontScale() }]}>
+                  {t('theme')}
+                </ThemedText>
                 <SegmentedControl
                   options={[
                     { label: t('autoTheme'), value: 'auto' },
@@ -140,7 +144,7 @@ export default function Page() {
               {teamInRandomOrder.map((member, idx) => (
                 <View key={idx} style={styles.profile}>
                   <Image source={member.image} style={[styles.profileImage, { backgroundColor: card }]} />
-                  <ThemedText style={styles.profileText}>
+                  <ThemedText style={styles.paragraph}>
                     {member.firstName} {member.lastName}
                   </ThemedText>
                 </View>
@@ -178,8 +182,6 @@ const styles = StyleSheet.create({
     gap: padding,
   },
   settingTitle: {
-    // set so that "language" would fit on most screens
-    flexBasis: 65,
     flexGrow: 0,
     flexShrink: 0,
   },
@@ -195,11 +197,10 @@ const styles = StyleSheet.create({
     marginBottom: padding / 2,
   },
   paragraph: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: 18,
+    lineHeight: 18 * 1.33,
   },
   profiles: { gap: padding / 2 },
   profile: { flexDirection: 'row', alignItems: 'center', gap: padding / 2 },
   profileImage: { width: padding * 2, height: padding * 2, borderRadius: 9999 },
-  profileText: { fontSize: 16, lineHeight: 24 },
 });
