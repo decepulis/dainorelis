@@ -1,33 +1,11 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { MMKV } from 'react-native-mmkv';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 // TODO zod 4 for perf
 import { z } from 'zod';
 
 // Create a single MMKV instance
 export const storage = new MMKV();
-
-// Migration from AsyncStorage to MMKV
-// TODO remove this before prod release
-const hasMigratedFromAsyncStorage = storage.getBoolean('hasMigratedFromAsyncStorage');
-
-async function migrateFromAsyncStorage() {
-  const keys = await AsyncStorage.getAllKeys();
-  for (const key of keys) {
-    try {
-      const value = await AsyncStorage.getItem(key);
-      if (value != null) {
-        storage.set(key, value);
-        await AsyncStorage.removeItem(key);
-      }
-    } catch (error) {
-      console.error(`Failed to migrate key "${key}" from AsyncStorage to MMKV`, error);
-      throw error;
-    }
-  }
-  storage.set('hasMigratedFromAsyncStorage', true);
-}
 
 // if you wanna store anything in async storage, define it here
 const schemas = {
@@ -124,13 +102,6 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
       }
     }
   }, [setValue]);
-
-  // on load, migrate from async storage if needed
-  useEffect(() => {
-    if (!hasMigratedFromAsyncStorage) {
-      migrateFromAsyncStorage();
-    }
-  }, []);
 
   return <StorageContext.Provider value={{ values, setValue }}>{children}</StorageContext.Provider>;
 }

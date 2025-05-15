@@ -75,7 +75,7 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Anksti ryta keldama\nPer dvareli eidama,\nGirdéjau, regéjau\nGegutile kukuojant.\n\nNe geguté kukavo\n-Motinéle düsavo,\nBudino, zadino\nSavo jauna dukrele:\n\n- Kelk, dukrele jaunoji,\nVysta rüta Zalioji\n-Tu ilgai uzmigai\nIr rütele uzmirsai.\n\nAnksti ryta keldamas,\nPer dvareli eidamas,\nGirdéjau, regéjau\nKarveléli burkuojant.\n\nNe karvelis burkavo -\nTévuzelis dusavo,\nBudino, Zadino\nSavo jauna suneli:\n\n-Kelk, süneli jaunasai,\nZveng' Zirgelis bérasai\n-Tu ilgai uzmigai\nIr zirgeli uzmirsai."
+          "Lyrics & Chords": "Anksti ryta keldama\nPer dvarelį eidama,\nGirdėjau, regėjau\nGegutėlę kukuojant.\n\nNe gegutė kukavo\n- Motinėlė dūsavo,\nBudino, žadino\nSavo jauną dukrelę:\n\n- Kelk, dukrele jaunoji,\nVysta rūta žalioji\n- Tu ilgai užmigai\nIr rūtelę užmiršai.\n\nAnksti rytą keldamas,\nPer dvarelį eidamas,\nGirdėjau, regėjau\nKarvelėlį burkuojant.\n\nNe karvelis burkavo -\nTėvužėlis dūsavo,\nBudino, žadino\nSavo jauną sunelį:\n\n- Kelk, sūneli jaunasai,\nŽveng' žirgelis bėrasai\n- Tu ilgai užmigai\nIr žirgeli užmirsai."
         }
       ],
       "PDFs": [
@@ -735,14 +735,20 @@ const songs: SongFile = [
           "Lyrics & Chords": "Atgimė tėvynė, gimėme ir mes\nMetai išaugino skautiškas eiles;\nViską mes pašvęsim Lietuvai mielai\nMotina ji mūsų, o mes jos vaikai.\n\nEi, pirmyn į tautinę stovyklą,\nTen paspausim broliškai rankas.\nTai geriausia skautiška mokykla,\nTen supinsim darbą ir dainas.\n\nTautinė stovykla sušaukė visus,\nPanemunės šilas priglaudė svečius;\nLaužas tegul jungia skautiškas širdis,\nLiepsnos tegul neša Dangui mus mintis.\n\nEi, pirmyn į tautinę stovykla..."
         }
       ],
+      "Audio": [
+        {
+          "Variant Name": "Įrašas",
+          "URL": "https://media.dainorelis.app/Atgime%20Tevyne.mp3"
+        }
+      ],
       "PDFs": [
         {
           "Variant Name": "Natos",
           "URL": "https://media.dainorelis.app/atgime%20tevyne.pdf"
         }
       ],
-      "Music Author": "Br. Jonušo",
-      "Text Author": "V. Bražėno"
+      "Music Author": "Br. Jonušas",
+      "Text Author": "V. Bražėnas"
     }
   },
   {

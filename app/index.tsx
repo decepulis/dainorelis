@@ -13,7 +13,7 @@ import Button from '@/lib/components/Button';
 import { HeaderBackground, HeaderButtonContainer, HeaderTitle } from '@/lib/components/Header';
 import { NoFavorites, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
-import { ListHeader, ListItem } from '@/lib/components/Index/ListItem';
+import { ListHeader, ListItem, listItemHeight } from '@/lib/components/Index/ListItem';
 import Search from '@/lib/components/Index/Search';
 import { useContentContainerStyle } from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -66,6 +66,14 @@ export default function Index() {
   const logoContainerPaddingTop = 100 + inset.top - headerHeight + 5; // idk why 5 it looks good
   const logoContainerPaddingBottom = 100 + padding;
 
+  const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
+  const visibleListItems = listItems.filter(
+    (item) => item.type !== 'render' && (listItems.length > 10 || item.type !== 'header')
+  );
+  const footerTargetHeight =
+    height - visibleListItems.length * listItemHeight - headerHeight - searchHeight + padding + padding - padding / 4;
+  const footerHeight = Math.max(footerMinHeight, footerTargetHeight);
+
   // rendering
   const renderItem = useCallback(
     ({ item, index }: { item: SongListItem; index: number }) =>
@@ -98,7 +106,9 @@ export default function Index() {
           />
         )
       ) : item.type === 'header' ? (
-        <MemoListHeader title={item.item} background={background} separator={separator} />
+        listItems.length > 10 ? (
+          <MemoListHeader title={item.item} background={background} separator={separator} />
+        ) : null
       ) : (
         <MemoListItem
           item={item.item}
@@ -196,7 +206,7 @@ export default function Index() {
                 width: '100%',
                 maxWidth,
                 marginHorizontal: 'auto',
-                minHeight: wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2),
+                minHeight: footerHeight,
                 marginBottom: wideLayoutMode ? Math.max(inset.bottom, padding * 2) : undefined,
                 backgroundColor: background,
                 borderBottomLeftRadius: padding,
@@ -208,8 +218,7 @@ export default function Index() {
                   style={[
                     styles.listFooter,
                     {
-                      // todo determine this number programmatically
-                      minHeight: height / 2,
+                      minHeight: height - headerHeight - searchHeight,
                     },
                   ]}
                 >
