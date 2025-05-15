@@ -59,7 +59,7 @@ export default function Search({
   const headerHeight = useHeaderHeight();
   const { setDidSongFestivalLoad } = useDidImagesLoad();
 
-  const { isBoldTextEnabled } = useAccessibilityInfo();
+  const { isBoldTextEnabled, isReduceMotionEnabled } = useAccessibilityInfo();
 
   const viewRef = useRef<View>(null);
   const howFarThisIsFromTheTop = useSharedValue<number | null>(null);
@@ -67,7 +67,7 @@ export default function Search({
     const scrollEl = scrollRef?.current?.getNativeScrollRef() as NativeMethods;
     const viewEl = viewRef?.current as NativeMethods;
     if (!scrollEl || !viewEl) return;
-    viewEl.measureLayout(scrollEl, (_x, y, width, height) => {
+    viewEl.measureLayout(scrollEl, (_x, y) => {
       howFarThisIsFromTheTop.value = y - headerHeight;
     });
   }, [headerHeight, howFarThisIsFromTheTop, scrollRef]);
@@ -91,12 +91,12 @@ export default function Search({
       const scrollEl = scrollRef?.current;
       if (!scrollEl) return;
       if (isSearch && howFarThisIsFromTheTop.value) {
-        scrollEl.scrollToOffset({ offset: howFarThisIsFromTheTop.value + padding, animated: true });
+        scrollEl.scrollToOffset({ offset: howFarThisIsFromTheTop.value + padding, animated: !isReduceMotionEnabled });
       } else {
-        scrollEl.scrollToOffset({ offset: 0, animated: true });
+        scrollEl.scrollToOffset({ offset: 0, animated: !isReduceMotionEnabled });
       }
     },
-    [howFarThisIsFromTheTop, scrollRef]
+    [howFarThisIsFromTheTop, isReduceMotionEnabled, scrollRef]
   );
 
   return (
