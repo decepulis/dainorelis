@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -13,7 +14,6 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import useIsAppVisible from '../hooks/useAppState';
-import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import { padding as appPadding } from './Index/constants';
@@ -42,8 +42,8 @@ type Props = {
 export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
-  const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
+  const { t } = useTranslation();
   const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
@@ -52,20 +52,32 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
     () => (isAppWide ? 360 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2)),
     [isAppWide, width, inset.left, inset.right]
   );
+  // this is ludicrous, I know. but dang is that animation smooth.
   const durationWidth = useMemo(
     () =>
-      playerWidth -
-      padding -
-      buttonWidth -
-      padding -
-      buttonWidth -
-      padding -
-      extraDurationPadding -
-      // duration goes here
-      extraDurationPadding -
-      padding -
-      buttonWidth -
-      padding,
+      media.length > 1
+        ? playerWidth -
+          padding -
+          buttonWidth -
+          padding -
+          buttonWidth -
+          padding -
+          extraDurationPadding -
+          // duration goes here
+          extraDurationPadding -
+          padding -
+          buttonWidth -
+          padding
+        : playerWidth -
+          padding -
+          buttonWidth -
+          padding -
+          extraDurationPadding -
+          // duration goes here
+          extraDurationPadding -
+          padding -
+          buttonWidth -
+          padding,
     [playerWidth]
   );
 
@@ -214,7 +226,10 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               opacityStyles,
               {
                 position: 'absolute',
-                right: padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding,
+                right:
+                  media.length > 1
+                    ? padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding
+                    : padding + buttonWidth + padding + extraDurationPadding,
                 width: durationWidth,
                 top: padding,
                 bottom: padding,
@@ -224,7 +239,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           >
             {activeMedia['Variant Name'] ? (
               <ThemedText style={{ color: 'white' }} numberOfLines={1}>
-                {activeMedia['Variant Name']}
+                {activeMedia['Variant Name'].replace('Įrašas', t('media'))}
               </ThemedText>
             ) : null}
             <Animated.View
@@ -261,23 +276,25 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           </Animated.View>
         </GestureDetector>
 
-        <Animated.View
-          style={[
-            opacityStyles,
-            {
-              position: 'absolute',
-              right: padding + buttonWidth + padding,
-              top: padding,
-              bottom: padding,
-            },
-          ]}
-        >
-          <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
-            <Button>
-              <FontAwesome6 name="bars" size={14} color="white" />
-            </Button>
-          </MediaMenu>
-        </Animated.View>
+        {media.length > 1 ? (
+          <Animated.View
+            style={[
+              opacityStyles,
+              {
+                position: 'absolute',
+                right: padding + buttonWidth + padding,
+                top: padding,
+                bottom: padding,
+              },
+            ]}
+          >
+            <MediaMenu media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex}>
+              <Button>
+                <FontAwesome6 name="bars" size={14} color="white" />
+              </Button>
+            </MediaMenu>
+          </Animated.View>
+        ) : null}
 
         <Button
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}

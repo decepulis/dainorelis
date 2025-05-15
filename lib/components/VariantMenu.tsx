@@ -21,11 +21,8 @@ export default function VariantMenu({ children, variants, activeVariantIndex, se
 
   const actions: MenuAction[] = variants.map((variant, index) => {
     let variantName = variant['Variant Name'];
-    if (variantName === 'Žodžiai') {
-      variantName = t('lyrics');
-    } else if (variantName === 'Natos') {
-      variantName = t('sheetMusic');
-    }
+    variantName = variantName.replace('Žodžiai', t('lyrics'));
+    variantName = variantName.replace('Natos', t('sheetMusic'));
     return {
       id: index.toString(),
       title: variantName,

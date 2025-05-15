@@ -21,12 +21,9 @@ export default function useTitle(song: Song, activeVariant: Lyrics | PDFs) {
     const variants = [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])];
     if (variants.length > 1) {
       let variantName = activeVariant['Variant Name'];
-      if (activeVariant['Variant Name'] === 'Žodžiai') {
-        variantName = t('lyrics');
-      } else if (activeVariant['Variant Name'] === 'Natos') {
-        variantName = t('sheetMusic');
-      }
-      return { title, subtitle, variantName: variantName };
+      variantName = variantName.replace('Žodžiai', t('lyrics'));
+      variantName = variantName.replace('Natos', t('sheetMusic'));
+      return { title, subtitle, variantName };
     }
     return { title, subtitle };
   }, [song.fields.Name, song.fields.Lyrics, song.fields.PDFs, activeVariant, t]);

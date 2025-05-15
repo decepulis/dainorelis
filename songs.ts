@@ -1161,7 +1161,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/beaustanti-ausrele-album-version.mp3"
         },
         {
@@ -1951,7 +1951,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/dzukit-dzukit-girneles-live.mp3"
         },
         {
@@ -2658,7 +2658,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ir-isoko-ozelis-live.mp3"
         },
         {
@@ -2829,7 +2829,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jau-saulute-leidzias-album-version.mp3"
         },
         {
@@ -3040,7 +3040,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jonvabalis-live.mp3"
         },
         {
@@ -3781,7 +3781,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kraicio-drobeles-album-version.mp3"
         },
         {
@@ -4008,7 +4008,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kur-sakalalis-album-version.mp3"
         },
         {
@@ -5133,7 +5133,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ne-del-zalio-vyno-live.mp3"
         },
         {
@@ -6829,7 +6829,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/sarkela-varnela.mp3"
         },
         {
@@ -8475,7 +8475,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/uz-raseiniu-ant-dubysos-album-version.mp3"
         },
         {
@@ -9038,7 +9038,7 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "Audio įrašas 1",
+          "Variant Name": "Įrašas 1",
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/zasinas-live.mp3"
         },
         {

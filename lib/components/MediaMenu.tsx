@@ -20,6 +20,7 @@ export default function MediaMenu({ children, media, activeMediaIndex, setActive
 
   const actions: MenuAction[] = media.map((m, index) => {
     let mediaName = m['Variant Name'];
+    mediaName = mediaName.replace('Įrašas', t('media'));
     return {
       id: index.toString(),
       title: mediaName,
