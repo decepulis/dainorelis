@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, NativeMethods, Platform, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
+import { NativeMethods, Platform, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import Animated, {
   AnimatedRef,
@@ -61,17 +61,20 @@ export default function Search({
 
   const { isBoldTextEnabled } = useAccessibilityInfo();
 
+  const viewRef = useRef<View>(null);
   const howFarThisIsFromTheTop = useSharedValue<number | null>(null);
-  const figureOutHowFarThisIsFromTheTop = useCallback(
-    (event: LayoutChangeEvent) => {
-      const scrollEl = scrollRef?.current?.getNativeScrollRef() as NativeMethods;
-      if (!scrollEl) return;
-      event.target.measureLayout(scrollEl, (_x, y) => {
-        howFarThisIsFromTheTop.value = y - headerHeight;
-      });
-    },
-    [headerHeight, howFarThisIsFromTheTop, scrollRef]
-  );
+  const figureOutHowFarThisIsFromTheTop = useCallback(() => {
+    const scrollEl = scrollRef?.current?.getNativeScrollRef() as NativeMethods;
+    const viewEl = viewRef?.current as NativeMethods;
+    if (!scrollEl || !viewEl) return;
+    viewEl.measureLayout(scrollEl, (_x, y, width, height) => {
+      console.log({ y, headerHeight, width, height });
+      howFarThisIsFromTheTop.value = y - headerHeight;
+    });
+  }, [headerHeight, howFarThisIsFromTheTop, scrollRef]);
+
+  // onLayout fires before headerHeight changes, so, let's do this just to be sure
+  useEffect(figureOutHowFarThisIsFromTheTop, [figureOutHowFarThisIsFromTheTop]);
 
   const fadeInStyle = useAnimatedStyle(() => ({
     opacity: howFarThisIsFromTheTop.value
@@ -104,6 +107,7 @@ export default function Search({
         position: 'relative',
         marginBottom: padding - paddingVertical,
       }}
+      ref={viewRef}
       onLayout={figureOutHowFarThisIsFromTheTop}
     >
       {/* background once sticky */}
