@@ -131,6 +131,37 @@ function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultName:
   });
 }
 
+/**
+ * Throughout lyrics, the pattern [space](Chord) is frequently used
+ * Since that's often not enough space, we do a lil magic to fix it up a bit
+ * Based on the number of wide characters in the chord, we add that many em spaces (Max 4)
+ * E.g., [space](C) => [emspace](C)
+ *       [space](C#) => [emspace emspace](C#)
+ *       [space](C/D) => [emspace emspace](C/D)
+ *       [space](C#maj7) => [emspace emspace emspace ](C#maj7)
+ */
+function adjustChordWhitespace(lyrics: FieldSet[string] | FieldSet[]) {
+  const emSpace = ' ';
+  const wideCharRegex = /[a-zA-Z0-9#]/g; // Only count alphanumeric and "#" as wide characters
+  if (!Array.isArray(lyrics)) return lyrics;
+  return lyrics.map((record) => {
+    const lyricsText = record['Lyrics & Chords'];
+    if (typeof lyricsText !== 'string') return record;
+
+    const adjustedLyrics = lyricsText.replace(/\[\s*\]\(([^\)]+)\)/g, (match, chord) => {
+      // Count wide characters in the chord
+      const wideCount = (chord.match(wideCharRegex) || []).length;
+      const emSpaces = emSpace.repeat(Math.min(3, wideCount));
+      return `[${emSpaces}](${chord})`;
+    });
+
+    return {
+      ...record,
+      'Lyrics & Chords': adjustedLyrics,
+    };
+  });
+}
+
 // get those songs
 async function updateSongs() {
   try {
@@ -143,7 +174,9 @@ async function updateSongs() {
     ]);
 
     const songFile = songs.map((song) => {
-      const Lyrics = assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai');
+      const Lyrics = adjustChordWhitespace(
+        assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai')
+      );
       const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos');
       const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Audio įrašas');
       const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Video įrašas');

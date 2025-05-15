@@ -2,6 +2,8 @@ import { ComponentPropsWithoutRef, Fragment } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import MarkdownLib, { MarkdownIt } from 'react-native-markdown-display';
 
+import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+
 import ThemedText from '../ThemedText';
 
 const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disable([
@@ -30,8 +32,8 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
 ]);
 
 const fontSize = 20;
-const lineHeight = fontSize * 1.33;
-const chordHeight = 16;
+const lineHeight = Platform.OS === 'ios' ? fontSize * 1.33 : fontSize * 1.45;
+const chordHeight = 14;
 
 const styles = StyleSheet.create({
   text: {
@@ -49,8 +51,9 @@ type Props = {
  * Lyrics are rendered using a controlled subset of markdown
  */
 export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
+  const { isHighContrastEnabled } = useAccessibilityInfo();
+
   // TODO selectable text
-  // TODO support real links for descriptions
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
     paragraph: (node, children, _parent, styles) => (
       <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
@@ -102,10 +105,12 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
     },
     link: (node, children) => {
       const { href } = node.attributes;
+      // TODO support real links for descriptions
       if (!showChords) return children;
       if (href) {
         return (
           <Fragment key={node.key}>
+            {/* insert 0-width element for chord to orient itself against */}
             <View
               style={{
                 height: lineHeight + chordHeight,
@@ -115,14 +120,15 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
               }}
             >
               <ThemedText
-                bold
+                italic
                 style={{
-                  opacity: 0.6,
+                  opacity: isHighContrastEnabled ? 1 : 0.7,
                   fontSize: chordHeight,
+                  // this doesn't matter they'll overlap if they need to
+                  width: chordHeight * 4,
                   // just kinda eyeballing it
-                  width: chordHeight * 2,
-                  // just kinda eyeballing it
-                  lineHeight: chordHeight * Platform.select({ ios: 1.7, android: 1.8, default: 1 }),
+                  // increasing this number makes chords move closer to the text
+                  lineHeight: chordHeight * Platform.select({ ios: 1.9, android: 2.5, default: 1 }),
                 }}
               >
                 {href}
