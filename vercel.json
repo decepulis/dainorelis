@@ -2,7 +2,12 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "http://dainorelisapp.com/",
+      "destination": "https://dainorelisapp.com/",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://dainorelisapp.com/",
       "permanent": false
     }
   ]

@@ -16,6 +16,7 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+.kotlin/
 
 # Metro
 .metro-health-check*
@@ -36,3 +37,5 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+.env
+my-upload-key.keystore
