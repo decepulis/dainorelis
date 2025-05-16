@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import logo from '~/assets/images/logo_white_v3.png';
 import googlePlayBadge from '@/images/play_store_en.svg';
 import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
+import { appStoreUrl, playStoreUrl } from '@/utils/urls';
 ---
 
 <Layout>
@@ -16,27 +17,22 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
     <main>
       <Image src={logo} alt="Dainorėlis Logo" class="logo" />
       <h1 class="visually-hidden">Dainorėlis App</h1>
-      <p>
+      <!-- <p>
         The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 500 Lithuanian folk songs,
         campfire songs, children’s songs, and more! Learn the melodies with sheet music, recordings, or chords. Download
         the app to access the entire library of songs without an internet connection.
+      </p> -->
+      <p>
+        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 150 Lithuanian folk songs,
+        campfire songs, children’s songs, and more! Download the app to access the entire library of songs without an
+        internet connection.
       </p>
       <div class="badges">
-        <a
-          href="https://apps.apple.com/us/app/dainor%C4%97lis-your-lithuanian-song-book/id1116436510"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Download on the App Store"
-        >
+        <a href={appStoreUrl} rel="noopener noreferrer" aria-label="Download on the App Store">
           <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
         </a>
-        <a
-          href="https://play.google.com/store/apps/details?id=com.dainorelis.dainorelis"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Get it on Google Play"
-        >
-          <Image src={googlePlayBadge} alt="Get it on Google Play" />
+        <a href={playStoreUrl} rel="noopener noreferrer" aria-label="Join the beta on Google Play">
+          <Image src={googlePlayBadge} alt="Join the beta on Google Play" />
         </a>
       </div>
     </main>
