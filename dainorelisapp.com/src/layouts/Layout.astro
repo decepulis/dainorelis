@@ -1,0 +1,129 @@
+---
+import faviconPngSrc from '~/assets/images/favicon.png';
+import faviconSvgSrc from '~/assets/images/icon.svg';
+import ogImageSrc from '~/assets/images/miskas_og.png';
+import twitterImageSrc from '~/assets/images/miskas_twitter.png';
+import '@/styles/reset.css';
+
+const title = 'Dainorėlis App';
+const description =
+  'The Dainorėlis App is your offline Lithuanian songbook with over 500 songs: folk, holiday, and more. Browse lyrics, sheet music, chords, and recordings. Sing and enjoy!';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/png" href={faviconPngSrc.src} />
+    <link rel="icon" type="image/svg+xml" href={faviconSvgSrc.src} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    {/* Open Graph Tags */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageSrc.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+
+    {/* Twitter Card Tags */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={twitterImageSrc.src} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --font-primary: 'Nunito', sans-serif;
+    --primary-light: #70997f;
+    --primary-dark: #53745e;
+    --primary-text: white;
+    --background-light: #f1f1ee;
+    --background-light-text: '#121314' --background-dark: #121314;
+    --background-dark-text: #fef9f7;
+
+    --text--2: clamp(0.6944rem, 0.6856rem + 0.0444vw, 0.72rem);
+    --text--1: clamp(0.8333rem, 0.8101rem + 0.1159vw, 0.9rem);
+    --text-0: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+    --text-1: clamp(1.2rem, 1.1283rem + 0.3587vw, 1.4063rem);
+    --text-2: clamp(1.44rem, 1.3295rem + 0.5527vw, 1.7578rem);
+    --text-3: clamp(1.728rem, 1.5648rem + 0.8161vw, 2.1973rem);
+    --text-4: clamp(2.0736rem, 1.8395rem + 1.1704vw, 2.7466rem);
+    --text-5: clamp(2.4883rem, 2.1597rem + 1.6433vw, 3.4332rem);
+  }
+
+  html,
+  body {
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    min-width: 20rem;
+
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-style: normal;
+    line-height: 1.5;
+    font-size: var(--text-0);
+
+    --primary: var(--primary-light);
+    color: var(--primary-text);
+    background-color: var(--primary);
+    transition: background-color 0.3s ease;
+  }
+
+  .bg {
+    background-color: var(--background-light);
+    color: var(--background-light-text);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      --primary: var(--primary-dark);
+    }
+    .bg {
+      background-color: var(--background-dark);
+      color: var(--background-dark-text);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  a {
+    color: var(--primary-text);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>

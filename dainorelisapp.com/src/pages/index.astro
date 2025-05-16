@@ -1,0 +1,129 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/logo_white_v3.png';
+import googlePlayBadge from '@/images/play_store_en.svg';
+import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
+---
+
+<Layout>
+  <div class="container">
+    <main>
+      <Image src={logo} alt="Dainorėlis Logo" class="logo" />
+      <h1 class="visually-hidden">Dainorėlis App</h1>
+      <p>
+        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 500 Lithuanian folk songs,
+        campfire songs, children’s songs, and more! Learn the melodies with sheet music, recordings, or chords. Download
+        the app to access the entire library of songs without an internet connection.
+      </p>
+      <div class="badges">
+        <a
+          href="https://apps.apple.com/us/app/dainor%C4%97lis-your-lithuanian-song-book/id1116436510"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download on the App Store"
+        >
+          <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
+        </a>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.dainorelis.dainorelis"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get it on Google Play"
+        >
+          <Image src={googlePlayBadge} alt="Get it on Google Play" />
+        </a>
+      </div>
+    </main>
+    <footer>
+      <span>&copy; {new Date().getFullYear()} Dainorėlis Team</span>
+      <span class="separator">|</span>
+      <a href="mailto:info@dainorelisapp.com">info@dainorelisapp.com</a>
+    </footer>
+  </div>
+  <style>
+    .container {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+    footer {
+      font-size: var(--text--2);
+      gap: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    footer a {
+      text-decoration: none;
+    }
+    footer a:hover,
+    footer a:focus-visible {
+      text-decoration: underline;
+    }
+    footer .separator {
+      display: none;
+    }
+    @media (min-width: 400px) {
+      footer {
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+      footer .separator {
+        display: inline;
+      }
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin: 0 auto;
+    }
+    p {
+      text-align: center;
+      text-wrap: balance;
+    }
+    .badges {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .badges img {
+      height: auto;
+      width: 100%;
+      max-width: 9rem;
+    }
+    @media (min-width: 400px) {
+      .badges {
+        flex-direction: row;
+        gap: 2rem;
+      }
+      .badges img {
+        height: 3rem;
+        width: auto;
+        max-width: none;
+      }
+    }
+    .badges a {
+      transition: opacity 0.1s ease-in-out;
+    }
+    .badges a:hover,
+    .badges a:focus-visible {
+      opacity: 0.75;
+    }
+  </style>
+</Layout>
