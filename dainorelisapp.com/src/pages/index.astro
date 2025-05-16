@@ -12,7 +12,7 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
       <Image src={logo} alt="Dainorėlis Logo" class="logo" />
       <h1 class="visually-hidden">Dainorėlis App</h1>
       <p>
-        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 500 Lithuanian folk songs,
+        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 150 Lithuanian folk songs,
         campfire songs, children’s songs, and more! Learn the melodies with sheet music, recordings, or chords. Download
         the app to access the entire library of songs without an internet connection.
       </p>
@@ -25,14 +25,14 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
         >
           <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
         </a>
-        <a
+        <!-- <a
           href="https://play.google.com/store/apps/details?id=com.dainorelis.dainorelis"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Get it on Google Play"
         >
           <Image src={googlePlayBadge} alt="Get it on Google Play" />
-        </a>
+        </a> -->
       </div>
     </main>
     <footer>
@@ -45,10 +45,14 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
     .container {
       min-height: 100vh;
       min-height: 100dvh;
+      padding-left: 2rem;
+      padding-right: 2rem;
       display: flex;
       flex-direction: column;
     }
     footer {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
       font-size: var(--text--2);
       gap: 0.25rem;
       display: flex;
@@ -80,7 +84,8 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
       width: 100%;
       max-width: 800px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
       display: flex;
       flex-direction: column;
       gap: 2rem;
