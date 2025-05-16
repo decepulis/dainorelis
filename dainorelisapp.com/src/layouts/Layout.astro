@@ -41,6 +41,8 @@ const description =
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={twitterImageSrc.src} />
 
+    <slot name="head" />
+
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
@@ -66,6 +68,8 @@ const description =
     --text-3: clamp(1.728rem, 1.5648rem + 0.8161vw, 2.1973rem);
     --text-4: clamp(2.0736rem, 1.8395rem + 1.1704vw, 2.7466rem);
     --text-5: clamp(2.4883rem, 2.1597rem + 1.6433vw, 3.4332rem);
+
+    --spacing: var(--text-1);
   }
 
   html,

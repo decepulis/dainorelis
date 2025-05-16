@@ -1,4 +1,5 @@
 // @ts-check
+import vercel from '@astrojs/vercel';
 import { defineConfig } from 'astro/config';
 import { URL } from 'node:url';
 
@@ -12,4 +13,6 @@ export default defineConfig({
       ],
     },
   },
+
+  adapter: vercel(),
 });
