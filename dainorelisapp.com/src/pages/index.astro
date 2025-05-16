@@ -7,12 +7,17 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
 ---
 
 <Layout>
+  <Fragment slot="head">
+    <link rel="preload" href={logo.src} as="image" type="image/png" />
+    <link rel="preload" href={googlePlayBadge.src} as="image" type="image/svg+xml" />
+    <link rel="preload" href={appStoreBadgePlaceholder.src} as="image" type="image/svg+xml" />
+  </Fragment>
   <div class="container">
     <main>
       <Image src={logo} alt="Dainorėlis Logo" class="logo" />
       <h1 class="visually-hidden">Dainorėlis App</h1>
       <p>
-        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 150 Lithuanian folk songs,
+        The Dainorėlis App is your Lithuanian song book. Quickly find and bookmark over 500 Lithuanian folk songs,
         campfire songs, children’s songs, and more! Learn the melodies with sheet music, recordings, or chords. Download
         the app to access the entire library of songs without an internet connection.
       </p>
@@ -25,14 +30,14 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
         >
           <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
         </a>
-        <!-- <a
+        <a
           href="https://play.google.com/store/apps/details?id=com.dainorelis.dainorelis"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Get it on Google Play"
         >
           <Image src={googlePlayBadge} alt="Get it on Google Play" />
-        </a> -->
+        </a>
       </div>
     </main>
     <footer>
@@ -45,16 +50,16 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
     .container {
       min-height: 100vh;
       min-height: 100dvh;
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: calc(2 * var(--spacing));
+      padding-right: calc(2 * var(--spacing));
       display: flex;
       flex-direction: column;
     }
     footer {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
+      padding-top: calc(0.25 * var(--spacing));
+      padding-bottom: calc(0.25 * var(--spacing));
       font-size: var(--text--2);
-      gap: 0.25rem;
+      gap: calc(0.25 * var(--spacing));
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -73,7 +78,7 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
     @media (min-width: 400px) {
       footer {
         flex-direction: row;
-        gap: 0.5rem;
+        gap: calc(0.5 * var(--spacing));
       }
       footer .separator {
         display: inline;
@@ -84,11 +89,11 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
       width: 100%;
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
+      padding-top: calc(4 * var(--spacing));
+      padding-bottom: calc(4 * var(--spacing));
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2em;
       align-items: center;
       justify-content: center;
     }
@@ -105,20 +110,20 @@ import appStoreBadgePlaceholder from '@/images/app_store_en.svg';
     .badges {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: calc(1 * var(--spacing));
     }
     .badges img {
       height: auto;
       width: 100%;
-      max-width: 9rem;
+      max-width: calc(8 * var(--spacing));
     }
     @media (min-width: 400px) {
       .badges {
         flex-direction: row;
-        gap: 2rem;
+        gap: calc(2 * var(--spacing));
       }
       .badges img {
-        height: 3rem;
+        height: calc(2.5 * var(--spacing));
         width: auto;
         max-width: none;
       }
