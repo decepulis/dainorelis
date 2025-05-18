@@ -80,7 +80,7 @@ const lt = {
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
   noFavorites1: 'Žiūrėdami dainą, spauskite',
   noFavorites1Alt: 'Paieškos rezultatų mėgstamiausiuose nėra. Žiūrėdami dainą, spauskite',
-  noFavorites2: 'mygtuką ir pažymekit kaip „mėgstama“',
+  noFavorites2: 'mygtuką ir pažymėkit kaip „mėgstamą“',
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
@@ -92,7 +92,7 @@ const lt = {
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:
-    'Mes sukūrėme „Dainorėlis App“, kad lietuviai po visą pasaulį galėtų lengvai rasti savo mylimų liaudės dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
+    'Mes sukūrėme „Dainorėlis App“, kad lietuviai visame pasaulyje galėtų lengvai rasti savo mylimų liaudies dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
   settingsOurTeamTitle: 'Mūsų komanda',
   language: 'Kalba',
   theme: 'Režimas',
