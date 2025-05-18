@@ -22,17 +22,14 @@ import { appStoreUrl, playStoreUrl } from '@/utils/urls';
         campfire songs, children’s songs, and more! Learn the melodies with sheet music, recordings, or chords. Download
         the app to access the entire library of songs without an internet connection.
       </p>
-      <section>
-        <h2>Join the beta test:</h2>
-        <div class="badges">
-          <a href={appStoreUrl} rel="noopener noreferrer" aria-label="Download on the App Store">
-            <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
-          </a>
-          <a href={playStoreUrl} rel="noopener noreferrer" aria-label="Join the beta on Google Play">
-            <Image src={googlePlayBadge} alt="Join the beta on Google Play" />
-          </a>
-        </div>
-      </section>
+      <div class="badges">
+        <a href={appStoreUrl} rel="noopener noreferrer" aria-label="Download on the App Store">
+          <Image src={appStoreBadgePlaceholder} alt="Download on the App Store" />
+        </a>
+        <a href={playStoreUrl} rel="noopener noreferrer" aria-label="Join the beta on Google Play">
+          <Image src={googlePlayBadge} alt="Join the beta on Google Play" />
+        </a>
+      </div>
     </main>
     <footer>
       <span>&copy; {new Date().getFullYear()} Dainorėlis Team</span>
