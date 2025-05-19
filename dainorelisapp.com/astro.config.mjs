@@ -5,6 +5,7 @@ import { URL } from 'node:url';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.dainorelisapp.com',
   vite: {
     resolve: {
       alias: [
