@@ -267,19 +267,11 @@ const songs: SongFile = [
       "Name": "Ant Nemuno kranto",
       "Lyrics": [
         {
-          "Variant Name": "Žodžiai",
+          "Variant Name": "Žodžiai 1",
           "Lyrics & Chords": "Ant Nemuno kranto kareivis gulėjo\nPakėlęs galvelę į dangų žiūrėjo.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2 k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2 k.)\n\nUžteks tau, kareivį ant kranto gulėti\nPakėlęs galvelę į dangų žiūrėti.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2 k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2 k.)"
-        }
-      ]
-    }
-  },
-  {
-    "id": "recu9SDvKEWqknRsp",
-    "fields": {
-      "Name": "Ant Nemuno kranto",
-      "Lyrics": [
+        },
         {
-          "Variant Name": "Žodžiai",
+          "Variant Name": "Žodžiai 2",
           "Lyrics & Chords": "Ant Nemuno kranto\nKareivis gulėjo,\nPakėlęs galvelę\nĮ dangų žiūrėjo.\n\nKelkis kareivėli,\nGana tau gulėti.\nJau tavo pulkelis\nViešu keliu traukia.\n\nJau tavo pulkelis\nViešu keliu traukia,\nJau tavo galvelės\nPriešo kulkos laukia.\n\nTegul jie sau traukia\nIr manęs nelaukia,\nO aš, kareivėlis\nSaldaus miego noriu.\n\nNepakeliu kojų,\nNei baltų rankelių,\nNegaliu rašyti\nMergeliai laiškelio.\n\nPrašysiu paukštelio,\nRaibo sakalėlio,\nKad jis parašytų\nMergeliai laiškelį.\n\nAtsakė paukštelis\nRaibas sakalėlis:\nNegaliu rašyti\nMergelei laiškelio.\n\nPrašysiu žuvelės\nMargos lydekėlės,\nKad ji parašytų\nMergelei laiškelį.\n\nAtsakė žuvelė\nMarga lydekėlė\nNegaliu rašyti\nMergelei laiškelio."
         }
       ]
@@ -404,8 +396,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ar-zinai-tu-klajune-keleivi.pdf"
         }
       ],
-      "Music Author": "Ritos Čyvaitės-Kliorienės",
-      "Text Author": "Aušrinės Širvinskienės"
+      "Music Author": "Ritos Čyvaitė-Kliorienė",
+      "Text Author": "Aušrinė Širvinskienė"
     }
   },
   {
@@ -1112,8 +1104,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis-vaiku.pdf"
         }
       ],
-      "Music Author": "Vytauto Kernagio",
-      "Text Author": "Vytauto Kernagio"
+      "Music Author": "Vytautas Kernagis",
+      "Text Author": "Vytautas Kernagis"
     }
   },
   {
@@ -1342,8 +1334,8 @@ const songs: SongFile = [
           "Show Chords": true
         }
       ],
-      "Music Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija\nGulbinaitė",
-      "Text Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija\nGulbinaitė"
+      "Music Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija Gulbinaitė",
+      "Text Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija Gulbinaitė"
     }
   },
   {
@@ -1930,7 +1922,7 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas.pdf"
         }
       ],
-      "Music Author": "Jono Švedo"
+      "Music Author": "Jonas Švedas"
     }
   },
   {
@@ -2518,7 +2510,7 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/greitakalbes-vaiku.pdf"
         }
       ],
-      "Music Author": "Aleksandro Stankevičiaus"
+      "Music Author": "Aleksandras Stankevičius"
     }
   },
   {
@@ -2893,8 +2885,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jau-saulute-leidzias-vaiku-klavyras.pdf"
         }
       ],
-      "Music Author": "Dariaus Polikaičio",
-      "Text Author": "Tomo Žičkaus"
+      "Music Author": "Darius Polikaitis",
+      "Text Author": "Tomas Žičkus"
     }
   },
   {
@@ -3072,8 +3064,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jonvabalis-vaiku.pdf"
         }
       ],
-      "Music Author": "Gintauto Abariaus",
-      "Text Author": "Stasio Žlibino"
+      "Music Author": "Gintautas Abarius",
+      "Text Author": "Stasys Žlibinas"
     }
   },
   {
@@ -3448,7 +3440,7 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-vaiku.pdf"
         }
       ],
-      "Music Author": "Jono Švedo"
+      "Music Author": "Jonas Švedas"
     }
   },
   {
@@ -3956,8 +3948,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-choras.pdf"
         }
       ],
-      "Music Author": "Balio Dvariono",
-      "Text Author": "Eduardo Pilypaičio"
+      "Music Author": "Balys Dvarionas",
+      "Text Author": " Eduardas Pilypaitis"
     }
   },
   {
@@ -4166,8 +4158,8 @@ const songs: SongFile = [
           "Lyrics & Chords": "Laužai liepsnoja vakaruos,\nPietuose, šiaurėj ir rytuos.\nNuo jų lietuviška daina\nAplėks, pasaulį keldama.\n\n_Tad aukim skautiška, lietuviška dvasia,\nŽygiui ruoškimės su šypsniu ir daina,\nKurt laužų prie Baltijos,\nTarp girių Lietuvos._\n\nĮžiebę Vilniaus kalvose,\nSkautybės ugnį širdyse,\nVis nešam vėliavą aukštai,\nNors ir toli gimti namai.\n\nNei vandenynai, nei kalnai\nNegal atskirti mūs ilgai,\nNuo skautų laukiančių miškų,\nTėvų sodybų ir laukų."
         }
       ],
-      "Music Author": "S. Kairio",
-      "Text Author": "V. Bražėno"
+      "Music Author": "S. Kairiys",
+      "Text Author": "V. Bražėnas"
     }
   },
   {
@@ -4316,8 +4308,8 @@ const songs: SongFile = [
           "URL": "https://media.dainorelis.app/lietuva%20brangi.pdf"
         }
       ],
-      "Music Author": "J. Naujalio",
-      "Text Author": "Maironio"
+      "Music Author": "J. Naujalis",
+      "Text Author": "Maironis"
     }
   },
   {
@@ -4378,8 +4370,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime.pdf"
         }
       ],
-      "Music Author": "Stasio Šimkaus",
-      "Text Author": "Jurgio Zauerveino"
+      "Music Author": "Stasys Šimkus",
+      "Text Author": "Jurgis Zauerveius"
     }
   },
   {
@@ -5582,7 +5574,7 @@ const songs: SongFile = [
           "Lyrics & Chords": "Oi neverk, motinėle, kad jaunas sūnus\nEis ginti brangiosios tėvynės;\nKad pavirtęs, kaip ąžuolas girių puikus ]\nlauks teismo dienos paskutinės. ] 2x2 k.\n\nTad nelaužyk sau rankų, kaip beržo šakas\nKad laužo užrūstintas vėjas;\nTau dar liko sūnų, kas tėvynę praras,\nAntros neišmels apgailėjęs.\n\nTen už upių plačių žiba mūsų pulkai\nJie mylimą Lietuvą gina;\nKam nusviro galva, tam dangaus angelai\nVainiką iš deimantų pina.\n\nSaulė leidos raudona ant Vilniaus kapų,\nKai duobę kareiviai ten kasė,\nIr paguldė daug brolių greta milžinų,\nO Viešpats jų priglaudė dvasią."
         }
       ],
-      "Text Author": "Maironio"
+      "Text Author": "Maironis"
     }
   },
   {
@@ -6249,8 +6241,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/pienes-pukas-vaiku.pdf"
         }
       ],
-      "Music Author": "Aleksandro Stankevičiaus",
-      "Text Author": "Aušrinės Širvinskienės"
+      "Music Author": "Aleksandras Stankevičius",
+      "Text Author": "Aušrinė Širvinskienė"
     }
   },
   {
@@ -6967,8 +6959,8 @@ const songs: SongFile = [
           "Show Chords": true
         }
       ],
-      "Music Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,\nGervių skilties",
-      "Text Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,\nGervių skilties"
+      "Music Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,Gervių skiltis",
+      "Text Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,Gervių skiltis"
     }
   },
   {
@@ -7396,7 +7388,7 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/skaiciuotes-vokalas.pdf"
         }
       ],
-      "Music Author": "Aleksandro Stankevičiaus"
+      "Music Author": "Aleksandras Stankevičius"
     }
   },
   {
@@ -7439,8 +7431,8 @@ const songs: SongFile = [
           "URL": "https://media.dainorelis.app/skautijos%20himnas.pdf"
         }
       ],
-      "Music Author": "Felikso Šakalio",
-      "Text Author": "Felikso Šakalio"
+      "Music Author": "Feliksas Šakalys",
+      "Text Author": "Feliksas Šakalys"
     }
   },
   {
@@ -7819,7 +7811,7 @@ const songs: SongFile = [
           "Lyrics & Chords": "**Skaitovas:**\nKur šią vasarą važiuosim?\n**Choras:**\n_Dainavon ir Kretingon!_\n\nKur šią vasarą dainuosim?\n_Romuvoj ir Neringoj!_\n\nKur užkursim skautų laužą?\n_Ir Rambyne, ir Rake!_\n\nTai manoji Lietuva –\nStovykla, daina, svaja,\nTen susirenkam draugauti,\nIškylauti ir juokauti!\n\nJonas koją užsigavo...\n_o, o_\nMarius Eglę pabučiavo...\n_uhu_\nIna buvo susiraukus...\n_m, m_\nO Antanas skuto plaukus...\n_vaje!_\n\nSuvažiuojame visi\nIr maži ir dideli.\nIr ten laužus mes kūrenam\nPrie liepsnų daina skardenam.\n\nRokas šiandien turi slogą...\n_ogą, ogą_\nOnai nuo kopūstų blogą...\n_logą, logą_\nVytas rašo mamai laišką...\n_aišką, aišką_\nPlease, atsiųsk saldainių maišą...\n_aišą, aišą!_\n\nKai dainas kartu dainuojam\nTai visi šilai linguoja.\nŠypsosi ramus Spyglys\nIr Rambyno kauburys.\n\nTai manoji Lietuva –\n_Kretinga ir Dainava!_\nTai manoji Lietuva – \n_Mūs Rambynas, Neringa!_\nTai manoji Lietuva – \n_Rako takas, Romuva!_"
         }
       ],
-      "Text Author": "Aušrinės Širvinskienės"
+      "Text Author": "Aušrinė Širvinskienė"
     }
   },
   {
@@ -7999,8 +7991,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ten-mano-svajos-vaiku.pdf"
         }
       ],
-      "Music Author": "Dariaus Polikaičio",
-      "Text Author": "Dariaus Polikaičio"
+      "Music Author": "Darius Polikaitis",
+      "Text Author": "Darius Polikaitis"
     }
   },
   {
@@ -9078,8 +9070,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zasinas-vaiku.pdf"
         }
       ],
-      "Music Author": "Rasos Kauneckaitės",
-      "Text Author": "Martyno Vainilaičio"
+      "Music Author": "Rasos Kauneckaitė",
+      "Text Author": "Martyno Vainilaitis"
     }
   },
   {
@@ -9233,8 +9225,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu.pdf"
         }
       ],
-      "Music Author": "Laimio Vilkončiaus",
-      "Text Author": "Sigito Gedos"
+      "Music Author": "Laimis Vilkončiaus",
+      "Text Author": "Sigitas Geda"
     }
   },
   {
@@ -9311,8 +9303,8 @@ const songs: SongFile = [
           "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirbliai-vaiku.pdf"
         }
       ],
-      "Music Author": "Algirdo Šumskio",
-      "Text Author": "Leonardo Gutausko"
+      "Music Author": "Algirdas Šumskis",
+      "Text Author": "Leonardas Gutauskas"
     }
   },
   {
