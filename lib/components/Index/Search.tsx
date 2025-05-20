@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NativeMethods, Platform, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
+import { NativeMethods, Platform, Pressable, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -13,7 +13,7 @@ import Animated, {
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
@@ -58,6 +58,8 @@ export default function Search({
   const scrollOffset = useScrollViewOffset(scrollRef ?? null);
   const headerHeight = useHeaderHeight();
   const { setDidSongFestivalLoad } = useDidImagesLoad();
+  const [showClearButton, setShowClearButton] = useState(false);
+  const searchRef = useRef<TextInput>(null);
 
   const { isBoldTextEnabled, isReduceMotionEnabled } = useAccessibilityInfo();
 
@@ -98,6 +100,23 @@ export default function Search({
     },
     [howFarThisIsFromTheTop, isReduceMotionEnabled, scrollRef]
   );
+  const onChangeText = useCallback(
+    (t: string) => {
+      setSearchText(t);
+      setShowClearButton(t.length > 0);
+      if (t.length > 0) {
+        scrollToTop(true);
+      }
+    },
+    [setSearchText, scrollToTop]
+  );
+  const clearSearchText = useCallback(() => {
+    const searchEl = searchRef?.current;
+    if (searchEl) {
+      searchRef.current?.clear();
+      onChangeText('');
+    }
+  }, [onChangeText]);
 
   return (
     // TODO if this is wide enough, make it horizontal
@@ -218,16 +237,14 @@ export default function Search({
               {
                 height: '100%',
                 color: text,
-                marginRight: 10,
+                marginRight: Platform.OS === 'ios' ? 0 : 40,
                 marginLeft: 40,
               },
             ]}
-            clearButtonMode="while-editing"
+            clearButtonMode={Platform.OS === 'ios' ? 'while-editing' : undefined}
             autoCorrect={false}
-            onChangeText={(t) => {
-              setSearchText(t);
-              scrollToTop(true);
-            }}
+            ref={searchRef}
+            onChangeText={onChangeText}
             onFocus={() => scrollToTop(true)}
             returnKeyType="done"
             selectionColor={primary}
@@ -235,17 +252,36 @@ export default function Search({
           <View
             style={{
               position: 'absolute',
-              left: 10,
+              left: 0,
               top: 0,
               bottom: 0,
-              width: 20,
+              width: 40,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <Ionicons name="search" size={18} color={text} />
+            <FontAwesome6 name="magnifying-glass" size={16} color={text} />
           </View>
+          {showClearButton && Platform.OS !== 'ios' ? (
+            <Pressable
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                bottom: 0,
+                width: 40,
+                borderRadius: 9999,
+                overflow: 'hidden',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={clearSearchText}
+            >
+              <FontAwesome6 name="xmark" size={18} color={text} />
+            </Pressable>
+          ) : null}
         </View>
       </View>
     </View>
