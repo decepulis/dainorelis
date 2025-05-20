@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   optionText: {
-    fontSize: 15,
+    fontSize: 14,
   },
 });
 

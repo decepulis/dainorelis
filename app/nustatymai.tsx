@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     gap: padding,
   },
   settingTitle: {
-    fontSize: 15,
+    fontSize: 14,
     flexGrow: 0,
     flexShrink: 0,
   },
@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
     fontSize: padding,
     marginTop: padding,
     marginBottom: padding / 2,
+    fontSize: 19,
   },
   paragraph: {
     fontSize: 17,
