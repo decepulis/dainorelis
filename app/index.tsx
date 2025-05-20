@@ -87,7 +87,6 @@ export default function Index() {
             setIsSongFestivalMode={(isSongFestivalMode) =>
               startTransition(() => {
                 setIsSongFestivalMode(isSongFestivalMode);
-                setSearchText('');
               })
             }
             setSearchText={(text) => startTransition(() => setSearchText(text))}
