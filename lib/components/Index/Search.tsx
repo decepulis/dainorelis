@@ -170,11 +170,11 @@ export default function Search({
                   ...Platform.select({
                     ios: {
                       borderWidth: StyleSheet.hairlineWidth,
-                      borderColor: isSongFestivalMode ? card : separator,
+                      borderColor: separator,
                     },
                     default: {
                       borderWidth: 1,
-                      borderColor: isSongFestivalMode && isDark ? card : 'transparent',
+                      borderColor: isSongFestivalMode && isDark ? primary : 'transparent',
                       boxShadow: '0 0 10px rgba(64, 64, 64, 0.1)',
                     },
                   }),
