@@ -7,7 +7,9 @@ import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
 
 import SystemView from './SystemView';
 
-export const buttonSlop = { top: 6, bottom: 6, left: 6, right: 6 };
+const width = 32;
+const slop = (44 - width) / 2;
+export const buttonSlop = { top: slop, bottom: slop, left: slop, right: slop };
 
 type Props = {
   children: React.ReactNode;
@@ -78,7 +80,6 @@ Button.displayName = 'Button';
 
 export default Button;
 
-const width = 32;
 export const styles = StyleSheet.create({
   container: {},
   button: {
