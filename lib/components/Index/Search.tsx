@@ -199,7 +199,7 @@ export default function Search({
             marginTop: padding / 4,
             position: 'relative',
             height: 40,
-            borderRadius: 15,
+            borderRadius: 9999,
             backgroundColor: `${card}bb`,
             ...Platform.select({
               ios: {
