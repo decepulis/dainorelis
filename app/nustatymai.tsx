@@ -122,7 +122,7 @@ export default function Page() {
               onPress={() => openFeedback()}
               hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
             >
-              <ThemedText style={[styles.paragraph, { marginBottom: padding / 2 }]}>
+              <ThemedText style={[styles.paragraph]}>
                 {t('settingsWriteToUsText1')}{' '}
                 <ThemedText
                   style={[
@@ -138,7 +138,7 @@ export default function Page() {
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsSpecialThanksTitle')}
             </ThemedText>
-            <ThemedText style={[styles.paragraph, { marginBottom: 10 }]}>
+            <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
               {t('settingsSpecialThanksSimtmecioDainorelis')}
             </ThemedText>
             <ThemedText style={[styles.paragraph]}>{t('settingsSpecialThanksXIDainuSvente')}</ThemedText>
@@ -147,11 +147,11 @@ export default function Page() {
             <ThemedText style={[styles.header, { borderColor: separator }]} bold>
               {t('settingsAboutUsTitle')}
             </ThemedText>
-            <ThemedText style={[styles.subheader, { marginTop: 10 }]} italic bold>
+            <ThemedText style={[styles.subheader]} italic bold>
               {t('settingsOurGoalTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-            <ThemedText style={styles.subheader} italic bold>
+            <ThemedText style={[styles.subheader, { marginTop: padding }]} italic bold>
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
@@ -192,20 +192,19 @@ const styles = StyleSheet.create({
     gap: padding,
   },
   settingTitle: {
-    fontSize: 15,
+    fontSize: 14,
     flexGrow: 0,
     flexShrink: 0,
   },
   header: {
     fontSize: 23,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: padding / 2,
-    paddingBottom: padding / 4,
+    marginBottom: padding,
+    paddingBottom: padding / 2,
   },
   subheader: {
-    fontSize: padding,
-    marginTop: padding,
-    marginBottom: padding / 2,
+    fontSize: 19,
+    marginBottom: padding,
   },
   paragraph: {
     fontSize: 17,
