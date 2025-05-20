@@ -139,7 +139,7 @@ const SegmentedControl = ({ options, value, onValueChange, style }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderRadius: 25,
+    borderRadius: 9999,
     overflow: 'hidden',
     padding: 3,
     position: 'relative',
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     position: 'absolute',
-    borderRadius: 20,
+    borderRadius: 9999,
     overflow: 'hidden',
     top: 3,
     bottom: 3,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     minHeight: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
+    borderRadius: 9999,
     zIndex: 1,
   },
   optionText: {
