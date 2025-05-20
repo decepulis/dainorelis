@@ -80,7 +80,7 @@ const lt = {
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
   noFavorites1: 'Žiūrėdami dainą, spauskite',
   noFavorites1Alt: 'Paieškos rezultatų mėgstamiausiuose nėra. Žiūrėdami dainą, spauskite',
-  noFavorites2: 'mygtuką ir pažymėkit kaip „mėgstamą“',
+  noFavorites2: 'mygtuką pažymėti kaip „mėgstamą“',
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
