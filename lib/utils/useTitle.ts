@@ -12,14 +12,14 @@ function splitTitle(title: string) {
     .filter(Boolean);
 }
 
-export default function useTitle(song: Song, activeVariant: Lyrics | PDFs) {
+export default function useTitle(song: Song, activeVariant?: Lyrics | PDFs) {
   const { t } = useTranslation();
   return useMemo(() => {
     const [title, subtitle] = splitTitle(song.fields.Name as string);
 
     // toss on the variant name if there are multiple variants
     const variants = [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])];
-    if (variants.length > 1) {
+    if (activeVariant && variants.length > 1) {
       let variantName = activeVariant['Variant Name'];
       variantName = variantName.replace('Žodžiai', t('lyrics'));
       variantName = variantName.replace('Natos', t('sheetMusic'));

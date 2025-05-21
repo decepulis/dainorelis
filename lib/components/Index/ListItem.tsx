@@ -9,21 +9,38 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { Song } from '@/lib/schemas/songs';
+import useTitle from '@/lib/utils/useTitle';
 
 import ThemedText from '../ThemedText';
 
 type Props = {
   item: Song;
-  title?: React.ReactNode;
   primary: string;
   favorites: string[];
   background: string;
   separator: string;
   isLast?: boolean;
 };
-export function ListItem({ item, title, background, primary, favorites, separator, isLast }: Props) {
+export function ListItem({ item, background, primary, favorites, separator, isLast }: Props) {
   // TODO slide to favorite
-  const { isBoldTextEnabled } = useAccessibilityInfo();
+  const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
+  const { title, subtitle } = useTitle(item);
+
+  const icons = [
+    favorites.includes(item.id) ? (
+      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={[styles.icon]} />
+    ) : null,
+    item.fields.Lyrics.some((l) => l['Show Chords']) ? (
+      <FontAwesome6 name="guitar" key="guitar" size={iconSize} solid color={primary} style={[styles.icon]} />
+    ) : null,
+    item.fields.PDFs?.length ? (
+      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={[styles.icon]} />
+    ) : null,
+    item.fields.Audio?.length ? (
+      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={[styles.icon]} />
+    ) : null,
+  ].filter(Boolean);
+
   return (
     <View style={styles.outerContainer}>
       <Link href={`/dainos/${item.id}`} asChild>
@@ -42,14 +59,15 @@ export function ListItem({ item, title, background, primary, favorites, separato
               },
             ]}
           >
-            <ThemedText
-              style={[styles.itemText, styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}
-            >
-              {title || item.fields.Name}
-            </ThemedText>
-            {favorites.includes(item.id) ? (
-              <FontAwesome6 name="heart" size={fontSize} color={primary} solid style={styles.itemHeart} />
-            ) : null}
+            <View style={styles.itemText}>
+              <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+                {title}
+              </ThemedText>
+              {subtitle ? (
+                <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
+              ) : null}
+            </View>
+            {icons.length > 0 ? <View style={styles.iconContainer}>{icons}</View> : null}
           </View>
         </RectButton>
       </Link>
@@ -85,6 +103,7 @@ export function ListHeader({ title, background, separator }: { title: string; ba
 }
 
 const fontSize = 18;
+const iconSize = fontSize / 1.5;
 const lineHeight = fontSize * 1.33;
 export const listItemHeight = fontSize * 3;
 const paddingVertical = (listItemHeight - lineHeight) / 2;
@@ -116,11 +135,17 @@ const styles = StyleSheet.create({
   itemText: {
     flex: 1,
   },
-  itemHeart: {
-    width: fontSize,
-    height: fontSize,
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: fontSize / 3,
+    marginLeft: padding,
+  },
+  icon: {
+    width: iconSize,
+    height: iconSize,
     flexShrink: 0,
-    flexBasis: fontSize,
-    marginLeft: fontSize,
+    flexBasis: iconSize,
   },
 });
