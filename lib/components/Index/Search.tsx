@@ -65,6 +65,7 @@ export default function Search({
 
   const viewRef = useRef<View>(null);
   const howFarThisIsFromTheTop = useSharedValue<number | null>(null);
+  // TODO onLayoutEffect?
   const figureOutHowFarThisIsFromTheTop = useCallback(() => {
     const scrollEl = scrollRef?.current?.getNativeScrollRef() as NativeMethods;
     const viewEl = viewRef?.current as NativeMethods;

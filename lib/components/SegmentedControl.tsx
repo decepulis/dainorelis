@@ -85,6 +85,7 @@ const SegmentedControl = ({ options, value, onValueChange, style }: Props) => {
     width: optionWidth.value,
   }));
 
+  // TODO migrate to useLayoutEffect
   const onContainerLayout = (event: LayoutChangeEvent) => {
     const containerWidth = event.nativeEvent.layout.width;
     // Calculate equal width for each option
