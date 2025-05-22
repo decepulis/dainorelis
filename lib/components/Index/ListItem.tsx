@@ -1,5 +1,6 @@
 import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import { Link } from 'expo-router';
 
@@ -25,19 +26,29 @@ export function ListItem({ item, background, primary, favorites, separator, isLa
   // TODO slide to favorite
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
+  const { width } = useSafeAreaFrame();
 
+  // from 375px to 450px, gently scale the icon size up
+  const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
+  const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
+  const iconStyle = {
+    width: iconSize,
+    flexBasis: iconSize,
+    flexShrink: 0,
+    flexGrow: 0,
+  };
   const icons = [
     favorites.includes(item.id) ? (
-      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={[styles.icon]} />
+      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
     item.fields.Lyrics.some((l) => l['Show Chords']) ? (
-      <FontAwesome6 name="guitar" key="guitar" size={iconSize} solid color={primary} style={[styles.icon]} />
+      <FontAwesome6 name="guitar" key="guitar" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
     item.fields.PDFs?.length ? (
-      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={[styles.icon]} />
+      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
     item.fields.Audio?.length ? (
-      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={[styles.icon]} />
+      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
   ].filter(Boolean);
 
@@ -67,7 +78,9 @@ export function ListItem({ item, background, primary, favorites, separator, isLa
                 <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
               ) : null}
             </View>
-            {icons.length > 0 ? <View style={styles.iconContainer}>{icons}</View> : null}
+            {icons.length > 0 ? (
+              <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
+            ) : null}
           </View>
         </RectButton>
       </Link>
@@ -103,7 +116,6 @@ export function ListHeader({ title, background, separator }: { title: string; ba
 }
 
 const fontSize = 18;
-const iconSize = fontSize / 1.5;
 const lineHeight = fontSize * 1.33;
 export const listItemHeight = fontSize * 3;
 const paddingVertical = (listItemHeight - lineHeight) / 2;
@@ -139,13 +151,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    gap: fontSize / 3,
     marginLeft: padding,
-  },
-  icon: {
-    width: iconSize,
-    height: iconSize,
-    flexShrink: 0,
-    flexBasis: iconSize,
   },
 });

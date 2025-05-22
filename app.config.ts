@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
-    buildNumber: '25052002',
+    buildNumber: '25052201',
     config: {
       usesNonExemptEncryption: false,
     },
@@ -24,7 +24,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 25052002,
+    versionCode: 25052201,
     edgeToEdgeEnabled: true,
   },
   web: {
