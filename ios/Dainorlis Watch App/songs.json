@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ant-kalno-murai",
+    "title": "Ant Kalno Mūrai",
+    "lyrics": [
+      {
+        "id": "original",
+        "variantName": "Original",
+        "lyrics": "Ant kalno mūrai, žali kaspinai..."
+      },
+      {
+        "id": "zemaitija",
+        "variantName": "Žemaitija Variant",
+        "lyrics": "Ant kalna rūma, zalī kaspīnē..."
+      }
+    ]
+  }
+]
