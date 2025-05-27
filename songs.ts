@@ -358,42 +358,42 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ar-zinai-tu-klajune-keleivi-piano.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-soprano.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-soprano.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-tenor.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ar-zinai-tu-klajune-keleivi-bass.mp3"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ar-zinai-tu-klajune-narration.m4a"
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-narration.m4a"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ar-zinai-tu-klajune-keleivi.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/ar-zinai-tu-klajune-keleivi.pdf"
         }
       ],
       "Music Author": "Ritos Čyvaitė-Kliorienė",
@@ -515,38 +515,38 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-satb.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-soprano.mp3"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-alto.mp3"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-tenor.mp3"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-baritone.mp3"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli-bass.mp3"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/as-pasejau-lineli-narration.m4a"
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli-narration.m4a"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/as-pasejau-lineli.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/as-pasejau-lineli.pdf"
         }
       ]
     }
@@ -1062,46 +1062,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/baltas-paukstis-satb.mp3"
         },
         {
           "Variant Name": "Piano (Eb)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-piano-eb.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-piano-eb.mp3"
         },
         {
           "Variant Name": "Ukranian pronunciation (Rehearsals C & D)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/baltas-paukstis-ukrainian-pronunciation-rehearsals-c-d.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-ukrainian-pronunciation-rehearsals-c-d.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-soprano.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-alto.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-tenor.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/baltas-paukstis-bass.mp3"
+          "URL": "https://media.dainorelis.app/baltas-paukstis-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Chorinė versija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis-chorinis.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/baltas-paukstis-chorinis.pdf"
         },
         {
-          "Variant Name": "Šventės versija, Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis.pdf"
+          "Variant Name": "2025 Šventės suaugusiųjų ir jaunimo chorų partitūra",
+          "URL": "https://media.dainorelis.app/baltas-paukstis.pdf"
         },
         {
-          "Variant Name": "Šventės versija, Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/baltas-paukstis-vaiku.pdf"
+          "Variant Name": "2025 Šventės vaikų chorų partija",
+          "URL": "https://media.dainorelis.app/baltas-paukstis-vaiku.pdf"
         }
       ],
       "Music Author": "Vytautas Kernagis",
@@ -1160,41 +1160,41 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/beaustanti-ausrele-album-version.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-album-version.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/beaustanti-ausrele-satb-1.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-satb-1.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-piano.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-soprano.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/beaustanti-ausrele-alto.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-tenor.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-baritone.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/beaustanti-ausrele-bass.mp3"
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/beaustanti-ausrele.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/beaustanti-ausrele.pdf"
         }
       ]
     }
@@ -1350,38 +1350,38 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-satb.mp3"
         },
         {
           "Variant Name": "Piano & Woodwinds",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-piano-woodwinds.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-piano-woodwinds.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-alto.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-tenor.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj-bass.mp3"
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/buvo-duda-vilniuj.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/buvo-duda-vilniuj.pdf"
         }
       ]
     }
@@ -1487,30 +1487,30 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "TTBB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-ttbb.mp3"
+          "Variant Name": "Choras (TTBB)",
+          "URL": "https://media.dainorelis.app/ciuto-ttbb.mp3"
         },
         {
           "Variant Name": "Tenor 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-tenor-1.mp3"
+          "URL": "https://media.dainorelis.app/ciuto-tenor-1.mp3"
         },
         {
           "Variant Name": "Tenor 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-tenor-2.mp3"
+          "URL": "https://media.dainorelis.app/ciuto-tenor-2.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-baritone.mp3"
+          "URL": "https://media.dainorelis.app/ciuto-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto-bass.mp3"
+          "URL": "https://media.dainorelis.app/ciuto-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ciuto.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/ciuto.pdf"
         }
       ]
     }
@@ -1527,42 +1527,42 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-piano.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/cykiai-cykiai-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-tenor.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai-bass.mp3"
+          "URL": "https://media.dainorelis.app/cykiai-cykiai-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/cykiai-cykiai.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/cykiai-cykiai.pdf"
         }
       ]
     }
@@ -1823,7 +1823,7 @@ const songs: SongFile = [
   {
     "id": "recl8weyNeKt4wG2L",
     "fields": {
-      "Name": "Du broliukai",
+      "Name": "Du broliukai kunigai",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -1880,46 +1880,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/dzigunas-satb.mp3"
         },
         {
           "Variant Name": "Band track",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-band-track.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-band-track.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-soprano.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-soprano.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-tenor-1.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-tenor-1.mp3"
         },
         {
           "Variant Name": "Tenor 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-tenor-2.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-tenor-2.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-baritone.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas-bass.mp3"
+          "URL": "https://media.dainorelis.app/dzigunas-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzigunas.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/dzigunas.pdf"
         }
       ],
       "Music Author": "Jonas Švedas"
@@ -1950,45 +1950,45 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/dzukit-dzukit-girneles-live.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-live.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/dzukit-dzukit-girneles-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-piano.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-soprano.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-soprano.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/dzukit-dzukit-girneles-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-tenor.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-bass.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-bass.mp3"
         },
         {
           "Variant Name": "Bass (low E)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/dzukit-dzukit-girneles-bass-low-e.mp3"
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles-bass-low-e.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/dzukit-dzukit-girneles.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/dzukit-dzukit-girneles.pdf"
         }
       ]
     }
@@ -2009,7 +2009,7 @@ const songs: SongFile = [
   {
     "id": "reckLOfNodkYippdV",
     "fields": {
-      "Name": "Ei, pirmyn (jureivių daina)",
+      "Name": "Ei, pirmyn (Jureivių daina)",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai 1",
@@ -2068,7 +2068,7 @@ const songs: SongFile = [
   {
     "id": "rec5Iw18vAUj1Le0C",
     "fields": {
-      "Name": "Eisim, broleliai, namo",
+      "Name": "Eisim, broleliai, namo, namo",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -2351,11 +2351,11 @@ const songs: SongFile = [
   {
     "id": "rec4a4SFzkwgyHnjy",
     "fields": {
-      "Name": "Girdžiu nesyk balsą",
+      "Name": "Girdžiu ne syk, balsą, klausyk",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Girdžiu ne syk balsą, klausyk!\n\"Nors tu ir viens, būk kaipo pliens,\nKovok, kariauk, nelaisvę griauk,\nŽenk vis pirmyn, aukštyn,\naukštyn.\" (2 k.)\n\nŠventi darbai, eime draugai,\nReikia skubėt, pradėt krutėt;\nŠelpti vargšus, šviesti mažus –\nTai mūs darbai, tai veikalai. (2 k.)\n\nTėvynė klaus, pareikalaus\nTavęs, brolyt, reiks atsakyt:\nKodėl gerai jai nedarai\nKą tu į tai, ką tu į tai? (2 k.)"
+          "Lyrics & Chords": "Girdžiu ne syk, bąlsa, klausyk:       \n\"nors tu ir viens, būk kai po pliens,     \nkovok, kariauk, nelaisvę griauk,     \nženk vis pirmyn, aukštyn, aukštyn.\" (2k.)       \n\nŠventi darbai, eime, draugai   \nreikia skubėt, dirbti, krutėt,   \nšelpti vargšus, šviesti mažus -    \ntai mūs darbai, tai reikalai. (2k.)   \n\nTėvynė klaus, pareikalaus\ntavęs, brolyt, reiks atsakyt:\nkodėl gerai jai nedarai -\nką tu į tai, ką tu į tai? (2k.)"
         }
       ]
     }
@@ -2408,50 +2408,50 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitai-greitai-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/greitai-greitai-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-piano.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-piano.mp3"
         },
         {
-          "Variant Name": "SSA + Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-ssa-piano.mp3"
+          "Variant Name": "Choras (SSA)",
+          "URL": "https://media.dainorelis.app/greitai-greitai-ssa-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-soprano.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-soprano.mp3"
         },
         {
           "Variant Name": "Soprano + Descant",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-soprano-descant.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-soprano-descant.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/greitai-greitai-alto.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-tenor.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-bass.mp3"
+          "URL": "https://media.dainorelis.app/greitai-greitai-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitai-greitai-narration.m4a"
+          "URL": "https://media.dainorelis.app/greitai-greitai-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/greitai-greitai.pdf"
+          "URL": "https://media.dainorelis.app/greitai-greitai.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/greitai-greitai-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/greitai-greitai-vaiku.pdf"
         }
       ]
     }
@@ -2468,46 +2468,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SSA",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-ssa.mp3"
+          "Variant Name": "Choras (SSA)",
+          "URL": "https://media.dainorelis.app/greitakalbes-ssa.mp3"
         },
         {
-          "Variant Name": "SAB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitakalbes-sab.mp3"
+          "Variant Name": "Choras (SAB)",
+          "URL": "https://media.dainorelis.app/greitakalbes-sab.mp3"
         },
         {
           "Variant Name": "Piano (Eb minor)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-piano-eb-minor.mp3"
+          "URL": "https://media.dainorelis.app/greitakalbes-piano-eb-minor.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/greitakalbes-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/greitakalbes-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/greitakalbes-alto.mp3"
+          "URL": "https://media.dainorelis.app/greitakalbes-alto.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/greitakalbes-bass.mp3"
+          "URL": "https://media.dainorelis.app/greitakalbes-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/greitakalbes-narration.m4a"
+          "URL": "https://media.dainorelis.app/greitakalbes-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/greitakalbes.pdf"
+          "URL": "https://media.dainorelis.app/greitakalbes.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/greitakalbes-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/greitakalbes-vaiku.pdf"
         }
       ],
       "Music Author": "Aleksandras Stankevičius"
@@ -2657,37 +2657,37 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ir-isoko-ozelis-live.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-live.mp3"
         },
         {
-          "Variant Name": "SSAA",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-ssaa.mp3"
+          "Variant Name": "Choras (SSAA)",
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-ssaa.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-piano.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/ir-isoko-ozelis-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis-alto-2.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ir-isoko-ozelis.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/ir-isoko-ozelis.pdf"
         }
       ]
     }
@@ -2828,61 +2828,61 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jau-saulute-leidzias-album-version.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-album-version.mp3"
         },
         {
           "Variant Name": "SAB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-sab.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-sab.mp3"
         },
         {
           "Variant Name": "SA (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-sa-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-sa-vaikai.mp3"
         },
         {
           "Variant Name": "Accompaniment",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-accompaniment.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-accompaniment.mp3"
         },
         {
           "Variant Name": "Soprano (Jaunimas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-jaunimas.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-soprano-jaunimas.mp3"
         },
         {
           "Variant Name": "Soprano + Maža grupė (Jaunimas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-maza-grupe-jaunimas.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-soprano-maza-grupe-jaunimas.mp3"
         },
         {
           "Variant Name": "Alto (Jaunimas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-alto-jaunimas.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-alto-jaunimas.mp3"
         },
         {
           "Variant Name": "Bass (Jaunimas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-bass-jaunimas.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-bass-jaunimas.mp3"
         },
         {
           "Variant Name": "Soprano (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-soprano-vaikai.mp3"
         },
         {
           "Variant Name": "Soprano + Maža grupė (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-soprano-maza-grupe-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-soprano-maza-grupe-vaikai.mp3"
         },
         {
           "Variant Name": "Alto (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-alto-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-alto-vaikai.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jau-saulute-leidzias-narration.m4a"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jau-saulute-leidzias.pdf"
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias.pdf"
         },
         {
-          "Variant Name": "Vaikų chorų partitūra (su klavyru chorų vadovams)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jau-saulute-leidzias-vaiku-klavyras.pdf"
+          "Variant Name": "Vaikų chorų partitūra (su klavyru)",
+          "URL": "https://media.dainorelis.app/jau-saulute-leidzias-vaiku-klavyras.pdf"
         }
       ],
       "Music Author": "Darius Polikaitis",
@@ -2938,29 +2938,29 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-soprano.mp3"
+          "URL": "https://media.dainorelis.app/jav-himnas-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-alto.mp3"
+          "URL": "https://media.dainorelis.app/jav-himnas-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-tenor.mp3"
+          "URL": "https://media.dainorelis.app/jav-himnas-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-bass.mp3"
+          "URL": "https://media.dainorelis.app/jav-himnas-bass.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas.pdf"
+          "URL": "https://media.dainorelis.app/jav-himnas.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jav-himnas-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/jav-himnas-vaiku.pdf"
         }
       ],
       "Music Author": "John Stafford Smith",
@@ -3039,29 +3039,29 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/jonvabalis-live.mp3"
+          "URL": "https://media.dainorelis.app/jonvabalis-live.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/jonvabalis-soprano.mp3"
+          "URL": "https://media.dainorelis.app/jonvabalis-soprano.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/jonvabalis-piano.mp3"
+          "URL": "https://media.dainorelis.app/jonvabalis-piano.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/jonvabalis-narration.m4a"
+          "URL": "https://media.dainorelis.app/jonvabalis-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jonvabalis.pdf"
+          "URL": "https://media.dainorelis.app/jonvabalis.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/jonvabalis-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/jonvabalis-vaiku.pdf"
         }
       ],
       "Music Author": "Gintautas Abarius",
@@ -3394,50 +3394,50 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kalvelis-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/kalvelis-satb.mp3"
         },
         {
-          "Variant Name": "Band track (113)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-band-track-113.mp3"
+          "Variant Name": "Band track",
+          "URL": "https://media.dainorelis.app/kalvelis-band-track-113.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-alto.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-tenor.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-bass.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-bass.mp3"
         },
         {
           "Variant Name": "Soprano (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-soprano-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-soprano-vaikai.mp3"
         },
         {
           "Variant Name": "Alto (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kalvelis-alto-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/kalvelis-alto-vaikai.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis.pdf"
+          "URL": "https://media.dainorelis.app/kalvelis.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kalvelis-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/kalvelis-vaiku.pdf"
         }
       ],
       "Music Author": "Jonas Švedas"
@@ -3486,38 +3486,38 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/kanados-himnas-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-piano.mp3"
+          "URL": "https://media.dainorelis.app/kanados-himnas-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-soprano.mp3"
+          "URL": "https://media.dainorelis.app/kanados-himnas-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-alto.mp3"
+          "URL": "https://media.dainorelis.app/kanados-himnas-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-tenor.mp3"
+          "URL": "https://media.dainorelis.app/kanados-himnas-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-bass.mp3"
+          "URL": "https://media.dainorelis.app/kanados-himnas-bass.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas.pdf"
+          "URL": "https://media.dainorelis.app/kanados-himnas.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kanados-himnas-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/kanados-himnas-vaiku.pdf"
         }
       ],
       "Music Author": "Calixa Lavalée",
@@ -3548,6 +3548,19 @@ const songs: SongFile = [
           "Show Chords": true
         }
       ]
+    }
+  },
+  {
+    "id": "rec9zQWAbWsAEJZai",
+    "fields": {
+      "Name": "Karvė nemoka",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Dviračiu važiavo karvė su ragais\nVisur išvairavo, griuvo ties namais\nAsilą sutiko, stovi be ausų\nKad pasiklausytų muzikos garsų\n\n   Karvė nemoka\n   Dviračiu važiuot\n   Karvė nemoka\n   Padangų pumpuot\n   (x2)\n\n\nKrokodilo dantys mirksta vandeny\nKeptos penkios žąsys plauko šuliny\nDviračiu važiavo karvė su ragais\nVisur išvairavo, tik nugriuvo ties namais\n\n   Karvė nemoka\n   Dviračiu važiuot\n   Karvė nemoka\n   Padangų pumpuot"
+        }
+      ],
+      "Text Author": "Arvydas Vilčinskas"
     }
   },
   {
@@ -3780,33 +3793,33 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kraicio-drobeles-album-version.mp3"
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-album-version.mp3"
         },
         {
-          "Variant Name": "SAA",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-saa.mp3"
+          "Variant Name": "Choras (SAA)",
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-saa.mp3"
         },
         {
           "Variant Name": "Band track",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-band-track.mp3"
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-band-track.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-soprano.mp3"
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-soprano.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kraicio-drobeles-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/kraicio-drobeles-alto-2.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kraicio-drobeles.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/kraicio-drobeles.pdf"
         }
       ]
     }
@@ -3906,46 +3919,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kupolinis-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/kupolinis-satb.mp3"
         },
         {
           "Variant Name": "Band track",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-band-track.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-band-track.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kupolinis-alto.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-tenor.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-baritone.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-bass.mp3"
+          "URL": "https://media.dainorelis.app/kupolinis-bass.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis.pdf"
+          "URL": "https://media.dainorelis.app/kupolinis.pdf"
         },
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partija (tik vokalas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kupolinis-choras.pdf"
+          "URL": "https://media.dainorelis.app/kupolinis-choras.pdf"
         }
       ],
       "Music Author": "Balys Dvarionas",
@@ -4007,41 +4020,41 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/kur-sakalalis-album-version.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-album-version.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/kur-sakalalis-satb.mp3"
         },
         {
           "Variant Name": "Band track",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-band-track.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-band-track.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-soprano-1.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/kur-sakalalis-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-alto-1.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-tenor.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-baritone.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/kur-sakalalis-bass.mp3"
+          "URL": "https://media.dainorelis.app/kur-sakalalis-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/kur-sakalalis.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/kur-sakalalis.pdf"
         }
       ]
     }
@@ -4324,50 +4337,50 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-satb-db.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-satb-db.mp3"
         },
         {
           "Variant Name": "Piano (Db)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-piano-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-piano-db.mp3"
         },
         {
           "Variant Name": "Piano (C)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/lietuviais-esame-mes-gime-piano-c.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-piano-c.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-soprano-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-soprano-db.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-alto-1-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-alto-1-db.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-alto-2-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-alto-2-db.mp3"
         },
         {
           "Variant Name": "Tenor 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-tenor-1-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-tenor-1-db.mp3"
         },
         {
           "Variant Name": "Tenor 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-tenor-2-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-tenor-2-db.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-baritone-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-baritone-db.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime-bass-db.mp3"
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime-bass-db.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuviais-esame-mes-gime.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/lietuviais-esame-mes-gime.pdf"
         }
       ],
       "Music Author": "Stasys Šimkus",
@@ -4398,38 +4411,38 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-satb-2024.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/tautiska-giesme-satb-2024.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-piano-2024.mp3"
+          "URL": "https://media.dainorelis.app/tautiska-giesme-piano-2024.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-soprano-2024.mp3"
+          "URL": "https://media.dainorelis.app/tautiska-giesme-soprano-2024.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-alto-2024.mp3"
+          "URL": "https://media.dainorelis.app/tautiska-giesme-alto-2024.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-tenor-2024.mp3"
+          "URL": "https://media.dainorelis.app/tautiska-giesme-tenor-2024.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/tautiska-giesme-bass-2024.mp3"
+          "URL": "https://media.dainorelis.app/tautiska-giesme-bass-2024.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuvos-himnas.pdf"
+          "URL": "https://media.dainorelis.app/lietuvos-himnas.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/lietuvos-himnas-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/lietuvos-himnas-vaiku.pdf"
         }
       ],
       "Music Author": "Vincas Kudirka"
@@ -5040,7 +5053,7 @@ const songs: SongFile = [
   {
     "id": "recGVmZqXeGMXOF3o",
     "fields": {
-      "Name": "Mūsų šūkis - Lietuva",
+      "Name": "Mūsų šūkis - Lietuva (Saulės spinduliai)",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -5132,41 +5145,41 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ne-del-zalio-vyno-live.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-live.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/ne-del-zalio-vyno-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-piano.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/ne-del-zalio-vyno-alto.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ne-del-zalio-vyno-tenor.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ne-del-zalio-vyno-bass.mp3"
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ne-del-zalio-vyno.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/ne-del-zalio-vyno.pdf"
         }
       ]
     }
@@ -6183,62 +6196,62 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/pienes-pukas-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/pienes-pukas-satb.mp3"
         },
         {
-          "Variant Name": "SSA + Band",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-ssa-band.mp3"
+          "Variant Name": "Choras (SSA)",
+          "URL": "https://media.dainorelis.app/pienes-pukas-ssa-band.mp3"
         },
         {
           "Variant Name": "Band",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-band.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-band.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/pienes-pukas-piano-f.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-piano-f.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 1 + Maža grupė",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-1-maza-groupe.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-soprano-1-maza-groupe.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-soprano-2.mp3"
         },
         {
           "Variant Name": "Soprano 2 + Maža grupė",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-soprano-2-maza-groupe.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-soprano-2-maza-groupe.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/pienes-pukas-alto.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-tenor.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-bass.mp3"
+          "URL": "https://media.dainorelis.app/pienes-pukas-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/pienes-pukas-narration.m4a"
+          "URL": "https://media.dainorelis.app/pienes-pukas-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/pienes-pukas.pdf"
+          "URL": "https://media.dainorelis.app/pienes-pukas.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/pienes-pukas-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/pienes-pukas-vaiku.pdf"
         }
       ],
       "Music Author": "Aleksandras Stankevičius",
@@ -6379,34 +6392,34 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/prades-ausrele-austi-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-piano.mp3"
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-soprano.mp3"
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/prades-ausrele-austi-alto.mp3"
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/02/prades-ausrele-austi-tenor.mp3"
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/02/prades-ausrele-austi-bass.mp3"
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/prades-ausrele-austi.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/prades-ausrele-austi.pdf"
         }
       ]
     }
@@ -6828,53 +6841,53 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/sarkela-varnela.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/sarkela-varnela-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-piano.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/sarkela-varnela-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-tenor-1.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-tenor-1.mp3"
         },
         {
           "Variant Name": "Tenor 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-tenor-2.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-tenor-2.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-baritone.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sarkela-varnela-bass.mp3"
+          "URL": "https://media.dainorelis.app/sarkela-varnela-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/sarkela-varnela.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/sarkela-varnela.pdf"
         }
       ]
     }
@@ -7176,32 +7189,32 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/sia-naktele-satb-1.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/sia-naktele-satb-1.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-piano.mp3"
+          "URL": "https://media.dainorelis.app/sia-naktele-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-soprano.mp3"
+          "URL": "https://media.dainorelis.app/sia-naktele-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/sia-naktele-alto.mp3"
+          "URL": "https://media.dainorelis.app/sia-naktele-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-tenor.mp3"
+          "URL": "https://media.dainorelis.app/sia-naktele-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-bass.mp3"
+          "URL": "https://media.dainorelis.app/sia-naktele-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/sia-naktele-narration.m4a"
+          "URL": "https://media.dainorelis.app/sia-naktele-narration.m4a"
         }
       ],
       "PDFs": [
@@ -7211,15 +7224,15 @@ const songs: SongFile = [
         },
         {
           "Variant Name": "Koncertinė versija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/sia-naktele-koncertine-versija.pdf"
+          "URL": "https://media.dainorelis.app/sia-naktele-koncertine-versija.pdf"
         },
         {
-          "Variant Name": "2025 Dainų šventės versija, suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/sia-naktele.pdf"
+          "Variant Name": "2025 Šventės suaugusiųjų ir jaunimo chorų partitūra",
+          "URL": "https://media.dainorelis.app/sia-naktele.pdf"
         },
         {
-          "Variant Name": "2025 Dainų šventės versija, vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/sia-naktele-vaiku.pdf"
+          "Variant Name": "2025 Šventės vaikų chorų partija",
+          "URL": "https://media.dainorelis.app/sia-naktele-vaiku.pdf"
         }
       ]
     }
@@ -7346,46 +7359,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/skaiciuotes-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/skaiciuotes-satb.mp3"
         },
         {
           "Variant Name": "SA + Band",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-sa-band.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-sa-band.mp3"
         },
         {
           "Variant Name": "Band",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-band.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-band.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-soprano-1.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/skaiciuotes-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-alto-1.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-tenor.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-bass.mp3"
+          "URL": "https://media.dainorelis.app/skaiciuotes-bass.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/skaiciuotes-narration.m4a"
+          "URL": "https://media.dainorelis.app/skaiciuotes-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Vaikų ir jaunimo chorams (+ fortepijonas)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/skaiciuotes.pdf"
+          "URL": "https://media.dainorelis.app/skaiciuotes.pdf"
         },
         {
-          "Variant Name": "Vaikų ir jaunimo chorams (tik vokalams)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/skaiciuotes-vokalas.pdf"
+          "Variant Name": "Vaikų ir jaunimo chorams",
+          "URL": "https://media.dainorelis.app/skaiciuotes-vokalas.pdf"
         }
       ],
       "Music Author": "Aleksandras Stankevičius"
@@ -7868,7 +7881,7 @@ const songs: SongFile = [
   {
     "id": "recNgg4ZqZ2Rf7wJY",
     "fields": {
-      "Name": "Tave aš pamačiau",
+      "Name": "Tave aš pamačiau (Brizbano daina)",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -7928,67 +7941,67 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Dainava",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ten-mano-svajos-album-version.mp3",
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-album-version.mp3",
           "Album": "Aš čia gyva",
           "Artist": "Darius Polikaitis"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-satb.mp3"
         },
         {
-          "Variant Name": "SSA (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-ssa-vaikai.mp3"
+          "Variant Name": "Vaikai (SSA)",
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-ssa-vaikai.mp3"
         },
         {
           "Variant Name": "Piano + flute",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/ten-mano-svajos-piano-flute.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-piano-flute.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-alto.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-tenor.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-bass.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-bass.mp3"
         },
         {
           "Variant Name": "Soprano 1 (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano-1-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-soprano-1-vaikai.mp3"
         },
         {
           "Variant Name": "Soprano 2 (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-soprano-2-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-soprano-2-vaikai.mp3"
         },
         {
           "Variant Name": "Alto (Vaikai)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-alto-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-alto-vaikai.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/ten-mano-svajos-narration.m4a"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ten-mano-svajos.pdf"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos.pdf"
         },
         {
-          "Variant Name": "Vaikų chorų partitūra (su klavyru chorų vadovams)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ten-mano-svajos-vaiku-klavyras.pdf"
+          "Variant Name": "Vaikų chorų partitūra (su klavyru)",
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-vaiku-klavyras.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/ten-mano-svajos-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/ten-mano-svajos-vaiku.pdf"
         }
       ],
       "Music Author": "Darius Polikaitis",
@@ -8031,7 +8044,7 @@ const songs: SongFile = [
   {
     "id": "rec0UlMevf94IBox4",
     "fields": {
-      "Name": "Tėvas su motina savo (dar tiktai dar)",
+      "Name": "Tėvas su motina savo (Dar tiktai dar)",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -8222,7 +8235,7 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Tu, žvaigždute sidabrine,\nNepasieksiu aš tavy,\nNepasieksiu aš žvaigždutės\nAukštai danguj žibančios, 2 k.\n\nTu žadėjau many jaunų,\nVest in rūtų darželį,\nApie meilą pakalbėti,\nApie meilą mudviejų,\n\nBet iš tą nieks neišėja,\nPer daug girts tu buvai,\nIr žvaigždutės sidabrinės\nAukštai danguj nematei.\n\nPasisiūsiu juodų suknių\nSu raudonais guzikais,\nJuoda suknia reiškia smertį,\nMeilą reiškia guzikai.\n\nEisiu eisiu tamsion girion,\nLai sudraska man vilkai,\nLai sudraska juodu suknių,\nLa palieka guzikai.\n\nAtsigulsiu aš un grabą\nAtsigulsiu įkypai,\nIr sudėsiu baltas rankas,\nTen, kur baigias guzikai."
+          "Lyrics & Chords": "Tu, žvaigždute sidabrine,\nNepasieksiu aš tavy,\nNepasieksiu aš žvaigždutės\nAukštai danguj žibančios, 2 k.\n\nTu žadėjau many jaunų,\nVest in rūtų darželį,\nApie meilą pakalbėti,\nApie meilą mudviejų,\n\nBet iš tą nieks neišėja,\nPer daug girts tu buvai,\nIr žvaigždutės sidabrinės\nAukštai danguj nematei.\n\nPasisiūsiu juodų suknių\nSu raudonais guzikais,\nJuoda suknia reiškia smertį,\nMeilą reiškia guzikai.\n\nEisiu eisiu tamsion girion,\nLai sudraska man vilkai,\nLai sudraska juodu suknių,\nLai palieka guzikai.\n\nAtsigulsiu aš un grabą\nAtsigulsiu įkypai,\nIr sudėsiu baltas rankas,\nTen, kur baigias guzikai."
         }
       ]
     }
@@ -8474,37 +8487,37 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/uz-raseiniu-ant-dubysos-album-version.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-album-version.mp3"
         },
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/04/uz-raseiniu-ant-dubysos-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/uz-raseiniu-ant-dubysos-piano.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/11/uz-raseiniu-ant-dubysos-soprano.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/12/uz-raseiniu-ant-dubysos-alto.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-alto.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/uz-raseiniu-ant-dubysos-tenor.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-tenor.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/uz-raseiniu-ant-dubysos-bass.mp3"
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uz-raseiniu-ant-dubysos.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/uz-raseiniu-ant-dubysos.pdf"
         }
       ]
     }
@@ -8540,34 +8553,34 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SSAA",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-ssaa.mp3"
+          "Variant Name": "Choras (SSAA)",
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-ssaa.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-piano.mp3"
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/uzaugo-liepa-alto-2.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/uzaugo-liepa.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/uzaugo-liepa.pdf"
         }
       ]
     }
@@ -8800,54 +8813,54 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-piano.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-soprano.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-soprano.mp3"
         },
         {
           "Variant Name": "Soprano (Maža grupė)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-soprano-maza-grupe.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-soprano-maza-grupe.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-alto-2.mp3"
         },
         {
           "Variant Name": "Vaikai",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-vaikai.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-vaikai.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-tenor.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-baritone.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-bass.mp3"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-bass.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta.pdf"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/viena-seima-viena-tauta-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/viena-seima-viena-tauta-vaiku.pdf"
         }
       ],
       "Music Author": "Rita Čyvaitė-Kliorienė",
@@ -9037,37 +9050,37 @@ const songs: SongFile = [
       "Audio": [
         {
           "Variant Name": "Įrašas 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/10/zasinas-live.mp3"
+          "URL": "https://media.dainorelis.app/zasinas-live.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-piano.mp3"
+          "URL": "https://media.dainorelis.app/zasinas-piano.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-soprano.mp3"
+          "URL": "https://media.dainorelis.app/zasinas-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-alto.mp3"
+          "URL": "https://media.dainorelis.app/zasinas-alto.mp3"
         },
         {
-          "Variant Name": "SA",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/03/zasinas-sa.mp3"
+          "Variant Name": "Choras (SA)",
+          "URL": "https://media.dainorelis.app/zasinas-sa.mp3"
         },
         {
           "Variant Name": "Narration",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2025/01/zasinas-narration.m4a"
+          "URL": "https://media.dainorelis.app/zasinas-narration.m4a"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zasinas.pdf"
+          "URL": "https://media.dainorelis.app/zasinas.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zasinas-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/zasinas-vaiku.pdf"
         }
       ],
       "Music Author": "Rasos Kauneckaitė",
@@ -9162,10 +9175,14 @@ const songs: SongFile = [
   {
     "id": "rectfnlMcFrDSju0l",
     "fields": {
-      "Name": "Žiurėkit, toli",
+      "Name": "Žiūrėk į tolį (Žiurėkit, toli)",
       "Lyrics": [
         {
-          "Variant Name": "Žodžiai",
+          "Variant Name": "Žodžiai 1",
+          "Lyrics & Chords": "Žiūrėk į tolį\nLaužas liepsnoja,\nSusėdę skautai\nDainas dainuoja.\n\n_Bum tra lia, bum tra lia,\nBum tra lia, a cha cha\nBum tra lia, bum tra lia,\nBum tra lia lia!_\n\nDainas dainuoja,\nTeatrą rodo,\nJiems linksma, gera,\nJiems nenuobodu!\n\n_Bum..._\n\nJiems linksma, gera,\nJų ten daugybė,\nIš kur ir imas\nTa jų linksmybė?\n\n_Bum..._"
+        },
+        {
+          "Variant Name": "Žodžiai 2",
           "Lyrics & Chords": "Žiurėkit, toli\nLaužas liepsnoja,\nSusėdę skautai\nDainas dainuoja.\n\nBum tra lia, bum tra lia,\nBum tra lia, a ha ha\nBum tra lia, bum tra lia,\nBum tra lia lial 4x2k.\n\nDainas dainuoja,\nTeatrą rodo,\nJiems linksma, gera,\nJiems nenuobodu!\nBum ...\n\nJiems linksma, .gera,\nJų ten daugybė,\nIš kur ir imas\nTa jų linksmybė?\nBum ..."
         }
       ]
@@ -9183,46 +9200,46 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SATB",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-satb.mp3"
+          "Variant Name": "Choras (SATB)",
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-satb.mp3"
         },
         {
           "Variant Name": "Piano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-piano.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-piano.mp3"
         },
         {
           "Variant Name": "Soprano 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-soprano-1.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-soprano-1.mp3"
         },
         {
           "Variant Name": "Soprano 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-soprano-2.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-soprano-2.mp3"
         },
         {
           "Variant Name": "Alto 1",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-alto-1.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-alto-1.mp3"
         },
         {
           "Variant Name": "Alto 2",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-alto-2.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-alto-2.mp3"
         },
         {
           "Variant Name": "Tenor",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-tenor.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-tenor.mp3"
         },
         {
           "Variant Name": "Baritone",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-baritone.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-baritone.mp3"
         },
         {
           "Variant Name": "Bass",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu-bass.mp3"
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu-bass.mp3"
         }
       ],
       "PDFs": [
         {
-          "Variant Name": "Suaugusiųjų ir jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zmones-ant-kalnu.pdf"
+          "Variant Name": "Chorų partitūra",
+          "URL": "https://media.dainorelis.app/zmones-ant-kalnu.pdf"
         }
       ],
       "Music Author": "Laimis Vilkončiaus",
@@ -9277,30 +9294,30 @@ const songs: SongFile = [
       ],
       "Audio": [
         {
-          "Variant Name": "SA (114)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-sa-114.mp3"
+          "Variant Name": "Choras (SA)",
+          "URL": "https://media.dainorelis.app/zvirblai-sa-114.mp3"
         },
         {
-          "Variant Name": "Band track (114)",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-band-track-114.mp3"
+          "Variant Name": "Band track",
+          "URL": "https://media.dainorelis.app/zvirblai-band-track-114.mp3"
         },
         {
           "Variant Name": "Soprano",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-soprano.mp3"
+          "URL": "https://media.dainorelis.app/zvirblai-soprano.mp3"
         },
         {
           "Variant Name": "Alto",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirblai-alto.mp3"
+          "URL": "https://media.dainorelis.app/zvirblai-alto.mp3"
         }
       ],
       "PDFs": [
         {
           "Variant Name": "Jaunimo chorų partitūra",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirbliai.pdf"
+          "URL": "https://media.dainorelis.app/zvirbliai.pdf"
         },
         {
           "Variant Name": "Vaikų chorų partija",
-          "URL": "https://dainusvente2025.com/wp-content/uploads/2024/09/zvirbliai-vaiku.pdf"
+          "URL": "https://media.dainorelis.app/zvirbliai-vaiku.pdf"
         }
       ],
       "Music Author": "Algirdas Šumskis",
