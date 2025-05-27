@@ -6,60 +6,60 @@ const songFestival = [
     "data": [
       174,
       206,
-      259,
+      260,
       68
     ]
   },
   {
     "title": "songFestivalRepertoire1",
     "data": [
-      257,
+      258,
       90,
       83,
       117,
       159,
-      311,
-      532
+      312,
+      533
     ]
   },
   {
     "title": "songFestivalRepertoire2",
     "data": [
-      384,
+      385,
       24,
-      564,
-      456,
+      565,
+      457,
       33,
       170,
       179,
       147,
-      447,
-      488,
+      448,
+      489,
       148,
-      496
+      497
     ]
   },
   {
     "title": "songFestivalRepertoire3",
     "data": [
-      534,
+      535,
       72,
-      236,
+      237,
       91,
-      573
+      574
     ]
   },
   {
     "title": "songFestivalRepertoire4",
     "data": [
-      225,
-      394,
-      577,
-      425,
+      226,
+      395,
+      578,
+      426,
       203,
       115,
-      232,
-      551
+      233,
+      552
     ]
   }
 ]
