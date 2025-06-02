@@ -66,6 +66,7 @@ async function getSongs() {
         'EN Description',
       ],
       sort: [{ field: 'Name', direction: 'asc' }],
+      filterByFormula: 'NOT(Hide)',
     })
     .all();
 }
