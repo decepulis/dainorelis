@@ -17,6 +17,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     config: {
       usesNonExemptEncryption: false,
     },
+    infoPlist: {
+      UIBackgroundModes: ['audio'],
+    },
   },
   android: {
     adaptiveIcon: {
@@ -42,7 +45,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     'expo-router',
-    'expo-audio',
     [
       'expo-splash-screen',
       {
