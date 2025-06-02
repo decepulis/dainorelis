@@ -74,7 +74,7 @@ async function getLyrics() {
   return await base('Lyrics & Chords')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'Lyrics & Chords', 'Show Chords', 'Notes'],
+      fields: ['Variant Name', 'EN Variant Name', 'Lyrics & Chords', 'Show Chords', 'Notes'],
     })
     .all();
 }
@@ -82,7 +82,7 @@ async function getVideos() {
   return await base('Videos')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'YouTube Link'],
+      fields: ['Variant Name', 'EN Variant Name', 'YouTube Link'],
     })
     .all();
 }
@@ -90,7 +90,7 @@ async function getAudio() {
   return await base('Audio')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'URL', 'Album', 'Artist'],
+      fields: ['Variant Name', 'EN Variant Name', 'URL', 'Album', 'Artist'],
     })
     .all();
 }
@@ -98,7 +98,7 @@ async function getPDFs() {
   return await base('PDFs')
     .select({
       view: 'Grid view',
-      fields: ['Variant Name', 'URL'],
+      fields: ['Variant Name', 'EN Variant Name', 'URL'],
     })
     .all();
 }
@@ -117,17 +117,26 @@ function getRecordsForField(field: FieldSet[string], records: Records<FieldSet>)
 }
 
 /**
- * When `Variant Name` is not defined, we default to `Žodžiai ${idx + 1}`
+ * When `Variant Name` is not defined, we default to `${defaultName} ${idx + 1}`
+ * When `EN Variant Name` is not defined, we default to `Variant Name`
  */
-function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultName: string) {
+function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultLtName: string, defaultEnName: string) {
   if (!Array.isArray(records)) return records;
+  const numberOfMissingVariantNames = records.filter((record) => !record['Variant Name']).length;
+  const shouldAppendIndexNumber = numberOfMissingVariantNames > 1;
+
   return records.map((record, idx) => {
     const alreadyHasName = !!record['Variant Name'];
-    let name = alreadyHasName ? record['Variant Name'] : defaultName;
-    if (records.length > 1 && !alreadyHasName) name += ` ${idx + 1}`;
+    let ltName = alreadyHasName ? record['Variant Name'] : defaultLtName;
+    let enName = alreadyHasName ? (record['EN Variant Name'] ?? record['Variant Name']) : defaultEnName;
+    if (shouldAppendIndexNumber && !alreadyHasName) {
+      ltName += ` ${idx + 1}`;
+      enName += ` ${idx + 1}`;
+    }
     return {
       ...record,
-      'Variant Name': name,
+      'Variant Name': ltName,
+      'EN Variant Name': enName,
     };
   });
 }
@@ -176,11 +185,11 @@ async function updateSongs() {
 
     const songFile = songs.map((song) => {
       const Lyrics = adjustChordWhitespace(
-        assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai')
+        assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai', 'Lyrics')
       );
-      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos');
-      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas');
-      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas');
+      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos', 'Score');
+      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas', 'Recording');
+      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas', 'Recording');
 
       return {
         id: song.id,
