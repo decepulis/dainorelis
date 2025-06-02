@@ -4,6 +4,18 @@ import { SongFile } from '@/lib/schemas/songs';
 
 const songs: SongFile = [
   {
+    "id": "recCjk1A6VNES3giP",
+    "fields": {
+      "Name": "Abba Tėve",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Abba, Abba Tėve\nTu esi puodžius\nMes molis darbe,\nTavo rankose\n\nLipdink, lipdink ir dailink mus\nĮ Jėzų panašius\nJis Tavo sūnus\nDievas ir žmogus.\n\nTėve, vienyk mus Tavyje,\nVienyk mus Tavyje,\nKaip Jėzus ir Tu\nEsat viena kartu.\n\nGarbė, garbė ir šlovė Tau\nGarbė ir šlovė Tau\nPer amžius, Amen.\nPer amžius, Amen"
+        }
+      ]
+    }
+  },
+  {
     "id": "rec9A8qD1Lh576Mi0",
     "fields": {
       "Name": "Aguonėlė",
@@ -437,6 +449,34 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recFZ2ffqiOxGSCvf",
+    "fields": {
+      "Name": "Aš esmi žmogus",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai 1",
+          "Lyrics & Chords": "Aš esmi žmogus, didžiai turtingas,\nNieko nebijau, ba išmintingas.\nTuriu arklį, gražų palvą, \nMokslas nelenda į galvą,-\nKo man daugiau reik? Ko man daugiau reik? \n \n    Turiu marškinių viso penkeris,\n    O užsisegiot šniūrelius kelis.\n    Nors jie yra nuobrukiniai,\n    Bet atrodo kaip šilkiniai,-\n    Dailiai atrodo. Dailiai atrodo.\n \nTuriu kepurę aš labai diktą,\nNuo senų tėvų ji man palikta:\nViršus siūtas kailių lapių,\nAplink galions iš kanapių,-\nDailiai atrodo. Dailiai atrodo.\n \n    Turiu skrandukus iš skūrų lapių,\n    O pasijuosiu diržu kanapių.\n    Rudinukė išnešiota,\n    Pelių kailiais išvedžiota,-\n    Vis po šiai madai. Vis po šiai madai.\n\nAš turiu kelnes, aiškiai raudonas,\nKai jom apsiaunu, sako, kad ponas,-\nMan palikta tėvų tėvo,\nAš nebijau blogo vėjo,\nKai jom apsiaunu! Kai jom apsiaunu!\n\n    Turiu čebatus angelskos skūros,\n    O ant jų lopų - devynios poros:\n    Ilgi aulai - pusė sprindžio,\n    Padų nėra - galiu mindžiot\n    Drąsiai ir smagiai. Drąsiai ir smagiai.\n \nTas mano palvys - tai gražus arklys,\nMetų turi jis trisdešimt ir tris:\nKreivos kojos, ilgas kaklas,\nAnt abiejų akių aklas,-\nNieko nemato, ir nesibaido!\n \n    Uždedu balną iš liepos skūros,\n    O kai reik užsėst - lipu ant tvoros.\n    Dailiai joju, šonus plakdams,\n    O jis bėga nesustodams\n    Žingine kaip žaibs. Žingine kaip žaibs.\n \nO kai aš jojau viduriu kelio,\nŽiūriu - ateina jauna mergelė.\nTprū, sustabdžiau žirgą palvą,\nLinkterėjau į ją galvą,-\nNoriu pakalbėt. Noriu pakalbėt.\n \n    Aš išsitraukiau ragą tabokos,\n    Daviau pauostyt mergelei tokios.\n    Kai tabokos ji užtraukė,\n    Kaip kačiukė susiraukė\n    Ir sakė - apči. Ir sakė - apči.\n \nVai, tu, mergele, kokia tu graži:\nLūputės storos, dantukai reti.\nNors esi ne mūsų krašto,\nImki moterystės naštą,\nTekėk už manęs. Tekėk už manęs.\n \n    Ir ne po ilgo buvo veselia,\n    Prispaudėm sulos pilną bačkelę.\n    Gėrėm, ūžėm, baliavojom,\n    Aplink pečių strapaliojom -\n    Tai linksma buvo. Tai linksma buvo.\n \nGavau pasogos atmuštą kaltą,\nKačiukę juodą, šuniuką margą.\nKaltu žuvis meškerioju,\nPačiai šonus išvanoju,\nDailiai gyvenu! Dailiai gyvenu!\n \n    O jeigu kada teks pro šalį važiuot,\n    Prašome užsukt, nepasididžiuot,-\n    Užu pečiaus pasodinsim,\n    Ožkos sūriu pavaišinsim,\n    Vaikai padainuos. Vaikai padainuos.\n\nDainuos!\n"
+        },
+        {
+          "Variant Name": "Aš esu žmogus",
+          "Lyrics & Chords": "Aš esu žmogus, stiprus, galingas\nLabai turtingas, ir išmintingas\nTuriu zirga, gražų palvą,\nMokslas nelenda į galvą,-\nKo man daugiau reik? Ko man daugiau reik?\n\n    Turiu as skranda veršiuko skuros\n    Dirzas pasiutas iš virves storos\n    Nors rudine apnešiota,\n    Peliu kailiais apvedziota,\n    Ko man daugiau reik? Ko man daugiau reik?\n\nTas mano arklys - Tai gražus palvys,\nMetų turi jau Trisdešimt ir trys:\nKreivos kojos, ilgas kaklas,\nAnt abiejų akių aklas,-\nNieko nemato Ir nesibaido!\n\n    O kai aš jojau krantu, upeliu,\n    Žiūriu -  mergelė eina takeliu\n    Brrrr…, sustabdžiau žirgą palvą,\n    Mandriai nulenkiau jai galvą,-\n    Reikia pakalbėt. Reikia pakalbėt. \n\nOi, tu, mergele, kokia tu graži:\nLūputės storos, dantukai reti.\nNors esi ne mūsų krašto,\nMoterystės imkis naštu,\nTekėk už manęs. Tekėk už manęs.\n\n    Nebeuzilgo buvo vesele,\n    Prissunkiau sulos visą bačkelę.\n    Gėrėm, ūžėm, baliavojom,\n    Mes atbuli tunsevojom -\n    Tai linksma buvo. Tai linksma buvo.\n\nGavau pasagos atneštą kraitą,\nŠuniuką juodą, ozkyte balta.\nAsai žuvi, meškerioju,\nSiaip sau kaili paublioju,\nGraziai gyvenu! Graziai gyvenu!\n\n    Jeigu tamstai reiks pro šalį važiuot,\n    Prašom aplankyt, nepasididžiuot,-\n    Užu pečiaus pasodinsim,\n    Ožkos sūriu pavaišinsim,\n    Vaikai padainuos. Vaikai padainuos.\n\nDainuos!\n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recYC2rDuQsNKm9qc",
+    "fields": {
+      "Name": "Aš esu čia",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Aš Karalius vandenų, aš girdžiu raudas žmonių,\nAš šviesa tamsybėje - paklydusiems.\nAš uždegsiu žvaidždeles, išsklaidysiu tamsumas.\nAš parnešu žibuį - kur bus tamsa.\n\nAš esu čia, mano Dieve\nNes girdėjau, Tu šaukei mane.\nKur tu liepsi, aš vis eisiu.\nDieve, būk visur šalia manęs.\n\nSutirpdyk tą akmenį, kur turi savoj širdy.\nSiela savo atvira - mylėk mane.\nSavo kūną dalinu, širdis jūsų raminu.\nNenueiki nuo manęs, bet grįžk atgal.\n\nAš esu čia...\n\nAš ugnies galybėje, aš dangaus platybėje.\nRasi kelią pas mane - tik maldoje.\nAšaras, vargus žmonių kryžių sunkų aš nešu.\nTėvo žodį jums skelbiu, kalusykis jų.\n\nAš esu čia..."
+        }
+      ]
+    }
+  },
+  {
     "id": "recrsd5Nk49sA4o5U",
     "fields": {
       "Name": "Aš esu muzikantas",
@@ -487,6 +527,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Aš nupirksiu batukus tau,\nBus raudoni labai gražūs,\nBet sunku bus išsirinkti,\nNes kojytės labai mažos. (2 k.)\n\nJei nori, vyksime mes į marias.\nJei nori, vyksime mes į marias.\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nKojytės mažos batais raudonais. (2 k.)\n\nAš nunešiu maestrui Pėdro,\nKad sidabru juos apaustų,\nKad šilkais išsiuvinėtų\nIr kojyčių tau nespaustų. (2 k.)\n\nJei nori vyksime..."
+        }
+      ]
+    }
+  },
+  {
+    "id": "recUBlsKHhP7np1EE",
+    "fields": {
+      "Name": "Aš padainuosiu dainų dainelę",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Aš padainuosiu\nDainų dainelę,\nAš dainų bernužėlis.\n \n    Aš atdarysiu\n    Dainų skrynelę,\n    Paleisiu į liustelį.\n \nAkmuo be kraujo,\nVanduo be sparnų,\nPapartis be žiedelių.\n \n    Aš bernužėlis,\n    Aš vargdienėlis,\n    Be jaunos mergužėlės.\n \nParduosiu žirgą\nIr tymo balną,\nSamdysiu audėjėlę.\n \n    O ir išgirdo\n    Jauna mergelė,\n    Po klėtį vaikščiodama.\n \n– Neparduok žirgo,\nNė tymo balno, –\nAš būsiu audėjėlė."
         }
       ]
     }
@@ -860,8 +912,12 @@ const songs: SongFile = [
       "Name": "Augo girioj ažuolėlis",
       "Lyrics": [
         {
-          "Variant Name": "Žodžiai",
+          "Variant Name": "Žodžiai 1",
           "Lyrics & Chords": "Augo girioj ažuolėlis (3 k.)\nPas tevelį sunaitelis. (2 k.)\n\nRūpinosi tėvužėlis,\nKad jo mažas sūnaitėlis.\n\nNesirūpink, tėvužėli\nUžaugs tavo sūnaitėlis.\n\nUžaugs tavo sūnaitėlis,\nBus Lietuvos kareivėlis.\n\nMan nereikia kareivėlio,\nMan tik reikia artojėlio.\n\nNepabuvęs kareivėliu,\nNebus geras artojėlis.\n\nAugo girioj liepužėlė,\nPas močiutę dukružėlė.\n\nRūpinosi motinėlė,\nKad jos maža dukružėlė.\n\nNesirūpink, motinėle,\nUžaugs tavo dukružėlė.\n\nUžaugs tavo dukružėlė,\nBus Lietuvos šokejėlė.\n\nMan nereikia šokejėlės,\nMan tik reikia audejėlės."
+        },
+        {
+          "Variant Name": "Augo girioj liepužėlė",
+          "Lyrics & Chords": "Augo girioj liepužėlė, [3k]\nPas močiutę dukružėlė. [2k]\n\n    Rūpinosi motinėlė, [3k]\n    Kad jos maža dukružėlė. [2k]\n\nNesirūpink, motinėle, [3k]\nUžaugs tavo dukružėlė. [2k]\n\n    Užaugs tavo dukružėlė, [3k]\n    Bus Lietuvos šokejėlė. [2k]\n\nMan nereikia šokejėlės, [3k]\nMan tik reikia audejėlės. [2k]"
         }
       ]
     }
@@ -884,8 +940,12 @@ const songs: SongFile = [
       "Name": "Augo sode klevelis",
       "Lyrics": [
         {
-          "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Augo sode klevelis\nAugo sode žaliasai,\n   Po tuo klevu, po žaliuoju\n   Gul bernelis jaunasai. (2 k.)\n\nViens, du, trys, graži Lietuva\nKaip gėlelė žydi visada (2 k.)\n\nNepapūski vėjeli,\nNepapūski siaurasai,\n   Nepajudink klevo šakų\n   Nepabudink bernelio! (2 k.)\n\nViens, du, trys...\n\nIr papūtė vėjelis,\nIr papūtė šiaurasai,\n   Pajudino klevo šakas,\n   Pabudino bernelį. (2 k.)\n\nViens, du, trys...\n\nKelkis, kelkis bernelį,\nKelkis, kelkis jaunasai.\n   Laikas joti į karužę,\n   Ginti laisvę Lietuvos! (2 k.)\n\nViens, du, trys...\n "
+          "Variant Name": "Žodžiai 1",
+          "Lyrics & Chords": "Augo sode klevelis\nAugo sode žaliasai,\n   Po tuo klevu, po žaliuoju\n   Gul bernelis jaunasai. (2k.)\n\nViens, du, trys, graži Lietuva\nKaip gėlelė žydi visada (2k.)\n\nNepapūski vėjeli,\nNepapūski siaurasai,\n   Nepajudink klevo šakų\n   Nepabudink bernelio! (2k.)\n\nViens, du, trys...\n\nIr papūtė vėjelis,\nIr papūtė šiaurasai,\n   Pajudino klevo šakas,\n   Pabudino bernelį. (2k.)\n\nViens, du, trys...\n\nKelkis, kelkis bernelį,\nKelkis, kelkis jaunasai.\n   Laikas joti į karužę,\n   Ginti laisvę Lietuvos! (2k.)\n\nViens, du, trys...\n "
+        },
+        {
+          "Variant Name": "Augo kieme klevelis",
+          "Lyrics & Chords": "Augo kieme klevelis,\nAugo kieme žaliasai.\nPo tuo klevu, po žaliuoju,\nGul‘ bernelis jaunasai. [2k]\n\n    Nepapūski, vėjeli,\n    Nepapūski, šiaurasai,\n    Nepajudink klevo šakos,\n    Nepabudink bernelio. [2k]\n\nIr papūtė vėjelis,\nIr papūtė šiaurasai.\nPajudino klevo šakas,\nPabudino bernelį. [2k]\n\n    Kelkis, kelkis, berneli.\n    Kelkis, kelkis, jaunasai.\n    Laikas joti į karužę,\n    Ginti laisvę Lietuvos! [2k]"
         }
       ],
       "PDFs": [
@@ -1648,6 +1708,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recaeD0PFuUR6Z1Eq",
+    "fields": {
+      "Name": "Dar viena diena",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Dar viena diena štai baigias,\nGret naktis sparnus išties;\nleiski, Jėzau, pasakyti\nTau labanakt iš širdies.\n    Mielas Jėzau, Atpirkėjau,\n    Tau labanakt iš širdies.\n\nNors daug kartų nusidėję\nTau tarnaut atšalome.\nBet šiandieną apgalilėję\nAtleidimo prašome.\n    Mielas Jėzau, Atpirkėjau,\n    Atleidimo prašome.\n\nMūs šeimas palaimink, Jėzau\nKilnią meilę jų brandink,\nSaugok brangią tėviškėlę,\nNuo pavojų ją apgink.\n    Mielas Jėzau, Atpirkėjau,\n    Nuo pavojų ją apgink."
+        }
+      ]
+    }
+  },
+  {
     "id": "rec3nlCnr3kCUkQMw",
     "fields": {
       "Name": "Dargana",
@@ -1732,6 +1804,18 @@ const songs: SongFile = [
         }
       ],
       "Music Author": "Lowell Mason, 1856"
+    }
+  },
+  {
+    "id": "recI9SquETFbcsYz6",
+    "fields": {
+      "Name": "Dieve, Tave garbinam",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Tėve, Tave garbinam.\nTau save aukojam.\nTave mylim.\n\nJėzu, Tave garbinam.\nTau save aukojam.\nTave mylim.\n\nŠventa Dvasią garbinam.\nTau save aukojam.\nTave mylim."
+        }
+      ]
     }
   },
   {
@@ -1923,6 +2007,18 @@ const songs: SongFile = [
         }
       ],
       "Music Author": "Jonas Švedas"
+    }
+  },
+  {
+    "id": "reccO3RVBxygcMfXb",
+    "fields": {
+      "Name": "Džiūgaukit širdys",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Džiūgaukit širdys Dievo šviesoj,\nDievo globoj. Aleliuja!\n\nJauskitės broliai Dievo šviesoj,\nDievo tautoj. Aleliuja!\n\nEikit pasaulin Dievo erdvėn,\nDievo gelmėn. Aleliuja!"
+        }
+      ]
     }
   },
   {
@@ -2201,6 +2297,20 @@ const songs: SongFile = [
           "URL": "https://media.dainorelis.app/gale%20lauko%20toli.pdf"
         }
       ]
+    }
+  },
+  {
+    "id": "recFM64cZxCZXjkoc",
+    "fields": {
+      "Name": "Galiu tik įsivaizduoti",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Galiu tik įsivaizduoti, kaip man bus ten\nPasivaikščioti su Tavim kartu\nGaliu tik įsivaizduoti\nSu Tavim gyvent, gyventi amžinai, gyventi.\n\nGaliu tik įsivaizduoti\nįsivaizduoti.\n\nApsupta Tavim, ką pajusiu širdy?\nAr aš šoksiu, ar dainuosiu?\nAr sustingsiu judes?\nAr suklupsiu aš ant kelių,\nKai stovėsiu prieš Tave?\nAr sušuksiu aleliuja, kai priimsi Tu mane?\n\nGaliu tik įsivaizduoti\nįsivaizduoti.\n\nGaliu tik įsivaizduoti,\nįsivaizduoti.\n\nGaliu tik įsivaizduoti, kai baigsis ašuma,\nKai Tu ištrinsi ašaras, skausmas baigs\nTave garbinti, garbinti amžinai,\nįsivaizduoti.\n\nGaliu tik įsivaizduoti\nįsivaizduoti.\n\nApsupta Tavim, ką pajusiu širdy?\nAr aš šoksiu, ar dainuosiu?\nAr sustingsiu judes?\nAr suklupsiu aš ant kelių,\nKai stovėsiu prieš Tave?\nAr sušuksiu aleliuja, kai priimsi Tu mane?\n\nGaliu tik įsivaizduoti\nįsivaizduoti.\n\nGaliu tik įsivaizduoti\nįsivaizduoti."
+        }
+      ],
+      "Music Author": "MercyMe",
+      "Text Author": "Rasa Poskočimiene"
     }
   },
   {
@@ -2634,7 +2744,7 @@ const songs: SongFile = [
   {
     "id": "rec2YH0Qev9N3uweR",
     "fields": {
-      "Name": "Įeinu su gyriaus giesmer",
+      "Name": "Įeinu su gyriaus giesme",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -2799,6 +2909,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Išmivedi vedi\nOžį ant uolyčios\nEi tūta, ei tūtela\nEi tūta, ei tūtela.\n\nPaminrodyk ožy\nKaip tevutis šoka\nEi tūta, ei tūtela\nEi tūta, ei tūtela.\n\nŠitaip mano tevutis\nŠitaip šokinėja\nEi tūta, ei tūtela\nEi tūta, ei tūtela.\n\nŠitaip mano tevutis\nŠitaip trepinėja\nEi tūta, ei tūtela\nEi tūta, ei tūtela."
+        }
+      ]
+    }
+  },
+  {
+    "id": "recmhmHAFQH18Eq8o",
+    "fields": {
+      "Name": "Ištekės Marceliukė",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Ištekės Marceliukė,\nIštekės Marceliukė,\nIštekės jop šik mat,\nJei ne šįmet – kitąmet. [2x2k]\n\n    Pastatys tėvas klėtį,\n    Pastatys tėvas klėtį,\n    Pastatys jop šik mat,\n    Jei ne šįmet – kitąmet. [2x2k]\n\nTėvas pirks buteliuką,\nMočia pirks buteliuką,\nTėvas pirks, močia pirks,\nVisi vaikai piks, pirks, pirks, [2x2k]\n\n    Tėvas tur' buteliuką,\n    Močia tur'buteliuką,\n    Tėvas tur', močia tur',\n    Visi vaikai tur', tur', tur', [2x2k]\n\nPrie nabašninko Smetonos\nTai gerai gyveno Jonas,\nJis turėjo šiltą vietą\nIr kišenėj pištalietą. [2x2k]\n\n    Viena duktė juoku mirė,\n    Antrą kumelys nuspyrė,\n    Trečia vaiką pasidarė-\n    Tėvas iš namų išvarė. [2x2k]\n\nŠiemet yra kas parduoti,\nYra du jaučiai raguoti,\nTrys mergelės neprašytos,\nDar nė karto nebandytos. [2x2k]\n\n    Ir atėjo Benediktas,\n    Ant visų mergelių piktas,\n    Iš to didžio pasiutimo\n    Griebė Magdę už minkštimo. [2x2k]\n\nPer laukelį aš ėjau,\nMergužėlę lydėjau,\nGale tos rugienos\nParagausiu vištienos. [2x2k]"
         }
       ]
     }
@@ -3008,6 +3130,30 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recXIPKgEw2T4Y5Zz",
+    "fields": {
+      "Name": "Jėzau, pas mane ateiki",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Jėzau, pas mane ateiki,\nSavo meilę man suteiki.\nSielos drauge mylimiausias,\nAk ateik, ateik, brangiausi.\n\nTavęs ilgiuos šimtą kartų,\nBe tavęs gyvent apkarto.\nŠimtą kartų tave šiaukiu:\nAteik, Jėzau, Tavęs laukiu.\n\nTuščios žemiškos linksmybės,\nPilnos, kap tulžies kartybės.\nTik tu meile begaline,\nVienas šildai man krūtinę."
+        }
+      ]
+    }
+  },
+  {
+    "id": "recwBA5ZeC8z4FqCZ",
+    "fields": {
+      "Name": "Jis kviečia mus",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Jis kviečia mus visus pabendrauti,\nKristus yra su mumis (3k)\nKristus yra su mumis.\n\nJis kviečia mus visus susijungti,\nKristus yra su mumis (3k)\nKristus yra su mumis."
+        }
+      ]
+    }
+  },
+  {
     "id": "rec4igXh3BUwu4O53",
     "fields": {
       "Name": "Jojau dienelę",
@@ -3162,6 +3308,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "rec7WcRHqNRnfWCtb",
+    "fields": {
+      "Name": "Kai aš buvau mažas",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kai aš buvau mažas, mažas, mažutėlis,\nAukso lopšy gulėdamas miego nenorėjau.\n\n    Ramta- drylia……  [2x2k]\n\nKai aš paūgėjau, vaikštinėt pradėjau,\nNueidamas į stainelę žirgelius žiūrėjau\n\n    Ramta- drylia…… [2x2k]\n\nTėvužėli mano, sengalvėli mano,\nKatra duosi man žirgelį pas mergužėlę jot?\n\n    Ramta- drylia…… [2x2k]\n\nSūnaitėli mano, jaunutėli mano,\nBėrą žirgą, tymo balną pas mergužėlę jot.\n\n    Ramta- drylia…… [2x2k]\n\nPer dvarelį jojau, į svirnelį šoviau,\nNusigando mergužėlė rūtelių darželį.\n\n    Ramta- drylia…… [2x2k]"
+        }
+      ]
+    }
+  },
+  {
     "id": "recOZfiQcKVs7cKnb",
     "fields": {
       "Name": "Kai aš grėbiau lankoj šieną",
@@ -3169,6 +3327,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Kai aš grėbiau lankoj šieną,\nŠienelį, šienelį,\nIr atjojo bernužėlis\nPas mane, pas mane. 2x2 k.\n\nPadėk, Dieve, mergužėle,\nTau šienelį grėbti!\nAr neilgu, nenuobodu\nPas močiutę augti?\n\nDėkui dėkui, bernužėli,\nUž meilius žodelius:\nMan neilgu nenuobodu\nPas močiutę augti."
+        }
+      ]
+    }
+  },
+  {
+    "id": "recgPJXwI8LqqR4WV",
+    "fields": {
+      "Name": "Kai aš mažas buvau",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kai aš mažas buvau šile ožius ganiau\nSutikau piemenaitę ir karštai pamilau.\n\n    Ay, ay, ay, ay, ay, ay….\n\nJai priskyniau gėlių, pasakiau kad myliu\nVisą naktį šile, grojau jai dūdele.\n\n    Ay, ay, ay, ay, ay, ay….\n\nIšsilakstė ožiai po žaliuosius šilus\nJuos sudraskė vilkai ir jų kailius švelnius.\n\n    Ay, ay, ay, ay, ay, ay….\n\nBarė tėvas mane už žiluosius ožius\nBarė močia mane už jų kailius švelnius..\n\n    Ay, ay, ay, ay, ay, ay….\n\nAš sulaužiau dūdelę, man pagailo ožių\nKad per šitą piemenę nebėr kailių švelnių.\n\n    Ay, ay, ay, ay, ay, ay….\n\nImsim porą ožių, švelniakailių, gražių\nIr apginsim mes juos nuo pilkųjų vilkų.\n\n    Ay, ay, ay, ay, ay, ay…."
         }
       ]
     }
@@ -3199,6 +3369,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Natos",
           "URL": "https://media.dainorelis.app/kai%20as%20turejau%20syva%20kumele.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recf36FdZfJH1xoxp",
+    "fields": {
+      "Name": "Kai ganydamas žalmargią",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kai ganydamas žalmargią piemenaitę sutikau\nIr namo pargynes banda į sodelį nuėjau. [2x2k]\n\n    Ir namo pargynes banda į sodelį nuėjau\n    Ir gražiai raudona rožę prie krutinės prisegiau. [2x2k]\n\nIr gražiai raudona rožę prie krutinės prisegiau\nApkabinęs piemenaitę į lupytes bučiavau. [2x2k]\n\n    Miesto mergos malevotos bet aš laimės nerandu\n    Prisiminęs piemenaitę tyliai, liūdnai dainuoju. [2x2k]"
         }
       ]
     }
@@ -3241,6 +3423,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "rec7mZ9qV1bO4Klne",
+    "fields": {
+      "Name": "Kai pamačiau aš ją",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kai pamačiau aš ją, kai rožės skleidėsi\nIr svyro po langais balti jėvų žiedai\nRamune baltaja! Aš būriau laimę\nBet ar sugriš jinai čia amžinai? [2x2k]\n\n    Ant kranto stovi ji lyg pasaka graži\n    Skina gėlių žiedus ir upėn meta juos\n    Užburtas ją sekiau o ji lyg vėjas\n    Nors maldavau, prašiau, toli nuėjo [2x2k]\n\nIr ta gili žaizda man liko nuo tada\nKai širdyje savoj paniekinai mane\nSugrišk, O meile! Leisk prisiglausti\nIr paskutinį kart ištart myliu! [2x2k]"
+        }
+      ]
+    }
+  },
+  {
     "id": "recfOT5MRxPldkRer",
     "fields": {
       "Name": "Kai sirpsta vyšnios Suvalkijoj",
@@ -3260,7 +3454,7 @@ const songs: SongFile = [
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
-          "Lyrics & Chords": "Kaip aras pašautas ir blaškomas vėjo,\nToli nuo tėvynės savos.\nTik vieno maldauju, o Viešpatie geras,\nLeisk numirt bent tėvynės laukuos.2x2k\n\nKaip būdavo gera po liepom šakotom\nNuvargusią galvą priglaust.\nIr rytą auksinį palankėm rasotom\nNubrist iki pačio dangaus.\n\nUpeliai tekėjo, miškeliai šlamėjo,\nKur aš mažutėlis gimiau.\nTie patys upeliai, miškai, uogenojai,\nTik mes nebe tie, nebe tie..."
+          "Lyrics & Chords": "Kaip aras pašautas ir blaškomas vėjo,\nToli nuo tėvynės savos.\nTik vieno maldauju, o Viešpatie geras,\nLeisk numirt bent tėvynės laukuos. (2x2k)\n\nKaip būdavo gera po liepom šakotom\nNuvargusią galvą priglaust.\nIr rytą auksinį palankėm rasotom\nNubrist iki pačio dangaus.\n\nUpeliai tekėjo, miškeliai šlamėjo,\nKur aš mažutėlis gimiau.\nTie patys upeliai, miškai, uogenojai,\nTik mes nebe tie, nebe tie..."
         }
       ]
     }
@@ -3274,6 +3468,18 @@ const songs: SongFile = [
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "[Kaip gaila,](C) [kaip gaila, kaip gaila,](G) [ ](C)\n[Kad nebetelpam](F) [mes į tą laivą.](G) [ ](C) [  ](Am)\n[Kur dalijomės](F) [duona ir saule](G) [ ](C) [  ](Am)\n[Ir toks](F) [didelis](G) [buvo pasaulis.](C)[  ](C7)\n\nKaip gaila, kaip gaila, kaip gaila,\nKad nebetelpam mes į tą laivą,\nIr mamas visa galva praaugę -\nMes jau tapom beveik suaugę.\n\nKaip gaila, kaip gaila, kaip gaila,\nKad išaugome mes iš to laivo,\nKur galėjome nors truputį,\nNors trumpam savimi pabūti.",
           "Show Chords": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "rec68Cpq6MBYJKjxZ",
+    "fields": {
+      "Name": "Kaip ilgesingai",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kaip ilgesingai mus rengi,\nLyg tėvas stalą alkstantiems dengi,\nLyg tėvas rūpinies vaikais,\nO Kristau, mūs buity ir mūs laikais,\nLyg tėvas rūpinies vaikais.\n\nKaip nuostabi širdis Tava,\nIr kaip švelni lyg rytmečio rasa,\nKaip žmogų, brolį gaivini,\nSava auka gyvybę dalini.\nSavo dvasia mus gaivini.\n\nIr kaip giliai pajus žmogus,\nKad jo buity atsiveria dangus,\nIr kaip džiugiai prabils širdis\nTavim pripildyta, Tavim soti,\nPrabils širdis Tavim soti."
         }
       ]
     }
@@ -3338,6 +3544,18 @@ const songs: SongFile = [
         }
       ],
       "Music Author": "Faustas Strolia"
+    }
+  },
+  {
+    "id": "recjWJ4y50NxAiwpP",
+    "fields": {
+      "Name": "Kalnai ten dainavo",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kalnai ten dainavo, upeliai klegėjo\nKur aš mažutėlis laksčiau. (2x2)\nPušelės lyg rūtos lingavo nuo vėjo\nIr kilo aukščiau, vis aukščiau. (2x2)\n\n    Kaip būdavo gera po liepom šakotom\n    Nuvargusią galvą priglaust. (2x2)\n    Ar rytą auksinį rasotom padangėm\n    Nubrist iki pačio dangaus. (2x2)\n\nIr šiandien tie patys kalneliai dainuoja,\nIr šiandien taip gera, ramu. (2x2)\nTie patys kalneliai, šilai, uogienojai,\nTik aš nebe tas jau esu. (2x2)\n\n    Kaip alkanas paukštis, kaip sužeistas aras\n    Po suodiną miestą plakuos. (2x2)\n    Tik vieno tetrokštu, o Viešpatie geras,\n    Numirt bent gimtinės laukuos. (2x2)"
+        }
+      ]
     }
   },
   {
@@ -3551,6 +3769,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "reccCqrbudApqf0vC",
+    "fields": {
+      "Name": "Karti, karti",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Karti, karti dėgtinė karti (2k.)\nKad pasibučiuotų tai būtų saldi (2k.)\n\n    Tai vesele, tai linksmumas \n    Mus jaunųjų netikumas (2k.)\n    Nei jie geria, nei dainuoja \n    Nei saldžiai pasibučiuoja (2k.)\n\nMokyk, mokyk piršleli mokyk (2k.)\nŽenotas buvai tu viską žinai (2k.)\n\n    Jau jaunasai nor bučiuot, \n    o jaunoji nesiduot (2k.)\n    Bučiuok bučiuok jaunasai, \n    bučiuok (2k.)\n\nOžka, ožka jaunoji ožka (2k.)\nKad pasibučiuotų nebūtų ožka (2k.) \n\n    Tai vesele...\n\nSvočiutė mokyk, mokyk, mokyk (2k.) \nŽenota buvai tu viską žinai (2k.) \n\n    Jau jaunoji nor bučiuot, (2k.) \n    O jaunasai nesiduot (2k.) \n    Bučiuok, bučiuok jaunoji, \n    Bučiuok (2k.) \n\nOžys, ožys jaunasai ožys (2k.) \nKad pasibučiuotų nebūtų ožys (2k.) \n\n    Tai veseile...\n\nNegerai, negerai, negerai pabučiavai (2k.) \nReik žiurėt į akutes, Ir bučiuot į lūpeles (2k.) \n\n    Karti karti...\n\nSaldi, saldi dėgtinė saldi (2k.) \nKad pasibučiavo tad yra saldi. (2k.)"
+        }
+      ]
+    }
+  },
+  {
     "id": "rec9zQWAbWsAEJZai",
     "fields": {
       "Name": "Karvė nemoka",
@@ -3649,6 +3879,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recSsE3yrbcpMG2KM",
+    "fields": {
+      "Name": "Kažkas gieda, ar girdi?",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kažkas gieda, ar girdi,\nMano Dieve, ar girdi?\nKažkas verkia, ar girdi,\nDieve, ar tu girdi?\n\nKažkas eina, ar girdi,\nMano Dieve, ar girdi?\nIeško žemės ištremti,\nDieve, ar tu girdi?\n\nKažkas šaukia, ar girdi,\nMano Dieve, ar girdi?\nMeldžia laisvės pavergi,\nDieve, ar tu girdi?"
+        }
+      ]
+    }
+  },
+  {
     "id": "recfeljqCshEOeFFY",
     "fields": {
       "Name": "Keitės miestai",
@@ -3661,6 +3903,18 @@ const songs: SongFile = [
       ],
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai"
+    }
+  },
+  {
+    "id": "recSjFIqP0u3vKI0E",
+    "fields": {
+      "Name": "Kelias naktyje (Vairas)",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Klausi, miela, kaip aš gyvenu,\nAčiū, - šiaip sau, nemiga kas naktį,\nTartum lynu įtemptu einu\nIr bijau pusiausvyros netekti.\n\nNugarmėt bedugnėn grumsteliu\nIš neišmatuojamos aukštybės,\nTad laikausi, miela, kiek galiu,\nSpindulio auksinio įsikibęs.\n\n    Ir į juodą nežinią garmės,\n    Lyg į tamsią naktį eitum vienas,\n    Miela, palinkėk man ištvermės\n    Eiti paskui saulę, kaip varnėnui. [2k]\n\nKlausi, miela, kaip aš gyvenu,\nAčiū, - šiaip sau, nemiga kas naktį,\nTartum lynu įtemptu einu\nIr bijau pusiausvyros netekti.\n\nAš jaučiuosi tartum ties riba\nNuo vidinės įtampos pavargęs,\nIšlaikysiu ją kol kas, arba\nViskas vieną kartą staigiai perdegs.\n\n    Ir į juodą nežinią garmės,\n    Lyg į tamsią naktį eitum vienas,\n    Miela, palinkėk man ištvermės\n    Eiti paskui saulę, kaip varnėnui. [2k]\n"
+        }
+      ]
     }
   },
   {
@@ -3776,6 +4030,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Kokiais keliais bekeliaučiau,\nTėviškėn mintys nuves.\nO mylimas mano krašte,\nNuolat ilgiuosi tavęs.\n\nKampelis širdžiai brangus, esi pasauly tu vienas,\nNamo vilioji mane, tu perle pajūrio mielas (2 k.)\n\nJūros bangas neškit vėjai,\nNeškit gimtinėn greičiau,\nKrašto gražesnio pasauly,\nDar ligi šiol nemačiau.\n\nKampelis…..\n\nBangos į krantą liūliavo,\nNiekad pamiršt negaliu,\nČia kažkada aš klajojau,\nSu mylimąja kartu.\n\nKampelis…\n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recsWuUt6C2h6gxOa",
+    "fields": {
+      "Name": "Koks gražus, nuostabus",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Koks gražus, nuostabus,\nJėzus yra gražus.\nIr Jėzus gyvenimą,\nDaro gražų.\n\nAtsargiai liečia Jis,\nAtveria man akis.\nIr Jėzus gyvenimą,\nDaro gražų."
         }
       ]
     }
@@ -3963,6 +4229,18 @@ const songs: SongFile = [
       ],
       "Music Author": "Balys Dvarionas",
       "Text Author": " Eduardas Pilypaitis"
+    }
+  },
+  {
+    "id": "recwwYIoDw9Xfuqgg",
+    "fields": {
+      "Name": "Kur bakūžė samanota",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kur bakūžė samanota,\nKurioje gimiau?\nObelis kur augalota,\nKą sode mačiau?\n \n    Kur upeliai platūs, ramūs,\n    Tekantys smagiai?\n    Kur tos mintys mano jaunos,\n    Linksmos, kaip drugiai?\n \nTa bakūžė jau supuvo,\nObelies nebėr…\nIr upeliai jau išdžiuvo,\nVargas vien tebėr…\n"
+        }
+      ]
     }
   },
   {
@@ -4546,6 +4824,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "rectvGopYyqL2LQM0",
+    "fields": {
+      "Name": "Lydėk mūs žingsnį",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Lydėk mūs žingsnį lig altoriaus,\nKai nešam auką Tavo šlovei, Viešpatie.\n\nKai nešam auką Tavo šlovei,\nPriimk ir maldą sesių, brolių, Viešpatie.\n\nLydės mūs džiaugsmą lig altoriaus,\nKai nešam auką Tavo šlovei, Viešpatie.\n\nKai nešam auką Tavo šlovei,\nPriimk ir meilę sesių, brolių, Viešpatie."
+        }
+      ]
+    }
+  },
+  {
     "id": "recEIXJFqlaTObcL4",
     "fields": {
       "Name": "Mačiau bernelį",
@@ -4692,6 +4982,18 @@ const songs: SongFile = [
       ],
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis"
+    }
+  },
+  {
+    "id": "rece2lGKGiZ3VDrWB",
+    "fields": {
+      "Name": "Marijos varpelis",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Varpas, kad būčiau aš\nGarsiai skambėčiau.\nMarijos garbę\nPasauliui skelbčiau.\n    Ave, ave, ave Marija.\n\nKad vyturėliu\nGiedot galėčiau,\nMarijos vardą\nPasauliui skelbčiau.\n    Ave, ave, ave Marija."
+        }
+      ]
     }
   },
   {
@@ -5010,6 +5312,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recaxgtiQ7PTWwe5s",
+    "fields": {
+      "Name": "Motociklą pirko Rokas",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Motociklą pirko Rokas\nŠvilpia vėjas pro pečius\nKai abudu ratai sukas\nŠimtą dvidešimt greičiu\n\n    Sprunka kiškiai išsigandę\n    Slepias dulkės į kviečius\n    Kaip raketoj Rokas skrenda\n    Motociklu, motociklu į svečius\n\nIš bačkos provoja kraujas\nMiežio grudas su puta\nO ant kiemo naujas, naujas\nMotociklas raketa\n\n    Rokui nuotaika kaip rojuj\n    Ir viena ugnis veiduos\n    Jeigu eina tingiai kojos\n    Motociklas, motociklas pavaduos\n\nKelias lekia per ražienas\nRaitos posukiai ilgi\nUžsimerkė net is baimės\nDvi kurapkos parugy\n\n    Trys beržai per kelią ėjo\n    Kirto plentą įstrižai\n    Spėkit kas ten subyrėjo\n    Motociklas, motociklas ar beržai?\n"
+        }
+      ]
+    }
+  },
+  {
     "id": "recJnAybtzRR8tJhS",
     "fields": {
       "Name": "Mūs pasaulis",
@@ -5114,6 +5428,30 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "rec65mbCEQLnYb3o5",
+    "fields": {
+      "Name": "Namo, broliukai",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Namo, broliukai, namo, jauniej,\nNamo darbelio dirbt.\n\n    Čia juoda duona, ir mums neduod.\n    Čia ne mūsų namai.\n\nLaukai nearti, rugiai nepiaut,\nDirvonai neaket.\n\n    O, eisim, eisim, čionai nebūs,\n    Čia ne mūsų šalel.\n"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recZhmQe3d25xzPZ9",
+    "fields": {
+      "Name": "Naują giesmę",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Naują giesmę Dievui giedokime,\nAidas jos teskamba.\nNaują giesmę Dievui giedokime.\nAleliuja.\n\nJūs vaikai, ateikite, nes Jėzus kviečia mus,\nGrokite, giedokite, širdelėj bus smagu.\n\nNaują giesmę Dievui giedokime,\nAidas jos teskamba.\nNaują giesmę Dievui giedokime.\nAleliuja.\n\nAš džiaugiuosi, nes širdy Dievulis pas mane,\nSaugo Jis mane visur, žingsnely kiekvienam.\n\nNauja giesmę..."
+        }
+      ]
+    }
+  },
+  {
     "id": "recYIyaERtOCtjYf7",
     "fields": {
       "Name": "Ne bet kokia aš mergelė buvau",
@@ -5202,7 +5540,7 @@ const songs: SongFile = [
   {
     "id": "recJlGK5iKflUZao5",
     "fields": {
-      "Name": "Neišeik tu iš sodžiaus",
+      "Name": "Neišeik, neišeik tu iš sodžiaus",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai 1",
@@ -5633,8 +5971,12 @@ const songs: SongFile = [
       "Name": "Oi sergu sergu",
       "Lyrics": [
         {
-          "Variant Name": "Žodžiai",
+          "Variant Name": "Žodžiai 1",
           "Lyrics & Chords": "Oi sergu sergu, negaliu, negaliu, 2 k.\nSkauda man galvelę, pakelt negaliu. 2 k.\n\nSiųsčiau paslelį pas savo tėvelį,\nKad atneštų vandenio, vandenėlio gerti!\n\nTėvelis nespėjo, kalne rugius sėjo,\nNeatnešė, vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo močiutę,\nKad atneštų vandenio, vandenėlio gerti.\n\nMočiutė nespėjo, kopūstus ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo seselę,\nKad atneštų vandenio, vandenėlio gerti!\n\nSesutė nespėjo, rūteles ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo bernelį,\nKad atneštų vandenio, vandenėlio gerti.\n\nBernelis suspėjo, darbus atidėjo,\nIr atnešė vandenio, vandenėlio gerti."
+        },
+        {
+          "Variant Name": "Oi Dievuli, sergu",
+          "Lyrics & Chords": "Oi Dievuli, sergu, sergu, negaliu, (2k.) \nSkauda man galvelę, pakelt negaliu. (2k.)\n\n    Siunčiau aš tarną pas tėvužėlį, \n    Kad atneštų vandenio, vandenėlio gerti! \n\nTėvelis nespėjo, kalne rugius sėjo, \nNeatnešė, vandenio, vandenėlio gerti. \n\n    Siunčiau aš tarną pas motinėlę, \n    Kad atneštų vandenio, vandenėlio gerti. \n\nMočiutė nespėjo, kopūstus ravėjo, \nNeatnešė vandenio, vandenėlio gerti. \n \n    Siunčiau aš tarną pas savo seselę, \n    Kad atneštų vandenio, vandenėlio gerti! \n\nSesulė nespėjo, rūteles ravėjo, \nNeatnešė vandenio, vandenėlio gerti. \n\n    Siunčiau aš tarną pas savo bernelį, \n    Kad atneštų vandenio, vandenėlio gerti. \n\nBernelis suspėjo, darbus atidėjo, \nIr atnešė vandenio, vandenėlio gerti.\n"
         }
       ]
     }
@@ -5790,6 +6132,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "reckvCTb0XZqY3KNn",
+    "fields": {
+      "Name": "Pakol jauni (Linksminkimos)",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Linksminkimos! Linksminkimos,\nPakol jauni esma,\nNebus laiko mums linksmintis,\nKada pasenės’ma,\nKada savo žilą galvą\nJau žemyn nulenks’ma,\nIr eidami pasirėmę,\nGrabui vietą rinks’ma..\n\n     Siaudžia, graudžia paukštužėliai\n    Gražiai čiulbėdami;\n    Taip linksminkimos, jaunėliai,\n    Dainas dainuodami.\n    Dabar mūsų aukso dienos,\n    Kaklo nieks negraužia;\n    Daug nerūpi, pakol vienas,\n    Ir vargai nespaudžia.\n\nPrieš mus visa čion pasaulė,\nAtverta ant svieto:\nKur nukaks’ma, ten atras’ma\nMes dėl savęs vietą.\nKožnas vienas mumis myli,\nAnt rankų nešioja,\nKiti kvietkas ir gražybes\nMums po kojų kloja…\n\n    O jei padoriai gyvens’ma,\n    Kaip liep’ mūsų stonas,\n    Mylės mumis ponas Dievas\n    Ir kunig’s klebonas.\n    Tad - linksminkimos! Linksminkimos,\n    Pakol jauni esma,\n    Nebus laiko mums linksmintis,\n    Kada pasenės’ma.\n"
+        }
+      ]
+    }
+  },
+  {
     "id": "recveguBjXm6BANc7",
     "fields": {
       "Name": "Palaimink, Dieve, mus",
@@ -5927,6 +6281,18 @@ const songs: SongFile = [
         }
       ],
       "Music Author": "Faustas Strolia"
+    }
+  },
+  {
+    "id": "recul1EalqrorRGul",
+    "fields": {
+      "Name": "Parveski, Viešpatie (Kaip grįžtančius namo paukščius)",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Kaip grįžtančius namo paukščius\nParveski, Viešpatie, ir mus\nĮ žemę mūs tėvų tėvų, parveski.\n    Težydi vėlei Lietuva,\n    Kaip Tavo slėnių lelija,\n    Tebūna vėl namuos ramu.\n\nUždeki žiburius vilties,\nAtšauki angelą mirties,\nIš mūsų tėviškės namų atšauki!\n    Težydi vėlei Lietuva...\n\nĮ savo džiaugsmo Sekmines\nIr mus namo surink, parvesk,\nIš tremtinio kelių liūdnų surinki.\n    Težydi vėlei Lietuva...\n\nPo Tavo Apvaizdos ranka,\nTegu atsiveria vaga,\nPilna gyvybės ir žiedų, gyvybės!\n    Težydi vėlei Lietuva..."
+        }
+      ]
     }
   },
   {
@@ -6326,6 +6692,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "reckA9OWRo9ZB2sK6",
+    "fields": {
+      "Name": "Pjaun broliukai",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Pjaun broliukai žalioj lankoj\nBaltus dobilėlius,\nOi, oi, ojojoi,\nBaltus dobilėl (2x2k)\n\n    Bepjaudami susdūmojo,\n    Nulaužė dalgelį,\n    Oi, oi, ojojoi,\n    Nulaužė dalgel. (2x2k)\n\nEin mergelė per kiemelį\nPilka sermėgėle,\nOi, oi, ojojoi,\nPilka sermėgėl. (2x2k)\n\n    Kad ir pilka sermėgėlė,\n    Bet meilūs žodeliai,\n    Oi, oi, ojojoi,\n    Bet meilūs žodel. (2x2k)\n\nAtsiėsk ant pradalgėlės,\nTaisyk sau dalgelį,\nOi, oi, ojojoi,\nTaisyk sau dalgel.. (2x2k)"
+        }
+      ]
+    }
+  },
+  {
     "id": "rec4WyA1WOczmp2Ef",
     "fields": {
       "Name": "Pjuovė lonkuo šeina",
@@ -6584,6 +6962,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Dunda, trankosi griaustiniai,\nBlykčioja žaibai.\nUž tave brangi tėvyne,\nŽengiame linksmai.\n\nMūsų žygis drasiai kilti,\nSkrist su sakalais,\nŽengt naujais tėvynės tiltais,\nVieškeliais naujais.\n\nŽydi obelys prie kelio,\nŽydi ir žydės.\nSūnūs už tave, šalele,\nTvirtai čia stovės!\n\nDunda žemė po mūs kojų,\nDunda nuo griausmų,\nUž tave, šalie gimtoji,\nMums žygiuot smagu."
+        }
+      ]
+    }
+  },
+  {
+    "id": "rec7aP3LPHCHbOocp",
+    "fields": {
+      "Name": "Ramybė teka kaip upelis",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Ramybė teka kaip upelis\nIš tavęs ir iš manęs\nTeka į neramę širdį\nTen džiaugsmu ji išsilies.\n\nJo džiaugsmas teka kaip upelis\nIš tavęs ir iš manęs\nTeka jis į liūdną širdį\nTen džiaugsmu ji išsilies.\n\nJo meilė teka kaip upelis\nIš tavęs ir iš manęs\nTeka ji į kietą širdį\nTen jo meilė išsilies."
         }
       ]
     }
@@ -7348,6 +7738,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recYWjyy5oQApzP5s",
+    "fields": {
+      "Name": "Siyahamba",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Mūsų kelią lydi Dievo šviesa,\nNeškim meilę savo širdyse.\nMūsų kelią lydi Dievo šviesa,\nNeškim meilę savo širdyse (širdy).\n\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse.\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse.\n\nMūsų darbus lydi Dievo šviesa,\nStatom Dievo meilės žemę.\nMūsų darbus lydi Dievo šviesa,\nStatom Dievo meilės žemę (žemėje).\n\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse.\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse.\n\nMes jaunystę puošiam grožio dvasia,\nAčiū Dieve, kad radau Tave.\nMes jaunystę puošiam grožio dvasia,\nAčiū Dieve, kad radau Tave. (Tave)\n\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse.\nDievo meilė (rodo tiesų kelią) o-o (meilė)\nDievo meilė mūsų širdyse."
+        }
+      ]
+    }
+  },
+  {
     "id": "recdZiNMaeBxYDW6q",
     "fields": {
       "Name": "Skaičiuotės",
@@ -7609,6 +8011,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "reckSNcgaqThkDbMW",
+    "fields": {
+      "Name": "Subatvakarėlį",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Subatvakarėlį, pasikrapštęs ausį,\nAš pas savo mergužėlę nueiti rengiausi.\nRamš-ta-dry-lia oi-lia, ramš-ta-dry-lia oi-lia,\nAš pas savo mergužėlę nueiti rengiausi.\n\n    Pasiraitęs kelnes perbridau upelį\n    Ir kaip kiaulė įvoliojau į rūtų darželį.\n    Ramš-ta-dry-lia oi-lia…\n\nEinu per kiemelį, trepsiu viena koja,\nIr dėkoju: „Ačiū Dievui, kad šuva neloja!“.\nRamš-ta-dry-lia oi-lia…\n\n    Einu prie klėtelės, beldžiu trim piršteliais:\n    – Atsiliepki, mylimoji, aš tavo bernelis!\n    Ramš-ta-dry-lia oi-lia…\n\nGirdžiu iš klėtelės, balsas kaip gegutės:\n– Palūkėki, bernužėli, nors pusę minutės!\nRamš-ta-dry-lia oi-lia…\n\n    Taip bešnekučiuojant susipjovė katės,\n    O kas toliau atsitiko susipraskit patys.\n    Ramš-ta-dry-lia oi-lia…"
+        }
+      ]
+    }
+  },
+  {
     "id": "reclRXMQv4tILc0k9",
     "fields": {
       "Name": "Sudainuokime lietuvą!",
@@ -7840,6 +8254,18 @@ const songs: SongFile = [
       ],
       "Music Author": "Kun. E. Arnašius",
       "Text Author": "Kun. E. Arnašius"
+    }
+  },
+  {
+    "id": "recvHafd9ftBkhRxJ",
+    "fields": {
+      "Name": "Tam namely, tam mažam",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Tam namely, tam mažam \nMažas vyras žiurėjo, \nMatė kiškį bebėgant, \nĮ dureles bebeldžiant. \n\n    Leiskit, leiskit mus vidun, \n    Mus medžiotojas nušaus, \n    Eiki, kiški, pas mane - \n    Švelniai prisiglausk."
+        }
+      ]
     }
   },
   {
@@ -8080,11 +8506,23 @@ const songs: SongFile = [
   {
     "id": "recvieZ1lT11gD9TI",
     "fields": {
-      "Name": "Tėvynė",
+      "Name": "Tėvyne dainų ir artojų",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Tėvyne dainų ir artojų,\nUž ką tu mus šitaip baudi?\nĮ kokį džiaugsmingą rytojų\nPer skausmą ir kraują vedi?\n\nIš kur šitas pyktis ir kerštas,\nTas melas vardan Lietuvos?\nKieno tas alsavimas karštas\nVirš vaikiškos mano galvos?\n\nTėvyne, tu mano tėvyne,\nSu kuo ir prieš ką tu eini?\nKodėl tu draskai man krūtinę\nIr ko tu taip ieškai many?"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recOeQHAlBcl0Xokn",
+    "fields": {
+      "Name": "Tikėjimo viltis",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Gyvenimo, o Viešpatie,\nTu šeliai nemirtingąjį davei! 2k.\n\nAleliuja, Aleliuja, Aleliuja Dieve 2k.\n\nTikėjimo, o Viešpatie,\nTu amžinųjų džiaugsmų įkvėpei 2k.\n\nAleliuja, Aleliuja, Aleliuja Dieve 2k.\nTu savo karalystėje skleidi: 2k.\n\nAleliuja, Aleliuja, Aleliuja Dieve 2k.\n"
         }
       ]
     }
@@ -8756,6 +9194,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recatuYgFRvJfP3AP",
+    "fields": {
+      "Name": "Vėl vakare raudonuos dobilai",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Vėl vakare raudonuos dobilai,\nTu pas mane per vėlai atėjai.\n\n    Miela – jau ruduo atkeliavo,\n    Krinta lapai nuo klevo,\n    Jau ruduo širdyje . [3x2k]\n\nTie vakarai jau daugiau nebegrįš,\nIr daugiau nesibelsk į manąsias duris.\n\n    Miela – mūs keliai išsiskyrė,\n    Ir neklausk ar dar žydi\n    Ramunėlė balta. [3x2k]\n\nJau vakare raudonuos dobilai,\nTu pas mane per vėlai atėjai.\n\n    Miela – vėjas žiedus nuskynė,\n    Mūs keliai išsiskyrė,\n    Tu pamirški mane. [3x2k]"
+        }
+      ]
+    }
+  },
+  {
     "id": "rec7tScnuTgV32xkT",
     "fields": {
       "Name": "Velnio nuotaka",
@@ -8886,6 +9336,18 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recRMnEcZXM8nc0ff",
+    "fields": {
+      "Name": "Viešpatie, Tavo rankose",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Viešpatie, Tavo rankose\nPaliekam savo vargus.\nViešpatie, Tavo rankose,\nKai sunku atrandi ten mus.\n\nMokyk mus, Viešpatie,\nAtnešt Tau mūsų džiaugsmus.\nPrimink mus, Viešpatie,\nIš Tavęs jie ateina pas mus.\n\nViešpatie, Tavo rankose\nLaikai Tu mano draugus.\nViešpatie, Tavo rankose\nLaikai mano krašto laukus.\n\nMokyk mus, Viešpatie,\nSušilti Tavo šviesoj.\nPadėk mums, Viešpatie,\nGyventi Tavo globoj."
+        }
+      ]
+    }
+  },
+  {
     "id": "recrvlt2fbyD85WT2",
     "fields": {
       "Name": "Viešpaties lelija",
@@ -8984,7 +9446,7 @@ const songs: SongFile = [
   {
     "id": "recyqNkud7YSLMUeW",
     "fields": {
-      "Name": "Žalia pieva - nekelmynė",
+      "Name": "Žalia pieva - nekelmynė (Valio, Pjovėjėliai)",
       "Lyrics": [
         {
           "Variant Name": "Žodžiai",
@@ -9278,6 +9740,18 @@ const songs: SongFile = [
         {
           "Variant Name": "Žodžiai",
           "Lyrics & Chords": "Žvaigždėtoj vasaros nakty\nIšskleidęs parašiutą\nTu nusileidai pušyne\nŽaliam žaliam , kaip rūta.\n\nO išdavikė drebulė\nTą naktį nemiegojo\nJi viską matė, girdėjo\nIr priešui pasakojo.\n\nTu dar turėjai šovinių,\nGalėjai dar kovoti,\nO paskutinę kulipką\nLietuvai paaukoti.\n\nIr viena kart pavasarį\nTu vėl atjosi drąsiai.\nO mylimas, pavasarį,\nManęs jau neberasi.\n\nSustabdęs juodbėrį staiga\nĮ žemę pažiūrėsi\nIr žemė taps žiedais marga -\nAš diemedžiu žydėsiu."
+        }
+      ]
+    }
+  },
+  {
+    "id": "reckwerxQyqb1IaVR",
+    "fields": {
+      "Name": "Žveng žirgelis lankoj",
+      "Lyrics": [
+        {
+          "Variant Name": "Žodžiai",
+          "Lyrics & Chords": "Žveng žirgelis lankoj, juodbėrėlis lankoj,\nŽiūri mano mergužėlė pasirėmus rankom. [2x2k]\n\n    – Mergužėle mano, lelijėle mano,\n    Ar tu žiūri, ar nežiūri, aš nebūsiu tavo. [2k]\n\n– Bernužėli mano, dobilėli mano,\nKur tie žodžiai, tie mielieji, ką kalbėjom abu? [2x2k]\n\n    – Mergužėle mano, lelijėle mano,\n    Nesisakyk motinėlei, kad kalbėjom abu. [2x2k]\n\n– Bernužėli mano, dobilėli mano,\nPažins mane motinėlė iš žalių rūtelių. [2x2k]\n\n    O tai kam viliojai, į akeles žiūrėjai?\n    Kam, berneli, aukso žiedą dovanot žadėjai? [2x2k]\n\n– Valia jaunam viliot, su mergelėm kalbėt,\nValia jaunam bernužėliui į akeles žiūrėt. [2x2k]\n"
         }
       ]
     }
