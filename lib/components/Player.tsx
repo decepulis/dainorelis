@@ -5,8 +5,15 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import TrackPlayer, {
+  AppKilledPlaybackBehavior,
+  Capability,
+  State,
+  useIsPlaying,
+  usePlaybackState,
+  useProgress,
+} from 'react-native-track-player';
 
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -16,6 +23,7 @@ import appPadding from '@/lib/constants/padding';
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import useIsAppVisible from '../hooks/useAppState';
+import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
@@ -85,31 +93,76 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   // Manage media
   const [shouldLoad, setShouldLoad] = useState(false);
   const activeMedia = media[activeMediaIndex];
-  // TODO maybe a better offline experience?
-  const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
-  const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
 
+  // load that TrackPlayer up
+  useEffect(() => {
+    if (shouldLoad && activeMedia) {
+      // Clear any existing tracks and add the new one
+      const setupTrack = async () => {
+        try {
+          await TrackPlayer.reset();
+          await TrackPlayer.add({
+            id: activeMedia.URL,
+            url: activeMedia.URL,
+            title: activeMedia['Variant Name'].replace('Įrašas', t('media')),
+            artist: activeMedia.Artist,
+            album: activeMedia.Album,
+          });
+        } catch (error) {
+          console.error('Error setting up track:', error);
+        }
+      };
+
+      setupTrack();
+    }
+    // Clean up when component unmounts or media changes
+    return () => {
+      TrackPlayer.reset();
+    };
+  }, [activeMedia, shouldLoad, t]);
+
+  // keep track player in sync with app color
+  const primary = useThemeColor('primary');
+  useEffect(() => {
+    TrackPlayer.updateOptions({
+      forwardJumpInterval: 10,
+      backwardJumpInterval: 10,
+      capabilities: [
+        Capability.Pause,
+        Capability.Play,
+        Capability.SeekTo,
+        Capability.JumpBackward,
+        Capability.JumpForward,
+      ],
+      compactCapabilities: [Capability.Pause, Capability.Play, Capability.JumpBackward],
+      color: Number(primary.replace('#', '0x')),
+      android: {
+        appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
+      },
+    });
+  }, [primary]);
+
+  // Get playback state
+  const playbackState = usePlaybackState();
+  const { position, duration, buffered } = useProgress(500); // Update every 500ms
+  const { playing, bufferingDuringPlay } = useIsPlaying();
+  const isLoaded = playbackState.state !== State.None && playbackState.state !== State.Error;
+
+  // play after loading is complete if shouldPlayOnLoad is true
   const [shouldPlayOnLoad, setShouldPlayOnLoad] = useState(false);
   useEffect(() => {
     if (isLoaded && shouldPlayOnLoad) {
-      player.play();
+      TrackPlayer.play();
       setShouldPlayOnLoad(false);
     }
-  }, [isLoaded, shouldPlayOnLoad, player]);
+  }, [isLoaded, shouldPlayOnLoad]);
 
   // handle background audio
   useEffect(() => {
     if (!isAppVisible) {
-      player.pause();
+      TrackPlayer.pause();
     }
-  }, [isAppVisible, player]);
-
-  // can't do this without setting playsInSilentMode == false
-  // (why can players like apple music do this?)
-  // TODO figure it out
-  // useEffect(() => {
-  //   setAudioModeAsync({ shouldPlayInBackground: true });
-  // }, []);
+  }, [isAppVisible]);
 
   // Manage animations
   const isOpenSv = useSharedValue(false);
@@ -123,10 +176,19 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
     opacity: withSpring(isOpenSv.value ? 1 : 0, springConfig),
     pointerEvents: isOpenSv.value ? 'auto' : 'none',
   }));
-  const plusStyles = useAnimatedStyle(() => ({
+  const infoButtonStyles = useAnimatedStyle(() => ({
+    opacity: withSpring(isOpenSv.value ? 0 : 1, springConfig),
     transform: [
       {
-        rotate: withSpring(isOpenSv.value ? '0deg' : '-90deg', springConfig),
+        scale: withSpring(isOpenSv.value ? 0.8 : 1, springConfig),
+      },
+    ],
+  }));
+  const closeButtonStyles = useAnimatedStyle(() => ({
+    opacity: withSpring(isOpenSv.value ? 1 : 0, springConfig),
+    transform: [
+      {
+        scale: withSpring(isOpenSv.value ? 1 : 0.8, springConfig),
       },
     ],
   }));
@@ -140,14 +202,14 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   // sync state with time elapsed
   useEffect(() => {
     if (!isGesturingSv.value) {
-      progressSv.value = currentTime / duration;
+      progressSv.value = position / (duration || 1); // Avoid division by zero
     }
-  }, [currentTime, duration, isGesturingSv, progressSv]);
+  }, [position, duration, isGesturingSv, progressSv]);
   const seekOnGestureFinalize = useCallback(
     (time: number) => {
-      player.seekTo(time).finally(() => (isGesturingSv.value = false));
+      TrackPlayer.seekTo(time).finally(() => (isGesturingSv.value = false));
     },
-    [isGesturingSv, player]
+    [isGesturingSv]
   );
 
   // override state with gesture
@@ -217,9 +279,11 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
             isOpenSv.value = !isOpenSv.value;
           }}
         >
-          <FontAwesome6 name="minus" size={17} color="white" />
-          <Animated.View style={[plusStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="minus" size={17} color="white" />
+          <Animated.View style={[infoButtonStyles]}>
+            <FontAwesome6 name="info" size={17} color="white" />
+          </Animated.View>
+          <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
+            <FontAwesome6 name="xmark" size={18} color="white" />
           </Animated.View>
         </Button>
 
@@ -251,17 +315,27 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
                 {
                   borderRadius: 9999,
                   overflow: 'hidden',
+                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
                 },
-                isHighContrastEnabled
-                  ? {
-                      borderColor: `rgba(255,255,255,0.4)`,
-                      borderWidth: 1,
-                    }
-                  : {
-                      backgroundColor: `rgba(255,255,255,0.4)`,
-                    },
               ]}
             >
+              {/* buffering indicator */}
+              {!isHighContrastEnabled ? (
+                <Animated.View
+                  style={[
+                    {
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: `${buffered * 100}%`,
+                      borderRadius: 9999,
+                      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                    },
+                  ]}
+                />
+              ) : null}
+              {/* playback indicator */}
               <Animated.View
                 style={[
                   durationStyles,
@@ -308,14 +382,14 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               setShouldLoad(true);
               setShouldPlayOnLoad(true);
             } else if (playing) {
-              player.pause();
+              TrackPlayer.pause();
             } else {
-              player.play();
+              TrackPlayer.play();
             }
           }}
         >
           {/* TODO animate state change */}
-          {(isBuffering || !isLoaded) && shouldLoad ? (
+          {bufferingDuringPlay || (!isLoaded && shouldLoad) ? (
             <ActivityIndicator color="white" />
           ) : playing ? (
             <FontAwesome6 name="pause" size={14} color="white" />

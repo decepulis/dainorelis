@@ -64,6 +64,10 @@
       <string>Nunito_900Black.ttf</string>
       <string>Nunito_900Black_Italic.ttf</string>
     </array>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>audio</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
