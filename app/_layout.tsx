@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
+import { AudioPro, AudioProContentType } from 'react-native-audio-pro';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import TrackPlayer from 'react-native-track-player';
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -14,14 +14,11 @@ import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
-import playbackService from '@/lib/utils/playbackService';
 
 Sentry.init({
   dsn: 'https://32e018a748671fa59063479f82810140@o4509108229242880.ingest.us.sentry.io/4509108265680896',
   sampleRate: __DEV__ ? 0 : 1,
 });
-
-TrackPlayer.registerPlaybackService(() => playbackService);
 
 type AppProps = {
   onLayout: (e: LayoutChangeEvent) => void;
@@ -75,7 +72,14 @@ function AppWithLoading() {
   useEffect(() => {
     async function prepare() {
       try {
-        await Promise.all([initI18n(), TrackPlayer.setupPlayer()]);
+        await Promise.all([initI18n()]);
+        // this isn't async... but... letting it slide for a bit.
+        AudioPro.configure({
+          contentType: AudioProContentType.MUSIC,
+          debug: __DEV__,
+          showNextPrevControls: false,
+          progressIntervalMs: 500,
+        });
       } catch (e) {
         console.warn(e);
       } finally {

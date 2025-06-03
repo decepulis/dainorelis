@@ -85,6 +85,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     [
+      'expo-build-properties',
+      {
+        android: {
+          minSdkVersion: 26,
+          compileSdkVersion: 35,
+          targetSdkVersion: 35,
+        },
+      },
+    ],
+    [
       './plugins/withAndroidDrawables',
       {
         drawableFiles: [

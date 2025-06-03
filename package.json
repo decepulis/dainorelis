@@ -47,6 +47,7 @@
     "react-dom": "19.0.0",
     "react-i18next": "^15.4.1",
     "react-native": "0.79.2",
+    "react-native-audio-pro": "^9.9.1",
     "react-native-blob-util": "^0.21.2",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-markdown-display": "^7.0.2",
@@ -55,9 +56,9 @@
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.10.0",
-    "react-native-track-player": "^4.1.1",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "expo-build-properties": "~0.14.6"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
