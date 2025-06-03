@@ -13,13 +13,15 @@ const fieldFlags: Record<keyof Song['fields'], boolean> = {
   Videos: false,
   Audio: true,
   PDFs: true,
+  Translations: true,
   Tags: false,
   Sources: false,
   'Recommended Key': false,
   'Music Author': true,
   'Text Author': true,
-  'LT Description': false,
-  'EN Description': false,
+  'LT Description': true,
+  'EN Description': true,
+  'AI-Generated Description': true,
 } as const;
 
 const outputDir = path.join(__dirname, '..');
@@ -57,6 +59,7 @@ async function getSongs() {
         'Videos',
         'Audio',
         'PDFs',
+        'Translations',
         'Tags',
         'Sources',
         'Recommended Key',
@@ -99,6 +102,14 @@ async function getPDFs() {
     .select({
       view: 'Grid view',
       fields: ['Variant Name', 'URL'],
+    })
+    .all();
+}
+async function getTranslations() {
+  return await base('Translations')
+    .select({
+      view: 'Grid view',
+      fields: ['Title', 'Variant Name', 'EN Variant Name', 'Lyrics', 'AI Generated', 'Notes'],
     })
     .all();
 }
@@ -166,12 +177,13 @@ function adjustChordWhitespace(lyrics: FieldSet[string] | FieldSet[]) {
 // get those songs
 async function updateSongs() {
   try {
-    const [songs, lyrics, videos, audio, pdfs] = await Promise.all([
+    const [songs, lyrics, videos, audio, pdfs, translations] = await Promise.all([
       getSongs(),
       getLyrics(),
       getVideos(),
       getAudio(),
       getPDFs(),
+      getTranslations(),
     ]);
 
     const songFile = songs.map((song) => {
@@ -181,6 +193,7 @@ async function updateSongs() {
       const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos');
       const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas');
       const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas');
+      const Translations = assignVariantNames(getRecordsForField(song.fields.Translations, translations), 'Vertimas');
 
       return {
         id: song.id,
@@ -190,6 +203,7 @@ async function updateSongs() {
           Videos,
           Audio,
           PDFs,
+          Translations,
         },
       };
     });
