@@ -4,6 +4,8 @@
   "version": "2.0.0",
   "scripts": {
     "update-songs": "ts-node --project tsconfig.scripts.json ./scripts/update-songs.ts",
+    "generate-metadata": "ts-node --project tsconfig.scripts.json ./scripts/generate-song-metadata.ts",
+    "generate-metadata:test": "ts-node --project tsconfig.scripts.json ./scripts/generate-song-metadata.ts --limit=5",
     "dev": "expo start",
     "dev:android": "expo run:android",
     "dev:ios": "expo run:ios",
@@ -44,6 +46,7 @@
     "fuse.js": "^7.1.0",
     "i18next": "^25.0.2",
     "markdown-it": "^14.1.0",
+    "openai": "^5.0.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-i18next": "^15.4.1",
