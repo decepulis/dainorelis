@@ -44,7 +44,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
@@ -236,13 +236,13 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
                 width: durationWidth,
                 top: padding,
                 bottom: padding,
-                justifyContent: activeMedia['Variant Name'] ? 'space-between' : 'center',
+                justifyContent: media.length > 1 ? 'space-between' : 'center',
               },
             ]}
           >
-            {activeMedia['Variant Name'] ? (
+            {media.length > 1 ? (
               <ThemedText style={{ color: 'white' }} numberOfLines={1}>
-                {activeMedia['Variant Name'].replace('Įrašas', t('media'))}
+                {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
               </ThemedText>
             ) : null}
             <Animated.View
