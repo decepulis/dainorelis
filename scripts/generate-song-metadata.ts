@@ -45,7 +45,7 @@ Provide the following:
 
 3. An English translation of the title
 
-3. An English translation of the lyrics. Use only bold and italic markdown formatting (** and *), if needed. Do not include any other formatting. Try to preserve the poetic elements like rhythm when possible, while ensuring the meaning is accurately conveyed. For idiomatic expressions or culturally-specific concepts, aim for the closest English equivalent that captures the intended meaning.
+3. An English translation of the lyrics. Ignore markdown links when translating. Try to preserve the poetic elements like rhythm when possible, while ensuring the meaning is accurately conveyed. For idiomatic expressions or culturally-specific concepts, aim for the closest English equivalent that captures the intended meaning.
 
 Format your response as JSON:
 {
@@ -120,7 +120,15 @@ async function processSongs(limit?: number) {
     // Create a single query to get all the data we need
     let query = base('Songs').select({
       view: 'Grid view',
-      fields: ['Name', 'Lyrics', 'LT Description', 'EN Description', 'AI Description', 'EN Title', 'EN Translation'],
+      fields: [
+        'Name',
+        'Lyrics',
+        'LT Description',
+        'EN Description',
+        'AI-Generated Description',
+        'EN Title',
+        'EN Translation',
+      ],
     });
 
     // Get all records (we'll filter for processing later)
@@ -160,7 +168,6 @@ async function processSongs(limit?: number) {
         !limit &&
         record.fields['LT Description'] &&
         record.fields['EN Description'] &&
-        record.fields['AI Description'] &&
         record.fields['EN Title'] &&
         record.fields['EN Translation']
       ) {
@@ -171,7 +178,6 @@ async function processSongs(limit?: number) {
         limit &&
         (record.fields['LT Description'] ||
           record.fields['EN Description'] ||
-          record.fields['AI Description'] ||
           record.fields['EN Title'] ||
           record.fields['EN Translation'])
       ) {
@@ -210,7 +216,7 @@ async function processSongs(limit?: number) {
           fields: {
             'EN Description': metadata.enDescription,
             'LT Description': metadata.ltDescription,
-            'AI Description': true,
+            'AI-Generated Description': true,
             'EN Title': metadata.enTitle,
             'EN Translation': metadata.enTranslation,
           },
@@ -263,13 +269,16 @@ async function processSongs(limit?: number) {
   }
 }
 
-// Allow running with a limit for testing
-const args = process.argv.slice(2);
-const limitArg = args.find((arg) => arg.startsWith('--limit='));
-const limit = limitArg ? parseInt(limitArg.split('=')[1], 10) : undefined;
+// translations  were moved to their own table
+// I'd suggest just opening up ChatGPT and pasting in the prompt yourself
+console.error('⚠️ This script no longer matches the current Airtable schema. Update before running,');
+// // Allow running with a limit for testing
+// const args = process.argv.slice(2);
+// const limitArg = args.find((arg) => arg.startsWith('--limit='));
+// const limit = limitArg ? parseInt(limitArg.split('=')[1], 10) : undefined;
 
-// Run the script
-processSongs(limit).catch((error) => {
-  console.error('Script failed:', error);
-  process.exit(1);
-});
+// // Run the script
+// processSongs(limit).catch((error) => {
+//   console.error('Script failed:', error);
+//   process.exit(1);
+// });
