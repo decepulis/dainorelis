@@ -1,18 +1,11 @@
-import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
+import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
+import { AudioPro, useAudioPro } from 'react-native-audio-pro';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
-import TrackPlayer, {
-  AppKilledPlaybackBehavior,
-  Capability,
-  State,
-  useIsPlaying,
-  usePlaybackState,
-  useProgress,
-} from 'react-native-track-player';
 
 import * as Haptics from 'expo-haptics';
 
@@ -23,7 +16,6 @@ import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
-import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
@@ -93,72 +85,36 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
   );
 
   // Manage media
-  const [shouldLoad, setShouldLoad] = useState(false);
   const activeMedia = media[activeMediaIndex];
 
-  // load that TrackPlayer up
-  useEffect(() => {
-    if (shouldLoad && activeMedia) {
-      // Clear any existing tracks and add the new one
-      const setupTrack = async () => {
-        try {
-          await TrackPlayer.reset();
-          await TrackPlayer.add({
-            id: activeMedia.URL,
-            url: activeMedia.URL,
-            title,
-            artist: activeMedia['Variant Name'].replace('Įrašas', t('media')), // this works on iOS. What about android?
-            artwork,
-          });
-        } catch (error) {
-          console.error('Error setting up track:', error);
-          Sentry.captureException(error);
-        }
-      };
+  // AudioPro state
+  const { state, position, duration, playingTrack, error } = useAudioPro();
+  const isLoaded = state !== 'IDLE' && state !== 'ERROR';
+  const playing = state === 'PLAYING';
+  const loading = state === 'LOADING';
 
-      setupTrack();
+  const loadTrack = useCallback(() => {
+    try {
+      AudioPro.stop();
+      AudioPro.play({
+        id: activeMedia.URL,
+        url: activeMedia.URL,
+        title,
+        artist: activeMedia['Variant Name'].replace('Įrašas', t('media')),
+        artwork: artwork,
+      });
+    } catch (error) {
+      console.error('Error setting up track:', error);
+      Sentry.captureException(error);
     }
+  }, [activeMedia, title, t]);
+
+  useEffect(() => {
     // Clean up when component unmounts or media changes
     return () => {
-      TrackPlayer.reset();
+      AudioPro.stop();
     };
-  }, [activeMedia, shouldLoad, t, title]);
-
-  // keep track player in sync with app color
-  const primary = useThemeColor('primary');
-  useEffect(() => {
-    TrackPlayer.updateOptions({
-      forwardJumpInterval: 10,
-      backwardJumpInterval: 10,
-      capabilities: [
-        Capability.Pause,
-        Capability.Play,
-        Capability.SeekTo,
-        Capability.JumpBackward,
-        Capability.JumpForward,
-      ],
-      compactCapabilities: [Capability.Pause, Capability.Play, Capability.JumpBackward],
-      color: Number(primary.replace('#', '0x')),
-      android: {
-        appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
-      },
-    });
-  }, [primary]);
-
-  // Get playback state
-  const playbackState = usePlaybackState();
-  const { position, duration } = useProgress(500); // Update every 500ms
-  const { playing, bufferingDuringPlay } = useIsPlaying();
-  const isLoaded = playbackState.state !== State.None && playbackState.state !== State.Error;
-
-  // play after loading is complete if shouldPlayOnLoad is true
-  const [shouldPlayOnLoad, setShouldPlayOnLoad] = useState(false);
-  useEffect(() => {
-    if (isLoaded && shouldPlayOnLoad) {
-      TrackPlayer.play();
-      setShouldPlayOnLoad(false);
-    }
-  }, [isLoaded, shouldPlayOnLoad]);
+  }, []);
 
   // Manage animations
   const isOpenSv = useSharedValue(false);
@@ -198,12 +154,13 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
   // sync state with time elapsed
   useEffect(() => {
     if (!isGesturingSv.value) {
-      progressSv.value = position / (duration || 1); // Avoid division by zero
+      progressSv.value = duration ? position / duration : 0;
     }
   }, [position, duration, isGesturingSv, progressSv]);
   const seekOnGestureFinalize = useCallback(
     (time: number) => {
-      TrackPlayer.seekTo(time).finally(() => (isGesturingSv.value = false));
+      AudioPro.seekTo(time * 1000);
+      isGesturingSv.value = false;
     },
     [isGesturingSv]
   );
@@ -231,7 +188,7 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
       }
     })
     .onFinalize(() => {
-      const seekTime = progressSv.value * duration;
+      const seekTime = (progressSv.value * (duration || 0)) / 1000;
       runOnJS(seekOnGestureFinalize)(seekTime);
     });
 
@@ -271,12 +228,11 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
           hitSlop={{ top: padding, bottom: padding, left: padding }}
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
-            setShouldLoad(true);
             isOpenSv.value = !isOpenSv.value;
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
-            <FontAwesome6 name="info" size={14} color="white" />
+            <FontAwesome6 name="info" size={15} color="white" style={{ position: 'relative', top: -1 }} />
           </Animated.View>
           <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
             <FontAwesome6 name="chevron-right" size={16} color="white" />
@@ -365,17 +321,18 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
             if (!isLoaded) {
-              setShouldLoad(true);
-              setShouldPlayOnLoad(true);
+              // load
+              loadTrack();
             } else if (playing) {
-              TrackPlayer.pause();
+              // pause
+              AudioPro.pause();
             } else {
-              TrackPlayer.play();
+              // play
+              loadTrack();
             }
           }}
         >
-          {/* TODO animate state change */}
-          {bufferingDuringPlay || (!isLoaded && shouldLoad) ? (
+          {loading ? (
             <ActivityIndicator color="white" />
           ) : playing ? (
             <FontAwesome6 name="pause" size={14} color="white" />
