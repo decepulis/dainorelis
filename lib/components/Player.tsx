@@ -17,18 +17,20 @@ import TrackPlayer, {
 import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
+import * as Sentry from '@sentry/react-native';
 
 import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
-import useIsAppVisible from '../hooks/useAppState';
 import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
+
+const artwork = require('@/assets/images/icon.png');
 
 const padding = buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
@@ -43,17 +45,17 @@ const springConfig: SpringConfig = {
 
 // TODO figure out a way to fling this around to get it out of the way of PDFs
 type Props = {
+  title: string;
   media: Audio[];
   activeMediaIndex: number;
   setActiveMediaIndex: (index: number) => void;
   style?: ComponentPropsWithoutRef<typeof Animated.View>['style'];
 };
-export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
+export default function Player({ title, media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const { t } = useTranslation();
-  const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
   // layout
@@ -104,12 +106,13 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           await TrackPlayer.add({
             id: activeMedia.URL,
             url: activeMedia.URL,
-            title: activeMedia['Variant Name'].replace('Įrašas', t('media')),
-            artist: activeMedia.Artist,
-            album: activeMedia.Album,
+            title,
+            artist: activeMedia['Variant Name'].replace('Įrašas', t('media')), // this works on iOS. What about android?
+            artwork,
           });
         } catch (error) {
           console.error('Error setting up track:', error);
+          Sentry.captureException(error);
         }
       };
 
@@ -119,7 +122,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
     return () => {
       TrackPlayer.reset();
     };
-  }, [activeMedia, shouldLoad, t]);
+  }, [activeMedia, shouldLoad, t, title]);
 
   // keep track player in sync with app color
   const primary = useThemeColor('primary');
@@ -144,7 +147,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
   // Get playback state
   const playbackState = usePlaybackState();
-  const { position, duration, buffered } = useProgress(500); // Update every 500ms
+  const { position, duration } = useProgress(500); // Update every 500ms
   const { playing, bufferingDuringPlay } = useIsPlaying();
   const isLoaded = playbackState.state !== State.None && playbackState.state !== State.Error;
 
@@ -156,13 +159,6 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
       setShouldPlayOnLoad(false);
     }
   }, [isLoaded, shouldPlayOnLoad]);
-
-  // handle background audio
-  useEffect(() => {
-    if (!isAppVisible) {
-      TrackPlayer.pause();
-    }
-  }, [isAppVisible]);
 
   // Manage animations
   const isOpenSv = useSharedValue(false);
@@ -280,10 +276,10 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
-            <FontAwesome6 name="info" size={17} color="white" />
+            <FontAwesome6 name="info" size={14} color="white" />
           </Animated.View>
           <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="xmark" size={18} color="white" />
+            <FontAwesome6 name="chevron-right" size={16} color="white" />
           </Animated.View>
         </Button>
 
@@ -315,27 +311,17 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
                 {
                   borderRadius: 9999,
                   overflow: 'hidden',
-                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
                 },
+                isHighContrastEnabled
+                  ? {
+                      borderColor: `rgba(255,255,255,0.4)`,
+                      borderWidth: 1,
+                    }
+                  : {
+                      backgroundColor: `rgba(255,255,255,0.4)`,
+                    },
               ]}
             >
-              {/* buffering indicator */}
-              {!isHighContrastEnabled ? (
-                <Animated.View
-                  style={[
-                    {
-                      position: 'absolute',
-                      left: 0,
-                      top: 0,
-                      bottom: 0,
-                      width: `${buffered * 100}%`,
-                      borderRadius: 9999,
-                      backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                    },
-                  ]}
-                />
-              ) : null}
-              {/* playback indicator */}
               <Animated.View
                 style={[
                   durationStyles,
