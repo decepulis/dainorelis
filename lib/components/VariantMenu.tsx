@@ -16,16 +16,13 @@ type Props = {
   setActiveVariantIndex: (index: number) => void;
 };
 export default function VariantMenu({ children, variants, activeVariantIndex, setActiveVariantIndex }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = variants.map((variant, index) => {
-    let variantName = variant['Variant Name'];
-    variantName = variantName.replace('Žodžiai', t('lyrics'));
-    variantName = variantName.replace('Natos', t('sheetMusic'));
     return {
       id: index.toString(),
-      title: variantName,
+      title: i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'],
       state: activeVariantIndex === index ? 'on' : 'off',
       imageColor: isDark ? 'white' : 'black',
       image: Platform.select({
