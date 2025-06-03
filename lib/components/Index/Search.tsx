@@ -238,7 +238,7 @@ export default function Search({
               {
                 height: '100%',
                 color: text,
-                marginRight: Platform.OS === 'ios' ? 0 : 40,
+                marginRight: Platform.OS === 'ios' ? 10 : 40,
                 marginLeft: 40,
               },
             ]}
