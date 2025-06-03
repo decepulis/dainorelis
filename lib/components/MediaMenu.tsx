@@ -16,15 +16,13 @@ type Props = {
   hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
 };
 export default function MediaMenu({ media, activeMediaIndex, setActiveMediaIndex, hitSlop, style }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = media.map((m, index) => {
-    let mediaName = m['Variant Name'];
-    mediaName = mediaName.replace('Įrašas', t('media'));
     return {
       id: index.toString(),
-      title: mediaName,
+      title: i18n.language === 'en' ? m['EN Variant Name'] : m['Variant Name'],
       state: activeMediaIndex === index ? 'on' : 'off',
       imageColor: isDark ? 'white' : 'black',
       image: Platform.select({

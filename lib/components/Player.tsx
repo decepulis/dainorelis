@@ -47,7 +47,7 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
   // layout
@@ -100,14 +100,14 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
         id: activeMedia.URL,
         url: activeMedia.URL,
         title,
-        artist: activeMedia['Variant Name'].replace('Įrašas', t('media')),
+        artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
         artwork: artwork,
       });
     } catch (error) {
       console.error('Error setting up track:', error);
       Sentry.captureException(error);
     }
-  }, [activeMedia, title, t]);
+  }, [activeMedia, title, i18n.language]);
 
   useEffect(() => {
     // Clean up when component unmounts or media changes
@@ -252,13 +252,13 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
                 width: durationWidth,
                 top: padding,
                 bottom: padding,
-                justifyContent: activeMedia['Variant Name'] ? 'space-between' : 'center',
+                justifyContent: media.length > 1 ? 'space-between' : 'center',
               },
             ]}
           >
-            {activeMedia['Variant Name'] ? (
+            {media.length > 1 ? (
               <ThemedText style={{ color: 'white' }} numberOfLines={1}>
-                {activeMedia['Variant Name'].replace('Įrašas', t('media'))}
+                {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
               </ThemedText>
             ) : null}
             <Animated.View
