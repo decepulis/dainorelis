@@ -1,10 +1,25 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
+// Import package.json to get version number
+import packageJson from './package.json';
+
+// Generate build number in format yymmdd##
+const buildToday = '01';
+const generateBuildNumber = (): string => {
+  const date = new Date();
+  const year = date.getFullYear().toString().slice(-2);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}${month}${day}${buildToday}`;
+};
+
+const buildNumber = generateBuildNumber();
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'Dainorėlis',
   slug: 'dainorelis',
-  version: '2.0.2',
+  version: packageJson.version,
   orientation: 'default',
   icon: './assets/images/icon.png',
   scheme: 'myapp',
@@ -13,7 +28,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
-    buildNumber: '25052701',
+    buildNumber: buildNumber,
     config: {
       usesNonExemptEncryption: false,
     },
@@ -27,7 +42,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#70997F',
     },
     package: 'com.dainorelis.dainorelis',
-    versionCode: 25052701,
+    versionCode: parseInt(buildNumber, 10),
     edgeToEdgeEnabled: true,
   },
   web: {
