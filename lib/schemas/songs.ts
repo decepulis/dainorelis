@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { LyricsSchema } from './lyrics';
+import { TranslationsSchema } from './translations';
 import { VideosSchema } from './videos';
 import { AudioSchema } from './audio';
 import { PDFsSchema } from './pdfs';
@@ -12,6 +13,7 @@ export const SongSchema = z.object({
     Videos: z.array(VideosSchema).optional(),
     Audio: z.array(AudioSchema).optional(),
     PDFs: z.array(PDFsSchema).optional(),
+    Translations: z.array(TranslationsSchema).optional(),
     Tags: z.array(z.string()).optional(),
     Sources: z.array(z.string()).optional(),
     'Recommended Key': z.string().optional(),
@@ -19,6 +21,7 @@ export const SongSchema = z.object({
     'Text Author': z.string().optional(),
     'LT Description': z.string().optional(),
     'EN Description': z.string().optional(),
+    'AI-Generated Description': z.boolean().optional(),
   }),
 });
 export type Song = z.infer<typeof SongSchema>;
