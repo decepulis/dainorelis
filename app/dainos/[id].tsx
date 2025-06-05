@@ -279,7 +279,7 @@ export default function Page() {
           />
         </View>
       )}
-      <Player media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
+      <Player title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
     </Fragment>
   );
 }
