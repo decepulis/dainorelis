@@ -10,7 +10,7 @@ import MenuView from './MenuView';
 
 type Props = {
   media: { [id: string]: Audio };
-  activeMediaId: string;
+  activeMediaId: string | undefined;
   setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof MenuView>['style'];
   hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
