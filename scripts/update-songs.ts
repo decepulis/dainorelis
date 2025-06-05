@@ -67,6 +67,7 @@ async function getSongs() {
         'Text Author',
         'LT Description',
         'EN Description',
+        'AI-Generated Description',
       ],
       sort: [{ field: 'Name', direction: 'asc' }],
       filterByFormula: 'NOT(Hide)',

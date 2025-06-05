@@ -39,6 +39,8 @@ function App({ onLayout }: AppProps) {
           <Stack.Screen name="index" />
           <Stack.Screen name="nustatymai" options={{ presentation: 'modal' }} />
           <Stack.Screen name="dainos/[id]" />
+          <Stack.Screen name="dainos/[id]/vertimas" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="dainos/[id]/aprasymas" options={{ presentation: 'modal' }} />
         </Stack>
       </View>
     </>
