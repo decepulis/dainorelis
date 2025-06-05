@@ -45,7 +45,7 @@ export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBac
   return (
     <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
       <StatusBar style="light" />
-      <SystemView variant="primary" shadow={shadow} style={{ flex: 1 }}></SystemView>
+      <SystemView shadow={shadow} style={{ flex: 1 }}></SystemView>
     </Animated.View>
   );
 }

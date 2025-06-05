@@ -90,7 +90,10 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   );
 
   // Manage media
-  const activeMedia = activeMediaId ? media[activeMediaId] : Object.values(media)[0];
+  const activeMedia = useMemo(() => {
+    if (Object.values(media).length === 0) return null;
+    return activeMediaId ? media[activeMediaId] : Object.values(media)[0];
+  }, [media, activeMediaId]);
 
   // AudioPro state
   const { state, position, duration, playingTrack } = useAudioPro();
@@ -98,18 +101,21 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const loading = state === 'LOADING';
 
   const track = useMemo(
-    () => ({
-      id: activeMedia.URL,
-      url: activeMedia.URL,
-      title,
-      artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
-      artwork: artwork,
-    }),
+    () =>
+      activeMedia
+        ? {
+            id: activeMedia.URL,
+            url: activeMedia.URL,
+            title,
+            artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
+            artwork: artwork,
+          }
+        : null,
     [activeMedia, title, i18n.language]
   );
   const [loadIntention, setLoadIntention] = useState(false);
   useEffect(() => {
-    if (loadIntention && !playingTrack) AudioPro.play(track, { autoPlay: false });
+    if (track && loadIntention && !playingTrack) AudioPro.play(track, { autoPlay: false });
   }, [track, loadIntention, playingTrack]);
 
   useEffect(() => {
@@ -239,7 +245,6 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
       ]}
     >
       <SystemView
-        variant="primary"
         style={{
           flex: 1,
           position: 'relative',
@@ -358,6 +363,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
+            if (!track) return;
             if (playing) {
               AudioPro.pause();
             } else if (playingTrack) {
