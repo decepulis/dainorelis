@@ -260,7 +260,12 @@ export default function Page() {
           />
         </View>
       )}
-      <Player media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex} />
+      <Player
+        title={title}
+        media={media}
+        activeMediaIndex={activeMediaIndex}
+        setActiveMediaIndex={setActiveMediaIndex}
+      />
     </Fragment>
   );
 }
