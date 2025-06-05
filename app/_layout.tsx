@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
+import { AudioPro, AudioProContentType } from 'react-native-audio-pro';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { setAudioModeAsync } from 'expo-audio';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -72,14 +72,14 @@ function AppWithLoading() {
   useEffect(() => {
     async function prepare() {
       try {
-        await Promise.all([
-          initI18n(),
-          setAudioModeAsync({
-            playsInSilentMode: true,
-            interruptionMode: 'doNotMix',
-            interruptionModeAndroid: 'doNotMix',
-          }),
-        ]);
+        await Promise.all([initI18n()]);
+        // this isn't async... but... letting it slide for a bit.
+        AudioPro.configure({
+          contentType: AudioProContentType.MUSIC,
+          // debug: __DEV__,
+          showNextPrevControls: false,
+          progressIntervalMs: 500,
+        });
       } catch (e) {
         console.warn(e);
       } finally {

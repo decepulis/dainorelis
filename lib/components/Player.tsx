@@ -1,12 +1,18 @@
 import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import { AudioPro, useAudioPro } from 'react-native-audio-pro';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, {
+  runOnJS,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -15,12 +21,13 @@ import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
-import useIsAppVisible from '../hooks/useAppState';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
+
+const artwork = require('@/assets/images/icon.png');
 
 const padding = buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
@@ -35,17 +42,17 @@ const springConfig: SpringConfig = {
 
 // TODO figure out a way to fling this around to get it out of the way of PDFs
 type Props = {
+  title: string;
   media: Audio[];
   activeMediaIndex: number;
   setActiveMediaIndex: (index: number) => void;
   style?: ComponentPropsWithoutRef<typeof Animated.View>['style'];
 };
-export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
+export default function Player({ title, media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const { t, i18n } = useTranslation();
-  const isAppVisible = useIsAppVisible();
+  const { i18n } = useTranslation();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
   // layout
@@ -83,33 +90,34 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   );
 
   // Manage media
-  const [shouldLoad, setShouldLoad] = useState(false);
   const activeMedia = media[activeMediaIndex];
-  // TODO maybe a better offline experience?
-  const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
-  const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
 
-  const [shouldPlayOnLoad, setShouldPlayOnLoad] = useState(false);
+  // AudioPro state
+  const { state, position, duration, playingTrack } = useAudioPro();
+  const playing = state === 'PLAYING';
+  const loading = state === 'LOADING';
+
+  const track = useMemo(
+    () => ({
+      id: activeMedia.URL,
+      url: activeMedia.URL,
+      title,
+      artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
+      artwork: artwork,
+    }),
+    [activeMedia, title, i18n.language]
+  );
+  const [loadIntention, setLoadIntention] = useState(false);
   useEffect(() => {
-    if (isLoaded && shouldPlayOnLoad) {
-      player.play();
-      setShouldPlayOnLoad(false);
-    }
-  }, [isLoaded, shouldPlayOnLoad, player]);
+    if (loadIntention && !playingTrack) AudioPro.play(track, { autoPlay: false });
+  }, [track, loadIntention, playingTrack]);
 
-  // handle background audio
   useEffect(() => {
-    if (!isAppVisible) {
-      player.pause();
-    }
-  }, [isAppVisible, player]);
-
-  // can't do this without setting playsInSilentMode == false
-  // (why can players like apple music do this?)
-  // TODO figure it out
-  // useEffect(() => {
-  //   setAudioModeAsync({ shouldPlayInBackground: true });
-  // }, []);
+    // Clean up when component unmounts or media changes
+    return () => {
+      AudioPro.clear();
+    };
+  }, []);
 
   // Manage animations
   const isOpenSv = useSharedValue(false);
@@ -123,10 +131,19 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
     opacity: withSpring(isOpenSv.value ? 1 : 0, springConfig),
     pointerEvents: isOpenSv.value ? 'auto' : 'none',
   }));
-  const plusStyles = useAnimatedStyle(() => ({
+  const infoButtonStyles = useAnimatedStyle(() => ({
+    opacity: withSpring(isOpenSv.value ? 0 : 1, springConfig),
     transform: [
       {
-        rotate: withSpring(isOpenSv.value ? '0deg' : '-90deg', springConfig),
+        scale: withSpring(isOpenSv.value ? 0.8 : 1, springConfig),
+      },
+    ],
+  }));
+  const closeButtonStyles = useAnimatedStyle(() => ({
+    opacity: withSpring(isOpenSv.value ? 1 : 0, springConfig),
+    transform: [
+      {
+        scale: withSpring(isOpenSv.value ? 1 : 0.8, springConfig),
       },
     ],
   }));
@@ -139,21 +156,23 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
   // sync state with time elapsed
   useEffect(() => {
-    if (!isGesturingSv.value) {
-      progressSv.value = currentTime / duration;
+    if (state !== 'LOADING' && !isGesturingSv.value) {
+      progressSv.value = duration ? position / duration : 0;
     }
-  }, [currentTime, duration, isGesturingSv, progressSv]);
+  }, [position, duration, isGesturingSv, progressSv, state]);
   const seekOnGestureFinalize = useCallback(
     (time: number) => {
-      player.seekTo(time).finally(() => (isGesturingSv.value = false));
+      AudioPro.seekTo(time * 1000);
+      isGesturingSv.value = false;
     },
-    [isGesturingSv, player]
+    [isGesturingSv]
   );
 
-  // override state with gesture
+  // override playback state with gesture
   const gesture = Gesture.Pan()
     .hitSlop({ ...buttonSlop, top: padding, bottom: padding })
-    .minDistance(1)
+    .minDistance(5)
+    .enabled(duration > 0)
     .onStart(() => {
       isGesturingSv.value = true;
       gestureStartProgressSv.value = progressSv.value;
@@ -172,8 +191,8 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
         didBumpSv.value = false;
       }
     })
-    .onFinalize(() => {
-      const seekTime = progressSv.value * duration;
+    .onEnd(() => {
+      const seekTime = (progressSv.value * (duration || 0)) / 1000;
       runOnJS(seekOnGestureFinalize)(seekTime);
     });
 
@@ -184,6 +203,24 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   const durationStyles = useAnimatedStyle(() => ({
     width: `${progressSv.value * 100}%`,
   }));
+
+  // translate progress to time
+  const timeMode = useSharedValue<'elapsed' | 'remaining'>('remaining');
+  const [time, setTime] = useState<string>('-0:00');
+  useAnimatedReaction(
+    () => {
+      const timeInSeconds =
+        timeMode.value === 'elapsed'
+          ? (progressSv.value * (duration || 0)) / 1000
+          : ((1 - progressSv.value) * (duration || 0)) / 1000;
+      const minutes = Math.floor(timeInSeconds / 60);
+      const seconds = Math.floor(timeInSeconds % 60);
+      const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      return timeMode.value === 'elapsed' ? formattedTime : `-${formattedTime}`;
+    },
+    (t) => runOnJS(setTime)(t)
+  );
+  // TODO add tap gesture to toggle time mode
 
   return activeMedia ? (
     <Animated.View
@@ -213,13 +250,15 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           hitSlop={{ top: padding, bottom: padding, left: padding }}
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
-            setShouldLoad(true);
             isOpenSv.value = !isOpenSv.value;
+            setLoadIntention(true);
           }}
         >
-          <FontAwesome6 name="minus" size={17} color="white" />
-          <Animated.View style={[plusStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="minus" size={17} color="white" />
+          <Animated.View style={[infoButtonStyles]}>
+            <FontAwesome6 name="info" size={15} color="white" style={{ position: 'relative', top: -1 }} />
+          </Animated.View>
+          <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
+            <FontAwesome6 name="chevron-right" size={16} color="white" />
           </Animated.View>
         </Button>
 
@@ -241,9 +280,21 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
             ]}
           >
             {media.length > 1 ? (
-              <ThemedText style={{ color: 'white' }} numberOfLines={1}>
-                {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
-              </ThemedText>
+              <View style={{ flexDirection: 'row', gap: padding / 2, justifyContent: 'space-between' }}>
+                <ThemedText style={{ color: 'white', flexShrink: 1 }} numberOfLines={1}>
+                  {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
+                </ThemedText>
+                <ThemedText
+                  style={{
+                    color: 'white',
+                    marginLeft: 'auto',
+                    opacity: !duration ? 0 : isHighContrastEnabled ? 1 : 0.75,
+                  }}
+                  numberOfLines={1}
+                >
+                  {time}
+                </ThemedText>
+              </View>
             ) : null}
             <Animated.View
               style={[
@@ -295,7 +346,10 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               hitSlop={{ top: padding, bottom: padding }}
               media={media}
               activeMediaIndex={activeMediaIndex}
-              setActiveMediaIndex={setActiveMediaIndex}
+              setActiveMediaIndex={(m) => {
+                setActiveMediaIndex(m);
+                AudioPro.clear();
+              }}
             />
           </Animated.View>
         ) : null}
@@ -304,18 +358,17 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
-            if (!isLoaded) {
-              setShouldLoad(true);
-              setShouldPlayOnLoad(true);
-            } else if (playing) {
-              player.pause();
+            if (playing) {
+              AudioPro.pause();
+            } else if (playingTrack) {
+              AudioPro.resume();
             } else {
-              player.play();
+              AudioPro.play(track);
             }
+            setLoadIntention(true);
           }}
         >
-          {/* TODO animate state change */}
-          {(isBuffering || !isLoaded) && shouldLoad ? (
+          {loading ? (
             <ActivityIndicator color="white" />
           ) : playing ? (
             <FontAwesome6 name="pause" size={14} color="white" />

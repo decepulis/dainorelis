@@ -1,4 +1,28 @@
 PODS:
+  - AudioPro (9.9.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - EXConstants (17.1.5):
@@ -31,8 +55,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - ExpoAsset (11.1.4):
-    - ExpoModulesCore
-  - ExpoAudio (0.4.5):
     - ExpoModulesCore
   - ExpoBlur (14.1.4):
     - ExpoModulesCore
@@ -2193,12 +2215,12 @@ PODS:
   - Yoga (0.0.0)
 
 DEPENDENCIES:
+  - AudioPro (from `../node_modules/react-native-audio-pro`)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
-  - ExpoAudio (from `../node_modules/expo-audio/ios`)
   - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
@@ -2306,6 +2328,8 @@ SPEC REPOS:
     - SocketRocket
 
 EXTERNAL SOURCES:
+  AudioPro:
+    :path: "../node_modules/react-native-audio-pro"
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DoubleConversion:
@@ -2316,8 +2340,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
-  ExpoAudio:
-    :path: "../node_modules/expo-audio/ios"
   ExpoBlur:
     :path: "../node_modules/expo-blur/ios"
   ExpoFileSystem:
@@ -2503,12 +2525,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AudioPro: 3916ed6c90a7fb81005aec6f0a091ef0fa76f061
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EXConstants: a1112af878fddfe6acc0399473ac56a07ced0f47
   Expo: ad4787f10326172e911554a04867649682efb4ce
   ExpoAsset: ecda157f3ef69824d04015fa796dcfbda2304f21
-  ExpoAudio: 3eb18f4be81d8b9b1be89ef984ee7007bcfb7dc7
   ExpoBlur: 7f9379db213e4a56aeceda82e94a7fea1b1d8c48
   ExpoFileSystem: 47ccd351beaa608f80f82a6f13ac8b0524ef529f
   ExpoFont: abbb91a911eb961652c2b0a22eef801860425ed6
