@@ -26,7 +26,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra malda Dievui, vadinančiam Jį mylinčiu Tėvu ir kūrėju. Tekste Dievas vaizduojamas kaip puodžius, formuojantis žmones, prašoma padaryti mus panašius į Jėzų ir suvienyti tikėjime. Garbės ir vienybės prašymai gali simbolizuoti dvasinį artumą ir bendrystę.",
-      "EN Description": "This song is a prayer-like hymn addressing God as a loving Father and creator. The lyrics use the image of God as a potter shaping people, asking to be made more like Jesus and to be united in faith. The references to giving glory and unity may symbolize a desire for spiritual closeness and harmony among believers."
+      "EN Description": "This song is a prayer-like hymn addressing God as a loving Father and creator. The lyrics use the image of God as a potter shaping people, asking to be made more like Jesus and to be united in faith. The references to giving glory and unity may symbolize a desire for spiritual closeness and harmony among believers.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -52,7 +53,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai linksma lietuviška liaudies daina apie žvirblį, kuris klausia balandžio, kaip sėti, laistyti ir prižiūrėti aguonėlę, aprašant visus augimo ir naudojimo etapus. Daina gali simbolizuoti gamtos ciklą ar kaimišką gyvenimą, bet daugiausia tai paprasta vaikams pažįstama veikla. Tokios dainos dažnai dainuojamos žaidžiant ar mokantis.",
-      "EN Description": "This is a playful Lithuanian folk song about a sparrow asking a pigeon how to plant, water, and care for a poppy flower, describing each step of growing and using poppy seeds. The song may symbolize the cycle of nature or traditional rural life, but it mainly focuses on simple actions familiar to children. Such songs are often sung by children and can be part of games or educational activities."
+      "EN Description": "This is a playful Lithuanian folk song about a sparrow asking a pigeon how to plant, water, and care for a poppy flower, describing each step of growing and using poppy seeds. The song may symbolize the cycle of nature or traditional rural life, but it mainly focuses on simple actions familiar to children. Such songs are often sung by children and can be part of games or educational activities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -78,7 +80,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie seses, kurios eina į darželį, dainuoja ir skina žalias rūtas – tai tradicinis lietuvių merginų tyrumo simbolis. Dainoje akcentuojama seserystė, jaunystė ir linksmybės, o pažadas netekėti gali simbolizuoti norą išlaikyti tyrumą ar artimą ryšį tarp seserų. Minimi apuokai, kurie juokiasi iš dainų, gali reikšti abejingus ar piktus stebėtojus.",
-      "EN Description": "This song is about sisters going together to a garden, singing together and picking rue (a traditional Lithuanian plant symbolizing purity and maidenhood). The lyrics celebrate sisterhood, youth, and the joy of singing, while also mentioning the intention to remain unmarried, which may symbolize valuing innocence or the bond between the sisters. The mention of not listening to 'apuokai' (owls) who mock their songs could represent ignoring negative opinions or outsiders."
+      "EN Description": "This song is about sisters going together to a garden, singing together and picking rue (a traditional Lithuanian plant symbolizing purity and maidenhood). The lyrics celebrate sisterhood, youth, and the joy of singing, while also mentioning the intention to remain unmarried, which may symbolize valuing innocence or the bond between the sisters. The mention of not listening to 'apuokai' (owls) who mock their songs could represent ignoring negative opinions or outsiders.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -105,7 +108,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai pasakoja apie pakelėje pražydusias alyvas, kurios ilgisi draugo ir ieško laimės bei meilės. Alyvos gali simbolizuoti prarastas viltis ar neišsipildžiusius troškimus, nes pavasaris greitai baigiasi ir ateina ruduo. Daina atspindi švelnų liūdesį dėl prabėgančių gražių akimirkų.",
-      "EN Description": "The lyrics describe lilacs blooming by the roadside, longing for a companion, and searching for happiness and love. The flowers may symbolize missed opportunities or unfulfilled dreams, as spring passes too quickly and autumn arrives early. The song expresses a gentle sadness about lost hopes and the fleeting nature of joyful moments."
+      "EN Description": "The lyrics describe lilacs blooming by the roadside, longing for a companion, and searching for happiness and love. The flowers may symbolize missed opportunities or unfulfilled dreams, as spring passes too quickly and autumn arrives early. The song expresses a gentle sadness about lost hopes and the fleeting nature of joyful moments.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -132,7 +136,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje linksmai kalbasi vaikinas ir mergina. Vaikinas giria merginos grožį, protą ir drabužius, siūlydamas savo atsidavimą, bet mergina jį šmaikščiai atstumia ir parodo savo nepriklausomybę. Trys plaukiančios antelės ir jojimas žirgu gali simbolizuoti kaimišką gyvenimą arba būti tik aplinkos aprašymas.",
-      "EN Description": "This song is a playful dialogue between a young man and a young woman. The young man admires the girl's beauty, intelligence, and clothing, offering her his devotion, but the girl responds with witty rejections, showing her independence. The imagery of ducks swimming and riding horses may symbolize traditional rural life, but could also simply set the scene for the conversation."
+      "EN Description": "This song is a playful dialogue between a young man and a young woman. The young man admires the girl's beauty, intelligence, and clothing, offering her his devotion, but the girl responds with witty rejections, showing her independence. The imagery of ducks swimming and riding horses may symbolize traditional rural life, but could also simply set the scene for the conversation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -161,7 +166,8 @@ const songs: SongFile = [
       "Music Author": "Taja",
       "Text Author": "Taja",
       "LT Description": "Šioje dainoje pasakojama apie vienišumą ir ilgesį, kai žmogų supa tamsa ir šaltis, o sapnai jo nebelanko. Balto angelo ant debesies vaizdas gali simbolizuoti prarastą viltį ar tyrumą, bet tai nėra aiškiai pasakoma. Daina nemini jokių konkrečių lietuviškų tradicijų ar švenčių.",
-      "EN Description": "This song tells of a person experiencing loneliness and longing, wrapped in darkness and coldness, where dreams no longer come to them. The image of a white angel sleeping peacefully on a cloud may symbolize lost hope or innocence, but it is not stated directly. The song does not refer to any specific Lithuanian tradition or holiday."
+      "EN Description": "This song tells of a person experiencing loneliness and longing, wrapped in darkness and coldness, where dreams no longer come to them. The image of a white angel sleeping peacefully on a cloud may symbolize lost hope or innocence, but it is not stated directly. The song does not refer to any specific Lithuanian tradition or holiday.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -193,7 +199,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje jauna mergina ir jaunas vaikinas anksti ryte yra žadinami savo tėvų, kurių balsai palyginami su paukščių giesmėmis. Rūta ir bėras žirgas gali simbolizuoti jaunystę ar meilę lietuvių tradicijose, tačiau jų reikšmė šiame tekste nėra visiškai aiški.",
-      "EN Description": "This song tells of a young woman and a young man being awakened early in the morning by their mother and father. The parents' calls are poetically compared to the sounds of birds, which may symbolize care or the passing of time. The mention of rue (rūta) and the chestnut horse might reference traditional symbols of youth and courtship in Lithuanian culture, but their exact meaning in this context is open to interpretation."
+      "EN Description": "This song tells of a young woman and a young man being awakened early in the morning by their mother and father. The parents' calls are poetically compared to the sounds of birds, which may symbolize care or the passing of time. The mention of rue (rūta) and the chestnut horse might reference traditional symbols of youth and courtship in Lithuanian culture, but their exact meaning in this context is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -225,7 +232,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kuri anksti keliasi, eina vandens, prausiasi ir kalbasi su broliais ir sese apie savo rūtą. Rūta lietuvių tradicijoje gali simbolizuoti mergystę ar tyrumą, o dainoje juntami artimųjų ryšiai ir tradiciniai papročiai, nors kai kurios eilutės gali turėti ir gilesnių prasmių.",
-      "EN Description": "This song tells of a girl who wakes up early to fetch water, washes herself, and then talks with her brothers and sister about her rue plant. The rue (rūtelė) can symbolize maidenhood or purity in Lithuanian tradition, and there are hints of concern about changes coming with adulthood or marriage. The song reflects family closeness and traditional customs, but some lines may hold deeper symbolic meanings that are open to interpretation."
+      "EN Description": "This song tells of a girl who wakes up early to fetch water, washes herself, and then talks with her brothers and sister about her rue plant. The rue (rūtelė) can symbolize maidenhood or purity in Lithuanian tradition, and there are hints of concern about changes coming with adulthood or marriage. The song reflects family closeness and traditional customs, but some lines may hold deeper symbolic meanings that are open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -257,7 +265,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje jaunos merginos grėbia žolę ir dainuoja, tačiau jaunas kareivėlis prašo jų nedainuoti liūdnų dainų, nes jis sužeistas kare. Daina atspindi ilgesį ir karo skausmą – tai dažnos lietuvių liaudies dainų temos. 'Dunojėlis' upė ir juodbėris žirgas gali simbolizuoti atstumą ar likimą, tačiau tiksli reikšmė gali skirtis.",
-      "EN Description": "This song tells about young women raking grass across the river and singing, but a young soldier asks them not to sing sad songs because he has been wounded in war. The lyrics reflect themes of longing, sadness, and the pain of war, common in Lithuanian folk songs. The mention of the 'Dunojėlis' river and a black horse may symbolize distance, separation, or fate, but the exact meaning can vary."
+      "EN Description": "This song tells about young women raking grass across the river and singing, but a young soldier asks them not to sing sad songs because he has been wounded in war. The lyrics reflect themes of longing, sadness, and the pain of war, common in Lithuanian folk songs. The mention of the 'Dunojėlis' river and a black horse may symbolize distance, separation, or fate, but the exact meaning can vary.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -284,7 +293,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie tris jaunikaičius, kurie, pamatę paukštelius prie liepos už ežero, nusprendžia aplankyti mergelę. Mergelė liūdi, nes jos brolis išėjo į karą ir nežinia, ar sugrįš. Liepa ir ežeras gali simbolizuoti lietuvišką gamtą ir ilgesį, kaip dažnai būna liaudies dainose.",
-      "EN Description": "The song tells about three young men, inspired by birds singing by a linden tree across the lake, who decide to visit a girl. When they meet her, she is sad because her brother has gone to war and she does not know if he will return. The linden tree and the lake can symbolize traditional Lithuanian nature imagery, often used in folk songs to evoke feelings of longing and melancholy, though their exact meaning here is uncertain."
+      "EN Description": "The song tells about three young men, inspired by birds singing by a linden tree across the lake, who decide to visit a girl. When they meet her, she is sad because her brother has gone to war and she does not know if he will return. The linden tree and the lake can symbolize traditional Lithuanian nature imagery, often used in folk songs to evoke feelings of longing and melancholy, though their exact meaning here is uncertain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -316,7 +326,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje tėvai liūdi, kai sūnus ruošiasi išvykti į Vilnių. Jie pataria jam nusipirkti tris triūbeles: vieną pasveikinti merginai, kitą pravirkdyti tėvus, o trečią sujudinti miestui. Daina gali simbolizuoti jaunuolio išėjimą iš namų, bet tikslus išvykimo tikslas nėra aiškus.",
-      "EN Description": "This folk song tells of parents weeping as their son prepares to leave for Vilnius. They advise him to buy three trumpets: one to greet his beloved, one to make his parents cry, and one to stir the whole city. The song may symbolize a young man's departure from home, possibly for military service or a new life, though the exact reason is not specified."
+      "EN Description": "This folk song tells of parents weeping as their son prepares to leave for Vilnius. They advise him to buy three trumpets: one to greet his beloved, one to make his parents cry, and one to stir the whole city. The song may symbolize a young man's departure from home, possibly for military service or a new life, though the exact reason is not specified.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -342,7 +353,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunuolį, kuris žada vesti merginą rudenį, bet vietoj to išvyksta į karą. Ant kalnelio stovintis klevelis ir jo lapeliai gali simbolizuoti laiką ar permainas, tačiau tai nėra aišku. Dainoje atsispindi meilės, pažadų ir išsiskyrimo temos, būdingos lietuvių liaudies dainoms.",
-      "EN Description": "This song tells a simple story about a young man who promises to marry a girl in the autumn, but instead goes off to serve as a soldier. The maple tree on the hill and its shimmering leaves may symbolize change or passing time, but this is not certain. The song reflects themes of love, promises, and separation, which are common in Lithuanian folk songs."
+      "EN Description": "This song tells a simple story about a young man who promises to marry a girl in the autumn, but instead goes off to serve as a soldier. The maple tree on the hill and its shimmering leaves may symbolize change or passing time, but this is not certain. The song reflects themes of love, promises, and separation, which are common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -368,7 +380,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie malūną ant kalno ir bajorą, turintį tris dukras, kurių kiekviena turi skirtingą piršlią: bajorą, artoją ir čigoną. Dainoje išvardijamos dukros ir jų piršliai; tai gali simbolizuoti skirtingus socialinius sluoksnius ar charakterius, bet tai nėra aiškiai pasakyta. Priegiesmyje girdimi žaismingi, beprasmiai žodžiai, būdingi lietuvių liaudies dainoms.",
-      "EN Description": "This folk song tells of a mill on a hill and a nobleman who has three daughters, each with a different suitor: a nobleman, a ploughman, and a gypsy. The song lists the daughters' names and their suitors, which may symbolize differences in social status or character, but this is not explicitly stated. The refrain uses playful, nonsensical words typical of Lithuanian folk songs, which often serve to create rhythm and a fun mood."
+      "EN Description": "This folk song tells of a mill on a hill and a nobleman who has three daughters, each with a different suitor: a nobleman, a ploughman, and a gypsy. The song lists the daughters' names and their suitors, which may symbolize differences in social status or character, but this is not explicitly stated. The refrain uses playful, nonsensical words typical of Lithuanian folk songs, which often serve to create rhythm and a fun mood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -400,7 +413,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, stovinčią prie šulinio, ir vaikiną, prašantį pagirdyti žirgą. Mergina atsisako, nes yra basa ir bijo sušalti kojas. Dainoje vyrauja gamtos vaizdai, kurie gali simbolizuoti kuklumą ar santūrumą tarp jaunų žmonių kaime.",
-      "EN Description": "This song tells a simple story where a young woman stands alone by a well, and a young man riding by asks her to give his horse some water. She refuses because she is barefoot and the dew is cold, so she doesn't want her feet to freeze. The text uses natural imagery and may symbolize shyness or the distance between young people in traditional village life, but this is not certain."
+      "EN Description": "This song tells a simple story where a young woman stands alone by a well, and a young man riding by asks her to give his horse some water. She refuses because she is barefoot and the dew is cold, so she doesn't want her feet to freeze. The text uses natural imagery and may symbolize shyness or the distance between young people in traditional village life, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -426,7 +440,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie čigonus, stovinčius ant kalno, dainuojančius ir šokančius. Dainos pasakotojas įsimyli jauną čigonę, o vėliau to gailisi ir norėtų, kad nebūtų taip pasielgęs. Tekstas gali simbolizuoti aistringos meilės pasekmes, tačiau tai nėra tikra.",
-      "EN Description": "The song tells about a group of Roma (Gypsies) standing on a hill, singing and dancing. The narrator falls in love with a young Roma woman, and later regrets this, wishing he had not stopped or fallen in love. The lyrics may symbolize the allure and consequences of passionate, impulsive love, but this is not certain."
+      "EN Description": "The song tells about a group of Roma (Gypsies) standing on a hill, singing and dancing. The narrator falls in love with a young Roma woman, and later regrets this, wishing he had not stopped or fallen in love. The lyrics may symbolize the allure and consequences of passionate, impulsive love, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -452,7 +467,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie ant kalno siūbuojančius karklus ir apačioje tekančią upę. Susitinka jauna mergina ir jaunuolis, jų pokalbis švelnus. Gėlės ir gamtos vaizdai gali simbolizuoti jaunystę ir grožį, tačiau tai nėra tikslu. Daina atspindi tradicinį lietuvių kaimo gyvenimą, paminimos šeimos trobos ir nakvynės vietos.",
-      "EN Description": "This folk song tells of a willow swaying on a hill and water flowing in the valley below. A young maiden and a young man meet, exchanging gentle words. The imagery of flowers and nature may symbolize youth and beauty, but this is not certain. The song reflects traditional Lithuanian rural life, with references to family homes and sleeping places."
+      "EN Description": "This folk song tells of a willow swaying on a hill and water flowing in the valley below. A young maiden and a young man meet, exchanging gentle words. The imagery of flowers and nature may symbolize youth and beauty, but this is not certain. The song reflects traditional Lithuanian rural life, with references to family homes and sleeping places.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -484,7 +500,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie lietuvių raitelius, atjojančius prie kalno dvaro ir kviečiančius merginą išeiti girdyti žirgų. Mergina delsia, nes močiutė jai liepė nekalbėti su jauniais, tai gali simbolizuoti tradicines vertybes ir pagarbą vyresniems. Daina susijusi su vestuvių arba piršlybų tradicijomis.",
-      "EN Description": "This song tells about Lithuanian riders arriving at a hilltop manor, where they invite a young woman to come out and tend to their horses. The girl hesitates, saying her grandmother told her not to speak with young men, which may symbolize traditional values and the importance of listening to elders. The song is connected to wedding or courtship traditions in Lithuania, where symbolic flowers like rue and lily often represent purity or maidenhood."
+      "EN Description": "This song tells about Lithuanian riders arriving at a hilltop manor, where they invite a young woman to come out and tend to their horses. The girl hesitates, saying her grandmother told her not to speak with young men, which may symbolize traditional values and the importance of listening to elders. The song is connected to wedding or courtship traditions in Lithuania, where symbolic flowers like rue and lily often represent purity or maidenhood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -510,7 +527,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje trys seserys grėbia šieną, o tėvas kiekvienai žada kitokį jaunikį: čigoną, bajorą ir artoją. Vyresnėlės atsisako, nes pažįsta jaunikio darbus, o jauniausioji sutinka tekėti už artojo, žinodama jo darbštumą. Skirtingi jaunikiai gali simbolizuoti įvairius visuomenės sluoksnius, nors tai tekste nepasakyta tiesiogiai.",
-      "EN Description": "This folk song tells of three sisters raking hay in a field, each being promised in marriage by their father to different men: a gypsy, a nobleman, and a ploughman. The older sisters refuse their matches, knowing the true nature of the suitors, while the youngest agrees to marry the ploughman, whose honest work her father knows. The different suitors may symbolize various classes or types of men in Lithuanian society, but this is not stated directly in the text."
+      "EN Description": "This folk song tells of three sisters raking hay in a field, each being promised in marriage by their father to different men: a gypsy, a nobleman, and a ploughman. The older sisters refuse their matches, knowing the true nature of the suitors, while the youngest agrees to marry the ploughman, whose honest work her father knows. The different suitors may symbolize various classes or types of men in Lithuanian society, but this is not stated directly in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -536,7 +554,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie prisiminimus prie ežero ir prarastą meilę. Dainininkas aprašo ramią akimirką su laiveliu ir vandens lelijomis, bet dabar jaučia liūdesį, nes mylimasis susirado kitą. Kanklių skambesys ir laivelis be irklų gali simbolizuoti ilgesį ir negalėjimą judėti toliau.",
-      "EN Description": "This song tells about someone remembering a lost love by a lake. The singer describes a peaceful scene with a boat and water lilies, but now feels sadness because their loved one has found someone else. The gentle kanklės music and the image of drifting without oars may symbolize longing and being unable to move forward, though this is not stated directly."
+      "EN Description": "This song tells about someone remembering a lost love by a lake. The singer describes a peaceful scene with a boat and water lilies, but now feels sadness because their loved one has found someone else. The gentle kanklės music and the image of drifting without oars may symbolize longing and being unable to move forward, though this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -567,7 +586,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie kareivį, gulintį ant Nemuno kranto ir svajojantį apie drąsią kovą už teisingą Lietuvą. Tekstas gali simbolizuoti viltį, ilgesį ir raginimą veikti, tačiau tikslus istorinis kontekstas nėra aiškus. Kartojamos „tumba tumba“ eilutės primena liaudies ar žygiavimo dainų priedainius.",
-      "EN Description": "This song tells of a soldier lying on the bank of the Nemunas River, looking up at the sky and dreaming of fighting bravely to liberate a just Lithuania. The lyrics may symbolize longing, hope, and a call to action, but the exact historical context is not clear. The repeated 'tumba tumba' lines function as a rhythmic refrain, common in folk or marching songs."
+      "EN Description": "This song tells of a soldier lying on the bank of the Nemunas River, looking up at the sky and dreaming of fighting bravely to liberate a just Lithuania. The lyrics may symbolize longing, hope, and a call to action, but the exact historical context is not clear. The repeated 'tumba tumba' lines function as a rhythmic refrain, common in folk or marching songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -600,7 +620,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie sūnų, paliekantį tėvo namus ir išvežamą į svetimą šalį, dėl ko išgyvenamas liūdesys ir išsiskyrimo skausmas. Motyvai, tokie kaip žirgas ir nauja stanelė, gali simbolizuoti vaikystės pabaigą ar sunkią kelionę, tačiau tai nėra visiškai aišku. Tokios temos dažnos lietuvių liaudies dainose, ypač kalbant apie išvykimus ar tremtį.",
-      "EN Description": "This song tells of a young man leaving his father's home, possibly against his will, as his father takes him to a foreign land. The lyrics mention the sorrow of parting, symbolized by the son's tears, and may represent themes of farewell, exile, or forced migration, which were common in Lithuanian folk songs. The mention of the horse and the new stable could symbolize the end of childhood and the beginning of a difficult journey, but this is open to interpretation."
+      "EN Description": "This song tells of a young man leaving his father's home, possibly against his will, as his father takes him to a foreign land. The lyrics mention the sorrow of parting, symbolized by the son's tears, and may represent themes of farewell, exile, or forced migration, which were common in Lithuanian folk songs. The mention of the horse and the new stable could symbolize the end of childhood and the beginning of a difficult journey, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -627,7 +648,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie norą išsaugoti brangią akimirką ir mylimo žmogaus artumą. Antilopės įvaizdis gali simbolizuoti trapumą ir laikinumą, kurį lyrinis subjektas bando apsaugoti, net įsivaizduodamas uždarymą „eilėraščio narve“. Dainoje jaučiamas ilgesys ir baimė prarasti.",
-      "EN Description": "This song is about trying to preserve a deeply meaningful moment and the presence of a beloved person. The imagery of an 'antelope' may symbolize something delicate and fleeting, which the narrator wants to keep safe, even imagining capturing it in a 'poem's cage.' The lyrics express both longing and a fear of loss, using nature and gentle metaphors to convey vulnerability."
+      "EN Description": "This song is about trying to preserve a deeply meaningful moment and the presence of a beloved person. The imagery of an 'antelope' may symbolize something delicate and fleeting, which the narrator wants to keep safe, even imagining capturing it in a 'poem's cage.' The lyrics express both longing and a fear of loss, using nature and gentle metaphors to convey vulnerability.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -653,7 +675,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Mergina sutinka Joną ir sudaužo molinį ąsotį. Ji labai liūdi dėl sudaužyto ąsočio, o Jonas bando ją nuraminti siūlydamas vis vertingesnius dalykus, kol galiausiai pasiūlo pats save. Tokios dainos dažnos lietuvių liaudies tradicijoje, ypač per bendrus susibūrimus ar šventes.",
-      "EN Description": "A girl meets Jonas and accidentally breaks a clay jug. She grieves for the jug, but Jonas tries to comfort her by offering gifts—first a horse, then a golden ring, and finally himself. The song may symbolize how small losses can lead to unexpected happiness, though the clay jug might also simply represent something dear to the girl. This type of playful song is common in Lithuanian folk tradition and often performed during communal gatherings."
+      "EN Description": "A girl meets Jonas and accidentally breaks a clay jug. She grieves for the jug, but Jonas tries to comfort her by offering gifts—first a horse, then a golden ring, and finally himself. The song may symbolize how small losses can lead to unexpected happiness, though the clay jug might also simply represent something dear to the girl. This type of playful song is common in Lithuanian folk tradition and often performed during communal gatherings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -680,7 +703,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie naują rytą, kupiną baimės ir grožio, naudodama poetinius vaizdus, tokius kaip sniegas, vynas ir žolė vietoj duonos. Tekste kalbama apie praeinančias akimirkas, liūdesį ir prisiminimus, apie kuriuos niekas nerašo ar nedainuoja. Nėra aiškių nuorodų į lietuviškas šventes ar istorinius įvykius, tačiau kasdienybės vaizdai gali turėti platesnę kultūrinę prasmę.",
-      "EN Description": "This song describes waking up to a new day filled with mixed emotions of fear and beauty, using poetic images like snow, wine, and grass instead of bread. The lyrics reflect on fleeting moments, melancholy, and memories that are not written or sung about, possibly symbolizing personal or universal feelings of longing and quiet sadness. There are no direct references to Lithuanian holidays or historical events, but the imagery of everyday life (like bread, grass, and morning sadness) could have broader cultural resonance."
+      "EN Description": "This song describes waking up to a new day filled with mixed emotions of fear and beauty, using poetic images like snow, wine, and grass instead of bread. The lyrics reflect on fleeting moments, melancholy, and memories that are not written or sung about, possibly symbolizing personal or universal feelings of longing and quiet sadness. There are no direct references to Lithuanian holidays or historical events, but the imagery of everyday life (like bread, grass, and morning sadness) could have broader cultural resonance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -706,7 +730,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje sesuo perspėjama paruošti kiemą svečiams, tarp kurių yra ir išdykęs jaunikaitis, sukeliantis rūpesčių. Minimos simbolinės gėlės, tokios kaip rūta ir lelija, kurios lietuvių liaudies tradicijoje gali reikšti nekaltumą ar moteriškumą, tačiau tiksli jų prasmė čia nėra aiški. Daina atspindi šeimos, netikėtų įvykių ir kaimiško gyvenimo temas.",
-      "EN Description": "This song tells the story of a sister being warned to prepare the yard for important guests, including a mischievous young man whose actions cause trouble. The lyrics mention symbolic flowers like rue and lily, which can represent innocence or femininity in Lithuanian folk tradition, but their exact meaning here is uncertain. The song might reflect themes of family, unexpected events, and traditional rural life."
+      "EN Description": "This song tells the story of a sister being warned to prepare the yard for important guests, including a mischievous young man whose actions cause trouble. The lyrics mention symbolic flowers like rue and lily, which can represent innocence or femininity in Lithuanian folk tradition, but their exact meaning here is uncertain. The song might reflect themes of family, unexpected events, and traditional rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -781,7 +806,8 @@ const songs: SongFile = [
       "Music Author": "Ritos Čyvaitė-Kliorienė",
       "Text Author": "Aušrinė Širvinskienė",
       "LT Description": "Ši daina pasakoja apie keliautoją, kuriam užduodamas klausimas, ar jis žino, kur yra dainininko tėvynė. Tekste aprašoma Lietuvos gamta, tradicijos ir vaikystės prisiminimai, išreiškiama meilė savo kraštui. Daina gali simbolizuoti ilgesį namams ir šaknų svarbą, tačiau nėra aiškių nuorodų į konkrečias šventes ar istorinius įvykius.",
-      "EN Description": "This song is about a traveler or wanderer being asked if they know where the singer's homeland is. The lyrics describe the beauty and spirit of Lithuania, mentioning its nature, traditions, and childhood memories. The country is portrayed with deep affection, and the song may symbolize a longing for home and appreciation of one's roots, but it does not refer to specific holidays or historical events."
+      "EN Description": "This song is about a traveler or wanderer being asked if they know where the singer's homeland is. The lyrics describe the beauty and spirit of Lithuania, mentioning its nature, traditions, and childhood memories. The country is portrayed with deep affection, and the song may symbolize a longing for home and appreciation of one's roots, but it does not refer to specific holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -807,7 +833,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmones, kurie sėdi po medžiu, geria žalią arbatą, žalią vyną ar net vienas kito kraują ir kalba apie nieką. Kartojamos eilutės ir paprasti veiksmai sukuria ramybės, bet galbūt ir simboliškai keistą susitikimo nuotaiką. 'Gerti vienas kito kraują' gali simbolizuoti stiprų ryšį ar emocinį artumą, tačiau reikšmė nėra visiškai aiški.",
-      "EN Description": "The song describes people sitting under a tree, drinking green tea, green wine, and even each other's blood, while talking about nothing. The repeated lines and simple actions suggest a peaceful but perhaps slightly surreal or symbolic meeting. The mention of 'drinking each other's blood' could symbolize deep connection or emotional exchange, but its meaning is not entirely clear."
+      "EN Description": "The song describes people sitting under a tree, drinking green tea, green wine, and even each other's blood, while talking about nothing. The repeated lines and simple actions suggest a peaceful but perhaps slightly surreal or symbolic meeting. The mention of 'drinking each other's blood' could symbolize deep connection or emotional exchange, but its meaning is not entirely clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -833,7 +860,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie vaikiną, ariantį laukus, kai mergina atneša jam pusryčius, ir jų slaptus susitikimus gamtoje. Tekste atsispindi kaimo gyvenimas ir gali būti užuominų apie meilę bei troškimą ramybės širdyje. Slapstymasis nuo kitų rodo paslaptingą meilę, dažną lietuvių liaudies dainose.",
-      "EN Description": "The song tells about a young man plowing his fields when a girl brings him breakfast, and their secret meetings in nature. The lyrics show daily rural life and might symbolize affection and longing for peace in the heart. The mention of hiding from others suggests a discreet romance, a theme often found in Lithuanian folk songs."
+      "EN Description": "The song tells about a young man plowing his fields when a girl brings him breakfast, and their secret meetings in nature. The lyrics show daily rural life and might symbolize affection and longing for peace in the heart. The mention of hiding from others suggests a discreet romance, a theme often found in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -859,7 +887,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį ir meilę, kaip gyvenimas be mylimo žmogaus tampa tuščias bei sunkus. Naudojami palyginimai, pavyzdžiui, medis be šaknų ar paukštis be sparnų, išreiškia stiprų emocinį ryšį. Tekste taip pat kalbama apie meilės džiaugsmus ir nuoskaudas bei klaidų pasekmes santykiuose.",
-      "EN Description": "This song is about longing and love, describing how life feels empty and difficult without a loved one. It uses simple comparisons, like a tree without roots or a bird without wings, to express deep emotional dependence. The lyrics also reflect on the happiness and pain that come with love, and the consequences of mistakes or misunderstandings in a relationship."
+      "EN Description": "This song is about longing and love, describing how life feels empty and difficult without a loved one. It uses simple comparisons, like a tree without roots or a bird without wings, to express deep emotional dependence. The lyrics also reflect on the happiness and pain that come with love, and the consequences of mistakes or misunderstandings in a relationship.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -890,7 +919,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma, liaudiško stiliaus daina pasakoja apie paprastą žmogų, kuris didžiuojasi savo kukliais daiktais – senu arkliu, lopomais drabužiais ir paveldėtais daiktais. Jis žaismingai aprašo savo kasdienybę ir vedybas, džiaugdamasis tuo, ką turi. Daina gali simbolizuoti lietuvišką vertybę džiaugtis paprastumu ir su humoru žiūrėti į sunkumus, tačiau tai nėra aiškiai įvardinta.",
-      "EN Description": "This humorous folk-style song tells of a simple man who is proud of his modest possessions, such as his old horse, patched clothes, and inherited items. He describes his daily life and marriage in a playful, self-deprecating way, celebrating contentment with what he has. The song may symbolize the traditional Lithuanian value of finding happiness in simplicity and making light of hardships, but this is not explicitly stated."
+      "EN Description": "This humorous folk-style song tells of a simple man who is proud of his modest possessions, such as his old horse, patched clothes, and inherited items. He describes his daily life and marriage in a playful, self-deprecating way, celebrating contentment with what he has. The song may symbolize the traditional Lithuanian value of finding happiness in simplicity and making light of hardships, but this is not explicitly stated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -916,7 +946,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakojama iš stipraus, guodžiančio veikėjo perspektyvos, kuris girdi žmonių pagalbos šauksmus ir siūlo šviesą tamsoje. Dainos žodžiai gali simbolizuoti Dievą, globėją ar dvasinę būtybę, žadančią vesti ir palaikyti žmones. Dainoje jaučiamos krikščioniškos temos, tačiau tekstas palieka vietos platesnei interpretacijai.",
-      "EN Description": "This song is written from the perspective of a powerful, comforting figure who hears people's cries and offers light in darkness. The speaker may symbolize God, a guardian, or a spiritual presence, promising to guide, heal, and support those in need. There are references to prayer and carrying the burdens of humanity, which could suggest Christian themes, but the text leaves room for broader interpretation."
+      "EN Description": "This song is written from the perspective of a powerful, comforting figure who hears people's cries and offers light in darkness. The speaker may symbolize God, a guardian, or a spiritual presence, promising to guide, heal, and support those in need. There are references to prayer and carrying the burdens of humanity, which could suggest Christian themes, but the text leaves room for broader interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -942,7 +973,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie muzikantus, kurie eina iškylauti ir groja įvairiais instrumentais. Kiekvienoje strofoje pristatomas naujas instrumentas ir jo skambesys. Daina gali simbolizuoti džiaugsmą ir bendrumą, tačiau daugiausia dėmesio skiriama instrumentams ir linksmam muzikalumui.",
-      "EN Description": "This song is about musicians going out to have a picnic or enjoy the outdoors while playing music. Each verse introduces a different musical instrument and its playful sounds, inviting listeners to join in the fun. The song could symbolize joy, community, and the celebration of music, but it mainly focuses on naming instruments and making cheerful noises."
+      "EN Description": "This song is about musicians going out to have a picnic or enjoy the outdoors while playing music. Each verse introduces a different musical instrument and its playful sounds, inviting listeners to join in the fun. The song could symbolize joy, community, and the celebration of music, but it mainly focuses on naming instruments and making cheerful noises.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -975,7 +1007,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, keliaujančią keliu, kurią motina ir brolis kviečia grįžti namo. Ji nebegali grįžti, nes jau surištos baltos rankos ir sumainyti žiedeliai, kas gali reikšti vedybas. Dainoje jaučiama išsiskyrimo ir naujo gyvenimo etapo pradžios nuotaika.",
-      "EN Description": "This song tells of a young woman traveling along a road, comparing herself to a flower. She hears her mother and brother calling her to return home, but she cannot go back because her hands are bound and rings have been exchanged—possibly symbolizing marriage. The song reflects themes of departure, longing, and the changes brought by new stages in life, which might be connected to Lithuanian wedding or family traditions."
+      "EN Description": "This song tells of a young woman traveling along a road, comparing herself to a flower. She hears her mother and brother calling her to return home, but she cannot go back because her hands are bound and rings have been exchanged—possibly symbolizing marriage. The song reflects themes of departure, longing, and the changes brought by new stages in life, which might be connected to Lithuanian wedding or family traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1001,7 +1034,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie tyliai, slapta išgyvenamą meilę – žmogus myli kitą, tačiau apie tai jis nežino. Dainos tekstuose gausu žvaigždžių, laukų gėlių ir rudens lietaus vaizdinių, kurie gali simbolizuoti meilės pločius ir tyrumą. Meilė čia vaizduojama kaip kantri, amžina, net jei nėra abipusė.",
-      "EN Description": "This song speaks about a quiet, unspoken love—someone loves another person deeply, but in secret, without the other knowing. The lyrics use images of stars, wildflowers, and autumn rain, which might symbolize the vastness and purity of this feeling. The poem suggests that this love is patient, enduring, and continues even without hope of being returned."
+      "EN Description": "This song speaks about a quiet, unspoken love—someone loves another person deeply, but in secret, without the other knowing. The lyrics use images of stars, wildflowers, and autumn rain, which might symbolize the vastness and purity of this feeling. The poem suggests that this love is patient, enduring, and continues even without hope of being returned.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1027,7 +1061,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, norintį nupirkti gražius raudonus batukus mylimam žmogui su mažomis kojytėmis, ir kartu svajojantį apie smagias akimirkas, kaip šokiai ar kelionė prie marių. Raudoni batukai gali simbolizuoti rūpestį ar meilę, bet gali būti tiesiog graži detalė dainoje. Konkrečių lietuviškų tradicijų ar švenčių dainoje neminima.",
-      "EN Description": "This song is about someone offering to buy beautiful red shoes for a loved one with small feet, and imagining joyful moments together, like dancing and traveling to the sea. The red shoes might symbolize care or affection, but they can also simply be a sweet detail in the song. There are no clear references to specific Lithuanian traditions or holidays in the lyrics."
+      "EN Description": "This song is about someone offering to buy beautiful red shoes for a loved one with small feet, and imagining joyful moments together, like dancing and traveling to the sea. The red shoes might symbolize care or affection, but they can also simply be a sweet detail in the song. There are no clear references to specific Lithuanian traditions or holidays in the lyrics.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1053,7 +1088,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje jaunuolis dainuoja apie vienišumą ir troškimą surasti meilę. Jis svarsto parduoti žirgą ir balną, kad pasamdytų audėją, tačiau jauna mergina pasiūlo būti audėja pati, taip užsimindama apie galimą draugystę. Dainoje pasitaiko simbolinių įvaizdžių, kurie gali reikšti neišsipildžiusius troškimus ar nebaigtumą.",
-      "EN Description": "This song tells of a young man who sings about his feelings of loneliness and longing for love. He considers selling his horse and saddle to hire a weaver, but a young girl overhears him and offers to become the weaver herself, hinting at the start of a relationship. The song contains symbolic images, such as a stone without blood or a fern without a flower, which may represent incompleteness or unfulfilled longing."
+      "EN Description": "This song tells of a young man who sings about his feelings of loneliness and longing for love. He considers selling his horse and saddle to hire a weaver, but a young girl overhears him and offers to become the weaver herself, hinting at the start of a relationship. The song contains symbolic images, such as a stone without blood or a fern without a flower, which may represent incompleteness or unfulfilled longing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1079,7 +1115,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, pasėjusį kanapėlę tėvo sode ir stebintį, kaip ji auga. Žodžiai paprasti, gali atspindėti kaimo gyvenimą ar liaudies tradicijas. Kanapėlė gali simbolizuoti kasdienybę, viltį ar augimą, bet taip pat gali būti tiesiog nuoroda į dažnai kaimuose auginamus augalus.",
-      "EN Description": "This song tells about someone planting a little hemp plant in their father's garden and watching it grow. The lyrics are simple and repetitive, possibly reflecting traditional rural life or folk customs. The hemp plant may symbolize daily life, hope, or growth, but it could also just be a literal reference to plants commonly grown in Lithuanian villages."
+      "EN Description": "This song tells about someone planting a little hemp plant in their father's garden and watching it grow. The lyrics are simple and repetitive, possibly reflecting traditional rural life or folk customs. The hemp plant may symbolize daily life, hope, or growth, but it could also just be a literal reference to plants commonly grown in Lithuanian villages.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1147,7 +1184,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai paprasta lietuvių liaudies daina apie linelio sėjimą tėvo darželyje ir jo augimą. Žodžiai aprašo augalo gyvenimo etapus: sėją, dygimą, augimą ir žydėjimą. Kartojama frazė 'Ritin dobila' neturi aiškios prasmės ir gali būti tradicinis priedainis, galbūt simbolizuojantis gyvenimo ciklą arba tiesiog naudojama dėl skambesio.",
-      "EN Description": "This is a simple Lithuanian folk song about sowing flax in a father's garden and watching it grow. The lyrics describe the stages of a plant's life: sowing, sprouting, growing, and blooming. The repeated phrase 'Ritin dobila' does not have a clear meaning and may simply be a traditional refrain, possibly symbolizing the cyclical nature of life or just used for its melodic sound."
+      "EN Description": "This is a simple Lithuanian folk song about sowing flax in a father's garden and watching it grow. The lyrics describe the stages of a plant's life: sowing, sprouting, growing, and blooming. The repeated phrase 'Ritin dobila' does not have a clear meaning and may simply be a traditional refrain, possibly symbolizing the cyclical nature of life or just used for its melodic sound.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1174,7 +1212,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie bemiegę naktį keliaujant per Lietuvą ir vaizduoja paprastą, neretai sunkią kaimo žmonių buitį. Tekste su humoru aprašomas svetingumas, neturto jausmas ir išradingumas kasdienybėje. Daina gali simbolizuoti lietuvių kaimo žmonių stiprybę ir kuklumą, bet galbūt tai tik žaismingas kaimo gyvenimo aprašymas.",
-      "EN Description": "This song describes a sleepless journey through Lithuania, reflecting on the simple and sometimes difficult lives of rural people. It humorously portrays the lack of material wealth, hospitality struggles, and the inventive ways people make do with what they have. The lyrics may symbolize the resilience and modesty of Lithuanian villagers, but it could also simply be a playful depiction of rural life."
+      "EN Description": "This song describes a sleepless journey through Lithuania, reflecting on the simple and sometimes difficult lives of rural people. It humorously portrays the lack of material wealth, hospitality struggles, and the inventive ways people make do with what they have. The lyrics may symbolize the resilience and modesty of Lithuanian villagers, but it could also simply be a playful depiction of rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1201,7 +1240,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris nemiega naktį ir bando pažadinti mergelę, šaukdamas jos vardą ir rašydamas pavardę. Dainos žodžiai atskleidžia ilgesį ir galbūt neatsakytą meilę – dainininkas mini, kad mylėjo kitą, bet širdyje turėjo šią mergelę. Durelių daužymas ir rašymas plunksna gali simbolizuoti senovinius meilės išreiškimo būdus.",
-      "EN Description": "This song tells about a person who cannot sleep at night and tries to wake up a girl, calling her by name and writing her surname. The lyrics express longing and perhaps unrequited love, as the singer mentions loving someone else but still keeping the girl in his heart. The knocking on the door and writing with a feather could symbolize traditional ways of expressing affection, but their exact meaning is open to interpretation."
+      "EN Description": "This song tells about a person who cannot sleep at night and tries to wake up a girl, calling her by name and writing her surname. The lyrics express longing and perhaps unrequited love, as the singer mentions loving someone else but still keeping the girl in his heart. The knocking on the door and writing with a feather could symbolize traditional ways of expressing affection, but their exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1227,7 +1267,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja linksmą istoriją apie žmogų ir jo žmoną, kurie eina grybauti, kaip dažnai daroma Lietuvoje. Joje aprašomi nuotykiai miške, rasti grybai, žmonos nesėkmės ir kaip grybai bus dalijami šeimai. Grybavimas yra svarbi lietuviška tradicija, susijusi su šeima ir gamta.",
-      "EN Description": "This song tells a humorous story about a person and his wife going mushroom picking in the forest, a common Lithuanian tradition, and the small adventures they have along the way. The lyrics describe finding mushrooms, the wife's mishaps, and how the mushrooms will be prepared and shared with the family. Mushroom picking is a beloved pastime in Lithuania, often associated with family, rural life, and seasonal gatherings."
+      "EN Description": "This song tells a humorous story about a person and his wife going mushroom picking in the forest, a common Lithuanian tradition, and the small adventures they have along the way. The lyrics describe finding mushrooms, the wife's mishaps, and how the mushrooms will be prepared and shared with the family. Mushroom picking is a beloved pastime in Lithuania, often associated with family, rural life, and seasonal gatherings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1253,7 +1294,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja žaismingą ir šiek tiek paslaptingą istoriją apie žmogų, kuris turėjo seną kojinę, bet ją užgrobė 'bestija' (galbūt pelė ar koks nors kitas nemalonumas). Pasakotojas bando atsikratyti bestijos, kasdamas duobę ir ruošdamasis nukirsti jos uodegą. Dainoje gausu juokingų, kartojamų garsų, o bestija gali simbolizuoti mažą rūpestį ar problemą, bet tai nėra visiškai aišku.",
-      "EN Description": "The song tells a playful and somewhat mysterious story about someone who had an old sock, but a 'beast' (possibly symbolic, maybe a mouse or some trouble) took it. The narrator tries to get rid of the beast by digging a grave and plans to cut off its tail. The song uses humorous and repetitive sounds, and the 'beast' might symbolize an annoyance or small problem, but it's not completely clear."
+      "EN Description": "The song tells a playful and somewhat mysterious story about someone who had an old sock, but a 'beast' (possibly symbolic, maybe a mouse or some trouble) took it. The narrator tries to get rid of the beast by digging a grave and plans to cut off its tail. The song uses humorous and repetitive sounds, and the 'beast' might symbolize an annoyance or small problem, but it's not completely clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1279,7 +1321,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, turėjusį baltą rožę ir nežinojusį, kur ją pasodinti, bet galiausiai pasodinusi prie marių. Rožė užaugo iki dangaus, o dainos veikėjas kopė jos šakomis ir pasiekė Dievo sodą, kur pamatė Dievo sūnų ir Saulės dukrą. Balta rožė gali simbolizuoti tyrumą ar viltį, tačiau tikslus prasmės aiškinimas nėra vienareikšmis.",
-      "EN Description": "This song tells about someone who had a white rose and did not know where to plant it, eventually choosing a place by the sea. The rose grows so tall it reaches the sky, and the singer climbs its branches to reach a divine garden, where they see the Son of God and the Daughter of the Sun. The white rose can symbolize purity or hope, but the meaning is open to interpretation. The song uses imagery and themes from Lithuanian folklore and may reflect spiritual searching or a journey toward something sacred."
+      "EN Description": "This song tells about someone who had a white rose and did not know where to plant it, eventually choosing a place by the sea. The rose grows so tall it reaches the sky, and the singer climbs its branches to reach a divine garden, where they see the Son of God and the Daughter of the Sun. The white rose can symbolize purity or hope, but the meaning is open to interpretation. The song uses imagery and themes from Lithuanian folklore and may reflect spiritual searching or a journey toward something sacred.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1305,7 +1348,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris turėjo kumelaitę ir nujojo pas mergaitę. Netikėtai kumelaitė pasispardė ir sugriovė kamaraitę – tai gali simbolizuoti netikėtas problemas arba tiesiog suteikti dainai linksmumo. Tekste gausu pakartojimų ir ritmiškų frazių, būdingų lietuvių liaudies dainoms.",
-      "EN Description": "This song tells a simple story about someone who had a mare and rode it to visit a girl. There is a playful turn when the mare kicks and destroys a small room, which may symbolize unexpected trouble or just add humor to the story. The song uses repetitive, rhythmic lines that are common in Lithuanian folk songs and could be sung during gatherings or celebrations."
+      "EN Description": "This song tells a simple story about someone who had a mare and rode it to visit a girl. There is a playful turn when the mare kicks and destroys a small room, which may symbolize unexpected trouble or just add humor to the story. The song uses repetitive, rhythmic lines that are common in Lithuanian folk songs and could be sung during gatherings or celebrations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1337,7 +1381,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, stovintį ant kalno ir stebintį, kas vyksta pakalnėje, kur mato skęstantį berną ir vėliau mergelę. Tekste minimas žirgelis ir rūtelė gali simbolizuoti jaunystę ar meilę, bet tai nėra aišku. Rūtelė lietuvių tradicijoje siejama su mergystės simboliu.",
-      "EN Description": "The song tells of someone standing on a hill, looking down into a valley where they see a young man and later a young woman both in trouble by the water. The lyrics mention trying to save or replace a horse and a rue plant, which can symbolize youth or love, but it is not certain. The song may reflect themes of loss, hope, and renewal, and the mention of rue refers to a traditional Lithuanian symbol of maidenhood."
+      "EN Description": "The song tells of someone standing on a hill, looking down into a valley where they see a young man and later a young woman both in trouble by the water. The lyrics mention trying to save or replace a horse and a rue plant, which can symbolize youth or love, but it is not certain. The song may reflect themes of loss, hope, and renewal, and the mention of rue refers to a traditional Lithuanian symbol of maidenhood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1363,7 +1408,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši giesmė kviečia žmones džiugiai keliauti į Betliejų ir garbinti gimusį Karalių – Dievo Sūnų. Tekste atsispindi Kalėdų šventės džiaugsmas, pagarba ir Dievo paslaptingumas, kai jis pasirodo paprastoje kūdikio formoje. Giesmėje naudojami tiek lietuviški, tiek lotyniški žodžiai, siejantys ją su tradicine Kalėdų giesme 'Adeste Fideles'.",
-      "EN Description": "This song invites people to joyfully come to Bethlehem and worship the newborn King, who is described as both a child and the Son of God. The lyrics reflect themes of celebration, reverence, and the mystery of God appearing in humble human form, which are central to the Christian holiday of Christmas. The song includes both Lithuanian and Latin verses, showing its roots in the traditional Christmas carol 'Adeste Fideles' (O Come, All Ye Faithful)."
+      "EN Description": "This song invites people to joyfully come to Bethlehem and worship the newborn King, who is described as both a child and the Son of God. The lyrics reflect themes of celebration, reverence, and the mystery of God appearing in humble human form, which are central to the Christian holiday of Christmas. The song includes both Lithuanian and Latin verses, showing its roots in the traditional Christmas carol 'Adeste Fideles' (O Come, All Ye Faithful).",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1389,7 +1435,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašomas nakties atėjimas, kai saulė nusileidžia nuo kalnų, miškų ir laukų. Linkima saldžių sapnų ir primenama, kad Dievas yra šalia. Dievo paminėjimas gali simbolizuoti ramybę ar apsaugą naktį, bet nėra aišku, ar tai susiję su konkrečia tradicija.",
-      "EN Description": "This song describes the coming of night, as the sun disappears from hills, forests, and fields. It wishes someone sweet dreams and gently reminds them that God is near. The mention of God can symbolize comfort and protection during the night, but it is not certain if this refers to a specific tradition or just a general sense of peace."
+      "EN Description": "This song describes the coming of night, as the sun disappears from hills, forests, and fields. It wishes someone sweet dreams and gently reminds them that God is near. The mention of God can symbolize comfort and protection during the night, but it is not certain if this refers to a specific tradition or just a general sense of peace.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1422,7 +1469,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie liūdną rudenį, kai tėvai išlydi sūnus, tikriausiai į karo tarnybą. Eilėse kalbama apie išsiskyrimo skausmą, dovanas, uniformą ir tai, kaip ginklai bei karas tampa artimais palydovais. Kai kurie žodžiai gali simbolizuoti jaunų vyrų šaukimą į kariuomenę, tačiau konkreti istorinė situacija nėra aiškiai nurodyta.",
-      "EN Description": "This song tells of a sad autumn time when fathers must send their sons away, likely to military service. The lyrics describe the sorrow of parting, the gifts and uniforms given to the sons, and how weapons and war become a replacement for family and love. Some words and symbols may refer to the historical experience of young men being drafted, perhaps during wars or occupations, but the exact event is not clearly specified."
+      "EN Description": "This song tells of a sad autumn time when fathers must send their sons away, likely to military service. The lyrics describe the sorrow of parting, the gifts and uniforms given to the sons, and how weapons and war become a replacement for family and love. Some words and symbols may refer to the historical experience of young men being drafted, perhaps during wars or occupations, but the exact event is not clearly specified.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1448,7 +1496,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina išreiškia viltį ir tikėjimą Lietuvos ateitimi, pabrėžia dvasinę stiprybę, dorovę ir atsidavimą tautai. Tekste pabrėžiamas pasitikėjimas Dievu, tikėjimo, mokslo ir sąžiningumo svarba ir kviečiama vienytis dirbant bei kovojant dėl Lietuvos. Kryžius ant vėliavos gali simbolizuoti krikščionybę, bet taip pat gali reikšti viltį ir kryptį.",
-      "EN Description": "This song expresses hope and faith in the future of Lithuania, emphasizing spiritual strength, moral values, and dedication to the nation. The lyrics highlight trust in God, the importance of faith, learning, and honesty, and call for unity in working and fighting for Lithuania. The reference to the cross on the flag may symbolize Christianity, but it could also simply mean hope and guidance."
+      "EN Description": "This song expresses hope and faith in the future of Lithuania, emphasizing spiritual strength, moral values, and dedication to the nation. The lyrics highlight trust in God, the importance of faith, learning, and honesty, and call for unity in working and fighting for Lithuania. The reference to the cross on the flag may symbolize Christianity, but it could also simply mean hope and guidance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1481,7 +1530,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Senelis ateina, pagauna žvirblį, jį paruošia ir pavaišina svečius, kurie persivalgo ir sproginėja. Daina yra žaisminga, su humoru ir pasikartojimais, gali simbolizuoti kaimišką gyvenimą ar būti vaikų folkloras, tačiau gilesnė prasmė nėra aiški.",
-      "EN Description": "An old man comes and catches a sparrow, preparing and serving it to his guests, who end up overeating and bursting. The song is playful and uses repetition and humor, and might symbolize simple rural life or serve as a lighthearted folk tale for children, but the deeper meaning is uncertain."
+      "EN Description": "An old man comes and catches a sparrow, preparing and serving it to his guests, who end up overeating and bursting. The song is playful and uses repetition and humor, and might symbolize simple rural life or serve as a lighthearted folk tale for children, but the deeper meaning is uncertain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1521,7 +1571,8 @@ const songs: SongFile = [
       "Music Author": "Br. Jonušas",
       "Text Author": "V. Bražėnas",
       "LT Description": "Ši daina pasakoja apie Lietuvos skautus, susirenkančius į tautinę stovyklą pagerbti tėvynę. Ji akcentuoja vienybę, draugystę ir atsidavimą Lietuvai, naudojant jaunystės, gamtos ir laužo simbolius. Paminėta tautinė stovykla atspindi skautiškas tradicijas, kurios svarbios Lietuvos jaunimui.",
-      "EN Description": "This song is about Lithuanian scouts coming together at a national camp to celebrate their homeland, Lithuania. It highlights unity, friendship, and dedication to their country, using imagery of youth, nature, and campfires. The references to the national camp and scouts point to the tradition of scouting in Lithuania, which emphasizes patriotism, community, and learning through shared activities."
+      "EN Description": "This song is about Lithuanian scouts coming together at a national camp to celebrate their homeland, Lithuania. It highlights unity, friendship, and dedication to their country, using imagery of youth, nature, and campfires. The references to the national camp and scouts point to the tradition of scouting in Lithuania, which emphasizes patriotism, community, and learning through shared activities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1547,7 +1598,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ankstyvą rytą, kai žmogus jaučiasi liūdnas, nes mylimasis jį paliko. Čia kalbama apie prarastą meilę ir su tuo susijusį skausmą. Eilutės apie rožę ir spyglius gali simbolizuoti, kad meilėje dažnai būna ir kančių, tačiau tai dainoje nėra aiškiai pasakyta.",
-      "EN Description": "This song tells about waking up early in the morning and feeling sad because a loved one has left. It speaks of lost love and the pain that comes with it. The lines about roses and thorns may symbolize how love and suffering often go together, but this is not stated directly in the text."
+      "EN Description": "This song tells about waking up early in the morning and feeling sad because a loved one has left. It speaks of lost love and the pain that comes with it. The lines about roses and thorns may symbolize how love and suffering often go together, but this is not stated directly in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1575,7 +1627,8 @@ const songs: SongFile = [
       "Music Author": "Conditor alma siderum",
       "Text Author": "Stasys Yla",
       "LT Description": "Ši daina išreiškia dvasinį ilgesį ir viltį, prašydama aukštesnės jėgos užtarimo ir šviesos. Dainos žodžiuose girdimas balsas iš aukštai, meilė ir malonės prašymas. Tekste ryškios krikščioniškos temos, ypač laukimas Dangaus Sūnaus, kuris dažnai siejamas su Advento ar Kalėdų laikotarpiu Lietuvos tradicijoje.",
-      "EN Description": "This song expresses a spiritual longing and hope for comfort and renewal, addressing a higher power for guidance and light. The lyrics mention a voice from above bringing peace, love that revives hearts, and a plea for divine grace. The text refers to Christian themes, especially the coming of the Son of Heaven, which may symbolize the anticipation of Jesus Christ, commonly emphasized during Advent or Christmas in Lithuanian tradition."
+      "EN Description": "This song expresses a spiritual longing and hope for comfort and renewal, addressing a higher power for guidance and light. The lyrics mention a voice from above bringing peace, love that revives hearts, and a plea for divine grace. The text refers to Christian themes, especially the coming of the Son of Heaven, which may symbolize the anticipation of Jesus Christ, commonly emphasized during Advent or Christmas in Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1607,7 +1660,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie sakalą, skrendantį per žalią girią ir paliečiantį sausą eglę, kas gali simbolizuoti ilgesį ar neišsipildžiusią meilę. Mergelė tikisi būti su berneliu, tačiau jis pasirenka kitą. Sakalo ir eglės vaizdai perteikia jausmus ir likimo vingius, bet jų reikšmė nėra visiškai aiški.",
-      "EN Description": "This song tells about a falcon flying through a green forest and touching a dry spruce, which may symbolize longing, lost love, or change. The lyrics focus on a girl's hopes of being with a boy, and her sadness when he chooses someone else. The falcon and the changing tree can be seen as poetic images reflecting emotions and fate, but their exact meaning is not completely clear."
+      "EN Description": "This song tells about a falcon flying through a green forest and touching a dry spruce, which may symbolize longing, lost love, or change. The lyrics focus on a girl's hopes of being with a boy, and her sadness when he chooses someone else. The falcon and the changing tree can be seen as poetic images reflecting emotions and fate, but their exact meaning is not completely clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1633,7 +1687,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie paukštelį, kuris atskrenda, čiulba, susisuka lizdelį ir išskrenda, o jo veiksmai lyginami su dviejų žmonių judesiais. Kartojami žodžiai gali simbolizuoti bendrumą ar santykius, bet tai nėra aišku. Tekstas paprastas ir žaismingas, be aiškių užuominų į lietuviškas tradicijas.",
-      "EN Description": "This song is about a little bird that arrives, sings, builds a nest, and then flies away, all while its actions are compared to two people together. The repeated movements and togetherness could symbolize shared experiences or a relationship, but this is not certain. The text mainly describes the bird's actions in simple, playful language without clear references to specific Lithuanian traditions."
+      "EN Description": "This song is about a little bird that arrives, sings, builds a nest, and then flies away, all while its actions are compared to two people together. The repeated movements and togetherness could symbolize shared experiences or a relationship, but this is not certain. The text mainly describes the bird's actions in simple, playful language without clear references to specific Lithuanian traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1659,7 +1714,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši žaisminga daina pasakoja apie atvažiavusią mašinėlę, iš kurios išlipa berniukas. Jis eina į bažnyčią parodyti savęs mergaitėms ir žvilgteli į jas, galbūt net užkliūva. Kartojami, beprasmiai skiemenys būdingi lietuvių vaikų dainelėms ir sukuria linksmą nuotaiką.",
-      "EN Description": "This playful song tells about a little car arriving, opening its door, and a young man stepping out. He goes to church, seemingly to show off to the girls, and glances at them, possibly tripping along the way. The repetitive and nonsensical syllables are common in Lithuanian children's songs and folk traditions, and they help create a cheerful, rhythmic mood."
+      "EN Description": "This playful song tells about a little car arriving, opening its door, and a young man stepping out. He goes to church, seemingly to show off to the girls, and glances at them, possibly tripping along the way. The repetitive and nonsensical syllables are common in Lithuanian children's songs and folk traditions, and they help create a cheerful, rhythmic mood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1692,7 +1748,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie vaikiną ir merginą, kurie lyginami su atskirai augančiais medžiais, norinčiais būti kartu. Liepos ir javoro motyvai gali simbolizuoti jų norą susitikti ar meilę. Kermošius – tradicinė lietuvių mugė, kurioje susitinka žmonės.",
-      "EN Description": "This song tells about a young man and woman, comparing them to trees growing separately but wishing to grow closer together. The imagery of the linden and maple trees may symbolize the boy and girl, and their desire to unite, possibly representing love or longing. The mention of the kermošius—a traditional Lithuanian village fair—refers to a social event where young people might meet and talk."
+      "EN Description": "This song tells about a young man and woman, comparing them to trees growing separately but wishing to grow closer together. The imagery of the linden and maple trees may symbolize the boy and girl, and their desire to unite, possibly representing love or longing. The mention of the kermošius—a traditional Lithuanian village fair—refers to a social event where young people might meet and talk.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1718,7 +1775,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vaikiną ir merginą, kurie augo su savo artimaisiais, o šiems rūpėjo jų ateitis, ypač kai jie įsimyli. Dainoje išryškėja perėjimas nuo vaikystės ir šeimos link suaugusiųjų meilės. Žirgelis ir darželis gali simbolizuoti vaikystės pomėgius arba pareigas, bet tai nėra aišku.",
-      "EN Description": "This song tells about a young man and woman growing up with their elders, who care for them and worry when they fall in love. The lyrics show the shift from family and childhood to adult love, suggesting that romantic relationships become more important than earlier attachments. The references to horses and gardens may symbolize childhood interests or responsibilities, but this is not certain."
+      "EN Description": "This song tells about a young man and woman growing up with their elders, who care for them and worry when they fall in love. The lyrics show the shift from family and childhood to adult love, suggesting that romantic relationships become more important than earlier attachments. The references to horses and gardens may symbolize childhood interests or responsibilities, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1744,7 +1802,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie tėvo užaugintą vienturtį sūnų, kuriam žadėta leisti vesti, bet vietoje to paskiriama tarnauti kariuomenėje. Sūnus atsisveikina su šeima ir mylimąja, kuri jį palydi toliausiai. Daina atspindi išsiskyrimo, pareigos ir meilės temas, būdingas lietuvių liaudies dainoms apie jaunimo pašaukimą į kariuomenę.",
-      "EN Description": "This song tells the story of a father raising his only son, promising to let him marry but instead sending him off to become an officer or soldier. The son prepares to go to war, saying goodbye to his family and especially to his beloved, who follows him the farthest. The song may symbolize the pain of separation, duty, and the importance of love and family in traditional Lithuanian village life. The mention of riding to war and farewells is common in Lithuanian folk songs, especially those reflecting historical periods when young men were drafted into military service."
+      "EN Description": "This song tells the story of a father raising his only son, promising to let him marry but instead sending him off to become an officer or soldier. The son prepares to go to war, saying goodbye to his family and especially to his beloved, who follows him the farthest. The song may symbolize the pain of separation, duty, and the importance of love and family in traditional Lithuanian village life. The mention of riding to war and farewells is common in Lithuanian folk songs, especially those reflecting historical periods when young men were drafted into military service.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1775,7 +1834,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie berniuką ir mergaitę, augančius tėvų globoje, palyginant juos su medžiais. Tėvai nori, kad vaikai užaugę taptų svarbiais visuomenės nariais, tačiau kitiems norisi paprastesnių, kasdienių vaidmenų. Ažuolas ir liepa gali simbolizuoti stiprybę ir moteriškumą, bet tai nėra tikslu.",
-      "EN Description": "This song tells about a boy and a girl growing up in the care of their parents, using trees as gentle symbols for children. The parents hope their children will grow into useful members of Lithuanian society, like soldiers or dancers, but others wish for more everyday roles, such as farmers or weavers. The use of oak and linden trees may symbolize strength and femininity, but this is not certain."
+      "EN Description": "This song tells about a boy and a girl growing up in the care of their parents, using trees as gentle symbols for children. The parents hope their children will grow into useful members of Lithuanian society, like soldiers or dancers, but others wish for more everyday roles, such as farmers or weavers. The use of oak and linden trees may symbolize strength and femininity, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1801,7 +1861,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie kartu augančius šermukšnį ir putiną, jų žydėjimą ir vaisių sunokimą. Dainos tekstas daugiausia vaizduoja gamtos ciklą, o kartojamas posakis 'ryto ratuto' neturi aiškios reikšmės ir dažnai vartojamas lietuvių liaudies dainose dėl skambesio.",
-      "EN Description": "This song tells about the rowan and viburnum trees growing together, blooming, and bearing fruit. The text describes their natural cycle from flowers to ripe berries, which might symbolize growth, harmony, or the passage of time, but the lyrics themselves focus mainly on the imagery of nature. The repeated phrase 'ryto ratuto' does not have a direct meaning and is a common refrain in Lithuanian folk songs, used for its rhythm and musicality."
+      "EN Description": "This song tells about the rowan and viburnum trees growing together, blooming, and bearing fruit. The text describes their natural cycle from flowers to ripe berries, which might symbolize growth, harmony, or the passage of time, but the lyrics themselves focus mainly on the imagery of nature. The repeated phrase 'ryto ratuto' does not have a direct meaning and is a common refrain in Lithuanian folk songs, used for its rhythm and musicality.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1838,7 +1899,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jauną berną, ilsintįsi po žaliu klevu, kurį vėjas pažadina keliauti ginti Lietuvos laisvę. Klevas ir miegantis jaunuolis gali simbolizuoti ramybę ar nekaltumą, o kvietimas ginti tėvynę atspindi laisvės svarbą. Dainoje jaučiami gamtos, jaunystės ir patriotizmo motyvai, būdingi lietuvių liaudies tradicijoms.",
-      "EN Description": "This song tells about a young man resting under a green maple tree, who is gently awakened by the wind to go defend Lithuania's freedom. The tree and the sleeping youth may symbolize peace or innocence, while the call to defend the country refers to the importance of national freedom. The lyrics reflect themes of nature, youth, and patriotism, which are common in Lithuanian folk traditions."
+      "EN Description": "This song tells about a young man resting under a green maple tree, who is gently awakened by the wind to go defend Lithuania's freedom. The tree and the sleeping youth may symbolize peace or innocence, while the call to defend the country refers to the importance of national freedom. The lyrics reflect themes of nature, youth, and patriotism, which are common in Lithuanian folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1871,7 +1933,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kuri auga motinos sode ir vėliau tėvo yra pažadama jaunikiui. Mergina klausia tėvo, kodėl jis taip pasielgė, primindama savo darbštumą ir paklusnumą. Daina gali atspindėti tradicinius lietuvių papročius, kai tėvai spręsdavo dukrų likimą.",
-      "EN Description": "This song tells the story of a young girl growing up in her mother's orchard who is promised in marriage by her father to a young man. The girl questions her father's decision, reminding him of her hard work and obedience. The lyrics may reflect traditional Lithuanian customs where parents, especially fathers, arranged marriages for their daughters, and highlight the daughter's feelings and sense of duty."
+      "EN Description": "This song tells the story of a young girl growing up in her mother's orchard who is promised in marriage by her father to a young man. The girl questions her father's decision, reminding him of her hard work and obedience. The lyrics may reflect traditional Lithuanian customs where parents, especially fathers, arranged marriages for their daughters, and highlight the daughter's feelings and sense of duty.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1897,7 +1960,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą ir simboliškai augančius augalus dvare. Tekste minimi dovanojami vainikėliai ir žiedas, kurie gali reikšti brandą ar vestuvių papročius. Dažnai kartojamas vyno ir rasos motyvas gali simbolizuoti šventę ar jausmus, tačiau tiksli prasmė nėra aiški.",
-      "EN Description": "This song tells the story of a young woman and symbolic plants growing in a manor's yard. The lyrics mention picking dew and receiving gifts from her mother, such as a rue wreath, a golden ring, and a beloved, which may represent stages of growing up or traditional wedding symbols. The repeated mention of wine and dew could symbolize celebration or emotions, but the exact meaning is open to interpretation."
+      "EN Description": "This song tells the story of a young woman and symbolic plants growing in a manor's yard. The lyrics mention picking dew and receiving gifts from her mother, such as a rue wreath, a golden ring, and a beloved, which may represent stages of growing up or traditional wedding symbols. The repeated mention of wine and dew could symbolize celebration or emotions, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1926,7 +1990,8 @@ const songs: SongFile = [
       "Music Author": "Jurga",
       "Text Author": "Jurga",
       "LT Description": "Daina kalba apie vidines kovas, baimes ir drąsos paieškas, pasitelkdama šešėlių, ugnies ir sapnų vaizdinius. Joje užsimenama apie jausmų slėpimą ir norą išeiti iš tamsos į šviesą, kas gali simbolizuoti asmeninį augimą ar sunkumų įveikimą. Aukso pieva tolumoje gali reikšti viltį arba geresnę ateitį, tačiau tai nėra aiškiai pasakyta.",
-      "EN Description": "The song speaks about inner struggles, fears, and the search for courage, using images of shadows, fire, and dreams. There are references to hiding emotions and the desire to step out of darkness into light, which may symbolize personal growth or overcoming difficulties. The golden meadow in the distance could represent hope, peace, or a better future, but this is not stated directly."
+      "EN Description": "The song speaks about inner struggles, fears, and the search for courage, using images of shadows, fire, and dreams. There are references to hiding emotions and the desire to step out of darkness into light, which may symbolize personal growth or overcoming difficulties. The golden meadow in the distance could represent hope, peace, or a better future, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1959,7 +2024,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginą Kaziūnę, jos gyvulius ir susitikimą su Jasiu. Joje aprašomas kaimo gyvenimas – gyvulių ganymas, pokalbiai laukuose, ieškomi jaučiai. Dainoje atsispindi lietuviškos kaimo tradicijos, o kalba apie pinigus gali simbolizuoti kuklumą ar pasididžiavimą, nors tai gali būti ir žaismingas pokalbis.",
-      "EN Description": "This song tells a story about a girl, Kaziūnė, her cattle, and an encounter with a boy named Jasius. It describes everyday rural life—grazing cattle, meeting others in the fields, and a conversation about lost cattle. The song reflects Lithuanian countryside traditions, and the exchange about money and wealth may symbolize modesty or pride, but this could also be just a playful dialogue."
+      "EN Description": "This song tells a story about a girl, Kaziūnė, her cattle, and an encounter with a boy named Jasius. It describes everyday rural life—grazing cattle, meeting others in the fields, and a conversation about lost cattle. The song reflects Lithuanian countryside traditions, and the exchange about money and wealth may symbolize modesty or pride, but this could also be just a playful dialogue.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -1986,7 +2052,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie pasitikėjimą, buvimą savimi ir nepasidavimą svetimų nuomonėms ar kritikai. Ji ragina tikėti vienas kitu, net kai susiduriama su iššūkiais ar nepalankiais žodžiais iš kitų. Daugiausia dėmesio skiriama autentiškumui ir stiprybei.",
-      "EN Description": "This song is about trust, staying true to oneself, and not being swayed by the opinions or criticism of others. It encourages listeners to believe in each other even when facing challenges or harsh words from outsiders. Some lines may symbolize overcoming difficulties together, but the text mostly emphasizes authenticity and resilience."
+      "EN Description": "This song is about trust, staying true to oneself, and not being swayed by the opinions or criticism of others. It encourages listeners to believe in each other even when facing challenges or harsh words from outsiders. Some lines may symbolize overcoming difficulties together, but the text mostly emphasizes authenticity and resilience.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2018,7 +2085,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jauną merginą, kuri ruošiasi palikti namus, tikriausiai dėl vedybų, o močiutė audžia drobes, motina prašo pasilikti ilgiau. Dainoje juntamas atsisveikinimo liūdesys ir sunkumai, su kuriais mergina susiduria išvykdama į naujus namus, ypač pas anytą. Uogų ir jų spalvų paminėjimas gali simbolizuoti jausmus ar patirtis, tačiau tai nėra tiesiogiai pasakyta.",
-      "EN Description": "This song tells a story about a young woman preparing to leave her home, likely for marriage, as her grandmother weaves cloth and her mother pleads with her to stay longer. The lyrics touch on themes of leaving family, the sadness of separation, and the emotional challenges of going to a new home—especially to a mother-in-law, which in Lithuanian folk tradition can symbolize a difficult transition. The references to berries and their colors might symbolize emotions or experiences, but this is not stated directly."
+      "EN Description": "This song tells a story about a young woman preparing to leave her home, likely for marriage, as her grandmother weaves cloth and her mother pleads with her to stay longer. The lyrics touch on themes of leaving family, the sadness of separation, and the emotional challenges of going to a new home—especially to a mother-in-law, which in Lithuanian folk tradition can symbolize a difficult transition. The references to berries and their colors might symbolize emotions or experiences, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2051,7 +2119,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje jaunas vaikinas auštant balnoja žirgą ir ruošiasi aplankyti jam patinkančią merginą. Jis kalbasi su žirgu, svarsto apie susitikimą su merginos tėvais. Daina atspindi lietuvių liaudies dainose dažnas temas – meilę, šeimos pritarimą ir jausmus.",
-      "EN Description": "This song tells about a young man waking up at dawn, preparing his horse, and planning to visit a girl he likes. He mentions talking with his horse and thinking about meeting the girl's parents. The song reflects common themes in Lithuanian folk music, such as courtship, family approval, and love, though the dawn and journey might also symbolize new beginnings or hope."
+      "EN Description": "This song tells about a young man waking up at dawn, preparing his horse, and planning to visit a girl he likes. He mentions talking with his horse and thinking about meeting the girl's parents. The song reflects common themes in Lithuanian folk music, such as courtship, family approval, and love, though the dawn and journey might also symbolize new beginnings or hope.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2080,7 +2149,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Ši daina kviečia vaikus įsivaizduoti kelionę į Australiją, kur pilna saldžių vaisių ir skanėstų. Australija aprašoma kaip vieta, kur galima ilsėtis ir klausytis ilgų pasakų. Daina gali simbolizuoti svajonių šalį, bet daugiausia akcentuoja žaismingą smalsumą ir nuotykius.",
-      "EN Description": "This song invites children to imagine traveling to Australia, a place described as full of sweet fruits and treats. It paints Australia as a land of abundance and comfort, where children can rest and listen to long fairy tales. The song may symbolize a dream or fantasy destination, but it mainly focuses on playful curiosity and adventure."
+      "EN Description": "This song invites children to imagine traveling to Australia, a place described as full of sweet fruits and treats. It paints Australia as a land of abundance and comfort, where children can rest and listen to long fairy tales. The song may symbolize a dream or fantasy destination, but it mainly focuses on playful curiosity and adventure.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2106,7 +2176,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, dažnai važiuojantį iš Vilniaus į Kauną, dažniausiai tranzuojantį autostradoje. Tekstuose aprašomi kelyje sutinkami žmonės ir automobiliai, taip pat linksma istorija apie merginą, kuri paveža mainais į muziką. Daina gali simbolizuoti jaunystės laisvę ir netikėtumus, taip pat joje minimas lietuviškas pankrokas.",
-      "EN Description": "This song is about a person frequently traveling from Vilnius to Kaunas, often hitchhiking along the highway. The lyrics describe the people and cars seen on the road, and a humorous encounter with a girl who offers a ride in exchange for music. The song may symbolize the freedom and unpredictability of youth, and it references the Lithuanian tradition of playing and listening to punk rock music."
+      "EN Description": "This song is about a person frequently traveling from Vilnius to Kaunas, often hitchhiking along the highway. The lyrics describe the people and cars seen on the road, and a humorous encounter with a girl who offers a ride in exchange for music. The song may symbolize the freedom and unpredictability of youth, and it references the Lithuanian tradition of playing and listening to punk rock music.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2132,7 +2203,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie brolius, kurie ruošiasi joti į karą ir atsisveikina, jei negrįš. Tekste atsispindi drąsos, aukos ir atminimo temos, o gamtos vaizdai, kaip beržas ar gegutė, gali simbolizuoti prisiminimą ar gyvenimo tęstinumą. Daina siejasi su lietuviška tradicija pagerbti žuvusius ir dainos vaidmeniu tautos tapatybėje.",
-      "EN Description": "This song tells about brothers preparing to ride their horses into battle and saying farewell in case they do not return. The lyrics reflect themes of bravery, sacrifice, and remembrance, with images of nature like the birch tree and the cuckoo possibly symbolizing memory and ongoing life. The song may relate to Lithuanian traditions of honoring fallen warriors and the importance of song in national identity."
+      "EN Description": "This song tells about brothers preparing to ride their horses into battle and saying farewell in case they do not return. The lyrics reflect themes of bravery, sacrifice, and remembrance, with images of nature like the birch tree and the cuckoo possibly symbolizing memory and ongoing life. The song may relate to Lithuanian traditions of honoring fallen warriors and the importance of song in national identity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2212,7 +2284,8 @@ const songs: SongFile = [
       "Music Author": "Vytautas Kernagis",
       "Text Author": "Vytautas Kernagis",
       "LT Description": "Daina kalba apie viltį, tikėjimą ir gyvenimo tęstinumą. Aprašomi gamtos grožio momentai ir tikėjimo stiprybė, o baltas paukštis danguje gali simbolizuoti sielą, laisvę ar pačią Lietuvą. Nors minima Lietuva, daina nėra susijusi su konkrečia švente ar istoriniu įvykiu.",
-      "EN Description": "This song speaks about hope, faith, and the continuity of life. It describes moments of beauty in nature and the endurance of belief, with the image of a white bird in the sky possibly symbolizing the soul, freedom, or Lithuania itself. The lyrics mention Lithuania directly, but do not reference a specific tradition or historical event."
+      "EN Description": "This song speaks about hope, faith, and the continuity of life. It describes moments of beauty in nature and the endurance of belief, with the image of a white bird in the sky possibly symbolizing the soul, freedom, or Lithuania itself. The lyrics mention Lithuania directly, but do not reference a specific tradition or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2238,7 +2311,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ramų plaukimą laiveliu Baltijos jūroje, kur brolis ir sesuo patiria ir ramybę, ir baimę artėjant prie Palangos bangų. Dainoje jaučiamas gamtos grožis ir vakaro ramybė, kuri gali simbolizuoti saugumą ir sugrįžimą namo, nors tai nėra tiesiogiai pasakyta. Čia nėra aiškių nuorodų į lietuviškas šventes, bet tekstas atspindi pajūrio žvejų bendruomenių tradicijas.",
-      "EN Description": "This song tells about a gentle boat journey on the Baltic Sea, where siblings (a brother and sister) experience both calm and fear as they approach the waves near Palanga. The lyrics describe the peacefulness of nature and the transition from day to night, which may symbolize safety and the comfort of returning home, but this is not stated directly. There are no clear references to specific Lithuanian holidays, but the imagery relates closely to the seaside culture and traditions of fishing communities."
+      "EN Description": "This song tells about a gentle boat journey on the Baltic Sea, where siblings (a brother and sister) experience both calm and fear as they approach the waves near Palanga. The lyrics describe the peacefulness of nature and the transition from day to night, which may symbolize safety and the comfort of returning home, but this is not stated directly. There are no clear references to specific Lithuanian holidays, but the imagery relates closely to the seaside culture and traditions of fishing communities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2267,7 +2341,8 @@ const songs: SongFile = [
       "Music Author": "A. Mamontovas",
       "Text Author": "A. Mamontovas",
       "LT Description": "Šioje dainoje aprašomas ilgas vakaras, kupinas ilgesio ir tyliai išgyvenamo liūdesio. Dainininkas prašo baltosios varnelės nuskinti jazmino žiedą, kuris gali simbolizuoti tyrumą ar neišsipildžiusius troškimus, ir išreiškia norą artumui ar paguodai. Baltosios varnelės įvaizdžio reikšmė nėra aiški – tai gali būti pasiuntinys, mylimas žmogus ar tiesiog poetinė metafora.",
-      "EN Description": "This song describes a long evening filled with longing and a quiet, gentle sadness. The singer asks a white little bird to pick a jasmine flower, which might symbolize purity or unfulfilled wishes, and expresses a desire for closeness or comfort. The meaning of the 'white little bird' is open to interpretation—it could represent a messenger, a lost loved one, or simply a poetic image."
+      "EN Description": "This song describes a long evening filled with longing and a quiet, gentle sadness. The singer asks a white little bird to pick a jasmine flower, which might symbolize purity or unfulfilled wishes, and expresses a desire for closeness or comfort. The meaning of the 'white little bird' is open to interpretation—it could represent a messenger, a lost loved one, or simply a poetic image.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2293,7 +2368,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, plaukiantį jūra ir klausiantį, kur jam plaukti. Kelionė gali simbolizuoti gyvenimo paieškas ar pasirinkimus, bet tai nėra aiškiai pasakyta. Naudojami vaizdai – baltos burės, mėlyni takai, viesulai – gali reikšti viltį, nežinią ar išbandymus.",
-      "EN Description": "This song is about a person sailing on the sea, asking the waves and the sea where to go. The journey may symbolize searching for one's path in life, but it is not stated clearly. The lyrics use images of white sails, blue paths, and strong winds, which could represent hope, uncertainty, or challenges, but this is open to interpretation."
+      "EN Description": "This song is about a person sailing on the sea, asking the waves and the sea where to go. The journey may symbolize searching for one's path in life, but it is not stated clearly. The lyrics use images of white sails, blue paths, and strong winds, which could represent hope, uncertainty, or challenges, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2366,7 +2442,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginos rytą, kai ji ruošiasi svarbiai dienai, tikriausiai vestuvėms. Jai sakoma keltis ir puoštis, atvyksta broliai su žirgais. Žodžiai išreiškia ir džiaugsmą, ir nerimą dėl laukiančių pokyčių, o minimos apeigos atspindi lietuviškas vestuvių tradicijas.",
-      "EN Description": "This song tells about a young woman preparing for an important day, likely her wedding, as the dawn rises. She is encouraged to wake up and adorn herself, while her brothers come on horses for the celebration. The lyrics also mention her worries and challenges as she approaches her new life, possibly symbolizing the mixed emotions of leaving her family and joining her husband's household. The reference to wreath weaving and riding to the mother-in-law's gate is traditional in Lithuanian wedding customs."
+      "EN Description": "This song tells about a young woman preparing for an important day, likely her wedding, as the dawn rises. She is encouraged to wake up and adorn herself, while her brothers come on horses for the celebration. The lyrics also mention her worries and challenges as she approaches her new life, possibly symbolizing the mixed emotions of leaving her family and joining her husband's household. The reference to wreath weaving and riding to the mother-in-law's gate is traditional in Lithuanian wedding customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2392,7 +2469,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie berniukus, kurie vaikystėje bėgiojo po žaliąsias lankas ir svajojo skraidyti. Užaugę jie tampa pilotais, tarnauja kartu ir atsiliepia tėvynės šauksmui. Dainoje galima įžvelgti vaikystės svajonių ir suaugusiųjų pareigų temą, nors tiksli simbolika gali būti interpretuojama įvairiai.",
-      "EN Description": "This song tells about boys who, in their childhood, ran freely through green meadows and dreamed of flying. As they grow up, they become pilots, serving together and answering the call of their homeland. The song may symbolize a journey from childhood dreams to adult responsibilities, with flying possibly representing freedom, bravery, or service, though the exact symbolism is open to interpretation."
+      "EN Description": "This song tells about boys who, in their childhood, ran freely through green meadows and dreamed of flying. As they grow up, they become pilots, serving together and answering the call of their homeland. The song may symbolize a journey from childhood dreams to adult responsibilities, with flying possibly representing freedom, bravery, or service, though the exact symbolism is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2418,7 +2496,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie gyvenimą mieste tarp betoninių namų, jausmą tarsi būtum įkalintas ir ilgesį laisvei bei šilumai. Pasakotoja save lygina su kanarėle narvelyje, kurią maitina mylimas žmogus, tačiau ji jaučiasi šiek tiek nerami. Vasaris čia gali simbolizuoti sunkų ar šaltą laikotarpį, kuris praeis.",
-      "EN Description": "The song describes life in a city made of concrete blocks, expressing feelings of confinement and longing for warmth and freedom. The narrator compares themselves to a pet canary, cared for but trapped, and mentions February, which may symbolize a cold or difficult period that will eventually pass. The imagery of crows and broken wires might represent obstacles or gloomy moods, but there is hope for change and escape."
+      "EN Description": "The song describes life in a city made of concrete blocks, expressing feelings of confinement and longing for warmth and freedom. The narrator compares themselves to a pet canary, cared for but trapped, and mentions February, which may symbolize a cold or difficult period that will eventually pass. The imagery of crows and broken wires might represent obstacles or gloomy moods, but there is hope for change and escape.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2450,7 +2529,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašomas bijūno grožis ir jauni žmonės, sutikti soduose ir darželiuose, lyginami su gėlėmis. Bijūnas ir kitos gėlės gali simbolizuoti jaunystę ar meilę, tačiau ši reikšmė nėra aiškiai įvardinta. Daina išreiškia susižavėjimą gamta bei jaunais žmonėmis, kas būdinga lietuvių liaudies dainoms.",
-      "EN Description": "This song describes the beauty of peonies and compares them to young people met in gardens and yards. The peony and other flowers, like cherry and rue, may symbolize youth, love, or innocence, but their meanings are not stated directly. The song shows admiration for nature and young people, using flowers as comparisons, which is common in Lithuanian folk songs."
+      "EN Description": "This song describes the beauty of peonies and compares them to young people met in gardens and yards. The peony and other flowers, like cherry and rue, may symbolize youth, love, or innocence, but their meanings are not stated directly. The song shows admiration for nature and young people, using flowers as comparisons, which is common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2477,7 +2557,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie boružėlę su septyniais taškeliais, kuri lipa delnu, valgo, šoka ir viską įsivaizduoja kitaip nei yra iš tikrųjų. Žodžiai žaismingai lygina mažus boružėlės nuotykius su didesniais dalykais, o pabaigoje – juokingai sumaišo braškę su boružėle. Septyni taškeliai galbūt simbolizuoja savaitės dienas, bet tai nėra aišku.",
-      "EN Description": "This song describes a ladybug with seven spots as it climbs a hand, eats, dances, and imagines things differently than they are. The lyrics playfully compare the ladybug’s small experiences to bigger ones, and end with a humorous twist, where a strawberry is confused with the ladybug. The seven spots on the ladybug may symbolize the days of the week, but this is not certain."
+      "EN Description": "This song describes a ladybug with seven spots as it climbs a hand, eats, dances, and imagines things differently than they are. The lyrics playfully compare the ladybug’s small experiences to bigger ones, and end with a humorous twist, where a strawberry is confused with the ladybug. The seven spots on the ladybug may symbolize the days of the week, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2504,7 +2585,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie draugus, kurie keliauja kartu ir vertina pačią kelionę labiau nei turtus. Dainoje pabrėžiama draugystė, bendrumas ir džiaugsmo dalijimasis. Nuoroda į „Bremeno muzikantus“ gali simbolizuoti nuotykių ieškančią draugų kompaniją, bet nėra tiesiogiai susijusi su lietuviškomis tradicijomis.",
-      "EN Description": "This song is about friends traveling together, finding joy in the journey itself rather than in wealth or material possessions. The lyrics celebrate companionship, adventure, and the idea that sharing happiness and laughter is more valuable than riches. The reference to 'Bremen musicians' may symbolize a group of friends or outcasts going on an adventure, possibly inspired by the famous fairy tale, but it is not necessarily a specifically Lithuanian tradition."
+      "EN Description": "This song is about friends traveling together, finding joy in the journey itself rather than in wealth or material possessions. The lyrics celebrate companionship, adventure, and the idea that sharing happiness and laughter is more valuable than riches. The reference to 'Bremen musicians' may symbolize a group of friends or outcasts going on an adventure, possibly inspired by the famous fairy tale, but it is not necessarily a specifically Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2530,7 +2612,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jauną briedžiuką ilgomis kojomis, kurį pašiepia kiškiai, bet jis drąsiai vaikšto tarp kalnų ir mankština kojas. Išdygę ragai jam kelia džiaugsmą, o savo ragais jis nori supuoti saulę, o ne badyti draugus. Tekstas žaismingas, tikėtina, skirtas vaikams.",
-      "EN Description": "The song tells about a young moose with long legs, who is teased by hares but proudly walks among the hills and stretches his legs. As he grows antlers, he imagines not using them to hurt friends, but to swing the sun on them, which might symbolize dreams, imagination, or gentle strength. The lyrics are playful and simple, likely intended for children."
+      "EN Description": "The song tells about a young moose with long legs, who is teased by hares but proudly walks among the hills and stretches his legs. As he grows antlers, he imagines not using them to hurt friends, but to swing the sun on them, which might symbolize dreams, imagination, or gentle strength. The lyrics are playful and simple, likely intended for children.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2558,7 +2641,8 @@ const songs: SongFile = [
       "Music Author": "Bjelle ir Peru",
       "Text Author": "Bjelle ir Peru",
       "LT Description": "Ši daina pasakoja apie seserį, kuri laukia į karą išjojusio ir negrįžtančio brolio. Tekste daug ilgesio, skausmo ir nežinios dėl brolio likimo. Berželis ir rūtų darželis gali simbolizuoti lietuviškas tradicijas atminti artimuosius, tačiau taip pat gali tiesiog perteikti šeimos netektį.",
-      "EN Description": "This song tells the story of a sister waiting for her brother who has gone to war and has not returned. It expresses longing, sorrow, and the pain of not knowing his fate. The birch tree and rue garden mentioned may symbolize Lithuanian traditions of remembering loved ones, but might also simply reflect the family’s grief."
+      "EN Description": "This song tells the story of a sister waiting for her brother who has gone to war and has not returned. It expresses longing, sorrow, and the pain of not knowing his fate. The birch tree and rue garden mentioned may symbolize Lithuanian traditions of remembering loved ones, but might also simply reflect the family’s grief.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2590,7 +2674,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, kuri apmąsto savo jausmus ir veiksmus su vaikinu. Ji kartoja, kad nebūtų kalbėjusi, mylėjusi, ėjusi ar bučiavusi, bet vis susigundė jo žavesiu. Dainoje atsispindi žaismingas apgailestavimas ir meilės trauka.",
-      "EN Description": "This song tells about a girl reflecting on her actions and feelings towards a young man. She repeats that she would not have talked, loved, walked with, or kissed him, but she was tempted by his charm each time. The song portrays playful regret and the irresistible pull of attraction, and may symbolize the universal experience of giving in to love despite intentions."
+      "EN Description": "This song tells about a girl reflecting on her actions and feelings towards a young man. She repeats that she would not have talked, loved, walked with, or kissed him, but she was tempted by his charm each time. The song portrays playful regret and the irresistible pull of attraction, and may symbolize the universal experience of giving in to love despite intentions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2616,7 +2701,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina ragina seses ir brolius budėti skautybėje, puoselėti garbę, džiaugsmą ir tarnystę. Joje išreiškiama meilė Dievo pasauliui, įsipareigojimas Tėvynei ir artimui bei viltis dėl laisvos ir laimingos Lietuvos. Skautybė čia svarbi kaip jaunimo ugdymo tradicija.",
-      "EN Description": "This song calls on sisters and brothers to remain vigilant and united in the spirit of scouting, promoting values like honor, joy, and service. It expresses love for the beauty of the world, a commitment to God, country, and others, and the hope for lasting youth and happiness in free Lithuania. The mention of 'skautybė' refers to the Lithuanian scouting movement, which is important for teaching young people patriotism, responsibility, and community service."
+      "EN Description": "This song calls on sisters and brothers to remain vigilant and united in the spirit of scouting, promoting values like honor, joy, and service. It expresses love for the beauty of the world, a commitment to God, country, and others, and the hope for lasting youth and happiness in free Lithuania. The mention of 'skautybė' refers to the Lithuanian scouting movement, which is important for teaching young people patriotism, responsibility, and community service.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2645,7 +2731,8 @@ const songs: SongFile = [
       "Music Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija Gulbinaitė",
       "Text Author": "Giedrė Pundzaitė, Vaiva Murauskytė, Emilija Gulbinaitė",
       "LT Description": "Ši daina pasakoja apie namų ir savo vietos paieškas, kelionę per sunkumus link laisvės ir bendrystės. Dažnai pasikartojantys laužų ir pakeltų rankų vaizdai gali simbolizuoti vienybę ar tradicines lietuvių šventes. Tekste jaučiama ilgesio, vilties ir savasties išlaikymo tema, nors kai kurios metaforos gali reikšti ir liūdesį ar iššūkius.",
-      "EN Description": "This song is about searching for a sense of belonging and home, describing the journey through mountains and struggles to find freedom and connection. The repeated images of bonfires and raised hands may symbolize unity or collective celebration, possibly referencing traditional Lithuanian gatherings or festivals where bonfires are lit. The lyrics express longing, hope, and the importance of being true to oneself, but some metaphors—like black birds or broken voices—might symbolize deeper feelings of despair or challenge."
+      "EN Description": "This song is about searching for a sense of belonging and home, describing the journey through mountains and struggles to find freedom and connection. The repeated images of bonfires and raised hands may symbolize unity or collective celebration, possibly referencing traditional Lithuanian gatherings or festivals where bonfires are lit. The lyrics express longing, hope, and the importance of being true to oneself, but some metaphors—like black birds or broken voices—might symbolize deeper feelings of despair or challenge.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2713,7 +2800,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši trumpa liaudies daina pasakoja apie dūdą Vilniuje, tačiau dainininkas nėra tikras, ar ji tikrai buvo. Tekste žaidžiama nežinomybe ir gandais, kas gali simbolizuoti perduodamas istorijas ar tradicijas be aiškių prisiminimų. Konkrečių nuorodų į šventes ar istorinius įvykius nėra.",
-      "EN Description": "This short folk song tells about a horn in Vilnius, but the singer is unsure if it truly existed. The lyrics play with uncertainty and hearsay, which may symbolize how stories or traditions are passed down, sometimes without clear memories or proof. There are no direct references to specific Lithuanian holidays or historical events, but the 'horn' (dūda) could represent a festive or communal gathering, though this is not certain."
+      "EN Description": "This short folk song tells about a horn in Vilnius, but the singer is unsure if it truly existed. The lyrics play with uncertainty and hearsay, which may symbolize how stories or traditions are passed down, sometimes without clear memories or proof. There are no direct references to specific Lithuanian holidays or historical events, but the 'horn' (dūda) could represent a festive or communal gathering, though this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2750,7 +2838,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja linksmą istoriją apie gerą gaspadinę, kuri pagamina saldų sūrį su grietine, kol vyras išvykęs į turgų. Ji pavaišina svečius sūriu, o grįžus vyrui, apkaltina šunį, kad šis jį suvalgė. Daina žaismingai atspindi kaimišką buitį ir santykius tarp šeimos narių.",
-      "EN Description": "This song tells a humorous story about a good housewife who makes a sweet cheese with cream while her husband is away at the market. While he is gone, she invites guests over, serves them, and uses the cheese, but when her husband returns and asks about it, she blames the dog for eating it. The song playfully shows everyday rural life and relationships in a Lithuanian village, and may symbolize lighthearted deception and domestic mischief."
+      "EN Description": "This song tells a humorous story about a good housewife who makes a sweet cheese with cream while her husband is away at the market. While he is gone, she invites guests over, serves them, and uses the cheese, but when her husband returns and asks about it, she blames the dog for eating it. The song playfully shows everyday rural life and relationships in a Lithuanian village, and may symbolize lighthearted deception and domestic mischief.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2776,7 +2865,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie pirmosios meilės prisiminimus pavasarį ir šv. Jono (Joninių) naktį, kuri Lietuvoje yra svarbi vasaros šventė. Žodžiuose jaučiama ilgesio, nekaltybės ir nostalgijos nuotaika, o balta gėlė ir žilvytis gali simbolizuoti tyrumą ir svarbius prisiminimus. Šv. Jono nakties minėjimas sieja dainą su lietuviškomis laužų ir upės pakrančių tradicijomis.",
-      "EN Description": "This song is about recalling the feelings of first love during the springtime and the festive nights of St. John's (Joninės), a major Lithuanian midsummer celebration. The lyrics express longing, innocence, and nostalgia, with references to symbolic elements like the white flower and the willow tree, which may represent purity and cherished memories. The mention of St. John's night connects the song to Lithuanian traditions of bonfires and gathering by the river."
+      "EN Description": "This song is about recalling the feelings of first love during the springtime and the festive nights of St. John's (Joninės), a major Lithuanian midsummer celebration. The lyrics express longing, innocence, and nostalgia, with references to symbolic elements like the white flower and the willow tree, which may represent purity and cherished memories. The mention of St. John's night connects the song to Lithuanian traditions of bonfires and gathering by the river.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2802,7 +2892,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie čigonų (romų) būrį, kuris susirenka prie žalios giraitės, užkuria laužą, groja ir šoka. Tekste aprašomas jų klajokliškas gyvenimo būdas, laisvė ir džiaugsmas. Daina gali simbolizuoti laisvės ilgesį ir romantizuotą čigonų gyvenimo vaizdą, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song tells of a group of Romani people (referred to as 'čigonai' in Lithuanian) gathering by a green grove, making a fire, playing music, and dancing. The lyrics describe their wandering lifestyle, sense of freedom, and happiness outside of conventional society. The song may symbolize a longing for freedom and a romantic view of the traveling Romani life, but this is not directly stated."
+      "EN Description": "This song tells of a group of Romani people (referred to as 'čigonai' in Lithuanian) gathering by a green grove, making a fire, playing music, and dancing. The lyrics describe their wandering lifestyle, sense of freedom, and happiness outside of conventional society. The song may symbolize a longing for freedom and a romantic view of the traveling Romani life, but this is not directly stated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2828,7 +2919,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši žaisminga daina naudoja ritmingus, pasikartojančius garsus ir mini tradicinius lietuviškus maisto produktus – kumpį, dešrą, lašinius. Žodžiai lengvi ir juokingi, akcentuoja linksmybes, muziką ir draugišką atsisveikinimą. Pilvo bučiavimas gali simbolizuoti juokingą artumą, bet tai nėra aišku.",
-      "EN Description": "This playful song uses rhythmic, repetitive sounds and mentions traditional Lithuanian foods like ham, sausage, and bacon. The lyrics seem lighthearted and humorous, focusing on singing, food, and a funny goodbye. The meaning may simply be about enjoying good company and music, while the phrase about kissing the belly button could symbolize joking affection, but this is uncertain."
+      "EN Description": "This playful song uses rhythmic, repetitive sounds and mentions traditional Lithuanian foods like ham, sausage, and bacon. The lyrics seem lighthearted and humorous, focusing on singing, food, and a funny goodbye. The meaning may simply be about enjoying good company and music, while the phrase about kissing the belly button could symbolize joking affection, but this is uncertain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2854,7 +2946,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje naudojami žaismingi, beprasmiški žodžiai ir pasikartojantys garsai, kurie dažnai pasitaiko lietuvių vaikų dainelėse ar žaidimuose. Tekstas neturi aiškios prasmės ar siužeto, bet gali simbolizuoti linksmą nuotaiką ir drauge dainuojamų žaidimų tradiciją.",
-      "EN Description": "This song uses playful, nonsensical words and repeating sounds, which are common in many traditional children’s songs or folk games. The lyrics do not have a clear narrative or obvious meaning, but they may symbolize the joyful, rhythmic chanting found in Lithuanian children's folklore or communal celebrations. The recurring phrases and simple structure suggest it could be used for games or group singing, especially among children."
+      "EN Description": "This song uses playful, nonsensical words and repeating sounds, which are common in many traditional children’s songs or folk games. The lyrics do not have a clear narrative or obvious meaning, but they may symbolize the joyful, rhythmic chanting found in Lithuanian children's folklore or communal celebrations. The recurring phrases and simple structure suggest it could be used for games or group singing, especially among children.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2887,7 +2980,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginos jausmus vestuvių dieną – ji aprašo paukščių čiulbėjimą sode, ruošimąsi vedyboms ir tradicinius darbus. Vainikėlis ir sodo vaizdai gali simbolizuoti nekaltumą ar gyvenimo pokyčius, tačiau tai nėra visiškai aišku. Taip pat atspindimos lietuviškos kaimo ir vestuvių tradicijos.",
-      "EN Description": "This song tells the story of a young woman on her wedding day, describing her emotions as she prepares for marriage. Birds singing in the garden and references to making a wreath may symbolize innocence or the transition to a new stage in life, but this is not certain. The song also mentions traditional activities like visiting the church for the wedding and caring for the garden, which reflect Lithuanian rural customs."
+      "EN Description": "This song tells the story of a young woman on her wedding day, describing her emotions as she prepares for marriage. Birds singing in the garden and references to making a wreath may symbolize innocence or the transition to a new stage in life, but this is not certain. The song also mentions traditional activities like visiting the church for the wedding and caring for the garden, which reflect Lithuanian rural customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -2945,7 +3039,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje broliai eina per laukus, juos užklumpa stiprus lietus, todėl jie bėga slėptis po ąžuolu. Dainoje kartojami žaismingi, ritmingi žodžiai, kurie neturi tiesioginės prasmės, bet suteikia muzikos nuotaiką. Ąžuolas gali simbolizuoti stiprybę ar prieglobstį, tačiau tekstas pabrėžia, kad jis nėra tas pats kaip tėvas.",
-      "EN Description": "This song tells of brothers walking through fields, being caught in a strong rain, and seeking shelter under an oak tree. The lyrics repeat playful or rhythmic phrases that do not have direct meaning but add to the musicality. The oak may symbolize strength or protection, but the text says it is not the same as a parent, showing a feeling of longing or the difference between nature and family."
+      "EN Description": "This song tells of brothers walking through fields, being caught in a strong rain, and seeking shelter under an oak tree. The lyrics repeat playful or rhythmic phrases that do not have direct meaning but add to the musicality. The oak may symbolize strength or protection, but the text says it is not the same as a parent, showing a feeling of longing or the difference between nature and family.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3018,7 +3113,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kuri verkia prie tekančio Nemuno, nes ją žada išleisti už seno vyro, kurio ji nemyli. Dainoje išreiškiamas jos liūdesys ir nenoras paklusti šiam likimui, kas gali simbolizuoti tradicinius iš anksto sutartus santuokos papročius Lietuvoje.",
-      "EN Description": "This song tells about a young girl crying by the flowing Nemunas river because she is being promised in marriage to an older man whom she does not love. It expresses her sadness and unwillingness to accept this fate, which may symbolize the traditional practice of arranged marriages in rural Lithuania. The mention of the river and stones could represent obstacles or the heaviness of her emotions, but this is open to interpretation."
+      "EN Description": "This song tells about a young girl crying by the flowing Nemunas river because she is being promised in marriage to an older man whom she does not love. It expresses her sadness and unwillingness to accept this fate, which may symbolize the traditional practice of arranged marriages in rural Lithuania. The mention of the river and stones could represent obstacles or the heaviness of her emotions, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3045,7 +3141,8 @@ const songs: SongFile = [
       },
       "Music Author": "Rita Čyvaite-Kliorienė",
       "LT Description": "Ši daina pasakoja apie tai, kaip daina keliauja iš širdies į širdį ir kviečia tapti draugais per dainavimą. Pabrėžiamas bendro dainavimo džiaugsmas ir draugystė, kuri gali gimti per muziką. Nėra paminėtos jokios konkrečios lietuviškos tradicijos ar šventės.",
-      "EN Description": "This song is about how a song travels from one heart to another, inviting people to become friends through singing. It emphasizes the joy of singing together and how music can help form friendships. The lyrics may symbolize the unifying power of music, but no specific Lithuanian traditions or holidays are mentioned."
+      "EN Description": "This song is about how a song travels from one heart to another, inviting people to become friends through singing. It emphasizes the joy of singing together and how music can help form friendships. The lyrics may symbolize the unifying power of music, but no specific Lithuanian traditions or holidays are mentioned.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3072,7 +3169,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina ragina pamiršti liūdesį ir rūpesčius, kviečia šypsotis, dainuoti ir džiaugtis gyvenimu. Tekste pabrėžiama savęs priėmimo ir mažų gyvenimo džiaugsmų svarba. Dainoje nėra tiesioginių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song is about leaving sadness and worries behind, encouraging the listener to smile, sing, and enjoy life. It focuses on self-acceptance and finding joy in everyday moments. The lyrics use simple, direct language without clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "This song is about leaving sadness and worries behind, encouraging the listener to smile, sing, and enjoy life. It focuses on self-acceptance and finding joy in everyday moments. The lyrics use simple, direct language without clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3104,7 +3202,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina – tai jaunos merginos ir jos motinos pokalbis. Duktė dainuoja, kol dar yra laisva, ir apgailestauja, kad motina ją pažadėjo bernui be jos valios. Dainoje atsispindi prarastos laisvės ir pareigos motyvai, galbūt simbolizuojantys tradicinius moterų vaidmenis kaimiškoje Lietuvoje.",
-      "EN Description": "This song is a dialogue between a young woman and her mother. The daughter sings while she is still free, expressing sadness about being promised to a young man without her consent. The lyrics reflect themes of lost freedom and duty, which may symbolize traditional expectations for women in Lithuanian rural life, but it is not certain if they refer to a specific event or custom."
+      "EN Description": "This song is a dialogue between a young woman and her mother. The daughter sings while she is still free, expressing sadness about being promised to a young man without her consent. The lyrics reflect themes of lost freedom and duty, which may symbolize traditional expectations for women in Lithuanian rural life, but it is not certain if they refer to a specific event or custom.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3130,7 +3229,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia seseris dainuoti kartu jaunystėje ir darbuose, išreiškia ilgesį tėvynei ir viltį dėl šviesesnės ateities Lietuvai. Ji gali simbolizuoti vienybę, stiprybę ir viltį net sunkiais laikais.",
-      "EN Description": "This song encourages sisters to sing together in their youth and while working in the fields, expressing hope and love for life. It reflects longing for home when living abroad and wishes for a brighter future for Lithuania. The song may symbolize unity, resilience, and hope for freedom, especially in times when the homeland has suffered hardship."
+      "EN Description": "This song encourages sisters to sing together in their youth and while working in the fields, expressing hope and love for life. It reflects longing for home when living abroad and wishes for a brighter future for Lithuania. The song may symbolize unity, resilience, and hope for freedom, especially in times when the homeland has suffered hardship.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3156,7 +3256,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, pjaunantį žolę dalgiu ir laukiantį vakaro. Pasikartojantis žodis 'valio' rodo džiaugsmą ar šventimą dirbant. Taip pat minima, kad mergelė atneša pusryčius, kas gali simbolizuoti rūpestį ar tradicinius vaidmenis kaime, tačiau tikslus prasmė nėra aiški.",
-      "EN Description": "This song tells about someone mowing grass with a scythe and waiting for evening. The repeated word 'valio' expresses joy and celebration while working. The lyrics also mention a girl bringing breakfast to the mower, which might symbolize care or traditional roles in rural Lithuanian life, but the exact meaning is unclear."
+      "EN Description": "This song tells about someone mowing grass with a scythe and waiting for evening. The repeated word 'valio' expresses joy and celebration while working. The lyrics also mention a girl bringing breakfast to the mower, which might symbolize care or traditional roles in rural Lithuanian life, but the exact meaning is unclear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3182,7 +3283,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kuriai šeima ruošiasi surasti vyrą: iš pradžių našlį, kurio ji nemyli, vėliau berną, kurį myli. Dainoje atsispindi jos nenoras tekėti už nemylimo ir viltis ištekėti už mylimo. Kai kurie posakiai, pavyzdžiui, 'laikyti dūmuose' ar 'girdyti šarmu', gali simbolizuoti šaltumą ar neprielankumą, bet tiksli reikšmė nėra aiški.",
-      "EN Description": "This song tells the story of a young woman whose family is arranging her marriage, first to a widower she does not love, and then to a young man she does love. The lyrics reflect her resistance to an unwanted marriage and her hope for a happier union. Some phrases, like keeping someone 'in smoke' or 'watering with frost,' may symbolize neglect or coldness, but their exact meaning is open to interpretation."
+      "EN Description": "This song tells the story of a young woman whose family is arranging her marriage, first to a widower she does not love, and then to a young man she does love. The lyrics reflect her resistance to an unwanted marriage and her hope for a happier union. Some phrases, like keeping someone 'in smoke' or 'watering with frost,' may symbolize neglect or coldness, but their exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3208,7 +3310,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai rami vakaro malda, kurioje dainininkas atsisveikina su Jėzumi ir prašo atleidimo už padarytas klaidas. Žodžiai išreiškia dėkingumą, prašo apsaugoti artimuosius ir tėvynę, bei viliasi palaimos naujai dienai. Ši daina susijusi su krikščioniškomis vertybėmis ir šeimos svarba lietuvių kultūroje.",
-      "EN Description": "This song is a gentle evening prayer, where the singer bids goodnight to Jesus and asks for forgiveness for their mistakes. The lyrics express gratitude, seek protection for loved ones and homeland, and reflect on the day's end with hope for blessing. The song's themes are closely connected to Christian faith and family, which are important in Lithuanian culture, especially during times of reflection like evening prayers."
+      "EN Description": "This song is a gentle evening prayer, where the singer bids goodnight to Jesus and asks for forgiveness for their mistakes. The lyrics express gratitude, seek protection for loved ones and homeland, and reflect on the day's end with hope for blessing. The song's themes are closely connected to Christian faith and family, which are important in Lithuanian culture, especially during times of reflection like evening prayers.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3235,7 +3338,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina perteikia liūdesio nuotaiką ir susitaikymą su ja, kai žmogus atsisako saulės ir priima lietų bei miglą. Dainoje aprašomas oras gali simbolizuoti vidinius jausmus, pavyzdžiui, vienišumą ar išsiskyrimą, tačiau tai nėra aiškiai pasakyta. Obels žiedas ar pienės pūkas gali reikšti trumpalaikį grožį ar nekaltumą, bet jų prasmė lieka atvira.",
-      "EN Description": "This song expresses a feeling of melancholy and acceptance of sadness, with the speaker turning away from sunshine and choosing to embrace rain and mist instead. The weather in the song may symbolize inner emotions, such as loneliness or heartbreak, but this is not stated directly. Images like fallen apple blossoms and dandelion fluff could represent fleeting beauty or lost innocence, but their meaning is open to interpretation."
+      "EN Description": "This song expresses a feeling of melancholy and acceptance of sadness, with the speaker turning away from sunshine and choosing to embrace rain and mist instead. The weather in the song may symbolize inner emotions, such as loneliness or heartbreak, but this is not stated directly. Images like fallen apple blossoms and dandelion fluff could represent fleeting beauty or lost innocence, but their meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3261,7 +3365,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį namams ir vaikystės prisiminimus, kai dainininkas toli nuo Tėvynės kreipiasi į mylimą sesę. Joje jaučiama nostalgija, broliška artuma ir noras kartu dainuoti dainas, primenančias gimtinę. Tekste atsispindi tradicinis kaimo gyvenimas, tačiau nenurodoma konkreti šventė ar istoriniai įvykiai.",
-      "EN Description": "This song is about a longing for home and childhood memories, as the singer addresses a beloved sister while being far away from their homeland. It expresses feelings of nostalgia, sibling closeness, and the wish to share traditional songs that remind them of their native land. The references to rural life, such as braiding hair and working the land, evoke traditional Lithuanian village life, but there is no mention of a specific holiday or historical event."
+      "EN Description": "This song is about a longing for home and childhood memories, as the singer addresses a beloved sister while being far away from their homeland. It expresses feelings of nostalgia, sibling closeness, and the wish to share traditional songs that remind them of their native land. The references to rural life, such as braiding hair and working the land, evoke traditional Lithuanian village life, but there is no mention of a specific holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3294,7 +3399,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunos merginos jausmus savo kaime, kuriame daug jaunimo. Ji jaučiasi nerami, kol ją paguodžia mylimasis. Žodžiuose minima rūtų vainikėlis, kuris Lietuvoje simbolizuoja tyrumą ir jaunystę, tačiau žalių rūtelių ir jaunų dienelių prasmė gali simbolizuoti greitai praeinančią jaunystę ir laimę.",
-      "EN Description": "This song is about a young woman's feelings in her village, where many young people live. She feels unsettled until she finds comfort in her beloved. The lyrics mention rue wreaths, which are traditional symbols of purity and youth in Lithuania, but the meaning of green rue and youthful days can also suggest the fleeting nature of youth and happiness."
+      "EN Description": "This song is about a young woman's feelings in her village, where many young people live. She feels unsettled until she finds comfort in her beloved. The lyrics mention rue wreaths, which are traditional symbols of purity and youth in Lithuania, but the meaning of green rue and youthful days can also suggest the fleeting nature of youth and happiness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3326,7 +3432,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginos užaugimą, vaikystės pabaigą ir išėjimą iš namų, greičiausiai tuoktis. Tekste minima liepa ir gegutės, kurios lietuvių liaudies dainose dažnai simbolizuoja laiką ar likimą. Motinos ir dukters dialogas atskleidžia išsiskyrimo liūdesį, būdingą lietuvių vestuvių tradicijoms.",
-      "EN Description": "This song tells the story of a young woman growing up, her childhood years passing by, and her eventual departure from home, likely for marriage. The lyrics mention a tree and cuckoo birds, which can symbolize the passage of time and change; in Lithuanian folk songs, the cuckoo often represents time or fate. The conversation between mother and daughter shows the sadness of leaving home, a common theme in Lithuanian wedding traditions."
+      "EN Description": "This song tells the story of a young woman growing up, her childhood years passing by, and her eventual departure from home, likely for marriage. The lyrics mention a tree and cuckoo birds, which can symbolize the passage of time and change; in Lithuanian folk songs, the cuckoo often represents time or fate. The conversation between mother and daughter shows the sadness of leaving home, a common theme in Lithuanian wedding traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3352,7 +3459,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja simbolinę istoriją apie nulaužtą diemedėlio šakelę, kuri gali reikšti nekaltybės praradimą ar pasikeitimus. Toliau sekamas kelionės, mainų, vedybų ir švelnaus paguodos motyvas, atspindintis senas lietuvių liaudies tradicijas, bet kai kurie simboliai gali turėti ir gilesnę ar neaiškią prasmę.",
-      "EN Description": "This song tells a symbolic story about a broken branch of a diemedėlis bush, which may represent lost innocence or change. A journey follows: a boat arrives, grain is traded, a horse is bought, and a noble's daughter is brought home in marriage. The lyrics touch on themes of longing, transition, and gentle comfort, possibly reflecting old Lithuanian folk traditions of courtship and leaving home, but the symbols might also have deeper or unclear meanings."
+      "EN Description": "This song tells a symbolic story about a broken branch of a diemedėlis bush, which may represent lost innocence or change. A journey follows: a boat arrives, grain is traded, a horse is bought, and a noble's daughter is brought home in marriage. The lyrics touch on themes of longing, transition, and gentle comfort, possibly reflecting old Lithuanian folk traditions of courtship and leaving home, but the symbols might also have deeper or unclear meanings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3379,7 +3487,8 @@ const songs: SongFile = [
       },
       "Music Author": "Lowell Mason, 1856",
       "LT Description": "Ši daina yra nuoširdi malda, išreiškianti troškimą būti arčiau Dievo net per skausmą ir sunkumus. Žodžiai kalba apie kantrybę, viltį ir tikėjimą, nepaisant vienatvės ar tamsos. Tekstas gali simbolizuoti dvasinį stiprumą ir viltį surasti paguodą bei šviesą.",
-      "EN Description": "This song is a heartfelt prayer expressing a longing to be closer to God, even through pain and hardship. The lyrics describe enduring suffering, loneliness, and darkness, but always holding onto hope and faith. The text may symbolize spiritual resilience and the belief in eventual comfort and light, though the specific imagery could also reflect personal experiences of loss or struggle."
+      "EN Description": "This song is a heartfelt prayer expressing a longing to be closer to God, even through pain and hardship. The lyrics describe enduring suffering, loneliness, and darkness, but always holding onto hope and faith. The text may symbolize spiritual resilience and the belief in eventual comfort and light, though the specific imagery could also reflect personal experiences of loss or struggle.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3405,7 +3514,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši giesmė yra paprasta malda arba himnas, kuriame išreiškiamas garbinimas, atsidavimas ir meilė Dievui Tėvui, Jėzui bei Šventajai Dvasiai. Kiekvienai Trejybės daliai kartojama ta pati mintis. Ši giesmė dažnai giedama bažnyčioje per pamaldas.",
-      "EN Description": "This song is a simple prayer or hymn expressing worship, self-offering, and love towards God the Father, Jesus, and the Holy Spirit. The text repeats a similar pattern for each, showing devotion and surrender. The song could be used in Christian religious services and might symbolize the unity of the Holy Trinity, but this is not directly stated in the lyrics."
+      "EN Description": "This song is a simple prayer or hymn expressing worship, self-offering, and love towards God the Father, Jesus, and the Holy Spirit. The text repeats a similar pattern for each, showing devotion and surrender. The song could be used in Christian religious services and might symbolize the unity of the Holy Trinity, but this is not directly stated in the lyrics.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3431,7 +3541,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina skirta Dievui, tėvynei ir žmonijai – čia aprašomi jauni žmonės (greičiausiai skautai), kurie mokosi, bręsta ir jaučia stiprų ryšį su Lietuva, nors nebūtinai yra jos miškuose. Simboliai, kaip lelija ar baltas Vytis, gali simbolizuoti tyrumą ir tautinį pasididžiavimą, tačiau jų reikšmė gali būti interpretuojama įvairiai. Daina taip pat išreiškia viltį grįžti į tėviškę ir ją pagerbti.",
-      "EN Description": "This song is about dedicating love and effort to God, the homeland, and humanity. It describes young people (possibly scouts) who are learning and growing, feeling a deep connection to Lithuania even when far from its forests. Symbols like the lily and the white Vytis (a Lithuanian national symbol) may represent purity and national pride, but their exact meaning could be open to interpretation. The song also expresses hope for returning home and bringing honor to the homeland."
+      "EN Description": "This song is about dedicating love and effort to God, the homeland, and humanity. It describes young people (possibly scouts) who are learning and growing, feeling a deep connection to Lithuania even when far from its forests. Symbols like the lily and the white Vytis (a Lithuanian national symbol) may represent purity and national pride, but their exact meaning could be open to interpretation. The song also expresses hope for returning home and bringing honor to the homeland.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3457,7 +3568,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie žmogaus laimės paieškas ir ragina tarnauti Dievui, Tėvynei bei artimui. Joje pabrėžiamos tikėjimo, meilės ir vilties svarba bei raginama būti užjaučiantiems, ypač tiems, kurie galbūt paklydę. Daina gali simbolizuoti krikščioniškas vertybes ir bendruomeniškumą.",
-      "EN Description": "This song speaks about a person's search for happiness and encourages serving God, the homeland, and others. It mentions faith, love, and hope as guides in life and highlights the importance of compassion, especially towards those who may be lost or struggling. The text may symbolize Christian values and community, but it does not reference a specific Lithuanian holiday or historical event."
+      "EN Description": "This song speaks about a person's search for happiness and encourages serving God, the homeland, and others. It mentions faith, love, and hope as guides in life and highlights the importance of compassion, especially towards those who may be lost or struggling. The text may symbolize Christian values and community, but it does not reference a specific Lithuanian holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3483,7 +3595,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasitelkia muzikos garsų pavadinimus (do, re, mi ir t. t.), kad apibūdintų žaismingą ir gyvybingą vaiko prigimtį. Kiekviena eilutė prasideda kitu garsu ir siejama su paprastais vaikystės momentais, pavyzdžiui, meilė tėvams ar lakstymas namuose. Daina gali simbolizuoti vaikystės džiaugsmą ir energiją.",
-      "EN Description": "This song uses the syllables of the musical scale (do, re, mi, etc.) to describe the playful and lively nature of a child. Each line starts with a different note and connects it to a simple aspect of childhood, such as loving parents, being clever, or running around. The song may symbolize the innocence and energy of childhood, but it mainly celebrates everyday moments in a child's life."
+      "EN Description": "This song uses the syllables of the musical scale (do, re, mi, etc.) to describe the playful and lively nature of a child. Each line starts with a different note and connects it to a simple aspect of childhood, such as loving parents, being clever, or running around. The song may symbolize the innocence and energy of childhood, but it mainly celebrates everyday moments in a child's life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3509,7 +3622,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina ragina jauną merginą netekėti už miestelio vaikino, o rinktis saviškį iš kaimo. Eilėse lyginami vaikinų darbai laukuose ir užsimenama apie tradicines vertybes bei bendruomeniškumą. Dobilas ir arimas taip pat gali simbolizuoti vaisingumą ar viltį.",
-      "EN Description": "This folk song tells a young girl not to marry a boy from town, but instead to choose a local village boy. The lyrics compare the way each boy ploughs the fields, which may symbolize their work ethic or suitability for marriage. The song reflects traditional Lithuanian values about marriage and community, though the deeper meanings of the green clover and the ploughing could also represent fertility or hope."
+      "EN Description": "This folk song tells a young girl not to marry a boy from town, but instead to choose a local village boy. The lyrics compare the way each boy ploughs the fields, which may symbolize their work ethic or suitability for marriage. The song reflects traditional Lithuanian values about marriage and community, though the deeper meanings of the green clover and the ploughing could also represent fertility or hope.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3535,7 +3649,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje seserys eina prie vartelių ir klausia apie savo brolį, kuris jodinėja žirgu. Žodis 'dolija' greičiausiai neturi tiesioginės reikšmės ir naudojamas kaip priedainis, būdingas lietuvių liaudies dainoms. Brolis, skaičiuojantis žvaigždes ir gaudantis vėjus, gali simbolizuoti svajones ar ilgesį, bet tai nėra aišku.",
-      "EN Description": "This song tells a simple story about sisters going out to the gate and asking about their brother, who is riding a horse. The repeated word 'dolija' may not have a direct meaning and probably serves as a rhythmic refrain, common in Lithuanian folk songs. The brother counting stars and chasing winds at the edge of the field could symbolize dreaming or longing, but this is not certain."
+      "EN Description": "This song tells a simple story about sisters going out to the gate and asking about their brother, who is riding a horse. The repeated word 'dolija' may not have a direct meaning and probably serves as a rhythmic refrain, common in Lithuanian folk songs. The brother counting stars and chasing winds at the edge of the field could symbolize dreaming or longing, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3562,7 +3677,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie du žmones, kurie kartu praleidžia ypatingą vakarą lietuje ir svarsto, kaip svarbu turėti draugą. Žodžiai išreiškia norą pabūti drauge ilgiau ir džiaugsmą, kurį suteikia draugystė. Lietus gali simbolizuoti jausmus ar sunkumus, tačiau tai nėra aiškiai pasakyta.",
-      "EN Description": "This song is about two people sharing a meaningful moment together in the rain, reflecting on the importance of having a friend. The lyrics express a desire to stay together a little longer and the comfort that comes from friendship. The rain might symbolize emotions or the challenges they face, but it is not clear if it has a deeper meaning."
+      "EN Description": "This song is about two people sharing a meaningful moment together in the rain, reflecting on the importance of having a friend. The lyrics express a desire to stay together a little longer and the comfort that comes from friendship. The rain might symbolize emotions or the challenges they face, but it is not clear if it has a deeper meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3589,7 +3705,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie draugystės šilumą ir tai, kaip bendri išgyvenimai išlieka su mumis, net jei kartu buvome trumpai. Tekste prisimenamos draugų akimirkos gamtoje, žaidimai, o tokie simboliai kaip laužas, jūra ar saulė gali simbolizuoti draugystės ilgaamžiškumą ar prisiminimus.",
-      "EN Description": "This song is about the warmth and lasting impact of friendship, even after spending only a short time together. The lyrics talk about memories shared by friends—playing, being together in nature, and how these experiences stay with us. Symbols like the campfire, the sea, and the sun may represent lasting bonds or memories, but their deeper meaning is open to interpretation."
+      "EN Description": "This song is about the warmth and lasting impact of friendship, even after spending only a short time together. The lyrics talk about memories shared by friends—playing, being together in nature, and how these experiences stay with us. Symbols like the campfire, the sea, and the sun may represent lasting bonds or memories, but their deeper meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3615,7 +3732,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie žmogų, dirbantį šieną, kai jo broliai yra kunigai ir urėdai. Kai dainos veikėjui sulūžta grėblys, jis prašo brolio pagalbos, bet šis atsisako, norėdamas tęsti savo darbus. Daina gali simbolizuoti vienišumą arba socialinius skirtumus tarp brolių, bet daugiausia aprašo paprastą kaimo gyvenimą.",
-      "EN Description": "This folk song tells of a person working in the hayfields while their brothers hold respected positions as priests and forest rangers. When the person's rake breaks and they ask for help, their brother refuses, choosing to continue his own work. The song may symbolize feelings of solitude or social differences between siblings, but it mostly describes simple rural life and everyday tasks."
+      "EN Description": "This folk song tells of a person working in the hayfields while their brothers hold respected positions as priests and forest rangers. When the person's rake breaks and they ask for help, their brother refuses, choosing to continue his own work. The song may symbolize feelings of solitude or social differences between siblings, but it mostly describes simple rural life and everyday tasks.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3641,7 +3759,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma liaudies daina pasakoja apie gyvūnus ir vabzdžius, kurie kartu verda žirnių košę, kiekvienas atlikdamas savo darbą. Tekstas paprastas ir žaismingas, skirtas vaikams bei moko bendradarbiavimo. Tokie gyvūnų vaizdai dažni lietuvių vaikų dainose ir dažniausiai reiškia bendruomeniškumą ar kaimo gyvenimą.",
-      "EN Description": "This playful folk song tells about animals and insects working together to make pea porridge, with each creature doing a different task. The lyrics are simple and imaginative, likely meant to entertain children and teach about cooperation. The use of animals acting like people is common in Lithuanian children's songs and may symbolize community or everyday rural life, but the song is mostly lighthearted and fun."
+      "EN Description": "This playful folk song tells about animals and insects working together to make pea porridge, with each creature doing a different task. The lyrics are simple and imaginative, likely meant to entertain children and teach about cooperation. The use of animals acting like people is common in Lithuanian children's songs and may symbolize community or everyday rural life, but the song is mostly lighthearted and fun.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3667,7 +3786,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina – žaismingas pokalbis tarp motinos ir dukros, kai mama klausia apie keistus garsus ir dukros išvaizdą. Dukra atsako juokingai ar išsisukinėdama, todėl tekstas atrodo lengvas ir šmaikštus. Kai kurios eilutės, pavyzdžiui, apie gydytoją ar vaiką ant rankų, gali simbolizuoti netikėtus įvykius, tačiau tiksli prasmė nėra aiški.",
-      "EN Description": "This song is a playful conversation between a mother and her daughter, where the mother asks about strange noises and the daughter's changing appearance. The dialogue is light and teasing, with the daughter giving humorous or evasive answers. Some lines, like the mention of a doctor and a child in arms, could symbolize surprise or unexpected events, but the exact meaning is open to interpretation."
+      "EN Description": "This song is a playful conversation between a mother and her daughter, where the mother asks about strange noises and the daughter's changing appearance. The dialogue is light and teasing, with the daughter giving humorous or evasive answers. Some lines, like the mention of a doctor and a child in arms, could symbolize surprise or unexpected events, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3693,7 +3813,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina linksmai pasakoja apie sūrio, ragaišio ir meduolių dalijimąsi bei laukimą, kol atneš gaidį. Gaidys čia giriamas už savo savybes, ypač už tai, kad kas valandą gieda kaip laikrodis. Daina atspindi kaimo gyvenimo ir bendro vaišių stalo nuotaiką, o gaidys gali simbolizuoti dienos pradžią ar rutiną.",
-      "EN Description": "This folk song humorously describes sharing simple foods like cheese, rye bread, and gingerbread, followed by waiting for a rooster to be brought. The rooster is admired for its qualities, especially its ability to crow like a clock every hour. The song likely reflects village life and communal meals, and the rooster may symbolize daily routine or the start of a new day, but this is not certain."
+      "EN Description": "This folk song humorously describes sharing simple foods like cheese, rye bread, and gingerbread, followed by waiting for a rooster to be brought. The rooster is admired for its qualities, especially its ability to crow like a clock every hour. The song likely reflects village life and communal meals, and the rooster may symbolize daily routine or the start of a new day, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3772,7 +3893,8 @@ const songs: SongFile = [
       },
       "Music Author": "Jonas Švedas",
       "LT Description": "Ši daina pasakoja apie jaunuolį, prašantį savo žirgo greitai nunešti jį pas mylimą merginą, kartu nešant dovanų – šilko skarą ir žiedelį. Tekste minimas susitikimas su merginos tėvu ir kelionė, kurią lydi žaismingos, ritmiškos priedainio eilutės. Daina atspindi tradicinius lietuviškus piršlybų papročius.",
-      "EN Description": "This song tells of a young person asking their black horse to carry them quickly to a beloved girl, bringing gifts like a silk scarf and a flower. The lyrics mention meeting the girl's father and describe the journey with playful, rhythmic refrains. The song reflects traditional Lithuanian courtship themes, where visiting a loved one and bringing symbolic gifts were important customs."
+      "EN Description": "This song tells of a young person asking their black horse to carry them quickly to a beloved girl, bringing gifts like a silk scarf and a flower. The lyrics mention meeting the girl's father and describe the journey with playful, rhythmic refrains. The song reflects traditional Lithuanian courtship themes, where visiting a loved one and bringing symbolic gifts were important customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3798,7 +3920,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši giesmė yra džiugi ir pakili, kviečianti širdis džiaugtis Dievo šviesoje ir globoj. Ji ragina žmones jaustis bendruomeniškai Dievo tautoje ir eiti į pasaulį vedami Dievo. Žodis 'Aleliuja' dažnai naudojamas krikščioniškose giesmėse šlovinimui ir džiaugsmui išreikšti.",
-      "EN Description": "This song is a joyful and uplifting hymn, inviting hearts to rejoice in God's light and protection. It encourages people, called 'brothers,' to feel united in God's community and to go out into the world guided by divine presence. The repeated word 'Aleliuja' is a common exclamation in Christian songs, expressing praise and celebration; the song may be used in religious gatherings or church services."
+      "EN Description": "This song is a joyful and uplifting hymn, inviting hearts to rejoice in God's light and protection. It encourages people, called 'brothers,' to feel united in God's community and to go out into the world guided by divine presence. The repeated word 'Aleliuja' is a common exclamation in Christian songs, expressing praise and celebration; the song may be used in religious gatherings or church services.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3824,7 +3947,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina išreiškia meilę ir pasididžiavimą savo gimtinei – Dzūkijai. Joje giriama Dzūkijos gamta, žmonės ir dainos, pabrėžiama stipri ryšio su tėviške svarba. 'Girių karaliai' ir Dzūkija kaip 'Karalienė' gali simbolizuoti dzūkių artumą gamtai ir regiono ypatingumą.",
-      "EN Description": "This song expresses deep love and pride for the singer's homeland, Dzūkija, a region in southern Lithuania. The lyrics celebrate the beauty of local songs, forests, and people, highlighting a strong connection to nature and community. The reference to 'forest kings' and Dzūkija as 'Queen' may symbolize the importance of forests and regional identity for Dzūkai, but could also simply reflect affection for the region."
+      "EN Description": "This song expresses deep love and pride for the singer's homeland, Dzūkija, a region in southern Lithuania. The lyrics celebrate the beauty of local songs, forests, and people, highlighting a strong connection to nature and community. The reference to 'forest kings' and Dzūkija as 'Queen' may symbolize the importance of forests and regional identity for Dzūkai, but could also simply reflect affection for the region.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3902,7 +4026,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie moterį, kuri viena mala grūdus girnomis ir kalba apie savo rankas, kojas bei akis, pavargusias nuo darbo. Prašymas girnoms dzūkti gali reikšti norą rasti džiaugsmą ar paguodą darbuose, bet taip pat gali būti tiesiog apie kasdienį malimo garsą, būdingą senovės lietuvių kaimo gyvenimui.",
-      "EN Description": "This song is about a woman working alone, grinding grain with a hand mill early in the morning. She describes her hands, feet, and eyes, each affected by her work. The repeated request for the millstones to grind may symbolize hope for joy or relief through work, but could also simply refer to the rhythmic sounds of milling, a common task in traditional Lithuanian village life."
+      "EN Description": "This song is about a woman working alone, grinding grain with a hand mill early in the morning. She describes her hands, feet, and eyes, each affected by her work. The repeated request for the millstones to grind may symbolize hope for joy or relief through work, but could also simply refer to the rhythmic sounds of milling, a common task in traditional Lithuanian village life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3929,7 +4054,8 @@ const songs: SongFile = [
       },
       "Music Author": "Ramūnas Underys",
       "LT Description": "Daina pasakoja apie draugų sugrįžimą į stovyklą, išgyvenamus jausmus ir prisiminimus, bendrumą bei išsiskyrimo liūdesį. Tekste minimi „Spyglys“ ir „Dainava“ greičiausiai yra konkrečios stovyklos vietos ar pavadinimai, kurie gali simbolizuoti svarbias vietas Lietuvos jaunimo ar skautų kultūroje.",
-      "EN Description": "This song is about friends returning to a familiar camp, expressing emotions tied to reunion, parting, and shared experiences. It describes the beauty of memories, the sadness of leaving, and the hope of returning someday. References like 'Spyglys' and 'Dainava' likely refer to specific camp locations or names, which may symbolize important places in Lithuanian youth or scouting culture."
+      "EN Description": "This song is about friends returning to a familiar camp, expressing emotions tied to reunion, parting, and shared experiences. It describes the beauty of memories, the sadness of leaving, and the hope of returning someday. References like 'Spyglys' and 'Dainava' likely refer to specific camp locations or names, which may symbolize important places in Lithuanian youth or scouting culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3960,7 +4086,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie lietuvių jūreivius, kurie drąsiai keliauja pirmyn ir plačiai neša savo šalies vėliavą. Tekste minimas Vytautas ir išreiškiamas pasididžiavimas Lietuva bei jos laivynu. Posakis 'nuo jūrų iki jūrų' gali simbolizuoti dideles tautos svajones ar siekius.",
-      "EN Description": "This song tells about Lithuanian sailors bravely moving forward and carrying their nation's flag across the seas. The lyrics mention Vytautas, a historical figure, and express pride in Lithuania and its navy. The phrase 'from sea to sea' may symbolize broad ambitions or dreams of national strength, but the exact meaning is not entirely clear."
+      "EN Description": "This song tells about Lithuanian sailors bravely moving forward and carrying their nation's flag across the seas. The lyrics mention Vytautas, a historical figure, and express pride in Lithuania and its navy. The phrase 'from sea to sea' may symbolize broad ambitions or dreams of national strength, but the exact meaning is not entirely clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -3993,7 +4120,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje dukra kalbasi su motina, išreikšdama apgailestavimą praradusi savo vainikėlį, kuris lietuvių kultūroje gali simbolizuoti jaunystę ar nekaltybę. Motina dukrai primena, kad ji neklausė patarimų, o dainoje jaučiama liūdesio, prarastos nekaltybės ir gyvenimo pasirinkimų tema. Vainikėlis šioje dainoje svarbus kaip tradicinis mergaitės nekaltybės ir jaunystės simbolis.",
-      "EN Description": "This song is a conversation between a daughter and her mother, where the daughter regrets losing her 'wreath'—a symbol that can represent youth, innocence, or maidenhood in Lithuanian culture. The mother warns her daughter about not listening to advice, and the lyrics describe feelings of regret, lost innocence, and the choices young women face. The song references the tradition of the 'wreath' (vainikėlis), which is important in Lithuanian folk songs and customs, especially relating to girls' purity and marriage."
+      "EN Description": "This song is a conversation between a daughter and her mother, where the daughter regrets losing her 'wreath'—a symbol that can represent youth, innocence, or maidenhood in Lithuanian culture. The mother warns her daughter about not listening to advice, and the lyrics describe feelings of regret, lost innocence, and the choices young women face. The song references the tradition of the 'wreath' (vainikėlis), which is important in Lithuanian folk songs and customs, especially relating to girls' purity and marriage.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4019,7 +4147,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie skautus, einančius takeliu ir besidžiaugiančius gamtos grožiu. Žodžiai parodo jų bendrystę ir džiaugsmą būti kartu. Kvietimas prisijungti gali simbolizuoti draugiškumą, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song describes scouts walking together along a path and enjoying the beauty of nature. The lyrics show their sense of unity and happiness in being together outdoors. The mention of marching in step and inviting others to join could symbolize friendship and openness, but this is not stated directly."
+      "EN Description": "This song describes scouts walking together along a path and enjoying the beauty of nature. The lyrics show their sense of unity and happiness in being together outdoors. The mention of marching in step and inviting others to join could symbolize friendship and openness, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4045,7 +4174,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie brolius ir seses, einančius kartu į mišką. Broliai ilsisi po ąžuolu, kuris prilyginamas tėvui, o sesės – po liepa, kuri prilyginama motinai. Medžių šakos ir lapai vadinami rankomis ir žodžiais, kas gali simbolizuoti globą ir švelnumą, bet tai nėra aišku.",
-      "EN Description": "This song is about brothers and sisters walking together into the forest. As they travel, they find shelter under an oak (for the brothers) and a linden tree (for the sisters), which are compared to a father and a mother. The trees' branches and leaves are described as hands and words, which may symbolize protection and comfort, but this is not certain. The song uses simple repetition and nature imagery often found in Lithuanian folk songs."
+      "EN Description": "This song is about brothers and sisters walking together into the forest. As they travel, they find shelter under an oak (for the brothers) and a linden tree (for the sisters), which are compared to a father and a mother. The trees' branches and leaves are described as hands and words, which may symbolize protection and comfort, but this is not certain. The song uses simple repetition and nature imagery often found in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4077,7 +4207,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie brolius ir seseris, grįžtančius namo, kur jų laukia tėvas ir močiutė. Tėvas rankoje laiko dirželį, o močiutė – rykštelę, kas gali simbolizuoti drausmę ar vyresniųjų valdžią šeimoje. Tekstas gali atspindėti šeimos santykius ar vaikystės patirtis, tačiau nėra aišku, ar tai susiję su konkrečia tradicija.",
-      "EN Description": "This song tells about brothers and sisters returning home, where their elders—father and grandmother—are waiting for them. The father holds a belt and the grandmother a switch, which may symbolize discipline or the traditional authority of elders in Lithuanian families. The text could reflect family dynamics or childhood experiences, but it is uncertain whether it refers to a specific tradition or is more generally about returning home."
+      "EN Description": "This song tells about brothers and sisters returning home, where their elders—father and grandmother—are waiting for them. The father holds a belt and the grandmother a switch, which may symbolize discipline or the traditional authority of elders in Lithuanian families. The text could reflect family dynamics or childhood experiences, but it is uncertain whether it refers to a specific tradition or is more generally about returning home.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4103,7 +4234,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie brolius, einančius pjauti šieno, galandant dalgius, dirbant ir ilsintis. Joje vaizduojama tradicinio lietuviško kaimo kasdienybė, kai šienapjūtė buvo bendruomeninis vasaros darbas. Pasikartojantis 'dobilėli žaliasai' gali tiesiog reikšti žalią pievą, bet galbūt simbolizuoja gamtos grožį ar gyvybingumą.",
-      "EN Description": "This song describes brothers going together to mow hay, sharpening their scythes, working, and taking breaks. It reflects scenes from traditional Lithuanian rural life, where haymaking was a communal summer activity. The repeated mention of 'dobilėlis žaliasai' (green clover) could simply refer to the lush grass, but might also symbolize freshness or rural beauty."
+      "EN Description": "This song describes brothers going together to mow hay, sharpening their scythes, working, and taking breaks. It reflects scenes from traditional Lithuanian rural life, where haymaking was a communal summer activity. The repeated mention of 'dobilėlis žaliasai' (green clover) could simply refer to the lush grass, but might also symbolize freshness or rural beauty.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4129,7 +4261,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie du žmones, kurie kartu eina į mišką, pjauna liepas, gamina lentas, stato naują lovą ir ruošia ją sau bei būsimam vaikui. Pasikartojantys veiksmai gali simbolizuoti bendrystę ir naujos šeimos pradžią, bet taip pat gali atspindėti tradicinius kaimo gyvenimo darbus.",
-      "EN Description": "This folk song describes two people working together, step by step, to create a home and family. They go to the forest, cut down linden trees, make boards, build a new bed, and prepare it for themselves and their future child. The repeated actions may symbolize cooperation, partnership, and the beginnings of a new family, but could also simply reflect traditional rural life and tasks."
+      "EN Description": "This folk song describes two people working together, step by step, to create a home and family. They go to the forest, cut down linden trees, make boards, build a new bed, and prepare it for themselves and their future child. The repeated actions may symbolize cooperation, partnership, and the beginnings of a new family, but could also simply reflect traditional rural life and tasks.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4155,7 +4288,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja linksmas kasdienio gyvenimo situacijas ir netikėtus nutikimus, pavyzdžiui, užlipimą ant stiklų ar paslydimą diskotekoje. Tekste daug humoro, o svarbiausia – pabrėžiami paprasti, visiems pažįstami įvykiai. Įvykiai gali simbolizuoti gyvenimo netikėtumus, tačiau daugiausia dėmesio skiriama juokingoms akimirkoms.",
-      "EN Description": "This song tells a lighthearted story about everyday mishaps and small accidents, like stepping on broken glass or slipping at a party. The lyrics use humor to capture the unexpected things that can happen in daily life. The events may symbolize how unpredictable life can be, but mainly the text focuses on amusing, relatable situations."
+      "EN Description": "This song tells a lighthearted story about everyday mishaps and small accidents, like stepping on broken glass or slipping at a party. The lyrics use humor to capture the unexpected things that can happen in daily life. The events may symbolize how unpredictable life can be, but mainly the text focuses on amusing, relatable situations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4181,7 +4315,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris eina per žalią pievą, tamsų mišką ir galiausiai grįžta namo, visur užkliūdamas ir kviesdamas gėles, medžius bei žmones kartu išgerti ir išsiverkti. Kartojamas kliuvimas ir sunki galva gali simbolizuoti emocinius sunkumus arba liūdesį, bet gali reikšti ir paprastą nuovargį. Kvietimas drauge gerti ir verkti rodo norą rasti paguodą kartu su kitais.",
-      "EN Description": "This song describes someone walking through a green meadow, a dark forest, and finally returning home, each time stumbling and addressing flowers, trees, and people to join in drinking and weeping together. The repeated stumbling and heavy head may symbolize emotional burdens or feelings of sadness, but could also simply express moments of hardship. The invitation to drink and cry suggests a search for shared comfort in difficult times."
+      "EN Description": "This song describes someone walking through a green meadow, a dark forest, and finally returning home, each time stumbling and addressing flowers, trees, and people to join in drinking and weeping together. The repeated stumbling and heavy head may symbolize emotional burdens or feelings of sadness, but could also simply express moments of hardship. The invitation to drink and cry suggests a search for shared comfort in difficult times.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4207,7 +4342,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma lietuvių liaudies daina pasakoja apie mergaitės ir kitų personažų kurioziškus nuotykius – kaip jie susiduria su smulkiomis bėdomis ar netikėtumais. Dainoje daug juokingų situacijų ir daug kartojamų žodžių, kaip būdinga lietuvių folklorui.",
-      "EN Description": "This playful Lithuanian folk song tells a series of silly and humorous stories about a girl and other characters having misadventures—getting wet, losing things, or getting scolded. The lyrics are lighthearted and may gently mock everyday troubles, perhaps symbolizing how small accidents or misfortunes can be laughed off, but this is not certain. The song uses repetition and nonsense syllables, which are typical in Lithuanian folk music and make it fun to sing."
+      "EN Description": "This playful Lithuanian folk song tells a series of silly and humorous stories about a girl and other characters having misadventures—getting wet, losing things, or getting scolded. The lyrics are lighthearted and may gently mock everyday troubles, perhaps symbolizing how small accidents or misfortunes can be laughed off, but this is not certain. The song uses repetition and nonsense syllables, which are typical in Lithuanian folk music and make it fun to sing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4238,7 +4374,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie senį, kuris eina arti lauką su savo mylima pypke, kurią pametęs, vėliau randa moteris. Daina žaismingai aprašo, kaip senis prašo sugrąžinti pypkę ir apibūdina ją. Tai gali būti tiesiog linksmas pasakojimas apie kasdienį gyvenimą, tačiau pypkė gali simbolizuoti žmogui brangius dalykus.",
-      "EN Description": "This folk song tells a simple story about an old man plowing his field with his beloved pipe, which he loses and a woman finds. The lyrics playfully describe the man's request to get his pipe back, mentioning its material and details. The song may just be a humorous tale about everyday life, but the pipe could also symbolize comfort or personal treasures in rural Lithuanian culture."
+      "EN Description": "This folk song tells a simple story about an old man plowing his field with his beloved pipe, which he loses and a woman finds. The lyrics playfully describe the man's request to get his pipe back, mentioning its material and details. The song may just be a humorous tale about everyday life, but the pipe could also symbolize comfort or personal treasures in rural Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4264,7 +4401,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie skautą, kuris išėjo į žygį ir paliko savo šlipsą ant kelmo, kurį vėliau paėmė kitas žmogus. Skautas prašo grąžinti savo šlipsą. Daina yra linksma ir gali simbolizuoti žaidybines situacijas ar skautų svarbius atributus.",
-      "EN Description": "This song tells a simple story about a scout going on an outing to gain experience. Along the way, the scout leaves a neckerchief (šlipsas) on a tree stump, which is then taken by a passerby, leading the scout to ask for it back. The song is lighthearted and may represent the playful challenges scouts face, but the neckerchief could also symbolize something important to scouts, like identity or honor."
+      "EN Description": "This song tells a simple story about a scout going on an outing to gain experience. Along the way, the scout leaves a neckerchief (šlipsas) on a tree stump, which is then taken by a passerby, leading the scout to ask for it back. The song is lighthearted and may represent the playful challenges scouts face, but the neckerchief could also symbolize something important to scouts, like identity or honor.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4292,7 +4430,8 @@ const songs: SongFile = [
       "Music Author": "Darius Polikaitis",
       "Text Author": "Bernardas Brazdžionis",
       "LT Description": "Ši daina yra poetinis apmąstymas apie dangų, kuris gali simbolizuoti dieviškumą, šventumą ar kažką nepasiekiamo. Tekste dangus susiejamas su gamta, protėvių atmintimi ir dvasiniais ieškojimais, apjungiant asmeninį tikėjimą su kultūriniu paveldu. Tikslus „dangaus“ simbolis paliekamas atviras interpretacijai.",
-      "EN Description": "This song is a poetic reflection on the idea of 'heaven' or 'sky' (dangus), which may symbolize something divine, unreachable, or sacred. The lyrics connect this concept with nature, ancestors, and spiritual longing, blending personal faith with cultural heritage. The meaning of 'dangus' could represent both the Christian God and older Lithuanian traditions, but the exact symbolism is open to interpretation."
+      "EN Description": "This song is a poetic reflection on the idea of 'heaven' or 'sky' (dangus), which may symbolize something divine, unreachable, or sacred. The lyrics connect this concept with nature, ancestors, and spiritual longing, blending personal faith with cultural heritage. The meaning of 'dangus' could represent both the Christian God and older Lithuanian traditions, but the exact symbolism is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4324,7 +4463,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie tris berželius ir tris liepeles, stovinčius lauko gale ir kalbančius tarpusavyje. Kiekviena medžių grupė svajoja būti jaunu vaikinu ar mergina ir palengvinti pasaulio vargą – arimu ar audimu. Medžiai gali simbolizuoti jaunus žmones ir jų viltis, tačiau tai nėra tikslu.",
-      "EN Description": "This song tells about three birch trees and three linden trees standing far away at the edge of a field, talking among themselves. Each group of trees imagines what it would be like to be a young man or woman and dreams of easing the world's hardship, either by plowing or weaving. The trees may symbolize young people and their hopes, but this is not certain."
+      "EN Description": "This song tells about three birch trees and three linden trees standing far away at the edge of a field, talking among themselves. Each group of trees imagines what it would be like to be a young man or woman and dreams of easing the world's hardship, either by plowing or weaving. The trees may symbolize young people and their hopes, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4352,7 +4492,8 @@ const songs: SongFile = [
       "Music Author": "MercyMe",
       "Text Author": "Rasa Poskočimiene",
       "LT Description": "Šioje dainoje aprašoma, kaip būtų susitikti su aukštesne jėga ar mylimu žmogumi po mirties. Žodžiai išreiškia viltį ir nuostabą, galvojant apie tą susitikimą, kelia klausimus apie jausmus ir elgesį tame momente. Tekste naudojama religinė kalba, kuri gali simbolizuoti tikėjimą, dvasinį ilgesį ar ramybės troškimą po kančios.",
-      "EN Description": "This song is about imagining what it would be like to be with a higher power or loved one after death. The lyrics express hope and wonder about meeting this presence, asking what emotions and actions might arise in that moment. The text uses religious language (words like 'hallelujah' and references to worship), which may symbolize faith, spiritual longing, or the desire for peace beyond suffering."
+      "EN Description": "This song is about imagining what it would be like to be with a higher power or loved one after death. The lyrics express hope and wonder about meeting this presence, asking what emotions and actions might arise in that moment. The text uses religious language (words like 'hallelujah' and references to worship), which may symbolize faith, spiritual longing, or the desire for peace beyond suffering.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4385,7 +4526,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginos atsisveikinimą su jaunyste ir šeima, kai ji ruošiasi tekėti ir iškeliauti į vyro namus. Žodžiai išreiškia liūdesį ir nerimą dėl laukiančio gyvenimo pasikeitimo. Kai kurios eilutės gali simbolizuoti sunkumus, su kuriais susidurdavo nuotakos tradicinėje lietuvių kaimo aplinkoje.",
-      "EN Description": "This song is about a young woman being told it's time to stop wandering among young people and say goodbye to her carefree youth, as she prepares for marriage and moving to her new husband's family. The lyrics reflect concerns and sadness about leaving home and family, and hint at the difficulties she may face in her new life. Some lines may symbolize the emotional and social challenges experienced by brides in traditional Lithuanian village life."
+      "EN Description": "This song is about a young woman being told it's time to stop wandering among young people and say goodbye to her carefree youth, as she prepares for marriage and moving to her new husband's family. The lyrics reflect concerns and sadness about leaving home and family, and hint at the difficulties she may face in her new life. Some lines may symbolize the emotional and social challenges experienced by brides in traditional Lithuanian village life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4413,7 +4555,8 @@ const songs: SongFile = [
       "Music Author": "Daniel Schutte",
       "Text Author": "liet. vert. Nijolė Benotienė",
       "LT Description": "Ši giesmė kviečia šlovinti Dievą giesme ir muzika, prašo stiprybės, meilės bei vedimo gyvenime. Ji pabrėžia žmonių vienybę kaip vieno Tėvo vaikus ir ragina skleisti tiesą bei meilę pasaulyje, kuriame gali būti skriaudų.",
-      "EN Description": "This song expresses praise to God through song and music, asking for strength, love, and guidance in life. It highlights unity among people as children of one Father and calls for truth and love in a world that may have suffering and injustice. The mention of traditional Lithuanian instruments like kanklės may symbolize a connection to Lithuanian cultural heritage, but this is not stated directly."
+      "EN Description": "This song expresses praise to God through song and music, asking for strength, love, and guidance in life. It highlights unity among people as children of one Father and calls for truth and love in a world that may have suffering and injustice. The mention of traditional Lithuanian instruments like kanklės may symbolize a connection to Lithuanian cultural heritage, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4439,7 +4582,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie draugų atsisveikinimą ir pažadą nepamiršti vienas kito, net jei jie ilgai nesimatys. Dainoje draugystė lyginama su gėlėmis ir marmuru, kurie gali nykti ar sudūžti, bet tikra draugystė, kaip sakoma, niekada neišnyksta.",
-      "EN Description": "This song is about friends saying goodbye to each other, possibly for a long time, but promising not to forget their friendship. It compares friendship to flowers and marble, which can fade or break, while true friendship, it says, never dies. The reference to shaking hands when parting is a common gesture in Lithuania, symbolizing respect and connection."
+      "EN Description": "This song is about friends saying goodbye to each other, possibly for a long time, but promising not to forget their friendship. It compares friendship to flowers and marble, which can fade or break, while true friendship, it says, never dies. The reference to shaking hands when parting is a common gesture in Lithuania, symbolizing respect and connection.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4468,7 +4612,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Šioje dainoje pasakojama apie kelionę svajonės link geltonų plytų keliu ir apie draugystės svarbą kelyje. Dainoje minimi personažai, žinomi iš istorijos 'Ozo šalies burtininkas'. Geltonas kelias gali simbolizuoti kiekvieno žmogaus kelią į svajonę, bet tai nėra aiškiai pasakyta tekste.",
-      "EN Description": "This song tells about a journey towards a dream, following a yellow brick road, and the importance of friendship along the way. The text refers to characters like the Scarecrow, Tin Man, and Cowardly Lion, which are known from the story 'The Wizard of Oz.' The yellow brick road can symbolize the personal path each person takes to reach their dreams and find themselves, but this is not stated directly in the lyrics."
+      "EN Description": "This song tells about a journey towards a dream, following a yellow brick road, and the importance of friendship along the way. The text refers to characters like the Scarecrow, Tin Man, and Cowardly Lion, which are known from the story 'The Wizard of Oz.' The yellow brick road can symbolize the personal path each person takes to reach their dreams and find themselves, but this is not stated directly in the lyrics.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4494,7 +4639,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie kareivius, kurie klausia, kokia jų laukia lemtis, ir apie drąsų generolą, išvykusį į Prūsiją. Tekste vaizduojami karo pavojai – generolas netenka pypkės, o vėliau ir galvos po patrankos šūvio. Daina gali simbolizuoti karo netikėtumus, tačiau labiau akcentuoja konkretų įvykį ir naudoja tradicinius liaudies motyvus.",
-      "EN Description": "This folk song tells about soldiers asking what fate awaits them, mentioning a brave general who went to fight in Prussia. The lyrics describe the dangers of battle, including the general losing his pipe and, later, his head when the cannon fires again. The song may symbolize the unpredictability and risks of war, but it mostly focuses on a specific event and uses traditional folk motifs."
+      "EN Description": "This folk song tells about soldiers asking what fate awaits them, mentioning a brave general who went to fight in Prussia. The lyrics describe the dangers of battle, including the general losing his pipe and, later, his head when the cannon fires again. The song may symbolize the unpredictability and risks of war, but it mostly focuses on a specific event and uses traditional folk motifs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4520,7 +4666,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie dalijimąsi ir džiaugsmą tuo, ką turi, naudojant dobilėlių, bičių, medaus vaizdus. Tai gali simbolizuoti ryšį tarp žmonių, ypač tarp merginos ir vaikino, tradiciniame kaimo gyvenime. Bičių ir medaus motyvai dažni lietuvių liaudies dainose ir gali būti siejami su meile, darbu ir gamta.",
-      "EN Description": "This song is about sharing and enjoying what one has, using the imagery of clover, bees, and honey. It may symbolize the connections between people, especially between a girl and a boy, through traditional rural life. The references to bees and honey are common in Lithuanian folk songs and can be linked with themes of love, work, and nature, but their deeper meaning is open to interpretation."
+      "EN Description": "This song is about sharing and enjoying what one has, using the imagery of clover, bees, and honey. It may symbolize the connections between people, especially between a girl and a boy, through traditional rural life. The references to bees and honey are common in Lithuanian folk songs and can be linked with themes of love, work, and nature, but their deeper meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4552,7 +4699,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie vaikiną, kurį žadina anksti keltis ir eiti dirbti, tačiau jis neskuba. Dirbdamas laukuose, jis sutinka merginą, ir tarp jų vyksta švelnus pokalbis. Daina atspindi paprastą kaimo gyvenimą bei galbūt užuomina į meilę ar piršlybas.",
-      "EN Description": "This folk song tells about a young man being urged to wake up early and go to work in the fields, but he hesitates at first. As he works, he meets a girl walking along the road, and they have a gentle, poetic exchange. The song reflects everyday rural life in Lithuania and may symbolize the importance of work, love, and simple joys, though some imagery could also represent traditional courtship."
+      "EN Description": "This folk song tells about a young man being urged to wake up early and go to work in the fields, but he hesitates at first. As he works, he meets a girl walking along the road, and they have a gentle, poetic exchange. The song reflects everyday rural life in Lithuania and may symbolize the importance of work, love, and simple joys, though some imagery could also represent traditional courtship.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4584,7 +4732,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jauną vaikiną, kuris, dirbdamas laukuose, pamato pro šalį einančią merginą ir pakviečia ją pasikalbėti. Mergina atsisako, nes bijo, kad ją bartių tėvai. Tai dažna tema lietuvių liaudies dainose – jaunystės meilė ir pagarba tėvams.",
-      "EN Description": "This song tells a simple story: a young man working in the fields notices a young woman walking on the road and invites her to talk with him. She refuses, explaining that her parents would scold her if she did. The song gently touches on themes of youth, courtship, and respect for parental authority, which are common in Lithuanian folk traditions."
+      "EN Description": "This song tells a simple story: a young man working in the fields notices a young woman walking on the road and invites her to talk with him. She refuses, explaining that her parents would scold her if she did. The song gently touches on themes of youth, courtship, and respect for parental authority, which are common in Lithuanian folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4611,7 +4760,8 @@ const songs: SongFile = [
       },
       "Music Author": "Jacques Berthier",
       "LT Description": "Ši daina kviečia visas tautas giedoti ir šlovinti Viešpatį. Žodžiai yra paprasti ir, panašu, skirti bendram giedojimui, galbūt bažnyčioje ar dvasiniame susibūrime. Pasikartojantys posakiai gali simbolizuoti vienybę ir bendrą tikėjimą, tačiau tai aiškiai neišreikšta.",
-      "EN Description": "This song is a call for all nations to sing and praise the Lord. The lyrics are straightforward and likely meant for communal singing, possibly in a church or spiritual gathering. The repeated phrases may symbolize unity and shared faith, but this is not explicitly stated."
+      "EN Description": "This song is a call for all nations to sing and praise the Lord. The lyrics are straightforward and likely meant for communal singing, possibly in a church or spiritual gathering. The repeated phrases may symbolize unity and shared faith, but this is not explicitly stated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4637,7 +4787,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie paprastą liaudies dainelę, dainuojamą apie rūpesčius ir vargus Lietuvos krašte. Joje aprašomi senoviniai miškai, kalnai, piliakalniai ir pagoniški papročiai, pabrėžiant lietuvių ryšį su gamta bei praeitimi.",
-      "EN Description": "This song tells about singing a simple folk tune about the worries and hardships of life in Lithuania. It describes the land's ancient forests, hills, and traditions, mentioning how Lithuanians lived close to nature and honored their old beliefs. The references to hillforts, sacred oaks, and ancient gods might symbolize the deep connection Lithuanians have with their history and heritage."
+      "EN Description": "This song tells about singing a simple folk tune about the worries and hardships of life in Lithuania. It describes the land's ancient forests, hills, and traditions, mentioning how Lithuanians lived close to nature and honored their old beliefs. The references to hillforts, sacred oaks, and ancient gods might symbolize the deep connection Lithuanians have with their history and heritage.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4663,7 +4814,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje raginama būti stipriems, drąsiems ir aktyviai padėti kitiems bei gerinti savo tėvynę. Tekste kalbama apie asmeninę atsakomybę, darbą visuomenės labui ir tai, kad kiekvienam bus užduotas klausimas, ką jis padarė dėl savo šalies. Žinutė gali simbolizuoti patriotiškumą ir pilietinę pareigą, bet taip pat gali būti apie tai, kaip būti geru žmogumi.",
-      "EN Description": "This song encourages listeners to be strong, brave, and active in helping others and improving their homeland. The lyrics speak about personal responsibility, working for the good of society, and the expectation that everyone will be asked what they have done for their country. The message may symbolize patriotism and social duty, but could also simply be about being a good, responsible person."
+      "EN Description": "This song encourages listeners to be strong, brave, and active in helping others and improving their homeland. The lyrics speak about personal responsibility, working for the good of society, and the expectation that everyone will be asked what they have done for their country. The message may symbolize patriotism and social duty, but could also simply be about being a good, responsible person.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4689,7 +4841,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žvirblį, kuris guli sergantis prie kelmo, o įvairios mergaitės ateina ir atneša jam įvairių dalykų. Tai gali simbolizuoti rūpestį silpnais ar sergančiais bendruomenėje, tačiau tai nėra aišku. Dainoje jaučiama tradicinė lietuviška bendrystės ir gamtos tema.",
-      "EN Description": "This song tells the story of a little sparrow lying sick beside a stump, while various girls come one by one to bring small comforts or remedies. The song may symbolize care for the weak or sick in the community, and the sparrow could represent vulnerability or innocence, but this is not certain. The repeated visits and offerings reflect a traditional Lithuanian motif of communal care and ritual, especially in folk songs connected to nature and life's cycles."
+      "EN Description": "This song tells the story of a little sparrow lying sick beside a stump, while various girls come one by one to bring small comforts or remedies. The song may symbolize care for the weak or sick in the community, and the sparrow could represent vulnerability or innocence, but this is not certain. The repeated visits and offerings reflect a traditional Lithuanian motif of communal care and ritual, especially in folk songs connected to nature and life's cycles.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4715,7 +4868,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina vaizduoja Lietuvos gamtos grožį, šeimos tradicijas ir paprastą kaimo gyvenimą. Joje minimi laukai, miškai ir tradicinis medinis kryžius prie namų, kuris gali simbolizuoti tikėjimą arba atminimą, bet apie tai tiesiogiai nekalbama. Dainoje jaučiamas stiprus ryšys su gimtine ir protėvių žeme.",
-      "EN Description": "This song describes the beauty of the Lithuanian homeland, focusing on nature, family heritage, and simple rural life. It mentions fields, forests, and traditional elements like the wooden cross near the house, which may symbolize faith or remembrance, but this is not stated directly. The song reflects a deep connection to the land and family traditions."
+      "EN Description": "This song describes the beauty of the Lithuanian homeland, focusing on nature, family heritage, and simple rural life. It mentions fields, forests, and traditional elements like the wooden cross near the house, which may symbolize faith or remembrance, but this is not stated directly. The song reflects a deep connection to the land and family traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4741,7 +4895,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris per tylų vakarą yra girdėjęs daug gražių dainų, bet viena ypatinga daina labai palietė jo širdį. Žodžiai išreiškia ilgesį ir jausmingą melodijos poveikį, ypač nakties metu. Daina gali simbolizuoti brangius prisiminimus ar neišsakytus jausmus, tačiau daugiausia dėmesio skiriama mylimos dainos įtakai.",
-      "EN Description": "This song tells about a person who has heard many beautiful songs in the quiet evenings, but one special song touched their heart deeply. The lyrics express longing and the emotional power of a melody that brings comfort and beauty, especially at night. The song might symbolize cherished memories or unspoken feelings, but it mainly focuses on the personal impact of a beloved song."
+      "EN Description": "This song tells about a person who has heard many beautiful songs in the quiet evenings, but one special song touched their heart deeply. The lyrics express longing and the emotional power of a melody that brings comfort and beauty, especially at night. The song might symbolize cherished memories or unspoken feelings, but it mainly focuses on the personal impact of a beloved song.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4824,7 +4979,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kalbama apie laiko tėkmę ir atsisveikinimą su mylimu žmogumi. Žodžiai išreiškia liūdesį ir susitaikymą, kai pasakotojas ruošiasi išvykti ir prašo būti pamirštas be pykčio. Miško aidas gali simbolizuoti išlikusius prisiminimus, bet tai nėra visiškai aišku.",
-      "EN Description": "This song is about the passing of time and saying goodbye to a loved one. The lyrics express a sense of sadness and acceptance, as the speaker prepares to leave and asks to be forgotten without anger. The imagery of an echo in the forest might symbolize memories that linger, but the meaning is not fully clear."
+      "EN Description": "This song is about the passing of time and saying goodbye to a loved one. The lyrics express a sense of sadness and acceptance, as the speaker prepares to leave and asks to be forgotten without anger. The imagery of an echo in the forest might symbolize memories that linger, but the meaning is not fully clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4903,7 +5059,8 @@ const songs: SongFile = [
       },
       "Music Author": "Aleksandras Stankevičius",
       "LT Description": "Ši linksma daina naudoja greitakalbes ir žodžių žaismą, aprašydama įvairias kaimiškas scenas: bliūdą prūde, gervę, gaidį ir kalvį. Dainos tekstas labiau akcentuoja garsus ir ritmą nei aiškią istoriją. Ji gali simbolizuoti kasdienį gyvenimą kaime arba būti tiesiog smagus kalbos žaidimas.",
-      "EN Description": "This playful song uses tongue-twisters and wordplay to create a lively rhythm, describing scenes involving a bowl floating in a pond, a crane boasting about drinking kvass, a rooster crowing, and a blacksmith at work. The lyrics focus on sounds and repetition rather than telling a clear story. The song may symbolize everyday rural life or simply serve as a fun exercise in language and pronunciation."
+      "EN Description": "This playful song uses tongue-twisters and wordplay to create a lively rhythm, describing scenes involving a bowl floating in a pond, a crane boasting about drinking kvass, a rooster crowing, and a blacksmith at work. The lyrics focus on sounds and repetition rather than telling a clear story. The song may symbolize everyday rural life or simply serve as a fun exercise in language and pronunciation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4930,7 +5087,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie meilę ir ilgesį, naudodama griežlės – paukščio – įvaizdį kaip mylimojo ar mylimosios simbolį. Žodžiai kalba apie viliojimą į papartyną, kuris lietuvių folklore gali simbolizuoti paslaptingą ar stebuklingą vietą, ir apie lizdo sukūrimą kartu. Papartynas dažnai siejamas su Joninių tradicijomis ir meilės simbolika.",
-      "EN Description": "The song is about affection and longing, using the image of the corncrake (griežlė), a bird often found in Lithuanian meadows, as a symbol of love or a beloved person. The lyrics talk about being lured into the fern grove, which may symbolize secret or magical places in Lithuanian folklore, and weaving a nest together, possibly referring to starting a life as a couple. The papartynas (fern grove) can also hint at Midsummer traditions, where ferns are associated with love and mystery."
+      "EN Description": "The song is about affection and longing, using the image of the corncrake (griežlė), a bird often found in Lithuanian meadows, as a symbol of love or a beloved person. The lyrics talk about being lured into the fern grove, which may symbolize secret or magical places in Lithuanian folklore, and weaving a nest together, possibly referring to starting a life as a couple. The papartynas (fern grove) can also hint at Midsummer traditions, where ferns are associated with love and mystery.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4957,7 +5115,8 @@ const songs: SongFile = [
       },
       "Music Author": "Faustas Strolia",
       "LT Description": "Ši daina pasakoja apie sugrįžimą į gimtinę, prisimenant vaikystės vietas – upes, žydinčias obelis ir mamos lopšinę. Žodžiai išreiškia ilgesį namams ir viltį sugrįžti, ypač po buvimo svetur. Gegutė ir pavasario žiedai gali simbolizuoti laiką ar atsinaujinimą, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song is about returning to one's homeland, recalling places and memories from childhood, such as rivers, blooming apple trees, and a mother's lullabies. The lyrics express longing for home and the hope of coming back, especially after being away in foreign lands. References to the cuckoo bird and spring blossoms may symbolize the renewal of life or the passing of time, but this is not stated directly in the text."
+      "EN Description": "This song is about returning to one's homeland, recalling places and memories from childhood, such as rivers, blooming apple trees, and a mother's lullabies. The lyrics express longing for home and the hope of coming back, especially after being away in foreign lands. References to the cuckoo bird and spring blossoms may symbolize the renewal of life or the passing of time, but this is not stated directly in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -4983,7 +5142,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, rašantį laišką merginai ir prašantį sakalo jį nunešti, išreiškiant ilgesį ir meilę toli esančiai mylimajai. Pasikartojantys prašymai bei sapnai apie merginą rodo stiprų ilgesį. Sakas gali simbolizuoti viltį ar žinios nešėją, bet tai gali būti ir poetinis būdas aprašyti žinios siuntimą.",
-      "EN Description": "This song is about someone who writes a letter to a girl and asks a falcon to deliver it, expressing longing and sadness because she is far away. The repeated requests and dreams about the girl show deep feelings of love and missing someone. The falcon could symbolize hope or a messenger, but it might also just be a poetic way to talk about sending a message."
+      "EN Description": "This song is about someone who writes a letter to a girl and asks a falcon to deliver it, expressing longing and sadness because she is far away. The repeated requests and dreams about the girl show deep feelings of love and missing someone. The falcon could symbolize hope or a messenger, but it might also just be a poetic way to talk about sending a message.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5009,7 +5169,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina linksmai vaizduoja, kaip lietuvių kalba ir kasdienybė keičiasi dėl angliškų žodžių įtakos, ypač tarp emigrantų. Tekste žaismingai maišomi lietuviški ir angliški žodžiai, pabrėžiant, kaip prisitaikoma prie užsienio gyvenimo. Dainoje nėra aiškių nuorodų į konkrečias lietuvių šventes ar istorinius įvykius.",
-      "EN Description": "This song humorously describes how Lithuanian language and daily life are influenced by English words, especially among Lithuanian communities abroad. Through playful mixing of Lithuanian and anglicized slang, it shows how traditions and language adapt in immigrant settings. The tone is light and satirical, focusing on lifestyle details rather than referencing specific Lithuanian holidays or historical events."
+      "EN Description": "This song humorously describes how Lithuanian language and daily life are influenced by English words, especially among Lithuanian communities abroad. Through playful mixing of Lithuanian and anglicized slang, it shows how traditions and language adapt in immigrant settings. The tone is light and satirical, focusing on lifestyle details rather than referencing specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5037,7 +5198,8 @@ const songs: SongFile = [
       "Music Author": "Juozas Naujalis",
       "Text Author": "Adomas Jakštas",
       "LT Description": "Ši giesmė pasakoja apie Jėzaus gimimą – Atpirkėją ir Karalių, kuris guli ant šieno, nes nebuvo tinkamos vietos. Joje minimi piemenėliai, skubantys pasveikinti kūdikį, ir kviečiama aukoti savo širdį bei giedoti kartu su angelais. Tai susiję su Kalėdų tradicijomis Lietuvoje, kai dainuojamos giesmės apie Jėzaus gimimą.",
-      "EN Description": "This song tells about the birth of Jesus, who is described as the Redeemer and King, lying on hay because there was no suitable place for him. It focuses on shepherds hurrying to greet him and encourages listeners to offer their hearts and join with angels in singing praise. The song is closely related to Christmas traditions in Lithuania, where nativity scenes and carols about the humble birth of Jesus are very common."
+      "EN Description": "This song tells about the birth of Jesus, who is described as the Redeemer and King, lying on hay because there was no suitable place for him. It focuses on shepherds hurrying to greet him and encourages listeners to offer their hearts and join with angels in singing praise. The song is closely related to Christmas traditions in Lithuania, where nativity scenes and carols about the humble birth of Jesus are very common.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5066,7 +5228,8 @@ const songs: SongFile = [
       "Music Author": "A. ir G. Storpirščiai",
       "Text Author": "A. ir G. Storpirščiai",
       "LT Description": "Ši daina pasakoja apie linksmą raganą, kuri mėgsta kepti pyragus ir kviesti draugus į svečius. Gimimo dieną ją aplanko kitos raganos, kartu švenčia, valgo saldumynus ir linksminasi. Linksmas priedainis ir draugiškas raganų vaizdavimas gali tiesiog perteikti šventės ir draugystės džiaugsmą.",
-      "EN Description": "This song tells the story of a cheerful witch who loves baking cakes and inviting friends over. On her birthday, other witches come to celebrate with her, eating sweets and having fun, before heading home together. The repeated playful refrain and the friendly depiction of witches may symbolize the joy of friendship and celebration, but could also simply be a lighthearted children's song without deeper meaning."
+      "EN Description": "This song tells the story of a cheerful witch who loves baking cakes and inviting friends over. On her birthday, other witches come to celebrate with her, eating sweets and having fun, before heading home together. The repeated playful refrain and the friendly depiction of witches may symbolize the joy of friendship and celebration, but could also simply be a lighthearted children's song without deeper meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5093,7 +5256,8 @@ const songs: SongFile = [
       },
       "Music Author": "Keistuolių teatras",
       "LT Description": "Daina pasakoja apie vaikiną, kuris įsimyli merginą dėl jos mėlynų akių. Jis ilgai stebi ją iš tolo, bet neišdrįsta prieiti ar prabilti. Galiausiai jis praranda ją dėl jaunesnių vyrų, o dainoje kartojasi jo ilgesys ir susižavėjimas.",
-      "EN Description": "The song tells the story of a young man who falls in love with a girl because of her blue eyes. He admires her from a distance for many days, but does not dare to approach or speak to her. Eventually, he loses her to younger men, and the song repeats his longing and admiration, which may symbolize unspoken feelings or missed opportunities."
+      "EN Description": "The song tells the story of a young man who falls in love with a girl because of her blue eyes. He admires her from a distance for many days, but does not dare to approach or speak to her. Eventually, he loses her to younger men, and the song repeats his longing and admiration, which may symbolize unspoken feelings or missed opportunities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5119,7 +5283,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia žmones burtis ir kovoti už savo tėvynę, ypač už Vilnių, kuris lietuviams yra labai svarbus. Tekste minima laukimas stipraus vado ir mintis, kad laisvę galima iškovoti tik ginklu, o ne vien žodžiais. Dainoje minimi Gedimino kalnas ir Vytis – svarbūs Lietuvos simboliai, o pati daina gali atspindėti kovas dėl Vilniaus nepriklausomybės.",
-      "EN Description": "This song calls people to unite and fight for their homeland, especially for Vilnius, which was historically significant for Lithuanians. It speaks of waiting for a strong leader to give the signal for action and suggests that true freedom can only be gained through armed struggle, not just words. The song references Gediminas Hill and the Vytis, both important Lithuanian national symbols, and may reflect Lithuania's struggles for independence, possibly against Polish control of Vilnius in the early 20th century."
+      "EN Description": "This song calls people to unite and fight for their homeland, especially for Vilnius, which was historically significant for Lithuanians. It speaks of waiting for a strong leader to give the signal for action and suggests that true freedom can only be gained through armed struggle, not just words. The song references Gediminas Hill and the Vytis, both important Lithuanian national symbols, and may reflect Lithuania's struggles for independence, possibly against Polish control of Vilnius in the early 20th century.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5147,7 +5312,8 @@ const songs: SongFile = [
       "Music Author": "Stasys Čižauskas",
       "Text Author": "Stasys Čižauskas",
       "LT Description": "Ši daina pasakoja apie lietuvių skautų susibūrimą šeštojoje šventėje, kurią suvienija Pietų Kryžiaus simbolis, galintis simbolizuoti lietuvių bendruomenę Pietų pusrutulyje, ypač Australijoje. Daina pabrėžia vienybę, laisvės siekį ir ištikimybę skautybės idėjoms.",
-      "EN Description": "This song is about Lithuanian scouts gathering for their sixth major event, united by the symbol of the Southern Cross, which may represent the Lithuanian diaspora in the Southern Hemisphere, especially Australia. It celebrates unity, shared ideals, and dedication to Lithuania’s freedom. The lyrics also reflect the global connection among Lithuanian scouts and their commitment to scouting values."
+      "EN Description": "This song is about Lithuanian scouts gathering for their sixth major event, united by the symbol of the Southern Cross, which may represent the Lithuanian diaspora in the Southern Hemisphere, especially Australia. It celebrates unity, shared ideals, and dedication to Lithuania’s freedom. The lyrics also reflect the global connection among Lithuanian scouts and their commitment to scouting values.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5174,7 +5340,8 @@ const songs: SongFile = [
       },
       "Music Author": "Ichthus",
       "LT Description": "Ši daina yra maldingas tekstas, kuriame žmogus kreipiasi į dievišką būtybę, tikriausiai Dievą ar Kristų. Dainininkas su gyriaus giesme įžengia į šventą vietą, prašo, kad jo širdis pakiltų iki Dievo, ir prašo būti pripildytas džiaugsmo bei dvasinės ugnies. Kai kurie vaizdiniai, pavyzdžiui, „džiaugsmo versmė“ ar „ugnimi paliestos lūpos“, gali simbolizuoti dvasinį atsinaujinimą.",
-      "EN Description": "This song is a prayerful text expressing a person's approach to a divine presence, likely God or Christ. The singer enters a sacred space with a song of praise, asking for their heart to rise to meet the divine and to be filled with joy and spiritual fire. Some images, like the 'spring of joy' and 'touching with fire,' may symbolize spiritual renewal and inspiration, but this is not stated directly."
+      "EN Description": "This song is a prayerful text expressing a person's approach to a divine presence, likely God or Christ. The singer enters a sacred space with a song of praise, asking for their heart to rise to meet the divine and to be filled with joy and spiritual fire. Some images, like the 'spring of joy' and 'touching with fire,' may symbolize spiritual renewal and inspiration, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5242,7 +5409,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie ožėlį, kuris įšoko į kopūstų daržą, nuėdė kopūstų lapus, o paskui buvo nuvytas ir nubaustas daržininko su ilgu botagu. Linksmi ir kartojami žodžiai būdingi lietuvių vaikų žaidimams ir dainelėms. Ožėlis gali simbolizuoti išdaigas, bet svarbiausia čia linksma situacija.",
-      "EN Description": "This folk song tells a simple story about a goat jumping into a cabbage patch, eating the cabbage leaves, and then being chased away and punished by the gardener with a long whip. The playful and repetitive lyrics are typical of Lithuanian children's songs or games. The goat can symbolize mischief or playful trouble, but the main focus is on the humorous situation rather than a deeper meaning."
+      "EN Description": "This folk song tells a simple story about a goat jumping into a cabbage patch, eating the cabbage leaves, and then being chased away and punished by the gardener with a long whip. The playful and repetitive lyrics are typical of Lithuanian children's songs or games. The goat can symbolize mischief or playful trouble, but the main focus is on the humorous situation rather than a deeper meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5268,7 +5436,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žalią liepą, augančią kaimo viduryje, ant kurios šakos nutūpia gegutė. Dainoje klausiama gegutės, kur ji skrenda ir ką matė, o gegutė atsako, kad skrido per aukštus kalnus ir žalius krūmynus, o matė gražias merginas, vaikštančias po sodą. Liepa ir gegutė gali simbolizuoti jaunystę ar meilę, tačiau prasmė palikta atvira.",
-      "EN Description": "This song tells about a green linden tree growing in the middle of a village, where a cuckoo bird lands on a branch. The singer speaks to the cuckoo, asking where it flies and what it has seen, and the bird answers that it flew over high hills and green bushes, and saw beautiful young women walking in a garden. The imagery of the linden tree and the cuckoo may symbolize youth, love, or longing, but the meaning is open to interpretation."
+      "EN Description": "This song tells about a green linden tree growing in the middle of a village, where a cuckoo bird lands on a branch. The singer speaks to the cuckoo, asking where it flies and what it has seen, and the bird answers that it flew over high hills and green bushes, and saw beautiful young women walking in a garden. The imagery of the linden tree and the cuckoo may symbolize youth, love, or longing, but the meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5294,7 +5463,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie linų sėją, jų augimą ir pavertimą drobe, kuri įteikiama bernui, džiaugsmingai ją priimančiam. Žodžiai atspindi tradicinį lietuvių kaimo gyvenimą ir linų svarbą lino gamyboje. Žalias linas gali simbolizuoti jaunystę ar naują pradžią, tačiau tai nėra aišku.",
-      "EN Description": "This song tells the story of sowing flax, watching it grow, and turning it into a linen cloth, which is then given to a young man who is happy to receive it. The lyrics describe each step in the process, reflecting traditional Lithuanian rural life and the importance of flax in making linen. The green flax might symbolize youth or new beginnings, but this interpretation is not certain."
+      "EN Description": "This song tells the story of sowing flax, watching it grow, and turning it into a linen cloth, which is then given to a young man who is happy to receive it. The lyrics describe each step in the process, reflecting traditional Lithuanian rural life and the importance of flax in making linen. The green flax might symbolize youth or new beginnings, but this interpretation is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5320,7 +5490,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie saulės tekėjimą rytuose ir debesis vakarų pusėje, o tada žmogus pamato merginą, einančią keliu ir lygina ją su ryto saule. Jis kviečia merginą prieiti arčiau ir pasikalbėti meiliais žodžiais. Daina gali simbolizuoti meilės pradžią arba jaunystę, tačiau aiškių nuorodų į konkrečias lietuviškas tradicijas ar šventes nėra.",
-      "EN Description": "This song tells about a sunrise in the east and clouds coming from the west, then shifts to someone noticing a girl walking along a path, comparing her to the morning sun. The singer invites the girl to come closer so they can share loving words. The song may symbolize new beginnings or young love, but it is mostly a simple, poetic scene without clear references to specific Lithuanian traditions or holidays."
+      "EN Description": "This song tells about a sunrise in the east and clouds coming from the west, then shifts to someone noticing a girl walking along a path, comparing her to the morning sun. The singer invites the girl to come closer so they can share loving words. The song may symbolize new beginnings or young love, but it is mostly a simple, poetic scene without clear references to specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5346,7 +5517,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunuolį iš Suvalkijos lygumų, raginantį dainuoti net ir tada, kai jaučiasi vienišas ar nemylimas. Dainoje minimi laukai, senas gluosnis, šeima, kuriantys ramų kaimo gyvenimo vaizdą. Tema – ištvermė ir paguoda gamtoje bei paprastume, o kai kurie simboliai, kaip žydinti gėlė ar švilpavimas, gali reikšti viltį ar naują pradžią.",
-      "EN Description": "This song tells the story of a young man from the flatlands of Suvalkija, encouraging him to sing even when he feels lonely or unloved. The lyrics mention fields, an old willow, and family, creating a peaceful village atmosphere. Themes of resilience and finding comfort in nature and simple joys are present, while some symbols like the blooming flower or the act of whistling may represent hope or moving on, though this is open to interpretation."
+      "EN Description": "This song tells the story of a young man from the flatlands of Suvalkija, encouraging him to sing even when he feels lonely or unloved. The lyrics mention fields, an old willow, and family, creating a peaceful village atmosphere. Themes of resilience and finding comfort in nature and simple joys are present, while some symbols like the blooming flower or the act of whistling may represent hope or moving on, though this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5372,7 +5544,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai tradicinė lietuvių liaudies daina, kurioje įvairūs gyvūnai paeiliui išbėga iš miško, kartodami ir pratęsdami veiksmų grandinę nuo pelės ir grūdo. Daina gali būti žaidžiama kaip vaikų žaidimas, mokyti apie gamtą ar gyvūnus, tačiau jos gilesnė prasmė nėra aiški. Tokios dainos dažnai dainuojamos žaidžiant ratelius ar kitus liaudies žaidimus.",
-      "EN Description": "This is a traditional Lithuanian folk song where different animals run out of the forest one by one, each repeating and extending the chain of actions started by the mouse and a grain. The song may be a playful children's rhyme, possibly teaching about nature or food chains, but its deeper symbolism is unclear. Such songs are often sung in circles or games and reflect the importance of nature and animals in Lithuanian rural culture."
+      "EN Description": "This is a traditional Lithuanian folk song where different animals run out of the forest one by one, each repeating and extending the chain of actions started by the mouse and a grain. The song may be a playful children's rhyme, possibly teaching about nature or food chains, but its deeper symbolism is unclear. Such songs are often sung in circles or games and reflect the importance of nature and animals in Lithuanian rural culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5401,7 +5574,8 @@ const songs: SongFile = [
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis",
       "LT Description": "Ši daina pasakoja apie žmogų, kuris palieka mylimąjį, išreiškia liūdesį ir prašo supratimo. Dainos tekstas naudoja gamtos vaizdus, tokius kaip sniegas, lietus, pievos ir medus, kurie gali simbolizuoti jausmus ar nepatirtus išgyvenimus. Daina išreiškia viltį, kad ateityje supratimas ateis ir galbūt santykiai bus atkurti.",
-      "EN Description": "This song tells about someone leaving a loved one, expressing regret and asking for understanding. The lyrics use images of nature, like snow, rain, meadows, and honey, which might symbolize emotions or experiences that the other person cannot understand. The song reflects on the hope that one day this understanding will come, and perhaps then the relationship can be renewed."
+      "EN Description": "This song tells about someone leaving a loved one, expressing regret and asking for understanding. The lyrics use images of nature, like snow, rain, meadows, and honey, which might symbolize emotions or experiences that the other person cannot understand. The song reflects on the hope that one day this understanding will come, and perhaps then the relationship can be renewed.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5427,7 +5601,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kartojama, kad tėvelis, motinėlė ir visi vaikai išėjo į mišką. Toliau pateikiami tik pavieniai žodžiai, apibūdinantys veiksmus: pamatė, nušovė, parnešė, iškepė, suvalgė. Daina gali pasakoti apie šeimos medžioklę arba simbolizuoti lietuvių ryšį su gamta, tačiau prasmė nėra visiškai aiški.",
-      "EN Description": "This song repeats the phrase that the father, mother, and all the children went into the forest. The following lines are only single words, describing actions: saw, shot, brought back, cooked, ate. The song may describe a family going hunting together, or it could symbolize the traditional connection Lithuanians have with nature and the forest. The short, abrupt words at the end might suggest a darker or humorous undertone, but the meaning is not entirely clear from the text alone."
+      "EN Description": "This song repeats the phrase that the father, mother, and all the children went into the forest. The following lines are only single words, describing actions: saw, shot, brought back, cooked, ate. The song may describe a family going hunting together, or it could symbolize the traditional connection Lithuanians have with nature and the forest. The short, abrupt words at the end might suggest a darker or humorous undertone, but the meaning is not entirely clear from the text alone.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5453,7 +5628,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris išsigalvoja įvairius dalykus – lietų, jūrą, viltį – kad gyvenimas būtų lengvesnis ir džiugesnis, ypač sunkiais momentais. Tekste pabrėžiama, kad vaizduotė gali suteikti paguodos, kai prarandi svarbius dalykus ar žmones. Nėra aiškių nuorodų į konkrečius įvykius ar tradicijas.",
-      "EN Description": "This song is about someone who imagines things—like rain, the sea, and hope—to make life feel better and easier, especially during hard times. The lyrics suggest that imagination can bring comfort and joy, even when real experiences or people are lost. The song might symbolize how people sometimes use dreams or fantasies to cope with sadness or disappointment, but it is not clear if there is a specific event or tradition being referenced."
+      "EN Description": "This song is about someone who imagines things—like rain, the sea, and hope—to make life feel better and easier, especially during hard times. The lyrics suggest that imagination can bring comfort and joy, even when real experiences or people are lost. The song might symbolize how people sometimes use dreams or fantasies to cope with sadness or disappointment, but it is not clear if there is a specific event or tradition being referenced.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5479,7 +5655,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai linksma lietuvių liaudies daina apie ožio vedimą ant uolyčios ir prašymą parodyti, kaip tėtis šoka. Dainoje kartojami paprasti judesiai, kurie gali priminti šokio žingsnius ar vaikų žaidimą. Ožys gali simbolizuoti žaismingumą, bet svarbiausia čia – tėčio šokio mėgdžiojimas.",
-      "EN Description": "This is a playful Lithuanian folk song about leading a goat onto a small street and asking it to show how the father dances. The lyrics repeat simple actions and movements, possibly imitating dance steps or a children's game. The goat may symbolize playfulness or be part of rural traditions, but the main focus is on mimicking and celebrating the father's dancing."
+      "EN Description": "This is a playful Lithuanian folk song about leading a goat onto a small street and asking it to show how the father dances. The lyrics repeat simple actions and movements, possibly imitating dance steps or a children's game. The goat may symbolize playfulness or be part of rural traditions, but the main focus is on mimicking and celebrating the father's dancing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5505,7 +5682,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma liaudies daina pasakoja apie Marceliukės šeimą ir vedybas, šeimos gyvenimą bei įvairias kaimo išdaigas. Tekste minimi vedybų paruošimai, gėrimas, šeimos santykiai ir kaimo personažai, kartais su satyros prieskoniu. Kai kurie posmai gali simbolizuoti lietuviškas piršlybų ar vestuvių tradicijas bei gyvenimą tarpukario Lietuvoje.",
-      "EN Description": "This playful folk song tells a humorous story about a girl named Marceliukė and her family, focusing on marriage, village life, and light-hearted mischief. The lyrics mention preparations for marriage, drinking, family dynamics, and various village characters, sometimes in a satirical way. Some lines may allude to traditions of matchmaking, wedding celebrations, and social commentary on rural life in Lithuania, especially referencing the interwar president Smetona, which might symbolize a past era."
+      "EN Description": "This playful folk song tells a humorous story about a girl named Marceliukė and her family, focusing on marriage, village life, and light-hearted mischief. The lyrics mention preparations for marriage, drinking, family dynamics, and various village characters, sometimes in a satirical way. Some lines may allude to traditions of matchmaking, wedding celebrations, and social commentary on rural life in Lithuania, especially referencing the interwar president Smetona, which might symbolize a past era.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5531,7 +5709,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie rudens atėjimą ir išsiskyrimo su mylimuoju liūdesį. Vartojami vaizdai – vystantys žiedai, tušti takeliai, neištesėti pažadai – atspindi ilgesį ir prisiminimus. Ruduo ir balti žiedai gali simbolizuoti permainas, pabaigas ir viltį, bet jų prasmė nėra visiškai aiški.",
-      "EN Description": "This song tells about the arrival of autumn and the sadness of parting with a loved one. The imagery of fading flowers, empty paths, and promises left behind reflects longing and memories. The symbols like autumn and white flowers might represent change, endings, and hope, but their meaning is open to interpretation."
+      "EN Description": "This song tells about the arrival of autumn and the sadness of parting with a loved one. The imagery of fading flowers, empty paths, and promises left behind reflects longing and memories. The symbols like autumn and white flowers might represent change, endings, and hope, but their meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5631,7 +5810,8 @@ const songs: SongFile = [
       "Music Author": "Darius Polikaitis",
       "Text Author": "Tomas Žičkus",
       "LT Description": "Daina pasakoja apie vakarą, kai leidžiasi saulė ir ateina tamsa. Po darbo žmonės ir gyvūnai ilsisi, o gamtoje tvyro ramybė. Saulėlydis ir naktis gali simbolizuoti poilsio laiką, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "The song describes the evening as the sun sets and darkness falls. People and animals rest after a day of work, and the peacefulness of nature is highlighted. The sunset and coming night might symbolize the end of a day or a time of rest, but this is not stated directly."
+      "EN Description": "The song describes the evening as the sun sets and darkness falls. People and animals rest after a day of work, and the peacefulness of nature is highlighted. The sunset and coming night might symbolize the end of a day or a time of rest, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5657,7 +5837,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ramų vakarą gamtoje, kai žvaigždės sužiba ir lakštingalos gieda. Dainininkas jaučia ir džiaugsmą, ir liūdesį, o pabaigoje ragina jaunimą keltis ir dirbti tėvynės labui, kas gali simbolizuoti tautinį pabudimą arba vienybę.",
-      "EN Description": "The song describes a peaceful evening in nature, with stars shining and nightingales singing. The singer feels both happy and sad, experiencing many emotions. In the final verse, the singer encourages young people to wake up and work for their homeland, which may symbolize a call for national awakening or unity."
+      "EN Description": "The song describes a peaceful evening in nature, with stars shining and nightingales singing. The singer feels both happy and sad, experiencing many emotions. In the final verse, the singer encourages young people to wake up and work for their homeland, which may symbolize a call for national awakening or unity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5683,7 +5864,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jauną merginą, kuri ilgisi artimųjų, išėjusių kovoti už tėvynės laisvę. Ji dainuoja apie viltį sulaukti ramios ateities, kai vėl skambės dainos ir žydės gėlės. Tokio pobūdžio augalai kaip rūta ar ramunė gali simbolizuoti lietuvišką tapatybę ir viltį, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song tells of a young girl longing for loved ones who have gone to fight for their homeland's freedom. She sings of hope for a peaceful future, where songs and flowers can flourish again. The references to traditional plants like rue and chamomile might symbolize Lithuanian identity and hope, but this is not stated directly."
+      "EN Description": "This song tells of a young girl longing for loved ones who have gone to fight for their homeland's freedom. She sings of hope for a peaceful future, where songs and flowers can flourish again. The references to traditional plants like rue and chamomile might symbolize Lithuanian identity and hope, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5709,7 +5891,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunų žmonių širdis, svajones ir idealus, ypatingai skautų kontekste. Joje minimi prie laužo duoti pažadai, gintaro simbolika ir meilė Lietuvai. Dainoje taip pat kalbama apie žalią vėliavą ir tarnystę Dievui bei artimui, kas gali simbolizuoti skautiškas vertybes.",
-      "EN Description": "This song is about youthful hearts, dreams, and ideals, especially in the context of Lithuanian scouting. It mentions promises made by the fire, the pursuit of values symbolized by amber (which is important in Lithuanian culture), and devotion to Lithuania. The references to raising a green flag and serving God and others may symbolize the principles of the Lithuanian scout movement, but could also generally mean striving for goodness and love of country."
+      "EN Description": "This song is about youthful hearts, dreams, and ideals, especially in the context of Lithuanian scouting. It mentions promises made by the fire, the pursuit of values symbolized by amber (which is important in Lithuanian culture), and devotion to Lithuania. The references to raising a green flag and serving God and others may symbolize the principles of the Lithuanian scout movement, but could also generally mean striving for goodness and love of country.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5769,7 +5952,8 @@ const songs: SongFile = [
       "Music Author": "John Stafford Smith",
       "Text Author": "Francis Scott Key",
       "LT Description": "Šioje dainoje aprašoma, kaip po sunkios kovos ankstyvą rytą matoma plazdanti vėliava. Tekste išreiškiamas pasididžiavimas vėliava ir tuo, ką ji gali simbolizuoti – laisvę ir drąsą. Svarbiausia čia stebėti vėliavą ir jos reikšmę sunkiu metu.",
-      "EN Description": "This song describes seeing a flag flying during the early morning after a difficult battle. It expresses pride in the flag and what it represents, such as freedom and bravery. The text may symbolize hope and national strength, but the main focus is on observing the flag and its meaning during a time of struggle."
+      "EN Description": "This song describes seeing a flag flying during the early morning after a difficult battle. It expresses pride in the flag and what it represents, such as freedom and bravery. The text may symbolize hope and national strength, but the main focus is on observing the flag and its meaning during a time of struggle.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5795,7 +5979,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai žaisminga lietuviška dainelė, kviečianti ploti, trepsėti ir šaukti, jei patinka paukšteliai. Žodžiai yra kartojami ir skirti įtraukti vaikus į žaidimą ar veiklą. Dainelė nesusijusi su konkrečiomis lietuviškomis tradicijomis, bet tokios dainos dažnos vaikų folklore ir gali simbolizuoti džiaugsmą ar meilę gamtai.",
-      "EN Description": "This is a playful Lithuanian song encouraging listeners to clap, stomp, and cheer if they like little birds. The lyrics are repetitive and interactive, likely intended for children, and may be used in games or group activities. The song does not directly reference specific Lithuanian traditions, but such songs are common in Lithuanian children's folklore and can symbolize joy, togetherness, or a love for nature."
+      "EN Description": "This is a playful Lithuanian song encouraging listeners to clap, stomp, and cheer if they like little birds. The lyrics are repetitive and interactive, likely intended for children, and may be used in games or group activities. The song does not directly reference specific Lithuanian traditions, but such songs are common in Lithuanian children's folklore and can symbolize joy, togetherness, or a love for nature.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5826,7 +6011,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina vaizduoja žaismingą pokalbį, kuriame du žmonės nuolat keičia pavidalus – nuo žuvytės iki žvejo sūnaus, balandėlės, vanagėlio ar religinių personažų – ir vienas kitą vaikosi arba bando išvengti pagavimo. Tokia nuolatinė transformacija gali simbolizuoti meilės žaidimą ar santykių dinamiką, tačiau tai ir populiarus liaudies motyvas. Daina dažnai atliekama linksmai, kaip ir dauguma lietuviškų liaudies kūrinių.",
-      "EN Description": "This song playfully imagines a conversation where two people keep changing forms—like a fish, a fisherman's son, a dove, a hawk, and even religious figures—each trying to catch or escape the other. The repeated chasing and transforming can symbolize playful affection, pursuit, or the changing roles in relationships, though it may also simply reflect a traditional folk motif of transformation and teasing. The song uses simple imagery and is often sung in a light-hearted or humorous context, typical in Lithuanian folk tradition."
+      "EN Description": "This song playfully imagines a conversation where two people keep changing forms—like a fish, a fisherman's son, a dove, a hawk, and even religious figures—each trying to catch or escape the other. The repeated chasing and transforming can symbolize playful affection, pursuit, or the changing roles in relationships, though it may also simply reflect a traditional folk motif of transformation and teasing. The song uses simple imagery and is often sung in a light-hearted or humorous context, typical in Lithuanian folk tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5852,7 +6038,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje išreiškiamas noras saugoti artimą žmogų net tada, kai galbūt nebegalėsi būti šalia. Dainos tekstas pasitelkia gamtos vaizdinius – debesis, paukščius, linus, upę – kurie gali simbolizuoti rūpestį ir viltį, kad meilė išlieka net ir nesant kartu.",
-      "EN Description": "This song expresses a deep desire to protect someone important, even when the singer may no longer be present. The lyrics use images from nature—clouds, birds, flax flowers, rivers—to show how the world itself might continue to care for the loved one. These natural symbols could represent comfort, continuity, and the hope that love and care persist beyond physical presence."
+      "EN Description": "This song expresses a deep desire to protect someone important, even when the singer may no longer be present. The lyrics use images from nature—clouds, birds, flax flowers, rivers—to show how the world itself might continue to care for the loved one. These natural symbols could represent comfort, continuity, and the hope that love and care persist beyond physical presence.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5878,7 +6065,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra tarsi malda, kurioje prašoma Jėzaus artumo, meilės ir draugystės. Žodžiai išreiškia ilgesį bei tuštumą be Jėzaus ir pabrėžia, kad žemiški džiaugsmai atrodo kartūs be jo meilės. Tekste nėra aiškių nuorodų į konkrečias lietuviškas tradicijas ar šventes.",
-      "EN Description": "This song is a prayer-like plea for Jesus to come closer, asking for His love and companionship. The lyrics express longing, a sense of emptiness without Jesus, and suggest that earthly joys feel bitter compared to His love. The text does not mention specific Lithuanian traditions or holidays, but this kind of spiritual longing could symbolize a search for meaning or comfort."
+      "EN Description": "This song is a prayer-like plea for Jesus to come closer, asking for His love and companionship. The lyrics express longing, a sense of emptiness without Jesus, and suggest that earthly joys feel bitter compared to His love. The text does not mention specific Lithuanian traditions or holidays, but this kind of spiritual longing could symbolize a search for meaning or comfort.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5904,7 +6092,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia visus susiburti ir bendrauti, pabrėžiant, kad Kristus yra tarp mūsų. Žodžiai skatina vienybę ir bendruomeniškumą, tačiau nėra paminėtos konkrečios lietuviškos tradicijos ar šventės. Pakartojimas gali simbolizuoti tikėjimo bendrystę.",
-      "EN Description": "This song is about an invitation for everyone to come together and connect, with the message that Christ is present among us. The lyrics encourage unity and community, possibly in the context of a Christian gathering or prayer, but do not reference any specific Lithuanian tradition or holiday. The repeated line may symbolize the importance of togetherness in faith, though this is not stated directly."
+      "EN Description": "This song is about an invitation for everyone to come together and connect, with the message that Christ is present among us. The lyrics encourage unity and community, possibly in the context of a Christian gathering or prayer, but do not reference any specific Lithuanian tradition or holiday. The repeated line may symbolize the importance of togetherness in faith, though this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5937,7 +6126,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie keliautoją, ieškantį kelio tamsioje naktyje ir galvojantį apie mylimąją, kuri negali užmigti iš rūpesčių. Dainoje jaučiama ilgesio ir išsiskyrimo tema, kuri gali simbolizuoti gyvenimo ar meilės sunkumus.",
-      "EN Description": "This song tells the story of someone traveling through the dark night, searching for the right path, and thinking about a loved one who cannot sleep out of worry. The lyrics mention longing and separation, which might symbolize the hardships of life or love. The mention of Vilnius and Warsaw could refer to distances or dreams, but this is not certain."
+      "EN Description": "This song tells the story of someone traveling through the dark night, searching for the right path, and thinking about a loved one who cannot sleep out of worry. The lyrics mention longing and separation, which might symbolize the hardships of life or love. The mention of Vilnius and Warsaw could refer to distances or dreams, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -5997,7 +6187,8 @@ const songs: SongFile = [
       "Music Author": "Gintautas Abarius",
       "Text Author": "Stasys Žlibinas",
       "LT Description": "Ši daina pasakoja apie jonvabalį Joną, kuris naktį apšviečia mišką, rūpinasi mažais gyventojais ir lydi keleivius, kaip žiogą. Tekste pabrėžiama rūpestingumo, atsakomybės ir ramios nakties miške tema. Jonvabalio šviesa gali simbolizuoti viltį arba švelnų vedimą, bet tai atvira interpretacijai.",
-      "EN Description": "This song tells the story of a little firefly named Jonas who lights up the forest at night, watching over small creatures and guiding travelers like the grasshopper. The lyrics highlight themes of care, responsibility, and the quiet beauty of nighttime in the forest. The firefly's glowing light may symbolize hope or gentle guidance, but this is open to interpretation."
+      "EN Description": "This song tells the story of a little firefly named Jonas who lights up the forest at night, watching over small creatures and guiding travelers like the grasshopper. The lyrics highlight themes of care, responsibility, and the quiet beauty of nighttime in the forest. The firefly's glowing light may symbolize hope or gentle guidance, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6024,7 +6215,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama sena lietuvių legenda apie Jūratę ir Kastytį. Pasakojama, kaip jūros deivė Jūratė pamilsta žveją Kastytį, bet jų meilę sunaikina dievas Perkūnas, sudaužydamas Kastytį valtį ir Jūratės gintarinę pilį. Legenda aiškina, kodėl Baltijos jūros pakrantėje galima rasti gintaro.",
-      "EN Description": "This song tells the story of Jūratė and Kastytis, characters from an old Lithuanian legend. The lyrics describe how a sea goddess (Jūratė) falls in love with a mortal fisherman (Kastytis), but their love is destroyed by the thunder god Perkūnas, who breaks Kastytis's boat and Jūratė's amber castle. The legend is connected to the tradition of finding amber on the Baltic Sea shore, which, according to the story, comes from the ruins of Jūratė's castle."
+      "EN Description": "This song tells the story of Jūratė and Kastytis, characters from an old Lithuanian legend. The lyrics describe how a sea goddess (Jūratė) falls in love with a mortal fisherman (Kastytis), but their love is destroyed by the thunder god Perkūnas, who breaks Kastytis's boat and Jūratė's amber castle. The legend is connected to the tradition of finding amber on the Baltic Sea shore, which, according to the story, comes from the ruins of Jūratė's castle.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6050,7 +6242,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vienišą jauną jūreivį, kuris klaidžioja svetimuose uostuose, ieško paguodos užeigose ir trumpalaikiuose susitikimuose, bet visada jaučiasi nemylimas. Pasikartojanti eilutė 'nes niekad nieks nemylėjo manęs' išreiškia jo vienišumą. Daina nemini jokių konkrečių lietuviškų tradicijų ar švenčių.",
-      "EN Description": "This song tells the story of a lonely young sailor who wanders foreign ports, looking for comfort in bars and fleeting encounters, but always feeling unloved. The repeated line 'no one ever loved me' shows his sense of isolation. The song describes his habits and encounters, but does not reference any specific Lithuanian traditions or holidays."
+      "EN Description": "This song tells the story of a lonely young sailor who wanders foreign ports, looking for comfort in bars and fleeting encounters, but always feeling unloved. The repeated line 'no one ever loved me' shows his sense of isolation. The song describes his habits and encounters, but does not reference any specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6076,7 +6269,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jūreivį, grįžtantį namo po ilgų kelionių aplink pasaulį. Tekste minimos jo patirtos audros, ilgesys poilsiui ir meilei, bet taip pat ir kasdieniai rūpesčiai, pavyzdžiui, skolos. Priegiesmyje vartojami žaismingi, ritmiški žodžiai, kurie gali simbolizuoti jūreivių nuotaiką.",
-      "EN Description": "This song tells about a sailor returning home after traveling around the world three times. The lyrics mention his struggles at sea and suggest he seeks rest and love at home, but also faces everyday troubles like debts. The refrain uses playful, rhythmic nonsense words, which might symbolize the joyful or carefree side of sailors’ songs."
+      "EN Description": "This song tells about a sailor returning home after traveling around the world three times. The lyrics mention his struggles at sea and suggest he seeks rest and love at home, but also faces everyday troubles like debts. The refrain uses playful, rhythmic nonsense words, which might symbolize the joyful or carefree side of sailors’ songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6109,7 +6303,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina išreiškia susižavėjimą ir džiaugsmą artimų svečių ar draugų atvykimu, galbūt vestuvių ar kitos šventės metu. Tekste giriasi svečių grožis, puošnumas ir šventės atmosfera. Žodis „kūmužėliai“ dažnai reiškia krikšto tėvus ar labai artimus draugus, o vainikėliai ir vaišės gali simbolizuoti vestuves ar kitą svarbią bendruomenės šventę, nors tai nėra tiesiogiai pasakyta.",
-      "EN Description": "This song is about admiring and celebrating dear guests or close friends, possibly at a wedding or festive gathering. The lyrics praise the beauty, grace, and joy that the guests bring, describing their elegant arrival, festive attire, and the atmosphere of the gathering. Some words like 'kūmužėliai' refer to special relationships such as godparents or very close friends in Lithuanian tradition, and the mention of wreaths, shared meals, and symbolic flowers might suggest a wedding or other important community celebration, though this is not stated directly."
+      "EN Description": "This song is about admiring and celebrating dear guests or close friends, possibly at a wedding or festive gathering. The lyrics praise the beauty, grace, and joy that the guests bring, describing their elegant arrival, festive attire, and the atmosphere of the gathering. Some words like 'kūmužėliai' refer to special relationships such as godparents or very close friends in Lithuanian tradition, and the mention of wreaths, shared meals, and symbolic flowers might suggest a wedding or other important community celebration, though this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6135,7 +6330,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie užuojautą ir pagalbą tiems, kuriems sunku. Žodžiai aprašo įvairias situacijas, kai žmogus kenčia ar yra pažeidžiamas, ir pabrėžia gerumo svarbą. Tekstas gali remtis krikščioniškomis vertybėmis, tačiau taip pat gali simbolizuoti bendrą žmogišką atjautą.",
-      "EN Description": "This song is about compassion and helping others in need. The lyrics list different situations where someone is suffering or vulnerable, and highlight how acts of kindness toward them are meaningful. The text may reference Christian teachings about caring for others, but it could also symbolize general empathy and solidarity."
+      "EN Description": "This song is about compassion and helping others in need. The lyrics list different situations where someone is suffering or vulnerable, and highlight how acts of kindness toward them are meaningful. The text may reference Christian teachings about caring for others, but it could also symbolize general empathy and solidarity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6162,7 +6358,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie prisiminimus iš gražių vasarų ir mėlynų rugiagėlių, lyginant juos su pilka kasdienybe. Žodžiai išreiškia ilgesį jaunystei, artimiesiems ir praeities grožiui, taip pat liūdesį dėl prarastų laikų. Auksinės vasaros ir mėlynos vosilkos gali simbolizuoti laimingą vaikystę, tačiau tai nėra tiesiogiai pasakyta.",
-      "EN Description": "This song is about memories of bright, joyful summers and blue cornflowers, contrasted with the grayness of everyday life. The lyrics express nostalgia for youth, family, and the beauty of the past, while also touching on the sorrow of losing those times. The imagery of golden summers and blue cornflowers may symbolize happy childhood memories, but this is not stated directly."
+      "EN Description": "This song is about memories of bright, joyful summers and blue cornflowers, contrasted with the grayness of everyday life. The lyrics express nostalgia for youth, family, and the beauty of the past, while also touching on the sorrow of losing those times. The imagery of golden summers and blue cornflowers may symbolize happy childhood memories, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6188,7 +6385,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie laikus, kai bitės nešė medų į daržines ir lipdė korius pintinėms. Kartojamas žodis „kadujo“ greičiausiai yra priedainis arba beprasmis skiemuo, būdingas lietuvių folklorui, galintis simbolizuoti džiaugsmą ar laiko tėkmę. Dainoje jaučiamos gausos ir kaimiško gyvenimo temos, tačiau gilesnė prasmė lieka atvira interpretacijai.",
-      "EN Description": "This folk song describes a time when bees flourished, bringing honey to the barn and making honeycombs for storage baskets. The repeated word 'kadujo' is likely a refrain or nonsense syllable often found in Lithuanian folk music, which may symbolize joy or the passing of time. The song may reflect themes of abundance and the simple rhythms of rural life, but its deeper meaning is open to interpretation."
+      "EN Description": "This folk song describes a time when bees flourished, bringing honey to the barn and making honeycombs for storage baskets. The repeated word 'kadujo' is likely a refrain or nonsense syllable often found in Lithuanian folk music, which may symbolize joy or the passing of time. The song may reflect themes of abundance and the simple rhythms of rural life, but its deeper meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6214,7 +6412,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie berniuko augimą: vaikystę, santykius su tėvu ir norą joti pas merginą. Dainoje pasirodo kaimo gyvenimo vaizdai, tačiau nėra aiškiai minimos konkrečios tradicijos ar šventės.",
-      "EN Description": "This folk song tells the story of a boy growing up, reflecting on his childhood and how he began to seek new experiences as he got older. The lyrics describe his relationship with his father and his excitement about getting a horse to visit a girl, which may symbolize entering adulthood or courtship traditions. The song contains typical imagery from Lithuanian rural life, but does not directly mention specific traditions or events."
+      "EN Description": "This folk song tells the story of a boy growing up, reflecting on his childhood and how he began to seek new experiences as he got older. The lyrics describe his relationship with his father and his excitement about getting a horse to visit a girl, which may symbolize entering adulthood or courtship traditions. The song contains typical imagery from Lithuanian rural life, but does not directly mention specific traditions or events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6240,7 +6439,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje mergina grėbia šieną pievoje, o prie jos prijoja jaunuolis ir su ja pasisveikina. Jis klausia, ar jai nenuobodu gyventi pas močiutę, bet mergina atsako, kad jai gera ir padėkoja už gražius žodžius. Daina gali atspindėti senovinius kaimo papročius, bet tai nėra visiškai aišku.",
-      "EN Description": "This song tells of a young woman raking hay in a meadow when a young man arrives and greets her. He asks her if she ever feels lonely or bored living with her grandmother, but she replies that she is content and appreciates his kind words. The conversation may symbolize traditional rural life and the courtship customs in Lithuania, but it is not certain."
+      "EN Description": "This song tells of a young woman raking hay in a meadow when a young man arrives and greets her. He asks her if she ever feels lonely or bored living with her grandmother, but she replies that she is content and appreciates his kind words. The conversation may symbolize traditional rural life and the courtship customs in Lithuania, but it is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6266,7 +6466,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši dainelė pasakoja apie jauną piemenį, kuris ganydamas ožius miške įsimyli piemenaitę. Dėl meilės jis pameta ožius, juos sudrasko vilkai, o tėvai jį bara. Tai gali simbolizuoti jaunystės klaidas ir atsakomybę.",
-      "EN Description": "This folk-style song tells a simple story of a young shepherd who falls in love with a shepherdess while tending goats in the woods. Distracted by love, he loses his goats to wolves and is scolded by his parents, which may symbolize the consequences of youthful passion. The repeated lines and references to shepherding reflect traditional rural Lithuanian life, but there is no clear reference to a specific holiday or historical event."
+      "EN Description": "This folk-style song tells a simple story of a young shepherd who falls in love with a shepherdess while tending goats in the woods. Distracted by love, he loses his goats to wolves and is scolded by his parents, which may symbolize the consequences of youthful passion. The repeated lines and references to shepherding reflect traditional rural Lithuanian life, but there is no clear reference to a specific holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6292,7 +6493,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vaikiną, kuris kas vakarą lankydavo savo mylimąją kaime, bet vieną vakarą jos neprikėlė ir pagalvojo, gal ji turi kitą. Mergina paaiškina, kad ji buvo pavargusi ir norėjo tik miego. Dainoje jaučiama meilė, ilgesys ir švelnus nesusipratimas.",
-      "EN Description": "This folk song tells about a young man who used to visit his beloved in the village every evening, but one night finds her unresponsive and wonders if she prefers someone else. The girl explains that she was simply tired and wanted to sleep. The song explores themes of love, longing, and gentle misunderstanding, which are common in Lithuanian folk poetry."
+      "EN Description": "This folk song tells about a young man who used to visit his beloved in the village every evening, but one night finds her unresponsive and wonders if she prefers someone else. The girl explains that she was simply tired and wanted to sleep. The song explores themes of love, longing, and gentle misunderstanding, which are common in Lithuanian folk poetry.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6324,7 +6526,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunuolį, kuris kasdien lankosi pas panelę su šyva kumele, tačiau kumelė pridaro daug bėdų. Tekste linksmai aprašoma meilės siekis ir susiduriama su įvairiais nesklandumais. Nėra aiškių nuorodų į konkrečias lietuviškas šventes ar istorinius įvykius.",
-      "EN Description": "This folk song tells about a young person visiting a girl every day on a gray mare, but the horse causes trouble by damaging fences and eating plants. The lyrics use humor to describe the challenges and awkwardness of youthful courtship, and the mare might symbolize obstacles or mischief in romantic pursuits, though this is not certain. The song does not clearly reference any specific Lithuanian holidays or historical events."
+      "EN Description": "This folk song tells about a young person visiting a girl every day on a gray mare, but the horse causes trouble by damaging fences and eating plants. The lyrics use humor to describe the challenges and awkwardness of youthful courtship, and the mare might symbolize obstacles or mischief in romantic pursuits, though this is not certain. The song does not clearly reference any specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6350,7 +6553,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie piemenį, kuris ganydamas karvę sutinka piemenaitę. Jis grįžta namo su banda, eina į sodą, įsisega raudoną rožę ir bučiuoja piemenaitę. Dainoje lyginamos miesto merginos ir paprastas kaimo gyvenimas, kuris gali simbolizuoti ilgesį tikram jausmui.",
-      "EN Description": "This song tells the story of a young shepherd who meets a milkmaid while tending a cow. After returning home with the herd, he goes to the garden, pins a red rose to his chest, and shares a tender moment with her. The lyrics contrast the happiness found with the simple country girl and the emptiness experienced among city girls, which could symbolize a longing for genuine love and rural simplicity."
+      "EN Description": "This song tells the story of a young shepherd who meets a milkmaid while tending a cow. After returning home with the herd, he goes to the garden, pins a red rose to his chest, and shares a tender moment with her. The lyrics contrast the happiness found with the simple country girl and the emptiness experienced among city girls, which could symbolize a longing for genuine love and rural simplicity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6382,7 +6586,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie du brolius, kurie kartu užaugo ir šienauja tėviškėje. Vienas linksmas, kitas liūdnas, nes sužino apie pavojų jų kraštui ir ragina jį ginti. Daina gali simbolizuoti jaunystės pabaigą ir pareigą tėvynei.",
-      "EN Description": "This song tells about two brothers growing up together, mowing hay in their homeland. While one is cheerful and sings, the other weeps, revealing that their land is under threat and calling to defend it. The song may symbolize the loss of innocence and the need to stand up for one's country."
+      "EN Description": "This song tells about two brothers growing up together, mowing hay in their homeland. While one is cheerful and sings, the other weeps, revealing that their land is under threat and calling to defend it. The song may symbolize the loss of innocence and the need to stand up for one's country.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6415,7 +6620,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie du brolius, kurie dar nevedę ir turi pasiruošusius žirgus. Jie kalba apie tai, kad kartu jodinės girdyti žirgų į gilų, šaltą ežerą. Gali būti, kad tai simbolizuoja jaunystę ar broliškumą, bet tiksli prasmė nėra aiški.",
-      "EN Description": "The song tells about two brothers who are both unmarried and have horses ready to ride. They talk about riding together to water their horses in a deep, cold lake. The lyrics may symbolize youth, brotherhood, or a journey, but the deeper meaning is not fully clear from the text alone."
+      "EN Description": "The song tells about two brothers who are both unmarried and have horses ready to ride. They talk about riding together to water their horses in a deep, cold lake. The lyrics may symbolize youth, brotherhood, or a journey, but the deeper meaning is not fully clear from the text alone.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6441,7 +6647,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogaus meilę ir ilgesį prarastai mylimajai. Eilėse naudojami gamtos ir gėlių vaizdai, norint išreikšti širdies skausmą ir viltį, kad mylimoji sugrįš. Gėlių mėtymas į upę gali simbolizuoti senas lietuviškas meilės ar būrimo tradicijas, bet tai nėra tiesiogiai pasakyta.",
-      "EN Description": "This song tells of a person's deep feelings for someone they once loved and lost. The lyrics use images of flowers and nature to express longing and heartbreak, and the hope that their loved one might return. The mention of picking flowers and tossing them into the river can symbolize old Lithuanian love or fortune-telling traditions, but this is not stated directly."
+      "EN Description": "This song tells of a person's deep feelings for someone they once loved and lost. The lyrics use images of flowers and nature to express longing and heartbreak, and the hope that their loved one might return. The mention of picking flowers and tossing them into the river can symbolize old Lithuanian love or fortune-telling traditions, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6468,7 +6675,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašomos sirpstančios vyšnios Suvalkijoje, kurios gali simbolizuoti gilias emocijas ir ilgesį. Tekste jaučiama nostalgija, liūdesys ir ryšys su gimtine. Daina atspindi kaimo gyvenimą, bet nėra minimos konkrečios šventės ar istoriniai įvykiai.",
-      "EN Description": "This song describes the ripening of cherries in Suvalkija, using the image as a metaphor for deep emotions and longing. The lyrics evoke a sense of nostalgia, sadness, and connection to homeland, possibly symbolizing lost loved ones or the pain of separation. There are references to daily life and rural landscapes, which may reflect traditional Lithuanian village life, but no specific holiday or historical event is mentioned."
+      "EN Description": "This song describes the ripening of cherries in Suvalkija, using the image as a metaphor for deep emotions and longing. The lyrics evoke a sense of nostalgia, sadness, and connection to homeland, possibly symbolizing lost loved ones or the pain of separation. There are references to daily life and rural landscapes, which may reflect traditional Lithuanian village life, but no specific holiday or historical event is mentioned.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6494,7 +6702,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie ilgesį tėvynei ir skausmą būnant toli nuo jos. Dainininkas prisimena savo vaikystės namus, gamtą ir nori grįžti bent jau mirti savo žemėje. Pašautas aras gali simbolizuoti žmogaus kančią ar netektį, bet tai nėra tiesiogiai pasakyta.",
-      "EN Description": "This song speaks about longing for one's homeland and the pain of being far from it. The singer remembers the peace and beauty of their childhood home, and wishes to return, even just to die in their native land. The image of a wounded eagle may symbolize a person who is lost or suffering, but this is not stated directly."
+      "EN Description": "This song speaks about longing for one's homeland and the pain of being far from it. The singer remembers the peace and beauty of their childhood home, and wishes to return, even just to die in their native land. The image of a wounded eagle may symbolize a person who is lost or suffering, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6521,7 +6730,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina išreiškia liūdesį ir ilgesį dėl prarastos vaikystės ar paprastesnio gyvenimo laiko. Laivas gali simbolizuoti saugią vietą ar laiką, kai buvo lengviau būti savimi. Dainoje kalbama apie augimą ir išsiskyrimą su tuo laiku.",
-      "EN Description": "This song expresses nostalgia and sadness about growing up and leaving behind a simpler, more innocent time. The 'boat' mentioned in the lyrics could symbolize childhood or a safe place where friends or family shared happiness. The text highlights the pain of outgrowing that space and longing for moments when one could just be themselves."
+      "EN Description": "This song expresses nostalgia and sadness about growing up and leaving behind a simpler, more innocent time. The 'boat' mentioned in the lyrics could symbolize childhood or a safe place where friends or family shared happiness. The text highlights the pain of outgrowing that space and longing for moments when one could just be themselves.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6547,7 +6757,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie rūpestingą ir globojančią jėgą, tikriausiai Kristų, kuris myli ir saugo žmones kaip tėvas. Žodžiai išreiškia dėkingumą už šią meilę ir dvasinį pasitenkinimą. Daina pabrėžia rūpestį, atleidimą ir dvasinę ramybę.",
-      "EN Description": "This song is about a deep, caring presence—likely Christ—who provides, protects, and nurtures people like a loving father. The lyrics express gratitude for this love, describing how it brings comfort, renewal, and spiritual fulfillment. The references to feeding, care, and spiritual nourishment might symbolize both everyday and spiritual support."
+      "EN Description": "This song is about a deep, caring presence—likely Christ—who provides, protects, and nurtures people like a loving father. The lyrics express gratitude for this love, describing how it brings comfort, renewal, and spiritual fulfillment. The references to feeding, care, and spiritual nourishment might symbolize both everyday and spiritual support.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6573,7 +6784,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie smagų stovyklauti miške, bet juokingai skundžiamasi, kai tenka plauti puodus. Dainoje daugiausia dėmesio skiriama juodam puodui, kurį sunku išplauti – tai gali simbolizuoti kasdienius rūpesčius, bet čia pateikiama linksmai. Daina siejasi su lietuvių stovyklavimo tradicijomis.",
-      "EN Description": "This song describes the joy of camping in the forest, but humorously complains about the unpleasant task of washing pots afterwards. The lyrics focus on the never-ending struggle of cleaning a stubborn, blackened pot, which might symbolize everyday annoyances but is mainly presented in a light-hearted, playful way. The song likely relates to Lithuanian youth camping traditions, where communal chores are a shared experience."
+      "EN Description": "This song describes the joy of camping in the forest, but humorously complains about the unpleasant task of washing pots afterwards. The lyrics focus on the never-ending struggle of cleaning a stubborn, blackened pot, which might symbolize everyday annoyances but is mainly presented in a light-hearted, playful way. The song likely relates to Lithuanian youth camping traditions, where communal chores are a shared experience.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6599,7 +6811,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje išsakomas švelnus atsisveikinimas su vaikyste ir namais, jaučiamas ilgesys prabėgusioms jaunystės dienoms. Tekste prisimenamas gamtos grožis, mamos globa ir paprasti džiaugsmai, bet kartu suprantama, kad reikia žengti į suaugusiųjų pasaulį.",
-      "EN Description": "This song expresses a gentle farewell to childhood and home, filled with longing for the innocence and beauty of youth. The lyrics recall memories of nature, a mother's care, and simple joys, while acknowledging the need to move forward into adulthood. The imagery of fields, birds, and Lithuanian landscapes highlights a deep connection to homeland, though the poem may also symbolize the universal experience of growing up."
+      "EN Description": "This song expresses a gentle farewell to childhood and home, filled with longing for the innocence and beauty of youth. The lyrics recall memories of nature, a mother's care, and simple joys, while acknowledging the need to move forward into adulthood. The imagery of fields, birds, and Lithuanian landscapes highlights a deep connection to homeland, though the poem may also symbolize the universal experience of growing up.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6625,7 +6838,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie motiną, kuri liūdi dėl trijų sūnų, išėjusių ginti tėvynės ir negrįžusių namo. Daina naudoja verkiančio smuiko įvaizdį, kad parodytų liūdesį ir netektį. Nors minimos vietovės ir kovos, daina nekalba apie konkretų istorinį įvykį.",
-      "EN Description": "This song tells the story of a mother mourning her three sons, who left their village to bravely defend their homeland and never returned. The lyrics use the image of a weeping violin as a metaphor for sorrow and loss, and reflect on the pain of waiting and not knowing the fate of loved ones. The references to specific Lithuanian places and the theme of sacrifice may symbolize the struggles Lithuania has faced in its history, especially during wars, but the song does not mention a specific historical event."
+      "EN Description": "This song tells the story of a mother mourning her three sons, who left their village to bravely defend their homeland and never returned. The lyrics use the image of a weeping violin as a metaphor for sorrow and loss, and reflect on the pain of waiting and not knowing the fate of loved ones. The references to specific Lithuanian places and the theme of sacrifice may symbolize the struggles Lithuania has faced in its history, especially during wars, but the song does not mention a specific historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6652,7 +6866,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie ramią Kalėdų naktį ir laukimą mylimo žmogaus. Žodžiuose daug žiemos ir Kalėdų simbolių, kurie kuria jaukią nuotaiką. Daina gali simbolizuoti artumo ar susitikimo ilgesį per šventes.",
-      "EN Description": "This song describes a quiet Christmas night, filled with longing and hope for the arrival of a loved one. The lyrics use winter and Christmas imagery, such as snow, candles, and decorated trees, to create a warm and intimate atmosphere. The song may symbolize waiting for emotional closeness or reunion during the holiday season, which is a special and meaningful time in Lithuanian culture."
+      "EN Description": "This song describes a quiet Christmas night, filled with longing and hope for the arrival of a loved one. The lyrics use winter and Christmas imagery, such as snow, candles, and decorated trees, to create a warm and intimate atmosphere. The song may symbolize waiting for emotional closeness or reunion during the holiday season, which is a special and meaningful time in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6679,7 +6894,8 @@ const songs: SongFile = [
       },
       "Music Author": "Faustas Strolia",
       "LT Description": "Daina pasakoja apie vaiką, kuris negali užmigti per Kalėdas ir pro langą stebi, kaip atvyksta Kalėdų Senelis su rogėmis. Čia jaučiama šventinė nuotaika ir minimos lietuviškos tradicijos, pavyzdžiui, lietuviškos knygos dovana.",
-      "EN Description": "The song tells of a child who cannot sleep on Christmas Eve and gazes out the window, imagining or witnessing Santa Claus arriving in a sleigh pulled by reindeer. The lyrics describe the magical atmosphere of Christmas night and mention traditional Lithuanian customs, such as choosing a Lithuanian book as a gift. The text mainly reflects the excitement and anticipation surrounding Christmas in Lithuania."
+      "EN Description": "The song tells of a child who cannot sleep on Christmas Eve and gazes out the window, imagining or witnessing Santa Claus arriving in a sleigh pulled by reindeer. The lyrics describe the magical atmosphere of Christmas night and mention traditional Lithuanian customs, such as choosing a Lithuanian book as a gift. The text mainly reflects the excitement and anticipation surrounding Christmas in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6705,7 +6921,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogaus vaikystės prisiminimus gimtinėje, gamtos grožį ir ramybę. Dabar, gyvendamas mieste, dainininkas jaučiasi pasiilgęs ir trokšta grįžti ar bent jau numirti tėviškėje. Dainoje minimi gamtos vaizdai yra svarbi Lietuvos kultūros dalis.",
-      "EN Description": "This song is about a person's nostalgic memories of their childhood home in the Lithuanian countryside, describing the beauty of nature and the sense of peace it brought. As an adult living in the city, the singer feels longing and sadness, wishing to return or at least to die in their homeland. The lyrics do not directly reference specific Lithuanian traditions or holidays, but the imagery of pines, hills, and linden trees is common in Lithuanian folk culture and poetry, and gali simbolizuoti the deep emotional connection Lithuanians often feel with their native land."
+      "EN Description": "This song is about a person's nostalgic memories of their childhood home in the Lithuanian countryside, describing the beauty of nature and the sense of peace it brought. As an adult living in the city, the singer feels longing and sadness, wishing to return or at least to die in their homeland. The lyrics do not directly reference specific Lithuanian traditions or holidays, but the imagery of pines, hills, and linden trees is common in Lithuanian folk culture and poetry, and gali simbolizuoti the deep emotional connection Lithuanians often feel with their native land.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6731,7 +6948,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žavėjimąsi kalnais ir norą juos aplankyti visais metų laikais. Žodžiai išreiškia troškimą būti arčiau kalnų ir svajones apie juos. Kalnai gali simbolizuoti nuotykius ar prisiminimus, bet tai nėra aišku.",
-      "EN Description": "The song is about admiration for mountains and the longing to visit them in every season. The lyrics express how the beauty of the mountains inspires dreams and a desire to be close to them. The mountains may symbolize adventure, escape, or cherished memories, but this is open to interpretation."
+      "EN Description": "The song is about admiration for mountains and the longing to visit them in every season. The lyrics express how the beauty of the mountains inspires dreams and a desire to be close to them. The mountains may symbolize adventure, escape, or cherished memories, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6763,7 +6981,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje jauna mergina kviečiama namo ir prašoma tekėti už įvairių piršlių, bet ji sutinka tik su artoju, kuris dirba sunkų darbą. Daina gali simbolizuoti darbštumą ar tinkamo vyro pasirinkimą, bet svarbiausia yra šeimos narių pokalbis ir jų vaidmuo.",
-      "EN Description": "This folk song tells about a young woman being asked by her family to return home and marry various suitors, each with a different profession. She refuses all except the hardworking ploughman, suggesting a preference for honest, difficult work over easy tasks. The song may symbolize values such as diligence and the importance of choosing a worthy partner, but its main focus is on the dialogue and the roles of family members in arranging marriages."
+      "EN Description": "This folk song tells about a young woman being asked by her family to return home and marry various suitors, each with a different profession. She refuses all except the hardworking ploughman, suggesting a preference for honest, difficult work over easy tasks. The song may symbolize values such as diligence and the importance of choosing a worthy partner, but its main focus is on the dialogue and the roles of family members in arranging marriages.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6789,7 +7008,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ramias akimirkas kalnuose, kur gamta ir dienos kaita pastebimos labai jautriai. Joje jaučiami ilgesio ir laukimo jausmai, galbūt simbolizuojantys meilę ar prisiminimus. Vaizduojama gamta primena Lietuvos kaimą, bet daina nemini konkrečių tradicijų ar įvykių.",
-      "EN Description": "The song describes peaceful scenes in the mountains, where nature and the changing times of day are closely observed. It reflects feelings of longing and waiting for a loved one, possibly symbolizing nostalgia or separation. The imagery of shepherds, blooming flowers, and distant stars suggests a connection to rural life and the beauty of Lithuanian landscapes, though it does not refer to any specific tradition or historical event."
+      "EN Description": "The song describes peaceful scenes in the mountains, where nature and the changing times of day are closely observed. It reflects feelings of longing and waiting for a loved one, possibly symbolizing nostalgia or separation. The imagery of shepherds, blooming flowers, and distant stars suggests a connection to rural life and the beauty of Lithuanian landscapes, though it does not refer to any specific tradition or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6873,7 +7093,8 @@ const songs: SongFile = [
       },
       "Music Author": "Jonas Švedas",
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris visą dieną kala mažą arklą. Taip pat minimas artojas, kuris su dviem jaučiais aria lauką. Kartojami garsai primena kalvystės garsus ir gali simbolizuoti kaimo gyvenimą.",
-      "EN Description": "This song tells about a person working all day, forging a small plough. The lyrics mention a ploughman harnessing two oxen and making a deep furrow in the field, which may symbolize hard work or daily rural life. The repeated rhythmic syllables imitate the sounds of metalwork and may reflect the traditional Lithuanian rural setting."
+      "EN Description": "This song tells about a person working all day, forging a small plough. The lyrics mention a ploughman harnessing two oxen and making a deep furrow in the field, which may symbolize hard work or daily rural life. The repeated rhythmic syllables imitate the sounds of metalwork and may reflect the traditional Lithuanian rural setting.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6899,7 +7120,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje vienas žmogus siūlo kitam įvairias dovanas ir patogumus, bet tas žmogus jų atsisako, sakydamas, kad jam to nereikia. Vietoje to, jis nori paprastumo ir mylėti savo tėvus. Dainoje gali būti užuomina apie namų ilgesį arba ramybę, bet tikslus prasmė gali būti įvairiai suprantama.",
-      "EN Description": "This song is about someone offering gifts and comforts—like a tall granary, a fine horse, and a bed of sage—to another person, but the recipient gently refuses them, saying they do not need such things. Instead, the lyrics express a wish for simplicity and love for one's parents. The imagery of a sage bed and the mention of parents may symbolize a longing for home, family, or peace, but the exact meaning can be open to interpretation."
+      "EN Description": "This song is about someone offering gifts and comforts—like a tall granary, a fine horse, and a bed of sage—to another person, but the recipient gently refuses them, saying they do not need such things. Instead, the lyrics express a wish for simplicity and love for one's parents. The imagery of a sage bed and the mention of parents may symbolize a longing for home, family, or peace, but the exact meaning can be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -6932,7 +7154,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina apie jaunuolį, kuris atjoja pas mylimąją. Dainoje kalbama apie meilę, piršlybas ir simbolinius gestus, pavyzdžiui, rūtos sodinimą, kuris lietuvių kultūroje siejamas su mergystės simbolika. Čia svarbus jausmingas bendravimas tarp vaikino ir merginos.",
-      "EN Description": "This song is a traditional Lithuanian folk piece about a young man visiting his beloved, riding his horse to her home. The lyrics reflect themes of love, courtship, and symbolic gestures, such as the giving of rue (a plant associated with maidenhood and purity in Lithuanian culture). The song may symbolize the steps of traditional courtship, but the emotional exchange between the lovers is central."
+      "EN Description": "This song is a traditional Lithuanian folk piece about a young man visiting his beloved, riding his horse to her home. The lyrics reflect themes of love, courtship, and symbolic gestures, such as the giving of rue (a plant associated with maidenhood and purity in Lithuanian culture). The song may symbolize the steps of traditional courtship, but the emotional exchange between the lovers is central.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7002,7 +7225,8 @@ const songs: SongFile = [
       "Music Author": "Calixa Lavalée",
       "Text Author": "Adolphe-Basile Routhier & Stanley Wier",
       "LT Description": "Ši daina išreiškia meilę ir pasididžiavimą savo tėvyne, kalba apie jos stiprybę ir drąsą, prašo Dievo apsaugos ir laisvės. Tekste naudojamos anglų ir prancūzų kalbos, kas gali simbolizuoti tautos vienybę ir įvairiapusiškumą. Pagrindinė tema – ištikimybė šaliai ir pažadas ją ginti.",
-      "EN Description": "This song expresses love and pride for a homeland, describing its strength and bravery, and asking for its continued freedom and glory. It combines English and French lines, which may symbolize national unity and cultural diversity. The main theme is devotion to the country and a promise to protect it."
+      "EN Description": "This song expresses love and pride for a homeland, describing its strength and bravery, and asking for its continued freedom and glory. It combines English and French lines, which may symbolize national unity and cultural diversity. The main theme is devotion to the country and a promise to protect it.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7029,7 +7253,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra lopšinė, kurioje tėvai ramina vaiką, linkėdami jam gražių sapnų ir žvaigždelių. Dainoje jaučiama švelni, rūpestinga nuotaika, o kai vaikas užmiega, suaugusieji gali linksmintis. „Karalių pasaka“ gali reikšti stebuklingas pasakas, bet nėra aišku, ar tai susiję su konkrečia lietuviška tradicija.",
-      "EN Description": "This song is a lullaby where a parent soothes a child to sleep, wishing them peaceful dreams filled with fairy tales and stars. The lyrics suggest a gentle, caring atmosphere, and hint that once the child is asleep, the adults can relax and enjoy themselves. The reference to 'karalių pasaka' (king's tale) might symbolize stories of wonder, but it's not clear if it refers to a specific Lithuanian tradition."
+      "EN Description": "This song is a lullaby where a parent soothes a child to sleep, wishing them peaceful dreams filled with fairy tales and stars. The lyrics suggest a gentle, caring atmosphere, and hint that once the child is asleep, the adults can relax and enjoy themselves. The reference to 'karalių pasaka' (king's tale) might symbolize stories of wonder, but it's not clear if it refers to a specific Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7056,7 +7281,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie lietuvių, greičiausiai žemaičių, kovą prieš kryžiuočius. Ji kalba apie karo skausmą, viltį sugrįžti namo ir svarbą atsiminti bei sakyti tiesą netekus artimųjų. Tekste gali būti užsimenama apie istorines lietuvių kovas su kryžiuočiais.",
-      "EN Description": "This song tells the story of Lithuanian warriors, likely Samogitians, defending their land from crusaders. It describes the pain and sacrifice of war, the hope of returning home, and the importance of memory and truth in the face of loss. The lyrics may symbolize the historical struggles of Lithuanians against medieval crusader invasions, especially those by the Teutonic Order, which is a significant part of Lithuanian history."
+      "EN Description": "This song tells the story of Lithuanian warriors, likely Samogitians, defending their land from crusaders. It describes the pain and sacrifice of war, the hope of returning home, and the importance of memory and truth in the face of loss. The lyrics may symbolize the historical struggles of Lithuanians against medieval crusader invasions, especially those by the Teutonic Order, which is a significant part of Lithuanian history.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7082,7 +7308,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai linksma vestuvinė daina apie jaunųjų pirmąjį bučinį ir su tuo susijusį drovumą. Dainoje juokaujama, lyginant jaunąją ir jaunikį su gyvūnais, o degtinė tampa kartumo ir saldumo simboliu. Čia minimi piršliai bei tradicinės vestuvių apeigos, svarbios lietuvių vestuvėse.",
-      "EN Description": "This song is a playful wedding folk tune about the traditions and awkwardness of the first kiss between newlyweds. It humorously compares the hesitance of the bride and groom to animals and uses the metaphor of bitter and sweet vodka to reflect on the emotions of the moment. The lyrics reference the role of matchmakers and wedding customs, which are important in Lithuanian traditional weddings."
+      "EN Description": "This song is a playful wedding folk tune about the traditions and awkwardness of the first kiss between newlyweds. It humorously compares the hesitance of the bride and groom to animals and uses the metaphor of bitter and sweet vodka to reflect on the emotions of the moment. The lyrics reference the role of matchmakers and wedding customs, which are important in Lithuanian traditional weddings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7109,7 +7336,8 @@ const songs: SongFile = [
       },
       "Text Author": "Arvydas Vilčinskas",
       "LT Description": "Ši linksma daina pasakoja apie karvę, kuri važiuoja dviračiu ir sutinka kitus gyvūnus keistose situacijose. Tekste daug juokingų ir absurdiškų vaizdų, kurie greičiausiai skirti pramogai. Nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This playful song tells a whimsical story about a cow riding a bicycle and encountering other animals in strange situations. The lyrics use absurd and humorous images, which may simply be for fun or could symbolize how some things are not meant for certain tasks. There are no clear references to Lithuanian traditions or historical events."
+      "EN Description": "This playful song tells a whimsical story about a cow riding a bicycle and encountering other animals in strange situations. The lyrics use absurd and humorous images, which may simply be for fun or could symbolize how some things are not meant for certain tasks. There are no clear references to Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7135,7 +7363,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma liaudies daina pasakoja juokingą istoriją apie miške nutikusį uodo nelaimę. Dainoje vartojama žaisminga kalba, kiti vabzdžiai rūpinasi uoduku, o vietoj pagalbos uodas prašo arielkos. Tai gali būti vaikiška arba juokų daina apie nelaimes ir draugystę.",
-      "EN Description": "This playful folk song tells a humorous story about a mosquito that meets an unfortunate fate in the woods. The song uses lighthearted language and animal characters to describe the mosquito's accident, the concern of other insects, and a witty request for alcohol instead of medical help. While it may simply be a children's song or a joke, it could also symbolize how people sometimes deal with misfortune through humor and community."
+      "EN Description": "This playful folk song tells a humorous story about a mosquito that meets an unfortunate fate in the woods. The song uses lighthearted language and animal characters to describe the mosquito's accident, the concern of other insects, and a witty request for alcohol instead of medical help. While it may simply be a children's song or a joke, it could also symbolize how people sometimes deal with misfortune through humor and community.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7161,7 +7390,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina žaismingai jungia Lietuvos miestų ir miestelių pavadinimus su panašiai skambančiais žodžiais, kurdama kalambūrus ir žodžių žaidimus. Tekstas gali simbolizuoti ieškojimą, kas mes esame ar iš kur atėjome, bet daugiausia yra linksmas ir lengvas. Nėra aiškių nuorodų į lietuviškas šventes ar istorinius įvykius.",
-      "EN Description": "This song playfully connects Lithuanian city and town names with words that sound similar or have double meanings, making puns and word games out of place names. The lyrics may symbolize the search for identity and belonging or the curiosity about origins, but mostly the text is lighthearted and fun. There are no direct references to specific Lithuanian holidays or historical events, but the style reflects a tradition of playful folk poetry and counting-out rhymes."
+      "EN Description": "This song playfully connects Lithuanian city and town names with words that sound similar or have double meanings, making puns and word games out of place names. The lyrics may symbolize the search for identity and belonging or the curiosity about origins, but mostly the text is lighthearted and fun. There are no direct references to specific Lithuanian holidays or historical events, but the style reflects a tradition of playful folk poetry and counting-out rhymes.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7187,7 +7417,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši lietuvių liaudies daina pasakoja apie jauną merginą, kuri guli po liepa tėvų sode, o ją bando užkalbinti vaikinas. Mergina atsisako ir sako, kad grįš pas tėvelį. Dainoje gali būti užuominų į ilgesį ar jaunystės laikotarpį.",
-      "EN Description": "This Lithuanian folk song tells of a young woman lying under a linden tree in her parents' orchard, as a suitor approaches and tries to win her love. The woman gently but firmly refuses, saying she will return to her father's home instead. The imagery may symbolize longing, innocence, or the transition from youth to adulthood, but its precise meaning is open to interpretation."
+      "EN Description": "This Lithuanian folk song tells of a young woman lying under a linden tree in her parents' orchard, as a suitor approaches and tries to win her love. The woman gently but firmly refuses, saying she will return to her father's home instead. The imagery may symbolize longing, innocence, or the transition from youth to adulthood, but its precise meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7213,7 +7444,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie dukros išvežimą iš namų, greičiausiai vestuvėms, kas dažnai būdinga lietuvių liaudies dainoms. Motina liūdi, broliai pasiveja seserį per vėlai. Tai gali simbolizuoti atsiskyrimo skausmą ir perėjimą į suaugusiųjų gyvenimą.",
-      "EN Description": "This song tells the story of a daughter being taken away from her family, likely for marriage, which is a common theme in Lithuanian folk songs. The mother mourns her daughter's departure, and the brothers try to catch up with her on the road, but arrive too late. The lyrics may symbolize the pain of separation and the transition from childhood to adulthood, often experienced during traditional wedding rituals in Lithuania."
+      "EN Description": "This song tells the story of a daughter being taken away from her family, likely for marriage, which is a common theme in Lithuanian folk songs. The mother mourns her daughter's departure, and the brothers try to catch up with her on the road, but arrive too late. The lyrics may symbolize the pain of separation and the transition from childhood to adulthood, often experienced during traditional wedding rituals in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7239,7 +7471,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kuri pina rūtų vainikėlį subatos vakarėliui – tai jaunimo ir meilės tradicija Lietuvoje. Vėliau vėjas nupučia vainikėlį į upę, o bernužėlis bando jį susigrąžinti. Dainos pabaiga gali simbolizuoti meilės ilgesį ar netektį.",
-      "EN Description": "This song tells about a girl who braids a rue wreath for a Saturday evening gathering, a tradition associated with youth and courtship in Lithuania. As she walks with a young man, the wind blows her wreath into the river, symbolizing loss or the unpredictability of love. The ending, where the young man dives after the wreath, may represent longing or sacrifice, but its meaning is open to interpretation."
+      "EN Description": "This song tells about a girl who braids a rue wreath for a Saturday evening gathering, a tradition associated with youth and courtship in Lithuania. As she walks with a young man, the wind blows her wreath into the river, symbolizing loss or the unpredictability of love. The ending, where the young man dives after the wreath, may represent longing or sacrifice, but its meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7265,7 +7498,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina, kurioje dainininkas klausia, kas vaikšto po jo sodybą ir spėlioja, kad tai gali būti šeimos nariai ar net Dievas, rūpinantis įvairiais darbais. Daina atspindi namų, šeimos ir kasdienio gyvenimo temas. Joje minimos lietuviškos sodybos vietos, tokios kaip sodelis ar rūtų darželis.",
-      "EN Description": "This is a traditional Lithuanian folk song where the singer wonders who is walking around different parts of their homestead, and then imagines it could be their family members or even God taking care of various things. The song reflects themes of home, family, and the gentle passing of daily life. The mention of places like the linden garden, granary, and rue garden refers to typical elements in a traditional Lithuanian rural homestead."
+      "EN Description": "This is a traditional Lithuanian folk song where the singer wonders who is walking around different parts of their homestead, and then imagines it could be their family members or even God taking care of various things. The song reflects themes of home, family, and the gentle passing of daily life. The mention of places like the linden garden, granary, and rue garden refers to typical elements in a traditional Lithuanian rural homestead.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7292,7 +7526,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie kasdienius sunkumus gyvenime, lygindama juos su kova ar karu. Ji pasakoja apie siekius, vienatvę ir nepasitikėjimą kitais. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song reflects the struggles people face in everyday life, describing daily challenges as a kind of 'war.' It talks about striving for goals, feeling alone, and not always being able to trust those around us. The lyrics may symbolize emotional battles or the pursuit of personal meaning, but do not mention specific Lithuanian traditions or historical events."
+      "EN Description": "This song reflects the struggles people face in everyday life, describing daily challenges as a kind of 'war.' It talks about striving for goals, feeling alone, and not always being able to trust those around us. The lyrics may symbolize emotional battles or the pursuit of personal meaning, but do not mention specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7318,7 +7553,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina – tai malda ar pokalbis su Dievu, klausiant, ar Jis girdi žmonių dainas, verksmą ir prašymus. Žodžiai gali simbolizuoti kančią ir laisvės troškimą, tačiau apie tai kalbama netiesiogiai. Tekstas gali būti susijęs su Lietuvos istorija, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song is a prayerful conversation with God, asking if He hears the voices of those who are singing, crying, walking, and calling out. The lyrics may symbolize the suffering and longing for freedom of people who feel oppressed or exiled, though it is not stated directly. There could be a connection to Lithuanian history, such as the experiences of deportation or struggles for independence, but the text remains open to interpretation."
+      "EN Description": "This song is a prayerful conversation with God, asking if He hears the voices of those who are singing, crying, walking, and calling out. The lyrics may symbolize the suffering and longing for freedom of people who feel oppressed or exiled, though it is not stated directly. There could be a connection to Lithuanian history, such as the experiences of deportation or struggles for independence, but the text remains open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7347,7 +7583,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Dainos žodžiai kalba apie pasikeitusius miestus ir veidus, ilgesį žmogui, kuris neatsiliepia, ir prisiminimus apie namus bei praeitį. Jaučiama meilės paieška ir ryšio su gimtine ar šeima svarba, nors tai nėra aiškiai pasakyta.",
-      "EN Description": "The lyrics speak about changing cities and faces, longing for someone who doesn't respond, and a sense of nostalgia for home and past times. There are themes of searching for love, the call of one's roots, and the passage of time. The repeated references to returning home and the 'blood calling' may symbolize the strong bonds to one's homeland or family, but this is not stated directly."
+      "EN Description": "The lyrics speak about changing cities and faces, longing for someone who doesn't respond, and a sense of nostalgia for home and past times. There are themes of searching for love, the call of one's roots, and the passage of time. The repeated references to returning home and the 'blood calling' may symbolize the strong bonds to one's homeland or family, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7373,7 +7610,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogaus sunkumus, nemigą ir pastangas išlaikyti pusiausvyrą gyvenime. Žodžiai naudoja lyno įvaizdį, kad parodytų baimę prarasti ramybę, o prašymas linkėti ištvermės rodo norą nenuleisti rankų. Sekimas paskui saulę gali simbolizuoti viltį.",
-      "EN Description": "This song is about a person sharing their struggles with sleeplessness, anxiety, and the challenge of keeping balance in life. The lyrics use the image of walking on a tightrope to express the fear of losing stability, and a longing for support and perseverance. The mention of following the sun like a starling may symbolize hope or striving for a better future, but the meaning could be interpreted in different ways."
+      "EN Description": "This song is about a person sharing their struggles with sleeplessness, anxiety, and the challenge of keeping balance in life. The lyrics use the image of walking on a tightrope to express the fear of losing stability, and a longing for support and perseverance. The mention of following the sun like a starling may symbolize hope or striving for a better future, but the meaning could be interpreted in different ways.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7402,7 +7640,8 @@ const songs: SongFile = [
       "Music Author": "RebelHeart",
       "Text Author": "RebelHeart",
       "LT Description": "Šioje dainoje pasakojama apie ilgą kelią ir ilgesį mylimo žmogaus. Žodžiai išreiškia vienatvę, laukimą ir viltį vėl būti kartu. Tekste nėra paminėtos jokios konkrečios lietuviškos tradicijos ar istoriniai įvykiai.",
-      "EN Description": "This song tells about a long, uncertain journey and the longing to be close to a loved one. The lyrics express feelings of loneliness and waiting, with hope that the separation will end and they will be together again. The night, stars, and distance may symbolize emotional or physical separation, but the text does not mention any specific Lithuanian traditions or historical events."
+      "EN Description": "This song tells about a long, uncertain journey and the longing to be close to a loved one. The lyrics express feelings of loneliness and waiting, with hope that the separation will end and they will be together again. The night, stars, and distance may symbolize emotional or physical separation, but the text does not mention any specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7429,7 +7668,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai pasakoja apie ankstyvą rytą, nežinomybę ir savęs ieškojimą. Čia kalbama apie pasirinkimus gyvenime ir jausmus, kai nežinai, kas tavęs laukia. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The lyrics describe waking up early and feeling uncertain about the day ahead and the future. The song explores themes of self-discovery, choices, and the unknown journey of life, possibly symbolized by stars on the road. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "The lyrics describe waking up early and feeling uncertain about the day ahead and the future. The song explores themes of self-discovery, choices, and the unknown journey of life, possibly symbolized by stars on the road. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7456,7 +7696,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį mylimam žmogui, kuris galbūt pasikeitė ar dingo iš gyvenimo. Žodžiai prisimena bendras akimirkas, išlikusią meilę ir tai, kaip svarbūs prisiminimai išlieka net bėgant laikui. Daina labiau apie jausmus, o ne apie konkrečias lietuviškas tradicijas.",
-      "EN Description": "This song is about a heartfelt longing for a beloved person who seems to have disappeared or changed over time. The lyrics reflect on shared memories, enduring affection, and the lasting impact of love, even as time passes and people grow older. There may be references to personal or universal experiences rather than specific Lithuanian traditions."
+      "EN Description": "This song is about a heartfelt longing for a beloved person who seems to have disappeared or changed over time. The lyrics reflect on shared memories, enduring affection, and the lasting impact of love, even as time passes and people grow older. There may be references to personal or universal experiences rather than specific Lithuanian traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7482,7 +7723,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama linksma istorija apie vaikystės simpatiją ir kibirėlį, kuris tampa svarbiausiu dalyku. Dainos herojus labiau domisi mergaitės kibirėliu nei pačia mergaite, o tai gali simbolizuoti vaikišką požiūrį ar paviršutiniškus norus. Daina yra ironiška ir žaisminga.",
-      "EN Description": "This song tells a playful story about a childhood crush and the importance given to a simple object—a small bucket. The lyrics describe a boy's infatuation with a girl's bucket rather than the girl herself, which may symbolize a childish or superficial attraction. The song uses humor and irony, and the meaning of the bucket could represent childhood innocence or material desires, but this is not certain."
+      "EN Description": "This song tells a playful story about a childhood crush and the importance given to a simple object—a small bucket. The lyrics describe a boy's infatuation with a girl's bucket rather than the girl herself, which may symbolize a childish or superficial attraction. The song uses humor and irony, and the meaning of the bucket could represent childhood innocence or material desires, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7511,7 +7753,8 @@ const songs: SongFile = [
       "Music Author": "A. Kaniava",
       "Text Author": "A. Kaniava",
       "LT Description": "Dainos žodžiai kalba apie kitą gyvenimą, kuris atrodo šalia, bet vis tiek nepasiekiamas ir kitoks nei įsivaizduota. Tas gyvenimas lieka paslaptingas, kartais viliojantis, kartais skaudinantis, ir tarsi persekioja dabartį. Tekste nėra aiškių nuorodų į lietuviškas tradicijas ar istoriją.",
-      "EN Description": "The lyrics reflect on the idea of another life, one that seems close but remains out of reach and different from what is imagined or hoped for. This 'other life' appears mysterious and elusive, sometimes offering hope, sometimes disappointment, and seems to haunt the present with its possibilities. The text does not reference specific Lithuanian traditions or historical events, but it may symbolize feelings of longing, missed opportunities, or existential questioning."
+      "EN Description": "The lyrics reflect on the idea of another life, one that seems close but remains out of reach and different from what is imagined or hoped for. This 'other life' appears mysterious and elusive, sometimes offering hope, sometimes disappointment, and seems to haunt the present with its possibilities. The text does not reference specific Lithuanian traditions or historical events, but it may symbolize feelings of longing, missed opportunities, or existential questioning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7543,7 +7786,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie liūdną berželį, kuris nuleidęs šakas ir lyg verkia. Žodžiai ramina beržą, žadėdami, kad greitai bus vėl linksma ir šviesu. Berželis gali simbolizuoti liūdną žmogų, bet taip pat gali būti tiesiog apie gamtą.",
-      "EN Description": "The song is about a birch tree that appears sad, with drooping branches and falling dew like tears. The lyrics comfort the tree, suggesting that joy and sunshine will soon return. The birch may symbolize a person feeling down, but the song reassures that brighter days are ahead, though this could also simply be about nature's moods."
+      "EN Description": "The song is about a birch tree that appears sad, with drooping branches and falling dew like tears. The lyrics comfort the tree, suggesting that joy and sunshine will soon return. The birch may symbolize a person feeling down, but the song reassures that brighter days are ahead, though this could also simply be about nature's moods.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7576,7 +7820,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus klausia arklio, kodėl jis neėda šieno, o arklys atsako, kad jam rūpi keliai pas mergeles. Dainoje taip pat įspėjama mergaitė apie vaikiną, kuris gali išgerti jos jaunystę. Tai gali simbolizuoti rūpestį dėl neištikimų ar neatsakingų vaikinų, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song is a conversation between a person and a horse, where the horse reveals it is more interested in visiting young women than eating grass or clover. The lyrics also warn a young woman about a suitor who spends his nights drinking and may waste her youth. The song may symbolize concerns about unreliable lovers and traditional matchmaking, but this is not explicitly stated."
+      "EN Description": "This song is a conversation between a person and a horse, where the horse reveals it is more interested in visiting young women than eating grass or clover. The lyrics also warn a young woman about a suitor who spends his nights drinking and may waste her youth. The song may symbolize concerns about unreliable lovers and traditional matchmaking, but this is not explicitly stated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7602,7 +7847,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį tėviškei ir meilę gimtinei. Tekste išreiškiamas prisiminimas, namų ilgesys ir ypatingas ryšys su gimtuoju kraštu. Nėra aiškių nuorodų į konkrečias lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song is about longing for one's homeland and the special place it holds in the singer's heart. The lyrics speak of memories, homesickness, and the beauty of the native land, possibly symbolizing a deep emotional connection to one's roots. There are no direct references to specific Lithuanian traditions or historical events, but the sea and home themes are common in Lithuanian culture."
+      "EN Description": "This song is about longing for one's homeland and the special place it holds in the singer's heart. The lyrics speak of memories, homesickness, and the beauty of the native land, possibly symbolizing a deep emotional connection to one's roots. There are no direct references to specific Lithuanian traditions or historical events, but the sea and home themes are common in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7628,7 +7874,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina išreiškia susižavėjimą Jėzumi, sakoma, kad Jėzus yra gražus ir nuostabus. Tekste teigiama, kad Jėzus daro gyvenimą gražų ir švelniai padeda ar veda žmogų. Aiškių nuorodų į lietuviškas tradicijas ar šventes nėra.",
-      "EN Description": "This song expresses admiration for Jesus, describing Him as beautiful and wonderful. The lyrics suggest that Jesus brings beauty to life and gently helps or guides the singer. There are no clear references to specific Lithuanian traditions or holidays, but the text may symbolize spiritual renewal or gratitude."
+      "EN Description": "This song expresses admiration for Jesus, describing Him as beautiful and wonderful. The lyrics suggest that Jesus brings beauty to life and gently helps or guides the singer. There are no clear references to specific Lithuanian traditions or holidays, but the text may symbolize spiritual renewal or gratitude.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7691,7 +7938,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, kuri moka gražiai austi ir džiaugiasi savo įgūdžiais. Linksmi garsai priedainyje gali priminti audimo garsus. Tai gali būti susiję su lietuvišku kraitiniu audimu, kai merginos ruošdavo audinius vestuvėms, bet dainoje tai nepasakyta tiesiogiai.",
-      "EN Description": "The song describes a young woman who has learned to weave skillfully and takes pride in her ability to use the loom. The playful sounds in the chorus may represent the rhythmic noises of weaving. This could symbolize traditional Lithuanian dowry weaving, where girls would prepare handmade textiles for their marriage, but it is not stated directly in the text."
+      "EN Description": "The song describes a young woman who has learned to weave skillfully and takes pride in her ability to use the loom. The playful sounds in the chorus may represent the rhythmic noises of weaving. This could symbolize traditional Lithuanian dowry weaving, where girls would prepare handmade textiles for their marriage, but it is not stated directly in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7717,7 +7965,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie tradicinį gėrimą krambambulį, kurį draugai geria kartu ir kuris paveldėtas iš tėvų kartos. Tekste kalbama apie linksmumą, draugystę, šeimą ir pinigų rūpesčius, o taip pat pajuokaujama apie sunkumus vengiant alkoholio. Krambambulis gali simbolizuoti lietuviškas draugystės tradicijas.",
-      "EN Description": "This song is about a traditional drink called Krambambulis, which is enjoyed among friends and passed down from previous generations. The lyrics focus on the joy and camaraderie found in drinking together, and also humorously mention family, money troubles, and the difficulty of avoiding alcohol in social situations. The drink Krambambulis may symbolize Lithuanian social traditions and gatherings, but it is not tied to a specific holiday or historic event."
+      "EN Description": "This song is about a traditional drink called Krambambulis, which is enjoyed among friends and passed down from previous generations. The lyrics focus on the joy and camaraderie found in drinking together, and also humorously mention family, money troubles, and the difficulty of avoiding alcohol in social situations. The drink Krambambulis may symbolize Lithuanian social traditions and gatherings, but it is not tied to a specific holiday or historic event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7746,7 +7995,8 @@ const songs: SongFile = [
       "Music Author": "G. Storpirštis",
       "Text Author": "G. Storpirštis",
       "LT Description": "Daina pasakoja apie tylų miestelį auštant, kai bunda tik katė ir pelė, stebinčios aplinką. Kregždutė gali simbolizuoti viltį ar laimės akimirką. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The song describes a quiet town at dawn, where only a cat and a mouse are awake, watching the world change around them. The mention of the swallow and the wish to be the happiest person if it flies through the singer's fingers could symbolize hope, luck, or a fleeting moment of happiness. The lyrics focus on gentle observations of the morning and small wishes, and do not reference specific Lithuanian traditions or historical events."
+      "EN Description": "The song describes a quiet town at dawn, where only a cat and a mouse are awake, watching the world change around them. The mention of the swallow and the wish to be the happiest person if it flies through the singer's fingers could symbolize hope, luck, or a fleeting moment of happiness. The lyrics focus on gentle observations of the morning and small wishes, and do not reference specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7772,7 +8022,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma daina pasakoja apie gyvūnus prie Nilo upės: krokodilas įkando zebrui, atvyko sanitarė, o vėliau begemotas prarijo krokodilą. Daina naudoja daug kartojimų ir humoro, kaip būdinga lietuviškoms vaikų dainelėms.",
-      "EN Description": "This playful song tells a story about animals by the Nile river: a crocodile bites a zebra, a nurse comes to check what happened, and then a hippopotamus appears and swallows the crocodile. The lyrics use repetition and humor, typical for Lithuanian children's songs. The story might simply be meant to entertain, but could also symbolize the unpredictability of nature."
+      "EN Description": "This playful song tells a story about animals by the Nile river: a crocodile bites a zebra, a nurse comes to check what happened, and then a hippopotamus appears and swallows the crocodile. The lyrics use repetition and humor, typical for Lithuanian children's songs. The story might simply be meant to entertain, but could also symbolize the unpredictability of nature.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7799,7 +8050,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašoma našlaitės mergaitės liūdesys, kai ji eina tarnauti ir ilgisi mirusių tėvų bei brolio. Ji jaučiasi vieniša ir neturinti, kas ją užtartų ar pamokytų. Dainoje minima gegutė dažnai simbolizuoja ilgesį ar netektį lietuvių liaudies dainose.",
-      "EN Description": "This song tells of an orphaned girl going to work as a servant, mourning her lost parents and brother. She feels alone, without support or guidance, and expresses her sorrow while referencing the cuckoo, a bird often symbolizing longing or loss in Lithuanian folk songs. The lyrics may symbolize the hardships of orphans in rural Lithuania, but the exact situation is not specified."
+      "EN Description": "This song tells of an orphaned girl going to work as a servant, mourning her lost parents and brother. She feels alone, without support or guidance, and expresses her sorrow while referencing the cuckoo, a bird often symbolizing longing or loss in Lithuanian folk songs. The lyrics may symbolize the hardships of orphans in rural Lithuania, but the exact situation is not specified.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7832,7 +8084,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie liūdną tarnaitę, kuri eina į sunkų darbą ir ilgesi savo namų bei motinos. Tekste išreiškiamas jos liūdesys ir sunkus gyvenimas. Gegutės balsas gali simbolizuoti ilgesį ar laiko tėkmę lietuvių folklore, bet dainoje tai nėra aiškiai pasakyta.",
-      "EN Description": "This song tells the story of a young servant girl who is sad and lonely as she goes to her hard work. The lyrics express her sorrow about her difficult life, longing for her mother, and the pain of being away from home. The cuckoo's call may symbolize longing and passing time in Lithuanian folklore, but this is not stated directly in the song."
+      "EN Description": "This song tells the story of a young servant girl who is sad and lonely as she goes to her hard work. The lyrics express her sorrow about her difficult life, longing for her mother, and the pain of being away from home. The cuckoo's call may symbolize longing and passing time in Lithuanian folklore, but this is not stated directly in the song.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7858,7 +8111,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra paprasta liaudiška giesmė, kurioje dažnai kartojamas kreipinys į kupolę (tai gali būti stebuklingas ar apeiginis augalas), vyksta trumpas dialogas su Jonu. Tekste nėra aiškiai įvardyta, bet gali būti nuoroda į Jonines ar kupoliavimą. Dainoje klausiama, kur buvo Jonas ir ką jis veikė, atsakoma – lankiau rugius.",
-      "EN Description": "This song is a simple folk-style lyric where a flower called 'kupolė' (which may symbolize a magical or ritual plant) is repeatedly addressed, with short dialogues between the flower and a person named Jonas. The song may reference midsummer traditions like Joninės, where flowers and herbs are believed to have special powers, but this is not explicit in the text. The lyrics focus on asking and answering where Jonas was and what he was doing, tied to rye fields."
+      "EN Description": "This song is a simple folk-style lyric where a flower called 'kupolė' (which may symbolize a magical or ritual plant) is repeatedly addressed, with short dialogues between the flower and a person named Jonas. The song may reference midsummer traditions like Joninės, where flowers and herbs are believed to have special powers, but this is not explicit in the text. The lyrics focus on asking and answering where Jonas was and what he was doing, tied to rye fields.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7938,7 +8192,8 @@ const songs: SongFile = [
       "Music Author": "Balys Dvarionas",
       "Text Author": " Eduardas Pilypaitis",
       "LT Description": "Šioje dainoje pasakojama apie Joninių arba Kupolinių papročius: šakelių rinkimą, ugnies kūrimą ir vainikų pynimą. Daina gali simbolizuoti jaunimo viltį sutikti mylimąjį ir artumą su gamta per šią šventę.",
-      "EN Description": "This song describes traditional activities during the midsummer festival, known as Joninės or Kupolinės in Lithuania. The lyrics mention birch trees, collecting branches, lighting fires, and searching for a beloved, all of which are part of ancient rituals celebrating nature and romance. The song may symbolize the hope of finding love and the connection between people and nature during this important holiday."
+      "EN Description": "This song describes traditional activities during the midsummer festival, known as Joninės or Kupolinės in Lithuania. The lyrics mention birch trees, collecting branches, lighting fires, and searching for a beloved, all of which are part of ancient rituals celebrating nature and romance. The song may symbolize the hope of finding love and the connection between people and nature during this important holiday.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7964,7 +8219,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, prisimenantį savo vaikystės namus ir gamtą aplink juos. Žodžiai išreiškia ilgesį ir liūdesį dėl praeities, kurios nebeliko. Daugiausia dėmesio skiriama prisiminimams ir praradimui.",
-      "EN Description": "This song tells of someone remembering their childhood home and the natural places around it, asking where they have gone. The lyrics express nostalgia and sadness for things that have disappeared with time, such as the mossy cottage, the apple tree, and the streams. It may symbolize longing for the past and the changes brought by life, but the text mainly focuses on memories and loss."
+      "EN Description": "This song tells of someone remembering their childhood home and the natural places around it, asking where they have gone. The lyrics express nostalgia and sadness for things that have disappeared with time, such as the mossy cottage, the apple tree, and the streams. It may symbolize longing for the past and the changes brought by life, but the text mainly focuses on memories and loss.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -7996,7 +8252,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie meilę Lietuvai, jos gamtos grožį ir tradicinį gyvenimą. Ji mini lietuviškus papročius, kaip gintaro rinkimą, rūtos sėją, linų audimą, ir išreiškia, kad laimė yra tik Lietuvoje.",
-      "EN Description": "This song expresses love and nostalgia for Lithuania, describing its natural beauty, traditional life, and the happiness of its people. It highlights family roles, folk dances, and the importance of homeland, suggesting that true happiness can only be found in Lithuania. References to amber, rue, and linen weaving relate to Lithuanian cultural traditions and daily rural life."
+      "EN Description": "This song expresses love and nostalgia for Lithuania, describing its natural beauty, traditional life, and the happiness of its people. It highlights family roles, folk dances, and the importance of homeland, suggesting that true happiness can only be found in Lithuania. References to amber, rue, and linen weaving relate to Lithuanian cultural traditions and daily rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8022,7 +8279,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie niūrią situaciją Lietuvoje, kai žmonės ruošiasi kovai prieš užpuolikus, tikriausiai kryžiuočius. Tekste vaizduojami degantys miškai ir rūmai, gedinčios moterys bei lietuvių karių pasiruošimas. Tai gali simbolizuoti lietuvių stiprybę ir netektį karo metu.",
-      "EN Description": "The song describes a tense and somber scene in Lithuania, where people prepare for battle against foreign invaders, likely referring to the historical conflicts with the Teutonic Knights. It paints vivid images of burning forests and castles, mourning women, and the mobilization of Lithuanian warriors. The lyrics may symbolize resilience and loss during wartime, referencing Lithuania's medieval struggles."
+      "EN Description": "The song describes a tense and somber scene in Lithuania, where people prepare for battle against foreign invaders, likely referring to the historical conflicts with the Teutonic Knights. It paints vivid images of burning forests and castles, mourning women, and the mobilization of Lithuanian warriors. The lyrics may symbolize resilience and loss during wartime, referencing Lithuania's medieval struggles.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8048,7 +8306,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra apie draugiškumą ir buvimą kartu, tikriausiai kalbama apie Lietuvos skautus. Ji džiaugiasi stovyklavimu ir dainavimu, kas yra svarbios skautų tradicijos. Kartojami žodžiai gali simbolizuoti vienybę arba tiesiog džiaugsmą būti kartu.",
-      "EN Description": "This song is about togetherness and the enduring presence of a group, likely Lithuanian scouts. It celebrates camping and singing joyfully, which are important traditions in Lithuanian scouting. The repeated lines may symbolize unity and the spirit of always being present, but could also simply express enthusiasm for shared experiences."
+      "EN Description": "This song is about togetherness and the enduring presence of a group, likely Lithuanian scouts. It celebrates camping and singing joyfully, which are important traditions in Lithuanian scouting. The repeated lines may symbolize unity and the spirit of always being present, but could also simply express enthusiasm for shared experiences.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8121,7 +8380,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie sakalą ir gegutę, kurie susitinka sode ir dalijasi uogomis bei rasa. Vėliau jaunuolis ir mergina susirenka dvare, kartu valgo, geria ir sako vieną žodį. Tai gali simbolizuoti meilę arba draugystę, bet tikslus prasmė nėra aiški.",
-      "EN Description": "The song tells about a falcon and a cuckoo meeting in a garden, sitting together on a tree, and sharing simple joys like eating berries and drinking dew. Later, a young man and woman come together at a manor, share food, wine, and speak a single word together. The animals and people might symbolize lovers or the harmony of nature and human life, but the meaning is open to interpretation."
+      "EN Description": "The song tells about a falcon and a cuckoo meeting in a garden, sitting together on a tree, and sharing simple joys like eating berries and drinking dew. Later, a young man and woman come together at a manor, share food, wine, and speak a single word together. The animals and people might symbolize lovers or the harmony of nature and human life, but the meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8147,7 +8407,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, prisimenantį jaunystę, mylėtą merginą ir šaltinėlį, prie kurio gėrė vandenį. Dabar šaltinėlį užaugino žolė, o mergina išėjo už kito. Žodžiai gali simbolizuoti prarastą jaunystę ir meilę, bet gali būti ir paprasti prisiminimai.",
-      "EN Description": "This song is about a person remembering his youth, a beloved girl, and a spring where he once drank water. He laments that the spring is now overgrown and the girl he loved has married someone else. The lyrics may symbolize lost youth and unfulfilled love, but the meaning could also simply reflect personal memories."
+      "EN Description": "This song is about a person remembering his youth, a beloved girl, and a spring where he once drank water. He laments that the spring is now overgrown and the girl he loved has married someone else. The lyrics may symbolize lost youth and unfulfilled love, but the meaning could also simply reflect personal memories.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8173,7 +8434,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje trys seserys prie upelio kalbasi apie vyrus, juokais aptardamos, kodėl aukštas, mažas ar storas vyras nėra gerai. Galiausiai jos sutaria, kad svarbiausia – tikra meilė. Tai linksma liaudies daina apie santykius ir moterų patirtis.",
-      "EN Description": "This song tells of three sisters talking by a stream about what kind of man is good or not good for marriage. With playful humor, they discuss the difficulties of loving a man who is too tall, too short, or too big, before agreeing that the most important thing is whether he truly loves. The song may symbolize light-hearted folk wisdom about relationships, and reflects a common theme in Lithuanian folk songs where women share advice and experiences."
+      "EN Description": "This song tells of three sisters talking by a stream about what kind of man is good or not good for marriage. With playful humor, they discuss the difficulties of loving a man who is too tall, too short, or too big, before agreeing that the most important thing is whether he truly loves. The song may symbolize light-hearted folk wisdom about relationships, and reflects a common theme in Lithuanian folk songs where women share advice and experiences.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8199,7 +8461,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie kurmį, kuris turėjo keturias žmonas, bet jos visos mirė keičiantis metų laikams, o galiausiai žuvo ir pats kurmis. Dainoje daug kartojamų žodžių ir juokingų, beprasmų skiemenų. Tai gali būti tiesiog linksma arba absurdiška daina be gilesnės prasmės.",
-      "EN Description": "This song tells the story of a mole who had four wives, but one by one, they all die as the seasons change, and finally the mole himself meets a tragic end. The lyrics use repetition and playful nonsense syllables, and may symbolize the cycle of life, death, and the unpredictability of fate, but it could also simply be a humorous or absurd song with no deeper meaning. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "This song tells the story of a mole who had four wives, but one by one, they all die as the seasons change, and finally the mole himself meets a tragic end. The lyrics use repetition and playful nonsense syllables, and may symbolize the cycle of life, death, and the unpredictability of fate, but it could also simply be a humorous or absurd song with no deeper meaning. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8228,7 +8491,8 @@ const songs: SongFile = [
       "Music Author": "G. Storpirštis",
       "Text Author": "G. Storpirštis",
       "LT Description": "Šioje dainoje žmogus laukia laiškų, kurie nepasiekia. Žodžiai ir žinutės pasimeta, gal tai simbolizuoja sunkumus bendraujant arba jausmų atstumą. 'Balta ant balto' gali reikšti, kad žinutės sunkiai matomos ar suprantamos, bet tai interpretuojama įvairiai.",
-      "EN Description": "This song is about someone waiting for letters that are never delivered. The lyrics describe lost words and messages, possibly symbolizing difficulties in communication or emotional distance. The mention of 'white on white' could mean that the messages are hard to see or understand, but the exact meaning is open to interpretation."
+      "EN Description": "This song is about someone waiting for letters that are never delivered. The lyrics describe lost words and messages, possibly symbolizing difficulties in communication or emotional distance. The mention of 'white on white' could mean that the messages are hard to see or understand, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8255,7 +8519,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie stiprius jausmus ir laisvės troškimą, naudodama gamtos ir asmeninius vaizdus. Čia galima įžvelgti kelionės ir stiprybės temas, kurios gali simbolizuoti Lietuvos ar žmogaus siekį būti laisvam. Tekste nėra aiškių nuorodų į konkrečias lietuviškas tradicijas ar šventes.",
-      "EN Description": "This song appears to express a deep emotional struggle and a longing for freedom, possibly using metaphors of nature and personal experience. The lyrics mention themes like homeland, journey, and the challenge of remaining strong, which may symbolize Lithuania's historical or personal search for liberty. There are no direct references to specific Lithuanian traditions or holidays in the text."
+      "EN Description": "This song appears to express a deep emotional struggle and a longing for freedom, possibly using metaphors of nature and personal experience. The lyrics mention themes like homeland, journey, and the challenge of remaining strong, which may symbolize Lithuania's historical or personal search for liberty. There are no direct references to specific Lithuanian traditions or holidays in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8282,7 +8547,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmones, kurie neturėdami jūros vis tiek mato danguje keistus laivus. Laivai gali simbolizuoti viltis ar likimus, kurie nuspalvina vienatvę ir liūdesį, nors šios spalvos kasdienybėje išblėsta. Daina nenurodo konkrečių lietuviškų tradicijų ar istorinių įvykių.",
-      "EN Description": "This song describes people who, even without the sea, still have the sky where they imagine strange boats. The boats may symbolize hopes, dreams, or destinies that bring color to their loneliness and sadness, but these colors often fade in the grayness of everyday life. The lyrics use poetic imagery and do not reference specific Lithuanian traditions or historical events."
+      "EN Description": "This song describes people who, even without the sea, still have the sky where they imagine strange boats. The boats may symbolize hopes, dreams, or destinies that bring color to their loneliness and sadness, but these colors often fade in the grayness of everyday life. The lyrics use poetic imagery and do not reference specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8308,7 +8574,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kalbama apie ilgesį jaunystei ir meilei, naudojant gamtos vaizdus – raudoną dobilą, rasą, ramunėles. Dainoje išreiškiamas noras, kad laimė ir meilė vėl sugrįžtų, dažnai prašoma sugrįžti jaunystės.",
-      "EN Description": "This song tells about longing for lost youth and love, using images from nature like red clover, dew, and chamomile. The lyrics describe romantic feelings and the hope that happiness and love might return, often asking if youth could come back. The use of flowers and nature may symbolize innocence and the passage of time, which is common in Lithuanian folk poetry."
+      "EN Description": "This song tells about longing for lost youth and love, using images from nature like red clover, dew, and chamomile. The lyrics describe romantic feelings and the hope that happiness and love might return, often asking if youth could come back. The use of flowers and nature may symbolize innocence and the passage of time, which is common in Lithuanian folk poetry.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8335,7 +8602,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie laumės vaiką – kitokį, nesuprastą vaiką. Žmonės jo nepriima, bet jis turi paslaptį – ypatingus gebėjimus, kurie išryškės ateityje. Laumės yra mitologinės būtybės lietuvių tautosakoje.",
-      "EN Description": "This song tells about a 'laumė's child'—a child who is different, perhaps strange or misunderstood. The text describes how the child is not accepted by others and is seen as clumsy, but secretly, the child is special and will one day reveal hidden abilities. The mention of 'laumės' refers to mythical beings from Lithuanian folklore, often associated with nature and magic."
+      "EN Description": "This song tells about a 'laumė's child'—a child who is different, perhaps strange or misunderstood. The text describes how the child is not accepted by others and is seen as clumsy, but secretly, the child is special and will one day reveal hidden abilities. The mention of 'laumės' refers to mythical beings from Lithuanian folklore, often associated with nature and magic.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8363,7 +8631,8 @@ const songs: SongFile = [
       "Music Author": "S. Kairiys",
       "Text Author": "V. Bražėnas",
       "LT Description": "1958 m. 5-sios tautinės stovyklos daina\n\nŠioje dainoje pasakojama apie laužus, kurie dega visur ir jungia lietuvius bei skautus, kad ir kur jie bebūtų. Žodžiai pabrėžia lietuvišką tapatybę, skautišką dvasią ir norą išlikti susijus su gimtine bei tradicijomis. Laužai ir Baltijos jūra gali simbolizuoti tradicinius susibūrimus ir gamtos svarbą Lietuvos kultūroje.",
-      "EN Description": "1958, 5th Lithuanian Scouting Jamboree song\n\nThis song tells about campfires burning in all directions, uniting Lithuanians and scouts no matter where they are in the world. The lyrics celebrate Lithuanian identity, the scouting spirit, and the desire to stay connected to one's homeland and traditions. The mention of campfires and the Baltic Sea may symbolize traditional gatherings and the importance of nature in Lithuanian culture, but it is not clear if the song refers to a specific holiday or event."
+      "EN Description": "1958, 5th Lithuanian Scouting Jamboree song\n\nThis song tells about campfires burning in all directions, uniting Lithuanians and scouts no matter where they are in the world. The lyrics celebrate Lithuanian identity, the scouting spirit, and the desire to stay connected to one's homeland and traditions. The mention of campfires and the Baltic Sea may symbolize traditional gatherings and the importance of nature in Lithuanian culture, but it is not clear if the song refers to a specific holiday or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8389,7 +8658,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie degantį laužą ir žmones, kurie stovykloje kartu dainuoja. Žodžiai parodo, kad jiems gera ir linksma. Laužas gali simbolizuoti bendrystę arba stovyklos tradicijas, bet dainoje nėra minimos konkrečios šventės.",
-      "EN Description": "This song describes a campfire burning and a group of people singing together at a camp. The words express feelings of happiness and joy. The campfire can symbolize warmth, togetherness, or traditional Lithuanian summer camp experiences, but the text is simple and does not mention any specific holiday or event."
+      "EN Description": "This song describes a campfire burning and a group of people singing together at a camp. The words express feelings of happiness and joy. The campfire can symbolize warmth, togetherness, or traditional Lithuanian summer camp experiences, but the text is simple and does not mention any specific holiday or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8415,7 +8685,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai paprasta, kartojama daina apie laužą ir jo dalis – liepsną, ugnį, dūmus, stovyklą ir svečius. Dainos prasmė nėra aiški, bet ji gali simbolizuoti bendrystę ir šilumą. Tokios dainos dažnai dainuojamos prie laužo stovyklavimuose ar susibūrimuose.",
-      "EN Description": "This is a simple, repetitive song about a campfire and its elements—flame, fire, smoke, camp, and guests. The song may symbolize warmth, community, and gathering, but its meaning is open to interpretation due to its minimalistic lyrics. Such songs are often sung around campfires in Lithuania and can be associated with camping traditions or social gatherings."
+      "EN Description": "This is a simple, repetitive song about a campfire and its elements—flame, fire, smoke, camp, and guests. The song may symbolize warmth, community, and gathering, but its meaning is open to interpretation due to its minimalistic lyrics. Such songs are often sung around campfires in Lithuania and can be associated with camping traditions or social gatherings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8444,7 +8715,8 @@ const songs: SongFile = [
       "Music Author": "Fojė",
       "Text Author": "Fojė",
       "LT Description": "Daina pasakoja apie žmogų prie laužo naktį, kuris jaučia ramybę ir viltį jo šviesoje. Laužas gali simbolizuoti vidinę stiprybę arba viltį tamsiu metu, taip pat išreiškiamas noras, kad dar kas nors prisijungtų. Tiesioginių nuorodų į lietuviškas šventes nėra, bet laužas dažnai siejamas su bendryste ir apmąstymais Lietuvos kultūroje.",
-      "EN Description": "The song describes a person sitting by a campfire at night, finding comfort, hope, and warmth in its light. The fire may symbolize inner strength or hope in darkness, and the lyrics also express a longing for connection and the possibility that someone else might join by the fire. While the text does not directly reference a specific Lithuanian tradition, gathering around a campfire is a common motif in Lithuanian folk culture, often associated with togetherness and reflection."
+      "EN Description": "The song describes a person sitting by a campfire at night, finding comfort, hope, and warmth in its light. The fire may symbolize inner strength or hope in darkness, and the lyrics also express a longing for connection and the possibility that someone else might join by the fire. While the text does not directly reference a specific Lithuanian tradition, gathering around a campfire is a common motif in Lithuanian folk culture, often associated with togetherness and reflection.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8473,7 +8745,8 @@ const songs: SongFile = [
       "Music Author": "Andrius Bakanas, Mindaugas Rimkus, Povilas\nKripas",
       "Text Author": "Andrius Bakanas, Mindaugas Rimkus, Povilas\nKripas",
       "LT Description": "Ši daina pasakoja apie kartą, kurią vienija laužai ir skautiška dvasia. Ji švenčia draugystę, gerus darbus ir meilę Lietuvai, pabrėžia gamtos ir tradicijų svarbą. Tekste galima atpažinti skautų tradicijas – susitikimus prie laužų, dainas ir bendruomeniškumą.",
-      "EN Description": "This song is about a generation united by campfires, symbolizing the Lithuanian scouting spirit and community. It celebrates friendship, good deeds, and national pride, referencing Lithuanian nature and heritage. The lyrics may also refer to scout traditions, such as gathering around campfires and singing, which are important in Lithuanian youth culture."
+      "EN Description": "This song is about a generation united by campfires, symbolizing the Lithuanian scouting spirit and community. It celebrates friendship, good deeds, and national pride, referencing Lithuanian nature and heritage. The lyrics may also refer to scout traditions, such as gathering around campfires and singing, which are important in Lithuanian youth culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8502,7 +8775,8 @@ const songs: SongFile = [
       "Music Author": "Simonas Krutulis",
       "Text Author": "Simonas Krutulis",
       "LT Description": "Ši daina pasakoja apie kelionę kalnais ir vandenimis ieškant kažko prarasto ar pamiršto, kas gali simbolizuoti savęs pažinimą arba grįžimą prie šaknų. Susitikimai prie laužo ir būti miškų vaikais gali reikšti glaudų ryšį su gamta ir lietuviškomis vasaros tradicijomis. Dainoje jaučiamas ilgesys bendrystei ir paprastam gyvenimui.",
-      "EN Description": "This song is about a journey through mountains and waters in search of something lost or forgotten, which may symbolize self-discovery or a return to one's roots. The recurring gathering by the campfire and references to being 'children of the forest' could represent a strong connection to nature and Lithuanian traditions, especially those involving summer gatherings around bonfires, such as the celebration of Joninės (Midsummer). However, the lyrics can also be interpreted more broadly as a longing for togetherness and a simpler, more natural way of life."
+      "EN Description": "This song is about a journey through mountains and waters in search of something lost or forgotten, which may symbolize self-discovery or a return to one's roots. The recurring gathering by the campfire and references to being 'children of the forest' could represent a strong connection to nature and Lithuanian traditions, especially those involving summer gatherings around bonfires, such as the celebration of Joninės (Midsummer). However, the lyrics can also be interpreted more broadly as a longing for togetherness and a simpler, more natural way of life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8528,7 +8802,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ilgesį grįžti į namus ir stiprų ryšį su tėvyne. Žodžiai išreiškia liūdesį ir svetimumo jausmą būnant toli nuo Lietuvos, taip pat viltį ir džiaugsmą galvojant apie sugrįžimą. Tekste daugiausia kalbama apie bendrą ilgesį savo kraštui.",
-      "EN Description": "This song is about longing to return home and the deep emotional connection to one’s homeland. The lyrics express feelings of sadness and alienation when far from Lithuania, as well as hope and joy at the thought of returning. It may symbolize the experience of exile or emigration, but the text mainly focuses on the general yearning for one’s native land."
+      "EN Description": "This song is about longing to return home and the deep emotional connection to one’s homeland. The lyrics express feelings of sadness and alienation when far from Lithuania, as well as hope and joy at the thought of returning. It may symbolize the experience of exile or emigration, but the text mainly focuses on the general yearning for one’s native land.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8554,7 +8829,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie gervę, kuri skrenda per mišką, neša savo lizdą, deda kiaušinius ir augina vaikus. Žodžiai seka natūralius gervės gyvenimo etapus. Gervė gali simbolizuoti šeimą ir rūpestį, bet dainoje tai nesakoma tiesiogiai.",
-      "EN Description": "This song tells the simple story of a crane flying through the forest, carrying and tending to its nest and young. The lyrics gently follow the stages of the crane's life, from flying, building a nest, laying eggs, to raising chicks. The crane can symbolize family, care, and new beginnings, but this is not directly stated in the song."
+      "EN Description": "This song tells the simple story of a crane flying through the forest, carrying and tending to its nest and young. The lyrics gently follow the stages of the crane's life, from flying, building a nest, laying eggs, to raising chicks. The crane can symbolize family, care, and new beginnings, but this is not directly stated in the song.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8581,7 +8857,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie lietų, kuris ateina ir ragina nuo jo neslėptis, o priimti jį net jei sušlampi. Žodžiai gali simbolizuoti atvirumą jausmams ar pokyčiams, bet tai nėra aiškiai pasakyta. Taip pat minima žiemos ir pavasario kaita.",
-      "EN Description": "The song describes the rain arriving and encourages not to hide from it, but to accept it even if you get wet. The lyrics might symbolize openness to emotions or changes, but this is not stated directly. The text also mentions the transition from winter to spring, which could refer to nature's renewal."
+      "EN Description": "The song describes the rain arriving and encourages not to hide from it, but to accept it even if you get wet. The lyrics might symbolize openness to emotions or changes, but this is not stated directly. The text also mentions the transition from winter to spring, which could refer to nature's renewal.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8607,7 +8884,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina išreiškia meilę ir pasididžiavimą Lietuva, pabrėžia jos grožį ir dvasinę stiprybę. Tekste raginama vienytis, saugoti Lietuvą ir gerbti protėvių palikimą. Dainoje nėra konkrečių tradicijų ar istorinių įvykių paminėjimų.",
-      "EN Description": "This song expresses love and pride for Lithuania, describing the country as beautiful, cherished, and spiritually strong despite its fragility. The lyrics emphasize unity, the importance of protecting Lithuania for future generations, and honoring the legacy of ancestors. There is a theme of coming together and holding hands, which may symbolize national unity, but the song does not mention specific traditions or historical events."
+      "EN Description": "This song expresses love and pride for Lithuania, describing the country as beautiful, cherished, and spiritually strong despite its fragility. The lyrics emphasize unity, the importance of protecting Lithuania for future generations, and honoring the legacy of ancestors. There is a theme of coming together and holding hands, which may symbolize national unity, but the song does not mention specific traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8633,7 +8911,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie vaikystę ir gamtą – laukus, pievas, kelius, upes. Ji išreiškia dėkingumą už Lietuvos grožį ir ramybę. Visi šie dalykai kartu sudaro žodį „Lietuva“.",
-      "EN Description": "The song describes a person’s childhood shaped by nature—fields, meadows, roads, and rivers. It expresses gratitude for the beauty and comfort found in Lithuanian landscapes, suggesting that all these experiences together form the meaning of 'Lithuania.' The lyrics might symbolize how personal identity is deeply connected to nature and homeland, but there are no clear references to specific traditions or historical events."
+      "EN Description": "The song describes a person’s childhood shaped by nature—fields, meadows, roads, and rivers. It expresses gratitude for the beauty and comfort found in Lithuanian landscapes, suggesting that all these experiences together form the meaning of 'Lithuania.' The lyrics might symbolize how personal identity is deeply connected to nature and homeland, but there are no clear references to specific traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8667,7 +8946,8 @@ const songs: SongFile = [
       "Music Author": "J. Naujalis",
       "Text Author": "Maironis",
       "LT Description": "Šioje dainoje išreiškiama meilė ir pasididžiavimas Lietuva, aprašomi jos gražūs gamtos vaizdai ir pagerbiami didvyriai. Dainoje kalbama apie sunkumus, kuriuos patyrė šalis, ir norą išsaugoti kalbą bei tradicijas.",
-      "EN Description": "This song is about deep love and pride for Lithuania, describing its beautiful landscapes, rivers, and traditions. The lyrics honor the ancestors and heroes who are buried in the land and reflect on the hardships Lithuania has endured. The song may symbolize national identity and a longing to preserve Lithuanian language and culture."
+      "EN Description": "This song is about deep love and pride for Lithuania, describing its beautiful landscapes, rivers, and traditions. The lyrics honor the ancestors and heroes who are buried in the land and reflect on the hardships Lithuania has endured. The song may symbolize national identity and a longing to preserve Lithuanian language and culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8752,7 +9032,8 @@ const songs: SongFile = [
       "Music Author": "Stasys Šimkus",
       "Text Author": "Jurgis Zauerveius",
       "LT Description": "Ši daina apie pasididžiavimą būti lietuviu ir norą išlikti lietuviais. Ji kalba apie garbę gimti lietuviu ir pareigą to neleisti prarasti. Medžiai, tokie kaip ąžuolas ir eglė, gali simbolizuoti stiprybę ir ištvermę.",
-      "EN Description": "This song is about being proud to be born Lithuanian and wanting to remain so. It talks about receiving the honor of being Lithuanian at birth and the responsibility not to let it disappear. The mention of strong trees like oaks and firs by Lithuanian rivers may symbolize the strength and perseverance of the Lithuanian people."
+      "EN Description": "This song is about being proud to be born Lithuanian and wanting to remain so. It talks about receiving the honor of being Lithuanian at birth and the responsibility not to let it disappear. The mention of strong trees like oaks and firs by Lithuanian rivers may symbolize the strength and perseverance of the Lithuanian people.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8778,7 +9059,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje skautai kviečiami būti kartu, judėti į priekį, išlaikyti gerą nuotaiką ir vienybę. Čia taip pat išreiškiamas ilgesys tėvynei, kuri yra toli, ir viltis sugrįžti. Dainoje jaučiami skautų vertybės – draugystė, optimizmas ir meilė Lietuvai.",
-      "EN Description": "This song calls Lithuanian scouts—both sisters and brothers—to gather and move forward together, staying cheerful and united. It expresses longing for their homeland, which is far away, and a hope to return one day, possibly alluding to themes of exile or diaspora. The lyrics reflect the values of scouting such as optimism, solidarity, and love for Lithuania, but the reference to the homeland being far away may symbolize periods in Lithuanian history when people were separated from their country."
+      "EN Description": "This song calls Lithuanian scouts—both sisters and brothers—to gather and move forward together, staying cheerful and united. It expresses longing for their homeland, which is far away, and a hope to return one day, possibly alluding to themes of exile or diaspora. The lyrics reflect the values of scouting such as optimism, solidarity, and love for Lithuania, but the reference to the homeland being far away may symbolize periods in Lithuanian history when people were separated from their country.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8847,7 +9129,8 @@ const songs: SongFile = [
       },
       "Music Author": "Vincas Kudirka",
       "LT Description": "Ši daina yra tautinis himnas, išreiškiantis meilę ir pagarbą Lietuvai, kviečiantis jos žmones vienytis, būti doriems ir dirbti šalies bei žmonių labui. Joje minimas stiprybės semimasis iš praeities ir viltis, kad tiesa bei šviesa lydės tautą. Daina nenurodo konkrečių švenčių ar istorinių įvykių.",
-      "EN Description": "This song is a national hymn that expresses love and respect for Lithuania, calling its people to unity, virtue, and to work for the good of the country and its people. It speaks about drawing strength from the past, wishing for truth and light to guide the nation, and hopes for unity and love to flourish. It may symbolize national pride and the desire for moral guidance, but does not reference specific holidays or historical events."
+      "EN Description": "This song is a national hymn that expresses love and respect for Lithuania, calling its people to unity, virtue, and to work for the good of the country and its people. It speaks about drawing strength from the past, wishing for truth and light to guide the nation, and hopes for unity and love to flourish. It may symbolize national pride and the desire for moral guidance, but does not reference specific holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8873,7 +9156,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie Lietuvos kareivėlius, kurie visada linksmi ir dainuoja, nepaisant sunkumų ar oro sąlygų. Tekste minima, kad nenorintys dirbti ar klausyti tėvų gali eiti į kariuomenę ir pamatyti vargą, kas gali simbolizuoti tarnybos sunkumus. Daina atspindi tautines arba liaudies temas ir pagarbą kareiviams.",
-      "EN Description": "This song is about Lithuanian soldiers, describing their cheerful and resilient spirit as they march and sing, regardless of hardships or weather. The lyrics mention that those who do not want to work in the fields or obey their parents can join the army to experience its difficulties, which may symbolize the army as both a duty and a challenge. The song likely reflects traditional or folk themes, showing respect for soldiers and their endurance."
+      "EN Description": "This song is about Lithuanian soldiers, describing their cheerful and resilient spirit as they march and sing, regardless of hardships or weather. The lyrics mention that those who do not want to work in the fields or obey their parents can join the army to experience its difficulties, which may symbolize the army as both a duty and a challenge. The song likely reflects traditional or folk themes, showing respect for soldiers and their endurance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8899,7 +9183,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie moterų savarankiškumą ir gebėjimą pačioms užsiauginti ir apdoroti linus, svarbią lietuvišką kultūros dalį. Kartojamos eilutės pabrėžia, kad jos gali viską atlikti be kitų pagalbos. Tai gali simbolizuoti moterų stiprybę arba paprastą kaimo gyvenimą.",
-      "EN Description": "This song is about women expressing independence and self-reliance in the work of growing and processing flax, an important traditional crop in Lithuanian culture. The repeated lines show that the singers do not need help from others and can manage all the tasks themselves. This may symbolize women's strength or the value of community cooperation, but could also simply describe daily rural life."
+      "EN Description": "This song is about women expressing independence and self-reliance in the work of growing and processing flax, an important traditional crop in Lithuanian culture. The repeated lines show that the singers do not need help from others and can manage all the tasks themselves. This may symbolize women's strength or the value of community cooperation, but could also simply describe daily rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8925,7 +9210,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginą, kuri dirba su linų derliumi, bet jaučiasi vieniša ir ilgisi mylimojo. Ji svajoja, kad jis ją palydėtų namo, apkabintų ir pabučiuotų – tuomet jos širdis būtų rami. Dainoje minimi linai ir darbas laukuose gali rodyti Lietuvos kaimo tradicijas.",
-      "EN Description": "This song is about a young woman working in the flax fields, doing her tasks with others, yet feeling a sense of longing or incompleteness in her heart. The lyrics suggest she misses someone she loves and wishes he would accompany her home, embrace, and kiss her, which would bring her peace. The references to flax pulling and singing may symbolize traditional rural life in Lithuania, but they could also represent the repetitive, communal work of the countryside."
+      "EN Description": "This song is about a young woman working in the flax fields, doing her tasks with others, yet feeling a sense of longing or incompleteness in her heart. The lyrics suggest she misses someone she loves and wishes he would accompany her home, embrace, and kiss her, which would bring her peace. The references to flax pulling and singing may symbolize traditional rural life in Lithuania, but they could also represent the repetitive, communal work of the countryside.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8952,7 +9238,8 @@ const songs: SongFile = [
       },
       "Music Author": "Juozas Naujalis",
       "LT Description": "Ši daina pasakoja apie džiaugsmingą Išganytojo gimimą, kai visi – angelai, piemenėliai, žmonės – džiaugiasi ir garbina Jėzų. Tekstas ragina giedoti, groti ir švęsti, ypač per Kalėdas. Tai susiję su krikščioniškomis Kalėdų tradicijomis.",
-      "EN Description": "This song tells about the joyful birth of the Savior, describing angels, shepherds, and people celebrating Jesus' arrival. The text encourages singing, playing instruments, and giving glory to Jesus, especially in the context of Christmas. It likely reflects Lithuanian Christmas traditions and the nativity story from Christian teachings."
+      "EN Description": "This song tells about the joyful birth of the Savior, describing angels, shepherds, and people celebrating Jesus' arrival. The text encourages singing, playing instruments, and giving glory to Jesus, especially in the context of Christmas. It likely reflects Lithuanian Christmas traditions and the nativity story from Christian teachings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -8978,7 +9265,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama linksma istorija apie paukščių vestuves miške – kiekvienas paukštis turi savo vaidmenį, kaip ir žmonių vestuvėse. Daina gali simbolizuoti gamtos ar bendruomenės džiaugsmą, bet gali būti tiesiog linksma vaikų dainelė. Nėra aiškių nuorodų į lietuviškas šventes ar istorinius įvykius.",
-      "EN Description": "This song tells a playful story of birds holding a wedding in the forest, each bird taking on roles like bride, groom, best man, and bridesmaids. The lyrics use animals to humorously imitate a human wedding, which might symbolize the joy of nature or community, but it could also simply be a fun children's song. There are no clear references to specific Lithuanian holidays or historical events, but animal weddings are a common motif in folk traditions."
+      "EN Description": "This song tells a playful story of birds holding a wedding in the forest, each bird taking on roles like bride, groom, best man, and bridesmaids. The lyrics use animals to humorously imitate a human wedding, which might symbolize the joy of nature or community, but it could also simply be a fun children's song. There are no clear references to specific Lithuanian holidays or historical events, but animal weddings are a common motif in folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9004,7 +9292,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie linksmą kelionę laivu ar baidare su draugais, gamtos grožio mėgavimąsi, dainavimą ir stovyklavimą. Paskutinės eilutės tampa liūdnesnės ir gali simbolizuoti išsiskyrimą ar netektį, tačiau tikslus jų prasmė nėra visiškai aiški.",
-      "EN Description": "This song describes a joyful journey by boat or kayak, with friends or a crew moving across water, enjoying nature, singing, and camping together. It celebrates adventure, camaraderie, and the beauty of Lithuanian rivers and lakes. The final verses shift to a more somber tone, possibly alluding to parting or loss, but the exact meaning is not entirely clear and may symbolize the cycles of life or memories."
+      "EN Description": "This song describes a joyful journey by boat or kayak, with friends or a crew moving across water, enjoying nature, singing, and camping together. It celebrates adventure, camaraderie, and the beauty of Lithuanian rivers and lakes. The final verses shift to a more somber tone, possibly alluding to parting or loss, but the exact meaning is not entirely clear and may symbolize the cycles of life or memories.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9030,7 +9319,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie žmogų, kuriam nepavyksta užlipti ant kumelės, todėl jis nusivilia. Vėliau jis liūdi, kad mergina jo nelanko, galbūt čia kalbama apie nelaimingą meilę. Priegiesmio žodžiai yra skirti nuotaikai ir ritmui, kaip būdinga lietuvių dainoms.",
-      "EN Description": "This folk song tells about someone trying and failing to mount a mare, expressing frustration and disappointment. The second part shifts to feelings of sadness over being neglected by a girl, which may symbolize unrequited love or longing. The playful refrain is typical of Lithuanian folk music and is meant more for rhythm and mood than literal meaning."
+      "EN Description": "This folk song tells about someone trying and failing to mount a mare, expressing frustration and disappointment. The second part shifts to feelings of sadness over being neglected by a girl, which may symbolize unrequited love or longing. The playful refrain is typical of Lithuanian folk music and is meant more for rhythm and mood than literal meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9056,7 +9346,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai yra rami lopšinė apie žiemos naktį, kai sapnai švelniai ateina ir primena vasarą. Dainoje kalbama apie ramybę, šilumą ir saugumą. Žiemos vaizdai gali simbolizuoti ilgesį arba prisiminimus.",
-      "EN Description": "This song is a gentle lullaby that describes a peaceful winter night, where dreams gently arrive to bring warmth and memories of summer. The lyrics suggest comfort, safety, and the soothing power of dreams, while images of snow and silence might symbolize longing or nostalgia. There are no direct references to specific Lithuanian traditions, but the imagery of winter and the lullaby form are common in Lithuanian culture."
+      "EN Description": "This song is a gentle lullaby that describes a peaceful winter night, where dreams gently arrive to bring warmth and memories of summer. The lyrics suggest comfort, safety, and the soothing power of dreams, while images of snow and silence might symbolize longing or nostalgia. There are no direct references to specific Lithuanian traditions, but the imagery of winter and the lullaby form are common in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9082,7 +9373,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai giesmė, kurioje prašoma Viešpaties lydėti ir priimti bendruomenės auką, maldą ir meilę. Tekstas primena bendrą maldą arba religinę apeigą, bet nėra aiškiai susijęs su konkrečia lietuviška tradicija ar švente.",
-      "EN Description": "This song is a prayer-like hymn asking for guidance and support as people bring offerings to the altar. It expresses a wish that both prayers and love from the community are accepted. The text may symbolize an act of collective devotion, possibly related to a church service or a religious ceremony, but it does not mention any specific Lithuanian tradition or holiday explicitly."
+      "EN Description": "This song is a prayer-like hymn asking for guidance and support as people bring offerings to the altar. It expresses a wish that both prayers and love from the community are accepted. The text may symbolize an act of collective devotion, possibly related to a church service or a religious ceremony, but it does not mention any specific Lithuanian tradition or holiday explicitly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9114,7 +9406,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie berną, kuris aria lauką ir kalba su mergaite. Jis prašo jos kasų, bet mergaitė atsisako. Paskutinėje eilutėje paminėtas erškėtis, kuris gali simbolizuoti kliūtis ar liūdesį.",
-      "EN Description": "This song tells of a young man seen plowing a field and speaking with a young woman. He asks for her braids to wrap around his hands, which may symbolize a request for closeness or marriage, but the girl refuses. The last verse mentions a wild rosebush, which could represent obstacles or lost hopes, but the meaning is left open."
+      "EN Description": "This song tells of a young man seen plowing a field and speaking with a young woman. He asks for her braids to wrap around his hands, which may symbolize a request for closeness or marriage, but the girl refuses. The last verse mentions a wild rosebush, which could represent obstacles or lost hopes, but the meaning is left open.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9140,7 +9433,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris geria Klaipėdos vyną ir „pameta galvą“. Čia minimos marių bangos, ašaros ir gegutė, kuri dažnai simbolizuoja ilgesį ar liūdesį. Daina naudoja tradicinius lietuviškus vaizdinius, bet nėra aišku, ar ji susijusi su kokia nors švente.",
-      "EN Description": "This folk song tells about someone who drinks wine in Klaipėda and loses their head, possibly meaning they lose control or become infatuated. The song mentions the salty sea and tears, and a young girl who starts to cry when the cuckoo sings, which can symbolize longing or sadness. There are references to traditional Lithuanian imagery like the cuckoo and the village granary, but it's not clear if the song is tied to a specific holiday or event."
+      "EN Description": "This folk song tells about someone who drinks wine in Klaipėda and loses their head, possibly meaning they lose control or become infatuated. The song mentions the salty sea and tears, and a young girl who starts to cry when the cuckoo sings, which can symbolize longing or sadness. There are references to traditional Lithuanian imagery like the cuckoo and the village granary, but it's not clear if the song is tied to a specific holiday or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9167,7 +9461,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie stiprų ryšį tarp vaiko ir mamos. Ji išreiškia dėkingumą, ilgesį ir pagarbą mamai už jos rūpestį ir meilę. Nors nėra aiškių nuorodų į lietuviškas tradicijas ar šventes, mama lietuvių kultūroje labai svarbi.",
-      "EN Description": "This song is about the deep bond between a child and their mother. It expresses gratitude, longing, and admiration for a mother's protection, comfort, and role as a guide through life's dreams and challenges. While the lyrics do not reference specific Lithuanian traditions or holidays, the theme of honoring mothers is important in Lithuanian culture."
+      "EN Description": "This song is about the deep bond between a child and their mother. It expresses gratitude, longing, and admiration for a mother's protection, comfort, and role as a guide through life's dreams and challenges. While the lyrics do not reference specific Lithuanian traditions or holidays, the theme of honoring mothers is important in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9196,7 +9491,8 @@ const songs: SongFile = [
       "Music Author": "Tele Bim Bam",
       "Text Author": "Tele Bim Bam",
       "LT Description": "Daina pasakoja apie žmogų, radusį seną, užrakintą spintą palėpėje, kurioje daiktai primena praeitį. Ypač svarbi mamos suknelė, kuri tarsi prabyla ir pasakoja prisiminimus. Tai daina apie prisiminimus, šeimą ir daiktų svarbą mūsų gyvenime.",
-      "EN Description": "The song tells the story of someone discovering an old, locked wardrobe in an attic, filled with forgotten items that seem to come alive with memories. The central focus is a colorful silk dress that used to belong to the narrator's mother, which 'speaks' and brings back stories from the past. The song explores themes of memory, family, and the way objects can hold emotional connections to previous generations."
+      "EN Description": "The song tells the story of someone discovering an old, locked wardrobe in an attic, filled with forgotten items that seem to come alive with memories. The central focus is a colorful silk dress that used to belong to the narrator's mother, which 'speaks' and brings back stories from the past. The song explores themes of memory, family, and the way objects can hold emotional connections to previous generations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9222,7 +9518,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje mergina pasakoja, kaip mama ją barė ir siuntė rauti linų. Vietoj darbo ji planuoja slapta susitikti su vaikinu kluone naktį. Daina vaizduoja šeimos gyvenimą, kaimo darbus ir slapto susitikimo troškimą.",
-      "EN Description": "This folk song tells of a young woman whose mother scolds her and sends her to pull flax, a traditional rural task. Instead of working, she plans to sneak away to the granary, where a mischievous young man is expected to visit her at night. The song touches on family life, rural chores, and secret romantic meetings, which may symbolize youthful rebellion and longing for freedom."
+      "EN Description": "This folk song tells of a young woman whose mother scolds her and sends her to pull flax, a traditional rural task. Instead of working, she plans to sneak away to the granary, where a mischievous young man is expected to visit her at night. The song touches on family life, rural chores, and secret romantic meetings, which may symbolize youthful rebellion and longing for freedom.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9250,7 +9547,8 @@ const songs: SongFile = [
       "Music Author": "G. Paškevičius",
       "Text Author": "G. Paškevičius",
       "LT Description": "Daina pasakoja apie stiprų ryšį ir meilę gimtajai žemei. Žodžiai išreiškia dėkingumą už gimtosios žemės grožį ir prasmę, pabrėžia priklausymo, aukos ir tapatybės temas. Daina gali simbolizuoti svarbą išlaikyti ryšį su savo šaknimis.",
-      "EN Description": "The song is about a deep connection and love for one's homeland. The lyrics express gratitude for the beauty and meaning found in the land, and highlight themes of belonging, sacrifice, and identity. The song may symbolize the importance of heritage and the emotional ties people feel towards their native country."
+      "EN Description": "The song is about a deep connection and love for one's homeland. The lyrics express gratitude for the beauty and meaning found in the land, and highlight themes of belonging, sacrifice, and identity. The song may symbolize the importance of heritage and the emotional ties people feel towards their native country.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9276,7 +9574,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma liaudies daina pasakoja apie merginą, kurios mama Cecelija ragina ją tekėti. Ji giriasi savo išvaizda, tėvų dovanomis ir kviečia Juziką ją pasirinkti. Tekste minimi tradiciniai šeimos dalykai ir juokais užsimenama apie tėvų drausmę.",
-      "EN Description": "This playful folk song is about a young woman whose mother, Cecelija, encourages her to get married. She describes her appearance and the gifts she has received from her parents, and calls out to a suitor named Juzik, asking him to choose her. The lyrics mention traditional elements like parental gifts and playful references to discipline, which may symbolize family involvement in marriage traditions."
+      "EN Description": "This playful folk song is about a young woman whose mother, Cecelija, encourages her to get married. She describes her appearance and the gifts she has received from her parents, and calls out to a suitor named Juzik, asking him to choose her. The lyrics mention traditional elements like parental gifts and playful references to discipline, which may symbolize family involvement in marriage traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9304,7 +9603,8 @@ const songs: SongFile = [
       "Music Author": "Eglė Sirvydytė",
       "Text Author": "Eglė Sirvydytė",
       "LT Description": "2008 m. LS tautinės stovyklos „Legenda tęsiasi“ daina\n\nDaina pasakoja apie ryšį su gamta – namai čia yra žolynai, vėjas, miškai. Tekste minima upės, laumės ir miško dvasios, kurios gali simbolizuoti lietuvišką tautosaką ir meilę gimtajam kraštui.",
-      "EN Description": "2008 Lithuanian scouting jamboree song\n\nThe song speaks about a deep connection to nature, describing the singer's home as meadows, wind, and forests. It references rivers, mythical beings like laumės (fairy-like spirits from Lithuanian folklore), and the protective spirits of the forest. The lyrics may symbolize a longing for harmony with the land and ancestral roots, but could also simply express love for the natural Lithuanian landscape."
+      "EN Description": "2008 Lithuanian scouting jamboree song\n\nThe song speaks about a deep connection to nature, describing the singer's home as meadows, wind, and forests. It references rivers, mythical beings like laumės (fairy-like spirits from Lithuanian folklore), and the protective spirits of the forest. The lyrics may symbolize a longing for harmony with the land and ancestral roots, but could also simply express love for the natural Lithuanian landscape.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9330,7 +9630,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuris myli savo medinę pypkę ir linksmai pasakoja, kaip jos vis ieško. Žodžiai atspindi kasdienį gyvenimą ir mažus džiaugsmus ar rūpesčius, susijusius su paprastais daiktais.",
-      "EN Description": "This song is about someone humorously describing their beloved wooden pipe and the trouble they have keeping track of it. The lyrics focus on everyday life and simple pleasures, highlighting the pipe as a cherished personal item. The playful search for the pipe may symbolize forgetfulness or the small joys and frustrations in daily routines."
+      "EN Description": "This song is about someone humorously describing their beloved wooden pipe and the trouble they have keeping track of it. The lyrics focus on everyday life and simple pleasures, highlighting the pipe as a cherished personal item. The playful search for the pipe may symbolize forgetfulness or the small joys and frustrations in daily routines.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9356,7 +9657,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie svečių atvykimą į šeimos dvarą, tikriausiai piršlybų ar vestuvių proga. Tekste minimi tėvas, motina, pasiruošimas svečiams, o rūtos ir lelijos yra lietuviškos tyrumo ir mergystės simboliai. Kai kurie posakiai, kaip 'šimtas lovužėlių', gali simbolizuoti vestuvinius papročius, bet prasmė nėra visiškai aiški.",
-      "EN Description": "This folk song describes a scene where visitors arrive at a family estate, likely for a courtship or wedding ritual. The text mentions the father and mother, preparations for guests, and references to rue and lilies, which are traditional Lithuanian symbols of purity and maidenhood. The song may symbolize the process of preparing for marriage, but the meaning of some metaphors (like 'a hundred little beds of rue') is open to interpretation."
+      "EN Description": "This folk song describes a scene where visitors arrive at a family estate, likely for a courtship or wedding ritual. The text mentions the father and mother, preparations for guests, and references to rue and lilies, which are traditional Lithuanian symbols of purity and maidenhood. The song may symbolize the process of preparing for marriage, but the meaning of some metaphors (like 'a hundred little beds of rue') is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9385,7 +9687,8 @@ const songs: SongFile = [
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis",
       "LT Description": "Daina pasakoja apie margus sakalus, kurie nusprendžia negrįžti į žemę, kol pasaulis bus šviesus ir be tamsos. Tekste daug poetiškų vaizdinių apie saulę, svajones ir pokyčius, kurie gali simbolizuoti viltį ar laisvės siekį. Margi sakalai gali reikšti žmones ar didvyrius, bet tai gali būti ir metafora.",
-      "EN Description": "The song tells of 'margi sakalai' (speckled falcons) who decide not to return to earth until the world is bright and free from darkness. The lyrics use poetic imagery of the sun, dreams, and transformation, which may symbolize a search for hope, freedom, or a better future. The falcons could represent people or heroes who strive for light and do not return until their goals are fulfilled, but this could also be a metaphorical expression rather than a literal story."
+      "EN Description": "The song tells of 'margi sakalai' (speckled falcons) who decide not to return to earth until the world is bright and free from darkness. The lyrics use poetic imagery of the sun, dreams, and transformation, which may symbolize a search for hope, freedom, or a better future. The falcons could represent people or heroes who strive for light and do not return until their goals are fulfilled, but this could also be a metaphorical expression rather than a literal story.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9411,7 +9714,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai religinė giesmė, kurioje norima šlovinti Mariją visame pasaulyje. Dainoje naudojami varpo ir vyturio įvaizdžiai, kurie gali simbolizuoti norą garsiai skelbti Marijos garbę. Priedainyje kartojama frazė 'Ave Marija', kuri yra tradicinis sveikinimas Marijai katalikų tikėjime.",
-      "EN Description": "This song is a simple religious hymn expressing a wish to praise Mary, the mother of Jesus, throughout the world. The singer uses images like a bell and a skylark, which may symbolize spreading a joyful message or calling others to honor Mary. The repeated phrase 'Ave Maria' is a traditional Catholic greeting to Mary, but the song does not mention specific Lithuanian traditions or holidays."
+      "EN Description": "This song is a simple religious hymn expressing a wish to praise Mary, the mother of Jesus, throughout the world. The singer uses images like a bell and a skylark, which may symbolize spreading a joyful message or calling others to honor Mary. The repeated phrase 'Ave Maria' is a traditional Catholic greeting to Mary, but the song does not mention specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9437,7 +9741,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina poetiškai kalba apie ilgesį, nežinomybę ir prasmės ieškojimą. Joje daug gamtos, nakties ir jausmų vaizdų, kurie gali simbolizuoti vidines kovas ar pokyčius. Tekstas atviras įvairioms interpretacijoms.",
-      "EN Description": "The song uses poetic language to explore feelings of longing, uncertainty, and the search for meaning. It mixes images of nature, night, and personal emotions, possibly symbolizing inner struggles or transformation. There are references to hope, fear, and a relationship with the world that may suggest themes of personal growth, but the text leaves much open to interpretation."
+      "EN Description": "The song uses poetic language to explore feelings of longing, uncertainty, and the search for meaning. It mixes images of nature, night, and personal emotions, possibly symbolizing inner struggles or transformation. There are references to hope, fear, and a relationship with the world that may suggest themes of personal growth, but the text leaves much open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9469,7 +9774,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje motina kalbasi su sūnumi, kuris greičiausiai yra karys. Motina klausia, ar sūnus bijo mirti, ir jis prisipažįsta, kad bijo. Daina kalba apie karo baimę ir šeimos liūdesį.",
-      "EN Description": "This song tells the story of a mother and her son, who is likely a soldier. The mother asks her son if he fears death after his long journey, and he admits that he does. The song reflects themes of war, fear, and the sorrow of families left behind, which may symbolize the pain experienced during conflicts in Lithuanian history."
+      "EN Description": "This song tells the story of a mother and her son, who is likely a soldier. The mother asks her son if he fears death after his long journey, and he admits that he does. The song reflects themes of war, fear, and the sorrow of families left behind, which may symbolize the pain experienced during conflicts in Lithuanian history.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9498,7 +9804,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Daina kalba apie mažus jausmus, kurie yra kasdieniai ir matomi, ir vieną didelį jausmą, kuris gyvena toli, kaime, ir nelabai rūpinasi, jei kas jo ieško. Tai gali simbolizuoti, kad stiprūs jausmai kartais atrodo tolimesni ar sunkiau pasiekiami.",
-      "EN Description": "The song contrasts small, everyday feelings with one big feeling that lives a simple, distant life in the countryside. The small feelings seem needy and visible, while the big feeling quietly exists far away, not caring if someone searches for it. This may symbolize how strong emotions can seem unreachable or independent from daily concerns."
+      "EN Description": "The song contrasts small, everyday feelings with one big feeling that lives a simple, distant life in the countryside. The small feelings seem needy and visible, while the big feeling quietly exists far away, not caring if someone searches for it. This may symbolize how strong emotions can seem unreachable or independent from daily concerns.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9525,7 +9832,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuriam labai patinka mažos mašinėlės ir kuris svajoja jas turėti bei rinkti. Žodžiai atspindi džiaugsmą ir pasididžiavimą važiuojant su maža mašinėle, įsivaizduojant, kad kiti pavydėtų. Tekste daugiausia kalbama apie žaidimo su mašinėlėmis džiaugsmą.",
-      "EN Description": "The song is about someone who really likes small toy cars and dreams of owning and collecting them. The lyrics describe the joy and pride the person would feel driving their little car, imagining that others would admire or envy them. This playful text may symbolize childhood dreams or a longing for simple happiness, but it mostly just expresses the fun of playing with toy cars."
+      "EN Description": "The song is about someone who really likes small toy cars and dreams of owning and collecting them. The lyrics describe the joy and pride the person would feel driving their little car, imagining that others would admire or envy them. This playful text may symbolize childhood dreams or a longing for simple happiness, but it mostly just expresses the fun of playing with toy cars.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9552,7 +9860,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie be lapų stovinčius medžius rudenį ir lygina juos su žmogaus liūdesiu bei vienatve. Žodžiai gali simbolizuoti išsiskyrimą ar praradimą. Rudenio motyvas atspindi liūdesį ir permainas, bet daina nemini konkrečių lietuviškų tradicijų.",
-      "EN Description": "The song describes leafless trees standing silently in autumn, using them as a metaphor for loss and loneliness. The lyrics compare the singer’s own sadness and sense of emptiness to the bare trees, possibly symbolizing the end of a relationship or a farewell. The recurring mention of autumn suggests a time of change and melancholy, but there are no specific references to Lithuanian traditions or holidays."
+      "EN Description": "The song describes leafless trees standing silently in autumn, using them as a metaphor for loss and loneliness. The lyrics compare the singer’s own sadness and sense of emptiness to the bare trees, possibly symbolizing the end of a relationship or a farewell. The recurring mention of autumn suggests a time of change and melancholy, but there are no specific references to Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9581,7 +9890,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Ši daina pasakoja apie žmogų, kuris jaučiasi įskaudintas dėl neištesėtų meilės pažadų. Žodžiai išreiškia ilgesį tikros meilės ir nusivylimą tuščiais žodžiais, o kai kurios eilutės gali simbolizuoti lietuvišką kaimo gyvenimą ar emocinį atstumą. Dainos atlikėjas prašo tikros meilės, o ne tik pažadų.",
-      "EN Description": "This song is about a person who feels disappointed and hurt by unfulfilled promises of love. The lyrics express longing for genuine affection and frustration with empty words, using imagery such as closed barns and written letters that may symbolize emotional distance or traditional Lithuanian rural life. The singer asks for real love instead of just promises, and wonders why they were given hope if that love was never truly offered."
+      "EN Description": "This song is about a person who feels disappointed and hurt by unfulfilled promises of love. The lyrics express longing for genuine affection and frustration with empty words, using imagery such as closed barns and written letters that may symbolize emotional distance or traditional Lithuanian rural life. The singer asks for real love instead of just promises, and wonders why they were given hope if that love was never truly offered.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9607,7 +9917,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie viltį, meilę ir vienybę, ragina būti geriems, dirbti ir tikėti. Ji remiasi Lietuvos skautiškomis vertybėmis ir mini Gabiją, ugnies deivę, kuri gali simbolizuoti tyrumą ir įkvėpimą. Taip pat daina skatina išlikti savimi ir siekti gėrio, net jei tai sunku.",
-      "EN Description": "This song is about hope, love, and unity, encouraging compassion, hard work, and faith. It speaks to the values of Lithuanian scouting, referencing Gabija, the fire goddess from Lithuanian mythology, which may symbolize purity and inspiration. The song also expresses determination to do good and remain true to oneself, even when facing challenges or doubts from others."
+      "EN Description": "This song is about hope, love, and unity, encouraging compassion, hard work, and faith. It speaks to the values of Lithuanian scouting, referencing Gabija, the fire goddess from Lithuanian mythology, which may symbolize purity and inspiration. The song also expresses determination to do good and remain true to oneself, even when facing challenges or doubts from others.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9636,7 +9947,8 @@ const songs: SongFile = [
       "Music Author": "Neda",
       "Text Author": "Neda",
       "LT Description": "Šioje dainoje pasakojama apie dviejų žmonių artumą ir jų sukurtą svajonių pasaulį, kuriame dominuoja mėlynos spalvos vaizdiniai – saulė, jūra, lietus. Daina kalba apie tylų supratimą, ramybę ir šiek tiek liūdesio. Mėlyna spalva gali simbolizuoti ramybę arba ilgesį, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song describes a dream-like, intimate world shared between two people, using images of a 'blue sun', 'blue sea', and 'blue rain' to evoke a feeling of peace, longing, and gentle melancholy. The lyrics focus on being together, feeling understood without words, and creating a small, personal universe. The blue imagery might symbolize calmness or a sense of sadness, but this could be open to interpretation."
+      "EN Description": "This song describes a dream-like, intimate world shared between two people, using images of a 'blue sun', 'blue sea', and 'blue rain' to evoke a feeling of peace, longing, and gentle melancholy. The lyrics focus on being together, feeling understood without words, and creating a small, personal universe. The blue imagery might symbolize calmness or a sense of sadness, but this could be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9665,7 +9977,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Šioje dainoje pasakojama apie mėlyną autobusiuką, kuris keliauja per kalnus ir slėnius. Daina sukuria linksmo ir laisvo važiavimo nuotaiką, bet nenurodo jokių lietuviškų tradicijų ar švenčių.",
-      "EN Description": "This song tells about a blue minibus that travels through blooming hills and valleys, evoking feelings of joy and freedom. The blue minibus can symbolize a special journey, hope, or childhood memories, but the lyrics mainly focus on a cheerful trip without mentioning any specific Lithuanian traditions or historical events."
+      "EN Description": "This song tells about a blue minibus that travels through blooming hills and valleys, evoking feelings of joy and freedom. The blue minibus can symbolize a special journey, hope, or childhood memories, but the lyrics mainly focus on a cheerful trip without mentioning any specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9691,7 +10004,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie klajones mėlynomis gatvelėmis, prisiminimus ir ilgesį. Žodžiai apie žydinčius kaktusus ir užrakintus vartus gali simbolizuoti praeitį, gyvenimo eigą ar paslėptus jausmus. Dainos vaizdai yra poetiški ir šiek tiek paslaptingi.",
-      "EN Description": "This song describes wandering through blue-colored streets, reflecting on memories, time, and longing. The lyrics mention blooming cacti on an old windowsill and locked gates, which may symbolize nostalgia, the passage of life, or hidden feelings. The imagery is poetic and slightly mysterious, inviting the listener to imagine personal or universal journeys."
+      "EN Description": "This song describes wandering through blue-colored streets, reflecting on memories, time, and longing. The lyrics mention blooming cacti on an old windowsill and locked gates, which may symbolize nostalgia, the passage of life, or hidden feelings. The imagery is poetic and slightly mysterious, inviting the listener to imagine personal or universal journeys.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9718,7 +10032,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie du žmones, plaukiančius mėnesienoje, bet vienas iš jų jaučiasi pavargęs ir nusivylęs. Galiausiai jis piktai įmeta kitą žmogų į upę, kas gali reikšti santykių pabaigą arba nuovargį. Mėnesiena ir upė dažnai pasitaiko lietuviškoje poezijoje, bet šįkart jos turi liūdnesnę prasmę.",
-      "EN Description": "The song tells about two people drifting in a boat under the moonlight, but while one finds it beautiful, the other feels tired and bored of the routine. The lyrics end with the narrator mischievously throwing their companion into the dark river, which might symbolize the end of a relationship or growing frustration. The imagery of moonlight and rivers is common in Lithuanian poetry and can suggest romance or change, but here it takes on a darker twist."
+      "EN Description": "The song tells about two people drifting in a boat under the moonlight, but while one finds it beautiful, the other feels tired and bored of the routine. The lyrics end with the narrator mischievously throwing their companion into the dark river, which might symbolize the end of a relationship or growing frustration. The imagery of moonlight and rivers is common in Lithuanian poetry and can suggest romance or change, but here it takes on a darker twist.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9744,7 +10059,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai pasakoja apie mėnulį kaip ramią ir stebuklingą vietą, kur nėra karo, ligų ar netekties, o viskas gera ir saugu. Tai gali simbolizuoti vaiko svajonę apie geresnį pasaulį arba norą pabėgti nuo sunkumų. Nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The lyrics imagine life on the moon as peaceful and magical, describing a place without schools or war, with free food, gentle animals, and no sickness or loss. This dreamlike world may symbolize a child's wish for safety and comfort, or a longing for a better, kinder place, but the song also wonders why such a world feels so far away. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "The lyrics imagine life on the moon as peaceful and magical, describing a place without schools or war, with free food, gentle animals, and no sickness or loss. This dreamlike world may symbolize a child's wish for safety and comfort, or a longing for a better, kinder place, but the song also wonders why such a world feels so far away. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9770,7 +10086,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vaikino meilę ir ilgesį jaunai merginai, prašo jos pasitikėti ir nepamiršti duoto žodžio. Jis dainuoja apie savo jausmus, ryto grožį ir darbą laukuose. Gali atspindėti tradicinį kaimo gyvenimą ir meilės prisipažinimą.",
-      "EN Description": "This song is about a young man expressing his love and longing for a young girl, asking her to stay true to her word and trust his feelings. He sings of his devotion, the beauty of the morning, and his yearning as he works in the fields. The song may reflect traditional Lithuanian rural life and courtship, but it is not tied to a specific holiday or historical event."
+      "EN Description": "This song is about a young man expressing his love and longing for a young girl, asking her to stay true to her word and trust his feelings. He sings of his devotion, the beauty of the morning, and his yearning as he works in the fields. The song may reflect traditional Lithuanian rural life and courtship, but it is not tied to a specific holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9801,7 +10118,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie du brolius, kurie eina į mišką, pjauna medį, gamina lentas ir stato laivelį, kad galėtų išplaukti į jūrą. Daina vaizduoja jų bendrą darbą ir kelionę. Tai gali simbolizuoti brolišką vienybę arba tiesiog būti pasakojimas apie kasdienius darbus.",
-      "EN Description": "This song tells about two brothers going into the forest together, cutting down a tree, making planks, and building a small boat to sail out to the sea. It describes their shared work and journey. The actions may symbolize unity and cooperation, but could also simply reflect a folk tradition of storytelling through everyday activities."
+      "EN Description": "This song tells about two brothers going into the forest together, cutting down a tree, making planks, and building a small boat to sail out to the sea. It describes their shared work and journey. The actions may symbolize unity and cooperation, but could also simply reflect a folk tradition of storytelling through everyday activities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9835,7 +10153,8 @@ const songs: SongFile = [
       "Music Author": "Feliksas Šakalys",
       "Text Author": "Feliksas Šakalys",
       "LT Description": "1998 m. tautinės stovyklos daina\n\nŠi daina pasakoja apie skautus, susirinkusius iš įvairių Lietuvos miestų ir regionų stovyklauti prie Nemuno. Ji aprašo jų kelionę, veiklas stovykloje ir draugystę. Daina gali simbolizuoti vienybę ir bendrystę.",
-      "EN Description": "1998 Lithuanian scouting jamboree\n\nThis song is about Lithuanian scouts coming together from different regions and cities to camp by the Nemunas River. It describes their journey, camping activities, and the unity they feel as they sing songs around the campfire. The lyrics may symbolize national unity and the importance of community, but mainly focus on the collective experience of scouting."
+      "EN Description": "1998 Lithuanian scouting jamboree\n\nThis song is about Lithuanian scouts coming together from different regions and cities to camp by the Nemunas River. It describes their journey, camping activities, and the unity they feel as they sing songs around the campfire. The lyrics may symbolize national unity and the importance of community, but mainly focus on the collective experience of scouting.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9861,7 +10180,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie kasdienio gyvenimo sunkumus, bet džiaugsmą randa tada, kai visa šeima susirenka prie stalo. Kiekvienoje strofoje kreipiamasi į kitą šeimos narį, parodant šilumą ir artumą. Dainoje nėra aiškių nuorodų į konkrečias lietuviškas tradicijas ar šventes.",
-      "EN Description": "This song reflects on the hardships of daily life and suggests that true happiness is found when the family gathers together at the table to eat and drink. Each verse addresses a different family member, expressing warmth and appreciation. The song may symbolize the importance of family unity and shared moments, but it does not mention any specific Lithuanian traditions or holidays."
+      "EN Description": "This song reflects on the hardships of daily life and suggests that true happiness is found when the family gathers together at the table to eat and drink. Each verse addresses a different family member, expressing warmth and appreciation. The song may symbolize the importance of family unity and shared moments, but it does not mention any specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9887,7 +10207,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma dainelė pasakoja apie meškos šokį, kai jos kailis dulkėja. Žodžiai naudojami žaidimuose ar šokiuose su vaikais Lietuvoje. Dainelė yra paprasta ir žaisminga.",
-      "EN Description": "This playful song describes dancing with a bear, whose fur gets all dusty as it moves around. The lyrics are simple and repetitive, often used in children's games or dances in Lithuania. The bear may symbolize a clumsy dancer or simply be a fun character for kids, but the meaning is mostly lighthearted."
+      "EN Description": "This playful song describes dancing with a bear, whose fur gets all dusty as it moves around. The lyrics are simple and repetitive, often used in children's games or dances in Lithuania. The bear may symbolize a clumsy dancer or simply be a fun character for kids, but the meaning is mostly lighthearted.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9913,7 +10234,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus prašo draugų po savo mirties nesielgti pagal tradicijas, o prisiminti jį linksmai – su gėrimais, pypke ir paprastais daiktais. Dainos tonas yra žaismingas, bet taip pat kalbama apie atsisveikinimą su jaunyste ir gyvenimu. Čia gali būti užuomina į laisvą požiūrį į mirtį.",
-      "EN Description": "This song is about a person reflecting on what should happen after their death, asking their friends not to mourn with traditional rituals, but instead to remember them with humor, drinks, and simple, personal gestures. The lyrics mention leaving behind everyday items and wanting to be surrounded by wine and tobacco, which may symbolize a carefree attitude toward life and death. There is a playful tone, but the theme of bidding farewell to youth and life is present."
+      "EN Description": "This song is about a person reflecting on what should happen after their death, asking their friends not to mourn with traditional rituals, but instead to remember them with humor, drinks, and simple, personal gestures. The lyrics mention leaving behind everyday items and wanting to be surrounded by wine and tobacco, which may symbolize a carefree attitude toward life and death. There is a playful tone, but the theme of bidding farewell to youth and life is present.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9940,7 +10262,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai pasakoja apie purviną ir seną miestą, jausmus apie netektį, sumišimą ir kaltę. Minimi paprasti dalykai, pavyzdžiui, knygos, monetos, rožė, gali simbolizuoti pokyčius ar viltį, bet tiksli prasmė neaiški. Tekste nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The lyrics describe a dirty and old city, expressing feelings of confusion, loss, and searching for meaning. The song mentions fleeting youth, emptiness, and guilt, and uses everyday images like books, coins, and roses, which may symbolize change or hope, but the exact meaning is unclear. The text does not directly reference specific Lithuanian traditions or historical events."
+      "EN Description": "The lyrics describe a dirty and old city, expressing feelings of confusion, loss, and searching for meaning. The song mentions fleeting youth, emptiness, and guilt, and uses everyday images like books, coins, and roses, which may symbolize change or hope, but the exact meaning is unclear. The text does not directly reference specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9967,7 +10290,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai rami lopšinė, kurioje vaikas švelniai raginamas užmigti atėjus nakčiai. Dainoje aprašoma tyli, saugi aplinka ir parodoma, kaip vaikas yra mylimas bei globojamas. Daina nesusijusi su konkrečiomis lietuviškomis tradicijomis ar šventėmis.",
-      "EN Description": "This song is a gentle lullaby where a child is lovingly encouraged to sleep as night falls. The lyrics describe a peaceful home, with everything quiet and safe, and the child is reassured that they are cherished and protected. The song may symbolize parental love and the comfort of home, but it does not reference specific Lithuanian traditions or holidays."
+      "EN Description": "This song is a gentle lullaby where a child is lovingly encouraged to sleep as night falls. The lyrics describe a peaceful home, with everything quiet and safe, and the child is reassured that they are cherished and protected. The song may symbolize parental love and the comfort of home, but it does not reference specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -9996,7 +10320,8 @@ const songs: SongFile = [
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis",
       "LT Description": "Daina pasakoja apie milžinus, kurie pasiklydo tarp pienių ir liko gyventi su žiogais. Žodžiai gali simbolizuoti žmones, kurie jaučiasi kitokie ar pasimetę, bet randa laimę paprastume ir draugystėje. Dainoje nėra aiškių nuorodų į lietuviškas šventes ar tradicijas.",
-      "EN Description": "The song tells about 'giants' who have lost their way in a sea of dandelions and find peace living among grasshoppers. The lyrics might symbolize people who feel different or out of place, but eventually find happiness in simplicity and togetherness. There are no direct references to Lithuanian traditions or holidays, but dandelions and summer are common motifs in Lithuanian nature and poetry."
+      "EN Description": "The song tells about 'giants' who have lost their way in a sea of dandelions and find peace living among grasshoppers. The lyrics might symbolize people who feel different or out of place, but eventually find happiness in simplicity and togetherness. There are no direct references to Lithuanian traditions or holidays, but dandelions and summer are common motifs in Lithuanian nature and poetry.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10022,7 +10347,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie močiutę, kuri užaugino dukrą ir išleido ją į sutuoktines. Paminimi tradiciniai papročiai, kaip kraitis ir rūtų davimas, taip pat jaučiamas liūdesys, nes dukra išleidžiama dar jauna.",
-      "EN Description": "This song is about a grandmother who raised her daughter and prepared her for marriage, even though it was not for herself. The lyrics mention traditional customs like giving a dowry and a rue (which may symbolize maidenhood) to the daughter. It also hints at sadness, as the daughter is married off while still young and before the rue has bloomed, which could symbolize innocence or unfulfilled youth."
+      "EN Description": "This song is about a grandmother who raised her daughter and prepared her for marriage, even though it was not for herself. The lyrics mention traditional customs like giving a dowry and a rue (which may symbolize maidenhood) to the daughter. It also hints at sadness, as the daughter is married off while still young and before the rue has bloomed, which could symbolize innocence or unfulfilled youth.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10049,7 +10375,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje prisimenamas ir apmąstomas motinos veidas, kuris gali simbolizuoti meilę, šilumą ar ilgesį. Tekste minima sėdėjimas kartu, patirtys ir deganti žvakė – tai gali būti susiję su prisiminimais ar pagerbimu, kaip lietuviškose tradicijose uždegant žvakes artimiesiems. Dainoje jaučiama laiko tėkmė, nostalgija ir gyvenimo trapumo jausmas.",
-      "EN Description": "This song reflects on memories and emotions tied to a mother's face, symbolizing warmth, love, and perhaps loss or longing. The lyrics mention sitting together, recalling experiences, and watching a candle burn—possibly suggesting remembrance or reflection, which could relate to Lithuanian traditions of honoring loved ones, such as lighting candles for the deceased. The themes of time passing, nostalgia, and the bittersweet nature of memory are central, though some lines may also symbolize the cycle of life."
+      "EN Description": "This song reflects on memories and emotions tied to a mother's face, symbolizing warmth, love, and perhaps loss or longing. The lyrics mention sitting together, recalling experiences, and watching a candle burn—possibly suggesting remembrance or reflection, which could relate to Lithuanian traditions of honoring loved ones, such as lighting candles for the deceased. The themes of time passing, nostalgia, and the bittersweet nature of memory are central, though some lines may also symbolize the cycle of life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10075,7 +10402,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie Roką, kuris nusiperka motociklą ir važinėja greitai per laukus. Žodžiai aprašo greičio jausmą, susidūrimus su gamta ir juokingą pabaigą, kur reikia atspėti, kas sudužo – motociklas ar beržai. Dainoje gali būti užuominų apie laisvę ir nuotykius.",
-      "EN Description": "The song tells the story of Rokas, who buys a motorcycle and enjoys the thrill of speed as he rides through the countryside. The lyrics describe the excitement of riding, close encounters with wildlife, and a playful ending where the listener is left to guess whether the motorcycle or the birch trees survived a collision. The song may symbolize freedom and adventure, but it could also hint at recklessness and the risks of high-speed travel."
+      "EN Description": "The song tells the story of Rokas, who buys a motorcycle and enjoys the thrill of speed as he rides through the countryside. The lyrics describe the excitement of riding, close encounters with wildlife, and a playful ending where the listener is left to guess whether the motorcycle or the birch trees survived a collision. The song may symbolize freedom and adventure, but it could also hint at recklessness and the risks of high-speed travel.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10101,7 +10429,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja, kad visi žmonės dalijasi ta pačia saule, mėnuliu ir gamtos grožiu, todėl visi esame susiję. Nepaisant atstumų ar skirtumų, mūsų širdžių niekas neišskirs, o linksma daina ir juokas mus sujungia. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The song expresses how people around the world share the same sun, moon, stars, and natural beauty, suggesting a sense of unity and togetherness. It highlights that, despite distances or differences, nothing can separate our hearts, and joyful songs and laughter connect us all. There are no direct references to specific Lithuanian traditions or historical events, but the lyrics may symbolize universal themes of peace and unity."
+      "EN Description": "The song expresses how people around the world share the same sun, moon, stars, and natural beauty, suggesting a sense of unity and togetherness. It highlights that, despite distances or differences, nothing can separate our hearts, and joyful songs and laughter connect us all. There are no direct references to specific Lithuanian traditions or historical events, but the lyrics may symbolize universal themes of peace and unity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10130,7 +10459,8 @@ const songs: SongFile = [
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis",
       "LT Description": "Ši daina apie kasdienio gyvenimo grožį ir džiaugsmą Lietuvoje. Žodžiai išreiškia dėkingumą gimtinei ir ragina džiaugtis kiekviena diena, lygindami ją su vyšnios žydėjimu, kuris gali simbolizuoti trumpalaikį džiaugsmą.",
-      "EN Description": "This song is about the beauty and joy of everyday life in Lithuania. The lyrics reflect gratitude for one's homeland, referencing natural elements like the Nemunas River, the Baltic Sea, and green lakes, which are important symbols in Lithuanian culture. It encourages living life fully and cherishing each day, comparing them to a cherry blossom festival, which may symbolize the fleeting nature of happiness."
+      "EN Description": "This song is about the beauty and joy of everyday life in Lithuania. The lyrics reflect gratitude for one's homeland, referencing natural elements like the Nemunas River, the Baltic Sea, and green lakes, which are important symbols in Lithuanian culture. It encourages living life fully and cherishing each day, comparing them to a cherry blossom festival, which may symbolize the fleeting nature of happiness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10158,7 +10488,8 @@ const songs: SongFile = [
       "Music Author": "Giedrė Smolskaitė",
       "Text Author": "Giedrė Smolskaitė",
       "LT Description": "2013 m. jubiliejinės stovyklos „Gėrio pėdomis“ daina\n\nŠi daina pasakoja apie bendrumą ir vienybę, kurią jaučiame būdami gamtoje, galbūt stovykloje ar skautų susibūrime. Žodžiai pabrėžia paprastus gamtos džiaugsmus ir kviečia sekti gėrio keliu. Daina išreiškia meilę Tėvynei ir gamtai, bet nėra aiškiai įvardyta, kokia proga ji skamba.",
-      "EN Description": "2013 Lithuanian scouting jamboree song\n\nThis song describes the feeling of togetherness and unity experienced when camping or spending time in nature, possibly during a youth camp or a scout gathering. The lyrics highlight simple joys like the smell of a tent in the evening, morning grasshoppers, and campfires at night, and emphasize that everyone present is united like one. The references to following 'the path of good' and the presence of forest and homeland may symbolize a connection to Lithuanian nature and values, though the exact event or tradition is not specified."
+      "EN Description": "2013 Lithuanian scouting jamboree song\n\nThis song describes the feeling of togetherness and unity experienced when camping or spending time in nature, possibly during a youth camp or a scout gathering. The lyrics highlight simple joys like the smell of a tent in the evening, morning grasshoppers, and campfires at night, and emphasize that everyone present is united like one. The references to following 'the path of good' and the presence of forest and homeland may symbolize a connection to Lithuanian nature and values, though the exact event or tradition is not specified.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10184,7 +10515,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie viltį, džiaugsmą ir meilę Lietuvai. Žodžiai mini saulės spindulius, šypsenas ir norą, kad tėvynė būtų laisva. Daina gali simbolizuoti optimizmą ir patriotiškumą.",
-      "EN Description": "This song is about hope, joy, and unity, focusing on the love for Lithuania. The lyrics mention the sun shining, smiling faces, and the desire for a free homeland. The song may symbolize optimism and patriotism, and it also refers to sports and singing as ways to express love for the country."
+      "EN Description": "This song is about hope, joy, and unity, focusing on the love for Lithuania. The lyrics mention the sun shining, smiling faces, and the desire for a free homeland. The song may symbolize optimism and patriotism, and it also refers to sports and singing as ways to express love for the country.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10210,7 +10542,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie Lietuvos skautų vertybes – meilę Tėvynei, pagalbą artimui ir pasiaukojimą. Žodžiuose paminėtos dainos, gamta ir draugystė, kurios gali simbolizuoti vienybę ir pasididžiavimą Lietuva. Daina greičiausiai susijusi su skautų veikla, bet nemini konkrečios šventės ar įvykio.",
-      "EN Description": "This song celebrates the spirit and values of Lithuanian scouts, emphasizing their love for their homeland, dedication to helping others, and willingness to sacrifice for Lithuania. The lyrics mention singing together, working patiently, and the beauty of nature, which may symbolize unity and national pride. The song could be connected to scouting traditions in Lithuania, but it does not reference a specific holiday or historical event."
+      "EN Description": "This song celebrates the spirit and values of Lithuanian scouts, emphasizing their love for their homeland, dedication to helping others, and willingness to sacrifice for Lithuania. The lyrics mention singing together, working patiently, and the beauty of nature, which may symbolize unity and national pride. The song could be connected to scouting traditions in Lithuania, but it does not reference a specific holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10236,7 +10569,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie vaikiną, kuris mylėjo merginą, bet dėl žmonių kalbų turėjo ją palikti. Jis gailisi dėl šio sprendimo ir mato, kaip mergina jam rašo laišką, kviesdama susitikti vakare. Dainoje atsispindi jaunų žmonių meilė ir aplinkinių spaudimas, kas dažnai pasitaiko lietuvių liaudies dainose.",
-      "EN Description": "This song tells the story of a young man who loved a girl for two and a half years but felt forced to end the relationship because of gossip and what others said. He regrets his decision, saying it's easier to carry water up a hill than to stop loving the girl he lost. The song includes a scene where he sees the girl writing him a letter, inviting him to meet in the evening. The lyrics reflect common themes in Lithuanian folk songs, such as young love, parental disapproval, and the importance of public opinion, which may symbolize the pressures young people faced in traditional village life."
+      "EN Description": "This song tells the story of a young man who loved a girl for two and a half years but felt forced to end the relationship because of gossip and what others said. He regrets his decision, saying it's easier to carry water up a hill than to stop loving the girl he lost. The song includes a scene where he sees the girl writing him a letter, inviting him to meet in the evening. The lyrics reflect common themes in Lithuanian folk songs, such as young love, parental disapproval, and the importance of public opinion, which may symbolize the pressures young people faced in traditional village life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10265,7 +10599,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Daina pasakoja apie ilgesį namams ir viltį sugrįžti. Nors laukas pilkas ir tuščias, namai vis tiek yra brangiausi. Tekste taip pat skamba padrąsinimas tikėti savo svajonėmis ir stengtis jas įgyvendinti.",
-      "EN Description": "The song is about longing for home and the hope of returning there one day. The lyrics describe a gray field without birds or flowers, which may symbolize difficult or empty times, but home remains precious. There is also a message of encouragement, saying that dreams come true if one truly wishes, makes an effort, and believes."
+      "EN Description": "The song is about longing for home and the hope of returning there one day. The lyrics describe a gray field without birds or flowers, which may symbolize difficult or empty times, but home remains precious. There is also a message of encouragement, saying that dreams come true if one truly wishes, makes an effort, and believes.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10291,7 +10626,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmonių keliavimą namo kartu, džiaugsmą ir viltį grįžtant. Tekste atsisveikinama ir linkima sėkmės tiems, kurie lieka, pabrėžiama vienybė ir laimė keliaujant namo. 'Grįžimas namo' gali simbolizuoti sugrįžimą pas artimuosius ar į pažįstamą vietą.",
-      "EN Description": "This song is about a group of people returning home together, expressing joy and hope as they journey. The lyrics mention saying goodbye and wishing good luck to those left behind, and emphasize unity and happiness as they go home. The theme of 'returning home' can symbolize coming back to loved ones or a familiar place, but it is not clear if it refers to a specific Lithuanian tradition or event."
+      "EN Description": "This song is about a group of people returning home together, expressing joy and hope as they journey. The lyrics mention saying goodbye and wishing good luck to those left behind, and emphasize unity and happiness as they go home. The theme of 'returning home' can symbolize coming back to loved ones or a familiar place, but it is not clear if it refers to a specific Lithuanian tradition or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10317,7 +10653,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie norą grįžti namo, galbūt po sunkaus darbo ar išvykimo. Žodžiai rodo, kad esama svetimoje vietoje, kur nėra svetingumo ir nėra duonos. Gali būti užsimenama apie išvykimą arba ilgesį savo kraštui.",
-      "EN Description": "This song is about a longing to return home, possibly after being away for work or hardship. The lyrics mention unfamiliar and unfriendly places where the singers do not feel at home and are not given bread, which may symbolize exclusion or alienation. The song could also reflect themes of migration, exile, or the desire to return to one's roots, but this is not stated directly."
+      "EN Description": "This song is about a longing to return home, possibly after being away for work or hardship. The lyrics mention unfamiliar and unfriendly places where the singers do not feel at home and are not given bread, which may symbolize exclusion or alienation. The song could also reflect themes of migration, exile, or the desire to return to one's roots, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10343,7 +10680,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia vaikus ir visus kartu giedoti naują giesmę Dievui. Žodžiai išreiškia džiaugsmą ir dėkingumą už Dievo globą kasdieniame gyvenime. Daina gali simbolizuoti bendrystę ir dvasinį džiaugsmą.",
-      "EN Description": "This song is a joyful hymn encouraging people, especially children, to sing a new song to God. It expresses happiness and gratitude for God's presence and protection in everyday life. The lyrics invite everyone to come together in music and praise, which may symbolize a sense of community and spiritual togetherness."
+      "EN Description": "This song is a joyful hymn encouraging people, especially children, to sing a new song to God. It expresses happiness and gratitude for God's presence and protection in everyday life. The lyrics invite everyone to come together in music and praise, which may symbolize a sense of community and spiritual togetherness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10376,7 +10714,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje mergina prisimena savo jaunystę ir pasakoja, kad ji buvo ypatinga ir rinkosi savo bernelius atsargiai. Dainoje minimos rūtos yra lietuviškas mergystės simbolis ir gali reikšti pokyčius merginos gyvenime. Šokio ir gėlių vaizdai gali simbolizuoti meilės džiaugsmus ir liūdesį.",
-      "EN Description": "This song is about a young woman reflecting on her past, describing how she was not just any girl and chose her suitors carefully. The imagery of blooming and withering rue flowers (a traditional Lithuanian symbol of maidenhood and purity) may symbolize the changes in her life or relationships. The contrast between dancing with different men might suggest themes of love, loss, or the passage from youth to maturity, but the exact meaning can be open to interpretation."
+      "EN Description": "This song is about a young woman reflecting on her past, describing how she was not just any girl and chose her suitors carefully. The imagery of blooming and withering rue flowers (a traditional Lithuanian symbol of maidenhood and purity) may symbolize the changes in her life or relationships. The contrast between dancing with different men might suggest themes of love, loss, or the passage from youth to maturity, but the exact meaning can be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10449,7 +10788,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie mylimąjį, kuris anksti keliasi ir ruošiasi išvykti, turbūt į karą ar pavojingą kelionę. Pasikartojanti eilutė apie 'ne dėl žalio vyno, o dėl žalio žolyno' gali reikšti, kad jis išvyksta ne dėl linksmybių, o dėl pareigos. Pabaigoje užsimenama, kad mylimasis žuvo, bet tai nepasakoma tiesiogiai.",
-      "EN Description": "This song tells about a loved one who rises early in the morning and prepares to leave, seemingly for war or a dangerous journey. The repeated line about 'not for green wine, but for green grass' may symbolize that the departure is not for pleasure, but for duty or sacrifice. The ending suggests the loved one loses his life, possibly in battle, though the lyrics do not state this directly."
+      "EN Description": "This song tells about a loved one who rises early in the morning and prepares to leave, seemingly for war or a dangerous journey. The repeated line about 'not for green wine, but for green grass' may symbolize that the departure is not for pleasure, but for duty or sacrifice. The ending suggests the loved one loses his life, possibly in battle, though the lyrics do not state this directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10478,7 +10818,8 @@ const songs: SongFile = [
       "Music Author": "Jurga",
       "Text Author": "Jurga",
       "LT Description": "Daina pasakoja apie drąsą ir artumą, kurią jaučiame su artimu žmogumi, ypač naktį. Žodžiuose daug gamtos ir nakties vaizdų, kurie gali simbolizuoti vidinius jausmus. Tiesioginių nuorodų į lietuviškas tradicijas ar šventes nėra.",
-      "EN Description": "The song expresses feelings of courage and intimacy found with a close person, especially at night. Its lyrics evoke images of nature, night, and vulnerability, suggesting that being together helps to overcome fears. There are no clear references to specific Lithuanian traditions or holidays, but the natural imagery may symbolize inner emotions."
+      "EN Description": "The song expresses feelings of courage and intimacy found with a close person, especially at night. Its lyrics evoke images of nature, night, and vulnerability, suggesting that being together helps to overcome fears. There are no clear references to specific Lithuanian traditions or holidays, but the natural imagery may symbolize inner emotions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10509,7 +10850,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina – nuoširdus prašymas nelikti išvykti iš kaimo. Žodžiai pasakoja apie ilgesį, liūdesį ir vienatvę, kai mylimas žmogus išvyksta. Tai gali simbolizuoti išvykimą iš gimtojo krašto ar tiesiog artimo žmogaus netektį.",
-      "EN Description": "This song is a gentle plea for someone not to leave their village. The lyrics speak of longing, loneliness, and the sadness that remains when a loved one departs. It may symbolize the emotional impact of migration from rural areas, a common theme in Lithuanian culture, but could also simply reflect personal loss and nostalgia."
+      "EN Description": "This song is a gentle plea for someone not to leave their village. The lyrics speak of longing, loneliness, and the sadness that remains when a loved one departs. It may symbolize the emotional impact of migration from rural areas, a common theme in Lithuanian culture, but could also simply reflect personal loss and nostalgia.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10538,7 +10880,8 @@ const songs: SongFile = [
       "Music Author": "Kun. E. Arnašius",
       "Text Author": "Kun. E. Arnašius",
       "LT Description": "Šioje dainoje gamtos ir ilgesio vaizdai išreiškia troškimą laisvei ir dvasiniam atsinaujinimui. Paminėti Nemunas, Ostija ir rūta yra svarbūs lietuvių kultūrai ir religijai. Dainoje kalbama apie viltį, stiprybę ir norą įveikti sunkumus, tačiau kai kurie vaizdai gali būti interpretuojami įvairiai.",
-      "EN Description": "This song uses poetic images of nature and longing to express a desire for freedom and spiritual renewal. References to the Nemunas river and elements like 'Ostija' (Eucharistic host) and 'rūta' (rue) can symbolize Lithuanian cultural and religious traditions. The lyrics may reflect themes of hope, resilience, and the wish to overcome hardships, but some imagery could be open to personal interpretation."
+      "EN Description": "This song uses poetic images of nature and longing to express a desire for freedom and spiritual renewal. References to the Nemunas river and elements like 'Ostija' (Eucharistic host) and 'rūta' (rue) can symbolize Lithuanian cultural and religious traditions. The lyrics may reflect themes of hope, resilience, and the wish to overcome hardships, but some imagery could be open to personal interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10564,7 +10907,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie stiprų ryšį su Nemuno upe, kuri simbolizuoja tėvynę, tradicijas ir žmonių tvirtumą. Žodžiai kalba apie gyvenimą, džiaugsmus ir sunkumus prie Nemuno, kuris jungia praeitį, dabartį ir ateitį.",
-      "EN Description": "This song describes a deep connection between people and the Nemunas River, which is one of the most important rivers in Lithuania. The lyrics talk about growing up, living, and sharing emotions near the river, which may symbolize the homeland, tradition, and endurance of the Lithuanian people. The river is shown as a witness to both joy and sorrow, linking the past, present, and future."
+      "EN Description": "This song describes a deep connection between people and the Nemunas River, which is one of the most important rivers in Lithuania. The lyrics talk about growing up, living, and sharing emotions near the river, which may symbolize the homeland, tradition, and endurance of the Lithuanian people. The river is shown as a witness to both joy and sorrow, linking the past, present, and future.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10590,7 +10934,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunystės jausmus, ilgesį ir meilę gimtinei, naudojant pavasario ir Nemuno upės vaizdus. Upė gali simbolizuoti gyvenimo tėkmę ir rūpesčių nuplovimą. Daina išreiškia stiprų ryšį su gimtąja žeme, tačiau nemini konkrečių švenčių ar istorinių įvykių.",
-      "EN Description": "This song is about the feelings of youth, longing, and love for one's homeland, described through the imagery of spring, blooming trees, and the Nemunas River. The river may symbolize the flow of life and the ability to wash away worries. The lyrics celebrate nature and the deep emotional bond with the land, but do not reference specific Lithuanian holidays or historical events."
+      "EN Description": "This song is about the feelings of youth, longing, and love for one's homeland, described through the imagery of spring, blooming trees, and the Nemunas River. The river may symbolize the flow of life and the ability to wash away worries. The lyrics celebrate nature and the deep emotional bond with the land, but do not reference specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10617,7 +10962,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie norą pabėgti ir apie tai, kad gyvenime daugelis dalykų, kaip mirtis ar blogi pažymiai, galbūt nėra tokie svarbūs. Pagrindinis veikėjas įsivaizduoja šokantis pro langą lapkritį, kai lapai dengia žemę, ir ramina susirinkusius vaikus, sakydamas jiems nebijoti. Lapkritis ir krentantys lapai gali simbolizuoti liūdesį ar pokyčius.",
-      "EN Description": "The song reflects on thoughts of escape and the feeling that many things in life, such as death, school, or bad grades, may not be as important as they seem. The narrator imagines jumping from a window in November, a time when fallen leaves cover the ground, and comforting children who gather around, telling them not to be afraid. The mention of November and fallen leaves might symbolize melancholy or change, which is common in Lithuanian autumns, but the overall message seems to encourage not worrying too much about life's troubles."
+      "EN Description": "The song reflects on thoughts of escape and the feeling that many things in life, such as death, school, or bad grades, may not be as important as they seem. The narrator imagines jumping from a window in November, a time when fallen leaves cover the ground, and comforting children who gather around, telling them not to be afraid. The mention of November and fallen leaves might symbolize melancholy or change, which is common in Lithuanian autumns, but the overall message seems to encourage not worrying too much about life's troubles.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10643,7 +10989,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie ilgesį keliauti toli, ypač į savo gimtinę. Žodžiai išreiškia tėvynės ilgesį ir norą sugrįžti namo. Čia jaučiama viltis būti laimingam ir vėl pamatyti savo šalį.",
-      "EN Description": "This song is about longing to travel far away, especially to the singer's homeland. The lyrics express homesickness and a deep emotional connection to familiar places and memories. There is a hope for happiness and a wish to return home one day; this could symbolize the experiences of those who had to leave Lithuania, but it is not stated directly."
+      "EN Description": "This song is about longing to travel far away, especially to the singer's homeland. The lyrics express homesickness and a deep emotional connection to familiar places and memories. There is a hope for happiness and a wish to return home one day; this could symbolize the experiences of those who had to leave Lithuania, but it is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10675,7 +11022,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuris nori miego, bet negali užmigti, nes galvoja apie merginą kieme, pinančią vainikėlį iš rūtų. Vainikėlis gali simbolizuoti merginos likimą ir pasirinkimus meilėje. Rūtų vainikai Lietuvoje dažnai siejami su mergystės tradicijomis.",
-      "EN Description": "This song describes a young person’s longing for sleep, which is interrupted by thoughts of a girl in the yard making a wreath from rue, a traditional Lithuanian symbol of maidenhood. The lyrics reflect on choices, fate, and the uncertainty of love, using the wreath as a metaphor for the girl's future. The song may reference Lithuanian customs where rue wreaths are part of marriage and courtship rituals."
+      "EN Description": "This song describes a young person’s longing for sleep, which is interrupted by thoughts of a girl in the yard making a wreath from rue, a traditional Lithuanian symbol of maidenhood. The lyrics reflect on choices, fate, and the uncertainty of love, using the wreath as a metaphor for the girl's future. The song may reference Lithuanian customs where rue wreaths are part of marriage and courtship rituals.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10708,7 +11056,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginą, kurią motina išsiuntė toli. Kelyje ji netenka trijų brolių ir prašo jų sugrąžinti jaunystę, bet jie gali parnešti tik vainiką ir kaspiną. Daina gali simbolizuoti ilgesį ir prarastą jaunystę, tačiau tiksli prasmė nėra aiški.",
-      "EN Description": "This song tells of a young woman sent far away by her mother, who then travels a long road and encounters the loss of her three brothers, described as fishermen. She asks them to find her lost youth, but they can only bring her a wreath and a silk ribbon, not her youthful days. The lyrics may symbolize longing, loss, and the passing of youth, but the exact meaning is open to interpretation."
+      "EN Description": "This song tells of a young woman sent far away by her mother, who then travels a long road and encounters the loss of her three brothers, described as fishermen. She asks them to find her lost youth, but they can only bring her a wreath and a silk ribbon, not her youthful days. The lyrics may symbolize longing, loss, and the passing of youth, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10737,7 +11086,8 @@ const songs: SongFile = [
       "Music Author": "V. Kernagis",
       "Text Author": "V. Kernagis",
       "LT Description": "Šioje dainoje kalbama apie atstumą ir ilgesį tarp dviejų žmonių, naudojant rudens, šešėlių ir naktinio miesto vaizdus. Tekste jaučiamas švelnumas, vienatvė ir laiko tėkmė. Rudens lapai ir auksas gali simbolizuoti pokyčius arba praradimą.",
-      "EN Description": "This song describes the emotional distance and longing between two people, using imagery of autumn, shadows, and the city at night. The lyrics focus on the feeling of separation, gentle affection, and the passage of time. The autumn leaves and golden colors may symbolize change or loss, but this is open to interpretation."
+      "EN Description": "This song describes the emotional distance and longing between two people, using imagery of autumn, shadows, and the city at night. The lyrics focus on the feeling of separation, gentle affection, and the passage of time. The autumn leaves and golden colors may symbolize change or loss, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10763,7 +11113,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra apie meilę ir pasididžiavimą savo gimtinei, Lietuvai. Ji aprašo gražią Lietuvos gamtą – jūrą, miškus ir laukus – bei džiaugsmą dėl savo šalies vardo. Daina gali išreikšti artumą ir ryšį su tėvyne, bet čia neminimos konkrečios tradicijos ar įvykiai.",
-      "EN Description": "This song is about the deep love and admiration for one's homeland, Lithuania. The lyrics describe the country's beautiful nature—its blue sea, forests, and green fields—and express pride in its name and heritage. The song may symbolize a sense of belonging and emotional connection to the land, but it does not mention specific traditions or historical events."
+      "EN Description": "This song is about the deep love and admiration for one's homeland, Lithuania. The lyrics describe the country's beautiful nature—its blue sea, forests, and green fields—and express pride in its name and heritage. The song may symbolize a sense of belonging and emotional connection to the land, but it does not mention specific traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10789,7 +11140,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ramų vakarą gamtoje, kai leidžiasi saulė ir žmonės linksmai susirenka prie laužo. Žodžiai išreiškia džiaugsmą, vienybę ir ryšį su gamta bei tarpusavyje. Sutartinės ir paukščių giesmės gali simbolizuoti darną.",
-      "EN Description": "This song describes a peaceful evening in nature as the sun sets and people gather joyfully around a bonfire. The lyrics evoke a sense of unity with nature and each other, celebrating the beauty of the surroundings and the act of singing together. The mention of sutartinės (traditional Lithuanian multipart songs) and birdsong may symbolize harmony and the connection between people and the natural world."
+      "EN Description": "This song describes a peaceful evening in nature as the sun sets and people gather joyfully around a bonfire. The lyrics evoke a sense of unity with nature and each other, celebrating the beauty of the surroundings and the act of singing together. The mention of sutartinės (traditional Lithuanian multipart songs) and birdsong may symbolize harmony and the connection between people and the natural world.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10815,7 +11167,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ramų vasaros vakarą gamtoje, kai vėjas nurimsta, rasa nusileidžia, o žmonės susirenka prie laužo dainuoti ir džiaugtis draugija. Čia jaučiama ramybė ir bendrystė, daina gali būti susijusi su stovyklavimo ar tautinėmis tradicijomis.",
-      "EN Description": "This song describes a peaceful summer evening in nature, where the wind has quieted, the dew has fallen, and campers gather around a fire, singing and enjoying each other's company. The lyrics evoke feelings of tranquility and togetherness, possibly reflecting Lithuanian camping or folk traditions. Animals and the natural world are gently present, adding to the sense of harmony with nature."
+      "EN Description": "This song describes a peaceful summer evening in nature, where the wind has quieted, the dew has fallen, and campers gather around a fire, singing and enjoying each other's company. The lyrics evoke feelings of tranquility and togetherness, possibly reflecting Lithuanian camping or folk traditions. Animals and the natural world are gently present, adding to the sense of harmony with nature.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10841,7 +11194,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie prisiminimus iš vaikystės namų ir motinos dainuotą lopšinę. Žodžiai išreiškia ilgesį praeičiai ir šeimos šilumai, ypač motinai. Gali simbolizuoti glaudų ryšį su gimtine ir šeimos tradicijomis.",
-      "EN Description": "This song is about remembering one's childhood home and the comfort of a mother's lullaby. The lyrics express longing for the past and the warmth found in memories of family, especially the mother. It may symbolize a deep connection to one's homeland and the importance of family traditions."
+      "EN Description": "This song is about remembering one's childhood home and the comfort of a mother's lullaby. The lyrics express longing for the past and the warmth found in memories of family, especially the mother. It may symbolize a deep connection to one's homeland and the importance of family traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10867,7 +11221,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie tikėjimo ir stiprybės praradimą, galbūt siejama su senosiomis lietuvių pagoniškomis tradicijomis ir istorine kova su užkariautojais. Tekste jaučiamas nusivylimas dievais, nuovargis ir ilgesys atgimimui ar pasikeitimui. Paminimi šventi ąžuolai, svetima žemė ir prarasta tėvynė.",
-      "EN Description": "This song reflects on the loss of faith and strength, possibly referencing Lithuania’s ancient pagan beliefs and the historical struggles of its people against invaders. The lyrics speak of disappointment in the gods, personal and collective exhaustion, and longing for spiritual renewal or transformation. There are allusions to sacred oak trees (important in Baltic paganism), foreign conquest (such as the Crusaders), and the pain of losing one’s homeland and identity."
+      "EN Description": "This song reflects on the loss of faith and strength, possibly referencing Lithuania’s ancient pagan beliefs and the historical struggles of its people against invaders. The lyrics speak of disappointment in the gods, personal and collective exhaustion, and longing for spiritual renewal or transformation. There are allusions to sacred oak trees (important in Baltic paganism), foreign conquest (such as the Crusaders), and the pain of losing one’s homeland and identity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10893,7 +11248,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kviečia Onytę pašokti, dainoje skamba meilė, džiaugsmas ir disko muzika. Tekste yra ir lietuviškų tradicijų užuominų, pavyzdžiui, aukso žiedai, vestuvės, žirgas. Angliški žodžiai gali simbolizuoti prisiminimus ar šventinę nuotaiką.",
-      "EN Description": "This song invites a girl named Onytė to dance, expressing warmth, joy, and the excitement of disco music. The lyrics mention themes of love, longing, memories, and traditional elements like wedding rituals and symbolic motifs from Lithuanian culture (such as golden rings and leading a horse). The inclusion of English lines referencing famous songs suggests a blend of nostalgia and celebration, but the overall meaning may symbolize both personal memories and a love for music and dancing."
+      "EN Description": "This song invites a girl named Onytė to dance, expressing warmth, joy, and the excitement of disco music. The lyrics mention themes of love, longing, memories, and traditional elements like wedding rituals and symbolic motifs from Lithuanian culture (such as golden rings and leading a horse). The inclusion of English lines referencing famous songs suggests a blend of nostalgia and celebration, but the overall meaning may symbolize both personal memories and a love for music and dancing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10919,7 +11275,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jūreivį prie gintaro jūros, kuris pasinėręs į mintis, o šalia jo svajoja mergina. Jūra aprašoma kaip švelni, bet kartu ir žiauri, sujungianti ir išskirianti širdis. Tekstas gali simbolizuoti meilės džiaugsmą ir skausmą arba tiesiog parodyti, kokią svarbią vietą jūra užima lietuvių gyvenime.",
-      "EN Description": "This song describes a sailor standing by the amber sea, lost in thought, while a blonde girl dreams nearby. The sea is portrayed both as gentle and as harsh, bringing people together and then separating them again. The lyrics may symbolize the bittersweet nature of love and separation, but could also simply reflect the powerful presence of the sea in Lithuanian life and imagination."
+      "EN Description": "This song describes a sailor standing by the amber sea, lost in thought, while a blonde girl dreams nearby. The sea is portrayed both as gentle and as harsh, bringing people together and then separating them again. The lyrics may symbolize the bittersweet nature of love and separation, but could also simply reflect the powerful presence of the sea in Lithuanian life and imagination.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10950,7 +11307,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jaunuolį, kuris anksti ryte palieka namus, turbūt išeina į karą. Jis atsisveikina su šeima, sutinka merginą, kuri ruošia drobes, bet sako, kad jų nenešios, nes taps kareiviu. Dainoje jaučiama išsiskyrimo skausmas ir drąsa prieš neramumus. Rūtų ir drobių paminėjimas susijęs su lietuviškomis tradicijomis.",
-      "EN Description": "This song tells the story of a young man leaving home at sunrise, likely to become a soldier. He says goodbye to his family and encounters a young woman preparing traditional linen, which he says he will not wear, as he will be dressed as a soldier. The lyrics may symbolize the pain of parting, the uncertainty of war, and the courage needed in difficult times. Certain elements, like the mention of rue and linen, are connected to Lithuanian folk traditions about youth, love, and farewells."
+      "EN Description": "This song tells the story of a young man leaving home at sunrise, likely to become a soldier. He says goodbye to his family and encounters a young woman preparing traditional linen, which he says he will not wear, as he will be dressed as a soldier. The lyrics may symbolize the pain of parting, the uncertainty of war, and the courage needed in difficult times. Certain elements, like the mention of rue and linen, are connected to Lithuanian folk traditions about youth, love, and farewells.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -10976,7 +11334,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai žaisminga lietuvių liaudies daina, kurioje klausiama Jonelio apie jo kelionę, krovinius ir ketinimus, o jis atsako išsisukinėjimais arba juokais. Dainoje daug kartojimo ir humoro. Paminėti Trijų karaliai – tradicinė šventė, švenčiama sausio 6 dieną.",
-      "EN Description": "This is a playful Lithuanian folk song in the form of a dialogue, where one person persistently questions Jonelis (a diminutive of Jonas, or John) about his travels, goods, and intentions, while Jonelis gives evasive or teasing answers. The song uses repetition and humor, and may reflect everyday village life or playful courtship. The mention of 'Trijų karalių' (Three Kings) could refer to the traditional holiday celebrated on January 6th, marking the end of the Christmas season in Lithuania."
+      "EN Description": "This is a playful Lithuanian folk song in the form of a dialogue, where one person persistently questions Jonelis (a diminutive of Jonas, or John) about his travels, goods, and intentions, while Jonelis gives evasive or teasing answers. The song uses repetition and humor, and may reflect everyday village life or playful courtship. The mention of 'Trijų karalių' (Three Kings) could refer to the traditional holiday celebrated on January 6th, marking the end of the Christmas season in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11003,7 +11362,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie keliavimą kartu, susikibus rankomis, per aukštą kalną link skaidraus šaltinio. Žodžiai įspėja apie pavojus kelyje ir ragina būti atsargiems, nes neteisingas pasirinkimas gali pakeisti žmogų. Dainoje yra nuorodų į lietuvių folklorą, bet jų prasmė nėra visiškai aiški.",
-      "EN Description": "This song tells of a journey taken together, hand in hand, over a high hill toward a clear spring. It speaks of challenges and choices along the way, warning not to drink from certain places or you may change, which may symbolize caution and the importance of making wise decisions. The references to transforming into animals might have roots in Lithuanian folklore, but the exact meaning is not entirely clear."
+      "EN Description": "This song tells of a journey taken together, hand in hand, over a high hill toward a clear spring. It speaks of challenges and choices along the way, warning not to drink from certain places or you may change, which may symbolize caution and the importance of making wise decisions. The references to transforming into animals might have roots in Lithuanian folklore, but the exact meaning is not entirely clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11032,7 +11392,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Ši daina pasakoja apie vaikus ar jaunus žmones, keliaujančius per šaltą žiemos kraštovaizdį, kur po ledu slypi prarasti draugai ar prisiminimai. Žodžiai atspindi gyvenimo trapumą, netektį ir viltį. Tekste nėra aiškių nuorodų į konkrečią tradiciją ar istorinius įvykius.",
-      "EN Description": "This song describes children or young people moving through a harsh, wintry landscape, where frozen faces and drowned friends beneath the ice might symbolize lost innocence, dangers, or difficult memories. The lyrics reflect on the fragility of life, the reality of loss, and the longing for hope and freedom. Although the song references walking barefoot on snow, which may evoke images of rural childhood in Lithuania, it does not clearly mention any specific tradition or historical event."
+      "EN Description": "This song describes children or young people moving through a harsh, wintry landscape, where frozen faces and drowned friends beneath the ice might symbolize lost innocence, dangers, or difficult memories. The lyrics reflect on the fragility of life, the reality of loss, and the longing for hope and freedom. Although the song references walking barefoot on snow, which may evoke images of rural childhood in Lithuania, it does not clearly mention any specific tradition or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11058,7 +11419,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašomas arklys ir giriamos jo geros savybės. Kiekvienoje strofoje išskiriama vis kita arklio dalis ir jos poveikis pasauliui. Tekstas gali tiesiog džiaugtis arklio svarba ir grožiu, bet galbūt simbolizuoja stiprybę ar budrumą.",
-      "EN Description": "This song describes a horse and praises its good qualities. Each verse highlights a different part of the horse, showing how it interacts with the world—its hooves beat the roads, its tail sweeps them clean, its ears hear the birds, and its eyes count the stars. The text may simply celebrate the horse’s importance and beauty, but could also symbolize admiration for strength and attentiveness, though that is not certain."
+      "EN Description": "This song describes a horse and praises its good qualities. Each verse highlights a different part of the horse, showing how it interacts with the world—its hooves beat the roads, its tail sweeps them clean, its ears hear the birds, and its eyes count the stars. The text may simply celebrate the horse’s importance and beauty, but could also symbolize admiration for strength and attentiveness, though that is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11084,7 +11446,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina skirta Žemaitijai – Lietuvos daliai, jos gamtai, istorijai ir žymiems žmonėms. Čia minimi svarbūs Lietuvos veikėjai ir pabrėžiamas meilė bei pasididžiavimas savo kraštu. Gali simbolizuoti lietuvių ryšį su gimtine ir jos laisvės siekį.",
-      "EN Description": "This song honors Žemaitija, a historical region in Lithuania, describing its landscapes, strong traditions, and important historical figures. The lyrics celebrate the region’s love of freedom, its noble heritage, and its connection to Lithuanian history through references to leaders and poets. The song may symbolize pride and respect for one’s homeland, and mentions figures like Kęstutis, Maironis, and Daukantas, who are important in Lithuanian culture."
+      "EN Description": "This song honors Žemaitija, a historical region in Lithuania, describing its landscapes, strong traditions, and important historical figures. The lyrics celebrate the region’s love of freedom, its noble heritage, and its connection to Lithuanian history through references to leaders and poets. The song may symbolize pride and respect for one’s homeland, and mentions figures like Kęstutis, Maironis, and Daukantas, who are important in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11110,7 +11473,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie tėvus, ruošiančius sūnų išvykai ar karui, ir jų liūdesį. Karūnėlė, akmuo ir rasa gali simbolizuoti netikrumą ar sunkumus. Dainoje jaučiama atsisveikinimo ir ilgesio nuotaika.",
-      "EN Description": "This folk song tells of parents preparing their son for a journey, possibly to war or a distant place, and expresses their sorrow. The imagery of the crown, stone, and dew may symbolize the burdens and uncertainties of departure, while the mention of Vilnius and the three trumpets could represent important news or significant events. The song reflects themes of farewell, longing, and the emotional impact of leaving home."
+      "EN Description": "This folk song tells of parents preparing their son for a journey, possibly to war or a distant place, and expresses their sorrow. The imagery of the crown, stone, and dew may symbolize the burdens and uncertainties of departure, while the mention of Vilnius and the three trumpets could represent important news or significant events. The song reflects themes of farewell, longing, and the emotional impact of leaving home.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11136,7 +11500,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus šaukia griežlę paukštį ir klausia, kur ji buvo vasarą. Tekste minimas šienavimas pievoje, kas atspindi kaimišką gyvenimą. Griežlė gali simbolizuoti vasaros gamtą, bet tai nėra aišku.",
-      "EN Description": "This song is about someone calling out to the corncrake bird, wondering where it was during the summer. The mention of making hay in the meadow suggests a rural, pastoral setting and everyday farm work. The corncrake may symbolize the presence or absence of nature during summer, but this is not certain."
+      "EN Description": "This song is about someone calling out to the corncrake bird, wondering where it was during the summer. The mention of making hay in the meadow suggests a rural, pastoral setting and everyday farm work. The corncrake may symbolize the presence or absence of nature during summer, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11168,7 +11533,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie raitelį, kuris apsistoja dvare ir pririša žirgą prie rūtų darželio. Žirgas išmindžioja žalias rūtas, dėl ko mergelė nuliūsta ir verkia, nes rūtos jai brangesnės už auksinį žiedą. Rūta lietuvių kultūroje dažnai reiškia tyrumą ir jaunystę, bet ši prasmė gali būti ne visada aiški.",
-      "EN Description": "This folk song tells the story of a rider who stops at a manor and ties his horse near a garden of rue, a plant with symbolic meaning in Lithuanian culture. The horse tramples the green rue, upsetting a young woman, who values the rue more than a golden ring offered by the rider. The song may symbolize the importance of traditional values and purity, as rue is often associated with youth and maidenhood in Lithuanian folklore, but this interpretation is not certain."
+      "EN Description": "This folk song tells the story of a rider who stops at a manor and ties his horse near a garden of rue, a plant with symbolic meaning in Lithuanian culture. The horse tramples the green rue, upsetting a young woman, who values the rue more than a golden ring offered by the rider. The song may symbolize the importance of traditional values and purity, as rue is often associated with youth and maidenhood in Lithuanian folklore, but this interpretation is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11199,7 +11565,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra žaismingas pokalbis tarp dviejų žmonių, naudojant meilius kreipinius. Vienas klausia, kur kitas buvo ir ką parnešė, o atsakymas – butelis vyno iš Vilniaus. Dainos priedainiai ir artimi žodžiai gali simbolizuoti šilumą ar svetingumą.",
-      "EN Description": "This song is a playful dialogue between two people, using affectionate nicknames. One asks where the other has been and what he has brought back, and the answer is a bottle of wine from Vilnius. The song’s repetitive structure and use of endearing terms may symbolize warmth, hospitality, or rural traditions, but the exact meaning is open to interpretation."
+      "EN Description": "This song is a playful dialogue between two people, using affectionate nicknames. One asks where the other has been and what he has brought back, and the answer is a bottle of wine from Vilnius. The song’s repetitive structure and use of endearing terms may symbolize warmth, hospitality, or rural traditions, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11225,7 +11592,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie kaimo gyvenimą – šienapjūtę ir kelionę į Rygą, galbūt į kovą ar žygį. Vėlesnėse strofuose minimas mūšis ar apgultis, kraujas ir drąsa. Tai gali simbolizuoti karo sunkumus arba būti pasakojimas apie istorinius įvykius.",
-      "EN Description": "This song describes scenes from rural life, where people mow grass and then ride towards Riga, possibly on a journey or for battle. Later verses seem to depict a siege or battle, with strong fortifications, bullets flying, blood flowing, and dogs drinking like lions. The song may symbolize the hardships of war and bravery, but it could also simply be recounting folk experiences or historical events involving Lithuanians and the city of Riga."
+      "EN Description": "This song describes scenes from rural life, where people mow grass and then ride towards Riga, possibly on a journey or for battle. Later verses seem to depict a siege or battle, with strong fortifications, bullets flying, blood flowing, and dogs drinking like lions. The song may symbolize the hardships of war and bravery, but it could also simply be recounting folk experiences or historical events involving Lithuanians and the city of Riga.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11251,7 +11619,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie merginas, kurios dainuoja linksmą dainą keliaudamos per Lietuvą. Dainoje pabrėžiama, kad daina suteikia džiaugsmo, vienija žmones ir primena namus. Kartojamos frazės gali simbolizuoti lietuviškų liaudies dainų tradicijas.",
-      "EN Description": "This song is about young girls singing cheerful songs as they travel across Lithuania. The lyrics celebrate the joy that singing brings, uniting people and reminding them of home. The repeated phrases and joyful refrains may symbolize traditional Lithuanian folk singing, which is often communal and uplifting."
+      "EN Description": "This song is about young girls singing cheerful songs as they travel across Lithuania. The lyrics celebrate the joy that singing brings, uniting people and reminding them of home. The repeated phrases and joyful refrains may symbolize traditional Lithuanian folk singing, which is often communal and uplifting.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11278,7 +11647,8 @@ const songs: SongFile = [
       },
       "Text Author": "Maironis",
       "LT Description": "Ši daina pasakoja apie motiną, kuri liūdi, kai jos sūnus eina ginti tėvynės. Žodžiai ramina motiną ir primena apie auką bei garbę žuvusiems. Eilėse minimi ąžuolai ir angelai gali simbolizuoti stiprybę ir dvasinę ramybę.",
-      "EN Description": "This song is about a mother grieving as her young son goes to defend their homeland. The lyrics comfort the mother, reminding her of the importance of sacrifice for the country and honoring those who have fallen. The imagery of soldiers, oak trees, and angels may symbolize bravery, strength, and spiritual peace, but could also reflect broader themes of loss and remembrance related to Lithuania’s history of struggle for independence."
+      "EN Description": "This song is about a mother grieving as her young son goes to defend their homeland. The lyrics comfort the mother, reminding her of the importance of sacrifice for the country and honoring those who have fallen. The imagery of soldiers, oak trees, and angels may symbolize bravery, strength, and spiritual peace, but could also reflect broader themes of loss and remembrance related to Lithuania’s history of struggle for independence.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11310,7 +11680,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie liūdesį ar nerimą – diena yra nelinksma, dangus apniukęs, lyja lietus. Eilėraštis seka žmogų, vaikštantį darželyje ir kalbantį su rūtų augalu, kuris gali simbolizuoti ilgesį ar prarastą laimę. Rūta ir darželis dažnai minimi lietuvių liaudies dainose apie jaunystę, meilę ar laukimą.",
-      "EN Description": "This song expresses a feeling of sadness or melancholy, describing a day that is not joyful, cloudy skies, and gentle rain. The lyrics follow a person walking in a garden, reflecting on their emotions and speaking to the rue plant, which can symbolize longing or lost happiness. Mention of the rue (rūta) and the garden is common in Lithuanian folk songs, often connected to themes of youth, love, or waiting."
+      "EN Description": "This song expresses a feeling of sadness or melancholy, describing a day that is not joyful, cloudy skies, and gentle rain. The lyrics follow a person walking in a garden, reflecting on their emotions and speaking to the rue plant, which can symbolize longing or lost happiness. Mention of the rue (rūta) and the garden is common in Lithuanian folk songs, often connected to themes of youth, love, or waiting.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11343,7 +11714,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina apie jaunuolį, atvykstantį pas mylimąją į namus, galbūt piršlyboms ar vedyboms. Dainoje aprašomas susitikimas su merginos mama, svetingumas ir priėmimas. Ši daina gali simbolizuoti vestuvių papročius ir pagarbą nuotakos šeimai.",
-      "EN Description": "This is a traditional Lithuanian folk song where a young man visits his beloved’s home to propose or marry her. The lyrics describe his arrival, the welcoming by her mother (mother-in-law), and the symbolic gestures of hospitality and acceptance. The song may reflect themes of marriage customs, respect towards the bride’s family, and the importance of ritual in Lithuanian village life."
+      "EN Description": "This is a traditional Lithuanian folk song where a young man visits his beloved’s home to propose or marry her. The lyrics describe his arrival, the welcoming by her mother (mother-in-law), and the symbolic gestures of hospitality and acceptance. The song may reflect themes of marriage customs, respect towards the bride’s family, and the importance of ritual in Lithuanian village life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11374,7 +11746,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje sergantis žmogus prašo šeimos narių atnešti vandens, bet visi yra užsiėmę darbais. Tik mylimasis nutraukia darbus ir atneša vandens. Tai gali simbolizuoti ypatingą ryšį tarp įsimylėjėlių arba parodyti paprastą kaimo gyvenimą.",
-      "EN Description": "This song tells the story of someone who is ill and asks different family members for water, but each is too busy with their own work to help. Only the beloved (sweetheart) stops their work to bring the water. The song may symbolize longing for care and the special bond between lovers, though it could also simply reflect daily rural life."
+      "EN Description": "This song tells the story of someone who is ill and asks different family members for water, but each is too busy with their own work to help. Only the beloved (sweetheart) stops their work to bring the water. The song may symbolize longing for care and the special bond between lovers, though it could also simply reflect daily rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11400,7 +11773,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje strazdas klausinėjamas, ką jis veikia miške, o jis atsako, kad tiesiog augina savo vaikus ir renka maistą. Daina gali simbolizuoti paprastą gamtos gyvenimą ir rūpestį, bet daugiausia pasakoja apie paukščio kasdienybę.",
-      "EN Description": "This song is about a thrush bird being asked what it sings about in the forest. The bird replies that it is not growing hazel trees or ripening nuts or berries, but simply gathering food and raising its young. The song may symbolize the simplicity and care of nature, but mainly it describes the bird's everyday life."
+      "EN Description": "This song is about a thrush bird being asked what it sings about in the forest. The bird replies that it is not growing hazel trees or ripening nuts or berries, but simply gathering food and raising its young. The song may symbolize the simplicity and care of nature, but mainly it describes the bird's everyday life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11433,7 +11807,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie merginą, kuri mylėjo vaikiną, bet jis tapo išdidus ir nutolo. Ji liūdi ir sako, kad su ja verks ne tik ji, bet ir takeliai, upelis bei seklyčia, kur jis lankėsi. Dainoje jaučiama meilės netektis ir ilgesys.",
-      "EN Description": "This folk song tells of a girl who loved a young man, but he grew proud and distanced himself. She expresses her sadness, saying that not only she but also the familiar paths, the stream, and the room where he visited will 'weep' with her. The song reflects themes of lost love and longing, and the mention of 'seklyčia' (a traditional main room in a Lithuanian farmhouse) highlights rural cultural settings."
+      "EN Description": "This folk song tells of a girl who loved a young man, but he grew proud and distanced himself. She expresses her sadness, saying that not only she but also the familiar paths, the stream, and the room where he visited will 'weep' with her. The song reflects themes of lost love and longing, and the mention of 'seklyčia' (a traditional main room in a Lithuanian farmhouse) highlights rural cultural settings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11466,7 +11841,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie merginą, kuri iš motinos namų iškeliauja pas anytą. Ji aprašo, kaip pasikeičia merginos gyvenimas: anksčiau buvo darbšti, o dabar anyta ją apkalba ir kritikuoja. Bijūnas gali simbolizuoti jaunystę ar grožį, tačiau tiksli prasmė nėra aiški.",
-      "EN Description": "This folk song tells about a young woman who, after marriage, moves from her mother's home to live with her mother-in-law. The lyrics describe how her life changes: she used to be hardworking at her mother's, but now is criticized by her mother-in-law for her work and habits. The peony flower may symbolize youth, beauty, or the fleeting nature of happiness, but the exact meaning is open to interpretation."
+      "EN Description": "This folk song tells about a young woman who, after marriage, moves from her mother's home to live with her mother-in-law. The lyrics describe how her life changes: she used to be hardworking at her mother's, but now is criticized by her mother-in-law for her work and habits. The peony flower may symbolize youth, beauty, or the fleeting nature of happiness, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11492,7 +11868,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje linksmame liaudies dainoje pasakojama apie vaikiną Jonelį, kurį ragina vesti, bet jam sunku rasti tinkamą žmoną. Kiekviena mergina turi juokingą trūkumą, todėl Jonelis abejoja santuoka. Daina pabrėžia gaspadinės svarbą kaimo gyvenime ir mini Velykas, kas gali sietis su pavasario šventėmis.",
-      "EN Description": "This playful folk song tells about a young man, Jonelis, who is encouraged to get married but struggles to find a suitable wife. The verses humorously describe his attempts with different women, each with a comical flaw, and express his doubts about marriage. The song references the importance of having a housewife (gaspadinė) in traditional Lithuanian rural life, and the mention of Easter (Velyk) suggests ties to springtime or holiday festivities."
+      "EN Description": "This playful folk song tells about a young man, Jonelis, who is encouraged to get married but struggles to find a suitable wife. The verses humorously describe his attempts with different women, each with a comical flaw, and express his doubts about marriage. The song references the importance of having a housewife (gaspadinė) in traditional Lithuanian rural life, and the mention of Easter (Velyk) suggests ties to springtime or holiday festivities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11518,7 +11895,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje močiutė laukia prie vartų ir klausia dukros, ar ji grįžo su visais. Dukra sako, kad ne, bet grįžo pas mamą dėl rūtų vainikėlio, kuris gali simbolizuoti mergystę ar vestuves. Dainoje minima ir sakalas, kuris prašomas parnešti vainikėlį.",
-      "EN Description": "This folk song tells of a grandmother waiting at the gate, asking her young daughter if she has returned with everyone. The daughter says she has not, but has come home to her mother to bring a wreath of rue, which may symbolize maidenhood or a wedding. The song also mentions a falcon, asking it to bring a wreath, which could be a poetic symbol of longing or hope."
+      "EN Description": "This folk song tells of a grandmother waiting at the gate, asking her young daughter if she has returned with everyone. The daughter says she has not, but has come home to her mother to bring a wreath of rue, which may symbolize maidenhood or a wedding. The song also mentions a falcon, asking it to bring a wreath, which could be a poetic symbol of longing or hope.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11545,7 +11923,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žalią girią su paukščiais ir apie motiną, ruošiančią dukrą, bei tėvą, ruošiančius sūnų į svetimą šalį. Dainoje jaučiama tėvų liūdesys ir tuštuma, kai vaikai išvyksta, o tai gali simbolizuoti išvykimą ar vedybas. Dainoje naudojami lietuvių liaudies vaizdai, bet nėra aiškių nuorodų į šventes ar istorinius įvykius.",
-      "EN Description": "This song describes scenes from a green forest filled with birds and depicts a mother preparing her daughter, and a father preparing his son, to leave for a foreign land. The lyrics speak about the sorrow of parents left behind and the emptiness that follows the departure of their children, which may symbolize migration or marriage. The song uses typical Lithuanian folk imagery and may reflect traditional village life, but there is no clear reference to a specific holiday or historical event."
+      "EN Description": "This song describes scenes from a green forest filled with birds and depicts a mother preparing her daughter, and a father preparing his son, to leave for a foreign land. The lyrics speak about the sorrow of parents left behind and the emptiness that follows the departure of their children, which may symbolize migration or marriage. The song uses typical Lithuanian folk imagery and may reflect traditional village life, but there is no clear reference to a specific holiday or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11577,7 +11956,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kviečiama drauge dainuoti įvairiais būdais, lyginant save su paukščiais gamtoje. Žodžiai kartojasi ir sukuria linksmą, bendruomenišką nuotaiką. Daina gali simbolizuoti vienybę ir bendrumą su gamta, bet svarbiausia yra kartu dainuoti.",
-      "EN Description": "This song invites people to sing together in different ways, comparing their singing to birds in nature. The lyrics repeat simple actions like standing, sitting, crouching, or lying down, and connect them to birds' behaviors. The joyful exclamations and nature imagery create a playful, communal mood, and may symbolize unity and harmony with nature, but the main focus is on togetherness and singing."
+      "EN Description": "This song invites people to sing together in different ways, comparing their singing to birds in nature. The lyrics repeat simple actions like standing, sitting, crouching, or lying down, and connect them to birds' behaviors. The joyful exclamations and nature imagery create a playful, communal mood, and may symbolize unity and harmony with nature, but the main focus is on togetherness and singing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11604,7 +11984,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje mergina išteka už vaikino, kuris žadėjo turtus, bet vėliau ji patenka į sunkią padėtį ir pasijunta nelaiminga. Ji ilgesingai vyksta pas močiutę ieškoti paguodos. Daina gali simbolizuoti nusivylimą santuokoje ir ilgesį namų.",
-      "EN Description": "This song tells the story of a young woman who is promised riches by a suitor, but after marriage, finds herself in a difficult situation, possibly in a poor household. She longs for her old life and visits her grandmother, seeking comfort. The song may symbolize the disappointment of unmet expectations in marriage and the longing for home, which are common themes in Lithuanian folk songs."
+      "EN Description": "This song tells the story of a young woman who is promised riches by a suitor, but after marriage, finds herself in a difficult situation, possibly in a poor household. She longs for her old life and visits her grandmother, seeking comfort. The song may symbolize the disappointment of unmet expectations in marriage and the longing for home, which are common themes in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11631,7 +12012,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį ir prisiminimus apie tolimą tėvynę, žvelgiant nuo jūros kranto. Joje jaučiama atskirtis ir stiprus ryšys su šalimi, kurios galbūt dainininkas asmeniškai nepažįsta, bet vis tiek ilgisi. Sugriauta smėlio pilis krante gali simbolizuoti prarastą nekaltumą ar prisiminimų trapumą, bet tai tik spėjimas.",
-      "EN Description": "This song describes longing and nostalgia for a distant homeland, seen from the seashore. It expresses feelings of separation and a deep emotional connection to the country, which the singer may not know personally but still misses. The image of a sandcastle destroyed on the shore could symbolize lost innocence or the fragility of memories, but this is open to interpretation."
+      "EN Description": "This song describes longing and nostalgia for a distant homeland, seen from the seashore. It expresses feelings of separation and a deep emotional connection to the country, which the singer may not know personally but still misses. The image of a sandcastle destroyed on the shore could symbolize lost innocence or the fragility of memories, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11664,7 +12046,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje vaizduojama graži gamtos scena prie upelio, kur vaikinas girdys žirgą, o mergina prausia veidą. Dainoje minimi žodžiai apie pasogą gali reikšti vestuvių papročius. Kartojamas priedainis „liūli liūli“ suteikia dainai ramumo.",
-      "EN Description": "This folk song describes a picturesque scene by a stream, where a young man waters his horse and a young woman washes her face. The lyrics mention admiration, possible courtship, and references to a dowry, which may symbolize marriage traditions. The repeating lullaby-like refrain ('liūli liūli') adds a gentle, soothing tone and is common in Lithuanian folk songs."
+      "EN Description": "This folk song describes a picturesque scene by a stream, where a young man waters his horse and a young woman washes her face. The lyrics mention admiration, possible courtship, and references to a dowry, which may symbolize marriage traditions. The repeating lullaby-like refrain ('liūli liūli') adds a gentle, soothing tone and is common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11690,7 +12073,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina ragina džiaugtis gyvenimu ir linksmintis, kol esame jauni, nes senatvėje tam gali nebelikti laiko. Žodžiai pabrėžia, kad jaunystė yra ypatingas ir nerūpestingas laikas. Daina gali atspindėti lietuvišką tradiciją vertinti jaunystę ir bendrą dainavimą.",
-      "EN Description": "This song encourages young people to enjoy life and celebrate while they are still young, as old age will bring worries and less opportunity for fun. The lyrics reflect on youth as a precious, carefree time, and suggest that joy and happiness are natural when one is young. The song may symbolize a traditional attitude in Lithuanian culture that values youth, communal singing, and enjoying the present moment."
+      "EN Description": "This song encourages young people to enjoy life and celebrate while they are still young, as old age will bring worries and less opportunity for fun. The lyrics reflect on youth as a precious, carefree time, and suggest that joy and happiness are natural when one is young. The song may symbolize a traditional attitude in Lithuanian culture that values youth, communal singing, and enjoying the present moment.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11717,7 +12101,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra nuoširdi malda, prašanti Dievo palaimos ir apsaugos Lietuvos žmonėms, ypač vaikams. Tekste išreiškiamas noras gyventi taikoje, vienybėje, laisvėje, o taip pat minima Lietuvos tradicijos ir istorinis laisvės siekis.",
-      "EN Description": "This song is a heartfelt prayer asking for blessing and protection for the people of Lithuania, especially its children. It respectfully addresses God, expressing hope for peace, unity, and the strength to overcome fear and lies. There are references to Lithuania's traditions (crosses, songs) and a longing for freedom, which may symbolize the country's historical struggles and national identity."
+      "EN Description": "This song is a heartfelt prayer asking for blessing and protection for the people of Lithuania, especially its children. It respectfully addresses God, expressing hope for peace, unity, and the strength to overcome fear and lies. There are references to Lithuania's traditions (crosses, songs) and a longing for freedom, which may symbolize the country's historical struggles and national identity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11743,7 +12128,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jauną mergelę, kuri ravėjo linus ir ją užkalbino vaikinas. Jis sako, kad jos tėvas pažadėjo ją jam, bet mergelė nenori tekėti. Dainoje atspindimas kaimo gyvenimas, piršlybos ir merginos pasirinkimo laisvė.",
-      "EN Description": "This folk song tells about a young maiden working in the flax fields at sunrise, who is approached by a young man with affectionate words. He claims her father promised her to him, but the maiden refuses to marry, saying she does not want to pay for what was eaten and drunk. The song reflects common Lithuanian themes of rural life, courtship, and the autonomy of young women, but may also symbolize traditional expectations and resistance to arranged marriage."
+      "EN Description": "This folk song tells about a young maiden working in the flax fields at sunrise, who is approached by a young man with affectionate words. He claims her father promised her to him, but the maiden refuses to marry, saying she does not want to pay for what was eaten and drunk. The song reflects common Lithuanian themes of rural life, courtship, and the autonomy of young women, but may also symbolize traditional expectations and resistance to arranged marriage.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11775,7 +12161,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jaunuolį, paliekantį gimtinę, galbūt kovoti už Lietuvos laisvę. Jis išreiškia meilę Tėvynei ir mylimajai, o taip pat pasiryžimą aukotis už šalį. Daina gali simbolizuoti lietuvių patirtis karo ar okupacijos metais.",
-      "EN Description": "This song tells the story of a young man leaving his homeland, possibly to fight for Lithuania’s freedom. It expresses the pain of separation, love for the motherland and a beloved girl, and the willingness to sacrifice for the country's independence. The song may symbolize the experiences of Lithuanians during times of war or occupation, but it is not tied to a specific historical event."
+      "EN Description": "This song tells the story of a young man leaving his homeland, possibly to fight for Lithuania’s freedom. It expresses the pain of separation, love for the motherland and a beloved girl, and the willingness to sacrifice for the country's independence. The song may symbolize the experiences of Lithuanians during times of war or occupation, but it is not tied to a specific historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11808,7 +12195,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie atsisveikinimą – kiekvienas šeimos narys ir bendruomenė palydi dainininką iki tam tikros vietos. Tai gali simbolizuoti vestuvių ar išvykimo iš namų paprotį, kai artimieji palydi žmogų naujam gyvenimo etapui.",
-      "EN Description": "This song describes a farewell, where each family member and the community accompanies the singer a short distance, each to a different symbolic place. The text likely reflects a traditional Lithuanian wedding or departure ritual, where the bride or someone leaving home is escorted by loved ones, but it could also symbolize leaving childhood or an important life transition."
+      "EN Description": "This song describes a farewell, where each family member and the community accompanies the singer a short distance, each to a different symbolic place. The text likely reflects a traditional Lithuanian wedding or departure ritual, where the bride or someone leaving home is escorted by loved ones, but it could also symbolize leaving childhood or an important life transition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11835,7 +12223,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie prašymą pamiršti buvusią meilę. Dainos žodžiai kalba apie prisiminimus ir jausmus, susijusius su pasibaigusiais santykiais, bei skausmą paleidžiant. Daina nenurodo jokių lietuviškų tradicijų ar istorinių įvykių.",
-      "EN Description": "This song is about asking someone to forget a past love. The lyrics describe memories and emotions connected to a relationship that has ended, expressing the pain of letting go. The song may symbolize the difficulty of moving on, but does not mention any specific Lithuanian traditions or historical events."
+      "EN Description": "This song is about asking someone to forget a past love. The lyrics describe memories and emotions connected to a relationship that has ended, expressing the pain of letting go. The song may symbolize the difficulty of moving on, but does not mention any specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11861,7 +12250,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra lopšinė apie saulės palydėjimą ir sapnų kvietimą naktį. Žodžiai ramina vaiką prieš miegą, vaizduoja stebuklingus sapnų pasaulius su žvaigždėmis, avytėmis ir mėnuliu. Daina gali simbolizuoti dienos pabaigą ir ramių sapnų linkėjimą.",
-      "EN Description": "This is a gentle lullaby about saying goodbye to the sun and inviting dreams to come at night. The lyrics describe a child being comforted to sleep, imagining magical dream worlds full of stars, sheep, and kind moonlight. The song may symbolize the transition from day to night and the hope for sweet dreams, but it mainly focuses on creating a soothing bedtime atmosphere."
+      "EN Description": "This is a gentle lullaby about saying goodbye to the sun and inviting dreams to come at night. The lyrics describe a child being comforted to sleep, imagining magical dream worlds full of stars, sheep, and kind moonlight. The song may symbolize the transition from day to night and the hope for sweet dreams, but it mainly focuses on creating a soothing bedtime atmosphere.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11888,7 +12278,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie stiprią meilę ir ilgesį. Ji naudoja vaizdus apie susiliečiančias lūpas ir suartėjančias širdis, taip išreiškiant artumą, atleidimą ir tikėjimą meile. 'Papartėlis' gali simbolizuoti kažką ypatingo ar stebuklingo, galbūt Joninių paparčio žiedą, kuris lietuvių kultūroje reiškia laimę ir meilę.",
-      "EN Description": "The song expresses deep feelings of love and longing. Through imagery of lips meeting and hearts drawing close, it describes a relationship that faces challenges but is built on forgiveness and enduring affection. The word 'papartėlis' (little fern) may symbolize something rare or magical in Lithuanian culture, possibly alluding to the legendary fern blossom, which is found during the traditional midsummer festival (Joninės) and represents true love or happiness."
+      "EN Description": "The song expresses deep feelings of love and longing. Through imagery of lips meeting and hearts drawing close, it describes a relationship that faces challenges but is built on forgiveness and enduring affection. The word 'papartėlis' (little fern) may symbolize something rare or magical in Lithuanian culture, possibly alluding to the legendary fern blossom, which is found during the traditional midsummer festival (Joninės) and represents true love or happiness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11917,7 +12308,8 @@ const songs: SongFile = [
       "Music Author": "A. Mamontovas",
       "Text Author": "A. Mamontovas",
       "LT Description": "Ši daina kalba apie pyktį ir neapykantą, bet kviečia rinktis draugystę ir atjautą. Čia svarbu atleisti, padėti vieni kitiems ir pradėti iš naujo. Daina nesiremia aiškiomis lietuviškomis tradicijomis ar istoriniais įvykiais.",
-      "EN Description": "This song is about overcoming anger and hatred and choosing compassion and unity instead. It talks about opening up to forgiveness, supporting each other, and the hope that comes with new beginnings. The song may symbolize a call for peace and togetherness, but it does not clearly reference any specific Lithuanian traditions or historical events."
+      "EN Description": "This song is about overcoming anger and hatred and choosing compassion and unity instead. It talks about opening up to forgiveness, supporting each other, and the hope that comes with new beginnings. The song may symbolize a call for peace and togetherness, but it does not clearly reference any specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11943,7 +12335,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jaunuolį, atplaukiantį gražiai papuoštu laiveliu, ir merginą, kuri renkasi mylimąjį iš kitų bernelių. Ji ragina jį saugoti jų meilę. Sidabras ir auksas bei merginos pasirinkimas gali simbolizuoti meilės ar piršlybų tradicijas, bet galima suprasti ir kitaip.",
-      "EN Description": "This song tells of a young man arriving in a decorated boat, and a young woman reflecting on her suitors. She chooses the one she truly loves, warning him to guard their love. The imagery of silver and gold on the boat and references to suitors may symbolize courtship traditions, but the meaning can be open to interpretation."
+      "EN Description": "This song tells of a young man arriving in a decorated boat, and a young woman reflecting on her suitors. She chooses the one she truly loves, warning him to guard their love. The imagery of silver and gold on the boat and references to suitors may symbolize courtship traditions, but the meaning can be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11970,7 +12363,8 @@ const songs: SongFile = [
       },
       "Music Author": "Faustas Strolia",
       "LT Description": "Ši daina pasakoja apie partizaną, kuris palieka namus, o artimieji liūdi ir tikisi jo sugrįžimo. Dainoje jaučiama liūdesio, vilties ir laisvės troškimo nuotaika. Gali būti užsimenama apie Lietuvos partizanų kovas už laisvę.",
-      "EN Description": "This song is about a partisan leaving home, with his loved ones mourning his departure and uncertain return. The lyrics reflect sorrow, hope, and the longing for freedom, likely referencing the Lithuanian partisans who fought against occupation. The song may symbolize sacrifice for the homeland and the enduring hope that both loved ones and Lithuania itself will find freedom again."
+      "EN Description": "This song is about a partisan leaving home, with his loved ones mourning his departure and uncertain return. The lyrics reflect sorrow, hope, and the longing for freedom, likely referencing the Lithuanian partisans who fought against occupation. The song may symbolize sacrifice for the homeland and the enduring hope that both loved ones and Lithuania itself will find freedom again.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -11996,7 +12390,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra malda, prašanti Dievo sugrąžinti žmones namo, kaip paukščius. Dainoje kalbama apie ilgesį tėvynei, ramybę ir viltį, kad Lietuva vėl klestės. Taip pat minimos Sekminės, kurios lietuviams yra džiugi šventė.",
-      "EN Description": "This song is a prayer asking God to bring people home, like birds returning to their nests. It speaks about longing for the homeland, peace, and hope for Lithuania to flourish again. It also mentions Pentecost, which in Lithuanian tradition is a joyful Christian holiday, and may symbolize spiritual renewal and gathering."
+      "EN Description": "This song is a prayer asking God to bring people home, like birds returning to their nests. It speaks about longing for the homeland, peace, and hope for Lithuania to flourish again. It also mentions Pentecost, which in Lithuanian tradition is a joyful Christian holiday, and may symbolize spiritual renewal and gathering.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12025,7 +12420,8 @@ const songs: SongFile = [
       "Music Author": "Neda",
       "Text Author": "Neda",
       "LT Description": "Ši daina pasakoja apie ramų, jaukų dviejų žmonių vakarą naktį. Žodžiai kalba apie meilės atvirumą, artumą ir laukimą iki ryto. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas.",
-      "EN Description": "This song tells about a quiet, intimate moment between two people at night. The lyrics describe letting love unfold, seeking comfort, and sharing dreams while waiting for the dawn. The language is poetic and gentle, and the night might symbolize a time of vulnerability or hope, but it is not clear if it refers to any specific Lithuanian tradition."
+      "EN Description": "This song tells about a quiet, intimate moment between two people at night. The lyrics describe letting love unfold, seeking comfort, and sharing dreams while waiting for the dawn. The language is poetic and gentle, and the night might symbolize a time of vulnerability or hope, but it is not clear if it refers to any specific Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12058,7 +12454,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje klausiama, kas pasodino merginą už balto stalo, ir ji atsako, kad ne šeima, o jaunas vaikinas. Tai gali simbolizuoti vestuvių ar suaugusio gyvenimo pradžią, kai mergina palieka šeimą.",
-      "EN Description": "This song is a conversation where someone asks a young woman who placed her at the white table, suggesting a special or ceremonial moment. She replies it was not her family, but a young man, possibly hinting at engagement or marriage. The song may symbolize leaving one's family and joining another, which is common in Lithuanian wedding and folk traditions."
+      "EN Description": "This song is a conversation where someone asks a young woman who placed her at the white table, suggesting a special or ceremonial moment. She replies it was not her family, but a young man, possibly hinting at engagement or marriage. The song may symbolize leaving one's family and joining another, which is common in Lithuanian wedding and folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12084,7 +12481,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie dobilo pasėjimą, augimą ir nupjovimą ant aukšto kalnelio. Žodžiai paprastai aprašo visą dobilo gyvenimo ciklą. Kartais dobilas siejamas su sėkme ar derlingumu, bet šiame kūrinyje aiškios simbolikos nėra.",
-      "EN Description": "The song tells the simple story of sowing, growing, and harvesting a clover plant on a high hill. The lyrics follow the entire life cycle of the clover, from planting to gathering, which may symbolize the natural rhythm of rural life or the passage of time, but the song mostly presents these actions in a straightforward way. Clover is sometimes connected to Lithuanian rural traditions and is valued as a symbol of luck or fertility, but here its use is not clearly tied to a specific holiday or event."
+      "EN Description": "The song tells the simple story of sowing, growing, and harvesting a clover plant on a high hill. The lyrics follow the entire life cycle of the clover, from planting to gathering, which may symbolize the natural rhythm of rural life or the passage of time, but the song mostly presents these actions in a straightforward way. Clover is sometimes connected to Lithuanian rural traditions and is valued as a symbol of luck or fertility, but here its use is not clearly tied to a specific holiday or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12110,7 +12508,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie kanapės sėją, auginimą ir darbą su ja prie marių, o vėliau ruošiama kelionė pas merginą. Daina atspindi kaimo gyvenimą ir kanapės svarbą lietuvių kultūroje. Kelionė pas merginą gali simbolizuoti piršlybas, bet dainoje tai nėra aiškiai pasakyta.",
-      "EN Description": "This folk song tells about sowing, growing, and processing hemp near a lake, followed by crafting and preparing for a journey to visit a girl. The steps reflect the traditional rural life and the use of hemp in Lithuanian culture, where it was important for making ropes and other tools. The journey to a girl may symbolize courtship, though this is not stated directly."
+      "EN Description": "This folk song tells about sowing, growing, and processing hemp near a lake, followed by crafting and preparing for a journey to visit a girl. The steps reflect the traditional rural life and the use of hemp in Lithuanian culture, where it was important for making ropes and other tools. The journey to a girl may symbolize courtship, though this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12142,7 +12541,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie linų auginimą ir apdorojimą, viską darant dėl mylimo vaikino. Kiekvienas linų auginimo etapas atspindi rūpestį ir meilę. Daina gali simbolizuoti ištikimybę ir kasdienį kaimo gyvenimą.",
-      "EN Description": "This song describes the growing and processing of flax, likely as a metaphor for love or a relationship. The singer goes through each stage of flax cultivation, all done for a beloved young man. The song reflects traditional Lithuanian rural life, where flax was important for making cloth, and may symbolize devotion and the passage of time."
+      "EN Description": "This song describes the growing and processing of flax, likely as a metaphor for love or a relationship. The singer goes through each stage of flax cultivation, all done for a beloved young man. The song reflects traditional Lithuanian rural life, where flax was important for making cloth, and may symbolize devotion and the passage of time.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12168,7 +12568,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje mergina pasisodina žalią rūtą, kuri auga ir žydi, kol galiausiai ji išteka. Rūta Lietuvoje dažnai simbolizuoja tyrumą ir mergystę, ypač vestuvių papročiuose. Daina gali atspindėti merginos gyvenimo etapus iki santuokos.",
-      "EN Description": "This song tells the story of a girl who plants a green rue, which grows and blooms as time passes, symbolizing her journey from girlhood to womanhood and marriage. The rue plant is often associated with purity and maidenhood in Lithuanian culture, especially in wedding traditions. The lyrics may represent the stages of a young woman's life before she marries, but the exact meaning can vary depending on interpretation."
+      "EN Description": "This song tells the story of a girl who plants a green rue, which grows and blooms as time passes, symbolizing her journey from girlhood to womanhood and marriage. The rue plant is often associated with purity and maidenhood in Lithuanian culture, especially in wedding traditions. The lyrics may represent the stages of a young woman's life before she marries, but the exact meaning can vary depending on interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12194,7 +12595,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai žaisminga lietuviška daina apie merginą, kuri eina pasivaikščioti po žalius miškus ir sutinka švelnų vaikiną. Dainoje kalbama apie paprastą kaimo gyvenimą ir jaunų žmonių meilės užuomazgas. Nėra aiškių nuorodų į konkrečias šventes ar istorinius įvykius.",
-      "EN Description": "This is a playful Lithuanian folk-style song about a girl going for a walk in the green woods, meeting a gentle young man, and sharing a lighthearted conversation. The lyrics focus on simple rural life and young love, with humor and gentle flirtation. There are no direct references to specific Lithuanian holidays or historical events, but the setting and themes could symbolize traditional countryside courtship."
+      "EN Description": "This is a playful Lithuanian folk-style song about a girl going for a walk in the green woods, meeting a gentle young man, and sharing a lighthearted conversation. The lyrics focus on simple rural life and young love, with humor and gentle flirtation. There are no direct references to specific Lithuanian holidays or historical events, but the setting and themes could symbolize traditional countryside courtship.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12220,7 +12622,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie tylų miško taką rudenį, kai krenta lapai ir viskas gelsta. Žodžiai išreiškia ilgesį praėjusio vasaros grožio ir liūdesį, kai viskas nyksta. Daina daugiausia apie metų laikų kaitą ir praradimo jausmą.",
-      "EN Description": "This song describes a quiet forest path in autumn, when the leaves are falling and the world is turning yellow. The lyrics express a longing for the beauty of late summer and sadness as everything fades away. The text may symbolize the passing of time and the feeling of loss, but it mainly focuses on the changing seasons."
+      "EN Description": "This song describes a quiet forest path in autumn, when the leaves are falling and the world is turning yellow. The lyrics express a longing for the beauty of late summer and sadness as everything fades away. The text may symbolize the passing of time and the feeling of loss, but it mainly focuses on the changing seasons.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12246,7 +12649,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina apie merginos ir vaikino pokalbį apie santuoką ir darbą kaime. Dainoje kalbama apie svarbius įgūdžius gyvenimui ir apie tai, kaip renkamas gyvenimo draugas. Antelė gali simbolizuoti ramybę ar susimąstymą, bet tai nėra aišku.",
-      "EN Description": "This is a traditional Lithuanian folk song about a young woman and a young man talking about marriage and daily work. The lyrics focus on the skills needed for rural life and hint at choosing a partner based on practical and moral qualities. The use of the duck may symbolize reflection or gentle living, but this is not certain."
+      "EN Description": "This is a traditional Lithuanian folk song about a young woman and a young man talking about marriage and daily work. The lyrics focus on the skills needed for rural life and hint at choosing a partner based on practical and moral qualities. The use of the duck may symbolize reflection or gentle living, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12273,7 +12677,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie paukščių išskridimą žiemai ir tylą, kuri lieka po jų. Žodžiai išreiškia ilgesį ir viltį, kad paukščiai sugrįš pavasarį. Taip pat palyginamas paukščių laisvumas su žmogaus sunkumais.",
-      "EN Description": "This song describes the departure of birds in winter and the quiet that follows, reflecting on the longing and hope for their return in spring. The birds' migration may symbolize hope, renewal, or the cycles of life, but the lyrics mainly focus on the feelings of emptiness and anticipation that come with their absence. There is also a comparison between the freedom of birds and the challenges faced by people."
+      "EN Description": "This song describes the departure of birds in winter and the quiet that follows, reflecting on the longing and hope for their return in spring. The birds' migration may symbolize hope, renewal, or the cycles of life, but the lyrics mainly focus on the feelings of emptiness and anticipation that come with their absence. There is also a comparison between the freedom of birds and the challenges faced by people.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12300,7 +12705,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kalbama apie metų laikų kaitą ir jų poveikį meilei bei malonumams. Žodžiai išreiškia ilgesį, romantiškus jausmus ir bandymą suderinti meilę su vyno malonumais. Daina nemini konkrečių lietuviškų tradicijų ar švenčių, bet metų laikai yra svarbi kultūros dalis.",
-      "EN Description": "This song reflects on the changing seasons and how they influence love and pleasure. The lyrics talk about longing, fleeting romantic feelings, and the balance between love and wine, which may symbolize indulgence and passion. The song does not reference specific Lithuanian traditions or holidays, but the changing seasons are an important part of Lithuanian culture."
+      "EN Description": "This song reflects on the changing seasons and how they influence love and pleasure. The lyrics talk about longing, fleeting romantic feelings, and the balance between love and wine, which may symbolize indulgence and passion. The song does not reference specific Lithuanian traditions or holidays, but the changing seasons are an important part of Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12326,7 +12732,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai žaisminga lietuviška liaudies daina su linksmais ir šiek tiek paslaptingais žodžiais. Dainoje kalbama apie kambarėlį, įvairius veikėjus, gėrimą ir juokingas situacijas, o tikslus pasakojimas nėra aiškus. Kai kurios eilutės gali būti susijusios su kaimo papročiais ar pokštais.",
-      "EN Description": "This is a playful Lithuanian folk song featuring lively, somewhat nonsensical dialogue and imagery. The lyrics revolve around questions about a room, mysterious characters, drinking, and humorous or symbolic references, which may hint at flirtation or village life, but the exact meaning is ambiguous. Some lines may reference traditional village customs or wordplay, but the song mainly creates a whimsical mood rather than telling a clear story."
+      "EN Description": "This is a playful Lithuanian folk song featuring lively, somewhat nonsensical dialogue and imagery. The lyrics revolve around questions about a room, mysterious characters, drinking, and humorous or symbolic references, which may hint at flirtation or village life, but the exact meaning is ambiguous. Some lines may reference traditional village customs or wordplay, but the song mainly creates a whimsical mood rather than telling a clear story.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12358,7 +12765,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja linksmą istoriją apie vaikiną, kuris per purvą eina pas gražią merginą, kviečia ją tekėti ir žada rūpestį bei meilę. Dainoje matyti švelnus juokas ir kaimo gyvenimo žavesys, tačiau kai kurios eilutės gali turėti daugiau nei vieną prasmę.",
-      "EN Description": "This folk song tells a playful story about a young man braving muddy streets to reach a beautiful girl, expressing his wish for her to marry him and promising her comfort and affection. The lyrics humorously shift between promises of care and gentle teasing, possibly reflecting the ups and downs of courtship in rural Lithuanian tradition. The song may symbolize the light-hearted nature of village life and relationships, but the exact meaning of some verses is open to interpretation."
+      "EN Description": "This folk song tells a playful story about a young man braving muddy streets to reach a beautiful girl, expressing his wish for her to marry him and promising her comfort and affection. The lyrics humorously shift between promises of care and gentle teasing, possibly reflecting the ups and downs of courtship in rural Lithuanian tradition. The song may symbolize the light-hearted nature of village life and relationships, but the exact meaning of some verses is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12385,7 +12793,8 @@ const songs: SongFile = [
       },
       "Music Author": "Faustas Strolia",
       "LT Description": "Šioje dainoje žmogus vaizduojamas kaip keliautojas per pasaulį, baltas ir tyras, tarsi vėlė. Žodžiai kalba apie gyvenimo laikinumą ir apie tai, kad žmogaus kelionė tęsiasi net tada, kai viskas aplinkui keičiasi ir nyksta.",
-      "EN Description": "This song describes a person traveling through the world, depicted as pure and ethereal, similar to a spirit or soul. The lyrics reflect on the fleeting nature of life and the enduring journey of the individual, possibly symbolizing the human soul or the collective journey of humanity. It may also suggest themes of mortality, memory, and the persistence of the human spirit, but these meanings are open to interpretation."
+      "EN Description": "This song describes a person traveling through the world, depicted as pure and ethereal, similar to a spirit or soul. The lyrics reflect on the fleeting nature of life and the enduring journey of the individual, possibly symbolizing the human soul or the collective journey of humanity. It may also suggest themes of mortality, memory, and the persistence of the human spirit, but these meanings are open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12411,7 +12820,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunuolį, kuris joja per mišką pas savo mylimąją ir susitinka su jos tėvu. Žodžiai išreiškia pagarbą ir viltingą prašymą būti priimtam į naują šeimą. Tai gali atspindėti senąsias lietuviškas piršlybų ar svetingumo tradicijas.",
-      "EN Description": "This song tells the story of a young person riding through a forest, caring for their horse, and visiting their beloved at her parents' home. The lyrics describe a respectful meeting with the girl's father (the future father-in-law), and the hope for acceptance, both for the young person and for their horse. The song may symbolize traditional customs of courtship and hospitality in rural Lithuania."
+      "EN Description": "This song tells the story of a young person riding through a forest, caring for their horse, and visiting their beloved at her parents' home. The lyrics describe a respectful meeting with the girl's father (the future father-in-law), and the hope for acceptance, both for the young person and for their horse. The song may symbolize traditional customs of courtship and hospitality in rural Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12437,7 +12847,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuviška liaudies daina apie jaunus bernelius ir mergeles, kurie susitinka prie upelio miestelyje, kalbasi ir linksminasi. Dainoje aprašomas kvietimas į karčemą, vaišinimas vynu, pažadai ir bernelio išvykimas. Dainos prasmė gali simbolizuoti trumpalaikius jaunystės pažadus ir išsiskyrimą.",
-      "EN Description": "This is a traditional Lithuanian folk song about young men and women meeting by a river in a small town, talking, and spending time together. The lyrics describe inviting the girls to a tavern, offering them wine, making promises, and then one young man departing, possibly for war or another journey. The song may symbolize the fleeting nature of youthful encounters and promises, but the exact meaning is open to interpretation."
+      "EN Description": "This is a traditional Lithuanian folk song about young men and women meeting by a river in a small town, talking, and spending time together. The lyrics describe inviting the girls to a tavern, offering them wine, making promises, and then one young man departing, possibly for war or another journey. The song may symbolize the fleeting nature of youthful encounters and promises, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12464,7 +12875,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmones, kurie kartu dalijasi vynu, nepaisant lietaus, purvo ir audros. Ji kalba apie dorybes, nuodėmes, sunkų likimą ir svarbą būti geriems vieni kitiems. Vyno gėrimas gali simbolizuoti bendrystę net ir sunkiais laikais.",
-      "EN Description": "The song describes people coming together and sharing wine despite rain, mud, and storms. It reflects on both virtues and sins, difficult fate, and the importance of kindness to one another. The act of drinking wine from a yellow glass may symbolize finding warmth and connection even in hard times, but this is open to interpretation."
+      "EN Description": "The song describes people coming together and sharing wine despite rain, mud, and storms. It reflects on both virtues and sins, difficult fate, and the importance of kindness to one another. The act of drinking wine from a yellow glass may symbolize finding warmth and connection even in hard times, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12490,7 +12902,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus jojasi per tiltą, nukrenta nuo arklio ir jaučia liūdesį, kai mylimoji jo nelanko. Dainoje minimi metų mėnesiai ir svarstoma apie gyvenimą bei mirtį, galbūt tai simbolizuoja laiko tėkmę. Paskutinėje strofoje studentai eina per Vilnių ir dainuoja, juos pagarbingai pasitinka miestiečiai.",
-      "EN Description": "This song tells of a person riding over a bridge, falling from their horse, and feeling sadness when their beloved doesn't visit. The lyrics mention the months of the year and reflect on life and death, possibly symbolizing the passage of time. In the final verse, students proudly walk through Vilnius, singing and being respectfully greeted, which could hint at student traditions or pride."
+      "EN Description": "This song tells of a person riding over a bridge, falling from their horse, and feeling sadness when their beloved doesn't visit. The lyrics mention the months of the year and reflect on life and death, possibly symbolizing the passage of time. In the final verse, students proudly walk through Vilnius, singing and being respectfully greeted, which could hint at student traditions or pride.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12517,7 +12930,8 @@ const songs: SongFile = [
       },
       "Music Author": "Juozas Naujalis",
       "LT Description": "Tai lietuviška kalėdinė giesmė apie angelą, kuris paskelbia piemenėliams apie Jėzaus gimimą ir kviečia juos pagerbti Kūdikėlį. Dainoje atsispindi nuolankumo ir Dievo garbės temos, ji dažnai atliekama per Kalėdas Lietuvoje.",
-      "EN Description": "This is a Lithuanian Christmas carol describing how angels announce the birth of Jesus to poor shepherds, inviting them to visit and honor the newborn. The lyrics reflect Christian themes of humility, divine glory, and the significance of Christ’s birth for the lowly. The song is traditionally sung during Christmas celebrations in Lithuania."
+      "EN Description": "This is a Lithuanian Christmas carol describing how angels announce the birth of Jesus to poor shepherds, inviting them to visit and honor the newborn. The lyrics reflect Christian themes of humility, divine glory, and the significance of Christ’s birth for the lowly. The song is traditionally sung during Christmas celebrations in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12617,7 +13031,8 @@ const songs: SongFile = [
       "Music Author": "Aleksandras Stankevičius",
       "Text Author": "Aušrinė Širvinskienė",
       "LT Description": "Daina kalba apie lengvumą ir džiaugsmą, kurį suteikia muzika ir šokis, lygindama tai su piene pūku. Paminimos liaudiškos dainos ir šokiai, kurie suvienija žmones, kur jie bebūtų. Jaunimas skatinamas džiaugtis ir kviesti Lietuvą į savo šventę.",
-      "EN Description": "The song talks about the lightness and joy that music and dance bring, comparing this feeling to a dandelion seed floating in the air. It mentions traditions of folk songs and dances, suggesting they connect people wherever they are in the world. The lyrics also encourage youth to cherish their happiness and to invite their homeland into their celebrations."
+      "EN Description": "The song talks about the lightness and joy that music and dance bring, comparing this feeling to a dandelion seed floating in the air. It mentions traditions of folk songs and dances, suggesting they connect people wherever they are in the world. The lyrics also encourage youth to cherish their happiness and to invite their homeland into their celebrations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12643,7 +13058,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ramų vakarą gamtoje prie upės, galbūt stovyklaujant su draugais. Dainoje minimas žvejojimas, sriubos virimas prie laužo, nakvynė palapinėje. Daina gali simbolizuoti paprastus džiaugsmus gamtoje, bet nenurodo konkrečios šventės ar tradicijos.",
-      "EN Description": "This song describes a peaceful evening spent in nature by a river, possibly during a camping trip with friends. The lyrics mention fishing, making soup over a fire, and sleeping in a tent as night falls. The song may celebrate the simple joys of spending time outdoors in Lithuania, but it does not mention any specific holiday or tradition."
+      "EN Description": "This song describes a peaceful evening spent in nature by a river, possibly during a camping trip with friends. The lyrics mention fishing, making soup over a fire, and sleeping in a tent as night falls. The song may celebrate the simple joys of spending time outdoors in Lithuania, but it does not mention any specific holiday or tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12669,7 +13085,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie dviejų žmonių artimą, nekaltą draugystę pievoje, pinant vainikus ir žaidžiant karalius. Žodžiai išreiškia liūdesį ir džiaugsmą, kai viena draugė įsivaizduoja kitą užaugant ir išeinant, galbūt kalbama apie vaikystės pabaigą ar pirmąją meilę. Gėlių vainikai ir pievos gali būti susiję su lietuviškomis vasaros tradicijomis, pavyzdžiui, Joninėmis.",
-      "EN Description": "This song tells about two people sharing a close, innocent friendship in a flowery meadow, weaving flower crowns and imagining themselves as royalty. The lyrics reflect bittersweet feelings as one friend imagines the other growing up, getting married, and leaving, which might symbolize the passing of childhood or first love. The imagery of flower crowns and meadows can refer to Lithuanian summer traditions, such as weaving wreaths for celebrations like Joninės (Midsummer)."
+      "EN Description": "This song tells about two people sharing a close, innocent friendship in a flowery meadow, weaving flower crowns and imagining themselves as royalty. The lyrics reflect bittersweet feelings as one friend imagines the other growing up, getting married, and leaving, which might symbolize the passing of childhood or first love. The imagery of flower crowns and meadows can refer to Lithuanian summer traditions, such as weaving wreaths for celebrations like Joninės (Midsummer).",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12701,7 +13118,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį močiutei ir kelią namo pilkais, dulkėtais takais. Dainoje prisimenama gamta, šeima ir išreiškiamas namų ilgesys, viliantis greitai sugrįžti. Kartojamas kelio motyvas gali simbolizuoti tiek tikrą, tiek jausminę kelionę.",
-      "EN Description": "This song is about longing for a grandmother and the journey home along gray, dusty roads. The lyrics describe memories of nature and family, expressing homesickness and hope to return soon. The repeated mention of the road could symbolize both a literal and emotional journey."
+      "EN Description": "This song is about longing for a grandmother and the journey home along gray, dusty roads. The lyrics describe memories of nature and family, expressing homesickness and hope to return soon. The repeated mention of the road could symbolize both a literal and emotional journey.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12727,7 +13145,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie piratus, jų draugystę ir drąsą, kai jie kovoja su priešais. Daina pabrėžia bendrystę, muziką ir nuotykius, o kartojama eilutė apie muziką gali simbolizuoti vienybę. Net velniai bijo piratų, sakoma dainoje.",
-      "EN Description": "This song describes a group of pirates, their loyalty to each other, and their fearless attitude as they face enemies and danger. The lyrics celebrate friendship, music, and shared adventure, while mentioning that even the devil fears pirates. The repeated refrain about music may symbolize the joy and unity that music brings to the group."
+      "EN Description": "This song describes a group of pirates, their loyalty to each other, and their fearless attitude as they face enemies and danger. The lyrics celebrate friendship, music, and shared adventure, while mentioning that even the devil fears pirates. The repeated refrain about music may symbolize the joy and unity that music brings to the group.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12754,7 +13173,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie vienišą nakties valandą po išsiskyrimo. Dainos žodžiai kalba apie prabėgantį laiką, prisiminimus ir likusį meilės skausmą. Nėra minimos lietuviškos tradicijos ar šventės; daina perteikia bendras netekties ir ilgesio emocijas.",
-      "EN Description": "This song describes a late-night moment of loneliness and reflection after a relationship has ended. The lyrics focus on the passage of time, memories of love, and the lingering pain after separation. There are no references to specific Lithuanian traditions or holidays; the song expresses universal feelings of loss and longing."
+      "EN Description": "This song describes a late-night moment of loneliness and reflection after a relationship has ended. The lyrics focus on the passage of time, memories of love, and the lingering pain after separation. There are no references to specific Lithuanian traditions or holidays; the song expresses universal feelings of loss and longing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12780,7 +13200,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jaunus vyrus, pjaunančius baltus dobilus pievoje, ir vienas nulaužia dalgį. Pro šalį eina mergina su pilka sermėga, bet jos žodžiai šilti ir mieli. Daina vaizduoja kaimo gyvenimo paprastumą ir švelnumą kasdienėse akimirkose.",
-      "EN Description": "The song tells about young men mowing white clovers in a green meadow, and one of them breaks his scythe. A girl passes by wearing a simple grey cloak, but despite her modest clothing, her words are affectionate. The song gently weaves together images of rural work, small troubles, and budding romance. The lyrics may symbolize the simplicity of village life and the warmth found in everyday encounters, but this is not stated directly."
+      "EN Description": "The song tells about young men mowing white clovers in a green meadow, and one of them breaks his scythe. A girl passes by wearing a simple grey cloak, but despite her modest clothing, her words are affectionate. The song gently weaves together images of rural work, small troubles, and budding romance. The lyrics may symbolize the simplicity of village life and the warmth found in everyday encounters, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12806,7 +13227,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie šienapjūtę pievoje – šienavimą, grėbimą, vežimą. Kartojasi žodžiai apie 'duobilieli' ir draugystę su šeinėliu, kas gali simbolizuoti bendrą darbą ar jausmus. Tai atspindi kaimo gyvenimą ir tradicijas.",
-      "EN Description": "This song describes the process of mowing, raking, and transporting hay in a meadow, with the repeated mention of 'duobilieli' and 'so šeinelio draug' which might symbolize working together or shared experiences, possibly with a loved one or companion. The lyrics may reflect traditional rural life and communal work in Lithuanian villages. There is no clear reference to a specific holiday or historical event, but the song could be connected to haymaking traditions."
+      "EN Description": "This song describes the process of mowing, raking, and transporting hay in a meadow, with the repeated mention of 'duobilieli' and 'so šeinelio draug' which might symbolize working together or shared experiences, possibly with a loved one or companion. The lyrics may reflect traditional rural life and communal work in Lithuanian villages. There is no clear reference to a specific holiday or historical event, but the song could be connected to haymaking traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12832,7 +13254,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai paprasta lietuviška liaudies daina apie žąselę, plaukiančią per ežerėlį, ir žąsinėlį. Vėliau daina pasakoja apie berniukus ir mergaites, einančius į mokyklą. Dainoje daug žaismingų garsų, kaip būdinga vaikiškoms ar tradicinėms dainoms.",
-      "EN Description": "This is a simple Lithuanian folk song about a goose swimming across a little lake, followed by a gander. The song then shifts to boys and girls going to school, possibly drawing a gentle parallel between the animals and children, though this could just be playful imagery. The use of repetitive sounds and onomatopoeic words creates a light, playful mood typical of children's or traditional songs."
+      "EN Description": "This is a simple Lithuanian folk song about a goose swimming across a little lake, followed by a gander. The song then shifts to boys and girls going to school, possibly drawing a gentle parallel between the animals and children, though this could just be playful imagery. The use of repetitive sounds and onomatopoeic words creates a light, playful mood typical of children's or traditional songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12865,7 +13288,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, kuri verpia ploną kuodelį ir laukia brolio, žiūrėdama pro langelį. Ji klausia, ar jai čia gera gyventi, bet sako, kad dar neįpratusi naujuose namuose. Tai gali simbolizuoti ilgesį ar prisitaikymo sunkumus, kurie dažnai pasitaiko lietuvių liaudies dainose.",
-      "EN Description": "The song tells of a young woman spinning a thin braid while looking through a bright window, waiting for her brother to return. She asks him if life is good, and he responds with affection, but she expresses her unfamiliarity with her new home. This may symbolize longing, homesickness, or the challenges of adjusting to married life, which is a common theme in Lithuanian folk songs."
+      "EN Description": "The song tells of a young woman spinning a thin braid while looking through a bright window, waiting for her brother to return. She asks him if life is good, and he responds with affection, but she expresses her unfamiliarity with her new home. This may symbolize longing, homesickness, or the challenges of adjusting to married life, which is a common theme in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12891,7 +13315,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie susirinkimą prie laužo, kviečiant liepsną pakilti ir suvienyti žmones. Joje džiaugiamasi jaunyste, gyvybe bei draugyste gamtoje vakare, o ugnis gali simbolizuoti bendrumą ir džiaugsmą.",
-      "EN Description": "This song is about gathering around a fire, calling for its flame to rise and bring people closer together. It celebrates youth, vitality, and the magic of being together in nature at night. The fire may symbolize unity, joy, or the spirit of community, and the song evokes feelings of warmth and belonging, possibly referencing Lithuanian traditions of communal singing and bonfires."
+      "EN Description": "This song is about gathering around a fire, calling for its flame to rise and bring people closer together. It celebrates youth, vitality, and the magic of being together in nature at night. The fire may symbolize unity, joy, or the spirit of community, and the song evokes feelings of warmth and belonging, possibly referencing Lithuanian traditions of communal singing and bonfires.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12954,7 +13379,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina apie ankstyvą rytą, kai gaidžiai pradeda giedoti ir neleidžia miegoti. Tekste pasakojama apie vaikiną, kuris joja per lauką ir sustoja prie klėties, norėdamas sužinoti, kas ten yra. Daina gali simbolizuoti ilgesį ar meilės pradžią, bet daugiausia pasakoja apie rytą ir susitikimą.",
-      "EN Description": "This is a traditional Lithuanian folk song about the early morning, when the rooster starts to crow and disrupts the singer's sleep. The lyrics describe a young man riding quickly across a field and stopping by a storehouse, wondering who is inside. The song may symbolize longing or courtship, common themes in Lithuanian folklore, but it mainly tells a simple story about morning and encounters."
+      "EN Description": "This is a traditional Lithuanian folk song about the early morning, when the rooster starts to crow and disrupts the singer's sleep. The lyrics describe a young man riding quickly across a field and stopping by a storehouse, wondering who is inside. The song may symbolize longing or courtship, common themes in Lithuanian folklore, but it mainly tells a simple story about morning and encounters.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -12980,7 +13406,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia pasiklausyti miško grožio ir garsų. Čia aprašomi gyvūnai ir žmonės, kurie kartu kuria gamtos muziką. Dainoje taip pat minimas piemuo ir žaidimai, kas gali priminti tradicinį kaimo gyvenimą.",
-      "EN Description": "This song invites listeners to appreciate the beauty of the forest and the sounds of its creatures. It describes how each animal and person contributes to the melody of the natural world, and might symbolize harmony with nature. The lyrics also mention a shepherd and playful moments, which could hint at traditional rural life in Lithuania."
+      "EN Description": "This song invites listeners to appreciate the beauty of the forest and the sounds of its creatures. It describes how each animal and person contributes to the melody of the natural world, and might symbolize harmony with nature. The lyrics also mention a shepherd and playful moments, which could hint at traditional rural life in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13012,7 +13439,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį ir liūdesį, kai žmogus prisimena savo namus ir motiną, kuriuos paliko. Jazminai ir burkuojantis balandis po langu gali simbolizuoti prisiminimus apie prarastą vaikystę ar ramybę. Daina nenurodo konkrečių lietuviškų švenčių ar istorinių įvykių.",
-      "EN Description": "The song reflects feelings of longing and homesickness, as the narrator remembers their mother and the home they left behind. It describes blooming jasmines and a cooing dove under the window, which may symbolize memories of home and lost innocence. The song suggests a sense of sorrow and uncertainty about returning home, but does not reference specific Lithuanian holidays or historical events."
+      "EN Description": "The song reflects feelings of longing and homesickness, as the narrator remembers their mother and the home they left behind. It describes blooming jasmines and a cooing dove under the window, which may symbolize memories of home and lost innocence. The song suggests a sense of sorrow and uncertainty about returning home, but does not reference specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13038,7 +13466,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie lietuvių partizanus, kurie išėjo ginti Tėvynės, ir apie artimųjų skausmą bei ilgesį. Žodžiuose atsispindi karo sunkumai, netektis ir atminimas žuvusiems už Lietuvos laisvę. Melsvos žibuoklės gali simbolizuoti viltį ir gyvybės trapumą karo metu.",
-      "EN Description": "This song tells about the sorrow and bravery surrounding Lithuanian partisans—young men who left home to defend their homeland. The lyrics describe the pain of mothers and loved ones left behind, the violence of war, and the memory of those who fell for Lithuania's freedom. The blue violets and spring setting may symbolize hope and renewal, but also the fragility of life during wartime. The song likely refers to the post-World War II partisan resistance against Soviet occupation, a significant part of Lithuanian history."
+      "EN Description": "This song tells about the sorrow and bravery surrounding Lithuanian partisans—young men who left home to defend their homeland. The lyrics describe the pain of mothers and loved ones left behind, the violence of war, and the memory of those who fell for Lithuania's freedom. The blue violets and spring setting may symbolize hope and renewal, but also the fragility of life during wartime. The song likely refers to the post-World War II partisan resistance against Soviet occupation, a significant part of Lithuanian history.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13064,7 +13493,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jūreivį ir jo mylimąją, kurie atsisveikina prie gintaro jūros. Čia kalbama apie meilę, ilgesį ir išsiskyrimo skausmą, o jūra gali simbolizuoti tiek artumą, tiek atstumą. Gintaras ir jūra dainoje primena apie lietuvišką Baltijos pajūrį.",
-      "EN Description": "This song tells the story of a sailor and his beloved standing by the amber sea, sharing dreams and facing a painful farewell as he prepares to depart. The lyrics explore love, longing, and the sorrow of separation, with the sea symbolizing both connection and distance. The mention of amber and the sea may reference Lithuania's Baltic coast, which is famous for its amber and has deep cultural significance."
+      "EN Description": "This song tells the story of a sailor and his beloved standing by the amber sea, sharing dreams and facing a painful farewell as he prepares to depart. The lyrics explore love, longing, and the sorrow of separation, with the sea symbolizing both connection and distance. The mention of amber and the sea may reference Lithuania's Baltic coast, which is famous for its amber and has deep cultural significance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13091,7 +13521,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie laukimą mylimojo prie Vilniaus, pasakų miesto, šalia Neries upės. Dainoje išreiškiamas ilgesys ir viltis, prašoma upės parplukdyti mylimąją atgal. Nėra aišku, ar ši daina susijusi su kokia nors švente ar lietuviška tradicija.",
-      "EN Description": "This song is about waiting for a loved one by the city of Vilnius, described as a fairy-tale place by the Neris river. The lyrics express hope and longing, asking the river not to carry the beloved away, but to bring her back. The city, river, and nature might symbolize nostalgia and deep emotional connection, but it is not clear if the song references any specific Lithuanian holiday or tradition."
+      "EN Description": "This song is about waiting for a loved one by the city of Vilnius, described as a fairy-tale place by the Neris river. The lyrics express hope and longing, asking the river not to carry the beloved away, but to bring her back. The city, river, and nature might symbolize nostalgia and deep emotional connection, but it is not clear if the song references any specific Lithuanian holiday or tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13118,7 +13549,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina linksmai pasakoja apie kelionę traukiniu į Palangą, kai kažkas atsiveda karvę, o tai sukelia daug juokingų nesusipratimų. Dainoje vaizduojamos įvairios keistos situacijos, kurios gali simbolizuoti netikėtumus kelionėse ar kaimo ir miesto susidūrimą. Čia nėra aiškių nuorodų į konkrečias lietuviškas tradicijas ar istorinius įvykius, bet kelionė į Palangą primena vasaros poilsio paprotį.",
-      "EN Description": "This song humorously tells about a chaotic train journey to the seaside town of Palanga, where someone brings a cow onto the train, causing confusion among the passengers and staff. The story unfolds with comical events, like the conductor fainting and debates about what to do with the cow, possibly symbolizing the unpredictability of group travel or poking fun at rural habits meeting modern life. There are no clear references to specific Lithuanian traditions or historical events, but the setting in Palanga hints at the common tradition of summer trips to the seaside."
+      "EN Description": "This song humorously tells about a chaotic train journey to the seaside town of Palanga, where someone brings a cow onto the train, causing confusion among the passengers and staff. The story unfolds with comical events, like the conductor fainting and debates about what to do with the cow, possibly symbolizing the unpredictability of group travel or poking fun at rural habits meeting modern life. There are no clear references to specific Lithuanian traditions or historical events, but the setting in Palanga hints at the common tradition of summer trips to the seaside.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13144,7 +13576,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kurį vėjas ir laivas neša atgal į Lietuvą. Žodžiai išreiškia džiaugsmą grįžtant pas artimuosius – brolius, seseris, tėvus. Tai gali simbolizuoti ilgesį tėvynei ir džiaugsmą sugrįžus.",
-      "EN Description": "This song tells about a person who is being carried home to Lithuania by the wind and the boat. The lyrics express joy at the thought of returning to loved ones, such as siblings and parents, who are waiting in Lithuania. The mention of traveling home might symbolize longing for one's homeland, but it is mainly about the happiness of reunion."
+      "EN Description": "This song tells about a person who is being carried home to Lithuania by the wind and the boat. The lyrics express joy at the thought of returning to loved ones, such as siblings and parents, who are waiting in Lithuania. The mention of traveling home might symbolize longing for one's homeland, but it is mainly about the happiness of reunion.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13177,7 +13610,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje jauna mergina liūdi dėl praeinančios jaunystės ir meilės. Rūtų ir vainikėlio motyvai susiję su lietuvių tradicijomis, kur rūtų vainikas reiškia mergystę. Daina išreiškia liūdesį dėl praeinančių jaunų dienų ir pokyčių gyvenime.",
-      "EN Description": "This folk song tells of a young woman reflecting on lost youth and love. The imagery of rue (rūta) and wreaths is closely tied to Lithuanian traditions, where rue symbolizes purity and maidenhood, and the making or giving of a rue wreath is part of wedding customs. The song expresses sadness about growing up and leaving behind the joys of youth, but some lines might also symbolize the transition from girlhood to adulthood."
+      "EN Description": "This folk song tells of a young woman reflecting on lost youth and love. The imagery of rue (rūta) and wreaths is closely tied to Lithuanian traditions, where rue symbolizes purity and maidenhood, and the making or giving of a rue wreath is part of wedding customs. The song expresses sadness about growing up and leaving behind the joys of youth, but some lines might also symbolize the transition from girlhood to adulthood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13204,7 +13638,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie purpurinį vakarą, kai žmonės susirenka po žvaigždėmis ir dalijasi ramiu, artimu momentu. Nors jie neturi daug, gamtoje ir draugijoje jie randa ramybę ir laisvę. Žodžiai gali simbolizuoti susitaikymą su likimu ir džiaugsmą dabartimi.",
-      "EN Description": "The song describes a purple-tinted evening, where people gather under the stars, sharing a quiet and intimate moment. Despite being outsiders or having little in life, they find comfort and freedom in nature and each other's company. The lyrics may symbolize acceptance of fate and enjoying the present, even if the future is uncertain."
+      "EN Description": "The song describes a purple-tinted evening, where people gather under the stars, sharing a quiet and intimate moment. Despite being outsiders or having little in life, they find comfort and freedom in nature and each other's company. The lyrics may symbolize acceptance of fate and enjoying the present, even if the future is uncertain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13233,7 +13668,8 @@ const songs: SongFile = [
       "Music Author": "Nerija",
       "Text Author": "Nerija",
       "LT Description": "Daina pasakoja apie paslaptingą ir stebuklingą naktį, kurioje šoka raganaitės ir velniai. Pasakotojas ieško ypatingos raganaitės, norėdamas kartu su ja šėlti iki ryto. Tekste atsispindi ilgesys, paslaptis ir lietuvių liaudies magijos motyvai, galimai susiję su tokiomis šventėmis kaip Joninės.",
-      "EN Description": "The song describes a mysterious and magical night where witches and devils dance together. The narrator searches for a special witch among them, longing to join her in the wild festivities until dawn. The lyrics may symbolize forbidden love, longing, or the allure of the supernatural, drawing on traditional Lithuanian imagery of witches and magic nights, possibly referencing folk celebrations like Joninės (Midsummer Night), when magical beings are said to be especially active."
+      "EN Description": "The song describes a mysterious and magical night where witches and devils dance together. The narrator searches for a special witch among them, longing to join her in the wild festivities until dawn. The lyrics may symbolize forbidden love, longing, or the allure of the supernatural, drawing on traditional Lithuanian imagery of witches and magic nights, possibly referencing folk celebrations like Joninės (Midsummer Night), when magical beings are said to be especially active.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13260,7 +13696,8 @@ const songs: SongFile = [
       },
       "Text Author": "Maironis",
       "LT Description": "Ši daina pasakoja apie ramias vasaros naktis, kai gamta nurimusi, o svajonės užlieja žemę. Žodžiai išreiškia ilgesį ir liūdesį, kai žmogus trokšta poilsio ir grožio, bet vis tiek jaučia tuštumą. Daina nekalba apie konkrečias lietuviškas tradicijas ar šventes, bet perteikia bendras žmogaus emocijas.",
-      "EN Description": "This song describes peaceful summer nights, where nature is calm and quiet, and dreams of love and beauty embrace the earth. The lyrics express feelings of longing and sadness, as the narrator wishes for rest and fulfillment, but still feels a deep yearning. The song does not mention specific Lithuanian traditions or holidays, but it captures a reflective mood that can symbolize universal human emotions."
+      "EN Description": "This song describes peaceful summer nights, where nature is calm and quiet, and dreams of love and beauty embrace the earth. The lyrics express feelings of longing and sadness, as the narrator wishes for rest and fulfillment, but still feels a deep yearning. The song does not mention specific Lithuanian traditions or holidays, but it captures a reflective mood that can symbolize universal human emotions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13286,7 +13723,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie džiaugsmingą ir tvirtą žygį dėl tėvynės, kur gamtos garsai ir žydinčios obelys atspindi dainuojančiųjų nuotaiką. Žodžiai rodo pasididžiavimą, vienybę ir ryžtą saugoti bei kurti geresnę ateitį savo šaliai. Nuorodos į žygiavimą ir tvirtą stovėjimą už tėvynę gali simbolizuoti patriotiškumą arba būti susijusios su jaunimo ar skautų judėjimais, bet iš dainos žodžių tai nėra aišku.",
-      "EN Description": "This song describes a joyful and determined march for the homeland, with nature's powerful sounds like thunder and blooming apple trees reflecting the participants' spirit. The lyrics express pride, unity, and readiness to protect and build a better future for their country. References to marching and standing firm for the homeland may symbolize patriotism or could be connected to youth or scout movements, but this is not certain from the lyrics alone."
+      "EN Description": "This song describes a joyful and determined march for the homeland, with nature's powerful sounds like thunder and blooming apple trees reflecting the participants' spirit. The lyrics express pride, unity, and readiness to protect and build a better future for their country. References to marching and standing firm for the homeland may symbolize patriotism or could be connected to youth or scout movements, but this is not certain from the lyrics alone.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13312,7 +13750,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie ramybę, džiaugsmą ir meilę, kurie teka kaip upelis iš vieno žmogaus kitam. Žodžiai parodo, kad šios emocijos gali pasiekti ir pakeisti neramias ar liūdnas širdis. Dainoje naudojami gamtos vaizdai, bet čia nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song is about calmness, joy, and love flowing like a stream from one person to another. The lyrics suggest that these feelings can reach and transform troubled, sad, or hardened hearts. The text uses simple nature imagery, and while it may symbolize kindness spreading among people, there are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "This song is about calmness, joy, and love flowing like a stream from one person to another. The lyrics suggest that these feelings can reach and transform troubled, sad, or hardened hearts. The text uses simple nature imagery, and while it may symbolize kindness spreading among people, there are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13339,7 +13778,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ilgesį jaukiai, ramiai vietai gamtoje, greičiausiai savo sodybai ar rančai. Tekste pabrėžiama ramybė, laimė ir stiprus ryšys su gimtąja žeme, priešpastatant tai miestų blizgesiui. Kalnai, upės ir gyvūnai gali simbolizuoti svajonę apie tikrus namus ir vidinę ramybę.",
-      "EN Description": "The song describes a longing for a peaceful, idyllic place in nature, possibly a personal or imagined homestead or ranch. The lyrics emphasize tranquility, happiness, and a deep connection to the land, contrasting this rural calm with the bright but less meaningful attractions of the city. The imagery of mountains, rivers, and animals may symbolize a nostalgic or idealized vision of home and inner peace."
+      "EN Description": "The song describes a longing for a peaceful, idyllic place in nature, possibly a personal or imagined homestead or ranch. The lyrics emphasize tranquility, happiness, and a deep connection to the land, contrasting this rural calm with the bright but less meaningful attractions of the city. The imagery of mountains, rivers, and animals may symbolize a nostalgic or idealized vision of home and inner peace.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13371,7 +13811,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ypatingą žolę su armonikos formos lapais, vadinamą raskila, kuri auga kieme. Aprašoma, kaip švelniai liečiama žolė, kaip ant jos auštant spindi rasa ir kaip mažas saulės spindulys prausiasi ryte. Daina gali simbolizuoti ryto grožį ir gamtą Lietuvoje.",
-      "EN Description": "The song is about a special plant with leaves like an accordion, called 'raskila,' growing in the yard. It describes gently touching the plant, dew shining on it at dawn, and a little sunbeam waking up and washing itself. The song might symbolize the beauty of nature and morning in Lithuania, but it could also simply celebrate a beloved plant without deeper meaning."
+      "EN Description": "The song is about a special plant with leaves like an accordion, called 'raskila,' growing in the yard. It describes gently touching the plant, dew shining on it at dawn, and a little sunbeam waking up and washing itself. The song might symbolize the beauty of nature and morning in Lithuania, but it could also simply celebrate a beloved plant without deeper meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13397,7 +13838,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje per poetinius vaizdus išreiškiamas liūdesys, ilgesys ir netektis, galbūt susiję su karu ar asmenine tragedija. Dainoje minimi bičių, sniego ir tuščių namų vaizdai gali simbolizuoti prarastą ramybę. Klausimas Lietuvai rodo nerimą dėl ateities, bet tiesiogiai nėra minimi konkretūs įvykiai ar tradicijos.",
-      "EN Description": "This song uses poetic images to express feelings of loss, sorrow, and longing, possibly reflecting on war or personal tragedy. The lyrics mention bees, snow, and empty homes, which may symbolize disrupted peace and the impact of conflict. The repeated question to Lithuania may suggest worry or fear for the country's future, but the song does not clearly reference specific historical events or traditions."
+      "EN Description": "This song uses poetic images to express feelings of loss, sorrow, and longing, possibly reflecting on war or personal tragedy. The lyrics mention bees, snow, and empty homes, which may symbolize disrupted peace and the impact of conflict. The repeated question to Lithuania may suggest worry or fear for the country's future, but the song does not clearly reference specific historical events or traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13423,7 +13865,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma daina pasakoja apie daržoves, kurios susirenka į vakarušką, kartu šoka ir dainuoja iki atkeliauja ruduo. Daržovės vaizduojamos kaip žmonės, galbūt tai simbolizuoja draugystę ar bendruomenę, bet gali būti ir tiesiog linksma vaikų daina. Čia minima vakaruška – tai tradicinis lietuviškas vakaro susibūrimas su muzika ir šokiais.",
-      "EN Description": "This playful song tells the story of various vegetables gathering for an evening party, where they dance and sing together until autumn arrives. The lyrics use personification, turning the vegetables into characters, and may symbolize friendship or community, but it could also simply be a fun children's song about vegetables. The song references 'vakaruška', a traditional Lithuanian evening gathering with music and dance."
+      "EN Description": "This playful song tells the story of various vegetables gathering for an evening party, where they dance and sing together until autumn arrives. The lyrics use personification, turning the vegetables into characters, and may symbolize friendship or community, but it could also simply be a fun children's song about vegetables. The song references 'vakaruška', a traditional Lithuanian evening gathering with music and dance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13449,7 +13892,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama linksma istorija apie daržoves, kurios surengė vakarėlį, kvietėsi draugus ir kartu šoko iki rudens. Dainoje daržovės vaizduojamos kaip žmonės, kas dažna lietuvių vaikų ar liaudies dainose. Tai žaisminga ir linksma daina, galbūt susijusi su derliaus švente.",
-      "EN Description": "This song tells a playful story about various vegetables organizing a party, inviting each other, and dancing together until autumn arrives. The lyrics use humor and personification, giving vegetables human-like qualities, which is common in Lithuanian children's and folk songs. The song may symbolize community gatherings or celebrate the harvest season, but it is mainly lighthearted and fun."
+      "EN Description": "This song tells a playful story about various vegetables organizing a party, inviting each other, and dancing together until autumn arrives. The lyrics use humor and personification, giving vegetables human-like qualities, which is common in Lithuanian children's and folk songs. The song may symbolize community gatherings or celebrate the harvest season, but it is mainly lighthearted and fun.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13475,7 +13919,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, einantį į mišką rinkti riešutų ir sutinkantį voveraitę. Žmogus prašo voveraitės riešutų ir žada būti geras, kad juos gautų. Tai linksmas pokalbis tarp žmogaus ir gyvūno, dažnas lietuvių liaudies ar vaikų dainose.",
-      "EN Description": "This song tells a simple story about a person going into the forest to pick nuts and meeting a squirrel who guards them. The lyrics focus on a playful exchange, where the person asks the squirrel for nuts and promises to behave well to receive them. The song may symbolize kindness and respect for nature, but it mainly centers on a cheerful interaction between human and animal, typical of Lithuanian children's or folk songs."
+      "EN Description": "This song tells a simple story about a person going into the forest to pick nuts and meeting a squirrel who guards them. The lyrics focus on a playful exchange, where the person asks the squirrel for nuts and promises to behave well to receive them. The song may symbolize kindness and respect for nature, but it mainly centers on a cheerful interaction between human and animal, typical of Lithuanian children's or folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13501,7 +13946,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie pasivaikščiojimą su vaiku prie Neries, kur matomos žydinčios lazdynų šakelės. Tekste žavimasi rausvais, mažais lazdyno žiedais ir jų ypatingu grožiu. Daina gali simbolizuoti gamtos stebuklus ir vaikystės lėtumą, bet daugiausia kalba apie lazdyno žydėjimo stebėjimą.",
-      "EN Description": "This song describes a walk with a small child along the Neris river, where they notice hazel trees in bloom. The lyrics focus on the beauty and uniqueness of the hazel blossom, expressing wonder at its delicate, reddish appearance. The song may symbolize appreciation for nature's small miracles and the gentle pace of childhood, but it is mainly about observing and admiring the hazel's bloom."
+      "EN Description": "This song describes a walk with a small child along the Neris river, where they notice hazel trees in bloom. The lyrics focus on the beauty and uniqueness of the hazel blossom, expressing wonder at its delicate, reddish appearance. The song may symbolize appreciation for nature's small miracles and the gentle pace of childhood, but it is mainly about observing and admiring the hazel's bloom.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13527,7 +13973,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie malonų susitikimą ir liūdną išsiskyrimą. Žodžiai kartojasi ir pabrėžia, kad smagu būti kartu, bet nelengva atsisveikinti. Žodis „rods“ gali reikšti abejones ar prisiminimus, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song reflects on the bittersweet feeling of meeting and spending time together, followed by the sadness of parting. The lyrics use simple repetition and gentle contrasts to express how pleasant it is to gather but how difficult it is to say goodbye. The word 'rods' may suggest uncertainty or something that seems to have happened, which could symbolize memories or nostalgia, though this is not explicit."
+      "EN Description": "This song reflects on the bittersweet feeling of meeting and spending time together, followed by the sadness of parting. The lyrics use simple repetition and gentle contrasts to express how pleasant it is to gather but how difficult it is to say goodbye. The word 'rods' may suggest uncertainty or something that seems to have happened, which could symbolize memories or nostalgia, though this is not explicit.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13553,7 +14000,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie linksmą keliautojų ar stovyklautojų kompaniją, kuri mėgaujasi gamta ir nuotykiais kartu, nepaisydama nepatogumų. Jie renkasi laisvę gamtoje, o ne miesto patogumus, ir džiaugiasi draugyste bei paprastais gyvenimo malonumais. Daina gali simbolizuoti jaunatvišką dvasią ir norą išsiskirti iš kasdienybės.",
-      "EN Description": "This song is about a group of cheerful travelers or campers who enjoy adventures together in nature, regardless of discomforts like mosquitoes or bad weather. They prefer the freedom of the outdoors over the restrictions of city life and celebrate their camaraderie, resilience, and love for simple joys. The lyrics may symbolize youthful spirit and a rebellious attitude against routine or comfort, but mainly focus on the joyful experiences of group journeys."
+      "EN Description": "This song is about a group of cheerful travelers or campers who enjoy adventures together in nature, regardless of discomforts like mosquitoes or bad weather. They prefer the freedom of the outdoors over the restrictions of city life and celebrate their camaraderie, resilience, and love for simple joys. The lyrics may symbolize youthful spirit and a rebellious attitude against routine or comfort, but mainly focus on the joyful experiences of group journeys.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13579,7 +14027,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ilgesį gražių dienų Romuvoje, prisiminimus apie praleistą laiką ir viltį vėl susitikti su mylimu žmogumi. Dainoje jaučiamas nostalgijos ir prisiminimų svarbumas. Romuva gali simbolizuoti svarbią vietą ar ypatingą laiką, bet tiksliai nepaaiškinama.",
-      "EN Description": "This song expresses longing for beautiful days spent in a place called Romuva, recalling memories of joyful times and the hope of being reunited with a loved one. The lyrics focus on nostalgia, the passage of time, and cherished memories. 'Romuva' can symbolize a specific place, an important event, or even a spiritual home, but its exact meaning is not clearly stated."
+      "EN Description": "This song expresses longing for beautiful days spent in a place called Romuva, recalling memories of joyful times and the hope of being reunited with a loved one. The lyrics focus on nostalgia, the passage of time, and cherished memories. 'Romuva' can symbolize a specific place, an important event, or even a spiritual home, but its exact meaning is not clearly stated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13606,7 +14055,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ilgesį ir liūdesį, kurie ateina rudenį, lyginant save su rudeniniu paukščiu. Žodžiai kalba apie prisiminimus, senus draugus ir laiko tėkmę, kas gali simbolizuoti nostalgiją. Nėra aiškių nuorodų į lietuviškas šventes ar tradicijas, bet nuotaika artima lietuviškai poezijai apie rudenį.",
-      "EN Description": "The song describes feelings of longing and melancholy that come with autumn, using the image of an autumn bird as a metaphor for the singer's emotions. The lyrics mention memories, old friends, and the sense of time passing, which might symbolize nostalgia or the sadness often felt during autumn. There are no clear references to specific Lithuanian traditions or holidays, but the mood reflects themes commonly found in Lithuanian poetry and songs about autumn."
+      "EN Description": "The song describes feelings of longing and melancholy that come with autumn, using the image of an autumn bird as a metaphor for the singer's emotions. The lyrics mention memories, old friends, and the sense of time passing, which might symbolize nostalgia or the sadness often felt during autumn. There are no clear references to specific Lithuanian traditions or holidays, but the mood reflects themes commonly found in Lithuanian poetry and songs about autumn.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13633,7 +14083,8 @@ const songs: SongFile = [
       },
       "Text Author": "Vytė Nemunėlis",
       "LT Description": "Daina pasakoja apie meškų šeimą, kuri gyvena miške. Čia aprašoma mažojo meškiuko kasdienybė ir vakarai su šeima. Tai šilta ir jauki istorija apie namų gyvenimą.",
-      "EN Description": "This song tells the story of a bear family living peacefully in the forest. It describes the daily life of the little bear, who stays at home and enjoys listening to his mother's stories in the evening. The song may symbolize the warmth and safety of family life, but it mainly uses simple imagery to create a cozy, child-friendly scene."
+      "EN Description": "This song tells the story of a bear family living peacefully in the forest. It describes the daily life of the little bear, who stays at home and enjoys listening to his mother's stories in the evening. The song may symbolize the warmth and safety of family life, but it mainly uses simple imagery to create a cozy, child-friendly scene.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13665,7 +14116,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, kurią kaime apkalba dėl tinginystės, bet ji sako, jog neturi mylimojo. Ji pamato savo simpatiją šokant su kita, o kitame vakarėlyje pati sulaukia dėmesio. Galiausiai, jaunuolis ją meiliai pakalbina ir jie pasibučiuoja. Dainoje atsispindi jaunimo gyvenimas ir kaimo papročiai.",
-      "EN Description": "The song tells about a young woman who is judged by others in her village for being lazy or sleeping late, but she explains it is because she does not have a beloved. One morning, she hears music and sees her crush dancing with someone else, so she goes to another party where boys pay attention to her, but she pretends to have a sore leg. Eventually, she meets a young man who looks at her shyly but speaks kindly, and they share a sweet kiss. The lyrics reflect themes of youth, village social life, and playful courtship, which are common in Lithuanian folk traditions."
+      "EN Description": "The song tells about a young woman who is judged by others in her village for being lazy or sleeping late, but she explains it is because she does not have a beloved. One morning, she hears music and sees her crush dancing with someone else, so she goes to another party where boys pay attention to her, but she pretends to have a sore leg. Eventually, she meets a young man who looks at her shyly but speaks kindly, and they share a sweet kiss. The lyrics reflect themes of youth, village social life, and playful courtship, which are common in Lithuanian folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13697,7 +14149,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie sesę, kuri palieka gimtuosius namus, o kažkas klausia, ar jai negaila šeimos, sodo ir vaikystės prisiminimų. Dainoje jaučiamas liūdesys dėl atsisveikinimo ir rūpestis, ar nauji žmonės pakeis artimųjų meilę. Tai gali simbolizuoti išvykimą, vestuves arba išsiskyrimą.",
-      "EN Description": "This song is about a sister who is leaving her childhood home, and someone (possibly a sibling or close friend) is asking if she feels sad about leaving behind her family, garden, and memories. The lyrics reflect on the pain of leaving loved ones and familiar places, and express concern about whether new love will replace the love of home and parents. The song may symbolize traditional themes of farewell, marriage, or migration, which are common in Lithuanian folk songs."
+      "EN Description": "This song is about a sister who is leaving her childhood home, and someone (possibly a sibling or close friend) is asking if she feels sad about leaving behind her family, garden, and memories. The lyrics reflect on the pain of leaving loved ones and familiar places, and express concern about whether new love will replace the love of home and parents. The song may symbolize traditional themes of farewell, marriage, or migration, which are common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13723,7 +14176,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie karčemą prie kelio ir pokalbį tarp studenčio bei šinkorkos apie gražią merginą, kuri ten dirba. Dainoje linksmai aptariama, ar mergina yra šinkorkos duktė, ar samdinė, ir studentas bando ją „nusipirkti“. Tai gali simbolizuoti jaunatviškus norus ir linksmą bendravimą kaimo karčemose.",
-      "EN Description": "This song tells of an inn by the roadside and a conversation between a student and the innkeeper about a beautiful girl who works there. The lyrics playfully discuss whether the girl is the innkeeper's daughter or a hired servant, and the student tries to bargain for her attention. The song may symbolize youthful desires, flirtation, and the everyday social life found in rural Lithuanian taverns, but the imagery might also reflect broader themes of longing and social roles."
+      "EN Description": "This song tells of an inn by the roadside and a conversation between a student and the innkeeper about a beautiful girl who works there. The lyrics playfully discuss whether the girl is the innkeeper's daughter or a hired servant, and the student tries to bargain for her attention. The song may symbolize youthful desires, flirtation, and the everyday social life found in rural Lithuanian taverns, but the imagery might also reflect broader themes of longing and social roles.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13754,7 +14208,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie šaltyšių, gyvenantį prie kelio su trimis sūnumis. Jis važiuoja į miestelį nupirkti dovanų sūnums, bet galiausiai nieko negauna. Daina gali simbolizuoti paprastą kaimo gyvenimą ir šeimos ryšius.",
-      "EN Description": "This folk song tells the story of a salt seller living by the roadside with his three sons. He tries to buy gifts for each son in nearby towns, but in the end, they return empty-handed. The song may symbolize simple rural life and family, and the repeated refrain highlights the role of music and instruments in their lives."
+      "EN Description": "This folk song tells the story of a salt seller living by the roadside with his three sons. He tries to buy gifts for each son in nearby towns, but in the end, they return empty-handed. The song may symbolize simple rural life and family, and the repeated refrain highlights the role of music and instruments in their lives.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13780,7 +14235,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie prie kelio stovintį medį, aplinkui skambančias kankles, dūzgiančias bites ir sakalo vaikus. Žodžiuose minimi šeimos nariai, todėl daina gali simbolizuoti ryšį su gamta ir šeima, tačiau tiksli prasmė nėra aiški. Kanklės, bitės ir sakalai yra dažni lietuvių liaudies vaizdiniai.",
-      "EN Description": "This song describes a linden tree standing by the roadside, surrounded by buzzing bees, singing kanklės (a traditional Lithuanian string instrument), and young hawks. The lyrics mention family members and could symbolize harmony with nature and family, but the exact meaning is open to interpretation. The references to kanklės, bees, and hawks may represent traditional Lithuanian imagery connected to rural life and kinship."
+      "EN Description": "This song describes a linden tree standing by the roadside, surrounded by buzzing bees, singing kanklės (a traditional Lithuanian string instrument), and young hawks. The lyrics mention family members and could symbolize harmony with nature and family, but the exact meaning is open to interpretation. The references to kanklės, bees, and hawks may represent traditional Lithuanian imagery connected to rural life and kinship.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13806,7 +14262,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie veikėją, kurio klausiama, kas jį augino ir maitino, o atsakymai – lietutis ir saulė. Dainoje yra daug pasikartojimų ir nesuprantamų žodžių, kas būdinga lietuvių liaudies dainoms.",
-      "EN Description": "This song features a simple, repetitive folk text in which a character (Sarbinčiula ogėla) is asked who raised and nurtured them, with answers referring to gentle rain and the sun. The meaning is somewhat ambiguous, but it may symbolize the nurturing forces of nature. The use of nonsense syllables like 'Sorbinto' is common in Lithuanian folk songs and adds to the musical rhythm."
+      "EN Description": "This song features a simple, repetitive folk text in which a character (Sarbinčiula ogėla) is asked who raised and nurtured them, with answers referring to gentle rain and the sun. The meaning is somewhat ambiguous, but it may symbolize the nurturing forces of nature. The use of nonsense syllables like 'Sorbinto' is common in Lithuanian folk songs and adds to the musical rhythm.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13894,7 +14351,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje klausiama šarkos ar varnos, kiek ji turi vaikų. Paukštis atsako, kad vaikai yra įvairiose vietose ir daro skirtingus dalykus: vieni mirę, kiti namie, dar kiti dirba ar žaidžia, o kai kurie verkia krante. Tai gali simbolizuoti skirtingus vaikų likimus.",
-      "EN Description": "This folk song is a conversation with a magpie or crow, asking how many children she has. The bird answers by describing her children in different situations: some have passed away, some are at home, some are working, some are playing, and some are crying by the riverbank. The song may symbolize the different paths or fates of children, but it's not clear if it's meant literally or as a metaphor for life’s variety and hardships. There are no direct references to specific Lithuanian holidays or historical events."
+      "EN Description": "This folk song is a conversation with a magpie or crow, asking how many children she has. The bird answers by describing her children in different situations: some have passed away, some are at home, some are working, some are playing, and some are crying by the riverbank. The song may symbolize the different paths or fates of children, but it's not clear if it's meant literally or as a metaphor for life’s variety and hardships. There are no direct references to specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13921,7 +14379,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina apie saulę, kuri suteikia šviesos ir šilumos, atneša džiaugsmą ir gyvybę pasauliui. Žodžiai parodo, kaip saulė išsklaido tamsą ir suteikia ramybę, kai ji yra šalia. Saulė gali simbolizuoti viltį ar brangų žmogų, bet tai nėra aišku iš pačių žodžių.",
-      "EN Description": "This song expresses admiration for the sun, describing its warmth, light, and the way it brings joy and life to the world. The lyrics mention how the sun chases away darkness and brings comfort, especially when it is present. The sun might symbolize hope, happiness, or someone dear, but that's not certain from the text alone."
+      "EN Description": "This song expresses admiration for the sun, describing its warmth, light, and the way it brings joy and life to the world. The lyrics mention how the sun chases away darkness and brings comfort, especially when it is present. The sun might symbolize hope, happiness, or someone dear, but that's not certain from the text alone.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13950,7 +14409,8 @@ const songs: SongFile = [
       "Music Author": "I. Starošaitė",
       "Text Author": "I. Starošaitė",
       "LT Description": "Daina pasakoja apie ramų ir artimą vakarą, kai du žmonės po ilgos kelionės vėl susitinka. Žodžiai išreiškia ilgesį, meilės jausmus ir sunkumą rasti tinkamus žodžius. Vyno taurė, sena daina ir leidžianti saulė gali simbolizuoti šilumą, prisiminimus ir brangias akimirkas.",
-      "EN Description": "This song describes a peaceful and intimate moment at sunset, where two people come together after a long journey. The lyrics express deep feelings, longing, and the difficulty of finding the right words to express love. The imagery of wine, an old song, and the setting sun might symbolize comfort, nostalgia, and the preciousness of shared time, but could also reflect universal themes of hope and vulnerability."
+      "EN Description": "This song describes a peaceful and intimate moment at sunset, where two people come together after a long journey. The lyrics express deep feelings, longing, and the difficulty of finding the right words to express love. The imagery of wine, an old song, and the setting sun might symbolize comfort, nostalgia, and the preciousness of shared time, but could also reflect universal themes of hope and vulnerability.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -13977,7 +14437,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie saulę kaip rūpestingą žemės motiną, kuri globoja visus gyvus padarus. Kiekviena posmo eilutė aprašo, ką saulė duoda augalams, gyvūnams ir žmonėms, padėdama jiems augti kasdien. Tai gali simbolizuoti dėkingumą gamtai ir gyvenimo ciklams.",
-      "EN Description": "This song is about the sun as the caring mother of the earth, who protects and supports all living things. Each verse describes how the sun gives something special to plants, animals, and people, helping them grow every day. The song may symbolize gratitude for nature and the cycles of life, which is an important theme in Lithuanian culture."
+      "EN Description": "This song is about the sun as the caring mother of the earth, who protects and supports all living things. Each verse describes how the sun gives something special to plants, animals, and people, helping them grow every day. The song may symbolize gratitude for nature and the cycles of life, which is an important theme in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14004,7 +14465,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie stebuklingą vakarą, kai leidžiasi saulė, o prie namų šviečia takelis. Čia minimas pasakų senis ir namelis ant vištos kojų, kas gali simbolizuoti vaizduotę arba pasakų motyvus. Žodžiai kuria svajingą ir žaismingą nuotaiką.",
-      "EN Description": "This song describes a magical evening scene where the sun is setting, and a path glimmers near a cozy home. It mentions a fairy-tale old man stoking the oven and a house on chicken legs, which may symbolize imagination or reference Lithuanian and Slavic folklore. The lyrics create a dreamy, playful atmosphere, blending everyday life with fantasy elements."
+      "EN Description": "This song describes a magical evening scene where the sun is setting, and a path glimmers near a cozy home. It mentions a fairy-tale old man stoking the oven and a house on chicken legs, which may symbolize imagination or reference Lithuanian and Slavic folklore. The lyrics create a dreamy, playful atmosphere, blending everyday life with fantasy elements.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14033,7 +14495,8 @@ const songs: SongFile = [
       "Music Author": "A. Mamontovas",
       "Text Author": "A. Mamontovas",
       "LT Description": "Ši daina ragina nenuleisti rankų sunkiais momentais. Ji kalba apie liūdesį ar sunkumus, bet siūlo tikėti svajonėmis ir viltimi. Saulės miesto vaizdinys gali simbolizuoti laimę ar draugystę, bet gali būti ir tiesiog poetinis vaizdas.",
-      "EN Description": "This song encourages the listener not to give up during difficult times. It speaks about facing sadness or hardship, but holding on to hope and dreams. The imagery of crossing the sea and flying to a shining 'city of the sun' may symbolize striving for happiness or friendship, but could also just be poetic expressions of optimism."
+      "EN Description": "This song encourages the listener not to give up during difficult times. It speaks about facing sadness or hardship, but holding on to hope and dreams. The imagery of crossing the sea and flying to a shining 'city of the sun' may symbolize striving for happiness or friendship, but could also just be poetic expressions of optimism.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14062,7 +14525,8 @@ const songs: SongFile = [
       "Music Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,Gervių skiltis",
       "Text Author": "Lietuvos skautijos, Vilniaus krašto, Skaisčio tunto,Gervių skiltis",
       "LT Description": "Ši daina pasakoja apie pabudimą, ryšį su gamta ir žmonių bendrystę, kurie save vadina „saulės vaikais“. Joje kalbama apie meilę, vienybę ir skautų tradiciją, kuri Lietuvoje turi ilgą istoriją. Dainos žodžiai gali simbolizuoti viltį ir jaunimo dvasią.",
-      "EN Description": "The song reflects on awakening, connection with nature, and a sense of belonging among people who call themselves 'children of the sun.' It mentions love, unity, and the tradition of scouting, which has a long history in Lithuania. The lyrics may symbolize hope, togetherness, and the bright spirit of Lithuanian youth, but some parts, such as references to 'sun children,' could also represent a general sense of optimism or a poetic metaphor."
+      "EN Description": "The song reflects on awakening, connection with nature, and a sense of belonging among people who call themselves 'children of the sun.' It mentions love, unity, and the tradition of scouting, which has a long history in Lithuania. The lyrics may symbolize hope, togetherness, and the bright spirit of Lithuanian youth, but some parts, such as references to 'sun children,' could also represent a general sense of optimism or a poetic metaphor.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14088,7 +14552,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jauną merginą, kuri vakarėjant žiūri pro langą ir ilgisi išvykusio mylimojo. Ji neskina rūtų darželyje, kaip įprasta tradicijose, o galvoja apie bernelį. Dainoje jaučiama meilė, ilgesys ir viltis sulaukti sugrįžimo.",
-      "EN Description": "This song tells of a young woman sitting by her window at sunset, longing for her beloved who is far away. Instead of joining in traditional activities like picking rue in the garden (an old Lithuanian symbol of maidenhood), she is filled with worry and hope for her beloved's return. The song reflects themes of love, waiting, and emotional longing, and the mention of 'rue' (rūta) may symbolize purity or unmarried status, which is common in Lithuanian folk songs."
+      "EN Description": "This song tells of a young woman sitting by her window at sunset, longing for her beloved who is far away. Instead of joining in traditional activities like picking rue in the garden (an old Lithuanian symbol of maidenhood), she is filled with worry and hope for her beloved's return. The song reflects themes of love, waiting, and emotional longing, and the mention of 'rue' (rūta) may symbolize purity or unmarried status, which is common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14114,7 +14579,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje du broliai anksti ryte ruošiasi kelionei pas mergelę, galbūt piršlyboms ar vedyboms. Jie kalbina žirgą, o kelionėje susiduria su smulkiomis kliūtimis. Aukšti, užrakinti vartai gali simbolizuoti sunkumus ar tradicines piršlybas lietuvių vestuvių papročiuose.",
-      "EN Description": "This folk song tells of two brothers saddling their horse at sunrise and riding towards a young woman's home, possibly for a courtship or marriage visit. On their way, they speak to the horse, and encounter small adventures, like the horse sparking fire from a stone. The high, locked gates at the end may symbolize obstacles or the formality of visiting a bride’s family, which is a common theme in Lithuanian wedding traditions."
+      "EN Description": "This folk song tells of two brothers saddling their horse at sunrise and riding towards a young woman's home, possibly for a courtship or marriage visit. On their way, they speak to the horse, and encounter small adventures, like the horse sparking fire from a stone. The high, locked gates at the end may symbolize obstacles or the formality of visiting a bride’s family, which is a common theme in Lithuanian wedding traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14140,7 +14606,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie jaunuosius Lietuvos savanorius, kurie keliauja per gimtinę, prisimena gamtą, darbą ir meilę. Jie išvyksta į karą, bet pažada sugrįžti pas mylimuosius. Daina pabrėžia namų ilgesį ir viltį karo metu.",
-      "EN Description": "This song tells of young Lithuanian volunteers, possibly soldiers, marching through their homeland, reflecting on nature, work, and love. It highlights longing and hope as they leave loved ones behind, promising to return after the war. The lyrics may symbolize both the hardships of war and the enduring connection to home and loved ones, drawing on traditional themes of rural life and patriotic duty."
+      "EN Description": "This song tells of young Lithuanian volunteers, possibly soldiers, marching through their homeland, reflecting on nature, work, and love. It highlights longing and hope as they leave loved ones behind, promising to return after the war. The lyrics may symbolize both the hardships of war and the enduring connection to home and loved ones, drawing on traditional themes of rural life and patriotic duty.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14172,7 +14639,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, sėdintį po langeliu ir stebintį, kaip pro šalį eina verkdama mergina, galvojanti apie mylimojo žodžius. Tekste daug kalbama apie ilgesį, meilę ir pasirinkimą tik vieno žmogaus. Nėra aiškių nuorodų į šventes ar istorinius įvykius.",
-      "EN Description": "The song tells of a person sitting under a window, watching as a young woman walks by, crying and thinking about words from her beloved. The lyrics speak about longing, love, and possibly heartbreak, as well as the wish to choose only one beloved. There are no clear references to specific Lithuanian holidays or historical events, but the imagery of sitting by a window and counting days may symbolize waiting or devotion."
+      "EN Description": "The song tells of a person sitting under a window, watching as a young woman walks by, crying and thinking about words from her beloved. The lyrics speak about longing, love, and possibly heartbreak, as well as the wish to choose only one beloved. There are no clear references to specific Lithuanian holidays or historical events, but the imagery of sitting by a window and counting days may symbolize waiting or devotion.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14198,7 +14666,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, sėdintį prie stalo ir žiūrintį pro langą į laivelį marių vandenyje. Laivelyje mergelė atlieka simboliškus veiksmus – prausia burną jūros putomis, šukuoja plaukus žuvų šukelėmis ir skandina žiedą. Tai gali reikšti ilgesį ar atsisveikinimą, bet tikslus prasmė gali būti įvairiai suprantama.",
-      "EN Description": "This song describes a person sitting at a table and looking out the window, watching a small boat on the water. In the boat, a girl performs symbolic actions—washing her mouth with sea foam, combing her hair with fish scales, and sinking a ring into the depths. The themes may suggest longing, farewell, or unfulfilled love, but the exact meaning can be open to interpretation."
+      "EN Description": "This song describes a person sitting at a table and looking out the window, watching a small boat on the water. In the boat, a girl performs symbolic actions—washing her mouth with sea foam, combing her hair with fish scales, and sinking a ring into the depths. The themes may suggest longing, farewell, or unfulfilled love, but the exact meaning can be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14225,7 +14694,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie tai, kaip kažkas sėjo rūtų sėklas, bet jos neišdygo, tik žalia liepaitė užaugo. Prie liepos atskrido gegutė ir kukavo, bet jos girdėjo tik sena motina. Daina gali simbolizuoti viltis ar svajones, kurios neišsipildo.",
-      "EN Description": "This folk song tells of someone sowing rue seeds, but none sprout except for a green linden tree. A speckled cuckoo comes to the tree and sings, but only an old mother hears its song. The song might symbolize hopes or wishes that do not come true, except for one unexpected outcome. The rue and linden are often found in Lithuanian folk songs and can have symbolic meanings, but the song does not refer to a specific holiday or event."
+      "EN Description": "This folk song tells of someone sowing rue seeds, but none sprout except for a green linden tree. A speckled cuckoo comes to the tree and sings, but only an old mother hears its song. The song might symbolize hopes or wishes that do not come true, except for one unexpected outcome. The rue and linden are often found in Lithuanian folk songs and can have symbolic meanings, but the song does not refer to a specific holiday or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14252,7 +14722,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žirnių ir pupų sėjimą, jų augimą ir apsaugą nuo varnų. Tai gali simbolizuoti rūpestį, džiaugsmą dėl derliaus arba tiesiog atspindėti kaimo gyvenimą. Daina tiesiogiai nemini konkrečios lietuviškos tradicijos ar šventės.",
-      "EN Description": "This song tells the story of sowing peas and beans in the earth, watching them grow, and protecting them from crows. It can symbolize care, protection, and the joy of harvest, but it may also simply reflect rural life and gardening. The song does not directly reference a specific Lithuanian tradition or holiday, but gardening and protecting crops are common themes in Lithuanian folk culture."
+      "EN Description": "This song tells the story of sowing peas and beans in the earth, watching them grow, and protecting them from crows. It can symbolize care, protection, and the joy of harvest, but it may also simply reflect rural life and gardening. The song does not directly reference a specific Lithuanian tradition or holiday, but gardening and protecting crops are common themes in Lithuanian folk culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14278,7 +14749,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie sesutę, kuri sodina, skina ir pina rūtų vainiką, linkėdama Lietuvai žalumos, laisvės ir taikos. Rūta Lietuvoje dažnai reiškia jaunystę ir tyrumą. Ši daina atspindi lietuviškas tradicijas ir meilę tėvynei, bet nemini konkrečių švenčių ar įvykių.",
-      "EN Description": "This song tells about a sister planting, picking, and weaving rue flowers, hoping for Lithuania to be green, free, and peaceful. The text may symbolize care, hope, and wishes for the homeland, as rue is often a symbol of youth and purity in Lithuanian culture. The song does not mention any specific holiday or historical event, but it reflects traditional values and possibly the role of women in folk traditions."
+      "EN Description": "This song tells about a sister planting, picking, and weaving rue flowers, hoping for Lithuania to be green, free, and peaceful. The text may symbolize care, hope, and wishes for the homeland, as rue is often a symbol of youth and purity in Lithuanian culture. The song does not mention any specific holiday or historical event, but it reflects traditional values and possibly the role of women in folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14306,7 +14778,8 @@ const songs: SongFile = [
       "Music Author": "Neda",
       "Text Author": "Neda",
       "LT Description": "Šioje dainoje pasakojama apie kelionę į pasakų šalį, esančią toli už kalnų, upių ir jūrų. Ji kuria jaukumo ir ilgesio jausmą, kai naktį skaitomos pasakos ir ieškoma ramybės toli nuo rūpesčių. Tekstas gali simbolizuoti vaikystės prisiminimus ar norą pabėgti į vaizduotės pasaulį.",
-      "EN Description": "This song describes a journey to a distant, magical land found in fairy tales, beyond mountains, rivers, and seas. It evokes a sense of nostalgia and comfort, as stories are told at night and new tales are discovered while searching for peace far from life's troubles. The text may symbolize longing for escape, imagination, or childhood memories, but this is not stated directly."
+      "EN Description": "This song describes a journey to a distant, magical land found in fairy tales, beyond mountains, rivers, and seas. It evokes a sense of nostalgia and comfort, as stories are told at night and new tales are discovered while searching for peace far from life's troubles. The text may symbolize longing for escape, imagination, or childhood memories, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14337,7 +14810,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie ilgesį ir mylimo žmogaus trūkumą, kai jis yra toli. Dainoje pasakojama apie ramų peizažą prie seno malūno ir norą būti kartu. Tekstas gali simbolizuoti vienatvę ir viltį susitikti.",
-      "EN Description": "This song is about longing and missing someone dear who is far away. The singer describes a peaceful countryside scene with an old mill by the road, expressing a wish to share dreams and songs together. The lyrics may symbolize loneliness, hope, and the desire to reunite, but the exact meaning can depend on the listener’s interpretation."
+      "EN Description": "This song is about longing and missing someone dear who is far away. The singer describes a peaceful countryside scene with an old mill by the road, expressing a wish to share dreams and songs together. The lyrics may symbolize loneliness, hope, and the desire to reunite, but the exact meaning can depend on the listener’s interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14364,7 +14838,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie senus draugus, kurie retai bendrauja ir prisimena praeitį. Tekste jaučiama nostalgija bei noras vėl susitikti ir pabūti kartu. Dainoje kalbama apie laiką, draugystę ir pasikeitimus gyvenime.",
-      "EN Description": "This song reflects on old friendships and the passage of time. The lyrics talk about friends communicating less often, memories of good times, and the hope that there will be chances to reconnect. There are themes of nostalgia and the realization that life changes, but the desire to meet again remains."
+      "EN Description": "This song reflects on old friendships and the passage of time. The lyrics talk about friends communicating less often, memories of good times, and the hope that there will be chances to reconnect. There are themes of nostalgia and the realization that life changes, but the desire to meet again remains.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14391,7 +14866,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie pasivaikščiojimą Vilniuje ir senus bei naujus miesto stogus. Tekstas atskleidžia jaunystės jausmą, nostalgiją ir ryšį su miestu, kuris nuolat keičiasi, bet įkvepia žmones. Daina nemini konkrečių lietuviškų tradicijų ar švenčių.",
-      "EN Description": "This song is about walking through Vilnius and observing its old and new rooftops. The lyrics express feelings of youth, nostalgia, and a connection to the city, possibly symbolizing how Vilnius changes but still inspires its people. There are no direct references to specific Lithuanian traditions or holidays in the text."
+      "EN Description": "This song is about walking through Vilnius and observing its old and new rooftops. The lyrics express feelings of youth, nostalgia, and a connection to the city, possibly symbolizing how Vilnius changes but still inspires its people. There are no direct references to specific Lithuanian traditions or holidays in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14418,7 +14894,8 @@ const songs: SongFile = [
       },
       "Music Author": "Ramūnas Underys",
       "LT Description": "Daina pasakoja apie romantišką vakarą, kai gamta nutyla ir skamba pažadai po žvaigždėtu dangumi. Žodžiuose kalbama apie svajones, artumą ir norą, kad pažadai išsipildytų. Gamtos vaizdai gali simbolizuoti artumą ir ypatingą nakties nuotaiką.",
-      "EN Description": "This song describes a romantic evening scene where nature grows quiet and promises are made under the stars. The lyrics speak of secret dreams, the desire to be close, and a wish for heartfelt promises to be fulfilled. The imagery of the moon, hills, and silence may symbolize intimacy and the magic of night, but could also simply set a peaceful, dreamy mood."
+      "EN Description": "This song describes a romantic evening scene where nature grows quiet and promises are made under the stars. The lyrics speak of secret dreams, the desire to be close, and a wish for heartfelt promises to be fulfilled. The imagery of the moon, hills, and silence may symbolize intimacy and the magic of night, but could also simply set a peaceful, dreamy mood.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14444,7 +14921,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie jauną žmogų, kuris ruošia ir jodinėja savo žirgą, prašo jį nunešti toli. Dainoje kalbama apie rūpinimąsi žirgu ir apie prajojimą pro uošvės dvarą, kur gražiai čiulba paukščiai vyšnių sode. Gali būti, kad daina simbolizuoja kelionę ar ilgesį.",
-      "EN Description": "This folk song tells about a young person preparing and riding their horse, asking if the horse can carry them over a great distance quickly. The lyrics describe feeding and caring for the horse, and passing by the mother-in-law's estate where birds sing beautifully in the cherry orchard. The song may symbolize a journey or longing, and the mention of 'subatėlė' (Sabbath) suggests a connection to the weekly rhythm or rest day in Lithuanian rural life."
+      "EN Description": "This folk song tells about a young person preparing and riding their horse, asking if the horse can carry them over a great distance quickly. The lyrics describe feeding and caring for the horse, and passing by the mother-in-law's estate where birds sing beautifully in the cherry orchard. The song may symbolize a journey or longing, and the mention of 'subatėlė' (Sabbath) suggests a connection to the weekly rhythm or rest day in Lithuanian rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14475,7 +14953,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jaunuolį, kuris rūpinasi savo žirgu ir joja per laukus. Kaimo merginos jį stebi, bet jis jau išsirinko merginą iš kito kaimo. Čia gali būti kalbama apie jaunystę, meilę ir pasididžiavimą.",
-      "EN Description": "This song tells about a young person taking care of their horse and riding through the fields. The singer notes how people from the village watch them, but says they have already chosen a loved one from another village. The song may reflect themes of youth, courtship, and pride, but could also simply describe daily rural life."
+      "EN Description": "This song tells about a young person taking care of their horse and riding through the fields. The singer notes how people from the village watch them, but says they have already chosen a loved one from another village. The song may reflect themes of youth, courtship, and pride, but could also simply describe daily rural life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14558,7 +15037,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie naktį, kai kartu su broliu sodinama obelėlė, galinti simbolizuoti viltį ar meilę. Obuoliai vėliau dovanojami merginai kaip meilės ženklas. Dainoje taip pat klausiama, kodėl mergina tą naktį nebuvo su jaunimu.",
-      "EN Description": "This folk song tells about staying awake all night with a brother to plant an apple tree, which may symbolize hope, love, or new beginnings. The apples are later intended as a gift for a young woman, showing affection or courtship. The song also gently questions why the girl was not present with the youth that night, hinting at longing or missed opportunities."
+      "EN Description": "This folk song tells about staying awake all night with a brother to plant an apple tree, which may symbolize hope, love, or new beginnings. The apples are later intended as a gift for a young woman, showing affection or courtship. The song also gently questions why the girl was not present with the youth that night, hinting at longing or missed opportunities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14585,7 +15065,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie vasarą, pilną jausmų – džiaugsmo, ilgesio ir liūdesio. Dainininkas palieka širdį po jovaru, kas gali simbolizuoti prisiminimus ar meilę. Dainoje minima sidabrinės ašaros ir prašoma jovaro pastatyti namus, kas gali reikšti troškimą rasti ramybę ar namus.",
-      "EN Description": "This song tells about a summer filled with emotions—joy, longing, and sadness. The singer leaves their heart under a maple tree, which might symbolize memories or love given away. The song mentions silver tears and asks the maple to build a home, which could represent a wish for comfort or belonging, but these symbols are open to interpretation."
+      "EN Description": "This song tells about a summer filled with emotions—joy, longing, and sadness. The singer leaves their heart under a maple tree, which might symbolize memories or love given away. The song mentions silver tears and asks the maple to build a home, which could represent a wish for comfort or belonging, but these symbols are open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14614,7 +15095,8 @@ const songs: SongFile = [
       "Music Author": "G. Paškevičius",
       "Text Author": "G. Paškevičius",
       "LT Description": "Ši daina kalba apie tai, kad gyvenime visko nutinka ir viskas gali keistis. Ji pasakoja, kaip dalykai gali atrodyti nepažįstami ar pasikeisti, ir kaip prisiminimai ar jausmai gali keisti prasmę. Daina gali simbolizuoti gyvenimo permainas.",
-      "EN Description": "This song reflects on the unpredictable and changing nature of life. It describes how things can transform unexpectedly, and how familiar things might seem unknown or different. The lyrics may symbolize the passage of time and the way memories, hopes, and everyday experiences can shift in meaning."
+      "EN Description": "This song reflects on the unpredictable and changing nature of life. It describes how things can transform unexpectedly, and how familiar things might seem unknown or different. The lyrics may symbolize the passage of time and the way memories, hopes, and everyday experiences can shift in meaning.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14641,7 +15123,8 @@ const songs: SongFile = [
       },
       "Music Author": "Karen Lafferty",
       "LT Description": "Ši daina kalba apie tai, kad pirmiausia reikia ieškoti Dievo karalystės ir teisingumo, o visa kita bus duota. Ji taip pat pabrėžia, kad Dievas mus myli ir suteikia vilties nugalėti blogį. Žodis 'Aleliuja' yra dažnas krikščioniškose giesmėse.",
-      "EN Description": "This song is about seeking God's kingdom and righteousness before anything else, trusting that everything needed will be given. It also speaks about God's love giving people hope, and encourages overcoming evil. The repeating word 'Aleliuja' (Hallelujah) is a common expression of praise in Christian songs, but the lyrics do not mention any specific Lithuanian tradition or holiday."
+      "EN Description": "This song is about seeking God's kingdom and righteousness before anything else, trusting that everything needed will be given. It also speaks about God's love giving people hope, and encourages overcoming evil. The repeating word 'Aleliuja' (Hallelujah) is a common expression of praise in Christian songs, but the lyrics do not mention any specific Lithuanian tradition or holiday.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14670,7 +15153,8 @@ const songs: SongFile = [
       "Music Author": "Tele Bim Bam",
       "Text Author": "Tele Bim Bam",
       "LT Description": "Ši daina linksmai pasakoja apie šimtakojį, kuris turi daug batų ir dėl to turi daug rūpesčių. Žodžiai žaismingi ir smalsūs, daina skirta vaikams, nėra aiškių nuorodų į lietuviškas tradicijas ar šventes.",
-      "EN Description": "The song playfully talks about a centipede with many shoes and the challenges this brings, such as cleaning and taking off so many shoes. The lyrics use humor and curiosity, and the centipede could possibly symbolize someone unique or different, but mainly, it is a lighthearted children's song with no clear reference to specific Lithuanian traditions or holidays."
+      "EN Description": "The song playfully talks about a centipede with many shoes and the challenges this brings, such as cleaning and taking off so many shoes. The lyrics use humor and curiosity, and the centipede could possibly symbolize someone unique or different, but mainly, it is a lighthearted children's song with no clear reference to specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14702,7 +15186,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kalbama apie skautų draugystę ir vienybę, kartu praleistus metus prie laužo ir dainuojant. Ji pabrėžia, kad skautai jaučiasi kaip viena šeima, nesvarbu, kiek laiko praeina. Paminėtas Panemunės vardas gali būti svarbi vieta skautams.",
-      "EN Description": "This song celebrates the long-lasting unity and friendship among Lithuanian scouts. It describes gathering around campfires, singing together, and how these shared experiences make them feel like one family across generations. The lyrics mention specific traditions like camping and references to Panemunė, which might symbolize a meaningful place for scouts in Lithuania."
+      "EN Description": "This song celebrates the long-lasting unity and friendship among Lithuanian scouts. It describes gathering around campfires, singing together, and how these shared experiences make them feel like one family across generations. The lyrics mention specific traditions like camping and references to Panemunė, which might symbolize a meaningful place for scouts in Lithuania.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14728,7 +15213,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie liūdną širdį ir prarastą jaunystę. Žodžiai pasakoja apie bėgantį laiką, prarastą laimę ir meilės prisiminimus. Tai gali simbolizuoti ilgesį praeičiai ir susitaikymą su tuo, kad gyvenimas tęsiasi.",
-      "EN Description": "The song is about someone reflecting on the sadness of their heart and wondering where their youth has gone. The lyrics talk about the passage of time, lost happiness, and memories of love. It may symbolize longing for the past and the acceptance that life goes on, even after happiness fades."
+      "EN Description": "The song is about someone reflecting on the sadness of their heart and wondering where their youth has gone. The lyrics talk about the passage of time, lost happiness, and memories of love. It may symbolize longing for the past and the acceptance that life goes on, even after happiness fades.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14754,7 +15240,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie naktį, kai gaideliai pradeda giedoti ir ateina laikas keltis dirbti šieno. Dainoje jaučiamas noras, kad naktis būtų ilgesnė, nes su aušra prasideda sunkus darbas. Tai atspindi kaimo gyvenimo ritmą.",
-      "EN Description": "This song describes a night when roosters begin to crow, signaling the end of nighttime and the start of a new day. The singer asks the roosters not to cut the night short, as with dawn comes work in the fields—specifically mowing hay. The song reflects the rhythm of rural life and may symbolize both tiredness and longing for rest, but also the inevitability of daily work."
+      "EN Description": "This song describes a night when roosters begin to crow, signaling the end of nighttime and the start of a new day. The singer asks the roosters not to cut the night short, as with dawn comes work in the fields—specifically mowing hay. The song reflects the rhythm of rural life and may symbolize both tiredness and longing for rest, but also the inevitability of daily work.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14780,7 +15267,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje mergina eina semti vandens į jūrą, kur jai siūloma įsėsti į juodą laivelį, bet ji atsisako ir džiaugiasi savo išmintimi. Daina gali simbolizuoti pavojus ar motinos patarimų svarbą, tačiau tikslus jos prasmė nėra aiški.",
-      "EN Description": "This folk song tells of a young woman sent by her mother to fetch water from the sea, where she is tempted by a young man in a black boat to join him. She wisely refuses, believing that if she had agreed, she would have drowned. The song may symbolize the dangers of trusting strangers or the importance of listening to one's mother's advice, but the exact meaning is open to interpretation."
+      "EN Description": "This folk song tells of a young woman sent by her mother to fetch water from the sea, where she is tempted by a young man in a black boat to join him. She wisely refuses, believing that if she had agreed, she would have drowned. The song may symbolize the dangers of trusting strangers or the importance of listening to one's mother's advice, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14806,7 +15294,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie gyvenimo kelią, kurį lydi Dievo šviesa ir meilė. Žodžiai kalba apie tikėjimą, dėkingumą ir meilės nešimą savo širdyje. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar šventes.",
-      "EN Description": "This song is about walking through life guided by God's light and love. The lyrics focus on themes of faith, gratitude, and carrying love in one's heart, possibly symbolizing a spiritual journey or community unity. There are no direct references to specific Lithuanian traditions or holidays in the text."
+      "EN Description": "This song is about walking through life guided by God's light and love. The lyrics focus on themes of faith, gratitude, and carrying love in one's heart, possibly symbolizing a spiritual journey or community unity. There are no direct references to specific Lithuanian traditions or holidays in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14885,7 +15374,8 @@ const songs: SongFile = [
       },
       "Music Author": "Aleksandras Stankevičius",
       "LT Description": "Ši daina yra linksma lietuviška skaičiuotė, dažnai naudojama vaikų žaidimuose. Daugiau čia girdime žaismingų, beprasmio skambesio žodžių ir ritminių frazių. Kai kurie žodžiai mini medų, bites ir gamtą, bet pagrindinis tikslas – linksminti ir padėti žaisti.",
-      "EN Description": "This song is a playful Lithuanian counting rhyme, often used in children's games. It is made up of nonsense words and rhythmic patterns, which might symbolize the fun and creativity found in folk traditions. While some lines reference honey, bees, and nature, the main purpose is likely to create a lively atmosphere for play rather than tell a specific story."
+      "EN Description": "This song is a playful Lithuanian counting rhyme, often used in children's games. It is made up of nonsense words and rhythmic patterns, which might symbolize the fun and creativity found in folk traditions. While some lines reference honey, bees, and nature, the main purpose is likely to create a lively atmosphere for play rather than tell a specific story.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14911,7 +15401,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši linksma daina pasakoja apie smagią nuotaiką virtuvėje, kai gaminamas ir valgomas maistas. Daržovės ir kiti produktai vaizduojami kaip veikėjai, kurie šoka ir bendrauja, todėl valgymas tampa smagia švente. Daina gali simbolizuoti bendrumą ir džiaugsmą valgant kartu.",
-      "EN Description": "This playful song describes the lively atmosphere of cooking and eating together in the kitchen. The lyrics personify vegetables and foods as characters dancing and interacting, making the process of preparing and enjoying a meal joyful and fun. It may symbolize the importance of food and togetherness in everyday Lithuanian life, but mainly it is a lighthearted celebration of mealtime."
+      "EN Description": "This playful song describes the lively atmosphere of cooking and eating together in the kitchen. The lyrics personify vegetables and foods as characters dancing and interacting, making the process of preparing and enjoying a meal joyful and fun. It may symbolize the importance of food and togetherness in everyday Lithuanian life, but mainly it is a lighthearted celebration of mealtime.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14937,7 +15428,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus prašo artimųjų atnešti vandens iš šaltinio, bet visi šeimos nariai yra per daug užsiėmę, kad padėtų. Tik mylimasis randa laiko ir atneša vandens. Tai gali reikšti ilgesį rūpesčiui ar meilės svarbą, bet prasmė gali būti suprantama įvairiai.",
-      "EN Description": "This song tells of a person suffering from pain, asking their family members and a beloved one to bring water from a spring. Each family member is too busy with their work to help, but the beloved finds time and brings the water. The song may symbolize longing for care, the importance of love, or the burdens of daily life, though the true meaning can be open to interpretation."
+      "EN Description": "This song tells of a person suffering from pain, asking their family members and a beloved one to bring water from a spring. Each family member is too busy with their work to help, but the beloved finds time and brings the water. The song may symbolize longing for care, the importance of love, or the burdens of daily life, though the true meaning can be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14971,7 +15463,8 @@ const songs: SongFile = [
       "Music Author": "Feliksas Šakalys",
       "Text Author": "Feliksas Šakalys",
       "LT Description": "Šioje dainoje pasakojama apie Lietuvos skautų vienybę, meilę gamtai ir Tėvynei. Žodžiai ragina draugauti, daryti gerus darbus ir didžiuotis savo šalimi. Daina gali simbolizuoti draugystę, bendruomenę ir tradicijas.",
-      "EN Description": "This song is about Lithuanian scouts coming together, raising their flags, and celebrating their homeland. The verses talk about unity, caring for nature, friendship, and doing good deeds. The lyrics may symbolize the importance of community, tradition, and love for Lithuania, but do not mention any specific historical events or holidays."
+      "EN Description": "This song is about Lithuanian scouts coming together, raising their flags, and celebrating their homeland. The verses talk about unity, caring for nature, friendship, and doing good deeds. The lyrics may symbolize the importance of community, tradition, and love for Lithuania, but do not mention any specific historical events or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -14998,7 +15491,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuris anksčiau nuoširdžiai tikėjo meile, bet dabar tapo skeptiku. Jis jaučiasi protingesnis, bet širdyje yra liūdnas ir šaltas. Dainoje galima jausti liūdesį dėl prarasto tikėjimo meile.",
-      "EN Description": "The song explores a personal journey from once believing deeply in love to becoming a skeptic. The narrator reflects on their past innocence and longing for love, but now feels wiser, though also emotionally cold and sad. The lyrics may symbolize how disappointment or heartbreak can lead someone to guard themselves with skepticism."
+      "EN Description": "The song explores a personal journey from once believing deeply in love to becoming a skeptic. The narrator reflects on their past innocence and longing for love, but now feels wiser, though also emotionally cold and sad. The lyrics may symbolize how disappointment or heartbreak can lead someone to guard themselves with skepticism.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15024,7 +15518,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie jausmus ir viltį, dovanodama raudoną rožę kiekvieną rytą. Gėlės, pavasaris ir gamta siejasi su meile, draugyste ir ilgesiu. Raudona rožė gali simbolizuoti stiprius jausmus, bet nėra aišku, ar daina susijusi su konkrečia lietuviška tradicija.",
-      "EN Description": "The song expresses affection and hope through the image of bringing a red rose as a daily gift. Nature, flowers, and spring are associated with love, friendship, and longing. The red rose may symbolize passion or sincere feelings, but it is not certain if the song refers to any specific Lithuanian tradition."
+      "EN Description": "The song expresses affection and hope through the image of bringing a red rose as a daily gift. Nature, flowers, and spring are associated with love, friendship, and longing. The red rose may symbolize passion or sincere feelings, but it is not certain if the song refers to any specific Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15050,7 +15545,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje linksmai pasakojama apie alkaną uodą, kuris skraido per įvairias vietas ir sutinka įvairius gyvūnus, kurių kvapai jį vilioja. Daina žaisminga ir su pasikartojimais, o pabaigoje uodui tenka bėgti nuo žmonių (skautų).",
-      "EN Description": "This song tells a humorous story about a hungry mosquito flying through different places and meeting various creatures, each tempting it with different smells. The song uses playful language and repetition, and may symbolize the everyday struggles and adventures of small creatures. It also pokes fun at the mosquito's misadventures, especially when it encounters people (scouts) who try to get rid of it."
+      "EN Description": "This song tells a humorous story about a hungry mosquito flying through different places and meeting various creatures, each tempting it with different smells. The song uses playful language and repetition, and may symbolize the everyday struggles and adventures of small creatures. It also pokes fun at the mosquito's misadventures, especially when it encounters people (scouts) who try to get rid of it.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15077,7 +15573,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie norą skristi ir laisvės jausmą. Žodžiai aprašo svajones, troškimus ir pojūčius, kai įsivaizduoji save sklandant aukštai virš žemės. Skrydis gali simbolizuoti kūrybą ar norą pabėgti nuo rūpesčių, bet daina to tiesiai nesako.",
-      "EN Description": "This song describes the feeling of wanting to fly and experience freedom. The words focus on the emotions and sensations that come with dreaming, wishing, and imagining yourself soaring high above the earth. The flight might symbolize personal growth, escape from worries, or simply the joy of dreaming, though the song does not say so directly."
+      "EN Description": "This song describes the feeling of wanting to fly and experience freedom. The words focus on the emotions and sensations that come with dreaming, wishing, and imagining yourself soaring high above the earth. The flight might symbolize personal growth, escape from worries, or simply the joy of dreaming, though the song does not say so directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15103,7 +15600,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina džiaugiasi saule ir jos svarba kasdieniame gyvenime, aprašo gamtos grožį bei jaunystę. Žodžiai išreiškia dėkingumą saulei ir artumą su ja, bet konkrečių lietuviškų tradicijų ar švenčių nemini.",
-      "EN Description": "This song celebrates the sun and its importance in daily life, describing how it accompanies people from morning until night. It uses gentle natural imagery like silk wind and blooming flowers, which may symbolize youth and renewal. The lyrics express gratitude and a sense of kinship with the sun, but do not reference specific Lithuanian traditions or holidays directly."
+      "EN Description": "This song celebrates the sun and its importance in daily life, describing how it accompanies people from morning until night. It uses gentle natural imagery like silk wind and blooming flowers, which may symbolize youth and renewal. The lyrics express gratitude and a sense of kinship with the sun, but do not reference specific Lithuanian traditions or holidays directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15129,7 +15627,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie staugiantį vėją, kuris naktį švilpia, ūžia ir blaškosi aplink namą. Gali būti jaučiamas vienišumas ar gamtos jėga, bet tekstas daugiausia apibūdina vėjo garsus ir judėjimą. Nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The song describes the wind howling and moving through the night, rattling windows and filling the darkness with sound. It may symbolize loneliness, nature's power, or a restless spirit, but the lyrics mainly focus on the sensory experience of the wind's presence. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "The song describes the wind howling and moving through the night, rattling windows and filling the darkness with sound. It may symbolize loneliness, nature's power, or a restless spirit, but the lyrics mainly focus on the sensory experience of the wind's presence. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15156,7 +15655,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje aprašomas kieme stovintis balnotas žirgas, laukiantis broliuko sugrįžimo. Tačiau galiausiai paaiškėja, kad brolis žuvo Vilniuje, ir žirgas grįžta be jo. Daina gali simbolizuoti netektį ir ilgesį, dažnai pasitaikančius lietuvių liaudies kūryboje.",
-      "EN Description": "This song tells of a saddled horse waiting in the yard, as a sister is called to greet her brother returning home. However, the horse comes back alone, and it's revealed her brother has died in Vilnius. The song may symbolize loss and longing, common themes in Lithuanian folk songs, but could also simply recount a tragic story."
+      "EN Description": "This song tells of a saddled horse waiting in the yard, as a sister is called to greet her brother returning home. However, the horse comes back alone, and it's revealed her brother has died in Vilnius. The song may symbolize loss and longing, common themes in Lithuanian folk songs, but could also simply recount a tragic story.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15182,7 +15682,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris liūdi prie rūtų darželio po artimo žmogaus išėjimo. Žodžiuose minimos lietuviškos tradicijos: rūtų darželis, linų drobės, tėvynė. Dainoje jaučiama ilgesio, laukimo ir vilties sugrįžti nuotaika.",
-      "EN Description": "This song is about a person standing by a rue garden after someone dear has quietly left, expressing longing and sadness. The lyrics mention traditional Lithuanian symbols like the rue plant, linen weaving, and the homeland, which could represent love, waiting, and national identity. The song may refer to themes of farewell, hope for return, and the pain of separation, possibly alluding to times of war or emigration, but it is not certain."
+      "EN Description": "This song is about a person standing by a rue garden after someone dear has quietly left, expressing longing and sadness. The lyrics mention traditional Lithuanian symbols like the rue plant, linen weaving, and the homeland, which could represent love, waiting, and national identity. The song may refer to themes of farewell, hope for return, and the pain of separation, possibly alluding to times of war or emigration, but it is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15208,7 +15709,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie paprastų žmonių gyvenimą, jų tylų buvimą ir bendrumą. Tekstas atspindi praeinamumą ir viltį gyventi, net kai gyvenimas neaiškus. Žmonės dainoje jaučia tą patį, nors yra skirtingose vietose.",
-      "EN Description": "This song reflects on the lives of ordinary people, their nightly routines, and quiet moments of reflection. It gently explores themes of togetherness, transience, and the hope that persists even when life is uncertain. The lyrics may symbolize how people share similar feelings and dreams, even if they are separated by distance or circumstance."
+      "EN Description": "This song reflects on the lives of ordinary people, their nightly routines, and quiet moments of reflection. It gently explores themes of togetherness, transience, and the hope that persists even when life is uncertain. The lyrics may symbolize how people share similar feelings and dreams, even if they are separated by distance or circumstance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15240,7 +15742,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje jauna mergina šeštadienio vakarą leidžia su mama, renka uogas sode, kai pasirodo jaunuolis. Jis grasina ją barti, bet mergina klausia, už ką, nes ji buvo tik pas mamą, o ne linksminosi su kitais. Daina gali simbolizuoti jaunystės nekaltumą ar lūkesčius merginoms.",
-      "EN Description": "This song tells of a young woman spending a Saturday evening with her mother, picking berries in the garden, when a young man arrives. He threatens to scold her and make her cry, but she questions what she has done wrong, as she has only been with her mother, not out socializing. The song may symbolize innocence and the expectations placed on young women, but the exact meaning is open to interpretation."
+      "EN Description": "This song tells of a young woman spending a Saturday evening with her mother, picking berries in the garden, when a young man arrives. He threatens to scold her and make her cry, but she questions what she has done wrong, as she has only been with her mother, not out socializing. The song may symbolize innocence and the expectations placed on young women, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15266,7 +15769,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie žmogų, kuris šeštadienio vakarą balnoja juodbėrį arklį ir joja pas merginą per žalią girią, kur kukuoja gegutė. Daina daugiausia vaizduoja veiksmus ir gamtą, tačiau gali simbolizuoti meilės ar ilgesio jausmus. Subata – tai šeštadienis, kai kaimuose dažnai vykdavo pasibuvimai.",
-      "EN Description": "This folk song tells of a person saddling a black horse on a Saturday evening and riding to see a girl, passing through a green forest where a speckled cuckoo sings. The journey and nature images may symbolize longing or youthful courtship, but the lyrics mainly describe simple actions and scenes without clear explanation of their deeper meaning. Saturday evenings (Subata) were traditionally times for social gatherings in Lithuanian villages, which could be connected to the meeting described."
+      "EN Description": "This folk song tells of a person saddling a black horse on a Saturday evening and riding to see a girl, passing through a green forest where a speckled cuckoo sings. The journey and nature images may symbolize longing or youthful courtship, but the lyrics mainly describe simple actions and scenes without clear explanation of their deeper meaning. Saturday evenings (Subata) were traditionally times for social gatherings in Lithuanian villages, which could be connected to the meeting described.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15299,7 +15803,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie merginą, kuri vėlai vakare laukia ir liūdi, nes ją barė tėvas. Dainoje minimas kasų pynimas, kuris lietuvių tradicijose dažnai reiškia jaunystę ar pasiruošimą vestuvėms, o ryte skamba varpeliai, galbūt simbolizuojantys vestuves ar išvykimą. Nėra aišku, ar tai susiję su konkrečia švente, bet dainoje kalbama apie meilę, šeimos santykius ir pokyčius merginos gyvenime.",
-      "EN Description": "The song tells about a young woman waiting late at night, possibly for a loved one, and her sadness after being scolded by her father. The lyrics mention braiding hair, a symbolic act in Lithuanian folklore often linked to youth or preparation for marriage, and the sound of bells in the morning, which might hint at a wedding or departure. There is uncertainty whether the story reflects a specific tradition, but it seems to touch on themes of love, family conflict, and transitions in a young woman's life."
+      "EN Description": "The song tells about a young woman waiting late at night, possibly for a loved one, and her sadness after being scolded by her father. The lyrics mention braiding hair, a symbolic act in Lithuanian folklore often linked to youth or preparation for marriage, and the sound of bells in the morning, which might hint at a wedding or departure. There is uncertainty whether the story reflects a specific tradition, but it seems to touch on themes of love, family conflict, and transitions in a young woman's life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15325,7 +15830,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie vaikino juokingą ir linksmą kelionę pas mylimąją vakare. Žodžiai aprašo įvairias smulkias nesėkmes ir žaismingas akimirkas, pavyzdžiui, išsipurvinimą darželyje ir džiaugsmą, kad šuo neloja. Daina tiesiogiai nemini jokių švenčių ar istorinių įvykių, bet gali simbolizuoti kaimo gyvenimą ir papročius.",
-      "EN Description": "This folk song describes a young man's humorous and lighthearted journey to visit his beloved in the evening. The lyrics depict small mishaps and playful moments, such as getting dirty in the garden and hoping the dog won't bark, reflecting the everyday joys and awkwardnesses of rural courtship. The song does not directly reference specific Lithuanian holidays or historical events, but it may symbolize traditional village life and customs."
+      "EN Description": "This folk song describes a young man's humorous and lighthearted journey to visit his beloved in the evening. The lyrics depict small mishaps and playful moments, such as getting dirty in the garden and hoping the dog won't bark, reflecting the everyday joys and awkwardnesses of rural courtship. The song does not directly reference specific Lithuanian holidays or historical events, but it may symbolize traditional village life and customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15358,7 +15864,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia žmones iš visos Lietuvos susiburti ir dainuoti apie savo tėvynę. Ji pabrėžia tautos vienybę, istoriją ir kviečia prisiminti bei gerbti praeities didvyrius. Dainavimas kartu gali simbolizuoti bendrumą ir viltį.",
-      "EN Description": "This song calls people from all over Lithuania to unite and sing about their homeland. It celebrates national unity, history, and the importance of remembering and honoring the country's past heroes and traditions. The act of singing together may symbolize shared identity and hope, encouraging people to cherish both their land and each other."
+      "EN Description": "This song calls people from all over Lithuania to unite and sing about their homeland. It celebrates national unity, history, and the importance of remembering and honoring the country's past heroes and traditions. The act of singing together may symbolize shared identity and hope, encouraging people to cherish both their land and each other.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15385,7 +15892,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie ilgesį mylimajam, kuris išėjo, ir apie atleidimą bei viltį, kad jis sugrįš. Dainoje kalbama apie stiprius jausmus, meilę ir skausmą dėl išsiskyrimo, bet taip pat apie viltį vėl susitikti, net jei tai būtų atsitiktinai. Tekste nėra nuorodų į konkrečias lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song is about longing for a loved one who has left, expressing forgiveness and a wish for their return. The lyrics focus on deep feelings of love and the pain of separation, but also on hope and the possibility of meeting again, even by accident. The song does not reference specific Lithuanian traditions or historical events, but the themes of longing and forgiveness are common in Lithuanian poetry and music."
+      "EN Description": "This song is about longing for a loved one who has left, expressing forgiveness and a wish for their return. The lyrics focus on deep feelings of love and the pain of separation, but also on hope and the possibility of meeting again, even by accident. The song does not reference specific Lithuanian traditions or historical events, but the themes of longing and forgiveness are common in Lithuanian poetry and music.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15411,7 +15919,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ratelį, kuriame vaikinas klausia merginos, ar ji bus jo, bet ji atsako ne. Tekste gali būti užuominų į jaunimo bendravimą ar piršlybas, kas dažna lietuvių liaudies dainose. Sukimasis ratu ir dovanos čia rodo paprastus kaimo tradicijų momentus.",
-      "EN Description": "This song is about a traditional circle dance, where a young man asks a girl if she will be his, but she refuses. The lyrics may symbolize courtship rituals and the playful exchanges between young people, which are common in Lithuanian folk songs. The imagery of dancing in a circle and exchanging gifts is often found in songs connected to village celebrations and social gatherings, but it is not tied to a specific holiday."
+      "EN Description": "This song is about a traditional circle dance, where a young man asks a girl if she will be his, but she refuses. The lyrics may symbolize courtship rituals and the playful exchanges between young people, which are common in Lithuanian folk songs. The imagery of dancing in a circle and exchanging gifts is often found in songs connected to village celebrations and social gatherings, but it is not tied to a specific holiday.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15437,7 +15946,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje džiūvusi nendrė ir dobilas kalbasi apie tai, kaip lengva ar sunku jiems augti prie marių kranto. Žodžiai gali simbolizuoti skirtingus gyvenimo sunkumus ar džiaugsmus, bet tikslus reikšmės aiškinimas nėra visiškai aiškus. Daina primena lietuviškas liaudies tradicijas, kur gamta dažnai vaizduojama gyva.",
-      "EN Description": "This song is a simple folk-style dialogue between a dry reed and a clover, who talk about how easy or hard it is for them to grow by the lakeshore. The lyrics may symbolize different life circumstances or feelings of struggle and ease, but the meaning is not completely clear. The song reflects themes common in Lithuanian folk music, such as nature and personified plants."
+      "EN Description": "This song is a simple folk-style dialogue between a dry reed and a clover, who talk about how easy or hard it is for them to grow by the lakeshore. The lyrics may symbolize different life circumstances or feelings of struggle and ease, but the meaning is not completely clear. The song reflects themes common in Lithuanian folk music, such as nature and personified plants.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15463,7 +15973,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra rami malda, kurioje prašoma vienybės, ramybės ir atleidimo. Žodžiai kalba apie žmones, susirinkusius drauge, prašančius Dievo palaimos ir artumo. Vakaro ir ramybės vaizdai gali simbolizuoti apmąstymus dienos pabaigoje.",
-      "EN Description": "This song is a gentle prayer asking for unity, peace, and forgiveness. The lyrics speak of people gathering together in the presence of God, offering their thoughts and daily efforts, and seeking blessing and closeness. The imagery of evening calm and returning to the divine may symbolize reflection at the end of the day or after shared experiences, but it is not tied to a specific Lithuanian tradition or holiday."
+      "EN Description": "This song is a gentle prayer asking for unity, peace, and forgiveness. The lyrics speak of people gathering together in the presence of God, offering their thoughts and daily efforts, and seeking blessing and closeness. The imagery of evening calm and returning to the divine may symbolize reflection at the end of the day or after shared experiences, but it is not tied to a specific Lithuanian tradition or holiday.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15491,7 +16002,8 @@ const songs: SongFile = [
       "Music Author": "Faustas Strolia",
       "Text Author": "kun. Stasys Yla",
       "LT Description": "Ši giesmė yra malda, prašanti visus susitelkti rimtyje ir pagarboje Dievui. Joje kalbama apie minčių ir jausmų sutelkimą, Kristaus auką ir širdžių taiką. Gali būti susijusi su krikščioniškomis apeigomis arba Eucharistija.",
-      "EN Description": "This song is a prayer asking for everyone to be united in reverence and peace during a sacred moment, likely in a religious setting. It speaks about focusing thoughts and feelings to honor the Lord, possibly referencing the offering of the Son, which may symbolize the Christian tradition of the Eucharist or Christ's sacrifice. The lyrics emphasize unity, inner peace, and spiritual devotion."
+      "EN Description": "This song is a prayer asking for everyone to be united in reverence and peace during a sacred moment, likely in a religious setting. It speaks about focusing thoughts and feelings to honor the Lord, possibly referencing the offering of the Son, which may symbolize the Christian tradition of the Eucharist or Christ's sacrifice. The lyrics emphasize unity, inner peace, and spiritual devotion.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15517,7 +16029,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie jaunuolį, keliaujantį naktį ir ieškantį vietos nakvynei, galbūt uošvės namuose. Dainoje jaučiamos tradicinės lietuviškos temos – kelionė, svetingumas, šeimos ryšiai, ypač žento ir uošvės santykiai. Naktis ir kelionė gali simbolizuoti nežinomybę ar naują pradžią.",
-      "EN Description": "This folk song tells about a young man traveling at night, seeking a place to stay, possibly at his mother-in-law’s home. The lyrics reflect traditional Lithuanian themes of journey, hospitality, and family relationships, especially between a son-in-law and his in-laws. The night and journey may symbolize uncertainty or new beginnings, but the exact meaning can vary."
+      "EN Description": "This folk song tells about a young man traveling at night, seeking a place to stay, possibly at his mother-in-law’s home. The lyrics reflect traditional Lithuanian themes of journey, hospitality, and family relationships, especially between a son-in-law and his in-laws. The night and journey may symbolize uncertainty or new beginnings, but the exact meaning can vary.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15544,7 +16057,8 @@ const songs: SongFile = [
       },
       "Music Author": "Sebastian Temple",
       "LT Description": "Ši daina yra malda, kurioje prašoma padėti nešti taiką, meilę ir atleidimą ten, kur jų trūksta. Žodžiai ragina būti dosniems, supratingiems ir mylintiems kitus labiau nei save. Tai gali simbolizuoti norą augti dvasiškai ir skleisti gerumą.",
-      "EN Description": "This song is a prayer asking for the strength to bring peace, love, and forgiveness to places where there is hatred, doubt, or sadness. The lyrics focus on selflessness, encouraging listeners to comfort, understand, and love others more than seeking those things for themselves. It may symbolize a desire for spiritual growth and compassion, but could also simply be a general prayer for kindness."
+      "EN Description": "This song is a prayer asking for the strength to bring peace, love, and forgiveness to places where there is hatred, doubt, or sadness. The lyrics focus on selflessness, encouraging listeners to comfort, understand, and love others more than seeking those things for themselves. It may symbolize a desire for spiritual growth and compassion, but could also simply be a general prayer for kindness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15570,7 +16084,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie svajoklį, kuris pamato ryškų daiktą danguje ir tiki, kad tai jo žvaigždė. Jis pasodina gėlių kalną žvaigždei, bet ryte jos nebelieka, ir svajoklis liūdi. Tai gali simbolizuoti svajones ir liūdesį, kai jos neišsipildo.",
-      "EN Description": "The song tells the story of a dreamer who sits atop a poplar tree, sees a shining object in the sky, and believes it to be his star. He builds a flower-covered hill for the star to look upon, but in the morning the star is gone, leaving him sad while people below say it is raining stars. The text may symbolize longing and the bittersweet nature of dreams, but it is not directly tied to any specific Lithuanian tradition or historical event."
+      "EN Description": "The song tells the story of a dreamer who sits atop a poplar tree, sees a shining object in the sky, and believes it to be his star. He builds a flower-covered hill for the star to look upon, but in the morning the star is gone, leaving him sad while people below say it is raining stars. The text may symbolize longing and the bittersweet nature of dreams, but it is not directly tied to any specific Lithuanian tradition or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15596,7 +16111,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina juokingai pasakoja apie svečius, kurie viską suvalgė, o šeimininkas prašo jų išvykti. Dainoje minimi tradiciniai lietuviški valgiai. Gali būti, kad čia atspindimos senos lietuviškos svetingumo tradicijos.",
-      "EN Description": "This song humorously describes a situation where guests have come, eaten all the food, and the host is now asking them to leave. The lyrics list various traditional Lithuanian dishes that the guests enjoyed. The song might symbolize the polite but direct way Lithuanians can hint to guests that it's time to go, possibly referencing old hospitality customs."
+      "EN Description": "This song humorously describes a situation where guests have come, eaten all the food, and the host is now asking them to leave. The lyrics list various traditional Lithuanian dishes that the guests enjoyed. The song might symbolize the polite but direct way Lithuanians can hint to guests that it's time to go, possibly referencing old hospitality customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15622,7 +16138,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina apie ilgesį ir neišsakytą meilę. Atlikėjas naudoja gamtos vaizdus, kaip pienės pūkas ir drugeliai, kad išreikštų slapčiausius jausmus ir troškimus. Pienės pūkas gali simbolizuoti viltį ar žinutę, nuneštą vėjui.",
-      "EN Description": "This song is about longing and unspoken love. The singer uses gentle images from nature, like dandelion fluff and butterflies, to express secret wishes and feelings that remain hidden. The dandelion fluff may symbolize delicate hopes or messages carried away by the wind, but it is uncertain if these feelings will ever reach the loved one."
+      "EN Description": "This song is about longing and unspoken love. The singer uses gentle images from nature, like dandelion fluff and butterflies, to express secret wishes and feelings that remain hidden. The dandelion fluff may symbolize delicate hopes or messages carried away by the wind, but it is uncertain if these feelings will ever reach the loved one.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15649,7 +16166,8 @@ const songs: SongFile = [
       },
       "Music Author": "Gintautas Abarius",
       "LT Description": "Tai krikščioniška giesmė, kurioje dėkojama Jėzui už gyvenimo dovaną ir prašoma Šventosios Dvasios vadovavimo. Dainos žodžiai kalba apie dėkingumą, dvasinį pasikeitimą ir bendrą garbinimą. Tekstas gali būti naudojamas bažnyčios pamaldose arba maldos metu.",
-      "EN Description": "This song is a Christian hymn expressing gratitude to Jesus for the gift of life and asking for guidance from the Holy Spirit. The lyrics speak of thankfulness, spiritual transformation, and unity in worship. The text may symbolize a collective prayer or could be used in church services, especially during times of reflection or thanksgiving."
+      "EN Description": "This song is a Christian hymn expressing gratitude to Jesus for the gift of life and asking for guidance from the Holy Spirit. The lyrics speak of thankfulness, spiritual transformation, and unity in worship. The text may symbolize a collective prayer or could be used in church services, especially during times of reflection or thanksgiving.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15675,7 +16193,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie šventę kaip būtinybę ir bendrą patirtį, kuri suteikia vilties laukiantiems ir nustebina netikinčius. Kiekvienam šventė yra kitokia, bet visiems sava. Taip pat paminima laimė ir meilė, bet jų aprašymai lieka atviri.",
-      "EN Description": "The song reflects on the idea of celebration as something essential and universal, giving hope to those who wait and challenging those who doubt. Each person experiences celebration differently, but it belongs to everyone. The text suggests that happiness and love are also fundamental parts of life, though their descriptions are left open, possibly inviting the listener to reflect on their own meanings."
+      "EN Description": "The song reflects on the idea of celebration as something essential and universal, giving hope to those who wait and challenging those who doubt. Each person experiences celebration differently, but it belongs to everyone. The text suggests that happiness and love are also fundamental parts of life, though their descriptions are left open, possibly inviting the listener to reflect on their own meanings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15702,7 +16221,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie dviejų žmonių atitolimą, kai jie yra arti, bet jaučiasi svetimi. Dainoje naudojami paukščio ir ryto vaizdai parodo praradimo ir ilgesio jausmą. Žodis 'svetimi' kartojasi, pabrėždamas, kad žmonės gali tapti vienas kitam svetimi.",
-      "EN Description": "This song is about the emotional distance between two people who are physically close but feel like strangers. The lyrics use symbols like birds flying away and morning dew to express feelings of loss, longing, and change in a relationship. The repeated word 'strangers' may symbolize how people can drift apart even when they are together."
+      "EN Description": "This song is about the emotional distance between two people who are physically close but feel like strangers. The lyrics use symbols like birds flying away and morning dew to express feelings of loss, longing, and change in a relationship. The repeated word 'strangers' may symbolize how people can drift apart even when they are together.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15729,7 +16249,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vienišą svirplį, kuris ieško draugo, kad galėtų kartu dainuoti tarp pievos žiedų. Tekste jaučiama ilgesio, vilties ir švelnumo, bet pabaigoje atsiranda liūdesys, kai svirplys neranda tokio pat draugo. Dainoje daug vaizdingų palyginimų ir svajonių.",
-      "EN Description": "This song tells the story of a lonely cricket searching for a companion like himself to share songs and moments among the meadow's flowers. The lyrics express longing, hope, and gentle affection, but also end with a sense of sadness when the cricket cannot find someone like him. The imagery of singing together in the evening and picking the sun from the sky may symbolize dreams, love, or unattainable wishes, but it's not stated directly."
+      "EN Description": "This song tells the story of a lonely cricket searching for a companion like himself to share songs and moments among the meadow's flowers. The lyrics express longing, hope, and gentle affection, but also end with a sense of sadness when the cricket cannot find someone like him. The imagery of singing together in the evening and picking the sun from the sky may symbolize dreams, love, or unattainable wishes, but it's not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15755,7 +16276,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie įvairius vienišus gyvūnus ir daiktus, kurie gyvena kiekvienas atskirai. Kartojasi žaismingas priedainis, daina gali simbolizuoti vienatvės jausmą arba norą surasti draugą. Taip pat galima suprasti, kad tai tiesiog linksma ir juokinga dainelė.",
-      "EN Description": "The song tells short stories about various lonely creatures and objects, each living alone in its own place. It repeats a playful refrain and suggests a wish for companionship, but the verses may also symbolize feelings of loneliness or the search for someone similar. The playful tone and listing of different lonely figures could also be meant to amuse listeners rather than carry a deep message."
+      "EN Description": "The song tells short stories about various lonely creatures and objects, each living alone in its own place. It repeats a playful refrain and suggests a wish for companionship, but the verses may also symbolize feelings of loneliness or the search for someone similar. The playful tone and listing of different lonely figures could also be meant to amuse listeners rather than carry a deep message.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15782,7 +16304,8 @@ const songs: SongFile = [
       },
       "Text Author": "Aušrinė Širvinskienė",
       "LT Description": "Daina pasakoja apie draugų vasaros stovyklas skirtingose Lietuvos vietose, dainavimą, laužus ir smagius nuotykius kartu. Tekste minimi Lietuvos miestai, stovyklavimo tradicijos ir draugystė. Tai daina apie vasaros stovyklas, gamtą ir meilę Lietuvai.",
-      "EN Description": "The song tells about friends going to summer camps in different places in Lithuania, singing, making campfires, and sharing fun experiences together. It mentions several Lithuanian regions and camp traditions, like writing letters home and making jokes about daily adventures. The song celebrates friendship, camping, and Lithuanian nature, possibly symbolizing a strong connection to homeland and tradition."
+      "EN Description": "The song tells about friends going to summer camps in different places in Lithuania, singing, making campfires, and sharing fun experiences together. It mentions several Lithuanian regions and camp traditions, like writing letters home and making jokes about daily adventures. The song celebrates friendship, camping, and Lithuanian nature, possibly symbolizing a strong connection to homeland and tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15811,7 +16334,8 @@ const songs: SongFile = [
       "Music Author": "Kun. E. Arnašius",
       "Text Author": "Kun. E. Arnašius",
       "LT Description": "Ši daina kalba apie švelnius jausmus ir svajones mylimam žmogui, apie rūpestį, viltį ir dvasinį ryšį. Žodžiai aprašo, kaip vienas žmogus galvoja apie kitą, saugo jo ramybę ir apgaubia svajonėmis bei žvaigždėmis. Tai gali simbolizuoti meilę ar vidinę šviesą.",
-      "EN Description": "This song expresses gentle thoughts and dreams about a loved one, highlighting feelings of care, hope, and spiritual connection. The lyrics describe someone thinking about another person, protecting their sleep and lighting up their world with dreams and stars. There are references to emotional warmth and inner light, which may symbolize deep affection or support, but the meaning could also be interpreted as spiritual guidance."
+      "EN Description": "This song expresses gentle thoughts and dreams about a loved one, highlighting feelings of care, hope, and spiritual connection. The lyrics describe someone thinking about another person, protecting their sleep and lighting up their world with dreams and stars. There are references to emotional warmth and inner light, which may symbolize deep affection or support, but the meaning could also be interpreted as spiritual guidance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15837,7 +16361,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie mažą vyrą mažame namelyje, kuris pamato zuikį, bėgantį ir beldžiantį į duris prašant pagalbos nuo medžiotojo. Vyras leidžia zuikiui užeiti ir jį paguodžia. Tai gali būti tiesiog paprasta vaikų dainelė apie gerumą.",
-      "EN Description": "This song tells a simple story about a small man in a small house who sees a hare running and knocking at his door, asking for shelter from a hunter. The man invites the hare inside and offers comfort. The lyrics may symbolize kindness and protection for those in need, but it is also possible that it is just a gentle children's song."
+      "EN Description": "This song tells a simple story about a small man in a small house who sees a hare running and knocking at his door, asking for shelter from a hunter. The man invites the hare inside and offers comfort. The lyrics may symbolize kindness and protection for those in need, but it is also possible that it is just a gentle children's song.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15863,7 +16388,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie gandrą, kuris vaikšto tarp purienų ir juda lėtai, kaip baleto šokėjas. Tekste aprašomi jo judesiai ir galimas ieškojimas varlytės. Tai gali būti tiesiog linksmas gamtos stebėjimas.",
-      "EN Description": "The song tells about watching a stork walking among buttercups, moving slowly like a ballet dancer. It describes the bird's gentle movements and its search for food, possibly a frog. This might simply be a playful observation of nature, or it could symbolize careful searching or grace, but the main focus is on the stork's actions."
+      "EN Description": "The song tells about watching a stork walking among buttercups, moving slowly like a ballet dancer. It describes the bird's gentle movements and its search for food, possibly a frog. This might simply be a playful observation of nature, or it could symbolize careful searching or grace, but the main focus is on the stork's actions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15889,7 +16415,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie mažą žaislinį traukinuką, kuris važinėja, skamba skambaliuku ir jį stebi paukščiai. Žodžiai sukuria linksmą ir lengvą nuotaiką, daugiausia vaizduodami traukinuko kelionę. Dainoje nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The song tells about a small toy train, describing its playful journey as it goes up and down hills, rings its bell, and is watched by birds. The lyrics create a gentle, cheerful mood and might symbolize childhood or simple joys, but mostly focus on the imagery of the little train and its surroundings. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "The song tells about a small toy train, describing its playful journey as it goes up and down hills, rings its bell, and is watched by birds. The lyrics create a gentle, cheerful mood and might symbolize childhood or simple joys, but mostly focus on the imagery of the little train and its surroundings. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15915,7 +16442,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie atsisveikinimą tarp brolio ir sesers prieš jam išvykstant į kovą. Tekste matomas skirtumas tarp sesers liūdesio ir brolio pavojų. Dainoje jaučiamos aukos, vilties ir atminimo temos, tačiau nėra paminėtas konkretus istorinis įvykis.",
-      "EN Description": "This song is about a farewell between a young man and his sister before he goes off to fight, possibly in a war. The lyrics contrast the peaceful life and sorrow of the sister with the dangers and uncertainty faced by the brother. There are themes of sacrifice, hope, and remembrance, which might symbolize the experiences of Lithuanians during times of conflict, but the song does not mention any specific historical event."
+      "EN Description": "This song is about a farewell between a young man and his sister before he goes off to fight, possibly in a war. The lyrics contrast the peaceful life and sorrow of the sister with the dangers and uncertainty faced by the brother. There are themes of sacrifice, hope, and remembrance, which might symbolize the experiences of Lithuanians during times of conflict, but the song does not mention any specific historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15941,7 +16469,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jauną meilę, gražius prisiminimus ir nežinomą ateitį. Žodžiuose prisimenamos linksmybės prie laužo ir pokalbiai naktį, kas gali simbolizuoti jaunimo stovyklas ar vasaros susibūrimus Lietuvoje. Dainininkas išreiškia viltį būti kartu, bet supranta, kad gali tekti išsiskirti.",
-      "EN Description": "This song is about young love, memories of happy times spent together, and the uncertainty of the future. The lyrics recall moments by the campfire and shared conversations at night, which may symbolize youth gatherings or summer camps, common in Lithuanian culture. The singer expresses hope for lasting love but also acknowledges the possibility of separation."
+      "EN Description": "This song is about young love, memories of happy times spent together, and the uncertainty of the future. The lyrics recall moments by the campfire and shared conversations at night, which may symbolize youth gatherings or summer camps, common in Lithuanian culture. The singer expresses hope for lasting love but also acknowledges the possibility of separation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -15967,7 +16496,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie saulę, kuri teka pro dvarą ir atneša dovanų tam, ką pirmą sutinka ryte – uošviui. Tai gali simbolizuoti naujos dienos pradžią ar pagarbą vyresniems, bet tikslus prasmė nėra aiški. Daina nenurodo konkrečių švenčių ar istorinių įvykių.",
-      "EN Description": "This song tells of the sun rising by a manor and bringing gifts to whoever it meets first in the morning, which turns out to be the father-in-law. The song may symbolize the start of a new day, gratitude, or respect for elders, but the exact meaning is open to interpretation. There are no clear references to specific Lithuanian holidays or historical events, but the themes are common in Lithuanian folk songs."
+      "EN Description": "This song tells of the sun rising by a manor and bringing gifts to whoever it meets first in the morning, which turns out to be the father-in-law. The song may symbolize the start of a new day, gratitude, or respect for elders, but the exact meaning is open to interpretation. There are no clear references to specific Lithuanian holidays or historical events, but the themes are common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16009,7 +16539,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje kareivėlis prašo mergelės žodžio, bet ji jam atsako neigiamai. Daina naudoja gamtos vaizdus ir atspindi ilgesio, nelaimingos meilės bei išsiskyrimo sunkumų temas, kurios dažnai pasitaiko lietuvių liaudies kūryboje.",
-      "EN Description": "This folk song tells of a soldier who calls out to a young maiden, asking for a kind word, but she refuses him. The lyrics use nature imagery, and the maiden’s response may symbolize her reluctance or sadness about the soldier’s fate. The song reflects common themes in Lithuanian folk music, such as longing, unrequited love, and the hardships of separation."
+      "EN Description": "This folk song tells of a soldier who calls out to a young maiden, asking for a kind word, but she refuses him. The lyrics use nature imagery, and the maiden’s response may symbolize her reluctance or sadness about the soldier’s fate. The song reflects common themes in Lithuanian folk music, such as longing, unrequited love, and the hardships of separation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16116,7 +16647,8 @@ const songs: SongFile = [
       "Music Author": "Darius Polikaitis",
       "Text Author": "Darius Polikaitis",
       "LT Description": "Šioje dainoje žmogus jaučiasi vienišas mieste ir mintimis grįžta į mylimą vietą – Dainavą. Žodžiai išreiškia ilgesį draugams, gamtai ir vaikystės prisiminimams. Dainava gali simbolizuoti namus ar gimtinę.",
-      "EN Description": "This song describes someone sitting alone at night, feeling isolated in the city, with their thoughts traveling back to a beloved place called Dainava. The lyrics express longing for friends, forests, and lakes left behind—possibly symbolizing homesickness or nostalgia for childhood. There are no direct references to specific Lithuanian traditions or holidays, but Dainava is a well-known region in Lithuania, often associated with natural beauty and folk heritage."
+      "EN Description": "This song describes someone sitting alone at night, feeling isolated in the city, with their thoughts traveling back to a beloved place called Dainava. The lyrics express longing for friends, forests, and lakes left behind—possibly symbolizing homesickness or nostalgia for childhood. There are no direct references to specific Lithuanian traditions or holidays, but Dainava is a well-known region in Lithuania, often associated with natural beauty and folk heritage.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16145,7 +16677,8 @@ const songs: SongFile = [
       "Music Author": "Keistuolių teatras",
       "Text Author": "Keistuolių teatras",
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris nėra daug patyręs ar pamatęs pasaulio, bet jam tai nesvarbu. Svarbiau yra būti savimi ir nesivaikyti tuščių dalykų. Daina gali simbolizuoti paprastumo ir vidinės ramybės svarbą, bet tai nėra tikslu.",
-      "EN Description": "This song describes someone's dreams and things they have never experienced, like traveling to distant places or meeting famous people. The lyrics suggest that even though the singer hasn't seen or owned much, those things aren't important to them. The song may symbolize the value of being true to oneself and finding meaning beyond material achievements, but this interpretation is not certain."
+      "EN Description": "This song describes someone's dreams and things they have never experienced, like traveling to distant places or meeting famous people. The lyrics suggest that even though the singer hasn't seen or owned much, those things aren't important to them. The song may symbolize the value of being true to oneself and finding meaning beyond material achievements, but this interpretation is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16177,7 +16710,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje išreiškiama meilė Lietuvai, prisimenama vaikystė ir gimtinė. Dainoje kalbama apie išsiskyrimą, auką ir norą matyti laisvą Lietuvą su trispalve, o ne svetimomis vėliavomis. Kai kurios eilutės gali būti apie karą ar kovą už laisvę.",
-      "EN Description": "This song expresses love for Lithuania, memories of childhood, and longing for home. It touches on themes of sacrifice, possibly referencing war or pilots, and the desire for freedom and the national flag instead of foreign symbols. The lyrics can symbolize the pain of leaving home and the hope for a free Lithuania, but some lines may refer more generally to struggles for independence."
+      "EN Description": "This song expresses love for Lithuania, memories of childhood, and longing for home. It touches on themes of sacrifice, possibly referencing war or pilots, and the desire for freedom and the national flag instead of foreign symbols. The lyrics can symbolize the pain of leaving home and the hope for a free Lithuania, but some lines may refer more generally to struggles for independence.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16203,7 +16737,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja linksmą istoriją apie tėvus, išvykstančius į vakarėlį, ir dukrą, kuri lieka viena namuose. Ji pasikviečia berniukų, įvyksta juokingų nutikimų, o grįžus tėvams viskas išaiškėja. Daina gali simbolizuoti jaunystės išdaigas arba tiesiog būti linksma istorija.",
-      "EN Description": "This song tells a playful story about parents leaving for a party and their daughter staying home alone. While they are away, the daughter invites boys over and things get a little out of hand, leading to a humorous situation when the parents return. The lyrics may symbolize youthful mischief and the unexpected consequences of being left unsupervised, though the meaning could also be just lighthearted fun."
+      "EN Description": "This song tells a playful story about parents leaving for a party and their daughter staying home alone. While they are away, the daughter invites boys over and things get a little out of hand, leading to a humorous situation when the parents return. The lyrics may symbolize youthful mischief and the unexpected consequences of being left unsupervised, though the meaning could also be just lighthearted fun.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16229,7 +16764,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie gimtinę kaime, jos ramybę, laukiančią motiną ir gamtos grožį. Žodžiai sukelia ilgesį, prisiminimus ir šilumą. Tekste nėra aiškiai minimos konkrečios tradicijos ar šventės, daugiausia dėmesio skiriama kaimo vaizdams.",
-      "EN Description": "This song is about a rural homeland, describing peaceful scenes of a village, the waiting mother, and the beauty of nature. The lyrics evoke nostalgia and warmth, with imagery of home, summer, and longing for return. It may symbolize the importance of family and the emotional connection to one's roots, but the focus is on describing familiar countryside life rather than a specific tradition or event."
+      "EN Description": "This song is about a rural homeland, describing peaceful scenes of a village, the waiting mother, and the beauty of nature. The lyrics evoke nostalgia and warmth, with imagery of home, summer, and longing for return. It may symbolize the importance of family and the emotional connection to one's roots, but the focus is on describing familiar countryside life rather than a specific tradition or event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16255,7 +16791,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie meilę ir ilgesį savo gimtinei, kuri apibūdinama kaip labai brangi ir graži vieta. Čia naudojami gamtos vaizdai, tokie kaip sidabrinės upės ir gintarinės žvaigždės, kurie gali simbolizuoti Lietuvos išskirtinumą arba tiesiog mylimus gimtinės vaizdus. Tėviškė lyginama su svajonėmis ir sapnais, parodant jos svarbą dainininkui.",
-      "EN Description": "This song is about deep love and longing for one's homeland, describing it as a cherished and beautiful place filled with special memories. The imagery of silver rivers and amber stars may symbolize the unique nature and cultural heritage of Lithuania, but could also simply reflect personal attachment to familiar landscapes. The homeland is compared to a dream or a shining land of imagination, showing how important and idealized it is for the singer."
+      "EN Description": "This song is about deep love and longing for one's homeland, describing it as a cherished and beautiful place filled with special memories. The imagery of silver rivers and amber stars may symbolize the unique nature and cultural heritage of Lithuania, but could also simply reflect personal attachment to familiar landscapes. The homeland is compared to a dream or a shining land of imagination, showing how important and idealized it is for the singer.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16281,7 +16818,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina klausia, kodėl tėvynė sukelia skausmą ir kokia to prasmė. Žodžiuose jaučiama liūdesio ir nesupratimo dėl pyčio, keršto ir melo, kurie gali reikšti sunkumus ar konfliktus Lietuvoje. Konkrečių įvykių ar tradicijų daina nemini.",
-      "EN Description": "This song raises questions about the pain and struggles experienced in relationship to one's homeland. The lyrics express confusion and sorrow about why the homeland causes suffering and what purpose lies behind it. There are references to anger, revenge, and lies, which might symbolize historical trauma or societal conflict in Lithuania, but the exact events are not specified."
+      "EN Description": "This song raises questions about the pain and struggles experienced in relationship to one's homeland. The lyrics express confusion and sorrow about why the homeland causes suffering and what purpose lies behind it. There are references to anger, revenge, and lies, which might symbolize historical trauma or societal conflict in Lithuania, but the exact events are not specified.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16307,7 +16845,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši giesmė yra kaip malda, kurioje dėkojama Dievui už gyvenimą, viltį ir tikėjimą. Daug kartų kartojamas žodis „Aleliuja“ reiškia šlovinimą. Nėra aiškių nuorodų į lietuviškas šventes ar tradicijas.",
-      "EN Description": "This song is a prayer-like hymn that expresses gratitude to God for the gift of life and for inspiring hope and faith. The repeated word 'Alleluia' reflects praise and celebration. The lyrics may symbolize spiritual longing and trust in eternal joy, but there are no clear references to specific Lithuanian traditions or holidays."
+      "EN Description": "This song is a prayer-like hymn that expresses gratitude to God for the gift of life and for inspiring hope and faith. The repeated word 'Alleluia' reflects praise and celebration. The lyrics may symbolize spiritual longing and trust in eternal joy, but there are no clear references to specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16334,7 +16873,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie senąją Trakų pilį, kuri stovi apaugusi kerpėmis ir liudija apie praeitį. Žodžiai išreiškia ilgesį ir liūdesį dėl praėjusių didingų laikų, ypač Vytauto Didžiojo laikų. Trakai ir Vytautas yra svarbūs Lietuvos istorijai ir tapatybei.",
-      "EN Description": "This song describes the ancient castle of Trakai, covered with moss and lichen, standing as a silent witness to Lithuania's history. The lyrics reflect on the passage of time, the glory of the past—especially the era of Grand Duke Vytautas—and evoke feelings of nostalgia and sadness over lost greatness. The mention of Trakai and Vytautas alludes to important symbols in Lithuanian history and national identity."
+      "EN Description": "This song describes the ancient castle of Trakai, covered with moss and lichen, standing as a silent witness to Lithuania's history. The lyrics reflect on the passage of time, the glory of the past—especially the era of Grand Duke Vytautas—and evoke feelings of nostalgia and sadness over lost greatness. The mention of Trakai and Vytautas alludes to important symbols in Lithuanian history and national identity.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16360,7 +16900,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie tris seseris, kurios padeda jaunam broliui ruoštis karui, o vėliau laukia jo sugrįžtant. Kiekviena sesuo rodo rūpestį savaip. Tekstas gali simbolizuoti šeimos ryšius ir ilgesį.",
-      "EN Description": "This song tells about three sisters who help their young brother prepare to go to war, each supporting him in her own way. The sisters then wait for him to return from the great war, watching from a high hill. The song may symbolize family care and the sadness of separation, but it's not clear if it refers to a specific historical event."
+      "EN Description": "This song tells about three sisters who help their young brother prepare to go to war, each supporting him in her own way. The sisters then wait for him to return from the great war, watching from a high hill. The song may symbolize family care and the sadness of separation, but it's not clear if it refers to a specific historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16386,7 +16927,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainoje pasakojama apie žmogų, kuris turi trikampę kepurę ir džiaugiasi jos forma. Galbūt trikampis kažką reiškia žmogui, bet tai nėra aišku. Tekste nėra aiškių nuorodų į lietuviškas šventes ar tradicijas.",
-      "EN Description": "The lyrics describe someone who has a triangular hat and values its unique shape. The song could simply be about a special hat, but the triangle shape might also symbolize something personal or important to the singer, though this is not certain. There are no clear references to specific Lithuanian traditions or holidays in the text."
+      "EN Description": "The lyrics describe someone who has a triangular hat and values its unique shape. The song could simply be about a special hat, but the triangle shape might also symbolize something personal or important to the singer, though this is not certain. There are no clear references to specific Lithuanian traditions or holidays in the text.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16412,7 +16954,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuris ilgai keliauja ir nakvoja girioje. Jis išgirsta balsą, panašų į motinos šauksmą, bet tai pasirodo esanti gegutė. Gegutės balsas gali reikšti ilgesį ar meilę mamai.",
-      "EN Description": "This song tells of a person walking for several days and nights, spending time alone in the forest. The singer hears a voice that reminds them of their mother, but it turns out to be a cuckoo bird calling. The cuckoo's song may symbolize longing or missing one's mother, which is a common theme in Lithuanian folk songs."
+      "EN Description": "This song tells of a person walking for several days and nights, spending time alone in the forest. The singer hears a voice that reminds them of their mother, but it turns out to be a cuckoo bird calling. The cuckoo's song may symbolize longing or missing one's mother, which is a common theme in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16441,7 +16984,8 @@ const songs: SongFile = [
       "Music Author": "M. Mikutavičius",
       "Text Author": "M. Mikutavičius",
       "LT Description": "Šioje dainoje kalbama apie ištvermę, viltį ir vienybę sunkumų akivaizdoje. Joje išreiškiami mažos tautos, galbūt Lietuvos, išgyvenimai, kuri siekia pergalės ir orumo. Žodžiai gali simbolizuoti pasididžiavimą savo šalimi ir tikėjimą savimi net tada, kai sėkmė atrodo tolima.",
-      "EN Description": "This song is about perseverance, hope, and unity in the face of adversity. It expresses the struggles and dreams of a small nation, possibly Lithuania, that faces challenges but keeps striving for victory and dignity. The lyrics may symbolize national pride and the importance of believing in oneself and one's community, even when success seems unlikely."
+      "EN Description": "This song is about perseverance, hope, and unity in the face of adversity. It expresses the struggles and dreams of a small nation, possibly Lithuania, that faces challenges but keeps striving for victory and dignity. The lyrics may symbolize national pride and the importance of believing in oneself and one's community, even when success seems unlikely.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16467,7 +17011,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje kalbama apie trijų Lietuvos vėliavos spalvų – geltonos, žalios ir raudonos – svarbą. Tekste pabrėžiama, kad šios spalvos yra brangios lietuviams ir reiškia laisvę, viltį bei šalies istoriją. Dainoje gali būti užsimenama apie sunkumus ir kovą už nepriklausomybę.",
-      "EN Description": "This song is about the importance of the three colors of the Lithuanian flag—yellow, green, and red—which represent the sun, the fields, and the blood, respectively. The lyrics emphasize that these colors are cherished in the hearts of Lithuanians and have endured through hardships, possibly symbolizing the country's history of struggle and resilience. The song may refer to the significance of the national flag and the value of freedom for the Lithuanian people."
+      "EN Description": "This song is about the importance of the three colors of the Lithuanian flag—yellow, green, and red—which represent the sun, the fields, and the blood, respectively. The lyrics emphasize that these colors are cherished in the hearts of Lithuanians and have endured through hardships, possibly symbolizing the country's history of struggle and resilience. The song may refer to the significance of the national flag and the value of freedom for the Lithuanian people.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16493,7 +17038,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, paklydusį žaliame miške, kuris šaukiasi artimųjų, bet tik mylimasis atsiliepia. Miškas gali simbolizuoti vienatvę ar pasimetimą, o medžių dydis – jausmų pokyčius. Tai tradicinė lietuvių liaudies dainoms būdinga tema.",
-      "EN Description": "This song tells of someone lost in a green forest, calling out for family members but only finding comfort when their beloved responds. The forest may symbolize confusion or loneliness, and the changing size of the trees could reflect the person's shifting feelings of hope and despair. There is no direct reference to specific Lithuanian traditions or events, but themes of nature and longing are common in Lithuanian folk songs."
+      "EN Description": "This song tells of someone lost in a green forest, calling out for family members but only finding comfort when their beloved responds. The forest may symbolize confusion or loneliness, and the changing size of the trees could reflect the person's shifting feelings of hope and despair. There is no direct reference to specific Lithuanian traditions or events, but themes of nature and longing are common in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16519,7 +17065,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jausmus mylimam žmogui, aprašant, kaip jis patinka įvairiu paros metu ir esant skirtingoms oro sąlygoms. Tekste daug gamtos vaizdų, kurie padeda išreikšti meilę ir nuolatines mintis apie mylimąjį. Nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "This song is about someone's feelings for a loved one, describing how they like this person during different times of day and in various weather conditions. The lyrics use images of nature, like rain, wind, and birds, to express affection and constant thoughts about the loved one. There are no direct references to specific Lithuanian traditions or historical events; the focus is on emotions and the connection to nature."
+      "EN Description": "This song is about someone's feelings for a loved one, describing how they like this person during different times of day and in various weather conditions. The lyrics use images of nature, like rain, wind, and birds, to express affection and constant thoughts about the loved one. There are no direct references to specific Lithuanian traditions or historical events; the focus is on emotions and the connection to nature.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16545,7 +17092,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje vaikas dėkoja mamai ir močiutei už rūpestį ir užaugintą gyvenimą. Dainoje pasakojama apie jų sunkų darbą, nemiegotas naktis ir meilę vaikui. Čia jaučiama pagarba šeimai ir ryšiui tarp kartų.",
-      "EN Description": "This song is about a child's gratitude to their mother and grandmother for raising and caring for them. The lyrics describe the sleepless nights and hard work the women endured, showing deep appreciation and love. It reflects themes of family, sacrifice, and the special bond between generations."
+      "EN Description": "This song is about a child's gratitude to their mother and grandmother for raising and caring for them. The lyrics describe the sleepless nights and hard work the women endured, showing deep appreciation and love. It reflects themes of family, sacrifice, and the special bond between generations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16572,7 +17120,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina yra vaiko prašymas mamai numegzti kelią iš vaikystės prisiminimų ir šviesos. Šis kelias gali simbolizuoti saugų grįžimą namo ar norą sugrįžti į laimingus laikus. Tekste jaučiamos ilgesio, saugumo ir namų temos.",
-      "EN Description": "The song is a gentle request from a child to their mother, asking her to 'knit' a path made from childhood memories, light, and love. This path seems to symbolize a safe way home or back to innocence, especially in times of hardship or after journeys. The lyrics might reflect themes of nostalgia, longing for protection, and the comfort of home, but could also symbolize hope for a return to happier times."
+      "EN Description": "The song is a gentle request from a child to their mother, asking her to 'knit' a path made from childhood memories, light, and love. This path seems to symbolize a safe way home or back to innocence, especially in times of hardship or after journeys. The lyrics might reflect themes of nostalgia, longing for protection, and the comfort of home, but could also symbolize hope for a return to happier times.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16600,7 +17149,8 @@ const songs: SongFile = [
       "Music Author": "Bob Dylan",
       "Text Author": "Gytis Paškevičius",
       "LT Description": "Ši daina kalba apie klausimus, kuriuos užduodame apie gyvenimą, draugystę, sunkumus ir sugrįžimą namo. Žodžiai rodo, kad kai kurių atsakymų negalima lengvai rasti, o juos gali žinoti tik gamta ar laikas. Čia nėra aiškių nuorodų į lietuviškas tradicijas ar istoriją, bet klajonių ir grįžimo namo tema dažna lietuvių kūryboje.",
-      "EN Description": "This song is about searching for answers to life's big questions—about journeys, friendships, hardships, and returning home. The lyrics suggest that some answers cannot be easily given and may only be found in nature or through time, with the wind symbolizing something elusive or wise. There are no direct references to specific Lithuanian traditions or historical events, but the themes of wandering and returning home are common in Lithuanian folk songs and poetry."
+      "EN Description": "This song is about searching for answers to life's big questions—about journeys, friendships, hardships, and returning home. The lyrics suggest that some answers cannot be easily given and may only be found in nature or through time, with the wind symbolizing something elusive or wise. There are no direct references to specific Lithuanian traditions or historical events, but the themes of wandering and returning home are common in Lithuanian folk songs and poetry.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16626,7 +17176,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie nepasiekiamą meilę, naudodama sidabrinės žvaigždutės įvaizdį. Dainoje minimi lietuviški simboliai, pavyzdžiui, rūtų darželis ir juoda suknia, kurie reiškia meilę ir liūdesį. Tekste jaučiama nusivylimo ir netekties tema.",
-      "EN Description": "This song tells the story of someone longing for unreachable love, using the image of a silver star in the sky. The lyrics speak of broken promises and deep sadness, with references to traditional Lithuanian symbols like 'rūtų darželis' (a rue garden, linked to maidenhood and love) and the use of dress color to express grief and love. The song may symbolize the pain of lost love and mourning, but some lines could also reflect personal despair."
+      "EN Description": "This song tells the story of someone longing for unreachable love, using the image of a silver star in the sky. The lyrics speak of broken promises and deep sadness, with references to traditional Lithuanian symbols like 'rūtų darželis' (a rue garden, linked to maidenhood and love) and the use of dress color to express grief and love. The song may symbolize the pain of lost love and mourning, but some lines could also reflect personal despair.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16655,7 +17206,8 @@ const songs: SongFile = [
       "Music Author": "Keistuoliai",
       "Text Author": "Keistuoliai",
       "LT Description": "Šioje dainoje žaismingai kalbama apie atsargų gyvenimo būdą, naudojant lietuviškus posakius ir prietarus. Tekste minimas tradicinis beldimas į medį, kad apsisaugotum nuo nelaimės. Daina gali simbolizuoti norą išvengti rizikos ir laikytis įprastų taisyklių.",
-      "EN Description": "This song uses playful language and references to Lithuanian folk sayings and superstitions to describe a cautious way of living. The lyrics mention not taking risks, following traditions, and 'knocking on wood' to avoid bad luck—a gesture common in Lithuania to ward off misfortune. The song may symbolize the tendency to avoid standing out or taking chances, but it mainly reflects everyday wisdom and customs."
+      "EN Description": "This song uses playful language and references to Lithuanian folk sayings and superstitions to describe a cautious way of living. The lyrics mention not taking risks, following traditions, and 'knocking on wood' to avoid bad luck—a gesture common in Lithuania to ward off misfortune. The song may symbolize the tendency to avoid standing out or taking chances, but it mainly reflects everyday wisdom and customs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16687,7 +17239,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie vaikiną, kuris nori aplankyti savo mylimąją, bet bijo pažadinti jos tėvus ir yra nuo jos toli. Jis tyliai eina prie jos namų naktį, parodydamas meilę ir pagarbą. Dainoje atsispindi jaunatviškos meilės ir ilgesio temos, būdingos lietuvių liaudies kūrybai.",
-      "EN Description": "The song tells of a young man who wishes to visit his beloved, but is kept apart by distance and the fear of waking her parents. He sneaks quietly to her home at night, showing both affection and respect. The lyrics reflect themes of youthful love and longing, common in Lithuanian folk traditions."
+      "EN Description": "The song tells of a young man who wishes to visit his beloved, but is kept apart by distance and the fear of waking her parents. He sneaks quietly to her home at night, showing both affection and respect. The lyrics reflect themes of youthful love and longing, common in Lithuanian folk traditions.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16713,7 +17266,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie baltą pasaulį: baltos varnos tupinčios baltame miške ir baltas begemotas prie balto Nilo. Dainos pasakotojui pabosta viskas, kas balta, ir jis nori kažko kitokio. Tai gali reikšti norą pakeisti ar paįvairinti aplinką.",
-      "EN Description": "This song describes a white world with white crows sitting in a white forest and a white hippopotamus walking by the white Nile. The narrator becomes tired of all the whiteness and wishes for things to be different colors or qualities. The song might symbolize a desire for change or variety, but the meaning is open to interpretation."
+      "EN Description": "This song describes a white world with white crows sitting in a white forest and a white hippopotamus walking by the white Nile. The narrator becomes tired of all the whiteness and wishes for things to be different colors or qualities. The song might symbolize a desire for change or variety, but the meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16739,7 +17293,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie liepą su devyniomis šakomis, kurias nulaužė vėtra, ir apie motiną su devyniomis dukromis, kurias išleido už vyro, išskyrus vieną. Tai gali simbolizuoti praradimus ar šeimos tradicijas.",
-      "EN Description": "This folk song tells of a linden tree with nine branches, all broken by the wind, leaving one for the cuckoo to rest on. It then shifts to a mother with nine daughters, all married off except one, who is left to sweep the yard. The imagery may symbolize loss, change, or the passage of time, but it could also reflect traditional Lithuanian family and nature motifs."
+      "EN Description": "This folk song tells of a linden tree with nine branches, all broken by the wind, leaving one for the cuckoo to rest on. It then shifts to a mother with nine daughters, all married off except one, who is left to sweep the yard. The imagery may symbolize loss, change, or the passage of time, but it could also reflect traditional Lithuanian family and nature motifs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16765,7 +17320,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai linksma lietuviška liaudies daina apie žmogų, kuris turi įvairių gyvūnų ir vis nori dar kito. Kiekvienoje posmelėje pristatomas naujas gyvūnas ir jo garsas ar elgesys. Daina parodo kaimo gyvenimo žavesį ir žaismingumą.",
-      "EN Description": "This is a playful Lithuanian folk song where the singer lists the farm animals they have and each time wishes for another. Each verse introduces a new animal and its characteristic sound or behavior. The song may symbolize the joys of rural life and the playful curiosity of children, though it mainly focuses on naming animals and their sounds."
+      "EN Description": "This is a playful Lithuanian folk song where the singer lists the farm animals they have and each time wishes for another. Each verse introduces a new animal and its characteristic sound or behavior. The song may symbolize the joys of rural life and the playful curiosity of children, though it mainly focuses on naming animals and their sounds.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16791,7 +17347,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie vaiką, kuriam tėtis padarė mažą laivelį, kad jis galėtų būti jūrininku. Užaugęs vaikas džiaugiasi, kad jau yra kapitonas, ir vaikšto smėlio krantu. Laivelis ir kelionė gali simbolizuoti vaikystę ir augimą, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song tells about a child who has a small boat made by his father and dreams of becoming a sailor. As the child grows up, he becomes proud to be a captain, walking along the sandy shore and asking the fish to make way for his boat. The boat and journey might symbolize growing up and independence, but this is not stated directly."
+      "EN Description": "This song tells about a child who has a small boat made by his father and dreams of becoming a sailor. As the child grows up, he becomes proud to be a captain, walking along the sandy shore and asking the fish to make way for his boat. The boat and journey might symbolize growing up and independence, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16824,7 +17381,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie tylų vakarą, kai bernas jodinėja ir neša dovanėles merginai. Dovanos nepatinka, galbūt todėl, kad mergina yra vargšė ar našlaitė. Dainoje minimos lelijos ir rūtų vainikėlis dažnai reiškia tyrumą ir meilę lietuvių liaudies kūryboje.",
-      "EN Description": "This song tells about a quiet evening where someone rides out under the moonlight, bringing gifts to a girl. The gifts are not well received, possibly because the girl is poor or orphaned, which may symbolize longing, humility, or unfulfilled hopes. Traditional symbols like the lily and rue wreath often represent purity and love in Lithuanian folk songs."
+      "EN Description": "This song tells about a quiet evening where someone rides out under the moonlight, bringing gifts to a girl. The gifts are not well received, possibly because the girl is poor or orphaned, which may symbolize longing, humility, or unfulfilled hopes. Traditional symbols like the lily and rue wreath often represent purity and love in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16856,7 +17414,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie ramų vakarą, kai žmogus ieško bėro žirgo, bet sutinka mergaitę, kuri ravėjo darželį. Žodžiai atspindi ramią kaimo aplinką ir gali simbolizuoti ilgesį ar susitikimą. Dainoje nėra aiškių nuorodų į konkrečias lietuviškas šventes ar papročius.",
-      "EN Description": "This song tells of a quiet evening where a person wanders through a birch grove searching for a chestnut horse but instead meets a young girl tending her garden. The lyrics evoke a peaceful rural scene and may symbolize longing, gentle encounters, or the simplicity of village life. There are no direct references to specific Lithuanian traditions or holidays, but the imagery reflects traditional countryside settings."
+      "EN Description": "This song tells of a quiet evening where a person wanders through a birch grove searching for a chestnut horse but instead meets a young girl tending her garden. The lyrics evoke a peaceful rural scene and may symbolize longing, gentle encounters, or the simplicity of village life. There are no direct references to specific Lithuanian traditions or holidays, but the imagery reflects traditional countryside settings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16882,7 +17441,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie tuščius ir tylius namus, kuriuose nieko nėra ir net neužsidega šviesa. Kartojama tyla gali simbolizuoti vienatvę arba ramybę. Paprasti namų vaizdai sustiprina tylos jausmą.",
-      "EN Description": "The song describes an empty and quiet home where no one is present, and even the light is out. The repeated silence may symbolize loneliness or longing, but it could simply reflect a peaceful or abandoned place. Everyday details, like a sleeping cat and an empty bowl, add to the stillness."
+      "EN Description": "The song describes an empty and quiet home where no one is present, and even the light is out. The repeated silence may symbolize loneliness or longing, but it could simply reflect a peaceful or abandoned place. Everyday details, like a sleeping cat and an empty bowl, add to the stillness.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16908,7 +17468,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie ramią ir šventą naktį, kai Betliejuje gimė Jėzus. Ten yra piemenys, angelai, šventoji šeima, o aplink tvyro ramybė ir stebuklas. Daina susijusi su Kalėdų krikščioniškomis tradicijomis.",
-      "EN Description": "This song describes a peaceful and holy night, focusing on the birth of Jesus in Bethlehem. Shepherds and angels are present, celebrating and praying, while a sense of calm and wonder surrounds the event. The lyrics are closely tied to Christian Christmas traditions and may symbolize hope, peace, and the fulfillment of a divine promise."
+      "EN Description": "This song describes a peaceful and holy night, focusing on the birth of Jesus in Bethlehem. Shepherds and angels are present, celebrating and praying, while a sense of calm and wonder surrounds the event. The lyrics are closely tied to Christian Christmas traditions and may symbolize hope, peace, and the fulfillment of a divine promise.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16934,7 +17495,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie prarastą meilę ir ilgesį. Žodžiai išreiškia skausmą matant mylimą žmogų su kitu ir didelį atsidavimą. Žvaigždžių skaičiavimas ir ėjimas naktį simbolizuoja tylų liūdesį, bet nėra nuorodos į konkrečias lietuviškas tradicijas ar šventes.",
-      "EN Description": "This song tells about lost love and longing. The lyrics describe the sadness of seeing a loved one leave and be with someone else, and express deep feelings of pain and devotion. The mention of counting stars and walking barefoot at night suggests quiet, personal moments of reflection, but does not refer to any specific Lithuanian traditions or holidays."
+      "EN Description": "This song tells about lost love and longing. The lyrics describe the sadness of seeing a loved one leave and be with someone else, and express deep feelings of pain and devotion. The mention of counting stars and walking barefoot at night suggests quiet, personal moments of reflection, but does not refer to any specific Lithuanian traditions or holidays.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16961,7 +17523,8 @@ const songs: SongFile = [
       },
       "Music Author": "Juozas Naujalis",
       "LT Description": "Šioje giesmėje pasakojama, kaip piemenys tylią naktį išgirsta apie Jėzaus gimimą ir skuba jo pasveikinti Betliejuje. Dainoje prisimenama, kad žmonės ilgai laukė Atpirkėjo, ir dabar jis pasirodė. Tai susiję su Kalėdų tradicijomis Lietuvoje.",
-      "EN Description": "This song tells the story of shepherds hearing the news of Jesus's birth on a quiet night and hurrying to greet him in Bethlehem. It describes how they find Jesus as foretold, and acknowledges him as the awaited Savior. The lyrics are closely linked to Christian Christmas traditions in Lithuania, celebrating the nativity and fulfillment of ancient prophecies."
+      "EN Description": "This song tells the story of shepherds hearing the news of Jesus's birth on a quiet night and hurrying to greet him in Bethlehem. It describes how they find Jesus as foretold, and acknowledges him as the awaited Savior. The lyrics are closely linked to Christian Christmas traditions in Lithuania, celebrating the nativity and fulfillment of ancient prophecies.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -16987,7 +17550,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris tyliai eina keliu ir sustoja prie svirno, tyliai myli. Žodžiai pasakoja apie nežinomybę, kas yra viduje, o vėliau paaiškėja, kad ten guli motina su jauniausia dukra. Daina gali simbolizuoti ilgesį ar paslaptį, bet tikslus prasmė nėra aiški.",
-      "EN Description": "This song tells of someone quietly walking along a path and stopping by a granary, expressing love in silence. The lyrics describe uncertainty about what is inside a house, revealing at the end that a mother and her youngest daughter are lying there together. The song may symbolize longing and secrecy, but the exact meaning is not fully clear."
+      "EN Description": "This song tells of someone quietly walking along a path and stopping by a granary, expressing love in silence. The lyrics describe uncertainty about what is inside a house, revealing at the end that a mother and her youngest daughter are lying there together. The song may symbolize longing and secrecy, but the exact meaning is not fully clear.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17013,7 +17577,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie praeities meilės prisiminimus, kuriuos sukelia tylūs armonikos garsai. Lyrika prisimena pavasarį, žydinčias alyvas ir nekaltą meilės pradžią, kuri jau praėjo. Daina gali simbolizuoti ilgesį ir nostalgiją prarastiems laikams.",
-      "EN Description": "This song reflects on memories of a past love, evoked by the quiet sounds of an accordion. The lyrics recall springtime, blooming lilacs, and the innocent start of love, which has since faded like the changing seasons. The song may symbolize longing and nostalgia for times and feelings that cannot be brought back."
+      "EN Description": "This song reflects on memories of a past love, evoked by the quiet sounds of an accordion. The lyrics recall springtime, blooming lilacs, and the innocent start of love, which has since faded like the changing seasons. The song may symbolize longing and nostalgia for times and feelings that cannot be brought back.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17039,7 +17604,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie sužeistą ar žuvusį kareivį, gulintį lauke. Artimieji ateina pas jį, atneša dovanų ir ragina keltis, tačiau jis atsisako, nes yra sunkiai sužeistas. Daina gali simbolizuoti karo skausmą ir netektį.",
-      "EN Description": "This song tells the story of a wounded or fallen soldier lying on the battlefield. Family members visit him one by one, bringing him gifts and urging him to get up, but he refuses, explaining that his wounds are too severe. The song may symbolize the pain of loss and the separation caused by war, a common theme in Lithuanian folk songs."
+      "EN Description": "This song tells the story of a wounded or fallen soldier lying on the battlefield. Family members visit him one by one, bringing him gifts and urging him to get up, but he refuses, explaining that his wounds are too severe. The song may symbolize the pain of loss and the separation caused by war, a common theme in Lithuanian folk songs.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17072,7 +17638,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje žmogus stebi ugnis už ežero ir jaučia ilgesį bei liūdesį dėl prarastų artimųjų. Gamtos vaizdai (gegutė, karvelis, eglė) padeda parodyti vienatvę ir liūdesį. „Siratai“ gali reikšti našlaičius arba liūdinčius žmones, bet tikslus žodžio paaiškinimas neaiškus.",
-      "EN Description": "This song tells of someone standing by a lake at night, watching fires burning across the water and reflecting on their sorrow and longing for lost family members. The lyrics use images from nature, like the dove, the cuckoo, and the spruce, to express feelings of loneliness and sadness. The repeated mention of 'siratai' and references to orphans may symbolize grief or the pain of being separated from loved ones—possibly alluding to the traditional Lithuanian theme of family and loss, though the exact meaning of 'siratai' is uncertain and may refer to orphans or the sorrowful ones."
+      "EN Description": "This song tells of someone standing by a lake at night, watching fires burning across the water and reflecting on their sorrow and longing for lost family members. The lyrics use images from nature, like the dove, the cuckoo, and the spruce, to express feelings of loneliness and sadness. The repeated mention of 'siratai' and references to orphans may symbolize grief or the pain of being separated from loved ones—possibly alluding to the traditional Lithuanian theme of family and loss, though the exact meaning of 'siratai' is uncertain and may refer to orphans or the sorrowful ones.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17098,7 +17665,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina, dažnai giedama per Kalėdas. Ji pasakoja apie brolius, kurie miške prie ugnelės gano žirgus, užmiega, ir žirgai pabėga į tėvo dvarą. Daina gali simbolizuoti sugrįžimą namo arba ilgesį, o 'Kalėda' rodo ryšį su žiemos šventėmis.",
-      "EN Description": "This is a traditional Lithuanian folk song, often sung during the Kalėdos (Christmas) season. The lyrics tell a simple story about brothers watching over their horses by a fire in the forest, falling asleep, and the horses running away to their father's estate. The song may symbolize themes of homecoming or longing, and the repeated 'Ei, Kalėda, Kalėda' reflects its connection to ancient winter festivities."
+      "EN Description": "This is a traditional Lithuanian folk song, often sung during the Kalėdos (Christmas) season. The lyrics tell a simple story about brothers watching over their horses by a fire in the forest, falling asleep, and the horses running away to their father's estate. The song may symbolize themes of homecoming or longing, and the repeated 'Ei, Kalėda, Kalėda' reflects its connection to ancient winter festivities.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17166,7 +17734,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina vaizduoja merginas prie Dubysos upės, kalba apie jų grožį ir rytinius papročius, kai šukuojasi plaukus rasose. Tekste jaučiama ir liūdesio, nes merginos gedėti dėl prarastų arba išvykusių jaunuolių. Tai gali simbolizuoti lietuviškas gamtos, jaunystės ir ilgesio temas.",
-      "EN Description": "This song describes young women by the Dubysa river near Raseiniai, highlighting their beauty and daily rituals like combing their hair in the morning dew. The lyrics also express sadness, as the girls mourn lost or absent young men, possibly referencing the pain of war or emigration, though this is not stated directly. The song may symbolize traditional Lithuanian themes of nature, youth, and longing."
+      "EN Description": "This song describes young women by the Dubysa river near Raseiniai, highlighting their beauty and daily rituals like combing their hair in the morning dew. The lyrics also express sadness, as the girls mourn lost or absent young men, possibly referencing the pain of war or emigration, though this is not stated directly. The song may symbolize traditional Lithuanian themes of nature, youth, and longing.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17198,7 +17767,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jaunuolį, kuris lanko merginą, gyvenančią dvare už žalios girelės. Žodžiuose aprašoma, kaip jis pririša žirgą prie rūtų darželio ir kaip keičiasi merginos jausmai per jų susitikimus. Gėlės, darželis ir pasikartojantys vizitai gali simbolizuoti lietuviškas piršlybas.",
-      "EN Description": "This song tells a story about a young man visiting a maiden who lives in a manor beyond a green grove. The lyrics describe his approach, tying his horse near her garden, and the emotions of their meetings: happiness, sadness, and a hint that he may eventually win her heart. The use of flowers, gardens, and repeated visits can symbolize traditional Lithuanian courtship, though the exact meaning of each action is open to interpretation."
+      "EN Description": "This song tells a story about a young man visiting a maiden who lives in a manor beyond a green grove. The lyrics describe his approach, tying his horse near her garden, and the emotions of their meetings: happiness, sadness, and a hint that he may eventually win her heart. The use of flowers, gardens, and repeated visits can symbolize traditional Lithuanian courtship, though the exact meaning of each action is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17262,7 +17832,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie užaugusią liepą su devyniomis šakomis, kurios buvo nulaužtos ir iš jų padarytas suolelis. Atspindimos gamtos ir gyvenimo temos, bet tiksli prasmė palikta klausytojo interpretacijai. Dainoje yra tradicinių priedainių žodžių, kurie neturi aiškios reikšmės.",
-      "EN Description": "This song tells about a linden tree that grew and had nine branches, which were all broken for a purpose. The branches are used to make a small bench, where the singer imagines sitting. The linden and its branches may symbolize growth, change, or the passage of time, but the exact meaning is open to interpretation. The song contains traditional refrain words that are typical in Lithuanian folk songs and don't have specific meanings."
+      "EN Description": "This song tells about a linden tree that grew and had nine branches, which were all broken for a purpose. The branches are used to make a small bench, where the singer imagines sitting. The linden and its branches may symbolize growth, change, or the passage of time, but the exact meaning is open to interpretation. The song contains traditional refrain words that are typical in Lithuanian folk songs and don't have specific meanings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17288,7 +17859,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie audringą jūrą ir žveją, kurio laivelį blaško bangos. Namuose vaikai meldžiasi ir verkia dėl tėvo. Tai gali simbolizuoti sunkų žvejų gyvenimą ir jų artimųjų nerimą.",
-      "EN Description": "The song describes a stormy sea and the dangers faced by a fisherman whose boat is caught in the waves. Meanwhile, children pray and cry for their father at home, worried for his safety. The text may symbolize the hardships and uncertainty of those who depend on the sea for their lives, but this is not stated directly."
+      "EN Description": "The song describes a stormy sea and the dangers faced by a fisherman whose boat is caught in the waves. Meanwhile, children pray and cry for their father at home, worried for his safety. The text may symbolize the hardships and uncertainty of those who depend on the sea for their lives, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17314,7 +17886,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie ąžuolą ir liepą, kurie stovi kartu prie kelio, žali ir gražūs, susilietę šakomis ir lapais. Toliau aprašomas jaunas vaikinas ir mergina, kurie stovi kartu, susikibę rankomis ir prigludę, kalba meiliais žodžiais. Daina gali simbolizuoti artumą ir meilę.",
-      "EN Description": "This song tells about an oak and a linden tree standing side by side, both green and beautiful, their branches and leaves touching. It then draws a parallel to a young man and woman standing together by the roadside, holding hands and leaning close, speaking loving words. The trees and the couple may symbolize harmony and affection, but the song mostly describes their closeness and beauty."
+      "EN Description": "This song tells about an oak and a linden tree standing side by side, both green and beautiful, their branches and leaves touching. It then draws a parallel to a young man and woman standing together by the roadside, holding hands and leaning close, speaking loving words. The trees and the couple may symbolize harmony and affection, but the song mostly describes their closeness and beauty.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17341,7 +17914,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie vabaliukus, kurie linksminasi lauke net lyjant, nes turi skėtį. Jie žaidžia, tyrinėja žolę ir nebijo lietaus. Dainoje daugiausia kalbama apie smagią gamtos ir vaikystės nuotaiką.",
-      "EN Description": "This song describes small insects having fun outside in the rain, showing they are not afraid of getting wet because they have an umbrella. It paints a picture of playful movement and curiosity among the grass after the rain. The lyrics may symbolize enjoying simple moments in nature, but mostly focus on cheerful, childlike exploration."
+      "EN Description": "This song describes small insects having fun outside in the rain, showing they are not afraid of getting wet because they have an umbrella. It paints a picture of playful movement and curiosity among the grass after the rain. The lyrics may symbolize enjoying simple moments in nature, but mostly focus on cheerful, childlike exploration.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17372,7 +17946,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainoje jaunas žmogus kalbasi su žirgu ir galvoja apie kelią į Vilnių bei laisvės ilgesį. Minimi Gedimino pilis ir Aušros vartai – svarbūs Lietuvos istorijos ir tapatybės simboliai. Daina gali simbolizuoti viltį dėl Lietuvos laisvės ir pažadą ateityje iškelti trispalvę Vilniuje.",
-      "EN Description": "This song tells of a young person speaking to their horse, reflecting on the path to Vilnius and the longing for freedom. The lyrics mention Gediminas' Castle and the Gates of Dawn, which are important symbols of Lithuanian history and national identity. The song may symbolize the hope for Lithuania's independence and the promise to one day raise the national flag in Vilnius, but it also expresses personal growth, respect for parents, and a prayer for the homeland."
+      "EN Description": "This song tells of a young person speaking to their horse, reflecting on the path to Vilnius and the longing for freedom. The lyrics mention Gediminas' Castle and the Gates of Dawn, which are important symbols of Lithuanian history and national identity. The song may symbolize the hope for Lithuania's independence and the promise to one day raise the national flag in Vilnius, but it also expresses personal growth, respect for parents, and a prayer for the homeland.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17399,7 +17974,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie linksmai plaukiantį geltoną laivelį ir jauną žvejų mergelę, stovinčią prie kopų ir prižiūrinčią rūtų darželį. Mergelės nuotaika priklauso nuo vėjo: kai vėjas pučia, ji linksma, kai nepučia – liūdna. Rūtų darželis gali reikšti jaunystę arba mergystę, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song describes a yellow boat sailing joyfully on the sea and a young fisher girl standing by the dunes, tending a new rue garden. The lyrics mention how the girl's mood changes with the wind—she is happy when the wind blows and her boat moves, but sad when it is still. The rue garden (rūtų darželis) can symbolize youth or maidenhood in Lithuanian culture, but this is not stated directly."
+      "EN Description": "This song describes a yellow boat sailing joyfully on the sea and a young fisher girl standing by the dunes, tending a new rue garden. The lyrics mention how the girl's mood changes with the wind—she is happy when the wind blows and her boat moves, but sad when it is still. The rue garden (rūtų darželis) can symbolize youth or maidenhood in Lithuanian culture, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17425,7 +18001,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kviečia vaikus keltis ir džiaugtis atgimstančia gamta pavasarį. Dainoje minimi saulės spinduliai ir gegutės balsas, kurie gali simbolizuoti naujo sezono pradžią. Tai paprastas kvietimas džiaugtis gamta.",
-      "EN Description": "This song invites children to wake up and enjoy nature’s renewal in spring. It describes the sun shining happily and the cuckoo calling, which may symbolize the start of a new season and the joy of life returning. The lyrics do not mention specific traditions, but the cuckoo's call is often associated with spring in Lithuanian culture."
+      "EN Description": "This song invites children to wake up and enjoy nature’s renewal in spring. It describes the sun shining happily and the cuckoo calling, which may symbolize the start of a new season and the joy of life returning. The lyrics do not mention specific traditions, but the cuckoo's call is often associated with spring in Lithuanian culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17451,7 +18028,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai prisimena senus laikus ir vaikystę, galbūt pasakoja apie senovinį ar mistinį pasaulį. Čia minimi broliai su žirgais ir seserys su rūtų kasomis, kas gali simbolizuoti lietuviškas tradicijas. Jaučiamas ilgesys praeičiai, tačiau nėra aišku, ar kalbama apie konkrečią šventę.",
-      "EN Description": "The lyrics reflect on distant memories and childhood, possibly recalling a mystical or ancient past. The song mentions brothers herding horses and sisters braiding their hair with rue and flowers, which could symbolize traditional Lithuanian rural life. There is a sense of nostalgia and connection to old customs, but it is not certain if a specific holiday or event is meant."
+      "EN Description": "The lyrics reflect on distant memories and childhood, possibly recalling a mystical or ancient past. The song mentions brothers herding horses and sisters braiding their hair with rue and flowers, which could symbolize traditional Lithuanian rural life. There is a sense of nostalgia and connection to old customs, but it is not certain if a specific holiday or event is meant.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17477,7 +18055,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmogų, kuris eina per žalią girią, nešasi šautuvėlį ir pamato margą antelę. Jis pagaili antelės ir nenusprendžia jos nušauti. Daina gali simbolizuoti gailestingumą arba meilę gamtai, bet daugiausia aprašo paprastą gyvenimo akimirką.",
-      "EN Description": "The song tells about someone walking through a green forest, carrying a small gun on their shoulder, and seeing a colorful duck. Although they could have shot the duck, they feel sorry for it and decide not to. The song may symbolize kindness or respect for nature, but it mainly describes a simple scene from daily life."
+      "EN Description": "The song tells about someone walking through a green forest, carrying a small gun on their shoulder, and seeing a colorful duck. Although they could have shot the duck, they feel sorry for it and decide not to. The song may symbolize kindness or respect for nature, but it mainly describes a simple scene from daily life.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17505,7 +18084,8 @@ const songs: SongFile = [
       "Music Author": "Rita Čyvaitė-Kliorienė",
       "Text Author": "Rita Čyvaitė-Kliorienė",
       "LT Description": "Ši daina pasakoja apie sugrįžimą į mylimą stovyklą Dainavoje, kur draugai kartu žaidžia, juokiasi ir dainuoja. Daina išreiškia džiaugsmą būti kartu ir draugystės svarbą, kuri išlieka bėgant metams.",
-      "EN Description": "This song is about returning to a beloved camp called Dainava, where friends gather to play, laugh, and sing, feeling at home together. It celebrates lasting friendship and the joy of shared experiences as time passes and nature changes. The camp may symbolize a special place in the community or Lithuanian diaspora, but the main focus is on togetherness and enduring bonds."
+      "EN Description": "This song is about returning to a beloved camp called Dainava, where friends gather to play, laugh, and sing, feeling at home together. It celebrates lasting friendship and the joy of shared experiences as time passes and nature changes. The camp may symbolize a special place in the community or Lithuanian diaspora, but the main focus is on togetherness and enduring bonds.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17534,7 +18114,8 @@ const songs: SongFile = [
       "Music Author": "Vladas Chockevičius",
       "Text Author": "Vladas Chockevičius",
       "LT Description": "Ši daina pasakoja apie vienybę, stiprybę ir tarnystę tarp Lietuvos skautų, įkvėptą gamtos ir saulėtekio. Ji švenčia draugystę, bendrystę ir atsidavimą Lietuvai, galbūt skirta skautų šimtmečio proga. Dainavimas prie laužo yra svarbi Lietuvos skautų tradicija.",
-      "EN Description": "This song is about unity, strength, and service among Lithuanian scouts, drawing inspiration from nature and the sunrise. It celebrates togetherness, friendship, and dedication to Lithuania, possibly in the context of a scouting anniversary. References to campfires and singing are common in Lithuanian scouting traditions, which symbolize community and shared values."
+      "EN Description": "This song is about unity, strength, and service among Lithuanian scouts, drawing inspiration from nature and the sunrise. It celebrates togetherness, friendship, and dedication to Lithuania, possibly in the context of a scouting anniversary. References to campfires and singing are common in Lithuanian scouting traditions, which symbolize community and shared values.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17560,7 +18141,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie vienybę, meilę Lietuvai ir svarbą kartu ginti savo šalį ir vertybes. Dainoje minimi bendri istorijos bei kultūros simboliai, tokie kaip Čiurlionis ir Vytis. Vilko motyvas gali simbolizuoti stiprybę arba tautos dvasią.",
-      "EN Description": "This song speaks about unity, love for Lithuania, and the importance of standing together to protect the country and its values. It refers to common heritage, shared history, and famous cultural symbols like Čiurlionis and the Vytis. The song may symbolize resilience and hope for the future, and mentions the wolf, which can be a symbol of Lithuanian folklore and legend."
+      "EN Description": "This song speaks about unity, love for Lithuania, and the importance of standing together to protect the country and its values. It refers to common heritage, shared history, and famous cultural symbols like Čiurlionis and the Vytis. The song may symbolize resilience and hope for the future, and mentions the wolf, which can be a symbol of Lithuanian folklore and legend.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17588,7 +18170,8 @@ const songs: SongFile = [
       "Music Author": "G. Storpirštis",
       "Text Author": "G. Storpirštis",
       "LT Description": "Daina pasakoja apie žmogaus baimę varlėms, tiek mažoms, tiek didelėms. Pasakojama, kodėl varlės nepatinka, bet kartu pripažįstama, kad jos naudingos gamtoje. Tekste naudojamas humoras ir šiek tiek perdėjimo.",
-      "EN Description": "The song tells about a person's fear of frogs, both small and large. Although the narrator admits the fear is not logical, they explain why frogs scare them but also recognize the frog's usefulness in nature. The song uses humor and exaggeration, and it may symbolize facing irrational fears, but this is not stated directly."
+      "EN Description": "The song tells about a person's fear of frogs, both small and large. Although the narrator admits the fear is not logical, they explain why frogs scare them but also recognize the frog's usefulness in nature. The song uses humor and exaggeration, and it may symbolize facing irrational fears, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17615,7 +18198,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie šviesią vasaros naktį, kai žiedai siūbuoja iki ryto. Žodžiuose jaučiama ilgesio ir ramybės nuotaika, kalbama apie švelnius jausmus. Žiedai gali simbolizuoti trapų grožį arba ilgesį, tačiau prasmė paliekama atvira.",
-      "EN Description": "This song describes a bright summer night, where flowers gently sway until morning. The lyrics reflect on longing, gentle emotions, and possibly the calm yet restless feelings of the heart during such nights. The imagery of swaying flowers underlines a sense of peace and gentle melancholy, and may symbolize fleeting beauty or longing, though the meaning is open to interpretation."
+      "EN Description": "This song describes a bright summer night, where flowers gently sway until morning. The lyrics reflect on longing, gentle emotions, and possibly the calm yet restless feelings of the heart during such nights. The imagery of swaying flowers underlines a sense of peace and gentle melancholy, and may symbolize fleeting beauty or longing, though the meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17641,7 +18225,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie vėlyvą ir neįvykusį susitikimą tarp dviejų žmonių, naudojant rudens vaizdus ir gamtos simbolius. Daina išreiškia liūdesį, atsisveikinimą ir prarastą meilę. Raudoni dobilai vakare ir krintantys lapai gali simbolizuoti praeitį ar išblėsusius jausmus.",
-      "EN Description": "This song tells of a late and unfulfilled meeting between two people, using evening scenes and autumn imagery. It expresses feelings of regret, farewell, and the end of a relationship, with nature's changes possibly symbolizing loss or sadness. The red clover in the evening and falling leaves may represent fading love or missed opportunities, but this is open to interpretation."
+      "EN Description": "This song tells of a late and unfulfilled meeting between two people, using evening scenes and autumn imagery. It expresses feelings of regret, farewell, and the end of a relationship, with nature's changes possibly symbolizing loss or sadness. The red clover in the evening and falling leaves may represent fading love or missed opportunities, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17670,7 +18255,8 @@ const songs: SongFile = [
       "Music Author": "Velnio nuotaka",
       "Text Author": "Velnio nuotaka",
       "LT Description": "Šioje dainoje aprašoma svajinga naktis, pilna žvaigždžių ir gėlių, kur dainininkas ilgesi savo mylimojo ir jaučia vienatvę. Dainoje naudojami vasaros, sniego ir žvaigždžių vaizdiniai, kurie gali simbolizuoti priešingybes arba jausmus. Paminėjimas 'motinėlės' ir paslaptinga nuotaika gali būti susiję su lietuvių liaudies temomis, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "This song describes a dreamy, magical night filled with stars and flowers, where the singer longs for their beloved and expresses feelings of loneliness and yearning. The lyrics use imagery of summer, snow, and stars, possibly symbolizing contrasts between warmth and coldness, or presence and absence. The mention of 'motinėlė' (mother) and the mystical atmosphere may suggest connections to Lithuanian folk themes or nature rituals, but the exact reference is not explicit."
+      "EN Description": "This song describes a dreamy, magical night filled with stars and flowers, where the singer longs for their beloved and expresses feelings of loneliness and yearning. The lyrics use imagery of summer, snow, and stars, possibly symbolizing contrasts between warmth and coldness, or presence and absence. The mention of 'motinėlė' (mother) and the mystical atmosphere may suggest connections to Lithuanian folk themes or nature rituals, but the exact reference is not explicit.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17696,7 +18282,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie lauke augančią kriaušę, ant kurios dega žvakė. Nukritusi kibirkštis sukelia mėlynas marias, o jose plaukia laivelis su mergina, rašančia laišką tėvams. Žodis „Kalėda“ gali rodyti ryšį su Kalėdų ar žiemos švenčių tradicijomis.",
-      "EN Description": "This folk song tells of a pear tree growing in a field, with a candle burning on its branches. A spark from the candle falls and causes vast blue seas to rise, upon which a boat floats. In the boat, a girl sits writing letters to her parents. The song uses symbolic imagery, and the repeated word 'Kalėda' hints at connections to Christmas or winter solstice traditions, though the exact meaning may be open to interpretation."
+      "EN Description": "This folk song tells of a pear tree growing in a field, with a candle burning on its branches. A spark from the candle falls and causes vast blue seas to rise, upon which a boat floats. In the boat, a girl sits writing letters to her parents. The song uses symbolic imagery, and the repeated word 'Kalėda' hints at connections to Christmas or winter solstice traditions, though the exact meaning may be open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17729,7 +18316,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje liaudies dainoje pasakojama apie lauko viduryje augantį pušyną, kuriame stovi nauja karčiama su šinkorka ir jos jauna dukra. Jaunikaitis prašo dukros rankos, o ji atsako, kad sutiktų, jei jis atvyktų trimis karietomis su šešiais žirgais ir atsivežtų savo šeimą. Daina gali simbolizuoti senovinius piršlybų papročius.",
-      "EN Description": "This folk song tells a story set in a pine forest in the middle of a field, where there is a new tavern run by a barmaid and her young daughter. A suitor asks the young woman if she will be his, and she replies with a condition involving arriving in three carriages with six horses, bringing his family. The song may symbolize courtship traditions and social gatherings, but the exact meaning is open to interpretation."
+      "EN Description": "This folk song tells a story set in a pine forest in the middle of a field, where there is a new tavern run by a barmaid and her young daughter. A suitor asks the young woman if she will be his, and she replies with a condition involving arriving in three carriages with six horses, bringing his family. The song may symbolize courtship traditions and social gatherings, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17819,7 +18407,8 @@ const songs: SongFile = [
       "Music Author": "Rita Čyvaitė-Kliorienė",
       "Text Author": "Nijolė Kersnauskaitė",
       "LT Description": "Ši daina apie vienybę, viltį ir pasididžiavimą Lietuva. Žmonės čia vaizduojami kaip viena šeima ir tauta, kurią jungia gimtinė. Žodžiai kalba apie svajones, stiprybę ir bendrą ateitį.",
-      "EN Description": "This song is about unity, hope, and pride in Lithuania. It describes people as one family and nation, connected by their homeland. The lyrics speak of dreams, resilience, and a shared future, possibly symbolizing national togetherness and the enduring spirit of the Lithuanian people."
+      "EN Description": "This song is about unity, hope, and pride in Lithuania. It describes people as one family and nation, connected by their homeland. The lyrics speak of dreams, resilience, and a shared future, possibly symbolizing national togetherness and the enduring spirit of the Lithuanian people.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17851,7 +18440,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie kaimo motiną, kurios trys sūnūs išėjo į karą ir negrįžo. Tekste jaučiama jos tyli kančia, maldos ir kaimo gyvenimo vaizdai. Tai gali simbolizuoti daugelio šeimų skausmą karo metu.",
-      "EN Description": "This song tells the story of a mother in a rural Lithuanian village whose three sons go off to war and never return. The lyrics describe her silent grief, the village life, and the ongoing prayers for her sons. It may symbolize the collective sorrow of families during times of war and the enduring hope and pain left behind."
+      "EN Description": "This song tells the story of a mother in a rural Lithuanian village whose three sons go off to war and never return. The lyrics describe her silent grief, the village life, and the ongoing prayers for her sons. It may symbolize the collective sorrow of families during times of war and the enduring hope and pain left behind.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17877,7 +18467,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra malda, kurioje prašoma Dievo pagalbos ir globos. Joje išreiškiamas pasitikėjimas Dievu sunkiomis ir džiaugsmingomis akimirkomis, prašoma padėti gyventi Jo apsaugoje. Tekste nėra aiškių nuorodų į lietuviškas šventes ar istorinius įvykius.",
-      "EN Description": "This song is a prayer asking for guidance, comfort, and support from God. It expresses trust in God's hands, both in times of hardship and joy, and asks for help to live under God's protection. The lyrics may symbolize faith and the importance of community, but do not reference specific Lithuanian holidays or historical events."
+      "EN Description": "This song is a prayer asking for guidance, comfort, and support from God. It expresses trust in God's hands, both in times of hardship and joy, and asks for help to live under God's protection. The lyrics may symbolize faith and the importance of community, but do not reference specific Lithuanian holidays or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17905,7 +18496,8 @@ const songs: SongFile = [
       "Music Author": "Gintarė Jautakaitė",
       "Text Author": "Gintarė Jautakaitė",
       "LT Description": "Ši daina apie Lietuvą, kuri lyginama su lelijomis—tai gali reikšti tyrumą ar grožį. Tekste daug kalbama apie gamtą ir Dievo globą. Žodžiai „Viešpaties lelija“ gali simbolizuoti ypatingą Lietuvos svarbą, bet tiksli prasmė nėra aiški.",
-      "EN Description": "This song is about Lithuania, using the image of a lily as a symbol that may represent purity, beauty, or something sacred. The lyrics describe nature—rain, sky, birds, fish, and moonlight—connected to a divine presence and the idea of Lithuania as precious and protected. The reference to 'Viešpaties lelija' (The Lord's Lily) could symbolize Lithuania itself as cherished or blessed, but the exact meaning is open to interpretation."
+      "EN Description": "This song is about Lithuania, using the image of a lily as a symbol that may represent purity, beauty, or something sacred. The lyrics describe nature—rain, sky, birds, fish, and moonlight—connected to a divine presence and the idea of Lithuania as precious and protected. The reference to 'Viešpaties lelija' (The Lord's Lily) could symbolize Lithuania itself as cherished or blessed, but the exact meaning is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17931,7 +18523,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie pelėdą, kuri suka lizdą, peri ir rūpinasi savo vaikais. Dainoje kartojami žodžiai apie lizdą, muilą, prausimą ir vaikų verksmą, todėl ji gali būti linksma ar skirta vaikams. Pelėda gali simbolizuoti rūpestingą mamą.",
-      "EN Description": "This song tells a simple story about an owl building a nest, laying eggs, and caring for her young. The lyrics repeat actions like nesting, buying soap, washing, and the owl's children crying, possibly illustrating a humorous or playful look at family life in nature. The owl's actions may symbolize parental care, but the song seems lighthearted and is likely intended for children."
+      "EN Description": "This song tells a simple story about an owl building a nest, laying eggs, and caring for her young. The lyrics repeat actions like nesting, buying soap, washing, and the owl's children crying, possibly illustrating a humorous or playful look at family life in nature. The owl's actions may symbolize parental care, but the song seems lighthearted and is likely intended for children.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17963,7 +18556,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai lietuvių liaudies daina apie Vilniaus mūšį, kur lietuviai nugali lenkus. Dainoje pabrėžiamas lietuvių tvirtumas ir Vilniaus priklausymas Lietuvai nuo senovės. Dainos žodžiai gali simbolizuoti istorinius ginčus dėl Vilniaus.",
-      "EN Description": "This is a Lithuanian folk song describing a battle for Vilnius, where Lithuanian fighters defeat Polish forces. The lyrics highlight the bravery and strength of the Lithuanians, contrasting them with the defeated Poles, and assert that Vilnius has belonged to Lithuanians since ancient times. The song may reflect historical conflicts over Vilnius, but its details are symbolic and not tied to a specific historical event."
+      "EN Description": "This is a Lithuanian folk song describing a battle for Vilnius, where Lithuanian fighters defeat Polish forces. The lyrics highlight the bravery and strength of the Lithuanians, contrasting them with the defeated Poles, and assert that Vilnius has belonged to Lithuanians since ancient times. The song may reflect historical conflicts over Vilnius, but its details are symbolic and not tied to a specific historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -17990,7 +18584,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmones, kurie yra kartu ir dalijasi džiaugsmu bei skausmu. Joje kalbama apie bendrus vakarus, dainavimą ir tostus, net jei taurėse tik vanduo – svarbiausia yra būti drauge. Paminėta daina „Ilgiausių metų“ dažnai giedama per šventes Lietuvoje.",
-      "EN Description": "This song is about people coming together, sharing both joy and sorrow over time. It describes moments of unity, singing, and toasting, even if just with water, which may symbolize that the true value is in being together rather than what is in the glass. The lyrics mention leaving a part of the heart behind after the gathering, which could reflect the emotional connection formed in such communal moments. The song references the tradition of singing 'Ilgiausių metų,' a well-known Lithuanian song wishing long life, often sung at celebrations."
+      "EN Description": "This song is about people coming together, sharing both joy and sorrow over time. It describes moments of unity, singing, and toasting, even if just with water, which may symbolize that the true value is in being together rather than what is in the glass. The lyrics mention leaving a part of the heart behind after the gathering, which could reflect the emotional connection formed in such communal moments. The song references the tradition of singing 'Ilgiausių metų,' a well-known Lithuanian song wishing long life, often sung at celebrations.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18016,7 +18611,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie tai, kad viskas gyvenime praeina ir negrįžta, bet muzika išlieka amžinai. Tai gali simbolizuoti meno ar prisiminimų svarbą, kai visa kita praeina. Tekste nėra paminėtų konkrečių lietuviškų švenčių ar istorinių įvykių.",
-      "EN Description": "This song is about how everything in life passes and nothing returns, except for music, which remains and is eternal. The lyrics might symbolize the lasting power of art or memories when other things fade away. It does not mention any specific Lithuanian traditions or historical events."
+      "EN Description": "This song is about how everything in life passes and nothing returns, except for music, which remains and is eternal. The lyrics might symbolize the lasting power of art or memories when other things fade away. It does not mention any specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18042,7 +18638,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši liaudies daina pasakoja apie jauną vyrą, parsivedusį jauną žmoną, ir juokingai apmąsto santykių sunkumus bei supratimą šeimoje. Upės su akmenimis gali simbolizuoti gyvenimo sunkumus. Daina pabrėžia atjautą ir išmintį šeimyniniuose santykiuose.",
-      "EN Description": "This folk song tells a story about a young man who brings home a young wife and learns, through gentle humor, about empathy and understanding in marriage. The river full of stones may symbolize life's obstacles or difficulties, while the verses reflect on misunderstandings, regret, and the challenges of family life. The song playfully explores traditional roles and the importance of compassion in relationships."
+      "EN Description": "This folk song tells a story about a young man who brings home a young wife and learns, through gentle humor, about empathy and understanding in marriage. The river full of stones may symbolize life's obstacles or difficulties, while the verses reflect on misunderstandings, regret, and the challenges of family life. The song playfully explores traditional roles and the importance of compassion in relationships.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18071,7 +18668,8 @@ const songs: SongFile = [
       "Music Author": "Tele Bim Bam",
       "Text Author": "Tele Bim Bam",
       "LT Description": "Daina pasakoja linksmą istoriją apie vorą Petrą, kuris įžengė į kito voro teritoriją ir buvo dėl to sudrausmintas kitų vorų. Tekstas paprastas, pasikartojantis, gali simbolizuoti ginčus dėl ribų, bet pagrindinė tema – linksma situacija. Nėra aiškių nuorodų į lietuviškas tradicijas ar istorinius įvykius.",
-      "EN Description": "The song tells a playful story about a spider named Petras who steps into another spider's territory and is confronted by a group of three spiders. The lyrics use simple language and a repetitive structure, possibly symbolizing conflicts over boundaries or personal space, but the text mainly focuses on a humorous situation. There are no clear references to specific Lithuanian traditions or historical events."
+      "EN Description": "The song tells a playful story about a spider named Petras who steps into another spider's territory and is confronted by a group of three spiders. The lyrics use simple language and a repetitive structure, possibly symbolizing conflicts over boundaries or personal space, but the text mainly focuses on a humorous situation. There are no clear references to specific Lithuanian traditions or historical events.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18097,7 +18695,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje džiaugiamasi šienapjūte žalioje pievoje. Žodžiuose pasakojama apie dalgio galandimą, šienavimą, laukimą pusryčių ir bendrą džiaugsmą dirbant kartu. Kartojamas šūkis „valio“ rodo linksmą ir bendruomenišką nuotaiką.",
-      "EN Description": "This song celebrates the work of mowing grass in a green meadow. The lyrics describe the experience of sharpening the scythe, cutting hay, waiting for breakfast, and the joy of working together. The repeated cheer 'valio' (hurrah) for the mowers suggests a festive or communal atmosphere, which might symbolize pride in rural life and teamwork."
+      "EN Description": "This song celebrates the work of mowing grass in a green meadow. The lyrics describe the experience of sharpening the scythe, cutting hay, waiting for breakfast, and the joy of working together. The repeated cheer 'valio' (hurrah) for the mowers suggests a festive or communal atmosphere, which might symbolize pride in rural life and teamwork.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18124,7 +18723,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Dainos žodžiai kalba apie kažką žalią, besitęsiantį per dangų, panašų į eglę su auksinėmis saulėmis. Žalia spalva kartojasi ir gali simbolizuoti gamtą ar viltį. Taip pat minima vaiko širdis ir pasaulis, kuris negirdi, kas gali reikšti ilgesį ar norą būti suprastam.",
-      "EN Description": "The lyrics describe something green stretching across the sky, compared to a great spruce tree decorated with golden suns. The green motif repeats, possibly symbolizing nature, hope, or new beginnings, though this is not certain. There are also lines about touching a child's heart and a world that does not hear, which could suggest themes of innocence or longing for understanding."
+      "EN Description": "The lyrics describe something green stretching across the sky, compared to a great spruce tree decorated with golden suns. The green motif repeats, possibly symbolizing nature, hope, or new beginnings, though this is not certain. There are also lines about touching a child's heart and a world that does not hear, which could suggest themes of innocence or longing for understanding.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18156,7 +18756,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie jauną vaikiną, kuris palieka mylimąją ir išjoja į svetimą šalį. Tekste daug gamtos vaizdų ir liūdesio dėl išsiskyrimo. Pabaiga gali simbolizuoti atsisveikinimą ar net mirtį, bet tai nėra aišku.",
-      "EN Description": "The song tells about a young man who leaves his beloved behind as he rides away to a foreign land. It describes his journey and the sadness of parting, with imagery of nature and possibly his fate. The ending, where he is led to a high hill, may symbolize death or a final farewell, but this is open to interpretation."
+      "EN Description": "The song tells about a young man who leaves his beloved behind as he rides away to a foreign land. It describes his journey and the sadness of parting, with imagery of nature and possibly his fate. The ending, where he is led to a high hill, may symbolize death or a final farewell, but this is open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18183,7 +18784,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie jauną žmogų, kuris išvyksta iš namų ir atsisveikina su mama bei liepa, svarbiais namų simboliais. Žodžiuose juntamas ir liūdesys, ir džiaugsmas pradedant naują gyvenimo kelią. Žalioji stotelė gali reikšti vietą, kur baigiasi vaikystė ir prasideda nauja pradžia.",
-      "EN Description": "This song tells about a young person leaving home and saying goodbye to their mother and the familiar linden tree, both important symbols of home and comfort in Lithuanian culture. The lyrics express both sadness and excitement about starting a new journey in life. The green bus stop may symbolize a place of transition, where childhood is left behind and the future begins."
+      "EN Description": "This song tells about a young person leaving home and saying goodbye to their mother and the familiar linden tree, both important symbols of home and comfort in Lithuanian culture. The lyrics express both sadness and excitement about starting a new journey in life. The green bus stop may symbolize a place of transition, where childhood is left behind and the future begins.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18253,7 +18855,8 @@ const songs: SongFile = [
       "Music Author": "Rasos Kauneckaitė",
       "Text Author": "Martyno Vainilaitis",
       "LT Description": "Ši linksma daina pasakoja apie žąsiną, kuris peša pienės žiedą ir kviečia žąselę kartu dainuoti linksmą dainelę. Dainoje daug žąsų ir kitų garsų, todėl ji atrodo žaisminga ir nuotaikinga. Daina gali simbolizuoti draugystę ir bendrumą, bet dažniausiai tiesiog žaidžia su vaikiškais vaizdais ir garsais.",
-      "EN Description": "This playful song tells about a gander plucking a dandelion and calling his goose friend to sing a cheerful song together. The lyrics use onomatopoeic sounds to imitate the noises of geese and gates, creating a fun and lively atmosphere. The song might symbolize the joy of togetherness and play, but mainly focuses on simple, childlike imagery and sounds."
+      "EN Description": "This playful song tells about a gander plucking a dandelion and calling his goose friend to sing a cheerful song together. The lyrics use onomatopoeic sounds to imitate the noises of geese and gates, creating a fun and lively atmosphere. The song might symbolize the joy of togetherness and play, but mainly focuses on simple, childlike imagery and sounds.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18279,7 +18882,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Tai trumpa lietuvių liaudies daina, kurioje vaizduojama, kaip vienas dalykas kyla iš kito: žemė, žolė, rasa, pasagėlė, žirgas ir galiausiai raitelis sutinka mergelę. Dainos prasmė nėra visiškai aiški, bet ji gali simbolizuoti gamtos ir žmogaus ryšį.",
-      "EN Description": "This song is a short Lithuanian folk verse that describes a chain of images, where each line builds on the previous one: the earth raises grass, grass raises dew, dew raises a horseshoe, and so on. The song may symbolize the interconnectedness of nature and human life, but the meaning is not completely clear and could be open to interpretation. The meeting of the rider and the maiden at the end might suggest a moment of encounter or greeting."
+      "EN Description": "This song is a short Lithuanian folk verse that describes a chain of images, where each line builds on the previous one: the earth raises grass, grass raises dew, dew raises a horseshoe, and so on. The song may symbolize the interconnectedness of nature and human life, but the meaning is not completely clear and could be open to interpretation. The meeting of the rider and the maiden at the end might suggest a moment of encounter or greeting.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18305,7 +18909,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje išreiškiama meilė ir artumas gimtajai Lietuvai. Žodžiuose kalbama apie Lietuvos gamtą, jos svarbą žmonėms. Prašoma šilumos, duonos ir vandens, kas gali simbolizuoti rūpestį ir viltį gerovei.",
-      "EN Description": "This song expresses love and deep connection to the homeland, Lithuania. The lyrics describe the land as both small and great, highlighting its importance in the hearts of its people. There are references to nature (like oaks and the river Nemunas) which may symbolize strength and the lifeblood of the country, and a wish for warmth, bread, and water suggests a longing for well-being and sustenance."
+      "EN Description": "This song expresses love and deep connection to the homeland, Lithuania. The lyrics describe the land as both small and great, highlighting its importance in the hearts of its people. There are references to nature (like oaks and the river Nemunas) which may symbolize strength and the lifeblood of the country, and a wish for warmth, bread, and water suggests a longing for well-being and sustenance.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18331,7 +18936,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie žmones, užaugusius prie Nemuno Kaune, kurie myli savo miestą ir Lietuvą. Ji aprašo vasaros džiaugsmus, linksmas dainas ir laiką prie upės. Upės tėkmė gali simbolizuoti gyvenimo eigą, bet tai nėra aišku.",
-      "EN Description": "This song is about people who grew up by the Nemunas River in Kaunas, expressing love for their hometown and country. It describes enjoying summer, singing cheerful songs, relaxing by the river, and celebrating simple pleasures like drinking and sharing time together. The river flowing downstream may symbolize the peaceful passage of time or the journey of life, but this is not certain."
+      "EN Description": "This song is about people who grew up by the Nemunas River in Kaunas, expressing love for their hometown and country. It describes enjoying summer, singing cheerful songs, relaxing by the river, and celebrating simple pleasures like drinking and sharing time together. The river flowing downstream may symbolize the peaceful passage of time or the journey of life, but this is not certain.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18357,7 +18963,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie brolių vestuves ir gražias jaunas nuotakas, aprašomas jų grožis ir vedybiniai papročiai. Pabaigoje nuotaka išreiškia ilgesį savo jaunystei ir mergystei, kurią gali simbolizuoti žalių rūtų vainikėlis.",
-      "EN Description": "This song tells about brothers getting married and bringing home beautiful brides, describing their appearance and wedding customs. It mentions the bride's long braids, symbolically linked to the sun and dew, and the tasks she faces in her new family, like raking hay with a special rake. The final verses express the bride's nostalgia for her youth and maidenhood, which the green rue wreath can symbolize in Lithuanian tradition."
+      "EN Description": "This song tells about brothers getting married and bringing home beautiful brides, describing their appearance and wedding customs. It mentions the bride's long braids, symbolically linked to the sun and dew, and the tasks she faces in her new family, like raking hay with a special rake. The final verses express the bride's nostalgia for her youth and maidenhood, which the green rue wreath can symbolize in Lithuanian tradition.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18383,7 +18990,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina kalba apie nuvytusias pavasario gėles ir jausmus, kurie gali praeiti ar būti nepastovūs. Žodžiuose jaučiamas ilgesys, meilės paieškos ir abejonės, kam skirti savo jausmus. Minimi žibuoklės ir neužmirštuolės, kurios Lietuvoje dažnai siejamos su prisiminimais ir meile.",
-      "EN Description": "The song reflects on fading spring flowers and uses them as symbols for fleeting feelings and memories. The lyrics gently wonder about love, longing, and choices, possibly suggesting uncertainty about who to offer one's affection to. It mentions traditional Lithuanian flowers like violets and forget-me-nots, which can symbolize remembrance and love, but the meaning remains open to interpretation."
+      "EN Description": "The song reflects on fading spring flowers and uses them as symbols for fleeting feelings and memories. The lyrics gently wonder about love, longing, and choices, possibly suggesting uncertainty about who to offer one's affection to. It mentions traditional Lithuanian flowers like violets and forget-me-nots, which can symbolize remembrance and love, but the meaning remains open to interpretation.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18409,7 +19017,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje vaizduojamas metų laikų virsmas iš žiemos į pavasarį ir vasarą, džiaugiamasi gamtos grožiu bei kaimo gyvenimu. Minimi paukščiai, piemenėliai, gamtos dovanos, kas gali simbolizuoti atgimimą ir džiaugsmą. Paminėtos veiklos, tokios kaip aviganių darbas ir sulos rinkimas, yra svarbios lietuvių tradicijose.",
-      "EN Description": "This song describes the changing of seasons from winter to spring and summer, celebrating the beauty and joys of nature and rural life. It mentions birds returning, shepherds with their flocks, and the abundance found in the countryside, possibly symbolizing renewal and happiness that comes with warmer seasons. There are references to Lithuanian village life, like shepherding and collecting birch sap, which are important in traditional culture."
+      "EN Description": "This song describes the changing of seasons from winter to spring and summer, celebrating the beauty and joys of nature and rural life. It mentions birds returning, shepherds with their flocks, and the abundance found in the countryside, possibly symbolizing renewal and happiness that comes with warmer seasons. There are references to Lithuanian village life, like shepherding and collecting birch sap, which are important in traditional culture.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18436,7 +19045,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie norą būti su mylimu žmogumi, nepriklausomai nuo metų laiko ar oro. Gamtos vaizdai, tokie kaip rasa, vėjas, rūkas, sniegas ir žolė, parodo ištikimybę ir ilgesį. Kai kurie vaizdai gali simbolizuoti meilės išlikimą per visus gyvenimo etapus, bet taip pat gali būti tiesiog poetiški paveikslai.",
-      "EN Description": "This song describes a longing to be with someone, expressing the desire to reach them through all seasons and weather. The lyrics use images from nature—dew, wind, fog, snow, and grass—to show devotion and persistence. The repeated transformations (becoming wind, fog, snow, grass) might symbolize how love or longing adapts and endures through all times, but some images could also simply evoke poetic feelings rather than specific meanings."
+      "EN Description": "This song describes a longing to be with someone, expressing the desire to reach them through all seasons and weather. The lyrics use images from nature—dew, wind, fog, snow, and grass—to show devotion and persistence. The repeated transformations (becoming wind, fog, snow, grass) might symbolize how love or longing adapts and endures through all times, but some images could also simply evoke poetic feelings rather than specific meanings.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18467,7 +19077,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie skautus, susirinkusius prie laužo, kurie dainuoja ir rodo teatrą. Dainoje daug dėmesio skiriama jų džiaugsmui ir draugystei. Tai paprastas pasakojimas apie linksmą vakarą prie laužo.",
-      "EN Description": "This song describes scouts sitting around a campfire, singing songs and performing theater. The lyrics focus on their joy and the sense of community, without mentioning any specific Lithuanian holiday or event. The repeated chorus and playful tone might symbolize togetherness and happiness found in such gatherings, but it is mainly a simple depiction of a cheerful campfire evening."
+      "EN Description": "This song describes scouts sitting around a campfire, singing songs and performing theater. The lyrics focus on their joy and the sense of community, without mentioning any specific Lithuanian holiday or event. The repeated chorus and playful tone might symbolize togetherness and happiness found in such gatherings, but it is mainly a simple depiction of a cheerful campfire evening.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18547,7 +19158,8 @@ const songs: SongFile = [
       "Music Author": "Laimis Vilkončiaus",
       "Text Author": "Sigitas Geda",
       "LT Description": "Daina pasakoja apie žalią girią, kur žolėje ilsisi vieversėliai, o žmonės ant kalnų bando juos pagauti ar mėgdžioti, rėkdami kaip paukščiai. Tai gali simbolizuoti žmonių norą būti laisvais kaip paukščiai arba tiesiog būti žaisminga scena. Taip pat gali būti užuomina į pavasario tradicijas, kai Lietuvoje grįžta vieversiai.",
-      "EN Description": "The song describes a green forest where larks rest in the grass, and people gather on the hills trying to catch or imitate the birds, making bird-like noises. This may symbolize people's longing to be like the birds—free and joyful—or it could simply be a playful scene. The imagery of people wanting to fly and interact with the larks might refer to springtime traditions in Lithuania, when larks return and their songs are celebrated."
+      "EN Description": "The song describes a green forest where larks rest in the grass, and people gather on the hills trying to catch or imitate the birds, making bird-like noises. This may symbolize people's longing to be like the birds—free and joyful—or it could simply be a playful scene. The imagery of people wanting to fly and interact with the larks might refer to springtime traditions in Lithuania, when larks return and their songs are celebrated.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18573,7 +19185,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Daina pasakoja apie netikėtą grėsmę iš zombių ir juokingai pataria, kaip nuo jų apsisaugoti – pavyzdžiui, būti švariam ir neliesti balandžių. Zombiai gali simbolizuoti įvairias grėsmes ar blogus įpročius, tačiau tekstas pateiktas žaismingai.",
-      "EN Description": "The song describes a sudden threat from 'zombies' and gives humorous advice on how to protect oneself, such as staying clean and avoiding contact with pigeons. The 'zombies' may symbolize dangers or negative influences in society, but the lyrics use playful language and do not directly mention any specific Lithuanian tradition or historical event."
+      "EN Description": "The song describes a sudden threat from 'zombies' and gives humorous advice on how to protect oneself, such as staying clean and avoiding contact with pigeons. The 'zombies' may symbolize dangers or negative influences in society, but the lyrics use playful language and do not directly mention any specific Lithuanian tradition or historical event.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18599,7 +19212,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje vaizduojamos kasdienio gyvenimo akimirkos, naudojant žvaigždės įvaizdį skirtingose vietose. Žvaigždė gali simbolizuoti viltį ar prisiminimus, tačiau tai nėra aiškiai pasakyta. Obuoliai gali reikšti paprastumą ar namus, tačiau tai tik užuomina.",
-      "EN Description": "This song describes moments of everyday life, using the image of a star in different places and situations. The star might symbolize hope, comfort, or memories, but its meaning is left open. The repeated mention of apples could refer to simplicity, home, or traditional life in Lithuania, but this is not stated directly."
+      "EN Description": "This song describes moments of everyday life, using the image of a star in different places and situations. The star might symbolize hope, comfort, or memories, but its meaning is left open. The repeated mention of apples could refer to simplicity, home, or traditional life in Lithuania, but this is not stated directly.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18625,7 +19239,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina pasakoja apie žmogų, kuris vasaros naktį nusileidžia parašiutu į pušyną, jį išduoda drebulė, o vėliau jis paaukoja save Lietuvai. Dainoje kalbama apie meilę, netektį ir atminimą, o gamtos vaizdai simbolizuoja prisiminimus ir virsmą. Tai gali būti nuoroda į Lietuvos partizanų kovas arba tiesiog poetinė meilės ir aukos istorija.",
-      "EN Description": "This song tells the story of someone (possibly a partisan) descending by parachute into a pine forest during a starry summer night, being betrayed, and ultimately sacrificing himself for Lithuania. There are themes of love, loss, and remembrance, with nature and flowers symbolizing memory and transformation. The song may allude to Lithuania's history of resistance and the pain of separation, but it could also be interpreted more generally as a poetic story of love and sacrifice."
+      "EN Description": "This song tells the story of someone (possibly a partisan) descending by parachute into a pine forest during a starry summer night, being betrayed, and ultimately sacrificing himself for Lithuania. There are themes of love, loss, and remembrance, with nature and flowers symbolizing memory and transformation. The song may allude to Lithuania's history of resistance and the pain of separation, but it could also be interpreted more generally as a poetic story of love and sacrifice.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18651,7 +19266,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina yra jaunuolio ir merginos pokalbis apie meilę, abejones ir žaismingą flirtą. Dainoje minimi žirgai ir gėlės gali simbolizuoti jaunystę ir meilę, o kalbos apie tėvus – visuomenės lūkesčius. Tai tradicinė tema apie meilės paslaptis ir jaunuolių jausmus.",
-      "EN Description": "This song is a conversation between a young man and woman, expressing affection, uncertainty, and playful teasing in their relationship. The imagery of horses and flowers may symbolize youth and love, while the references to parents and promises hint at the social expectations surrounding courtship in Lithuanian village life. The song reflects traditional themes of love, secrecy, and the innocence of young relationships."
+      "EN Description": "This song is a conversation between a young man and woman, expressing affection, uncertainty, and playful teasing in their relationship. The imagery of horses and flowers may symbolize youth and love, while the references to parents and promises hint at the social expectations surrounding courtship in Lithuanian village life. The song reflects traditional themes of love, secrecy, and the innocence of young relationships.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18711,7 +19327,8 @@ const songs: SongFile = [
       "Music Author": "Algirdas Šumskis",
       "Text Author": "Leonardas Gutauskas",
       "LT Description": "Ši daina pasakoja apie du žvirblius, kurie kartu keliauja per kiemą ir turgų ieškodami grūdų. Žodžiai paprasti, linksmi ir kartojasi, todėl tikėtina, kad tai vaikų daina arba žaidimams skirta eilėraštukė. Žvirbliai gali simbolizuoti draugystę, bet tekstas labiau apie jų kelionę kartu.",
-      "EN Description": "This song is about two sparrows moving together through different places, like a yard and a market, looking for grain to eat. The lyrics are simple, repetitive, and playful, which suggests it might be a children's song or a rhyme for games. The sparrows could symbolize friendship or togetherness, but the text mainly focuses on their cheerful journey."
+      "EN Description": "This song is about two sparrows moving together through different places, like a yard and a market, looking for grain to eat. The lyrics are simple, repetitive, and playful, which suggests it might be a children's song or a rhyme for games. The sparrows could symbolize friendship or togetherness, but the text mainly focuses on their cheerful journey.",
+      "AI-Generated Description": true
     }
   },
   {
@@ -18737,7 +19354,8 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje pasakojama apie vyrų susirinkimą žygiui į Vilnių, vėliavų kėlimą ir vienybę. Dainoje minimi istoriniai simboliai, pavyzdžiui, Gediminas ir pilis, kurie gali reikšti tautinį pasididžiavimą ar norą ginti tėvynę. Daina pabrėžia vienybę ir ryžtą.",
-      "EN Description": "This song tells about men gathering for a march towards Vilnius, raising flags and uniting in purpose. It uses images of Lithuanian history and legends, like Gediminas and the castle, which may symbolize national pride or a longing to protect the homeland. The song seems to celebrate unity and determination, possibly referencing important historical moments or the symbolic importance of Vilnius in Lithuania."
+      "EN Description": "This song tells about men gathering for a march towards Vilnius, raising flags and uniting in purpose. It uses images of Lithuanian history and legends, like Gediminas and the castle, which may symbolize national pride or a longing to protect the homeland. The song seems to celebrate unity and determination, possibly referencing important historical moments or the symbolic importance of Vilnius in Lithuania.",
+      "AI-Generated Description": true
     }
   }
 ]

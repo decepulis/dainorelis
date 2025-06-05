@@ -5,7 +5,7 @@ import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
 import { Song } from '../schemas/songs';
 
-function splitTitle(title: string) {
+export function splitTitle(title: string) {
   return title
     .split(/(.+?)(\([^\)]+\))$/)
     .map((part) => part.trim())

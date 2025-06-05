@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
 
+import { router } from 'expo-router';
+
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
@@ -17,27 +19,38 @@ export default function SongMenu({ song }: Props) {
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
+  const hasTranslation = Object.values(song.fields['Translations']).length > 0;
   const isDark = useColorScheme() === 'dark';
 
   // TODO song info
   // TODO share sheet (dainorelis.app web app)
   const actions: (MenuAction | null)[] = [
-    // {
-    //   id: 'info',
-    //   title: t('aboutSong'),
-    //   imageColor: isDark ? 'white' : 'black',
-    //   image: Platform.select({
-    //     ios: 'book',
-    //     default: 'menu_book_20px',
-    //   }),
-    //   attributes: { disabled: !hasDescriptions },
-    // },
+    {
+      id: 'info',
+      title: t('aboutSong'),
+      imageColor: isDark ? 'white' : 'black',
+      image: Platform.select({
+        ios: 'book',
+        default: 'menu_book_20px',
+      }),
+      attributes: { disabled: !hasDescriptions },
+    },
+    {
+      id: 'translation',
+      title: t('translateSong'),
+      imageColor: isDark ? 'white' : 'black',
+      image: Platform.select({
+        ios: 'translate',
+        default: 'translate_20px',
+      }),
+      attributes: { disabled: !hasTranslation },
+    },
     {
       id: 'feedback',
       title: t('feedback'),
       imageColor: isDark ? 'white' : 'black',
       image: Platform.select({
-        ios: 'bubble.left.and.exclamationmark.bubble.right',
+        ios: 'exclamationmark.bubble',
         default: 'feedback_20px',
       }),
     },
@@ -58,14 +71,16 @@ export default function SongMenu({ song }: Props) {
     (e: NativeActionEvent) => {
       const { event } = e.nativeEvent;
       if (event === 'info') {
-        console.log('info');
+        router.push(`/dainos/${song.id}/aprasymas`);
+      } else if (event === 'translation') {
+        router.push(`/dainos/${song.id}/vertimas`);
       } else if (event === 'feedback') {
         openFeedback(song.fields.Name);
       } else if (event === 'share') {
         console.log('share');
       }
     },
-    [openFeedback, song.fields.Name]
+    [openFeedback, song.fields.Name, song.id]
   );
 
   return (
