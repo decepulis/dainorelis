@@ -36,7 +36,7 @@ const springConfig: SpringConfig = {
 // TODO figure out a way to fling this around to get it out of the way of PDFs
 type Props = {
   media: { [id: string]: Audio };
-  activeMediaId: string;
+  activeMediaId: string | undefined;
   setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof Animated.View>['style'];
 };
@@ -79,12 +79,12 @@ export default function Player({ media, activeMediaId, setActiveMediaId, style }
           padding -
           buttonWidth -
           padding,
-    [media.length, playerWidth]
+    [media, playerWidth]
   );
 
   // Manage media
   const [shouldLoad, setShouldLoad] = useState(false);
-  const activeMedia = media[activeMediaId];
+  const activeMedia = activeMediaId ? media[activeMediaId] : Object.values(media)[0];
   // TODO maybe a better offline experience?
   const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
   const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);

@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -7,7 +7,7 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, router, useLocalSearchParams } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -51,9 +51,7 @@ export default function Page() {
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
-  const { id } = useLocalSearchParams();
-  if (typeof id !== 'string') throw new Error('Invalid id');
-
+  const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
@@ -63,21 +61,34 @@ export default function Page() {
     () => ({ ...song.fields.Lyrics, ...song.fields.PDFs }),
     [song]
   );
-  const [activeVariantId, setActiveVariantId] = useState<string>(() => {
-    // if storage didn't have an active variant id, or if the song doesn't have that id, set it to the first variant
-    if (typeof storedActiveVariantId === 'undefined' || !variants[storedActiveVariantId]) {
-      return Object.keys(variants)[0];
-    }
-    return storedActiveVariantId;
-  });
   useEffect(() => {
-    // if the active variant ud changes, store it in storage
+    // on load, check the query param for a variant id
+    if (!activeVariantId) {
+      // if none is provided...
+      if (storedActiveVariantId) {
+        // try and load it from storage
+        router.setParams({ v: storedActiveVariantId });
+      } else {
+        // otherwise, try and set it to the first variant id
+        const firstVariantId = Object.keys(variants)[0];
+        if (firstVariantId) {
+          router.setParams({ v: firstVariantId });
+        }
+      }
+    }
+  }, [activeVariantId, variants, storedActiveVariantId]);
+
+  const setActiveVariantId = (v: string) => {
+    router.setParams({ v });
     setActiveVariantIdBySongId({
       ...activeVariantIdBySongId,
-      [id]: activeVariantId,
+      [id]: v,
     });
-  }, [activeVariantId, id]);
-  const activeVariant = useMemo(() => variants[activeVariantId], [variants, activeVariantId]);
+  };
+  const activeVariant = useMemo(
+    () => (activeVariantId ? variants[activeVariantId] : Object.values(variants)[0]),
+    [variants, activeVariantId]
+  );
   const hasMultipleVariants = useMemo(() => Object.keys(variants).length > 1, [variants]);
 
   // chords
@@ -92,21 +103,32 @@ export default function Page() {
   // Media
   const storedActiveMediaId = useMemo(() => activeMediaIdBySongId[id], [activeMediaIdBySongId, id]);
   const media: { [id: string]: Audio } = useMemo(() => ({ ...song.fields.Audio }), [song]);
-  const [activeMediaId, setActiveMediaId] = useState<string>(() => {
-    // if storage didn't have an active media id, or if the song doesn't have that id, set it to 0
-    if (typeof storedActiveMediaId === 'undefined' || !media[storedActiveMediaId]) {
-      return Object.keys(media)[0];
-    }
-    return storedActiveMediaId;
-  });
   useEffect(() => {
-    // if the active media index changes, store it in storage
+    // on load, check the query param for a media id
+    if (!activeMediaId) {
+      // if none is provided...
+      if (storedActiveMediaId) {
+        // try and load it from storage
+        router.setParams({ m: storedActiveMediaId });
+      } else {
+        // otherwise, try and set it to the first media id
+        const firstMediaId = Object.keys(media)[0];
+        if (firstMediaId) {
+          router.setParams({ m: firstMediaId });
+        }
+      }
+    }
+  }, [activeMediaId, media, storedActiveMediaId]);
+
+  const setActiveMediaId = (m: string) => {
+    router.setParams({ m });
     setActiveMediaIdBySongId({
       ...activeMediaIdBySongId,
-      [id]: activeMediaId,
+      [id]: m,
     });
-  }, [activeMediaId, id]);
-  const activeMedia = useMemo(() => media[activeMediaId] ?? null, [media, activeMediaId]);
+  };
+
+  const activeMedia = useMemo(() => (activeMediaId ? (media[activeMediaId] ?? null) : null), [media, activeMediaId]);
 
   // Title
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
