@@ -97,7 +97,7 @@ export default function Page() {
                 />
               </View>
               <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 65 * PixelRatio.getFontScale() }]}>
+                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
                   {t('theme')}
                 </ThemedText>
                 <SegmentedControl
