@@ -35,16 +35,16 @@ const springConfig: SpringConfig = {
 
 // TODO figure out a way to fling this around to get it out of the way of PDFs
 type Props = {
-  media: Audio[];
-  activeMediaIndex: number;
-  setActiveMediaIndex: (index: number) => void;
+  media: { [id: string]: Audio };
+  activeMediaId: string;
+  setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof Animated.View>['style'];
 };
-export default function Player({ media, activeMediaIndex, setActiveMediaIndex, style }: Props) {
+export default function Player({ media, activeMediaId, setActiveMediaId, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isAppVisible = useIsAppVisible();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
 
@@ -56,7 +56,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
   // this is ludicrous, I know. but dang is that animation smooth.
   const durationWidth = useMemo(
     () =>
-      media.length > 1
+      Object.keys(media).length > 1
         ? playerWidth -
           padding -
           buttonWidth -
@@ -84,7 +84,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
 
   // Manage media
   const [shouldLoad, setShouldLoad] = useState(false);
-  const activeMedia = media[activeMediaIndex];
+  const activeMedia = media[activeMediaId];
   // TODO maybe a better offline experience?
   const player = useAudioPlayer(shouldLoad && activeMedia ? activeMedia.URL : null);
   const { currentTime, duration, playing, isBuffering, isLoaded } = useAudioPlayerStatus(player);
@@ -230,17 +230,17 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
               {
                 position: 'absolute',
                 right:
-                  media.length > 1
+                  Object.keys(media).length > 1
                     ? padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding
                     : padding + buttonWidth + padding + extraDurationPadding,
                 width: durationWidth,
                 top: padding,
                 bottom: padding,
-                justifyContent: media.length > 1 ? 'space-between' : 'center',
+                justifyContent: Object.keys(media).length > 1 ? 'space-between' : 'center',
               },
             ]}
           >
-            {media.length > 1 ? (
+            {Object.keys(media).length > 1 ? (
               <ThemedText style={{ color: 'white' }} numberOfLines={1}>
                 {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
               </ThemedText>
@@ -279,7 +279,7 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
           </Animated.View>
         </GestureDetector>
 
-        {media.length > 1 ? (
+        {Object.keys(media).length > 1 ? (
           <Animated.View
             style={[
               opacityStyles,
@@ -294,8 +294,8 @@ export default function Player({ media, activeMediaIndex, setActiveMediaIndex, s
             <MediaMenu
               hitSlop={{ top: padding, bottom: padding }}
               media={media}
-              activeMediaIndex={activeMediaIndex}
-              setActiveMediaIndex={setActiveMediaIndex}
+              activeMediaId={activeMediaId}
+              setActiveMediaId={setActiveMediaId}
             />
           </Animated.View>
         ) : null}

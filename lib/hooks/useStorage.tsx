@@ -13,13 +13,13 @@ const schemas = {
     validator: z.array(z.string()),
     defaultValue: [] as string[],
   },
-  activeVariantIndexById: {
-    validator: z.record(z.number().optional()),
-    defaultValue: {} as Record<string, number>,
+  activeVariantIdBySongId: {
+    validator: z.record(z.string().optional()),
+    defaultValue: {} as Record<string, string>,
   },
-  activeMediaIndexById: {
-    validator: z.record(z.number().optional()),
-    defaultValue: {} as Record<string, number>,
+  activeMediaIdBySongId: {
+    validator: z.record(z.string().optional()),
+    defaultValue: {} as Record<string, string>,
   },
   language: {
     validator: z.enum(['en', 'lt']),

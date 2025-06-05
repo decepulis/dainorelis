@@ -11,19 +11,19 @@ import MenuView from './MenuView';
 
 type Props = {
   children?: React.ReactNode;
-  variants: (PDFs | Lyrics)[];
-  activeVariantIndex: number;
-  setActiveVariantIndex: (index: number) => void;
+  variants: { [id: string]: PDFs | Lyrics };
+  activeVariantId: string;
+  setActiveVariantId: (id: string) => void;
 };
-export default function VariantMenu({ children, variants, activeVariantIndex, setActiveVariantIndex }: Props) {
+export default function VariantMenu({ children, variants, activeVariantId, setActiveVariantId }: Props) {
   const { t, i18n } = useTranslation();
   const isDark = useColorScheme() === 'dark';
 
-  const actions: MenuAction[] = variants.map((variant, index) => {
+  const actions: MenuAction[] = Object.entries(variants).map(([id, variant]) => {
     return {
-      id: index.toString(),
+      id,
       title: i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'],
-      state: activeVariantIndex === index ? 'on' : 'off',
+      state: activeVariantId === id ? 'on' : 'off',
       imageColor: isDark ? 'white' : 'black',
       image: Platform.select({
         ios: isLyrics(variant) ? 'text.quote' : 'document',
@@ -35,9 +35,9 @@ export default function VariantMenu({ children, variants, activeVariantIndex, se
   const onPressAction = useCallback(
     (e: NativeActionEvent) => {
       const { event } = e.nativeEvent;
-      setActiveVariantIndex(Number(event));
+      setActiveVariantId(event);
     },
-    [setActiveVariantIndex]
+    [setActiveVariantId]
   );
 
   return (

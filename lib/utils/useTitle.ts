@@ -17,8 +17,8 @@ export default function useTitle(song: Song, activeVariant?: Lyrics | PDFs) {
   return useMemo(() => {
     const [title, subtitle] = splitTitle(song.fields.Name as string);
 
-    const variants = [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])];
-    if (activeVariant && variants.length > 1) {
+    const variants = { ...song.fields.Lyrics, ...song.fields.PDFs };
+    if (activeVariant && Object.keys(variants).length > 1) {
       let variantName = i18n.language === 'en' ? activeVariant['EN Variant Name'] : activeVariant['Variant Name'];
       return { title, subtitle, variantName };
     }
