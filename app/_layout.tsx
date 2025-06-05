@@ -76,7 +76,7 @@ function AppWithLoading() {
         // this isn't async... but... letting it slide for a bit.
         AudioPro.configure({
           contentType: AudioProContentType.MUSIC,
-          debug: __DEV__,
+          // debug: __DEV__,
           showNextPrevControls: false,
           progressIntervalMs: 500,
         });
