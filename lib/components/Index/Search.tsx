@@ -132,7 +132,6 @@ export default function Search({
       {/* background once sticky */}
       <Animated.View style={[StyleSheet.absoluteFill, fadeInStyle]}>
         <SystemView
-          variant="primary"
           style={[StyleSheet.absoluteFill, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: primary }]}
         />
       </Animated.View>

@@ -45,7 +45,7 @@ const MenuView = ({ hitSlop: argHitSlop, asButton, children, style, ...props }: 
     <LibMenuView hitSlop={hitSlop} style={[hitSlopMargin]} {...props}>
       <View style={[buttonStyles.container, hitSlopPadding, style]}>
         {asButton ? (
-          <SystemView variant="primary" shadow={false} style={[buttonStyles.button]}>
+          <SystemView shadow={false} style={[buttonStyles.button]}>
             {children}
           </SystemView>
         ) : (

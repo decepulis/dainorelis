@@ -68,7 +68,7 @@ const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
         ]}
         {...rest}
       >
-        <SystemView variant="primary" shadow={false} style={styles.button}>
+        <SystemView shadow={false} style={styles.button}>
           {children}
         </SystemView>
       </BorderlessButton>
