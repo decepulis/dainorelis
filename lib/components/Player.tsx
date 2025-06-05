@@ -1,16 +1,21 @@
-import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo } from 'react';
+import { ComponentPropsWithoutRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { AudioPro, useAudioPro } from 'react-native-audio-pro';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, {
+  runOnJS,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
 
 import { FontAwesome6 } from '@expo/vector-icons';
-import * as Sentry from '@sentry/react-native';
 
 import appPadding from '@/lib/constants/padding';
 
@@ -88,31 +93,29 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
   const activeMedia = media[activeMediaIndex];
 
   // AudioPro state
-  const { state, position, duration, playingTrack, error } = useAudioPro();
-  const isLoaded = state !== 'IDLE' && state !== 'ERROR';
+  const { state, position, duration, playingTrack } = useAudioPro();
   const playing = state === 'PLAYING';
   const loading = state === 'LOADING';
 
-  const loadTrack = useCallback(() => {
-    try {
-      AudioPro.stop();
-      AudioPro.play({
-        id: activeMedia.URL,
-        url: activeMedia.URL,
-        title,
-        artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
-        artwork: artwork,
-      });
-    } catch (error) {
-      console.error('Error setting up track:', error);
-      Sentry.captureException(error);
-    }
-  }, [activeMedia, title, i18n.language]);
+  const track = useMemo(
+    () => ({
+      id: activeMedia.URL,
+      url: activeMedia.URL,
+      title,
+      artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
+      artwork: artwork,
+    }),
+    [activeMedia, title, i18n.language]
+  );
+  const [loadIntention, setLoadIntention] = useState(false);
+  useEffect(() => {
+    if (loadIntention && !playingTrack) AudioPro.play(track, { autoPlay: false });
+  }, [track, loadIntention, playingTrack]);
 
   useEffect(() => {
     // Clean up when component unmounts or media changes
     return () => {
-      AudioPro.stop();
+      AudioPro.clear();
     };
   }, []);
 
@@ -153,10 +156,10 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
 
   // sync state with time elapsed
   useEffect(() => {
-    if (!isGesturingSv.value) {
+    if (state !== 'LOADING' && !isGesturingSv.value) {
       progressSv.value = duration ? position / duration : 0;
     }
-  }, [position, duration, isGesturingSv, progressSv]);
+  }, [position, duration, isGesturingSv, progressSv, state]);
   const seekOnGestureFinalize = useCallback(
     (time: number) => {
       AudioPro.seekTo(time * 1000);
@@ -165,10 +168,11 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
     [isGesturingSv]
   );
 
-  // override state with gesture
+  // override playback state with gesture
   const gesture = Gesture.Pan()
     .hitSlop({ ...buttonSlop, top: padding, bottom: padding })
-    .minDistance(1)
+    .minDistance(5)
+    .enabled(duration > 0)
     .onStart(() => {
       isGesturingSv.value = true;
       gestureStartProgressSv.value = progressSv.value;
@@ -187,7 +191,7 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
         didBumpSv.value = false;
       }
     })
-    .onFinalize(() => {
+    .onEnd(() => {
       const seekTime = (progressSv.value * (duration || 0)) / 1000;
       runOnJS(seekOnGestureFinalize)(seekTime);
     });
@@ -199,6 +203,24 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
   const durationStyles = useAnimatedStyle(() => ({
     width: `${progressSv.value * 100}%`,
   }));
+
+  // translate progress to time
+  const timeMode = useSharedValue<'elapsed' | 'remaining'>('remaining');
+  const [time, setTime] = useState<string>('-0:00');
+  useAnimatedReaction(
+    () => {
+      const timeInSeconds =
+        timeMode.value === 'elapsed'
+          ? (progressSv.value * (duration || 0)) / 1000
+          : ((1 - progressSv.value) * (duration || 0)) / 1000;
+      const minutes = Math.floor(timeInSeconds / 60);
+      const seconds = Math.floor(timeInSeconds % 60);
+      const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      return timeMode.value === 'elapsed' ? formattedTime : `-${formattedTime}`;
+    },
+    (t) => runOnJS(setTime)(t)
+  );
+  // TODO add tap gesture to toggle time mode
 
   return activeMedia ? (
     <Animated.View
@@ -229,6 +251,7 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
             isOpenSv.value = !isOpenSv.value;
+            setLoadIntention(true);
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
@@ -257,9 +280,21 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
             ]}
           >
             {media.length > 1 ? (
-              <ThemedText style={{ color: 'white' }} numberOfLines={1}>
-                {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
-              </ThemedText>
+              <View style={{ flexDirection: 'row', gap: padding / 2, justifyContent: 'space-between' }}>
+                <ThemedText style={{ color: 'white', flexShrink: 1 }} numberOfLines={1}>
+                  {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
+                </ThemedText>
+                <ThemedText
+                  style={{
+                    color: 'white',
+                    marginLeft: 'auto',
+                    opacity: !duration ? 0 : isHighContrastEnabled ? 1 : 0.75,
+                  }}
+                  numberOfLines={1}
+                >
+                  {time}
+                </ThemedText>
+              </View>
             ) : null}
             <Animated.View
               style={[
@@ -311,7 +346,10 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
               hitSlop={{ top: padding, bottom: padding }}
               media={media}
               activeMediaIndex={activeMediaIndex}
-              setActiveMediaIndex={setActiveMediaIndex}
+              setActiveMediaIndex={(m) => {
+                setActiveMediaIndex(m);
+                AudioPro.clear();
+              }}
             />
           </Animated.View>
         ) : null}
@@ -320,16 +358,14 @@ export default function Player({ title, media, activeMediaIndex, setActiveMediaI
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
-            if (!isLoaded) {
-              // load
-              loadTrack();
-            } else if (playing) {
-              // pause
+            if (playing) {
               AudioPro.pause();
+            } else if (playingTrack) {
+              AudioPro.resume();
             } else {
-              // play
-              loadTrack();
+              AudioPro.play(track);
             }
+            setLoadIntention(true);
           }}
         >
           {loading ? (
