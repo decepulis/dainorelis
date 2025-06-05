@@ -12,7 +12,7 @@ import MenuView from './MenuView';
 type Props = {
   children?: React.ReactNode;
   variants: { [id: string]: PDFs | Lyrics };
-  activeVariantId: string;
+  activeVariantId: string | undefined;
   setActiveVariantId: (id: string) => void;
 };
 export default function VariantMenu({ children, variants, activeVariantId, setActiveVariantId }: Props) {
