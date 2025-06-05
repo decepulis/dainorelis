@@ -31,24 +31,25 @@ export function ListItem({ item, background, primary, favorites, separator, isLa
   // from 375px to 450px, gently scale the icon size up
   const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
   const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
-  const iconStyle = {
-    width: iconSize,
-    flexBasis: iconSize,
-    flexShrink: 0,
-    flexGrow: 0,
-  };
   const icons = [
     favorites.includes(item.id) ? (
-      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={iconStyle} />
+      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
     ) : null,
     Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
-      <FontAwesome6 name="guitar" key="guitar" size={iconSize} solid color={primary} style={iconStyle} />
+      <FontAwesome6
+        name="guitar"
+        key="guitar"
+        size={iconSize * 1.1}
+        solid
+        color={primary}
+        style={iconStyle(iconSize * 1.1)}
+      />
     ) : null,
     Object.keys(item.fields.PDFs).length ? (
-      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={iconStyle} />
+      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
     ) : null,
     Object.keys(item.fields.Audio).length ? (
-      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={iconStyle} />
+      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
     ) : null,
   ].filter(Boolean);
 
@@ -114,6 +115,13 @@ export function ListHeader({ title, background, separator }: { title: string; ba
     </View>
   );
 }
+
+const iconStyle = (iconSize: number) => ({
+  width: iconSize,
+  flexBasis: iconSize,
+  flexShrink: 0,
+  flexGrow: 0,
+});
 
 const fontSize = 18;
 const lineHeight = fontSize * 1.33;
