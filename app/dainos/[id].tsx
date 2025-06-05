@@ -46,8 +46,9 @@ export default function Page() {
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
-  const { value: activeVariantIndexById, setValue: setActiveVariantIndexById } = useStorage('activeVariantIndexById');
-  const { value: activeMediaIndexById, setValue: setActiveMediaIndexById } = useStorage('activeMediaIndexById');
+  const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
+    useStorage('activeVariantIdBySongId');
+  const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   const { id } = useLocalSearchParams();
@@ -57,27 +58,27 @@ export default function Page() {
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
   // Variants
-  const storedActiveVariantIndex = useMemo(() => activeVariantIndexById[id], [activeVariantIndexById, id]);
-  const variants: (LyricsType | PDFs)[] = useMemo(
-    () => [...(song.fields.Lyrics || []), ...(song.fields.PDFs || [])],
+  const storedActiveVariantId = useMemo(() => activeVariantIdBySongId[id], [activeVariantIdBySongId, id]);
+  const variants: { [id: string]: LyricsType | PDFs } = useMemo(
+    () => ({ ...song.fields.Lyrics, ...song.fields.PDFs }),
     [song]
   );
-  const [activeVariantIndex, setActiveVariantIndex] = useState<number>(() => {
-    // if storage didn't have an active variant index, or if the song doesn't have that many variants, set it to 0
-    if (typeof storedActiveVariantIndex === 'undefined' || storedActiveVariantIndex >= variants.length) {
-      return 0;
+  const [activeVariantId, setActiveVariantId] = useState<string>(() => {
+    // if storage didn't have an active variant id, or if the song doesn't have that id, set it to the first variant
+    if (typeof storedActiveVariantId === 'undefined' || !variants[storedActiveVariantId]) {
+      return Object.keys(variants)[0];
     }
-    return storedActiveVariantIndex;
+    return storedActiveVariantId;
   });
   useEffect(() => {
-    // if the active variant index changes, store it in storage
-    setActiveVariantIndexById({
-      ...activeVariantIndexById,
-      [id]: activeVariantIndex,
+    // if the active variant ud changes, store it in storage
+    setActiveVariantIdBySongId({
+      ...activeVariantIdBySongId,
+      [id]: activeVariantId,
     });
-  }, [activeVariantIndex, id]);
-  const activeVariant = useMemo(() => variants[activeVariantIndex], [variants, activeVariantIndex]);
-  const hasMultipleVariants = useMemo(() => variants.length > 1, [variants]);
+  }, [activeVariantId, id]);
+  const activeVariant = useMemo(() => variants[activeVariantId], [variants, activeVariantId]);
+  const hasMultipleVariants = useMemo(() => Object.keys(variants).length > 1, [variants]);
 
   // chords
   const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
@@ -89,27 +90,23 @@ export default function Page() {
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
   // Media
-  const storedActiveMediaIndex = useMemo(() => activeMediaIndexById[id], [activeMediaIndexById, id]);
-  const media: Audio[] = useMemo(() => [...(song.fields.Audio || [])], [song]);
-  const [activeMediaIndex, setActiveMediaIndex] = useState<number>(() => {
-    // if storage didn't have an active media index, or if the song doesn't have that many media, set it to 0
-    if (typeof storedActiveMediaIndex === 'undefined' || storedActiveMediaIndex >= media.length) {
-      return 0;
+  const storedActiveMediaId = useMemo(() => activeMediaIdBySongId[id], [activeMediaIdBySongId, id]);
+  const media: { [id: string]: Audio } = useMemo(() => ({ ...song.fields.Audio }), [song]);
+  const [activeMediaId, setActiveMediaId] = useState<string>(() => {
+    // if storage didn't have an active media id, or if the song doesn't have that id, set it to 0
+    if (typeof storedActiveMediaId === 'undefined' || !media[storedActiveMediaId]) {
+      return Object.keys(media)[0];
     }
-    return storedActiveMediaIndex;
+    return storedActiveMediaId;
   });
   useEffect(() => {
     // if the active media index changes, store it in storage
-    setActiveMediaIndexById({
-      ...activeMediaIndexById,
-      [id]: activeMediaIndex,
+    setActiveMediaIdBySongId({
+      ...activeMediaIdBySongId,
+      [id]: activeMediaId,
     });
-  }, [activeMediaIndex, id]);
-  const activeMedia = useMemo(
-    // the media array may be empty, so let's check safely
-    () => (activeMediaIndex < media.length ? media[activeMediaIndex] : null),
-    [media, activeMediaIndex]
-  );
+  }, [activeMediaId, id]);
+  const activeMedia = useMemo(() => media[activeMediaId] ?? null, [media, activeMediaId]);
 
   // Title
   const scrollRef = useAnimatedRef<AnimatedScrollView>();
@@ -139,8 +136,8 @@ export default function Page() {
                   ? ({ children }) => (
                       <VariantMenu
                         variants={variants}
-                        activeVariantIndex={activeVariantIndex}
-                        setActiveVariantIndex={setActiveVariantIndex}
+                        activeVariantId={activeVariantId}
+                        setActiveVariantId={setActiveVariantId}
                       >
                         {children}
                       </VariantMenu>
@@ -260,7 +257,7 @@ export default function Page() {
           />
         </View>
       )}
-      <Player media={media} activeMediaIndex={activeMediaIndex} setActiveMediaIndex={setActiveMediaIndex} />
+      <Player media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
     </Fragment>
   );
 }

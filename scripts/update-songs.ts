@@ -114,29 +114,29 @@ async function getTranslations() {
     .all();
 }
 
-function getRecordsForField(field: FieldSet[string], records: Records<FieldSet>): FieldSet[string] | FieldSet[] {
-  if (!Array.isArray(field)) return field;
-
-  return field
-    .map((id) => {
-      if (typeof id !== 'string') return null;
-      const record = records.find((record) => record.id === id);
-      if (!record) return null;
-      return record.fields;
-    })
-    .filter((r) => r !== null);
+function getRecordsForField(field: undefined | any[], records: Records<FieldSet>): { [id: string]: FieldSet } {
+  if (!field) return {};
+  return Object.fromEntries(
+    field
+      .map((id) => {
+        if (typeof id !== 'string') return null;
+        const record = records.find((record) => record.id === id);
+        if (!record) return null;
+        return [record.id, record.fields];
+      })
+      .filter((entry) => entry !== null)
+  );
 }
 
 /**
  * When `Variant Name` is not defined, we default to `${defaultName} ${idx + 1}`
  * When `EN Variant Name` is not defined, we default to `Variant Name`
  */
-function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultLtName: string, defaultEnName: string) {
-  if (!Array.isArray(records)) return records;
-  const numberOfMissingVariantNames = records.filter((record) => !record['Variant Name']).length;
+function assignVariantNames(records: { [id: string]: FieldSet }, defaultLtName: string, defaultEnName: string) {
+  const numberOfMissingVariantNames = Object.values(records).filter((record) => !record['Variant Name']).length;
   const shouldAppendIndexNumber = numberOfMissingVariantNames > 1;
 
-  return records.map((record, idx) => {
+  Object.entries(records).forEach(([id, record], idx) => {
     const alreadyHasName = !!record['Variant Name'];
     let ltName = alreadyHasName ? record['Variant Name'] : defaultLtName;
     let enName = alreadyHasName ? (record['EN Variant Name'] ?? record['Variant Name']) : defaultEnName;
@@ -144,12 +144,14 @@ function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultLtNam
       ltName += ` ${idx + 1}`;
       enName += ` ${idx + 1}`;
     }
-    return {
+    records[id] = {
       ...record,
       'Variant Name': ltName,
       'EN Variant Name': enName,
     };
   });
+
+  return records;
 }
 
 /**
@@ -161,11 +163,10 @@ function assignVariantNames(records: FieldSet[string] | FieldSet[], defaultLtNam
  *       [space](C/D) => [emspace emspace](C/D)
  *       [space](C#maj7) => [emspace emspace emspace ](C#maj7)
  */
-function adjustChordWhitespace(lyrics: FieldSet[string] | FieldSet[]) {
+function adjustChordWhitespace(lyrics: { [id: string]: FieldSet }): { [id: string]: FieldSet } {
   const emSpace = ' ';
   const wideCharRegex = /[a-zA-Z0-9#]/g; // Only count alphanumeric and "#" as wide characters
-  if (!Array.isArray(lyrics)) return lyrics;
-  return lyrics.map((record) => {
+  Object.entries(lyrics).forEach(([id, record]) => {
     const lyricsText = record['Lyrics & Chords'];
     if (typeof lyricsText !== 'string') return record;
 
@@ -176,11 +177,12 @@ function adjustChordWhitespace(lyrics: FieldSet[string] | FieldSet[]) {
       return `[${emSpaces}](${chord})`;
     });
 
-    return {
+    lyrics[id] = {
       ...record,
       'Lyrics & Chords': adjustedLyrics,
     };
   });
+  return lyrics;
 }
 
 // get those songs
@@ -197,13 +199,25 @@ async function updateSongs() {
 
     const songFile = songs.map((song) => {
       const Lyrics = adjustChordWhitespace(
-        assignVariantNames(getRecordsForField(song.fields.Lyrics, lyrics), 'Žodžiai', 'Lyrics')
+        assignVariantNames(getRecordsForField(song.fields.Lyrics as undefined | any[], lyrics), 'Žodžiai', 'Lyrics')
       );
-      const PDFs = assignVariantNames(getRecordsForField(song.fields.PDFs, pdfs), 'Natos', 'Score');
-      const Audio = assignVariantNames(getRecordsForField(song.fields.Audio, audio), 'Įrašas', 'Recording');
-      const Videos = assignVariantNames(getRecordsForField(song.fields.Videos, videos), 'Įrašas', 'Recording');
+      const PDFs = assignVariantNames(
+        getRecordsForField(song.fields.PDFs as undefined | any[], pdfs),
+        'Natos',
+        'Score'
+      );
+      const Audio = assignVariantNames(
+        getRecordsForField(song.fields.Audio as undefined | any[], audio),
+        'Įrašas',
+        'Recording'
+      );
+      const Videos = assignVariantNames(
+        getRecordsForField(song.fields.Videos as undefined | any[], videos),
+        'Įrašas',
+        'Recording'
+      );
       const Translations = assignVariantNames(
-        getRecordsForField(song.fields.Translations, translations),
+        getRecordsForField(song.fields.Translations as undefined | any[], translations),
         'Vertimas',
         'Translation'
       );
@@ -329,10 +343,15 @@ export default songFestival`;
       ...song,
       fields: {
         ...song.fields,
-        Lyrics: song.fields.Lyrics.map((variant) => ({
-          ...variant,
-          'Lyrics & Chords': removeMd(variant['Lyrics & Chords']),
-        })),
+        Lyrics: Object.fromEntries(
+          Object.entries(song.fields.Lyrics).map(([id, variant]) => [
+            id,
+            {
+              ...variant,
+              'Lyrics & Chords': removeMd(variant['Lyrics & Chords']),
+            },
+          ])
+        ),
       },
     }));
 

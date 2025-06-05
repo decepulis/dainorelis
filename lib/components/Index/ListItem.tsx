@@ -41,13 +41,13 @@ export function ListItem({ item, background, primary, favorites, separator, isLa
     favorites.includes(item.id) ? (
       <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
-    item.fields.Lyrics.some((l) => l['Show Chords']) ? (
+    Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
       <FontAwesome6 name="guitar" key="guitar" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
-    item.fields.PDFs?.length ? (
+    Object.keys(item.fields.PDFs).length ? (
       <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
-    item.fields.Audio?.length ? (
+    Object.keys(item.fields.Audio).length ? (
       <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={iconStyle} />
     ) : null,
   ].filter(Boolean);
