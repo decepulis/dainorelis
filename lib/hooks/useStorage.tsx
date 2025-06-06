@@ -4,6 +4,8 @@ import { MMKV } from 'react-native-mmkv';
 // TODO zod 4 for perf
 import { z } from 'zod';
 
+import { Playlist, PlaylistSchema } from '../components/Playlists/types';
+
 // Create a single MMKV instance
 export const storage = new MMKV();
 
@@ -12,6 +14,10 @@ const schemas = {
   favorites: {
     validator: z.array(z.string()),
     defaultValue: [] as string[],
+  },
+  playlists: {
+    validator: z.array(PlaylistSchema),
+    defaultValue: [] as Playlist[],
   },
   activeVariantIdBySongId: {
     validator: z.record(z.string().optional()),

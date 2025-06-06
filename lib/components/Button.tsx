@@ -7,7 +7,7 @@ import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
 
 import SystemView from './SystemView';
 
-const width = 32;
+const width = 34;
 const slop = (44 - width) / 2;
 export const buttonSlop = { top: slop, bottom: slop, left: slop, right: slop };
 
