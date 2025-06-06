@@ -5,8 +5,6 @@ type DidImagesLoadContextType = {
   setDidBackgroundLoad: Dispatch<SetStateAction<boolean>>;
   didLogoLoad: boolean;
   setDidLogoLoad: Dispatch<SetStateAction<boolean>>;
-  didSongFestivalLoad: boolean;
-  setDidSongFestivalLoad: Dispatch<SetStateAction<boolean>>;
 };
 
 const DidImagesLoadContext = createContext<DidImagesLoadContextType>({
@@ -14,14 +12,11 @@ const DidImagesLoadContext = createContext<DidImagesLoadContextType>({
   setDidBackgroundLoad: () => {},
   didLogoLoad: false,
   setDidLogoLoad: () => {},
-  didSongFestivalLoad: false,
-  setDidSongFestivalLoad: () => {},
 });
 
 export const DidImagesLoadProvider = ({ children }: { children: ReactNode }) => {
   const [didBackgroundLoad, setDidBackgroundLoad] = useState(false);
   const [didLogoLoad, setDidLogoLoad] = useState(false);
-  const [didSongFestivalLoad, setDidSongFestivalLoad] = useState(false);
 
   return (
     <DidImagesLoadContext.Provider
@@ -30,8 +25,6 @@ export const DidImagesLoadProvider = ({ children }: { children: ReactNode }) => 
         setDidBackgroundLoad,
         didLogoLoad,
         setDidLogoLoad,
-        didSongFestivalLoad,
-        setDidSongFestivalLoad,
       }}
     >
       {children}

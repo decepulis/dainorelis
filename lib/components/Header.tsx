@@ -205,7 +205,9 @@ export const HeaderTitle = ({
             >
               {variantName}
             </ThemedText>
-            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={10} color="white" /> : null}
+            {hasTitleWrapper ? (
+              <FontAwesome6 name="chevron-down" size={9} color="white" style={{ position: 'relative', top: -1 }} />
+            ) : null}
           </Animated.View>
         ) : null}
       </TitleWrapper>

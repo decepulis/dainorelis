@@ -60,7 +60,7 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
-  const { didBackgroundLoad, didLogoLoad, didSongFestivalLoad } = useDidImagesLoad();
+  const { didBackgroundLoad, didLogoLoad } = useDidImagesLoad();
   const { value: colorSchemePreference } = useStorage('theme');
 
   // keep color scheme in sync with storage
@@ -94,17 +94,10 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (
-      asyncWorkIsDone &&
-      isColorSchemeSet &&
-      didAppLayout &&
-      didBackgroundLoad &&
-      didLogoLoad &&
-      didSongFestivalLoad
-    ) {
+    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didBackgroundLoad && didLogoLoad) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad, didSongFestivalLoad]);
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad]);
 
   if (asyncWorkIsDone && isColorSchemeSet) {
     return <App onLayout={() => setDidAppLayout(true)} />;

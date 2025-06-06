@@ -1,5 +1,5 @@
 import React, { memo, startTransition, useCallback, useState } from 'react';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, LayoutRectangle, PixelRatio, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -41,10 +41,9 @@ export default function Index() {
 
   // list state
   const [isFavorites, setIsFavorites] = useState(false);
-  const [isSongFestivalMode, setIsSongFestivalMode] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const listItems = useSongList({ isFavorites, isSongFestivalMode, searchText });
-  const manualListItems = useManualItems({ isSongFestivalMode });
+  const listItems = useSongList({ isFavorites, searchText });
+  const manualListItems = useManualItems();
 
   // some heights and stuff we need to know for layout and animation
   const wideLayoutMode = width > maxWidth;
@@ -83,22 +82,17 @@ export default function Index() {
             scrollRef={listRef}
             isFavorites={isFavorites}
             setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
-            isSongFestivalMode={isSongFestivalMode}
-            setIsSongFestivalMode={(isSongFestivalMode) =>
-              startTransition(() => {
-                setIsSongFestivalMode(isSongFestivalMode);
-              })
-            }
             setSearchText={(text) => startTransition(() => setSearchText(text))}
             setSearchHeight={setSearchHeight}
           />
         ) : (
+          // search background
           <View
             style={[
               styles.searchBackground,
               {
-                marginTop: -searchHeight,
-                paddingTop: searchHeight,
+                marginTop: PixelRatio.roundToNearestPixel(-(searchHeight + padding / 4)),
+                paddingTop: PixelRatio.roundToNearestPixel(searchHeight + padding / 4),
                 backgroundColor: background,
               },
             ]}
@@ -118,17 +112,7 @@ export default function Index() {
           isLast={index === listItems.length - 1}
         />
       ),
-    [
-      background,
-      favorites,
-      isFavorites,
-      isSongFestivalMode,
-      listItems.length,
-      listRef,
-      primary,
-      searchHeight,
-      separator,
-    ]
+    [background, favorites, isFavorites, listItems.length, listRef, primary, searchHeight, separator]
   );
 
   return (

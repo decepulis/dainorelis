@@ -1,11 +1,9 @@
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import Fuse, { IFuseOptions } from 'fuse.js/basic';
 
 import { Song, SongFile } from '@/lib/schemas/songs';
 import lyricIndexJson from '@/lyric-index.json';
-import songFestival from '@/song-festival';
 import songs from '@/songs';
 import titleIndexJson from '@/title-index.json';
 
@@ -57,28 +55,11 @@ const groupSongsByLetter = (songs: SongFile) => {
   const sections = Array.from(songsByLetter.entries()).map(([letter, songs]) => {
     return {
       title: letter,
-      // assume these are sorted by airtable
       data: songs,
     };
   });
+  sections.sort((a, b) => a.title.localeCompare(b.title, 'lt', { sensitivity: 'variant' }));
   return sections;
-};
-
-/**
- * the song festival list is stored in a format without translations or full songs.
- * here, we unzip that format into a format compatible with sectionlist
- */
-export const useSongFestivalList = () => {
-  const { t } = useTranslation();
-  const songsByPart: { title: string; data: Song[] }[] = useMemo(
-    () =>
-      songFestival.map((part) => ({
-        title: t(part.title),
-        data: part.data.map((songIndex) => songs[songIndex]),
-      })),
-    [t]
-  );
-  return songsByPart;
 };
 
 type RenderItem = { type: 'render'; id: 'search' | 'search-background' };
@@ -103,39 +84,24 @@ const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
   return items;
 };
 
-export const useManualItems = ({ isSongFestivalMode }: { isSongFestivalMode?: boolean }) => {
-  const { t } = useTranslation();
-
+export const useManualItems = () => {
   let manualItems: SongListItem[] = [
     { type: 'render', id: 'search' },
     { type: 'render', id: 'search-background' },
   ];
-  if (isSongFestivalMode) {
-    manualItems.push({
-      type: 'header',
-      item: t('songFestival'),
-      id: 'songFestival',
-    });
-  }
   return manualItems;
 };
 
 // TODO blocker? add filter-by-mp3/pdf/chords
 type Options = {
   isFavorites: boolean;
-  isSongFestivalMode: boolean;
   searchText: string;
 };
-export default function useSongList({ isFavorites, isSongFestivalMode, searchText }: Options) {
+export default function useSongList({ isFavorites, searchText }: Options) {
   const { value: favorites } = useStorage('favorites');
 
   // make those lists
-  const songsBySongFestivalSection = useSongFestivalList();
   const songsByLetter = useMemo(() => groupSongsByLetter(songs), []);
-  const songList = useMemo(
-    () => (isSongFestivalMode ? songsBySongFestivalSection : songsByLetter),
-    [isSongFestivalMode, songsByLetter, songsBySongFestivalSection]
-  );
 
   // search results
   const searchResults: string[] | null = useMemo(() => {
@@ -151,7 +117,7 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
 
   const filteredSongList = useMemo(
     () =>
-      songList
+      songsByLetter
         .map((section) => ({
           ...section,
           data: section.data.filter((song) => {
@@ -166,10 +132,10 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
           }),
         }))
         .filter((section) => section.data.length > 0),
-    [favorites, isFavorites, searchResults, songList]
+    [favorites, isFavorites, searchResults, songsByLetter]
   );
 
-  const manualItems = useManualItems({ isSongFestivalMode });
+  const manualItems = useManualItems();
   const unrolledSongList = useMemo(() => {
     const unrolledSongList = unrollSectionList(filteredSongList);
     return [...manualItems, ...unrolledSongList];
