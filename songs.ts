@@ -38,7 +38,7 @@ const songs: SongFile = [
         "rec3Bb3x470LpVxYm": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Klausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę **sėja**? (2 k.)\n\nŠitaip, šitaip, va ir va kaip\nŠitaip, šitaip, va ir va kaip\nTaip, taip aguonėlę **sėja**. (2 k.)\n\nKlausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę **laisto**? (2 k.)\n\nŠitaip, šitaip, va ir va kaip\nŠitaip, šitaip, va ir va kaip\nTaip, taip aguonėlę **laisto**. (2 k.)\n\nKlausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę:\n- **dygsta**\n- **auga**\n- **noksta**\n- **rauja**\n- **kręčia**\n- **mala**\n- **valgo**"
+          "Lyrics & Chords": "Klausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę **sėja**? (2k.)\n\nŠitaip, šitaip, va ir va kaip\nŠitaip, šitaip, va ir va kaip\nTaip, taip aguonėlę **sėja**. (2k.)\n\nKlausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę **laisto**? (2k.)\n\nŠitaip, šitaip, va ir va kaip\nŠitaip, šitaip, va ir va kaip\nTaip, taip aguonėlę **laisto**. (2k.)\n\nKlausė žvirblis čiulbonėlis\nPas tą pilką karvelėlį:\nKaip, kaip aguonėlę:\n- **dygsta**\n- **auga**\n- **noksta**\n- **rauja**\n- **kręčia**\n- **mala**\n- **valgo**"
         }
       },
       "Audio": {},
@@ -338,7 +338,7 @@ const songs: SongFile = [
         "recE5eUiYBZ1PgNor": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ant kalno klevelis stovėjo,\nKlevelio lapeliai mirgėjo. (2 k.)\n\nKlevelio lapeliai mirgėjo,\nBrolis ant žirgelio sėdėjo. (2 k.)\n\nBrolis ant žirgelio sėdėjo.\nSu jauna mergele kalbėjo. (2 k.)\n\nSu jauna mergele kalbėjo.\nRudenėlį vesti žadėjo. (2 k.)\n\nRudenėlį vesti žadėjo.\nO pats į karužę išėjo. (2 k.)"
+          "Lyrics & Chords": "Ant kalno klevelis stovėjo,\nKlevelio lapeliai mirgėjo. (2k.)\n\nKlevelio lapeliai mirgėjo,\nBrolis ant žirgelio sėdėjo. (2k.)\n\nBrolis ant žirgelio sėdėjo.\nSu jauna mergele kalbėjo. (2k.)\n\nSu jauna mergele kalbėjo.\nRudenėlį vesti žadėjo. (2k.)\n\nRudenėlį vesti žadėjo.\nO pats į karužę išėjo. (2k.)"
         }
       },
       "Audio": {},
@@ -365,7 +365,7 @@ const songs: SongFile = [
         "rec6iVy9sO0UJD63V": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ant kalnelio malūnas,\nAnt kalnelio malūnas;\n\nEi julį, julija\nValerija julidama\nSalapula puldama\nCalavyja cap lap. (2 k.)\n\nTen gyveno bajoras.\nJis turėjo tris dukras.\nEi julį...\n\nViena buvo Onytė.\nAntra buvo Rožytė.\nEi julį...\n\nTrečia buvo Julija.\nTrečia buvo Julija!\nEi julį...\n\nPas Rožytę bajoras.\nPas Onytę artojas.\nEi julį...\n\nPas Juliją čigonas.\nPas Juliją čigonas.\nEi julį..."
+          "Lyrics & Chords": "Ant kalnelio malūnas,\nAnt kalnelio malūnas;\n\nEi julį, julija\nValerija julidama\nSalapula puldama\nCalavyja cap lap. (2k.)\n\nTen gyveno bajoras.\nJis turėjo tris dukras.\nEi julį...\n\nViena buvo Onytė.\nAntra buvo Rožytė.\nEi julį...\n\nTrečia buvo Julija.\nTrečia buvo Julija!\nEi julį...\n\nPas Rožytę bajoras.\nPas Onytę artojas.\nEi julį...\n\nPas Juliją čigonas.\nPas Juliją čigonas.\nEi julį..."
         }
       },
       "Audio": {},
@@ -392,7 +392,7 @@ const songs: SongFile = [
         "recG7Pb9ogyCpba4y": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Džium, džium-džium,\nDžium, džium-džium...\n\nAnt kalno gluosnys,\nPakalnėj šulnys,\nTen stovėjo mergužėlė\nPati sau viena. (2 k.)\n\nDžium, džium-džium,\nDžium, džium-džium...\n\nJojo bernelis\nŽirgo girdyti,\nSustok, palauk mergužėle,\nDuok žirgui vandens.\n\nDžium, džium-džium,\nDžium, džium-džium...\n\nNegaliu stovėt,\nSu tavim kalbėt,\nŠalta rasa, o aš basa, -\nNušals kojelės.\n\nDžium, džium-džium,\nDžium, džium-džium..."
+          "Lyrics & Chords": "Džium, džium-džium,\nDžium, džium-džium...\n\nAnt kalno gluosnys,\nPakalnėj šulnys,\nTen stovėjo mergužėlė\nPati sau viena. (2k.)\n\nDžium, džium-džium,\nDžium, džium-džium...\n\nJojo bernelis\nŽirgo girdyti,\nSustok, palauk mergužėle,\nDuok žirgui vandens.\n\nDžium, džium-džium,\nDžium, džium-džium...\n\nNegaliu stovėt,\nSu tavim kalbėt,\nŠalta rasa, o aš basa, -\nNušals kojelės.\n\nDžium, džium-džium,\nDžium, džium-džium..."
         }
       },
       "Audio": {},
@@ -425,7 +425,7 @@ const songs: SongFile = [
         "recDR8jsqo7Ghknwv": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ant kalno kalnelio čigonai stovėjo,\nSau dainas dainavo, šoko ūliavojo.\nBič - maja čiuma ala,\nRaka čaka rumba ja. 2x2 k.\n\nSau dainas dainavo, šoko ūliavojo,\nJaunąją čigonę karštai pamylėjo.\nBič - maj …\n\nBūčiau aš žinojęs , būčiau nestovėjęs,\nJaunąją cigonę būčiau nemylėjęs.\nBič – maja..."
+          "Lyrics & Chords": "Ant kalno kalnelio čigonai stovėjo,\nSau dainas dainavo, šoko ūliavojo.\nBič - maja čiuma ala,\nRaka čaka rumba ja. 2x2k.\n\nSau dainas dainavo, šoko ūliavojo,\nJaunąją čigonę karštai pamylėjo.\nBič - maj …\n\nBūčiau aš žinojęs , būčiau nestovėjęs,\nJaunąją cigonę būčiau nemylėjęs.\nBič – maja..."
         }
       },
       "Audio": {},
@@ -452,7 +452,7 @@ const songs: SongFile = [
         "recLUXf9gpLvy2F7Z": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ant kalno karklai siūbavo,\nAnt kalno karklai siūbavo.\n\nAnt kalno karklai siūbavo,\nPakalnėj vanduo liūliavo,\nLiūliavo, liūliavo. (2 k.)\n\nTenai vaikščiojo mergelė, (2 k.)\nTen vaikščiojo mergužėlė,\nBalta, graži lelijėlė,\nLelija, lelija. (2 k.)\n\nŠtai ir atjojo bernelis, (2 k.)\nIr atjojo bernužėlis,\nBaltas gražus dobilėlis,\nDobilas, dobilas. (2 k.)\n\nMergele mano jaunoji, (2 k.)\nMergele mano jaunoji,\nKur šią naktelę nakvojai?\nNakvojai, nakvojai. (2 k.)\n\nAukštoj tėvelio klėtelėj, (2 k.)\nAukštoj tėvelio klėtelėj,\nMargoj močiutės lovelėj,\nLovelėj, lovelėj. (2 k.)"
+          "Lyrics & Chords": "Ant kalno karklai siūbavo,\nAnt kalno karklai siūbavo.\n\nAnt kalno karklai siūbavo,\nPakalnėj vanduo liūliavo,\nLiūliavo, liūliavo. (2k.)\n\nTenai vaikščiojo mergelė, (2k.)\nTen vaikščiojo mergužėlė,\nBalta, graži lelijėlė,\nLelija, lelija. (2k.)\n\nŠtai ir atjojo bernelis, (2k.)\nIr atjojo bernužėlis,\nBaltas gražus dobilėlis,\nDobilas, dobilas. (2k.)\n\nMergele mano jaunoji, (2k.)\nMergele mano jaunoji,\nKur šią naktelę nakvojai?\nNakvojai, nakvojai. (2k.)\n\nAukštoj tėvelio klėtelėj, (2k.)\nAukštoj tėvelio klėtelėj,\nMargoj močiutės lovelėj,\nLovelėj, lovelėj. (2k.)"
         }
       },
       "Audio": {},
@@ -566,7 +566,7 @@ const songs: SongFile = [
         "recTJsjMPmc7R52BQ": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Ant Nemuno kranto kareivis gulėjo\nPakėlęs galvelę į dangų žiūrėjo.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2 k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2 k.)\n\nUžteks tau, kareivį ant kranto gulėti\nPakėlęs galvelę į dangų žiūrėti.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2 k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2 k.)"
+          "Lyrics & Chords": "Ant Nemuno kranto kareivis gulėjo\nPakėlęs galvelę į dangų žiūrėjo.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2k.)\n\nUžteks tau, kareivį ant kranto gulėti\nPakėlęs galvelę į dangų žiūrėti.\nMes eisim į kovą, į kovą galingą.\nIšlaisvinsim Lietuvą teisingąją. (2k.)\n\nTumba tumba tumba tumba\nTumba tumba tumba. (2k.)"
         },
         "rechnTrXVObKVCWxR": {
           "Variant Name": "Žodžiai 2",
@@ -660,7 +660,7 @@ const songs: SongFile = [
         "reccyLnFeCS8h6uSw": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ėjo, ėjo mergužėlė,\nBalta graži lelijėlė,\nIr sutiko Joną,\nSudaužė uzboną. (2 k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2 k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki bėrą žirgą\nUž molio uzboną. (2 k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2 k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki aukso žiedą\nUž molio uzboną. (2 k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2 k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki mane, Joną,\nUž molio uzboną. (2 k.)\n\nDžiaugės, džiaugės mergužėlė,\nBalta graži lelijėlė,\nIšsimainius Joną\nUž molio uzboną. (2 k.)"
+          "Lyrics & Chords": "Ėjo, ėjo mergužėlė,\nBalta graži lelijėlė,\nIr sutiko Joną,\nSudaužė uzboną. (2k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki bėrą žirgą\nUž molio uzboną. (2k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki aukso žiedą\nUž molio uzboną. (2k.)\n\nVerkė, verkė mergužėlė,\nBalta graži lelijėlė,\nMolinio uzbono,\nMolio uzbonėlio. (2k.)\n\nCit, neverki, mergužėle,\nBalta graži lelijėle,\nImki mane, Joną,\nUž molio uzboną. (2k.)\n\nDžiaugės, džiaugės mergužėlė,\nBalta graži lelijėlė,\nIšsimainius Joną\nUž molio uzboną. (2k.)"
         }
       },
       "Audio": {},
@@ -799,15 +799,13 @@ const songs: SongFile = [
           "Title": "Do You Know, Wandering Traveler",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Do you know, you wanderer, traveler, Where my parents' homeland lies? Wrapped in fields and pine forests, It is our hope for a pure tomorrow. \n\nDo you know how blue its eyes are, How gentle the hair by the seaside, How many streams murmur through its body, How the rye fields sing there? \n\nWhen you go there, look around At the churches reaching up to the sky, At the earth singing the hymn of bread, At the fields plowed in the sands of the dunes. \n\nGo to the homestead of my parents, Listen to the storks clatter, See joyful children running barefoot Through the dew. \n\nWade into the Baltic Sea, Merge with the boundless nature. Standing at the feet of your ancestors, Your spirit will find peace again. \n\nWhen you go there... \n\nDo you know, you wanderer, traveler, Where my parents' homeland lies? Wrapped in fields and pine forests, It is our hope for a pure tomorrow. \n\nListen to how the streams murmur, How songs ripple through the villages, For there is no other land in the world Like my country, Lithuania!",
-          "AI Generated": true
+          "Lyrics": "Do you know, o wandering traveler,\nWhere is your ancestors‘ homeland?\nDressed with fields and pine forests,\nOur hope for a tranquil future.\n\nDo you know her eyes of blue?\nThe sandy tresses of her seashore?\nThe ripples of her brooks and streams?\nAnd the rye fields, as they sing?\n\n_When you visit there, be sure to notice_\n_The houses of prayer reaching to the sky,_\n_The plowed fields and the earth_\n_As it sings the hymn of bread._\n\nTravel to your ancestral village,\nListen to the storks clattering their beaks,\nAnd the rowdy children happily running barefoot\nThrough the dew covered grass.\n\nGo wading in the Baltic,\nBecome part of the boundless sea.\nAs you walk in the footprints of your ancestors\nYour soul will be renewed.\n\n_When you visit..._\n\nDo you know, o wandering traveler,\nWhere is the homeland of your ancestors?\nDressed with fields and pine forests,\nOur hope for a tranquil future.\n\nListen to the bubbling brooks\nAnd the sound of songs rippling over the villages,\nBecause nowhere in the world is there another country\nLike my homeland – Lietuva!"
         }
       },
       "Music Author": "Ritos Čyvaitė-Kliorienė",
       "Text Author": "Aušrinė Širvinskienė",
-      "LT Description": "Ši daina pasakoja apie keliautoją, kuriam užduodamas klausimas, ar jis žino, kur yra dainininko tėvynė. Tekste aprašoma Lietuvos gamta, tradicijos ir vaikystės prisiminimai, išreiškiama meilė savo kraštui. Daina gali simbolizuoti ilgesį namams ir šaknų svarbą, tačiau nėra aiškių nuorodų į konkrečias šventes ar istorinius įvykius.",
-      "EN Description": "This song is about a traveler or wanderer being asked if they know where the singer's homeland is. The lyrics describe the beauty and spirit of Lithuania, mentioning its nature, traditions, and childhood memories. The country is portrayed with deep affection, and the song may symbolize a longing for home and appreciation of one's roots, but it does not refer to specific holidays or historical events.",
-      "AI-Generated Description": true
+      "LT Description": "Posmuose ilgesys ir nors siunčiame klajūną/keleivį į tėviškę, jaučiasi, kad mielai ten būtume mes patys. O gal tas klajūnas, keleivis esame mes ir mintyse save raminame prisiminimais, atmintyje likusiais gimtinės vaizdais.\n\n Sekantys posmai parodo pasakotojo ne tik liepimą kur keliauti, ką pamatyti, bet giliai jaučiasi tėvelių namų ilgesys, jūros bangų vėsa, vaikų krykštavimo, vakarais kaimuose skambančių dainų neblėstantis grožis.\n \n Kodėl eilučių autorė siunčia klajūną į gimtus namus, gal tas klajūnas yra jos siela, kuri neradusi ramybės čia (ten kur ji yra) kaip klajūnas tik mintimis grįžta į namus, o gal namus palikę, namų daugiau niekada ir neberandame...\n \n Eilėmis srovena tėvynės ilgesys, iškeliamas Lietuvos gamtos grožis ir tas viskas yra pasakojama klajūnui/keleiviui. O kas jis? gyvenimas, nostalgija, likimas, išeivis...mes?\n\n---\n\n**Žodynas**\n- _klajūnas_: nežinantis, pasimetęs, paklydęs, nerandantis vietos, kažkur einantis, klajojantis žmogus. Žodžio klajūnas sinonimai yra bastūnas, nenuorama, skraidūnas, keliauninkas, valkata, klajoklis ir kt\n- _keleivis_: keliaujantis žmogus, keliautojas- daugumoje žinantis kelio tikslą",
+      "EN Description": "The words are filled with longing. Although we send the wandering traveler back to his homeland, it feels as though we would gladly be there ourselves. Perhaps that wanderer is us… In our thoughts we comfort ourselves with memories and lingering images of our homeland.\n\nSubsequent verses clearly show not only the narrator’s directions as to where to travel and what to see, but also the longing to visit the home of one’s parents. They describe the timeless beauty of the waves, amber, the shouts of happy children, and the echo of songs resounding through the villages as evening falls.\n\nWhy does the author send the wanderer home to the place of his birth? Perhaps the wanderer is her soul, which finds no peace where she lives now – so like a wanderer she only returns home in her thoughts. Or perhaps, once we leave home, we can never find home again…\n\nThe longing for one’s homeland flows throughout the song; the beauty of Lithuania’s scenery is presented; these feelings and images are described in detail to the wandering traveler. Who is this wanderer? One’s soul, life, nostalgia, destiny, a displaced person… us?"
     }
   },
   {
@@ -845,7 +843,7 @@ const songs: SongFile = [
         "rec4E2aNeHgspKzSD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ariau, ariau, ariau\nLygiuosius laukelius.\nAtėjo mergelė,\nAtnešė pusryčius. (2 k.)\n\nSaulutė dėl dienos,\nMėnulis dėl nakties.\nO mano mergelė -\nDėl ramumo širdies. (2 k.)\n\nPaleiski žirgelius,\nKad pasiganytų.\nAteiki pas mane,\nKad nieks nematytų. (2 k.)\n\nIr vėl ariau, ariau\nLygiuosius laukelius.\nAtėjo mergelė\nIr nieks nematė jos. (2 k.)"
+          "Lyrics & Chords": "Ariau, ariau, ariau\nLygiuosius laukelius.\nAtėjo mergelė,\nAtnešė pusryčius. (2k.)\n\nSaulutė dėl dienos,\nMėnulis dėl nakties.\nO mano mergelė -\nDėl ramumo širdies. (2k.)\n\nPaleiski žirgelius,\nKad pasiganytų.\nAteiki pas mane,\nKad nieks nematytų. (2k.)\n\nIr vėl ariau, ariau\nLygiuosius laukelius.\nAtėjo mergelė\nIr nieks nematė jos. (2k.)"
         }
       },
       "Audio": {},
@@ -958,7 +956,7 @@ const songs: SongFile = [
         "recWBqNWQGLHPRfe3": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš esu muzikantas,\nAš einu iškylaut.\nMes esam muzikantai,\nMes einam iškylaut.\nAš moku groti,\nMes mokam groti.\nGražiuoju smuiku,\nGražiuoju smuiku.\nVija vija vija vija\nVija vija vija-ja-ja.\n\nAš esu muzikantas...\nDidžiuoju bugnu...\nBum-bur bum-bur bum-bur bum-bur\nBum-bur bum-bur bum-bur-bur. (2 k.)\nVija vija... (2 k.)\n\nAš esu muzikantas...\nLinksmąja fleita...\nTir li tir li tir li tir li\nTir li tir li tir li-li. (2 k.)\nBum-bur... (2 k.)\nVija vija... (2 k.)\n\nAš esu muzikantas...\nStorąja tūba.\nŪba ūba ūba ūba\nŪba ūba ūba-ba (2 k.)\nTir-li tir-li... (2 k.)\nBum-bur... (2 k.)\nVija vija... (2 k.)"
+          "Lyrics & Chords": "Aš esu muzikantas,\nAš einu iškylaut.\nMes esam muzikantai,\nMes einam iškylaut.\nAš moku groti,\nMes mokam groti.\nGražiuoju smuiku,\nGražiuoju smuiku.\nVija vija vija vija\nVija vija vija-ja-ja.\n\nAš esu muzikantas...\nDidžiuoju bugnu...\nBum-bur bum-bur bum-bur bum-bur\nBum-bur bum-bur bum-bur-bur. (2k.)\nVija vija... (2k.)\n\nAš esu muzikantas...\nLinksmąja fleita...\nTir li tir li tir li tir li\nTir li tir li tir li-li. (2k.)\nBum-bur... (2k.)\nVija vija... (2k.)\n\nAš esu muzikantas...\nStorąja tūba.\nŪba ūba ūba ūba\nŪba ūba ūba-ba (2k.)\nTir-li tir-li... (2k.)\nBum-bur... (2k.)\nVija vija... (2k.)"
         }
       },
       "Audio": {},
@@ -1046,7 +1044,7 @@ const songs: SongFile = [
         "recic8m6t544335Vu": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš nupirksiu batukus tau,\nBus raudoni labai gražūs,\nBet sunku bus išsirinkti,\nNes kojytės labai mažos. (2 k.)\n\nJei nori, vyksime mes į marias.\nJei nori, vyksime mes į marias.\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nKojytės mažos batais raudonais. (2 k.)\n\nAš nunešiu maestrui Pėdro,\nKad sidabru juos apaustų,\nKad šilkais išsiuvinėtų\nIr kojyčių tau nespaustų. (2 k.)\n\nJei nori vyksime..."
+          "Lyrics & Chords": "Aš nupirksiu batukus tau,\nBus raudoni labai gražūs,\nBet sunku bus išsirinkti,\nNes kojytės labai mažos. (2k.)\n\nJei nori, vyksime mes į marias.\nJei nori, vyksime mes į marias.\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nKojytės mažos batais raudonais. (2k.)\n\nAš nunešiu maestrui Pėdro,\nKad sidabru juos apaustų,\nKad šilkais išsiuvinėtų\nIr kojyčių tau nespaustų. (2k.)\n\nJei nori vyksime..."
         }
       },
       "Audio": {},
@@ -1100,7 +1098,7 @@ const songs: SongFile = [
         "recLv4In7MMSs9n14": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš pasėjau kanapėlę\nTėvelio sodely 2x 2 k.\nOi džium, džium, džium, džium, džium, džium 2x 2 k.\nKanapėlę, žaliūkėlę,\nTėvelio sodely\n\nIr išdygo kanapėlė Tėvelio sodely. Oi džium…"
+          "Lyrics & Chords": "Aš pasėjau kanapėlę\nTėvelio sodely 2x 2k.\nOi džium, džium, džium, džium, džium, džium 2x 2k.\nKanapėlę, žaliūkėlę,\nTėvelio sodely\n\nIr išdygo kanapėlė Tėvelio sodely. Oi džium…"
         }
       },
       "Audio": {},
@@ -1176,16 +1174,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recVE3J9KazD5eBau": {
-          "Title": "I Planted a Flax",
+          "Title": "I sowed flax",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "I sowed some flax\nIn my father's garden.\nRitin dobila,\nRitin dobila,\nRitin dobil ja.\n\nAnd the flax sprouted\nIn my father's garden.\nRitin dobila...\n\nAnd the flax grew tall\nIn my father's garden.\nRitin dobila...\n\nAnd the clover bloomed\nIn my father's garden.\nRitin dobila...",
-          "AI Generated": true
+          "Lyrics": "I sowed flax\nIn my dear father’s garden.\n_Ritin dobila,_\n_Ritin dobilą,_\n_Ritin dobil ja._\n\nThe flax sprouted\nIn my dear father’s garden.\n_Ritin dobila...._\n\nThe flax flourished\nIn my dear father’s garden.\n_Ritin dobila...._\n\nThe flax blossomed\nIn my dear father’s garden.\n_Ritin dobila..._"
         }
       },
-      "LT Description": "Tai paprasta lietuvių liaudies daina apie linelio sėjimą tėvo darželyje ir jo augimą. Žodžiai aprašo augalo gyvenimo etapus: sėją, dygimą, augimą ir žydėjimą. Kartojama frazė 'Ritin dobila' neturi aiškios prasmės ir gali būti tradicinis priedainis, galbūt simbolizuojantis gyvenimo ciklą arba tiesiog naudojama dėl skambesio.",
-      "EN Description": "This is a simple Lithuanian folk song about sowing flax in a father's garden and watching it grow. The lyrics describe the stages of a plant's life: sowing, sprouting, growing, and blooming. The repeated phrase 'Ritin dobila' does not have a clear meaning and may simply be a traditional refrain, possibly symbolizing the cyclical nature of life or just used for its melodic sound.",
-      "AI-Generated Description": true
+      "LT Description": "Lietuvoje linai buvo pradėti auginti net prieš 4000 metų. Iki II pasaulinio karo pagal linų eksportą, Lietuva užėmė trečią vietą pasaulyje (po Rusijos ir Lenkijos).\n\nLinai mūsų krašto tradicinis augalas, todėl jie yra minimi pačiose seniausiose lietuvių liaudies dainose, ypač sutartinėse, kuriose buvo apdainuojamas linų auginimas, rovimas, verpimas ir audimas. Tautosakoje linai vadinami šventu augalu, saulės žolynu. Buvo manoma, kad linai apsaugo nuo piktų dvasių ir įvairių negerovių. Lininės drobės, audeklai, rankšluosčiai, lininiai marškiniai turi gilias simbolines mintis ir užima svarbią vietą lietuvių liaudies dainose.\n\nDainoje „Aš pasėjau linelį“ yra vardijami visi lino augimo tarpsniai: pasėjau (krito sėkla į dirvą), išdygo, užaugo, pražydo. A. Mikulskio harmonizuotoje dainoje panaudoti ne visi dainos žodžiai. Originalioje liaudies dainoje yra vardijami sekantys darbai: nuroviau, parvežiau, išmyniau, suverpiau, išaudžiau.\n\nŠi daina – ilgai trunkančio linų apdorojimo darbo daina. Jos priedainis: Ritin dobila, Ritin dobilą, Ritin dobil ja – tai ritmingas darbo įrankių sukeltų garsų mėgdžiojimas, ritmiška garsinė palyda. Nors linų apdorojimo darbas buvo sunkus, bet pabaigtuvės - linksmos ir visi, o ypač moterys, šokdavo pabaigtuvinius šokius atlikdamos linų darbus imituojančius šokių judesius.\n\nLinų ir kanapių darbų dainos buvo labiausiai paplitusios Rytų Aukštaitijoje.",
+      "EN Description": "Flax was grown in the geographic area of Lithuania more than 4,000 years ago. Prior to World War II Lithuania ranked 3rd in the world in flax exports (after Russia and Poland). Flax was a traditional fiber crop of our country, so it is no surprise that it is mentioned in the very oldest Lithuanian folk songs. It is most common in “multi-part” songs (“sutartinės”), where the lyrics describe the planting, growing, harvesting, spinning, and weaving of flax. Folklore considers flax to be a sacred plant: greenery of the sun. It was thought that flax provided protection against evil spirits and various maladies. Flax textiles (for example tablecloths, towels, or shirts) take on deep symbolic meaning and have an important place in Lithuanian folk songs.\n\n“I Sowed Flax” identifies all the phases in the life cycle of flax: it was sown, sprouted, grew, and blossomed. The harmonization by A. Mikulskis does not use all the traditional lyrics. The original words also include the work of harvesting, gathering, threshing, spinning, and weaving.\n\nIt is a work song, describing the arduous labor required to process flax. The refrain: “Ritin dobilą, Ritin dobilą, Ritin dobil ja” is a recurring imitation of the sounds made by the tools used in processing flax – it’s a rhythmic accompaniment to the work. Although working the flax required long and tiresome efforts, there were traditional festivities when the work was finally completed. The customary ceremonies included dances, particularly by women, with choreography replicating the movements performed while working. Flax and hemp work songs were most popular in the Eastern Highlands (“Aukštaitija”) of Lithuania."
     }
   },
   {
@@ -1224,7 +1220,7 @@ const songs: SongFile = [
         "recjtDcrsfPYYAfxc": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš šią naktį, per naktį\nAš miegelio nemigau.\n\nAš miegelio nemigau, nemigau –\nĮ dureles dundinau.\n\nĮ dureles dundinau, dundinau,\nSau mergelę budinau.\n\nSau mergelę budinau, budinau,\nIr vardeliu vadinau.\n\nIr vardeliu vadinau, vadinau,\nPavardėlę užrašiau.\n\nBūčiau rašęs da(r) daugiau,\nda(r) daugiau,\nBet plūnksnelė nulūžo.\n\nIr plūnksnelė nulūžo,\nIr mergelė nuliūdo.\n\n- Ko mergele, nuliūdai, nuliūdai,\nAr nuo _svieto_ užgirdai?\n\nAr nuo svieto užgirdai, užgirdai,\nKad kitą mylėjau?\n\nKad ir kitą mylėjau, mylėjau,\nTave širdy turėjau.",
+          "Lyrics & Chords": "Aš šią naktį, per naktį\nAš miegelio nemigau.\n\nAš miegelio nemigau, nemigau –\nĮ dureles dundinau.\n\nĮ dureles dundinau, dundinau,\nSau mergelę budinau.\n\nSau mergelę budinau, budinau,\nIr vardeliu vadinau.\n\nIr vardeliu vadinau, vadinau,\nPavardėlę užrašiau.\n\nBūčiau rašęs dar daugiau,\ndar daugiau,\nBet plūnksnelė nulūžo.\n\nIr plūnksnelė nulūžo,\nIr mergelė nuliūdo.\n\n- Ko mergele, nuliūdai, nuliūdai,\nAr nuo _svieto_ užgirdai?\n\nAr nuo svieto užgirdai, užgirdai,\nKad kitą mylėjau?\n\nKad ir kitą mylėjau, mylėjau,\nTave širdy turėjau.",
           "Notes": "_Svieto_ – pasaulio, (čia) žmonių"
         }
       },
@@ -1252,7 +1248,7 @@ const songs: SongFile = [
         "recIXp5wL6UVQPVLh": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš su savo boba išėjau grybauti,\nRadau baravyką, negaliu išrauti.\n_Aš su savo boba - Morta. (2 k.)_\nMano bobutė labai silpna buvo,\nBeraudama grybą ir pati sugriuvo.\n\nIšsivirsim grybus, nugraibysim taukus,\nDuosime šeimynai, kuri dirba laukus.\n\nKą nesuvalgysim, į terbas sudėsim,\nVažiuosim kermošiun, užkandos turėsim.\n\nOi jūs, grybai, grybai, jūs patieka mano,\nKas jūsų nevalgo, nieko neišmano."
+          "Lyrics & Chords": "Aš su savo boba išėjau grybauti,\nRadau baravyką, negaliu išrauti.\n_Aš su savo boba - Morta. (2k.)_\nMano bobutė labai silpna buvo,\nBeraudama grybą ir pati sugriuvo.\n\nIšsivirsim grybus, nugraibysim taukus,\nDuosime šeimynai, kuri dirba laukus.\n\nKą nesuvalgysim, į terbas sudėsim,\nVažiuosim kermošiun, užkandos turėsim.\n\nOi jūs, grybai, grybai, jūs patieka mano,\nKas jūsų nevalgo, nieko neišmano."
         }
       },
       "Audio": {},
@@ -1279,7 +1275,7 @@ const songs: SongFile = [
         "rectyZTEwnpjTAyuJ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš toriejau koina seną,\nVeizu - bestija jau stena. (2x2 k.)\n\n_Ukvei - bum!\nUkvei vei vei - bum bum bum!\nUkvei ukvei ukvei bum\nČir vir vir vir bum bum bum. (2x2 k.)_\n\nJiemiau dalgį nu pastuogis\nVeizu - bestija nuspruogis!\n\nKasiau doubi plati, gėli,\nKad palaiduočiau bestėji.\n\nVuo ta oudega kap mėit(a)s -\nNabužteka doubie vėit(a)s.\n\nAš ton oudega nukėrsu\nĖr bestėja sutalpėnsu."
+          "Lyrics & Chords": "Aš toriejau koina seną,\nVeizu - bestija jau stena. (2x2k.)\n\n_Ukvei - bum!\nUkvei vei vei - bum bum bum!\nUkvei ukvei ukvei bum\nČir vir vir vir bum bum bum. (2x2k.)_\n\nJiemiau dalgį nu pastuogis\nVeizu - bestija nuspruogis!\n\nKasiau doubi plati, gėli,\nKad palaiduočiau bestėji.\n\nVuo ta oudega kap mėit(a)s -\nNabužteka doubie vėit(a)s.\n\nAš ton oudega nukėrsu\nĖr bestėja sutalpėnsu."
         }
       },
       "Audio": {},
@@ -1672,7 +1668,7 @@ const songs: SongFile = [
         "recwz29G4kD5yYKlq": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Atskrido paukštelis tarp medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2 k.)\n\nSusuko lizdelį tarp medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2 k.)\n\nIšskrido paukštelis nuo medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2 k.)"
+          "Lyrics & Chords": "Atskrido paukštelis tarp medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2k.)\n\nSusuko lizdelį tarp medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2k.)\n\nIšskrido paukštelis nuo medžio šakų,\nČiulbėjo, ulbėjo kaip mudu abu:\nPirmyn, atgal,\nKairėn, dešinėn,\nAukštyn, žemyn.\nKaip mudu abu. (2k.)"
         }
       },
       "Audio": {},
@@ -1699,7 +1695,7 @@ const songs: SongFile = [
         "recQATENa4C8lAniD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Cam, cam, cam, cam,\nKojum cam, kojum cam.\nČir vir vi pa, čir vir vi pa,\nČir vir vi pa, čir vir vi pa.\n\nAtvažiavo mašinėla, čir vir vam.\nAtsidarė vagonėlis, čir vir vam. ·\n\nOi ipa, ipa, ipa,\nČir vir vi pa kojum cam.\nCūrum, cūrum ipa ipa\nČir vir vipa kojum cam. (2 k.)\n\nAtsidarė vagonėlis, čir vir vam.\nIr išlipo bernužėlis, čir vir vam.\nOi ipa ...\n\nIr nuėjo į bažnyčią, čir vir vam.\nPasirodyt mergom tyčią, čir vir vam.\nOi ipa ...\n\nVienu keliu klūpterėjo, čir vir vam.\nĮ mergytes pažiūrėjo, čir vir vam.\nOi ipa ..."
+          "Lyrics & Chords": "Cam, cam, cam, cam,\nKojum cam, kojum cam.\nČir vir vi pa, čir vir vi pa,\nČir vir vi pa, čir vir vi pa.\n\nAtvažiavo mašinėla, čir vir vam.\nAtsidarė vagonėlis, čir vir vam. ·\n\nOi ipa, ipa, ipa,\nČir vir vi pa kojum cam.\nCūrum, cūrum ipa ipa\nČir vir vipa kojum cam. (2k.)\n\nAtsidarė vagonėlis, čir vir vam.\nIr išlipo bernužėlis, čir vir vam.\nOi ipa ...\n\nIr nuėjo į bažnyčią, čir vir vam.\nPasirodyt mergom tyčią, čir vir vam.\nOi ipa ...\n\nVienu keliu klūpterėjo, čir vir vam.\nĮ mergytes pažiūrėjo, čir vir vam.\nOi ipa ..."
         }
       },
       "Audio": {},
@@ -1760,7 +1756,7 @@ const songs: SongFile = [
         "recLY4q5fPyFOpzUv": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Augau aš pas tėvelį,\nAugau aš pas senąjį,\nIr užaugau bernelis,\nKaip girioj ąžuolėlis. (2 k.)\n\nRūpinosi tėvelis,\nRūpinosi senasis,\nKam apleidau žirgelį,\nPamylėjau mergelę. (2 k.)\n\nNesirūpink, tėveli,\nNesirūpink, senasis:\nMan žirgelis - laikinai,\nO mergelė - amžinai! (2 k.)\n\nAugau aš·pas močiutę,\nAugau aš pas senąją,\nIr užaugau mergelė,\nKaip sodely liepelė. (2 k.)\n\nRūpinosi močiutė,\nRūpinosi senoji,\nKam apleidau darželį,\nPamylėjau bernelį. (2 k.)\n\n-Nesirūpink, močiute,\nNesirūpink, senoji:\nMan darželis - laikinai,\nO bernelis - amžinai. (2 k.)"
+          "Lyrics & Chords": "Augau aš pas tėvelį,\nAugau aš pas senąjį,\nIr užaugau bernelis,\nKaip girioj ąžuolėlis. (2k.)\n\nRūpinosi tėvelis,\nRūpinosi senasis,\nKam apleidau žirgelį,\nPamylėjau mergelę. (2k.)\n\nNesirūpink, tėveli,\nNesirūpink, senasis:\nMan žirgelis - laikinai,\nO mergelė - amžinai! (2k.)\n\nAugau aš·pas močiutę,\nAugau aš pas senąją,\nIr užaugau mergelė,\nKaip sodely liepelė. (2k.)\n\nRūpinosi močiutė,\nRūpinosi senoji,\nKam apleidau darželį,\nPamylėjau bernelį. (2k.)\n\n-Nesirūpink, močiute,\nNesirūpink, senoji:\nMan darželis - laikinai,\nO bernelis - amžinai. (2k.)"
         }
       },
       "Audio": {},
@@ -1814,7 +1810,7 @@ const songs: SongFile = [
         "rec3B2ConJDei6HaK": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Augo girioj ažuolėlis (3 k.)\nPas tevelį sunaitelis. (2 k.)\n\nRūpinosi tėvužėlis,\nKad jo mažas sūnaitėlis.\n\nNesirūpink, tėvužėli\nUžaugs tavo sūnaitėlis.\n\nUžaugs tavo sūnaitėlis,\nBus Lietuvos kareivėlis.\n\nMan nereikia kareivėlio,\nMan tik reikia artojėlio.\n\nNepabuvęs kareivėliu,\nNebus geras artojėlis.\n\nAugo girioj liepužėlė,\nPas močiutę dukružėlė.\n\nRūpinosi motinėlė,\nKad jos maža dukružėlė.\n\nNesirūpink, motinėle,\nUžaugs tavo dukružėlė.\n\nUžaugs tavo dukružėlė,\nBus Lietuvos šokejėlė.\n\nMan nereikia šokejėlės,\nMan tik reikia audejėlės."
+          "Lyrics & Chords": "Augo girioj ažuolėlis (3k.)\nPas tevelį sunaitelis. (2k.)\n\nRūpinosi tėvužėlis,\nKad jo mažas sūnaitėlis.\n\nNesirūpink, tėvužėli\nUžaugs tavo sūnaitėlis.\n\nUžaugs tavo sūnaitėlis,\nBus Lietuvos kareivėlis.\n\nMan nereikia kareivėlio,\nMan tik reikia artojėlio.\n\nNepabuvęs kareivėliu,\nNebus geras artojėlis.\n\nAugo girioj liepužėlė,\nPas močiutę dukružėlė.\n\nRūpinosi motinėlė,\nKad jos maža dukružėlė.\n\nNesirūpink, motinėle,\nUžaugs tavo dukružėlė.\n\nUžaugs tavo dukružėlė,\nBus Lietuvos šokejėlė.\n\nMan nereikia šokejėlės,\nMan tik reikia audejėlės."
         },
         "recTzsR31VglgEvf5": {
           "Variant Name": "Augo girioj liepužėlė",
@@ -2188,7 +2184,7 @@ const songs: SongFile = [
         "recqXucko5WcxmUlY": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Balnokit, broliai žirgus,\nBalnokit, broliai žirgus,\nBalnokit, broliai žirgus,]\nReiks karan joti. 2x2 k.\n\nPaduok, seusle, kardą 3 k.\nReiks priešą kirsti 2x2 k.\n\nO jeigu aš negrįšiu,\nŽirgelis parneš.\n\nAnt mano smėlio kapo\nBerželis žaliuos.\n\nO tam žaliam beržely\nGegutė kukuos.\n\nO toj raiboj gegutėj\nŠirdelė plazdės.\n\nO toj mažj širdelėj\nDainelė skambės.\n\nO toj skambioj dainelėj\nVisa Lietuva.\n\nO toj visoj Lietuvoj\nLietuviai dainuos..."
+          "Lyrics & Chords": "Balnokit, broliai žirgus,\nBalnokit, broliai žirgus,\nBalnokit, broliai žirgus,]\nReiks karan joti. 2x2k.\n\nPaduok, seusle, kardą 3k.\nReiks priešą kirsti 2x2k.\n\nO jeigu aš negrįšiu,\nŽirgelis parneš.\n\nAnt mano smėlio kapo\nBerželis žaliuos.\n\nO tam žaliam beržely\nGegutė kukuos.\n\nO toj raiboj gegutėj\nŠirdelė plazdės.\n\nO toj mažj širdelėj\nDainelė skambės.\n\nO toj skambioj dainelėj\nVisa Lietuva.\n\nO toj visoj Lietuvoj\nLietuviai dainuos..."
         }
       },
       "Audio": {},
@@ -2274,18 +2270,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recw57U7BBJfdhEBq": {
-          "Title": "White Bird",
+          "Title": "The white songbird",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "While lilies still float on the lake, while mist still rises above the rivers, while a white bird in the sky still sings for you and me... While among the streets and houses my voice is not yet lost, while I still believe in you with all my heart, while I still believe... After night comes the day, after rain the forests smell fresh, after death there is light everlasting... Between Lithuania and the high sky a bird sings above us and will keep singing... While I still see, while I still hear, while my path still climbs the hill, I repeat simple words, those words are for you and me. After night comes the day... A bird sings above us and will keep singing...",
-          "AI Generated": true
+          "Lyrics": "While there are water lilies in the lake,\nWhile the mist rises over the rivers,\nWhile the white songbird is in the heavens\nIt still sings to you and me...\n\nWhile my voice has not yet gotten lost\nBetween the streets and houses,\nWhile I believe in you completely,\nWhile I believe by all that is holy.\n\n_After night comes the day,\nAfter rain the forests are fragrant,\nAfter death comes the light\nEternal..._\n\n_Between Lithuania\nAnd the high heavens\nThe songbird sings overhead\nAnd will continue singing..._\n\nWhile I can still see and hear,\nWhile my road is still uphill,\nI repeat these simple words,\nThese words – for me and you.\n\n_After night comes the day..._\n\n_The songbird sings overhead\nAnd will continue singing..._"
         }
       },
       "Music Author": "Vytautas Kernagis",
       "Text Author": "Vytautas Kernagis",
-      "LT Description": "Daina kalba apie viltį, tikėjimą ir gyvenimo tęstinumą. Aprašomi gamtos grožio momentai ir tikėjimo stiprybė, o baltas paukštis danguje gali simbolizuoti sielą, laisvę ar pačią Lietuvą. Nors minima Lietuva, daina nėra susijusi su konkrečia švente ar istoriniu įvykiu.",
-      "EN Description": "This song speaks about hope, faith, and the continuity of life. It describes moments of beauty in nature and the endurance of belief, with the image of a white bird in the sky possibly symbolizing the soul, freedom, or Lithuania itself. The lyrics mention Lithuania directly, but do not reference a specific tradition or historical event.",
-      "AI-Generated Description": true
+      "LT Description": "Kadaise maestro V. Kernagis sakė: „Kiekvienas žmogus turi savo suvokimą. Mano dainų teisingumas yra toks: pirmiausia kūrinys turi būti įdomus ne tik man, bet ir klausytojui. Jeigu taip atsitinka, tada daina nemiršta ir įveikia visus laiko išbandymus. Teisinga yra tai, kas nuolat jaudina“.\n\n„Teisingos dainos yra tos, kurios tave papildo. Kurios tau kai ką duoda ar suteikia jėgų judėti į priekį. Manau, būtent tokia yra Vytauto Kernagio kūryba. Kiekviena jo daina pasakoja istoriją“.\n\n„Vytauto Kernagio kūrybos diapazonas yra toks platus ir gilus, kad kiekvienas klausydamas jo dainų V. Kernagį atranda savaip. Galiu tik pasakyti, kad jis be proto mylėjo publiką, nežmoniškai gerbė sceną ir visada žinojo, ką nori pasakyti ir perduoti savo dainomis. Niekada nedarė to šiaip sau, tuščiai. Matyt, visa tai ir sukuria tą išskirtinumą, kurį sunku paaiškinti.“ – sako jo sūnus Vytautas.\n\nV. Kernagio daina „Baltas paukštis“ yra viena iš jo labiausiai mėgstamų ir įsimintinų kūrinių. Daina perteikia melancholišką ir nostalgišką nuotaiką, kalbant apie žmogaus gyvenimą ir ilgesį. Mintis, kurią Kernagis išreiškia „Baltame paukštyje“, yra apie trapumą ir laikinumą, kuriuos simbolizuoja baltas paukštis. Šis paukštis dažnai laikomas dvasios/ sielos ir laisvės simboliu, tačiau taip pat jis gali reikšti ir tai, koks trapus ir neįkainojamas yra mūsų gyvenimas ir svajonės. Kernagis naudoja baltą paukštį kaip metaforą, kad perteiktų universalius jausmus, susijusius su žmogaus egzistencija ir jo vieta pasaulyje. Daina baigiasi palinkėjimu ar viltimi, kad paukštis gieda ir giedos. Po mūsų ateis naujos kartos, ir tęs mūsų pradėtus darbus.\n\n---\n\n**Šaltiniai:** Naudota literatūra iš internetinių svetainių ir https://www.bernardinai.lt/zyma/vytauto-kernagio-gyvenimas-ir-kuryba/",
+      "EN Description": "Maestro Vytautas Kernagis has said: “Every person understands things his own way. The correctness of my songs is this: the created song has to be interesting not only to me, but also to the listener. If that occurs, the song will not die and will survive the passage of time. That which continually affects our emotions is correct.”\n \n His son Vytautas shares these insights into his father’s compositions: “Truthful songs are those that fulfill you. Those which give you something or provide you the strength to move forward. I believe that is the essence of Vytautas Kernagis’ compositions. Every one of his songs tells a story.”\n \n “The range of Vytautas Kernagis’ compositions is so deep and wide that everyone who listens to his songs finds something different. I can only say that he loved the listening public unconditionally, had the utmost respect for the stage, and he always knew what message he wanted to get across in his songs. He didn‘t do anything that was superficial or not thought out. I suppose that is what created his uniqueness, which is hard to explain.“\n \n “The White Songbird” is one of Vytautas Kernagis’ most memorable and beloved songs. The melancholy and nostalgic mood of the song speaks of a person’s life and longings. Kernagis speaks of the fragility and temporary nature of life, symbolized by the white songbird. The songbird is understood to represent freedom of one‘s spirit, although it can also symbolize the fragility of our life and dreams. Kernagis uses the white songbird as a metaphor to convey universal feelings associated with our existence and place in the world. The song ends with the wish that the songbird will continue to sing. New generations will come after us and continue the works we have begun.\n\n---\n \n**Sources**: Quotations from Internet websites and https://www.bernardinai.lt/zyma/ vytauto-kernagio-gyvenimas-ir-kuryba/"
     }
   },
   {
@@ -2434,16 +2428,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "rec25AmWLH8f5owc8": {
-          "Title": "The Breaking Dawn",
+          "Title": "Dawn is breaking",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "The dawn is breaking, the sun is rising. Wake up, dear sister, my guest, Have you not yet finished sleeping? \n\nWeave yourself a little wreath, place it upon your head. Your guests are coming, your fair brothers, Saddling chestnut horses. \n\nWe arrived at the manor, at the mother-in-law's gate. That’s when I saw my troubles Begin at my mother-in-law’s gate. \n\nAnd out came my brother, carrying his sword. He chopped a plank from the gate, But not the trouble in my heart.",
-          "AI Generated": true
+          "Lyrics": "Dawn is breaking, the sun is rising,\nWake up, dear sister, beloved guest,\nHaven’t you slept enough?\n\nWeave yourself a wreath, put it on your head.\nYour guests, the good brothers,\nAre saddling the horses.\n\nWe drove up to the gates\n    of my mother-in-law’s homestead\nAnd I saw my misfortune,\nNear my mother-in-law’s gates.\n\nA brother came out carrying a sword.\nHe chopped a board out of the gate,\nBut not my misfortune."
         }
       },
-      "LT Description": "Ši daina pasakoja apie merginos rytą, kai ji ruošiasi svarbiai dienai, tikriausiai vestuvėms. Jai sakoma keltis ir puoštis, atvyksta broliai su žirgais. Žodžiai išreiškia ir džiaugsmą, ir nerimą dėl laukiančių pokyčių, o minimos apeigos atspindi lietuviškas vestuvių tradicijas.",
-      "EN Description": "This song tells about a young woman preparing for an important day, likely her wedding, as the dawn rises. She is encouraged to wake up and adorn herself, while her brothers come on horses for the celebration. The lyrics also mention her worries and challenges as she approaches her new life, possibly symbolizing the mixed emotions of leaving her family and joining her husband's household. The reference to wreath weaving and riding to the mother-in-law's gate is traditional in Lithuanian wedding customs.",
-      "AI-Generated Description": true
+      "LT Description": "Beauštanti aušrelė - vestuvinė daina. Lietuvių vestuvės buvo turtingos apeigomis ir tradicijomis, kurias galima skirstyti į keletą dalių, pradedant piršlybomis ir baigiant sugrįžtuvėmis. Kiekviena dalis gausi dainomis, raudomis, įvairias ritualais ir apeigomis.\n\nNemaža lietuvių liaudies vestuvinių dainų, kaip ir Beauštanti aušrelė, prasideda auštančios aušros ir tekančios saulės vaizdais. (Saulė tautosakoje yra ir motinos simbolis.) Tai rodo, kad veiksmas vyksta ankstų rytą. Jau vien žodžio tekėti vartojimas ir saulės judėjimas lyg ir atitinka mergelės išėjimui iš namų ir išvykimui pas vyrą. \n\nVainikėlio pynimas pačios mergelės išaugintomis rūtomis, kaip ir bernelio žirgelis, yra jos/jų pasirengimo tekėti, brandos ženklas. Dainoje seserėlė primena, kad laikas pinti rūtų vainikėlį, dėtis ant galvelė ir ruoštis kelionei į anytos namus, nes tavo sveteliai, balti broleliai – (dažniausiai tai jaunojo broliai ar jaunojo pabroliai) - atvyko į mergelės dvarelį pasiimti kraičio.\n\nAtvežus nuotaką į jaunojo pusę, daromos kliūtys: privažiavau dvarelį, anytėlės vartelius, bet ten mergelės/jaunosios niekas nelaukia, nes varteliai uždaryti. Vartai – naujo gyvenimo pradžios simbolis. Antrinė, perkeltinė vartų prasmė – vargelis, kuris prasideda marčios gyvenime jau nuo pirmų žingsnių. Lengvo gyvenimo viltys, bernelio visi pažadai per piršlybas tėra tik per pirštus byrantis smėlis.\n\n„Tiesa, į dainą įsiterpia naivi viltis: (šis posmas yra originalioje dainoje) _Kad išeitų brolelis, išsineštų kardelį, o kad iškirstų mano vargelį, iš anytos vartelių_.\n\nJaudina noras išsiveržti iš vargo, nors tam nebūna jokių galimybių. _Ir išėjo brolelis, išsinešė kardelį. O ir iškirto vartų lentelę, tik ne mano vargelį_. Panašus vidinis nerimas tarpais plūsteli ir iš šios dainos elegiškos nuotaikos melodijos.“ Leonardas Sauka 1998 „Lietuvių tautosaka“ psl. 203. \n\n---\n\n**Šaltiniai:**\n- Kazlauskienė Bronė, Sauka Leonardas 1983. Piršlybų dainos, kn.: Lietuvių liaudies dainynas, t. 2: Vestuvinės dainos \n- Senieji vestuvinių dainų ir papročių semantikos klodai, Lietuvių mitologija. Iš Norberto Vėliaus palikimo. Vilnius: Mintis, 2013.\n- Leonardas Sauka 1998 „Lietuvių tautosaka“ psl. 203",
+      "EN Description": "“Dawn is Breaking” is a wedding song. Lithuanian weddings are rich in traditions and rituals. These can be divided into multiple phases, beginning with matchmaking and ending with visits to the in-laws after the wedding. Each phase has its own happy and sad songs, customs and rituals.\n\nMany wedding songs, including “Dawn is Breaking”, begin with the images of dawn and sunrise. (The sun in Lithuanian folklore symbolizes a mother.) The action takes place early in the morning. It’s as though the movement of the sun foreshadows and suggests a young woman leaving home and going with her husband.\n\nWeaving a wreath for her head, with rue grown in her own garden, is indicative of maturity and readiness to marry. The young man saddling a stallion has a similar meaning. Her sister reminds the bride that it is time to weave the wreath, put it on her head, and prepare for the journey to the in-laws – because the “good brothers” (groomsmen and brothers of the groom) are coming to collect the dowry.\n\nAs the bride arrives at the in-law’s home, obstacles are evident. The gates are closed and there is no one to welcome her. The gates are a symbol of entry into a new phase of life. In a figurative sense, the gates indicate hardships, which begin with the daughterin-law’s first steps. The hopes for a comfortable life, the promises made by the young man during matchmaking – all are like grains of sand slipping through her fingers.\n\nThe original text of the song (not as sung here) expresses the naïve hope: “If only a brother would come out carrying a sword and chop my hardships out of the gate”. The bride has an apprehensive wish to be delivered from imminent hardships. Of course, there is no hope of escape: “A brother came out carrying a sword. He chopped a board out of the gate, but not my misfortune.” Even the melancholy melody of the song at times exudes this inner anxiety.\n\n---\n\n**Sources:** Kazlauskienė Bronė, Sauka Leonardas 1983. “Matchmaking Songs, vol. 2: Wedding Songs” From the legacy of Norbertas Vėlius 2013. “Lithuanian Mythology, Semantic Layers in Ancient Wedding Songs and Customs”. Leonardas Sauka 1998 „Lithuanian Folklore“ p. 203"
     }
   },
   {
@@ -2508,7 +2500,7 @@ const songs: SongFile = [
         "recFRz1DoCqCqUDiC": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Bijūnėlis žalias,\nBijūnėlis gražus.\nBijūnėlio žali lapai,\nRaudoni žiedeliai. 2x2 k.\n\nBijūnėlį lenkiau,\nGražų žiedą skyniau.\nGražiais žiedais bijūnėlio\nGalvelę dabinau.\n\nĖjau per kiemelį,\nPro vyšnių sodelį,\nIr sutikau bernužėlį\nVyšnelių sodely.\n\nBernužėlis jaunas,\nBernužėlis gražus,\nBernužėlio, kaip bijūno –\nRaudoni veideliai.\n\nĖjau pro dvarelį,\nPro rūtų darželį,\nIr sutikau mergužėlę\nRūtelių daržely.\n\nMergužėlė jauna,\nMergužėlė graži,\nKaip radastos žeidužėliai\nMergelės veideliai."
+          "Lyrics & Chords": "Bijūnėlis žalias,\nBijūnėlis gražus.\nBijūnėlio žali lapai,\nRaudoni žiedeliai. 2x2k.\n\nBijūnėlį lenkiau,\nGražų žiedą skyniau.\nGražiais žiedais bijūnėlio\nGalvelę dabinau.\n\nĖjau per kiemelį,\nPro vyšnių sodelį,\nIr sutikau bernužėlį\nVyšnelių sodely.\n\nBernužėlis jaunas,\nBernužėlis gražus,\nBernužėlio, kaip bijūno –\nRaudoni veideliai.\n\nĖjau pro dvarelį,\nPro rūtų darželį,\nIr sutikau mergužėlę\nRūtelių daržely.\n\nMergužėlė jauna,\nMergužėlė graži,\nKaip radastos žeidužėliai\nMergelės veideliai."
         }
       },
       "Audio": {},
@@ -2597,7 +2589,7 @@ const songs: SongFile = [
         "recm0f9eR7ORcQoeo": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ilgakojis aš briedžiukas.\nKiškiai juokias: \"Kebeldžiukas!\"\nKebeldžiuoju tarp kalnų,\nIlgas kojas mankštinu. (2 k.)\n\nKlebu, klebu, klebu, klebšt. (4 k.)\n\nNesijuoksite ilgai:\nMan jau kalasi ragai!\nNebadysiu jais draugų,\nSupsiu saulę ant ragų. (2 k.)\n\nKlebu ..."
+          "Lyrics & Chords": "Ilgakojis aš briedžiukas.\nKiškiai juokias: \"Kebeldžiukas!\"\nKebeldžiuoju tarp kalnų,\nIlgas kojas mankštinu. (2k.)\n\nKlebu, klebu, klebu, klebšt. (4k.)\n\nNesijuoksite ilgai:\nMan jau kalasi ragai!\nNebadysiu jais draugų,\nSupsiu saulę ant ragų. (2k.)\n\nKlebu ..."
         }
       },
       "Audio": {},
@@ -2653,7 +2645,7 @@ const songs: SongFile = [
         "recGaUZdm6eGF7f25": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Būčiau nekalbėjus,\nNekalbėjus, ne! (2x2 k.)\nGražios buvo jo akelės -\nSusigundžiau! (2x2 k.)\n\nBūčiau nemylėjus,\nNemylėjus, ne!\nDailus buvo bernužėlis -\nSusigundžiau!\n\nBūčiau su juo nėjus,\nSu juo nėjus, ne!\nAiškiai švietė mėnesėlis -\nSusigundžiau!\n\nBūčiau nebučiavus,\nNebučiavus, ne!\nSaldžios buvo jo lūpelės -\nSusigundžiau!"
+          "Lyrics & Chords": "Būčiau nekalbėjus,\nNekalbėjus, ne! (2x2k.)\nGražios buvo jo akelės -\nSusigundžiau! (2x2k.)\n\nBūčiau nemylėjus,\nNemylėjus, ne!\nDailus buvo bernužėlis -\nSusigundžiau!\n\nBūčiau su juo nėjus,\nSu juo nėjus, ne!\nAiškiai švietė mėnesėlis -\nSusigundžiau!\n\nBūčiau nebučiavus,\nNebučiavus, ne!\nSaldžios buvo jo lūpelės -\nSusigundžiau!"
         }
       },
       "Audio": {},
@@ -2792,16 +2784,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recw6RGltfLjudyGU": {
-          "Title": "There Was a Horn in Vilnius",
+          "Title": "There was a horn in Vilnius",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "There was a horn in Vilnius. Maybe there was, maybe there was not. Uncle, I don't know and I wasn't at home. There was, there was, as if there was not.",
-          "AI Generated": true
+          "Lyrics": "There was a horn in Vilnius.\n\nMaybe there was, maybe there wasn’t.\n\nUncle, I don‘t know – I wasn‘t home.\n\nThere was a horn, of course there was."
         }
       },
-      "LT Description": "Ši trumpa liaudies daina pasakoja apie dūdą Vilniuje, tačiau dainininkas nėra tikras, ar ji tikrai buvo. Tekste žaidžiama nežinomybe ir gandais, kas gali simbolizuoti perduodamas istorijas ar tradicijas be aiškių prisiminimų. Konkrečių nuorodų į šventes ar istorinius įvykius nėra.",
-      "EN Description": "This short folk song tells about a horn in Vilnius, but the singer is unsure if it truly existed. The lyrics play with uncertainty and hearsay, which may symbolize how stories or traditions are passed down, sometimes without clear memories or proof. There are no direct references to specific Lithuanian holidays or historical events, but the 'horn' (dūda) could represent a festive or communal gathering, though this is not certain.",
-      "AI-Generated Description": true
+      "LT Description": "Tai sutartinies žanro kurinys, užrašytas 1911 m. Rankraštyje pastaba: „Sako ir Buvo dėdė Vilniuj taip gi sako: Buvo dūda Vilniuj, dūdele Pavilnėj“. Taigi sis kūrinys jau skambėjo daugiau nei prieš 100 metų, o chorinę aranžuotę paraše Jonas Tamulionis 1985 metais. O kada atsirado ir daina, ir dūda? Ir kas ta dūda?\n\nDūdmaišis Lietuvos krašte pirmą kartą minimas švedų istoriko Magnuso Olauso “Šiaurės tautų istorijoje”, išleistoje 1555 metais. Tais pačiais metais LDK Žygimanto laiške Oršos seniūnui kunigui A. Odincevičiui minimi dūdoriai, meškininkai kurie turi būti apmokestinami. Reikia susimokėti magistratui o tada tik groti.\n\n1565 metais instrumentas minimas Vilniaus seimo įsakuose, kad ...“prieš pamaldas renkasi vestuvininkai ir dūdomis ir būgnais trukdo pamaldas, todėl reikia dūdas sulaužyti, būgnus prakiurdyti, kad daugiau to nebūtų“. Buvo ir kitų draudimų dėl šio instrumento naudojimo ir tai prisidėjo prie jo nykimo.\n\nRūtos Žarskienės straipsnyje „Užmirštieji muzikos instrumentai: dūdmaišis ir Lietuva“, teigiama, kad Lietuvoje dūdmaišis, prieš įsigalint smuikui, kitiems styginiams, o vėliau ir dumpliniams instrumentams, buvo pagrindinis, kai kur net vienintelis, vestuvių, krikštynų, kitų svarbių apeigų ir kaimo pasilinksminimų instrumentas (Žarskienė 2011, p. 194).\n\nDūdmaišį sudaro maišo pavidalo dumplės su pūtikliu ir 2–3 birbynėmis. Dumplėms naudota veršelio, ožkos, kiaulės, barsuko ar šuns oda arba avies skrandis. Manoma, kad geriausias maišas yra iš šuns kailio, nes jis „neprakaituoja“.\n\nR. Sliužinskas teigia, „kad kailis būtų minkštesnis ir užsipildytų visos ertmės, jo vidus buvo ištepamas žalių kiaušinių baltymais“ (Sliužinskas 1990, p. 4). Maišo apačioje įtaisyta melodinė ir viena arba dvi (kartais trys) birbynės. Muzikantas į maišą per pūtiklį pučia orą, kuris į birbynes patenka iš maišo, spaudžiamo alkūne. Melodinės birbynės skylutės dangstomos abiejų rankų pirštais. Garsas šaižus, toli girdimas.\n\nViduramžiais dūdmaišiai paplito Europoje, daugiausia jais grojo piemenys ir valstiečiai. Vėlyvaisiais viduramžiais šiuo instrumentu griežė keliaujantys muzikantai, XVIII a. Prancūzijoje dūdmaišis (miuzetė) tapo net saloniniu instrumentu.\n\nNuo XIX amžiaus šis instrumentas minimas beveik visose Vitebsko, Vilniaus ir Minsko gubernijų aprašuose.\n\nLietuvoje dūdmaišis, dar vadinamas kūline su ūku, kūline dūda, Labanoro dūda, paplito nuo XVI a. pirmosios pusės. Naudotas daugiausia Mažojoje Lietuvoje ir Rytų Lietuvoje,  iki XX a. vidurio išliko Rytų Aukštaitijoje. Pavadinimai, nusakantys šio instrumento paplitimo ribas: Alvito dūda, Labanoro dūda, Vilniaus dūda (Šliužinskas 1990, p. 7).\n\nSolo dūdmaišiais ir su kitais muzikos instrumentais meškininkai, elgetos, sielininkai, klajojantys muzikantai grieždavo maršus, šokius, pritardavo giesmėms, dainoms. Dūdomis vadinti ir vėliau atsiradę instrumentai: pianinas, armonika, lūpinė armonikėlė, kornetas, tūba, klarinetas ir kt. (Lunys 2014, p. 8).\n\nNuo XX a. antrosios pusės liaudies muzikos ansambliuose grojama tradiciniu dūdmaišiu. Kompaktinė plokštelė „Tylos Labanoro“ tapo sudėtine dalimi UNESCO Lietuvos komisijos remiamo projekto „Labanoro dūda”, kuriuo siekiama atgaivinti dūdmaišių tradicijas, dalimi.\n\n---\n\n**Šaltiniai:** Informacija apie dūdmaišį paimta iš paimta iš: www.dudmaisis.lt Daugiau informacijos šios daino tema galima rasti: Daiva Račiūnaitė-Vyčnienė Dviejų pradų – vokalinio ir instrumentinio – susipynimas sutartinėje „Buvo dūda Vilniuj“ Weaving of Two Rudiments – Vocal and Instrumental One – in the Sutartinė “Buvo Dūda Vilniuj” (“There Was a Pipe in Vilnius”).",
+      "EN Description": "This song is in the “sutartinė” style. The first written record of it is found in 1911. The original manuscript states: “They say there was an uncle in Vilnius. They also say there was a horn in Vilnius, a little horn in Vilnius”. The song is more than 100 years old, while the choral arrangement was written by Jonas Tamulionis in 1985. How did this song come into existence? And what is this horn?\n\nThe Swedish historian Magnus Olaus makes the first mention of bagpipes in Lithuania in his book “The history of Northern Nations” published in 1555. That same year Grand Duke Žygimantas, in a letter to the magistrate of the Orša region, states that bagpipe players and musicians with performing bears must be taxed. They can only be allowed to perform after paying the tax.\n\nThe instrument is mentioned in 1565 in the regulations of the Lithuanian parliament: “… party goers gather before Holy Mass and their bagpipes and drums are disturbing the peace. Therefore, the drums need to be punctured and the bagpipes destroyed…” There were other prohibitions against using the instrument, all of which contributed to the decline of the bagpipe.\n\nIn her article “Forgotten Musical Instruments: the Bagpipe in Lithuania”, Rūta Žarskienė claims that originally the bagpipe was the primary, if not the only instrument used for weddings, baptisms, and other village celebrations. This is prior to the ascendance of the violin and other string or wind instruments.\n\nThe bagpipe consists of a bag shaped bellows with a mouth blower, and 2-3 hornpipes. The bellows were made from the skin of a calf, goat, pig, woodchuck, or dog – or the stomach of a sheep. It was considered that the best bag was from the skin of a dog, because it didn’t sweat.\n\nR. Sliužinskas explains that the inside of the skin was lubricated with raw egg whites, to soften it and close any pinholes.\n\nOne, two, or sometimes three hornpipes are built into the bottom of the bellows bag. The musician blows air into the bag through the mouthpiece and squeezes the bag with his elbow, so that air would reach the hornpipes. Both hands are used to play a melody by covering the holes in the hornpipes. The sound is loud and strident, and carries for a long distance.\n\nIn the Middle Ages bagpipes proliferated throughout Europe, mostly played by shepherds and peasants. In the later Middle Ages, the instrument was played by travelling musicians. In France in the 18th century the bagpipe (musette) was even used as an indoor – parlor instrument.\n\nFrom the 19th century onwards, the bagpipe is mentioned in official writings of the Vitebsk, Vilnius, and Minsk regions.\n\nThe bagpipe became popular in Lithuania in the first half of the 16th century. It was used mostly in Lithuania Minor and Eastern Lithuania, with continuing use in the Eastern Lithuania highlands until the middle of the 20th century. Depending on the region, various names were used for the bagpipe: the Alvitas horn, the Labanoras horn, the Vilnius horn.\n\nBagpipes were played by musicians with performing bears, beggars, raftsmen, and wandering musicians. They would play marches, dance music, and accompany popular songs as well as religious hymns. The term “horn” came to include musical instruments of later invention, such as piano, concertina, mouth harmonica, tuba, clarinet, and others.\n\nFolk ensembles from the latter half of the 20th century have been using the traditional bagpipe. The compact disc “Quiet Sounds of Labanoras” is part of the Lithuanian UNESCO project “The Horn of Labanoras”, which seeks to revive the bagpipe tradition in Lithuania.\n\n---\n\n**Sources:**\n- Information about the bagpipe: www.dudmaisis.lt.\n- Additional information about the song: scientific paper by ethnomusicologist Daiva Račiūnaitė-Vyčnienė – Weaving of Two Rudiments – Vocal and Instrumental – in the Sutartinė “Buvo Dūda Vilniuj”."
     }
   },
   {
@@ -2810,8 +2800,8 @@ const songs: SongFile = [
       "Name": "Buvo gera gaspadinė",
       "Lyrics": {
         "recjbtjKStqBXcp68": {
-          "Variant Name": "Romuva",
-          "EN Variant Name": "Romuva",
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
           "Lyrics & Chords": "Buvo gera gaspadinė, gero vyro žmona,\nJi suspaudė saldų sūrį su visa smetona.\nTra lia lia lia lia lia lia,\nTra lia lia lia lia lia,\nJi suspaudė saldų sūrį su visa smetona.\n\nPrireikėjo gaspadoriui į turgų važiuoti,\nSūris buvo nesudžiuvęs, negalėjo duoti.\nTra lia lia ...\n\nIšsirengė gaspadorius į didžią kelionę,\nGaspadinė namie likus, darė sau storonę.\nTra lia lia ...\n\nPrisikvietė daug svetelių, vaišino arielka,\nTraukė sūrį nuo lentynos, dėjo ant torielkos.\nTra lia lia ...\n\nParvažiavo gaspadorius, į lentyną žiūri,\nKlausinėjo gaspadinę, kur padėjo sūrį.\nTra lia lia ...\n\nAš jį pati numečiau, traukdama sermėgą,\nO tas šuva, beuodegis, ėmė ir suėdė.\nTra lia lia ...\n\nGaspadorius vijo šunį iki kiemo vartų,\nGaspadinę apie grįčią kokį šimtą kartų –\nO ha..."
         },
         "recR1AaZvFHzPEMBu": {
@@ -2877,7 +2867,7 @@ const songs: SongFile = [
         "recZsnZETXQXr0oHL": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ten toli ošia žalia girelė,\nPrie jos čigonai kuria ugnelę.\n     Skamba gitara, gaudžia trimitai,\n     Moterys šoka, vyra nemoka. (2 k.)\n\nO jūs, čigonai, iš kur atėjot,\nPlačiam pasauly kur vaikštinėjot,\n     Kur jūsų žemė, kur tėviškėlė,\n     Kuri priglaustų jūs šeimynėlę? (2 k.)\n\nMes atėjūnai, tikri klajūnai,\nNepriglaus mūsų nei puikūs rūmai:\n     Sukūrę laužą šoksim, trepsėsim,\n     Ir savo didį šokį pradėsim. (2 k.)\n\nTaip susitarę šoksim trepsėsim,\nKlausyk mergele, ką tau kalbėsim;\n     Neieškok meilės turtingo pono,\n     Vilioki jautrią širdį čigono. (2 k.)\n\nČigons – bernelis, čigons – varguolis,\nČigons – laimingas, čigons – turtuolis.\n     Čigons neturi ant savęs pono,\n     Kur tik pažvelgsi, žemė čigono. (2 k.)"
+          "Lyrics & Chords": "Ten toli ošia žalia girelė,\nPrie jos čigonai kuria ugnelę.\n     Skamba gitara, gaudžia trimitai,\n     Moterys šoka, vyra nemoka. (2k.)\n\nO jūs, čigonai, iš kur atėjot,\nPlačiam pasauly kur vaikštinėjot,\n     Kur jūsų žemė, kur tėviškėlė,\n     Kuri priglaustų jūs šeimynėlę? (2k.)\n\nMes atėjūnai, tikri klajūnai,\nNepriglaus mūsų nei puikūs rūmai:\n     Sukūrę laužą šoksim, trepsėsim,\n     Ir savo didį šokį pradėsim. (2k.)\n\nTaip susitarę šoksim trepsėsim,\nKlausyk mergele, ką tau kalbėsim;\n     Neieškok meilės turtingo pono,\n     Vilioki jautrią širdį čigono. (2k.)\n\nČigons – bernelis, čigons – varguolis,\nČigons – laimingas, čigons – turtuolis.\n     Čigons neturi ant savęs pono,\n     Kur tik pažvelgsi, žemė čigono. (2k.)"
         }
       },
       "Audio": {},
@@ -2931,7 +2921,7 @@ const songs: SongFile = [
         "recBXo5mQjHjwt6Ix": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Čing čang gū, gūra gūra vačia,\nČing čang gū rava čia gū. (2 k.)\n\nEi julį, ei julį, ei julį,\nEi julį, ei julį, ei julį,\nČing čang gū."
+          "Lyrics & Chords": "Čing čang gū, gūra gūra vačia,\nČing čang gū rava čia gū. (2k.)\n\nEi julį, ei julį, ei julį,\nEi julį, ei julį, ei julį,\nČing čang gū."
         }
       },
       "Audio": {},
@@ -2946,8 +2936,7 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Šioje dainoje naudojami žaismingi, beprasmiški žodžiai ir pasikartojantys garsai, kurie dažnai pasitaiko lietuvių vaikų dainelėse ar žaidimuose. Tekstas neturi aiškios prasmės ar siužeto, bet gali simbolizuoti linksmą nuotaiką ir drauge dainuojamų žaidimų tradiciją.",
-      "EN Description": "This song uses playful, nonsensical words and repeating sounds, which are common in many traditional children’s songs or folk games. The lyrics do not have a clear narrative or obvious meaning, but they may symbolize the joyful, rhythmic chanting found in Lithuanian children's folklore or communal celebrations. The recurring phrases and simple structure suggest it could be used for games or group singing, especially among children.",
-      "AI-Generated Description": true
+      "EN Description": "This song uses playful, nonsensical words and repeating sounds, which are common in many traditional children’s songs or folk games. The lyrics do not have a clear narrative or obvious meaning, but they may symbolize the joyful, rhythmic chanting found in Lithuanian children's folklore or communal celebrations. The recurring phrases and simple structure suggest it could be used for games or group singing, especially among children."
     }
   },
   {
@@ -3031,16 +3020,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recpJ2FxPK4AseYgg": {
-          "Title": "Chiūto",
+          "Title": "Čiūto",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Čiūto! \n\nIn the field, lilio čiūto, (repeated 4x)\nLet's go, brothers, through the field,\nLet's go, brothers, through the field.\n\nČiūto!\nIn the field, lilio čiūto, (repeated 4x)\nA strong rain is coming.\n\nIn the field, lilio čiūto,\nWe will run, brothers,\nIn the field, lilio čiūto,\nUnder the oak tree.\n\nWe will run, brothers,\nUnder the oak tree.\nIn the field, lilio čiūto,\nČiūto.\n\nThe oak is not our father,\nThe oak is not our father,\nIts branches are not like arms,\nIts leaves are not like words.",
-          "AI Generated": true
+          "Lyrics": "_Čiūto!_\n_Daunoj lilio čiūto, 4x_\nBrothers, let us walk through the fields,\nBrothers, let us walk through the fields.\n\n_Čiūto!_\n_Daunoj lilio čiūto, 4x_\nA thunderstorm is rushing towards us.\n\n_Daunoj lilio čiūto,_\nWe will run, brothers,\n_Daunoj lilio čiūto,_\nUnder the oak tree.\n\nWe will run, brothers,\nUnder the oak tree.\n_Daunoj lilio čiūto,_\nČiūto.\n\nThe oak tree is not our father,\nThe oak tree is not our father,\nIts branches are not arms,\nIts leaves are not words"
         }
       },
-      "LT Description": "Šioje dainoje broliai eina per laukus, juos užklumpa stiprus lietus, todėl jie bėga slėptis po ąžuolu. Dainoje kartojami žaismingi, ritmingi žodžiai, kurie neturi tiesioginės prasmės, bet suteikia muzikos nuotaiką. Ąžuolas gali simbolizuoti stiprybę ar prieglobstį, tačiau tekstas pabrėžia, kad jis nėra tas pats kaip tėvas.",
-      "EN Description": "This song tells of brothers walking through fields, being caught in a strong rain, and seeking shelter under an oak tree. The lyrics repeat playful or rhythmic phrases that do not have direct meaning but add to the musicality. The oak may symbolize strength or protection, but the text says it is not the same as a parent, showing a feeling of longing or the difference between nature and family.",
-      "AI-Generated Description": true
+      "LT Description": "Daina apie sunkų kaimo žmonių, o čia bernelių darbą šienaujant pievas, žolę gyvulių pašarui, javų laukus yra priskiriama prie šienapjūtės dainų.\n\nŠienavimo sutartinėse išskiriamos kelios tematinės grupės. Svarbiausia vieta čia atitenka sutartinių ciklui “Eisim, broliai, šieno piauti” (Nr. 23-36). Dažnai jos tėra viena dvišakės paralelizmo sutartinės šaka. Pats darbas šios grupės sutartinėse nevaizduojamas, tik deklaruojamas pirmosiose strofose. Tolimesnėse strofose apdainuojama šienapiūtės aplinka ir nuotaika: bepiaunant užklumpa audra, nuo jos slepiamasi po medžiu. Tačiau šis tikroviškas vaizdas, kurio emocinį poveikį padidina vaizdingi veiksmažodžiai ir metaforos - alaūžia šiurkštus vėjas ... , skaudus lietus, tėra tik poetinė priemonė išreikšti mintims ir jausmams, neturintiems tiesioginio ryšio su darbu. Palyginimai - ąžuolas - ne tėvelis, liepelė - ne močiutė, jo(s) šakelės - ne rankelės, lapeliai - ne žodeliai - išreiškia tėvų globos meilumą, rūpestingumą.“ (žiūr. Z.Slaviūnas „Darbo sutartinės“)\n\nĄžuolas - stiprybės-vyriškumo simbolis, bet jis tik medis, jis ne tėvelis, kuris supranta savo sūnų, kuris apkabina, nuramina, paguodžia. Labai gražūs „vyriškos“ pusės jausmai šioje dainoje, į kuriuos visuomenė dažniausiai nekreipia dėmesio, o tik „tu gi vyras, tai nedera verkti“, o širdyje norisi turėti laisvę emocijoms išreikšti: ir liūdėti, ir juoktis, ir būti stipriems, ir suklupti.\n\nDidelė dainų dalis buvo darbo sutartinės, kurios „dainuotojų nurodymu buvo dainuojamos dirbant, ilsintis, einant į darbą ar grįžtant iš jo. Sutartines dainuodavo dirbdami tiktai kolektyviai – rugiapjūtės, avižapjūtės, šienapjūtės, linaraučio, verpimo ir kitų darbų metu. Darbo santykiai vaizduojami patriarchalinės šeimos buitinėje plotmėje. Čia ypač pabrėžiamas darbo bendrumas, bendros pastangos, užvadavimas darbe, iškeliamas geras darbas, kuris yra ir paties žmogaus vertės matas.\n\n---\n\n**Žodynas**\n- _lỹlio_ – Lỹlio lyliutė, maža mano sesutė. Kalnutėli, tatata! Laukų kalneli, lylio! Lyliõ lelijo, kas ten gražiai žydėjo? Lylio lyliavo, berneliai gyliavo. Daunoj, eisim, broliai, dauno lylio čiūto, daunoj, šieno pjauti, dauno lylio čiūto. Galima pastebėti kai kuriuos bendrus šių dainų elementus: dainoms, sutartinėms ir pakaitinėms giesmėms būdingi priedainiai: dobilio, ciutełė, čiutełė ir kt. Kartais liaudies dainininkai jas vadina tiesiog „ciutełėmis“, „dobiliuciais“ ir pan.\n- _ataūžia_ – užeina, artinasi, girdisi\n- _ūžuolas_ – ąžuolas, medis, vyriškumo, stiprybės, šeimos galvos, tėvo simbolis\n\n---\n\n**Šaltiniai:** 1938 m. Baudžiauninkų daina-taip įrašyta Muzikos informacijos centro svetainėje. Ši info buvo paimta iš sovietų laikais išleistų leidinių: „Ant Nemuno kranto“. Respublikinės 1955 m. dainų šventės repertuaras. Lietuvių chorinės literatūros chrestomatija, I. - Vilnius: Valstybinė grožinės literatūros leidykla, 1963 Spaliui - skambiausioji daina. - Vilnius: LTSR Kultūros ministerija, Liaudies meno rūmai, 1966.",
+      "EN Description": "This harvest song is about the hard work of villagers, in this case young men, who scythe the hayfields and wheat fields.\n\nHarvest songs (“sutartinės”) can have a number of themes. Most important is the song cycle with the theme “We will go, brothers, to harvest the hay”. The work itself in this group of songs is not described in any detail. It is merely mentioned in the first stanzas. Subsequent stanzas describe the harvest mood and surroundings: the workers are surprised by a storm and take shelter under a tree. This portrait of reality is merely a poetic device, whose emotional effect is enhanced by picturesque language and metaphors: “a thunderstorm is rushing towards us…” The storm is just a poetic tool to express an idea or an emotion, and has no direct link to the work itself. Similes are used to describe the love and protection that parents provide: “the oak tree is not our father”, “its branches are not arms”, “its leaves are not words”. The oak tree is a symbol of strength and manhood, but it’s only a tree. It is not a loving father, who understands his son, can hold him close, console and protect him.\n\nMany of these songs (“sutartinės”) were songs related to work: sung while working, resting, going to work, or returning home after a day’s labors. They were only sung communally by groups of workers – while harvesting fields of rye, oats, or hay, while gathering flax, spinning yarn, or performing other labors. The relationship with work is portrayed from the standpoint of the patriarchal family. The emphasis is on the commonality of work and communal efforts. Good work is praised, because it is in fact a measure of a person’s worth.\n\n---\n\n**Sources:**\n- Music Information Center website – A Serf Song (1938).\n- Publications published in Soviet times:\n    - Repertoire of the 1955 Song Festival “On the shores of the Nemunas river”.\n    - “Anthology of Lithuanian Choral Music”."
     }
   },
   {
@@ -3105,16 +3092,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recMKXT4rnarQzt1Q": {
-          "Title": "Creak, Creak",
+          "Title": "Quietly, quietly",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Softly, softly, the Nemunas flows. From that gentle sound, our sister weeps. Sister, sister, why do you cry so sadly? – They promise me to that old man. I will never love that old one, I will roll stones across the manor, I will linger behind the village gates. Softly, softly, the Nemunas flows, From that gentle sound, our sister weeps.",
-          "AI Generated": true
+          "Lyrics": "The river Nemunas flows quietly.\nOur sister cries even more quietly.\n\nSister, sister, why do you cry so mournfully?\n– They are planning to marry me to an old man.\n\nI will never love that old man.\nI will roll him out of the yard like a stone,\nI will set the hounds on him\n    and chase him down the road.\n\nThe river Nemunas flows quietly.\nOur sister cries even more quietly."
         }
       },
-      "LT Description": "Šioje dainoje pasakojama apie merginą, kuri verkia prie tekančio Nemuno, nes ją žada išleisti už seno vyro, kurio ji nemyli. Dainoje išreiškiamas jos liūdesys ir nenoras paklusti šiam likimui, kas gali simbolizuoti tradicinius iš anksto sutartus santuokos papročius Lietuvoje.",
-      "EN Description": "This song tells about a young girl crying by the flowing Nemunas river because she is being promised in marriage to an older man whom she does not love. It expresses her sadness and unwillingness to accept this fate, which may symbolize the traditional practice of arranged marriages in rural Lithuania. The mention of the river and stones could represent obstacles or the heaviness of her emotions, but this is open to interpretation.",
-      "AI-Generated Description": true
+      "LT Description": "Piršlybų metas ne visada buvo linksmas ir laimingas. Dukrelės nevisada buvo pasiruošusios tekėti, joms norėjosi ilgiau pabūti namuose, su motinėle, broleliais, sesutėmis, o tėvo rūpestis – kuo greičiau surasti dukrai vyrą ir išleisti iš namų. Labai tankiai vyrai rinkdavosi žymiai jaunesnes merginas sau į žmonas. Tai buvo dėl įvairių priežasčių.\n\nKeletas iš jų: namo grįždavo po tarnybos rekrūtuose, ir jo amžiaus merginos jau visos būdavo sukūrę šeimas; kartais neskubėdavo ženytis, nes norėdavo susitaupyti pinigų, užgyventi savo turto, kad galėtų pradėti kurti sau gyvenimą; kartais reikėdavo išpasoginti seseris (uždirbti ir atiduoti seserims pinigų ar kitokių ūkio gėrybių) kad namai liktų jam ir kitos prižastys, dėl ko vyrai kurdavo šeimas vyresnio amžiaus, o į poras sau rinkdavosi jaunas merginas.\n\nPačiai išsirinkus pagal tėvų nuomonę netinkamą - dažniausiai būdavo ašaros, bet tėvas į tai mažai kreipdavo dėmesį, svarbu, kad bernelis būtų ne biednas, o turtingas.\n\nDainoje upė Nemunėlis – simbolizuoja gyvenimo tekėjimą, nenutrūkstamą judėjimą, gyvybę. Jis teka ir tekės ir niekas nepakeis jo judėjimo, lyg sugretina ir merginos gyvenimą, kad taip buvo per amžius ir taip bus dabar – tekėsi už to, kas tave ima, kurį tėvas ir brolija išrinko.\n\nDaina išreiškia liūdesį, mergelė verkia, bet kartu ji ir gąsdina kas bus, jeigu tėvai ją vis tiek išleis už to seno vyro: jam einant per kiemą akmenį ant jo paridens, arba šunis paleis, kad jį išvytų. Lyg ir juokinga būtų, bet Nemunėlis teka, sesutė verkia, gyvenimas eina ir turi prie jo taikytis. Ne nuo norų priklausė, o nuo tokios tvarkos. Istorija byloja, kad ne tik kaimo mergelės ne visos laimingai ir iš meilės tekėdavo, dar sunkiau būdavo turtingoms kunigaikštytėms, karalaitėms, bajoraitėms ir kt. Neseniai išleistas Ilonos Skujaitės romanas „Karo nuotaka“ labai vaizdžiai perduoda turtingų merginų likimus.\n\n---\n\n**Žodynas**\n- -cykiai_: tyliai (dzūkų tarmėje)\n- _dvarelis_: dainose tankiai sodybos buvo vadinamos dvareliais \n- _akmeniu parisiu_: 1. risti: parito statinę tolyn. 2. paridenti po kuo: parito kubilą po stogu, į pastogę. Obuolys pasirito po suolu. 3. Paridenti, paversti: toks paritus, toks pastačius (labai storas)\n- _ulyčia_: gatvė (žodis iš rusų kalbos)\n- _kurteliai_: šunys\n- _užlaisiu_: užpjudysiu\n- _nuocykiausiai_: dar tyliau",
+      "EN Description": "The time of matchmaking and courtship was not always a happy one. Daughters were frequently not ready to marry; they wished to remain longer at home with their mother, brothers, and sisters. On the other hand, the father’s worry was to find his daughter a husband as soon as possible and have her leave home. Frequently, men looking to marry would be choosing women much younger than themselves. This occurred for a number of reasons.\n\nSome men would return home after long military service and find that all the women of their age had already married and created families. Other men were in no hurry to marry – they wanted to save some money and build some wealth before starting married life. Still others had to earn enough to pay their sisters’ dowries. For these and other reasons, men were frequently more advanced in age and looked for younger ladies for wives.\n\nIf a young lady chose a young man, who in the parents’ opinion was unsuitable – there would be tears. But the father would pay little attention to tears – it was more important that the prospective husband was wealthy.\n\nIn this song, the river Nemunas symbolizes life – its eternal flow, its everlasting movement. The river flows and will continue to flow, and nothing will change its movement. The river parallels the young girl’s life – that it’s been this way for ages and will not change. You will marry the man who chooses you, who your father and brothers have decided on.\n\nThe song expresses sadness, as the girl cries bitterly. At the same time she threatens her parents if they force her to marry an older man. She will set the hounds on him and chase him out of the village. The river Nemunas flows, the young girl cries, but life goes on and one must adapt. Matchmaking depended not on the young ladies wishes, but on the “traditional order”.\n\nHistory tells us that it wasn’t only village girls who often did not marry happily and for love. It was perhaps even more difficult for daughters of wealthy landowners or noblemen. The recently published novel “The War Bride”, written by Ilona Skujaitė, vividly portrays the fate of daughters of wealthy parents."
     }
   },
   {
@@ -3125,7 +3110,7 @@ const songs: SongFile = [
         "recKDZMGuIBEzfciN": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Daina iš širdies į širdį plaukia,\nKviečia amžiais būt dainos draugu. (2 k.)\n\nDainuok, dainuok\nIr nenustok.\n\nSmagu kartu!\nPer dainą man tapai draugu!"
+          "Lyrics & Chords": "Daina iš širdies į širdį plaukia,\nKviečia amžiais būt dainos draugu. (2k.)\n\nDainuok, dainuok\nIr nenustok.\n\nSmagu kartu!\nPer dainą man tapai draugu!"
         }
       },
       "Audio": {},
@@ -3268,7 +3253,7 @@ const songs: SongFile = [
         "rece98o9gZwzwOx97": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Dar nejok, dar sustok,\nDar mėnulis teka. (2 k.)\nAš girdėjau, aš girdėjau\nKą tėvelis šneka. (2 k.)\n\nŽada mane, žada mane\nUž našlelio leisti.\nAš to senio nemylėsiu,\nUž jo netekėsiu.\n\nPer tris dienas, per tris naktis\nDūmuose laikysiu.\nO ketvirtą, o ketvirtą\nŠarmu pagirdysiu.\n\nDar nejok, dar sustok\nDar saulutė teka.\nAš girdėjau, aš girdėjau.\nKą močiutė šneka.\n\nŽada mane, žada mane,\nUž bernelio leisti.\nAš bernelį, tai mylėsiu,\nUž jo ištekėsiu.\n\nPer tris dienas, per tris naktis\nPataluos laikysiu.\nO ketvirtą, o ketvirtą\nVynu pagirdysiu."
+          "Lyrics & Chords": "Dar nejok, dar sustok,\nDar mėnulis teka. (2k.)\nAš girdėjau, aš girdėjau\nKą tėvelis šneka. (2k.)\n\nŽada mane, žada mane\nUž našlelio leisti.\nAš to senio nemylėsiu,\nUž jo netekėsiu.\n\nPer tris dienas, per tris naktis\nDūmuose laikysiu.\nO ketvirtą, o ketvirtą\nŠarmu pagirdysiu.\n\nDar nejok, dar sustok\nDar saulutė teka.\nAš girdėjau, aš girdėjau.\nKą močiutė šneka.\n\nŽada mane, žada mane,\nUž bernelio leisti.\nAš bernelį, tai mylėsiu,\nUž jo ištekėsiu.\n\nPer tris dienas, per tris naktis\nPataluos laikysiu.\nO ketvirtą, o ketvirtą\nVynu pagirdysiu."
         }
       },
       "Audio": {},
@@ -3717,7 +3702,7 @@ const songs: SongFile = [
         "recEZnLbhETipi5Qr": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Du broliukai kunigai,\nDu broliukai urėdai,\nTik aš vieną vargo dieną\nGrėbiau lankoj šienelį. (2 k.)\n\nMan šienelį begrėbiant,\nKirtimelį bekertant,\nIr nulūžo grėblio kotas,\nNaujo grėblio kotelis. (2 k.)\n\nBėgsiu greitai tekina\nPas broliuką urėdą,\nMesk brolėlį rašyti,\nImk grėblelį taisyti. (2 k.)\n\nMesk, brolėlį rašyti,\nImk grėblelį taisyti.\nKyla juodas debesėlis\nSulys lankoj šienelis. (2 k.)\n\nNei aš mesiu rašyti,\nNei greblėlio taisyti,\nTeein juodas debesėlis\nTelyj lankoj šienelis. (2 k.)"
+          "Lyrics & Chords": "Du broliukai kunigai,\nDu broliukai urėdai,\nTik aš vieną vargo dieną\nGrėbiau lankoj šienelį. (2k.)\n\nMan šienelį begrėbiant,\nKirtimelį bekertant,\nIr nulūžo grėblio kotas,\nNaujo grėblio kotelis. (2k.)\n\nBėgsiu greitai tekina\nPas broliuką urėdą,\nMesk brolėlį rašyti,\nImk grėblelį taisyti. (2k.)\n\nMesk, brolėlį rašyti,\nImk grėblelį taisyti.\nKyla juodas debesėlis\nSulys lankoj šienelis. (2k.)\n\nNei aš mesiu rašyti,\nNei greblėlio taisyti,\nTeein juodas debesėlis\nTelyj lankoj šienelis. (2k.)"
         }
       },
       "Audio": {},
@@ -3744,7 +3729,7 @@ const songs: SongFile = [
         "recgXHWsk1uaCYoUO": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Du gaideliai, du gaideliai baltus žirnius kūlė,\nDvi vištelės, dvi vištelės į malūną vežė  (2 k.)\n\nOžys malė, ožys malė, ožka pikliavojo,\nO ši trečia ožkytėlė miltus nusijojo (2 k.)\n\nMusė maišė, musė maišė, uodas vandens nešė,\nSaulė virė, saulė virė, mėnesėlis kepė (2 k.)\n\nO mes valgėm, o mes valgėm, gardžią žirnių košę,\nSusisėdę apie stalą, kėdėj atsilošę (2 k.)\n\nGied‘ gaidelis kaka-ryko o vištelė kvaksi,\nUodas zirsia, musė kanda, oželiukai trepsi (2 k.)"
+          "Lyrics & Chords": "Du gaideliai, du gaideliai baltus žirnius kūlė,\nDvi vištelės, dvi vištelės į malūną vežė  (2k.)\n\nOžys malė, ožys malė, ožka pikliavojo,\nO ši trečia ožkytėlė miltus nusijojo (2k.)\n\nMusė maišė, musė maišė, uodas vandens nešė,\nSaulė virė, saulė virė, mėnesėlis kepė (2k.)\n\nO mes valgėm, o mes valgėm, gardžią žirnių košę,\nSusisėdę apie stalą, kėdėj atsilošę (2k.)\n\nGied‘ gaidelis kaka-ryko o vištelė kvaksi,\nUodas zirsia, musė kanda, oželiukai trepsi (2k.)"
         }
       },
       "Audio": {},
@@ -3771,7 +3756,7 @@ const songs: SongFile = [
         "recBO2IO6PpkDgv4E": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Dukrele slugele, kas kamaroj braška? (2 k.)\nMotule širdele, katins pelį pjaun. (2 k.)\n\nDukrele slugele, kodėl tokia balta?\nMotule širdele, baltą sūrį valg.\n\nKad sūrį valgytai, tai tokia nebūtai.\nMotule širdele, labai kietas buv.\n\nDukrele slugele, kodėl tokia stora?\nMotule širdele, žalius žirnius valg.\n\nKad žirnius valgytai, tai tokia nebūtai.\nMotule širdele - išbrinko.\n\nDukrele slugele, gal daktaro reikia?\nMotule širdele, gal reiktų.\n\nDaktaras ant kiemo - vaikelis ant rankų.\nMotule širdele - stebuklai."
+          "Lyrics & Chords": "Dukrele slugele, kas kamaroj braška? (2k.)\nMotule širdele, katins pelį pjaun. (2k.)\n\nDukrele slugele, kodėl tokia balta?\nMotule širdele, baltą sūrį valg.\n\nKad sūrį valgytai, tai tokia nebūtai.\nMotule širdele, labai kietas buv.\n\nDukrele slugele, kodėl tokia stora?\nMotule širdele, žalius žirnius valg.\n\nKad žirnius valgytai, tai tokia nebūtai.\nMotule širdele - išbrinko.\n\nDukrele slugele, gal daktaro reikia?\nMotule širdele, gal reiktų.\n\nDaktaras ant kiemo - vaikelis ant rankų.\nMotule širdele - stebuklai."
         }
       },
       "Audio": {},
@@ -3884,17 +3869,15 @@ const songs: SongFile = [
       },
       "Translations": {
         "recqIa8XzceU7Qruj": {
-          "Title": "Dzigunas",
+          "Title": "The stallion",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Oh, my little black horse,\nCarry me to the maiden.\nOh, sadaučio sadautėlio,\nLinagaučio lina go.\n\nI shan't spare the oats,\nI'll water you well.\nTrinku, trinku trinkutėla,\nTrinku, trinku laduto.\n\nFaster, faster, little horse,\nStrike sparks with your hooves.\nTaidu, taida opa, opa,\nTaidu, taida opapa.\n\nHer father will come to the yard,\nHe'll open the copper gates.\nTolijo tolijute,\nTolijo tatato.\n\nI bring her a silk scarf,\nAnd a little flower as a gift.\nCarry me, horse, to the manor,\nNine miles away.\n\nTaidu taida opapa,\nTaida opa.",
-          "AI Generated": true
+          "Lyrics": "O my stallion,\nTake me to my beloved.\n_Oi, sadaučio sadautėlio_\n_linagaučio lina go._\n\nI won‘t spare the oats,\nI‘ll give you water to drink.\n_Trinku, trinku trinkutėla_\n_Trinku, trinku laduto_\n\nFaster, faster, my stallion,\nLet sparks fly from your shodden hoofs.\n_Taidu, taida opa, opa_\n_Taidu, taida opapa._\n\nHer father will come out to the yard\nAnd open the copper gates.\n_Tolijo tolijute,_\n_Tolijo tatato._\n\nI am bringing her a silk scarf\nAnd a ring as gifts.\nCarry me, my stallion, carry me to their manor\nNine miles away.\n\n_Taidu taida opapa_\n_Taida opa._"
         }
       },
       "Music Author": "Jonas Švedas",
-      "LT Description": "Ši daina pasakoja apie jaunuolį, prašantį savo žirgo greitai nunešti jį pas mylimą merginą, kartu nešant dovanų – šilko skarą ir žiedelį. Tekste minimas susitikimas su merginos tėvu ir kelionė, kurią lydi žaismingos, ritmiškos priedainio eilutės. Daina atspindi tradicinius lietuviškus piršlybų papročius.",
-      "EN Description": "This song tells of a young person asking their black horse to carry them quickly to a beloved girl, bringing gifts like a silk scarf and a flower. The lyrics mention meeting the girl's father and describe the journey with playful, rhythmic refrains. The song reflects traditional Lithuanian courtship themes, where visiting a loved one and bringing symbolic gifts were important customs.",
-      "AI-Generated Description": true
+      "LT Description": "_Oi, žirgeli, juodberėli_\n_pas mergelę mane neškc_\n_Oi, sadaučio sadautėlio_\n_linagaučio lina go._\n\n**Džigūnas** - daina priskiriama vestuvių/piršlybų temai. Joje bernelis prašo žirgelio kuo greičiau jį nunešti pas mergelę.\n\n**Žirgas** – šis simbolis labiausiai dominavo liaudies mene. Tikėta, kad arklys turi dieviškos galios, jame slypinčios vaisingumo jėgos. Dainose bernelis joja ant žirgelio, kuris visada stiprus, greitas, gražus, kaip ir pats bernelis. Tai simbolis jaunystės, stiprybės, vyriškumo ir subrendimo.\n\nPosmelio priedainis: _Oi, sadaučio sadautėlio, linagaučio lina go - sadaučio_ yra traktuojamas kaip garsažodžio sadula atmaina ir irgi yra būdingas vestuvinėms dainoms, nors vestuvės ir gimtųjų namų apleidimas nuotakai neretai buvo skaudi patirtis, tačiau šie garsažodžiai dainai suteikia lengvumo, judrumo ir jaunatviškumo. \n\n**Linagaučio** irgi tankiai naudojamas piršlybų dainose, nors šis garsažodis daugiausia buvo dainuojamos linų rovimo (linaraučio) metu stengiantis palengvinti darbą, sukelti pakilią nuotaiką.\n\nTolesniuose posmuose veiksmas lyg ir įgauną skubėjimą: bernelis žada negailėti žirgeliui avižėlių, pagirdyti vandenėliu, kad tik greičiau nujotų pas mergelę. Priedainiai _trinku, trinku laduto, taidu, taidu opapa_ – lyg imituoja žirgelio greitą jojimą, patkavėlių kaukšėjimą, iš kurių net žiežirbos lekia.\n\nBernelis žino, kad jį pasitiks ant kiemelio uošvis ir atkels vario vartelius, nes bernelis mergelei neša šilko skarą ir žiedelį dovanų. Kaip ir visose piršlybų/vestuvinėse dainose netrūksta pažadų ir dovanų norint gauti mergelės ranką ir užkariauti jos širdį.\n\n_Nešk žirgeli, nešk į dvarą_\n_užu mylių devynių._\n\n**Devyni** susijęs su skaičiumi trys (3×3) ir tuo pačiu su šv. Trejybe. Trijų pasaulių: žemės, dangaus ir pragaro atvaizdas. Krikščioniams tai buvo šventas skaičius, gaunamas tris kartojant tris kartus. Šis skaičius dažnai sutinkamas lietuvių tautosakoje, liaudies medicinoje: devyni vilkai, devyni amatai, devyngalvis slibinas, trejos devynerios ir kt. Na ir nėštumas trunka devynis mėnesius. ",
+      "EN Description": "The song is in the matchmaking/wedding category. The young man asks his stallion to carry him to his young lady as quickly as possible.\n\n**The stallion** (“žirgelis”) was a dominant symbol in folk art. It was believed that the horse had supernatural abilities, including the power of fertility. In songs the stallion is always strong, fast, and handsome – like his young rider. The stallion is a symbol of youth, vigor, manhood, and maturity.\n\nThe refrain “Oi, sadaučio sadautėlio” contains sonic variations of “sadula”, a word of incantation frequently found in wedding songs. Although the wedding and departure from home could be a painful experience for the bride, the refrain creates a mood of lightness, liveliness, and youthfulness.\n\nThe second part of the refrain “Linagaučio lina go” contains sonic variations of the word “linai” (flax). While it is frequently found in matchmaking songs, it is more common in work songs describing the flax harvest, and sung while working to lighten the labor and create a cheerful mood.\n\nSubsequent verses emphasize the rider’s haste: he promises his stallion oats and water, if it reaches his destination – the young lady – swiftly. The refrains “Trinku, trinku trinkutėla” and “Taidu, taida opa, opa” imitate the rhythmic clatter of the hooves, from which sparks fly as the horse speeds onwards.\n\nThe young man knows that the girl’s father will meet and welcome him at the gates, because he is bringing gifts of a silk scarf and a golden ring. As in all matchmaking songs, there is no shortage of promises and presents – whatever it takes to win her hand and her heart.\n\n**Nine**. The young man urges his stallion to carry him to the young lady’s home, which is nine miles away. The number nine is formed from the significant number 3 x 3. Three in the Holy Trinity. Three worlds: earth, heaven, and hell. These numbers are frequently found in folklore and folk medicine: nine trade skills, nine wolves, nine dragons, three nines (an herbal liqueur). And of course, pregnancy takes nine months."
     }
   },
   {
@@ -4018,16 +4001,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recYzymlnpZ8FxBeY": {
-          "Title": "Grind, Grind, Millstones",
+          "Title": "The millstone is humming",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "I grind, I grind alone,\nI look, it’s already day.\nGrind on, grind on, little millstones,\nBring me some cheer inside. (2x)\n\nAnd you, my little hands,\nAlways with heavy work.\nGrind on...\n\nAnd you, my little feet,\nAlways through muddy dark.\nGrind on...\n\nAnd you, my little eyes,\nFull of white flour dust.\nGrind on...",
-          "AI Generated": true
+          "Lyrics": "I mill, I mill all alone.\nI look and the day is done.\n Hum, millstone, hum.\n Make me happy.\n\nO my hands,\nAlways working hard.\n Hum...\n\nO my feet,\nAlways in the dark mud.\n Hum...\n\nO my eyes,\nWhite with flour dust.\n Hum..."
         }
       },
-      "LT Description": "Daina pasakoja apie moterį, kuri viena mala grūdus girnomis ir kalba apie savo rankas, kojas bei akis, pavargusias nuo darbo. Prašymas girnoms dzūkti gali reikšti norą rasti džiaugsmą ar paguodą darbuose, bet taip pat gali būti tiesiog apie kasdienį malimo garsą, būdingą senovės lietuvių kaimo gyvenimui.",
-      "EN Description": "This song is about a woman working alone, grinding grain with a hand mill early in the morning. She describes her hands, feet, and eyes, each affected by her work. The repeated request for the millstones to grind may symbolize hope for joy or relief through work, but could also simply refer to the rhythmic sounds of milling, a common task in traditional Lithuanian village life.",
-      "AI-Generated Description": true
+      "LT Description": "„Ištekėjimas paženklina mergaitės likimą. Jis išplėšia ją iš namų aplinkos ir vidiniai ją nuskurdina. Nors nuotaka su savimi ima daug kraičio, bet ar gali drobės pakeisti jai tėvus, brolius bei seseris? Ji norėtų pas juos dar ilgai likti. Broliai neturėtų trokšti ja tuoj pat atsikratyti,” rašo A. Maceina. “Ji tiek mažai namuose užima vietos, ji ir jos kraičio skrynios.“\n\nDaina prasideda girnelėmis malant grūdus. Ilgas ir monotoniškas malimo darbas tuoj nukreipia mintis ir dėmesį į pavargusias rankeles, kojeles, pavargusias akeles nuo pridulkėjusių miltų. Vardijimas pavargusio kūno, tai lyg pasireiškiantys paguodos ieškojimo ir savo sunkaus gyvenimo apmąstymo motyvai, už kurių slepiasi pavargusi jos siela, ilgesys ir vienatvė.\n\n“Girnų ūžimas malėjai sukelia jausmą, kad ji yra ne viena. Kurį laiką jos dėmesį prikausto darbas. Tačiau ji greitai susivokia tikrovėje ir pajunta gilią savo vienatvę. Ir šis įsisąmoninimas verčia ją galvoti apie savo dalią. Kodėl ją pamilo širdies bernytis? Jos likimas nėra sėdėti be darbo, jos dienos pilnos vargų. Kryptis į vidinį pasaulį šioje dainoje yra pakankamai aiški. Ir čia malimas yra tik išeities taškas dirbančio žmogaus vidiniams išgyvenimams pavaizduoti,“ rašo A. Maceina.",
+      "EN Description": "“Marriage puts its imprint on a young woman’s destiny. It tears her away from her home environment and impoverishes her spirit. A bride takes her dowry with her, but can linens replace her parents, brothers, and sisters? She would like to continue to stay with her family. Her brothers shouldn’t want to get rid of her. Her dowry chest and she herself take up so little space in the home.” (A. Maceina)\n\nThe song begins with the millstone grinding grain. The long and monotonous work of milling grain immediately directs her attention to her tired hands, tired feet, and tired eyes powdered with flour dust. By describing her tired body, she seeks consolation and reflects on her difficult and exhausting life. The tired body hides a tired soul, and feelings of longing and loneliness.\n\n“The humming sound of the millstone makes the young woman feel that she is not alone. For a brief moment her attention is drawn to her work. However, reality intrudes and she feels her deep loneliness. This consciousness forces her to think of her fate. Why did the young man of her dreams come to love her? Her destiny is not to be idle. Her days are full of troubles and misery. The song’s focus on one’s inner world is quite clear. The action of milling is merely a vehicle used to portray the inner feelings and experiences of a working person.” (A. Maceina)"
     }
   },
   {
@@ -4246,7 +4227,7 @@ const songs: SongFile = [
         "recWDPnYwoe3iVQJb": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Eisva musu abudu (2 k.)\nŽaliojon giružėn abudu. (2 k.)\n\nKirsva musu abudu\nŽaliąsias liepužes abudu.\n\nPjausva mudu abudu\nPlonąsias lentužes abudu.\n\nDarysva mudu abudu\nNaująją lovužę abudu.\n\nKlosva mudu abudu\nBaltąją paklodę abudu.\n\nGulsva mudu abudu\nNaujojon lovužėn abudu.\n\nDarysva mudu abudu\nNaująją vygužę abudu.\n\nVygiuosva mudu abudu\nMažajį vaikužį abudu."
+          "Lyrics & Chords": "Eisva musu abudu (2k.)\nŽaliojon giružėn abudu. (2k.)\n\nKirsva musu abudu\nŽaliąsias liepužes abudu.\n\nPjausva mudu abudu\nPlonąsias lentužes abudu.\n\nDarysva mudu abudu\nNaująją lovužę abudu.\n\nKlosva mudu abudu\nBaltąją paklodę abudu.\n\nGulsva mudu abudu\nNaujojon lovužėn abudu.\n\nDarysva mudu abudu\nNaująją vygužę abudu.\n\nVygiuosva mudu abudu\nMažajį vaikužį abudu."
         }
       },
       "Audio": {},
@@ -4327,7 +4308,7 @@ const songs: SongFile = [
         "recmdT7lQtdSz1AZi": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ėjo merga per lieptelį\nIr sušlapo ji batelį,\nĖmė keiktis ant visų,\nIr sušlapo ik ausų.\n\nEi, čina, čina, čina,\nDuokit vyno, duokit vyno,\nEi čina, čina-na,\nMan dar vyno negana. (2 k.)\n\nĖjo merga per ulyčią,\nIr sutiko jį netyčia,\nIr numindžiojo nagus,\nIr nulaužė jai ragus.\nEi čina, čina...\n\nĖjo merga palei tvorą,\nIr sutiko senį vorą,\nVoras tinklą ant galvos,\nIr nebėra jau mergos.\nEi čina...\n\nĖjo katins į banketą\nUodegą užrietęs kietą,\nIr užkliuvo ant tvoros,\nIr neteko uodegos.\nEi čina...\n\nBarė senis kalakutą\nKam sumynė žalią rūtą.\nEi, tu seni, nesibark,\nGeriau eik ir pasikark!\nEi čina...\n\nEjo piemuo per rugieną\nPersiplėšė koją vieną,\nBėgo mamai pasakyti,\nPersiplešė koją kitą.\nEi čina..."
+          "Lyrics & Chords": "Ėjo merga per lieptelį\nIr sušlapo ji batelį,\nĖmė keiktis ant visų,\nIr sušlapo ik ausų.\n\nEi, čina, čina, čina,\nDuokit vyno, duokit vyno,\nEi čina, čina-na,\nMan dar vyno negana. (2k.)\n\nĖjo merga per ulyčią,\nIr sutiko jį netyčia,\nIr numindžiojo nagus,\nIr nulaužė jai ragus.\nEi čina, čina...\n\nĖjo merga palei tvorą,\nIr sutiko senį vorą,\nVoras tinklą ant galvos,\nIr nebėra jau mergos.\nEi čina...\n\nĖjo katins į banketą\nUodegą užrietęs kietą,\nIr užkliuvo ant tvoros,\nIr neteko uodegos.\nEi čina...\n\nBarė senis kalakutą\nKam sumynė žalią rūtą.\nEi, tu seni, nesibark,\nGeriau eik ir pasikark!\nEi čina...\n\nEjo piemuo per rugieną\nPersiplėšė koją vieną,\nBėgo mamai pasakyti,\nPersiplešė koją kitą.\nEi čina..."
         }
       },
       "Audio": {},
@@ -4354,12 +4335,12 @@ const songs: SongFile = [
         "recMWO9SdxLhQETeY": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Ėjo senis lauko arti,\nPasiėmęs pypkę karčią. (2 k.)\nOi ly-lia, oi-ly-lia,\nOi ly-lia, oi ly-lia,\nOi ly-lia, oi ly-lia,\nDainuok linksmai.  Oi lylia...\n\nĖjo boba tuo keleliu,\nRado pypkę ant kelmelio.  (2 k.)\nOi ly-lia...\n\nOi tu, boba, nekvailioki,\nMano pypkę atiduoki. (2 k.)\nOi ly-lia...\n\nMano pypkė misinginė,\nO cibukas kukavinis. (2 k.)\nOi lylia...\n"
+          "Lyrics & Chords": "Ėjo senis lauko arti,\nPasiėmęs pypkę karčią. (2k.)\nOi ly-lia, oi-ly-lia,\nOi ly-lia, oi ly-lia,\nOi ly-lia, oi ly-lia,\nDainuok linksmai.  Oi lylia...\n\nĖjo boba tuo keleliu,\nRado pypkę ant kelmelio.  (2k.)\nOi ly-lia...\n\nOi tu, boba, nekvailioki,\nMano pypkę atiduoki. (2k.)\nOi ly-lia...\n\nMano pypkė misinginė,\nO cibukas kukavinis. (2k.)\nOi lylia...\n"
         },
         "recQ8mHDVsrf2i9K5": {
           "Variant Name": "Žodžiai 2",
           "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Ėjo senis lauko arti,\nPasiėmęs pypkę karčią.\n\nOi lylia, oi lylia (3 k.)\nDainuok linksmai.\n\nĖjo senis tuo keleliu,\nDėjo pypkę ant kelmelio.\n\nĖjo boba tuo keleliu,\nRado pypkę ant kelmelio.\n\nEi tu, boba, nekvailioki,\nMano pypkę atiduoki.\n\nMano pypkė kukavinė,\nO cibukas misinginis.\n\nSuraizgyta, sumazgyta -\nKur aš gausiu tokią kitą."
+          "Lyrics & Chords": "Ėjo senis lauko arti,\nPasiėmęs pypkę karčią.\n\nOi lylia, oi lylia (3k.)\nDainuok linksmai.\n\nĖjo senis tuo keleliu,\nDėjo pypkę ant kelmelio.\n\nĖjo boba tuo keleliu,\nRado pypkę ant kelmelio.\n\nEi tu, boba, nekvailioki,\nMano pypkę atiduoki.\n\nMano pypkė kukavinė,\nO cibukas misinginis.\n\nSuraizgyta, sumazgyta -\nKur aš gausiu tokią kitą."
         }
       },
       "Audio": {},
@@ -4386,7 +4367,7 @@ const songs: SongFile = [
         "rec0xsFS4D2k84Tnx": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ėjo skautas iškylauti\nPatyrimo daugiau gauti\nPatyrimo, patyrimo,\nPatyrimo daugiau gaut. (2 k.)\n\nĖjo skautas tuo kelaičiu,\nDėjo šlipsą ant kelmaičio,\nDėjo šlipsą...\n\nĖjo žmogus tuo kelaičiu\nĖmė šlipsą nuo kelmaičio,\nĖmė šlipsą...\n\nEi, tu, žmogau, nekvailioki,\nMano šlipsą atiduoki,\nMano slipsą..."
+          "Lyrics & Chords": "Ėjo skautas iškylauti\nPatyrimo daugiau gauti\nPatyrimo, patyrimo,\nPatyrimo daugiau gaut. (2k.)\n\nĖjo skautas tuo kelaičiu,\nDėjo šlipsą ant kelmaičio,\nDėjo šlipsą...\n\nĖjo žmogus tuo kelaičiu\nĖmė šlipsą nuo kelmaičio,\nĖmė šlipsą...\n\nEi, tu, žmogau, nekvailioki,\nMano šlipsą atiduoki,\nMano slipsą..."
         }
       },
       "Audio": {},
@@ -4971,16 +4952,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recuxzd2QX69haOt6": {
-          "Title": "Quickly, Quickly",
+          "Title": "Time passes swiftly",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Quickly, quickly time is running,\nOf beautiful dreams and hopes.\nA voice echoed in the forest,\nAnd only its echo remains. (2x x 2)\n\nQuickly, quickly I will leave,\nI will leave you forever.\nMaybe I will never return—\nForget, forget, forget me, please.\n\nForget without revenge, without anger,\nForget the times that have passed,\nForget that I once loved you,\nForget, forget, forget me, please.\n\nI didn't know how to keep secrets,\nAnd my heart was always open,\nBut I could not be yours—\nForgive, forgive, forgive me, please.",
-          "AI Generated": true
+          "Lyrics": "Time passes swiftly, oh so swiftly,\nFilled with wondrous hopes and dreams.\nA voice rang out in the forest\nAnd only its echo can be heard.\n\nSoon I will depart, oh so soon,\nAnd leave you forever.\nI may never return –\nForget, forget, forget me please.\n\nForget me without anger or vengeance,\nForget our past times,\nForget that I loved you,\nForget, forget, forget me please.\n\nI didn’t know how to keep secrets\nAnd was always openhearted,\nBut I couldn’t be yours –\nForgive, forgive, forgive me please."
         }
       },
-      "LT Description": "Šioje dainoje kalbama apie laiko tėkmę ir atsisveikinimą su mylimu žmogumi. Žodžiai išreiškia liūdesį ir susitaikymą, kai pasakotojas ruošiasi išvykti ir prašo būti pamirštas be pykčio. Miško aidas gali simbolizuoti išlikusius prisiminimus, bet tai nėra visiškai aišku.",
-      "EN Description": "This song is about the passing of time and saying goodbye to a loved one. The lyrics express a sense of sadness and acceptance, as the speaker prepares to leave and asks to be forgotten without anger. The imagery of an echo in the forest might symbolize memories that linger, but the meaning is not fully clear.",
-      "AI-Generated Description": true
+      "LT Description": "„Greitai, greitai“ yra populiari išeivijos stovyklose ir kituose lietuvių pasilinksminimuose daina, kurioje kalbama apie laiką ir jo nepaliaujamą tėkmę. Ji atspindi jausmus, susijusius su svajonėmis, praeitimi ir nuolatiniu gyvenimo pokyčiu. Miško balsas simbolizuoja gamtos grožį ir ramybę, bet taip pat gali būti ir nostalgijos išraiška – priminimas apie praeitį.\n\nJą išeivijoje dainuoja ir jaunimas, ir suaugę, ir vyresnieji, ir visi joje randa artimas mintis, prisiminimus, džiaugsmą būnant kartu, nostalgiją bei liūdesį išsiskyrus.\n\nStovyklose ar šventėse dažniausiai užsimezga naujos pažintys, draugystės, meilė, kurią išlaikyti, plačiai po kraštą gyvenantiems lietuviams, yra nelengva. Dainoje raginama pamiršti praeitį ir nejausti keršto, užmiršti buvusią meilę, buvusias mielas akimirkas, kurių, deja, tęsti ar pakartoti nebegalima.\n\nVisas dainos „Greitai, greitai“ tekstas tarsi kviečia apmąstyti praeitį, atleidimą ir emocinį atstumo sukeltą skausmą. Ji perteikia gilius jausmus, kurie gali būti pažįstami daugeliui – apie meilę, praradimą ir laiką, kuris nepaliaujamai bėga. ",
+      "EN Description": "“Time Passes Swiftly” is a song popular in diaspora camp settings as well as other festive gatherings. The song speaks of the inexorable flow of time. It reveals emotions connected with our hopes, dreams, past experiences, and our ever changing life. The “voice in the forest” represents the peacefulness and beauty of nature, but its echo also creates a nostalgic mood – remembrances of things past.\n\nOur youth, adults, and seniors all sing it: each finding unique meaning, memories, joys of friendship – and also feelings of nostalgia and the sadness of separation.\n\nDuring summer camps or various festivals, new acquaintances are made and friendships (possibly romantic) blossom. Maintaining and growing these relationships is not easy for Lithuanians scattered throughout North America. The song urges us to leave the past behind and not seek revenge, to forget our previous loves and heartfelt moments – which, sad to say, cannot be continued or repeated.\n\nAll the lyrics of “Time Passes Swiftly” invite us to reflect on the past, forgiveness, and the pain of emotional distancing. The song describes deep emotions experienced by many of us: love, lost love, and the unstoppable flow of time."
     }
   },
   {
@@ -5050,17 +5029,15 @@ const songs: SongFile = [
       },
       "Translations": {
         "recLAkYY0XL1TNoP1": {
-          "Title": "Tongue-Twisters",
+          "Title": "A fast-talking tongue twister",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "A bowl floats in the pond,\nIn that bowl, porridge,\nOn that porridge, a crust, a crust,\n\nA bowl floats in the pond,\nIn that bowl, porridge,\nOn that porridge’s crust, foam.\n\nThe crane of the forest boasts\nAbout drinking good kvass in the woods.\nThe yellow rooster loudly,\nLoudly crows in the forester’s pen.\n\nThe blacksmith hammers a chisel in the smithy,\nA chisel on the anvil.\nA wasp climbs onto a sedge, and that sedge,\nAnd that sedge keeps buzzing.",
-          "AI Generated": true
+          "Lyrics": "A bowl is floating in the pond,\nThere‘s foam in the bowl,\nOn the foam there is a crust.\n\nA bowl is floating in the pond,\nThere‘s foam in the bowl,\nOn the foam there‘s a crust of bread.\n\nThe crane boasted\nThat it drank tasty kvass in the forest.\nThe yellow rooster sings loudly\nIn the forest ranger‘s cage.\n\nThe blacksmith pounds a chisel in the forge,\nA chisel on the anvil.\nA wasp climbs onto the sedge grass,\nThe sedge grass wiggles."
         }
       },
       "Music Author": "Aleksandras Stankevičius",
-      "LT Description": "Ši linksma daina naudoja greitakalbes ir žodžių žaismą, aprašydama įvairias kaimiškas scenas: bliūdą prūde, gervę, gaidį ir kalvį. Dainos tekstas labiau akcentuoja garsus ir ritmą nei aiškią istoriją. Ji gali simbolizuoti kasdienį gyvenimą kaime arba būti tiesiog smagus kalbos žaidimas.",
-      "EN Description": "This playful song uses tongue-twisters and wordplay to create a lively rhythm, describing scenes involving a bowl floating in a pond, a crane boasting about drinking kvass, a rooster crowing, and a blacksmith at work. The lyrics focus on sounds and repetition rather than telling a clear story. The song may symbolize everyday rural life or simply serve as a fun exercise in language and pronunciation.",
-      "AI-Generated Description": true
+      "LT Description": "Greitakalbės – tai smulkiosios tautosakos žanras, posakiai, garsažodžiai, kurie sudedami į posmelius dėl skambėjimo, bet nebūtinai dėl minties. Juos dažniausiai reikia tarti greitai, o tai nebūna taip lengva. Tariantysis tankiai suklysta sukeisdamas skiemenis ar žodžius vietomis, arba net patys prikuria savo panašius garsus, kurie sukelia juoką besiklausantiems, o atlikėjui - norą vėl pakartoti ir nesuklysti. Greitakalbės lavina sudėtingų junginių, skiemenų, kalbos garsų tarimą. Jos tinka ir vaikams, ir suaugusiems, ir dainininkams, ir bet kam, nes tai lyg mankšta burnai, protui, liežuviui, kvėpavimui ir priemonė gerai nuotaikai sukelti. \n\n---\n\n**Žodynas**\n- _bliūdas_: dubenėlis, dubuo, platus ir dubus apvalus indas sriubai, prausimuisi, skalbimui ir panašiai\n- _putra_: sriuba iš miltų ar kruopų: Putros pavalgęs, šieno nepjausi. Tiršta putra šeimynos nevaro. Išvirė putrą kaip debesį (skystą, juodą). Ne visų burnos putrai srėbti (folkloras). Arba, su miltais plaktas gėralas gyvuliams: Paduok veršui putros. Girdė kumelę putra.\n- _vapsva_: Vapsvos, panašiai kaip širšės, priklauso Hymenoptera šeimai. Jos pasižymi trumpesniais kūnais ir platesniais liemenimis, taip pat ryškiai geltona ir juoda spalva.\n- _viksva_: standi, šiurkšti, prasta pašarinė žolė\n- _vizg_: vizgėti, vizga, vizgėjo judėti, krutėti: Kirmėlių pilna - vizga tik vizga. vizgėjimas.\n\n",
+      "EN Description": "“Tongue twisters” are part of the popular folklore – sayings and word sounds, which are put to verse not so much for the meaning of the words, as for the sound itself. Typically the words need to be rattled off quickly – not always an easy task. Frequently, the speaker stumbles over the words, says the wrong syllable, and sometimes even makes up their own words. All this makes the listeners laugh, while the speaker wants to try again. Tongue twisters serve to improve one’s pronunciation of various word constructs, syllables, and sounds. They are suitable for young and old, as well as singers – functioning as an exercise for one’s mind, tongue, and breath control. In the end, the tongue twister is a vehicle for creating a good mood."
     }
   },
   {
@@ -5099,7 +5076,7 @@ const songs: SongFile = [
         "recDHvtCjKM36cDbZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Grįšim, grįšim ten, kur teka\nNemunėlis ir Neris,\nKur pavasarį ant tako\nObelų žiedeliai kris.\n\nKur gegutė užkukavo\nMums per sodą skrisdama,\nKur lopšely užliūliavo\nMus pirmais sapnais mama. (2 k.)\n\nKur svajonės mūsų žydi\nMūsų soduose žaliuos,\nGrįšim grįšim nepaklydę\nSvetimų kraštų keliuos.\n\nKur gegutė užkukavo..."
+          "Lyrics & Chords": "Grįšim, grįšim ten, kur teka\nNemunėlis ir Neris,\nKur pavasarį ant tako\nObelų žiedeliai kris.\n\nKur gegutė užkukavo\nMums per sodą skrisdama,\nKur lopšely užliūliavo\nMus pirmais sapnais mama. (2k.)\n\nKur svajonės mūsų žydi\nMūsų soduose žaliuos,\nGrįšim grįšim nepaklydę\nSvetimų kraštų keliuos.\n\nKur gegutė užkukavo..."
         }
       },
       "Audio": {},
@@ -5127,7 +5104,7 @@ const songs: SongFile = [
         "recgJhZp1vP8NJhXX": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Gromatėlę parašiau, parašiau,\nSakalėlio paprašiau, Paprašiau:\nNunešk, nunešk, tu raibasis,\ngromatėlę mergelei! 2x2 k.\n\nAr mane jau pamiršai, pamiršai,\nKad laiškelio nebrašai, nebrašai?!\nKas naktelę, per naktelę\nMatau tave sapnely. 2x2 k.\n\nSpaudžia skausmas širdelę, širdelę,\nKad išleidau mergelę, mergelę\nSugrįžk, sugrįžk, mergužėle,\nMan be tavęs taip ilgu. 2x2 k."
+          "Lyrics & Chords": "Gromatėlę parašiau, parašiau,\nSakalėlio paprašiau, Paprašiau:\nNunešk, nunešk, tu raibasis,\ngromatėlę mergelei! 2x2k.\n\nAr mane jau pamiršai, pamiršai,\nKad laiškelio nebrašai, nebrašai?!\nKas naktelę, per naktelę\nMatau tave sapnely. 2x2k.\n\nSpaudžia skausmas širdelę, širdelę,\nKad išleidau mergelę, mergelę\nSugrįžk, sugrįžk, mergužėle,\nMan be tavęs taip ilgu. 2x2k."
         }
       },
       "Audio": {},
@@ -5154,7 +5131,7 @@ const songs: SongFile = [
         "recGpU3cC09pNBTtV": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Grynina kalbą, jaunas ir senas,\nMums vietoj batų, „šiūsai“ vaidenas\n„Trabelis“ virsta, mums visos bėdos,\nGėlėtom „dresėm“ moterys rėdos.\n\nAi jai jai jai, angliškai išmoksim „anytime.“\n(2 k.)\n\nVyrai nešioja „kotus“ ir “sūtus“,\nToronto kriaučių dailiai pasiūtus,\nO kai pamato „stryte“ mergytę,\nTuojaus sušunka „alio“ pupyte!\n\nAi jai jai jai...\n\nVisi namuose „aisboksus“ turim,\nKuriuose laikom „salamį“: turim\n„Čikenus, steikus, kendys ir keikus“,\n„Tomato džiūsus, figus ir deitus.“\n\nAi jai jai jai...\n\n„Overtaim“ dirbam, kiekvieną dieną,\n„Klyninam florą\", vašinam“ sienas.\nEinam pas „Džianį“ pasikalbėti,\nJo nauja „karą“, apžiūrinėti.\n\nAi jai jai jai...\n\nMes lietuvaitės madą sekiojam,\nPer trumpas „dreses“ visad nešiojam,\n„Lipstikais“ paišom, „eibrous“ pešiojam,\nSu „dedys ševy“ visur važiuojam.\n\nAi jai jai jai..."
+          "Lyrics & Chords": "Grynina kalbą, jaunas ir senas,\nMums vietoj batų, „šiūsai“ vaidenas\n„Trabelis“ virsta, mums visos bėdos,\nGėlėtom „dresėm“ moterys rėdos.\n\nAi jai jai jai, angliškai išmoksim „anytime.“\n(2k.)\n\nVyrai nešioja „kotus“ ir “sūtus“,\nToronto kriaučių dailiai pasiūtus,\nO kai pamato „stryte“ mergytę,\nTuojaus sušunka „alio“ pupyte!\n\nAi jai jai jai...\n\nVisi namuose „aisboksus“ turim,\nKuriuose laikom „salamį“: turim\n„Čikenus, steikus, kendys ir keikus“,\n„Tomato džiūsus, figus ir deitus.“\n\nAi jai jai jai...\n\n„Overtaim“ dirbam, kiekvieną dieną,\n„Klyninam florą\", vašinam“ sienas.\nEinam pas „Džianį“ pasikalbėti,\nJo nauja „karą“, apžiūrinėti.\n\nAi jai jai jai...\n\nMes lietuvaitės madą sekiojam,\nPer trumpas „dreses“ visad nešiojam,\n„Lipstikais“ paišom, „eibrous“ pešiojam,\nSu „dedys ševy“ visur važiuojam.\n\nAi jai jai jai..."
         }
       },
       "Audio": {},
@@ -5268,7 +5245,7 @@ const songs: SongFile = [
         "recRrZaGf7SVqC7yG": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Į kovą, į kovą visi, kas tik gali,\nNežiūrint i skaičių baltųjų arų.\nĮ Vilnių, į Vilnių, į mylimą šalį, ]\nPrie Gedimino, prie brolių savų! 2x2 k.\n\nTen broliai mūs laukia erelio suspausti,\nBelaukdami mūsų, pražiūri akis,\nO mes čia sustoję stebuklų tik laukiam,\nKada mūs šalelėj aušrelė nušvis,\n\nTad, broliai, budėkim ir laukim to laiko,\nKai vadas galingas mums ženklą paduos\nIr vargstančius brolius iš lenkų grobikų\nNe žodžiai meilingi, bet kardas vaduos.\n\nO, vade galingas, sušauk mus prie ginklo,\nBe ginklo mums laisvės čia niekas neduos.\nTada pailsėsim, kada tiktai Vilniuj\nKalne Gedimino Vytis plevėsuos"
+          "Lyrics & Chords": "Į kovą, į kovą visi, kas tik gali,\nNežiūrint i skaičių baltųjų arų.\nĮ Vilnių, į Vilnių, į mylimą šalį, ]\nPrie Gedimino, prie brolių savų! 2x2k.\n\nTen broliai mūs laukia erelio suspausti,\nBelaukdami mūsų, pražiūri akis,\nO mes čia sustoję stebuklų tik laukiam,\nKada mūs šalelėj aušrelė nušvis,\n\nTad, broliai, budėkim ir laukim to laiko,\nKai vadas galingas mums ženklą paduos\nIr vargstančius brolius iš lenkų grobikų\nNe žodžiai meilingi, bet kardas vaduos.\n\nO, vade galingas, sušauk mus prie ginklo,\nBe ginklo mums laisvės čia niekas neduos.\nTada pailsėsim, kada tiktai Vilniuj\nKalne Gedimino Vytis plevėsuos"
         }
       },
       "Audio": {},
@@ -5295,7 +5272,7 @@ const songs: SongFile = [
         "recGn7HOAbfvONmUd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Į šeštąją skautišką šventę\nPietų Kryžius sukvietė mus.\nPasaulio penkių kontinentų ]\nSesutes ir brolius visus! 2x2 k.\n\nIš ryto daina kukabūrų\nČia aidi trimito garsuos;\nVienodas mus tikslas subūrė\nIr lydi skautybės keliuos.\n\nSujunkim rankas! Mūsų širdys\nLai dega idėja viena!\nTe žino pasaulis, lai girdi:\nMūs’ siekis -- laisva Lietuva!\n\nSkautybei tarnaut pasiryžę\nMes Nemuno žemės vaikai!\nNaujai vėl uždegs Pietų Kryžius\nSkautybės idėją šviesiai!"
+          "Lyrics & Chords": "Į šeštąją skautišką šventę\nPietų Kryžius sukvietė mus.\nPasaulio penkių kontinentų ]\nSesutes ir brolius visus! 2x2k.\n\nIš ryto daina kukabūrų\nČia aidi trimito garsuos;\nVienodas mus tikslas subūrė\nIr lydi skautybės keliuos.\n\nSujunkim rankas! Mūsų širdys\nLai dega idėja viena!\nTe žino pasaulis, lai girdi:\nMūs’ siekis -- laisva Lietuva!\n\nSkautybei tarnaut pasiryžę\nMes Nemuno žemės vaikai!\nNaujai vėl uždegs Pietų Kryžius\nSkautybės idėją šviesiai!"
         }
       },
       "Audio": {},
@@ -5324,7 +5301,7 @@ const songs: SongFile = [
         "rec6cpoBUH8fH9kWy": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Įeinu su gyriaus giesme\nį Tavo kiemus, Karaliau\nTepakyla mano širdis\nIki tavo širdies. (2 k.)\n\n     Užliek mane \n     savojo džiaugsmo versme\n     Paliesk mano lūpas \n     Savo ugnim. (2 k.)"
+          "Lyrics & Chords": "Įeinu su gyriaus giesme\nį Tavo kiemus, Karaliau\nTepakyla mano širdis\nIki tavo širdies. (2k.)\n\n     Užliek mane \n     savojo džiaugsmo versme\n     Paliesk mano lūpas \n     Savo ugnim. (2k.)"
         }
       },
       "Audio": {},
@@ -5401,16 +5378,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "rece4MnfcEXmY0oL2": {
-          "Title": "And the Little Goat Jumped In",
+          "Title": "The goat in the garden",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "And the little goat jumped into the cabbage patch. (repeat)\n\nCheerful joy,\nCheerful joy\nNa za ram cam cam\nCabulai, judyt budyt\nMy little goat.\n\nAnd the little goat ate the cabbage leaves. (repeat)\n\nAnd out came the cabbage woman with a long whip. (repeat)\n\nAnd she struck the little goat right on his belly. (repeat)",
-          "AI Generated": true
+          "Lyrics": "The goat jumped into the cabbage patch.\n\n_Meilinga džiunga,\nMeilinga džiunga\nNa za ram cam cam\nCabulai, judyt budyt_\nMy dear goat.\n\nThe goat ate all the cabbage leaves.\n\nThe housewife went out to the cabbage patch\nwith a long whip.\n\nAnd struck the goat on his hind end."
         }
       },
-      "LT Description": "Ši liaudies daina pasakoja apie ožėlį, kuris įšoko į kopūstų daržą, nuėdė kopūstų lapus, o paskui buvo nuvytas ir nubaustas daržininko su ilgu botagu. Linksmi ir kartojami žodžiai būdingi lietuvių vaikų žaidimams ir dainelėms. Ožėlis gali simbolizuoti išdaigas, bet svarbiausia čia linksma situacija.",
-      "EN Description": "This folk song tells a simple story about a goat jumping into a cabbage patch, eating the cabbage leaves, and then being chased away and punished by the gardener with a long whip. The playful and repetitive lyrics are typical of Lithuanian children's songs or games. The goat can symbolize mischief or playful trouble, but the main focus is on the humorous situation rather than a deeper meaning.",
-      "AI-Generated Description": true
+      "LT Description": "Ši daina yra jumoristinė, pamokoma ir priskiriama vaikų repertuarui. Auginant mažuosius, tikrai sulaukiame tų „ožiukų“, kurie įšoka ne laiku ir ne vietoje. Liaudis tokius kaprizėlius vadindavo ožiukais. Stebėdami gyvulėlių, žvėrelių, paukštelių elgesį kurdavo pasakas, žaidimus, daineles mažiesiems.\n\n_Ėmė bobutė ilgą votegą, Oi vei, oi vei, ilgą votegą. (votegą = botagą)_\n_Uždrožė ožiukui per pat uodegą, Oi vei, oi vei ir per pat uodegą._\n\nVienas, tačiau tikrai ne teisingiausias būdas, pateikiamas ir liaudies išmintyje, tai fizinės bausmės naudojimas, kuris žemina vaiko orumą, kelia keršto, neapykantos, baimės jausmus. Dabar vaikų auklėjimas yra žymiai nutolęs nuo fizinių bausmių naudojimo, o dainuojant šią dainą, mažai kas atkreipia dėmesį į tai kas nutinka oželiui įšokus į kopūstų daržą ir to nereikėtų detalizuotai vaikams aiškinti. Oželis įšoko į daržą, nuėdė lapus, o išėjusi šeimininkė kopūstienė jį išvarė.\n\nSekantys priedainio skiemenys yra garsažodžiai, kurie vaikams visada patinka, o dainelei jie suteikia lengvumo ir linksmumo nuotaiką. Oželiams būdavo parišami varpeliai, skambaliukai po kaklu, kad girdėtųsi kuriame kiemo gale jie randasi, tai šie skiemenys meilinga džiunga gal imituoja jų skambesį. Ciba, ciba (cabulai) buvo šaukiamos ožkos į tvartelį, o judyt budyt gal būt yra ožiukų erzinimas, kad jie badytųsi. Mažiukų ožiukų badymas yra neskausmingas, gražus ir juokingas, bet jiems užaugus geriau tokių badymų neskatinti.\n\n_Meilinga džiunga,_\n_Meilinga džiunga_\n_Na za ram cam cam_\n_Cabulai, judyt budyt_\n_Ožėli man(a)._\n\nDainelė baigiasi meiliais žodeliais ožėli man(a), kurie lyg ir padaro išvadą, kad kiek jau tos žalos oželis pridarytų, jis vis tiek yra šeimos mylimas gyvulėlis.",
+      "EN Description": "This is a humorous children‘s song, perhaps teaching a lesson. As our little ones grow up, we sometimes see these „stubborn goats“, who appear at the wrong time and in the wrong place. Common people would call a child‘s capricious behavior “a little goat” (“ožiukas”). As people observed bird or animal behavior in nature, they would create stories, games, and songs for little children.\n\nIn the past, physical discipline was part of “folk wisdom” – to teach children a lesson. Today‘s parenting has moved away from corporal punishment, considering it counterproductive, causing emotions of anger, revenge, and fear. While singing this song, few adults will pay attention to what happens to the goat when it jumps into the garden, and there is no need to explain this in detail to children. The goat jumped into the garden and ate the cabbage leaves. The housewife (“kopūstienė”) went outside and chased the goat out of the garden.\n\nThe refrain contains catchwords, which are fun for children, and bring a mood of lightness and happiness to the song. Goats used to have little bells hung around their neck, so the owner could hear where the goat was grazing. The syllables “meilinga džiunga” perhaps imitate the sound of these bells. “Ciba, ciba (cabulai)” were the words used to call a goat to return to the barn. “Judyt budyt” are perhaps the words used to call baby goats to butt heads and play with each other.\n\nThe song ends with the loving words “my dear goat” (“oželi mana”) – no matter what mischief the goat gets into, it is still a favorite animal of the family."
     }
   },
   {
@@ -5475,7 +5450,7 @@ const songs: SongFile = [
         "rec2ONvmngRYX2MEj": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Iš rytų šalelės\nSaulelė tekėjo,\nO iš vakarėlių\nDebesėliai ėjo. (2 k.)\n\nPamačiau mergelę\nKeleliu einančią,\nKaip rytų saulelę\nSkaisčiai užtekančią. (2 k.)\n\nEik, šen, mergužėle,\nPrie mano šalelės,\nMudu pakalbėsim\nDaug meilių žodelių. (2 k.)"
+          "Lyrics & Chords": "Iš rytų šalelės\nSaulelė tekėjo,\nO iš vakarėlių\nDebesėliai ėjo. (2k.)\n\nPamačiau mergelę\nKeleliu einančią,\nKaip rytų saulelę\nSkaisčiai užtekančią. (2k.)\n\nEik, šen, mergužėle,\nPrie mano šalelės,\nMudu pakalbėsim\nDaug meilių žodelių. (2k.)"
         }
       },
       "Audio": {},
@@ -5529,7 +5504,7 @@ const songs: SongFile = [
         "rec8wIPFQS04iRWYO": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Išbėgs, išbėgs pelė iš miško. (2 k.)\nTa pelė, tą grūdą,\nTas grūdas per pusę,\nTa pusė per pusę\nAvižėlių žalių.\n\nIšbėgs, išbėgs katė iš miško. (2 k.)\nTa katė, ta pelė, ta pelė, tą grūdą,\nTas grūdas per pusę,\nTa pusė per pusę\nAvižėlių žalių.\n\nIšbėgs, išbėgs šuva iš miško...\n\nIšbėgs, išbėgs lapė iš miško...\n\nIšbėgs, išbėgs vilkas iš miško...\n\nIšbėgs, išbėgs meška iš miško..."
+          "Lyrics & Chords": "Išbėgs, išbėgs pelė iš miško. (2k.)\nTa pelė, tą grūdą,\nTas grūdas per pusę,\nTa pusė per pusę\nAvižėlių žalių.\n\nIšbėgs, išbėgs katė iš miško. (2k.)\nTa katė, ta pelė, ta pelė, tą grūdą,\nTas grūdas per pusę,\nTa pusė per pusę\nAvižėlių žalių.\n\nIšbėgs, išbėgs šuva iš miško...\n\nIšbėgs, išbėgs lapė iš miško...\n\nIšbėgs, išbėgs vilkas iš miško...\n\nIšbėgs, išbėgs meška iš miško..."
         }
       },
       "Audio": {},
@@ -5800,18 +5775,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recybNByBswnbte7p": {
-          "Title": "The Sun is Already Setting",
+          "Title": "The sun is setting",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Now the little sun is setting,\nEvening draws near,\nA dark little cloud\nCovers the light.\n\nWorking people\nAfter coming home from work\nAfter a sweaty day\nRest sweetly.\n\nNow the little sun…\n\nThe wild animals lie down\nOn high little hills,\nBirds gather together\nOn branches of the trees.\n\nNow the little sun… (repeats twice)",
-          "AI Generated": true
+          "Lyrics": "The sun is setting,\nNight draws closer,\nA dark cloud\nCovers the sky.\n\nWorkmen are home\nAfter the day‘s labors\nAfter a hard day‘s work\nSweet repose.\n\nThe sun...\n\nThe forest animals are lying down\nIn the high hills,\nThe birds are perched\nOn the tree branches.\n\nThe sun..."
         }
       },
       "Music Author": "Darius Polikaitis",
       "Text Author": "Tomas Žičkus",
-      "LT Description": "Daina pasakoja apie vakarą, kai leidžiasi saulė ir ateina tamsa. Po darbo žmonės ir gyvūnai ilsisi, o gamtoje tvyro ramybė. Saulėlydis ir naktis gali simbolizuoti poilsio laiką, bet tai nėra aiškiai pasakyta.",
-      "EN Description": "The song describes the evening as the sun sets and darkness falls. People and animals rest after a day of work, and the peacefulness of nature is highlighted. The sunset and coming night might symbolize the end of a day or a time of rest, but this is not stated directly.",
-      "AI-Generated Description": true
+      "LT Description": "Skaitant eilėraštį iš pirmo žvilgsnio atrodo, kad tai poeto greitai nupieštas paprastas vaizdelis, ateina vakaras, saulutė slepiasi už debesėlių, grįžta žmonės po dienos darbų, miegelio eina visi paukšteliai ir žvėreliai. Visur ramu. Tik, kodėl saulutės šviesumą uždengė tamsus debesėlis?\n\nPanagrinėjus poeto gyvenimą darosi aiškiau, kad Tomas Žičkus gimė 1844 m., buvo 1863 m. sukilimo dalyvis, poetas, aušrininkas. Aušrininkai, tai buvo patriotinė inteligentų grupuotė, save vadinusi tėvynės mylėtojais. Įsikūrė 19 a. pabaigoje. Šiai grupuotei priklausė Marijampolės, Šiaulių gimnazijų, Veiverių mokytojų seminarijos, Žemaičių ir Seinų vyskupijų dvasinių seminarijų auklėtiniai, Maskvos, Sankt Peterburgo universitetų lietuviai studentai arba juos baigę medikai, teisininkai.\n\nAušrininkai siekė žadinti lietuvių tautą, ją telkti ir ugdyti, stabdyti krašto lenkinimą, priešintis rusinimui. Tautą suprato kaip visų luomų (ir valstiečių, ir bajorų) bendruomenę. Daugiausia dėmesio skyrė lietuvių kalbai, jos prestižui. Aušra (ėjo 1883–1886 Mažojoje Lietuvoje (Ragainėje ir Tilžėje) ir aušrininkai padėjo įtvirtinti spaudoje ir inteligentų šnekamojoje kalboje bendrinę lietuvių kalbą.\n\nTai tamsaus debelėlio simbolį galima tapatinti su buvusia priespauda, su spaudos draudimu, kurio metu Lietuvių tauta buvo mėginama nutautinti, bet mes stiprūs žmonės!\n\n---\n\n**Žodynas**\n- _Atsilsėti, silsėtis, ilsintis_: pailsėti, ilsėtis, atsigauti, „žemė nesėta pailsėjo“ dukrelė po darbų atsilsėjo, atgavo jėgas, atsigulėjo",
+      "EN Description": "At first glance, the lyrics would appear to be a simple poem, a quickly drawn sketch: evening arrives, the sun hides behind the clouds, laborers return home after a day’s work, birds and forest animals are going to sleep. Quiet and peacefulness everywhere. But why is a dark cloud obscuring light from the sun?\n\nIt becomes clearer if we take a closer look at the poet’s life. Tomas Žičkus was born in 1844 and was a revolutionary participant in the uprising of 1863. He was a poet and member of the “Aušrininkai” society. The society was formed by a group of patriotic intellectuals at the end of the 19th century. They were motivated by love of their homeland. Members were often graduates of the Marijampolė and Šiauliai high schools, Veiveriai teacher’s seminary, or the diocesan seminaries in Žemaitija and Seiniai. There were also doctors, lawyers, and university students who were studying or graduated from the universities in St. Petersburg and Moscow.\n\nThe ”Aušrininkai” society sought to organize and arouse the Lithuanian population, to put a halt to the Polonization of the country, and actively resist russification. They understood the nation to be a community including all walks of life – rich and poor, peasants and nobility. Their primary focus was to promote the usage of the Lithuanian language. Their newspaper (“Aušra”) began publishing in Lithuania Minor in 1883. “Aušrininkai” helped establish the Lithuanian language as the official spoken and written language of the nation.\n\nSo the “dark cloud” can be seen to represent the historical oppression and repressive attempts to eliminate the Lithuanian language."
     }
   },
   {
@@ -5940,15 +5913,7 @@ const songs: SongFile = [
           "URL": "https://media.dainorelis.app/jav-himnas-vaiku.pdf"
         }
       },
-      "Translations": {
-        "recjq2Ik8F4gpG8uk": {
-          "Title": "U.S. Anthem (The Star-Spangled Banner)",
-          "Variant Name": "Vertimas",
-          "EN Variant Name": "Translation",
-          "Lyrics": "Oh, can you see, by the first light of dawn, what we so proudly greeted at the last light of evening? Whose broad stripes and bright stars, through the dangerous fight, were waving so bravely above the walls we watched? And the red glare of rockets, the bombs bursting in the air, showed all night that our flag was still there. Oh, tell me, does that star-spangled banner still wave over the land of the free and the home of the brave?",
-          "AI Generated": true
-        }
-      },
+      "Translations": {},
       "Music Author": "John Stafford Smith",
       "Text Author": "Francis Scott Key",
       "LT Description": "Šioje dainoje aprašoma, kaip po sunkios kovos ankstyvą rytą matoma plazdanti vėliava. Tekste išreiškiamas pasididžiavimas vėliava ir tuo, ką ji gali simbolizuoti – laisvę ir drąsą. Svarbiausia čia stebėti vėliavą ir jos reikšmę sunkiu metu.",
@@ -5964,7 +5929,7 @@ const songs: SongFile = [
         "recWOk9J2QNfOD0Lo": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Jei patinka jums paukštytės\nTai suplot. (5 k.)\n\nJei patinka jums paukštytės\nSutrepsėt. (5 k.)\n\nJei patinka jums paukštytės\nHip valio. (5 k.)\n\nJei patinka jums paukštytės\nVisus tris / suplot / sutrepset / hip valio (5 k.)\n"
+          "Lyrics & Chords": "Jei patinka jums paukštytės\nTai suplot. (5k.)\n\nJei patinka jums paukštytės\nSutrepsėt. (5k.)\n\nJei patinka jums paukštytės\nHip valio. (5k.)\n\nJei patinka jums paukštytės\nVisus tris / suplot / sutrepset / hip valio (5k.)\n"
         }
       },
       "Audio": {},
@@ -6177,18 +6142,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "rec2XnTGWrIPR2hTt": {
-          "Title": "Firefly",
+          "Title": "The lightning bug",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "I am Jonas, the little beetle,\nI am the true forest Mona...\nAll night I must shine\nAbove the ants' little town. (2x)\n\nI must not fall asleep –\nI need to see off, to greet,\nTo shelter the traveler grasshopper\nBeneath the green forest roof.\n\nI am Jonas, the little beetle,\nI am the true forest Mona...\nAll night I must shine\nAbove the ants' little town. (2x)\n\nBut when the dawn breaks,\nI put out my lantern...\nI am the true forest Mona,\nI am Jonas, the little beetle.\n\nI am Jonas, the little beetle,\nI am the true forest Mona...\nAll night I must shine\nAbove the ants' little town. (2x)",
-          "AI Generated": true
+          "Lyrics": "_I am the bug named Jonas_\n_I am truly the phantom of the forest..._\n_All night I have to illuminate the sky_\n_Above the city of ants._\n\nI am not allowed to sleep –\nI have to meet and guide the grasshopper\nWho is traveling\nUnder the green canopy of the forest.\n\n_I am the bug named Jonas_\n_I am truly the phantom of the forest..._\n_All night I have to illuminate the sky_\n_Above the city of ants._\n\nAnd when the dawn breaks,\nI turn off my lantern.\nI am truly the phantom of the forest,\nI am the bug named Jonas.\n\n_I am the bug named Jonas_\n_I am truly the phantom of the forest..._\n_All night I have to illuminate the sky_\n_Above the city of ants._"
         }
       },
       "Music Author": "Gintautas Abarius",
       "Text Author": "Stasys Žlibinas",
-      "LT Description": "Ši daina pasakoja apie jonvabalį Joną, kuris naktį apšviečia mišką, rūpinasi mažais gyventojais ir lydi keleivius, kaip žiogą. Tekste pabrėžiama rūpestingumo, atsakomybės ir ramios nakties miške tema. Jonvabalio šviesa gali simbolizuoti viltį arba švelnų vedimą, bet tai atvira interpretacijai.",
-      "EN Description": "This song tells the story of a little firefly named Jonas who lights up the forest at night, watching over small creatures and guiding travelers like the grasshopper. The lyrics highlight themes of care, responsibility, and the quiet beauty of nighttime in the forest. The firefly's glowing light may symbolize hope or gentle guidance, but this is open to interpretation.",
-      "AI-Generated Description": true
+      "LT Description": "Graži dainuojama pasakėlė vaikams apie jonvabalį, kuris sutemus birželio mėnesį pradeda šviesti. Vabaliukas Jonas gyvena miške ir naktį jis šviečia miško mažiausiems gyventojams: skruzdėlytėms, žiogams ir kitiems, vaikų vaizduotėje sukurtiems padarėliams. Ši dainelė skatina apsilankyti miške, stebėti darnų skruzdėlyčių judėjima, įvairius vabalėlius ir įvertinti bet kokią gamtos gyvybę, kuri turi paskirtį harmoningoje mus supančioje aplinkoje.\n\n---\n\n**Žodynas**\n- _monas_: šmėkla, vaiduoklis, žmogų klaidinanti dvasia: apgavimas, burtai, kerai magija, apgaulė, akių dūmimas ir t.t",
+      "EN Description": "It’s a beautiful little story for children about a lightning bug, who begins to light up the sky as evening falls in late June. The little bug named “Jonas” lives in the forest, and at night shines for the smallest inhabitants of that environment: ants, grasshoppers, and other creatures created in a child’s imagination. This song encourages us to visit the forest, to observe the wellcoordinated work of an ant colony, to study other insects, and appreciate all the little creatures living in harmony in the environment that surrounds us."
     }
   },
   {
@@ -6342,7 +6305,7 @@ const songs: SongFile = [
         "recpeRz5bG0i7w8MS": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Kad](A) [ne](E) [auksinės vasaros,](A)\n[Ne mėlynos](E) [vosilkos,](A)\n     [Nebūtume](D) [atėję čia,](E)\n     [Kur slenka dienos pilkos.](A)  (2 k.)\n\nKur tas dulkėtas traukinys\nTaip toli nukeliavo?\n     Prisimenu mamytę aš,\n     Tas pievas, kur žaliavo. (2 k.)\n\nTaip tyliai slenka vasara,\nPražydę gėlės vysta.\n     Mes tyliai šluostom ašaras,\n     Palaidoję jaunystę. (2 k.)\n\nKad ne auksinės vasaros,\nNe mėlynos vosilkos,\n     Nebūtume atėję čia,\n     Kur slenka dienos pilkos. (2 k.)",
+          "Lyrics & Chords": "[Kad](A) [ne](E) [auksinės vasaros,](A)\n[Ne mėlynos](E) [vosilkos,](A)\n     [Nebūtume](D) [atėję čia,](E)\n     [Kur slenka dienos pilkos.](A)  (2k.)\n\nKur tas dulkėtas traukinys\nTaip toli nukeliavo?\n     Prisimenu mamytę aš,\n     Tas pievas, kur žaliavo. (2k.)\n\nTaip tyliai slenka vasara,\nPražydę gėlės vysta.\n     Mes tyliai šluostom ašaras,\n     Palaidoję jaunystę. (2k.)\n\nKad ne auksinės vasaros,\nNe mėlynos vosilkos,\n     Nebūtume atėję čia,\n     Kur slenka dienos pilkos. (2k.)",
           "Show Chords": true
         }
       },
@@ -6424,7 +6387,7 @@ const songs: SongFile = [
         "rec72waLXAHgTRY6J": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kai aš grėbiau lankoj šieną,\nŠienelį, šienelį,\nIr atjojo bernužėlis\nPas mane, pas mane. 2x2 k.\n\nPadėk, Dieve, mergužėle,\nTau šienelį grėbti!\nAr neilgu, nenuobodu\nPas močiutę augti?\n\nDėkui dėkui, bernužėli,\nUž meilius žodelius:\nMan neilgu nenuobodu\nPas močiutę augti."
+          "Lyrics & Chords": "Kai aš grėbiau lankoj šieną,\nŠienelį, šienelį,\nIr atjojo bernužėlis\nPas mane, pas mane. 2x2k.\n\nPadėk, Dieve, mergužėle,\nTau šienelį grėbti!\nAr neilgu, nenuobodu\nPas močiutę augti?\n\nDėkui dėkui, bernužėli,\nUž meilius žodelius:\nMan neilgu nenuobodu\nPas močiutę augti."
         }
       },
       "Audio": {},
@@ -6823,7 +6786,7 @@ const songs: SongFile = [
         "rect9uu76q0Tdu21c": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kaip verkiančio smuiko girdėjosi aidas\nIr sklido nakties tamsumoj,\n     Ir tu nežnojai ir tu nežinosi\n     Ko verkia motulė sena. (2 k.)\n\nŽaliuojančiam kaime užaugo trys sūnūs,\nTrys sūnūs tvirti ąžuolai,\n     Išėjo į kovą jie gint mus nuo priešo,\n     Tėvynei aukojos narsiai. (2 k.)\n\nViens žuvo Radvilišky, antras Širvintuos,\nO trečias gelsvam pajūry.\n     Veltui lauks motulė prie kaimo vartelių,\n     Trys sūnūs negrįš atgalios. (2 k.)\n\nVel suksis ratelis ir sodo klevelis\nVel glausis prie liepos lieknos,\n     Tik tu nežinojai ir tu nežinosi,\n     Ko verkia motulė sena. (2 k.)\n"
+          "Lyrics & Chords": "Kaip verkiančio smuiko girdėjosi aidas\nIr sklido nakties tamsumoj,\n     Ir tu nežnojai ir tu nežinosi\n     Ko verkia motulė sena. (2k.)\n\nŽaliuojančiam kaime užaugo trys sūnūs,\nTrys sūnūs tvirti ąžuolai,\n     Išėjo į kovą jie gint mus nuo priešo,\n     Tėvynei aukojos narsiai. (2k.)\n\nViens žuvo Radvilišky, antras Širvintuos,\nO trečias gelsvam pajūry.\n     Veltui lauks motulė prie kaimo vartelių,\n     Trys sūnūs negrįš atgalios. (2k.)\n\nVel suksis ratelis ir sodo klevelis\nVel glausis prie liepos lieknos,\n     Tik tu nežinojai ir tu nežinosi,\n     Ko verkia motulė sena. (2k.)\n"
         }
       },
       "Audio": {},
@@ -7084,17 +7047,15 @@ const songs: SongFile = [
       },
       "Translations": {
         "recfvuGI8Tq0ddFG2": {
-          "Title": "The Little Blacksmith",
+          "Title": "The blacksmith",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Tin, I hammer and hammer all day long,\nThe little plough, just one for me.\nTin, I hammer and hammer all day long,\nThe little plough, tin tin tin.\n\nThe ploughman will harness two oxen,\nHe’ll draw a deep furrow across the field.\n\nTin tan tin tan\nTin tan tin tan tan\nTin tan tin tan\nTin tan tin tan tan tan tan\n\nTin tan tin tan\nTin tan tin tan tan\nTin tan tin tan\nTin tin tin tin tan tan tan\n\nTin, I hammer and hammer all day long,\nTin, that one little plough for me,\nTin tan tin tan tin tan\nTin, the little plough, tin tin tin.",
-          "AI Generated": true
+          "Lyrics": "(_Tin_) I hammer the plow\nAll day by myself.\n(_Tin_) I hammer the plow\nAll day _tin tin tin_.\n\nThe ploughman will harness two oxen\nAnd run a deep furrow through the field.\n\n_Tin tan tin tan_\n_Tin tan tin tan tan_\n_Tin tan tin tan_\n_Tin tan tan tan tan tan_\n\n_Tin tan tin tan_\n_Tin tan tin tan tan_\n_Tin tan tin tan_\n_Tin tin tin tin tan tan tan_\n\n(_Tin_) I hammer the plow\n(_Tin_) All day by myself.\n_Tin tan tin tan tin tan_\n(_Tin_) The plow _tin tin tin_."
         }
       },
       "Music Author": "Jonas Švedas",
-      "LT Description": "Šioje dainoje pasakojama apie žmogų, kuris visą dieną kala mažą arklą. Taip pat minimas artojas, kuris su dviem jaučiais aria lauką. Kartojami garsai primena kalvystės garsus ir gali simbolizuoti kaimo gyvenimą.",
-      "EN Description": "This song tells about a person working all day, forging a small plough. The lyrics mention a ploughman harnessing two oxen and making a deep furrow in the field, which may symbolize hard work or daily rural life. The repeated rhythmic syllables imitate the sounds of metalwork and may reflect the traditional Lithuanian rural setting.",
-      "AI-Generated Description": true
+      "LT Description": "_Tin kalu kalu per dieną_\n_žagrelę aš viena_\n_Tin kalu kalu per dieną_\n_žagrelė tin tin tin._\n\n**Kalvelis** – smagi ir lengva, darbą apdainuojanti dainelė, kurioje sunkios kalvio ir artojo profesijos, iš šono atrodo labai lengvos. Pirmame posme kalvis kala žagrelę.\n\n**Žagrelė, žagrė** – senovinis padargas žemei arti, purenti, apdirbti. Žagrę traukdavo pakinkytas į ją arklys ar jautis.\n\nAntrame posmelyje artojėlis, pasikinkęs du jautelius, suars lauką: gilią vagą išvarys.\n\n**Garsiažodžiai**: _Tin tan tin tan_ ir t.t. imituoja iš kalvės sklindančius garsus kalant metalą.\n\nSmagi dainelė vaikams ir suagusiems prisimenant vaikystę.",
+      "EN Description": "“The Blacksmith” is a light and cheerful song describing the hard-working labors of the blacksmith and the plowman, which to the uninformed might appear to be easy professions. In the first verse, the blacksmith is hammering a plow. The plow (“žagrelė”) is an ancient implement used to break up, till, and cultivate the soil. Horses or oxen would be harnessed to pull the plow. In the second verse, the farmer yokes a pair of oxen and plows the entire field.\n\n“Tin tan tin tan” are sound making syllables which imitate the ringing noises emanating from the smithy as the hammer strikes a metal object. The song is fun for children and reminds grownups of their childhood."
     }
   },
   {
@@ -7105,7 +7066,7 @@ const songs: SongFile = [
         "recnoWvBncOKPm7lu": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kam pastatei aukštą svirną\nKam atvedei ristą žirgą\nKam paklojai šalavijų lovą. 2 k.\nTau pastačiau aukštą svirną\n\nTau atvedžiau ristą žirgą\nTau paklojau šalavijų lovą. 2 k.\nMan nereikia aukšto svirno\nMan nereikia risto žirgo\n\nMan nereikia šalavijų lovos. 2 k.\nAukštam kalne aš gulėsiu\nTėvą motiną mylėsiu\nMan nereikia šalavijų lovos. 2 k."
+          "Lyrics & Chords": "Kam pastatei aukštą svirną\nKam atvedei ristą žirgą\nKam paklojai šalavijų lovą. 2k.\nTau pastačiau aukštą svirną\n\nTau atvedžiau ristą žirgą\nTau paklojau šalavijų lovą. 2k.\nMan nereikia aukšto svirno\nMan nereikia risto žirgo\n\nMan nereikia šalavijų lovos. 2k.\nAukštam kalne aš gulėsiu\nTėvą motiną mylėsiu\nMan nereikia šalavijų lovos. 2k."
         }
       },
       "Audio": {},
@@ -7213,15 +7174,7 @@ const songs: SongFile = [
           "URL": "https://media.dainorelis.app/kanados-himnas-vaiku.pdf"
         }
       },
-      "Translations": {
-        "rect9zjomzsMRRuB5": {
-          "Title": "Anthem of Canada (O Canada)",
-          "Variant Name": "Vertimas",
-          "EN Variant Name": "Translation",
-          "Lyrics": "O Canada! Our home and native land!\nTrue patriot love in all of us command,\n\nFor your arm knows how to wield the sword,\nIt knows how to carry the cross!\nYour story is an epic,\nOf the brightest deeds,\n\nGod keep our land glorious and free!\nO Canada, we stand on guard for thee.\n\nO Canada, we stand on guard for thee.",
-          "AI Generated": true
-        }
-      },
+      "Translations": {},
       "Music Author": "Calixa Lavalée",
       "Text Author": "Adolphe-Basile Routhier & Stanley Wier",
       "LT Description": "Ši daina išreiškia meilę ir pasididžiavimą savo tėvyne, kalba apie jos stiprybę ir drąsą, prašo Dievo apsaugos ir laisvės. Tekste naudojamos anglų ir prancūzų kalbos, kas gali simbolizuoti tautos vienybę ir įvairiapusiškumą. Pagrindinė tema – ištikimybė šaliai ir pažadas ją ginti.",
@@ -7265,7 +7218,7 @@ const songs: SongFile = [
         "recXveSHIidjE7kaE": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[  ](Am) [ ](F) [ ](G) [  ](Am)\nKaro dūmai kyla link dausų dievų namuos,\nTai tie šunys kryžiaus juodo degina miškus.\nKas jei ne žemaičiai broliai juos besustabdys,\nnebegręs šalelei mielai badas ir mirtis.\n\n_Priedainis 2 k_\n\n[ ](C) [ ](G) [  ](Am)\nPasiėmęs kalaviją, aštrą, jis vijo kryžiuoti iš savo šalies\n\nO mergele mano miela sugrįšiu aš namo,\nTik supuok kūdikėlį mūsų rankose savuos,\nAš sugrįšiu nepaskendęs karo liepsnose,\nNes dievai mus su tavim stebėjo kol aš buvau kare.\n\n_Priedainis 2 k_\n\nNa o jeigu aš negrįšiu tu sūnui nemeluok,\nPasakyk, kad tėvas krito kovoje miškuos,\nO sūnau už mane atkeršyk kryžeivio negailėk,\nir prie savo tėvo kapo ašarų neliek\n\n_Priedainis 2 k_\n\nKaro dūmai kyla link dausų dievų namuos,\nTai tuos šunis kryžiaus juodo deginam laužuos,\nAš sugrįžau nepaskendęs karo liepsnose,\nO mergele mano miela sugrįžtu pas tave",
+          "Lyrics & Chords": "[  ](Am) [ ](F) [ ](G) [  ](Am)\nKaro dūmai kyla link dausų dievų namuos,\nTai tie šunys kryžiaus juodo degina miškus.\nKas jei ne žemaičiai broliai juos besustabdys,\nnebegręs šalelei mielai badas ir mirtis.\n\n_Priedainis 2k_\n\n[ ](C) [ ](G) [  ](Am)\nPasiėmęs kalaviją, aštrą, jis vijo kryžiuoti iš savo šalies\n\nO mergele mano miela sugrįšiu aš namo,\nTik supuok kūdikėlį mūsų rankose savuos,\nAš sugrįšiu nepaskendęs karo liepsnose,\nNes dievai mus su tavim stebėjo kol aš buvau kare.\n\n_Priedainis 2k_\n\nNa o jeigu aš negrįšiu tu sūnui nemeluok,\nPasakyk, kad tėvas krito kovoje miškuos,\nO sūnau už mane atkeršyk kryžeivio negailėk,\nir prie savo tėvo kapo ašarų neliek\n\n_Priedainis 2k_\n\nKaro dūmai kyla link dausų dievų namuos,\nTai tuos šunis kryžiaus juodo deginam laužuos,\nAš sugrįžau nepaskendęs karo liepsnose,\nO mergele mano miela sugrįžtu pas tave",
           "Show Chords": true
         }
       },
@@ -7456,7 +7409,7 @@ const songs: SongFile = [
         "recanLprmiP926fLj": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kas subatos vakarėlį, oi oi oi!\nPyniau rūtų vainikėlį,\nOi oi oi oi oi oi oi! 2x2 k.\n\nNusipynus vainikėlį oi oi oi !\nUžsidėjau ant galvelės…\n\nUžsidėjus ant galvelės,\nĖjau vaikščiot su berneliu…\n\nIr pakilo šiaurys vėjas\nIr nupūtė vainikėlį…\n\nIr nupūtė vainikėlį\nĮ gilųjį Duonojėlį…\n\nAnoj pusėj Nemunėlio\nStovi pulkas bernužėlių…\n\nIš to pulko atsirado,\nUž vainiką galvą deda…\n\nVainikėlis plaukte plaukia,\nBernužėlis šaukte šaukia…\n\nVainikėlis ant krantelio,\nBernužėlis ant dugnelio…"
+          "Lyrics & Chords": "Kas subatos vakarėlį, oi oi oi!\nPyniau rūtų vainikėlį,\nOi oi oi oi oi oi oi! 2x2k.\n\nNusipynus vainikėlį oi oi oi !\nUžsidėjau ant galvelės…\n\nUžsidėjus ant galvelės,\nĖjau vaikščiot su berneliu…\n\nIr pakilo šiaurys vėjas\nIr nupūtė vainikėlį…\n\nIr nupūtė vainikėlį\nĮ gilųjį Duonojėlį…\n\nAnoj pusėj Nemunėlio\nStovi pulkas bernužėlių…\n\nIš to pulko atsirado,\nUž vainiką galvą deda…\n\nVainikėlis plaukte plaukia,\nBernužėlis šaukte šaukia…\n\nVainikėlis ant krantelio,\nBernužėlis ant dugnelio…"
         }
       },
       "Audio": {},
@@ -7622,7 +7575,7 @@ const songs: SongFile = [
         "recCK3hSFVhSI8pYg": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Ilgas](G) [kelias](C) [tarp trumpų](Am) [naktų,](G)\nIlgas kelias, bet man vėl neramu.\nDvelkia naktys virpančiu šalčiu.\nAš norėčiau priglust prie tavųjų pečių.\nAš miegočiau tavo glėbyje\nIr sapnuočiau mudu danguje,\nBet keliauju aš kažkur toli.\nKur dingai, miela, šiam ilgam kely?\n\n_[Su tavim](D) [kartu,](G) [būt](D) [su tavim kartu,](Am)\n[Prie tavęs](C) [prisiglausti.](D)\n\n[Man labai](D) [sunku,](G) [kur tu](D) [pradingai,](Am)\n[Pradingai?](D)_\n\nIlgos naktys, žvaigždės danguje,\nPasiilgau būt tavo glėbyje.\nKeistos mintys sukasi ratu.\nKelias pasibaigs ir vėl mes būsim kartu.",
+          "Lyrics & Chords": "[Ilgas](G) [kelias](C) [tarp trumpų](Am) [naktų,](G)\nIlgas kelias, bet man vėl neramu.\nDvelkia naktys virpančiu šalčiu.\nAš norėčiau priglust prie tavųjų pečių.\nAš miegočiau tavo glėbyje\nIr sapnuočiau mudu danguje,\nBet keliauju aš kažkur toli.\nKur dingai, miela, šiam ilgam kely?\n\n_[Su tavim](D) [kartu,](G) [būt](D) [su tavim kartu,](Am)_\n_[Prie tavęs](C) [prisiglausti.](D)_\n\n_[Man labai](D) [sunku,](G) [kur tu](D) [pradingai,](Am)_\n_[Pradingai?](D)_\n\nIlgos naktys, žvaigždės danguje,\nPasiilgau būt tavo glėbyje.\nKeistos mintys sukasi ratu.\nKelias pasibaigs ir vėl mes būsim kartu.",
           "Show Chords": true
         }
       },
@@ -7652,7 +7605,7 @@ const songs: SongFile = [
         "rec3wFkFqIqcrVJoD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Pabundu](C) [anksti ryte,](Am) [kai](G) [žvaigždės kelyje,](C)\n[Nežinau ar](C) [ši diena](Am) [pakeis](G) [mane ar ne.](C)\n[Kas iš tikro](C) [lauks](Am) [manęs](G) [nežinomam krante,](C)\n[Ar apgaulė,](C) [ar tiesa](Am) [savam](G) [draugų rate?](C)\n\n_[Aš](C) [pakeliu](Am) [rankas](C) [-](G) [užmerkiu](Em) [akis](Am)\n[Pradedu](C) [suprast](G) [-](Em) [dienos šios negrįš.](Am)\n[Išeisiu](C) [pro](G) [vartus](Em), [nesulaukęs ...](Am)\n\nNežinau ką aš jaučiu: man gera ar baisu\nNoris rėkti kiek gali nesavu balsu\nNoriu, kad galų gale tos žvaigždės kelyje\nIšsirinkt, kol nevėlu kuriuo man eit keliu.",
+          "Lyrics & Chords": "[Pabundu](C) [anksti ryte,](Am) [kai](G) [žvaigždės kelyje,](C)\n[Nežinau ar](C) [ši diena](Am) [pakeis](G) [mane ar ne.](C)\n[Kas iš tikro](C) [lauks](Am) [manęs](G) [nežinomam krante,](C)\n[Ar apgaulė,](C) [ar tiesa](Am) [savam](G) [draugų rate?](C)\n\n_[Aš](C) [pakeliu](Am) [rankas](C) [-](G) [užmerkiu](Em) [akis](Am)_\n_[Pradedu](C) [suprast](G)[ - dienos](Em) [šios negrįš.](Am)_\n_[Išeisiu](C) [pro](G) [vartus](Em), [nesulaukęs ...](Am)_\n\nNežinau ką aš jaučiu: man gera ar baisu\nNoris rėkti kiek gali nesavu balsu\nNoriu, kad galų gale tos žvaigždės kelyje\nIšsirinkt, kol nevėlu kuriuo man eit keliu.",
           "Show Chords": true
         }
       },
@@ -7832,7 +7785,7 @@ const songs: SongFile = [
         "recUnNnD3EJC06Sns": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kokiais keliais bekeliaučiau,\nTėviškėn mintys nuves.\nO mylimas mano krašte,\nNuolat ilgiuosi tavęs.\n\nKampelis širdžiai brangus, esi pasauly tu vienas,\nNamo vilioji mane, tu perle pajūrio mielas (2 k.)\n\nJūros bangas neškit vėjai,\nNeškit gimtinėn greičiau,\nKrašto gražesnio pasauly,\nDar ligi šiol nemačiau.\n\nKampelis…..\n\nBangos į krantą liūliavo,\nNiekad pamiršt negaliu,\nČia kažkada aš klajojau,\nSu mylimąja kartu.\n\nKampelis…\n"
+          "Lyrics & Chords": "Kokiais keliais bekeliaučiau,\nTėviškėn mintys nuves.\nO mylimas mano krašte,\nNuolat ilgiuosi tavęs.\n\nKampelis širdžiai brangus, esi pasauly tu vienas,\nNamo vilioji mane, tu perle pajūrio mielas (2k.)\n\nJūros bangas neškit vėjai,\nNeškit gimtinėn greičiau,\nKrašto gražesnio pasauly,\nDar ligi šiol nemačiau.\n\nKampelis…..\n\nBangos į krantą liūliavo,\nNiekad pamiršt negaliu,\nČia kažkada aš klajojau,\nSu mylimąja kartu.\n\nKampelis…\n"
         }
       },
       "Audio": {},
@@ -7930,16 +7883,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recNh9EFVbUdYffD4": {
-          "Title": "Dowry Linens",
+          "Title": "Linens for my dowry",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "I have been taught with care,\nI know well how to weave,\nMy little shuttle glides so nicely,\nIt never snags the thread.\n\nPop pop tap tap clap clap",
-          "AI Generated": true
+          "Lyrics": "I‘ve been taught well,\nI can weave skillfully,\nThe shuttle flies through the loom\nNot catching on the threads.\n\n_Pykšt pokšt tapu pupu klepu klepu_"
         }
       },
-      "LT Description": "Daina pasakoja apie merginą, kuri moka gražiai austi ir džiaugiasi savo įgūdžiais. Linksmi garsai priedainyje gali priminti audimo garsus. Tai gali būti susiję su lietuvišku kraitiniu audimu, kai merginos ruošdavo audinius vestuvėms, bet dainoje tai nepasakyta tiesiogiai.",
-      "EN Description": "The song describes a young woman who has learned to weave skillfully and takes pride in her ability to use the loom. The playful sounds in the chorus may represent the rhythmic noises of weaving. This could symbolize traditional Lithuanian dowry weaving, where girls would prepare handmade textiles for their marriage, but it is not stated directly in the text.",
-      "AI-Generated Description": true
+      "LT Description": "Lietuvos kaimo visuomenėje audimas buvo reikalingas šeimos buities poreikiams, todėl beveik kiekviena moteris/mergina buvo mokinama austi. Audėjėlės amato dukros mokėsi šeimoje. Kai kur audėjais buvo ir vyrai. Žmonės audė šeimai rūbus, patalynę, patiesalus ir užtiesalus, nes pirkti buvo brangu. Paprastai kaime moterys sėsdavo į stakles pavasarį per gavėnią, kai laisvesnis metas nuo kitų ūkio darbų. Pavasarį austi buvo stengiamasi dar ir dėl to, kad per žiemą būdavo priverpta pakankamas kiekis siūlų, kurių nebuvo galima ilgai laikyti, nes pagulėję jie audžiant trūkinėdavo ir šiaušdavosi. Staklės visada būdavo statomos šviesiausiame gryčios kampe.\n\nDaugelis kaimo moterų mokėjo austi drobę, vadinamuosius „paprastus“ audinius: nesudėtingų raštų lovatieses, rankšluosčius, staltieses. Šie raštai dažniausiai buvo nusižiūrimi ir interpretuojami. Audiniai buvo puiki dovana vestuvių proga vyro giminei, kraičio skryniai prikrauti, šeimą apvilkti. Mažai buvo tokių, kurie iš audimo pragyveno. Laikui bėgant, atsiradus fabrikuose austų audeklų, tradicinis audimas kaime pamažu nyko.\n\nŠi trumputė dainelė ar/ir šokis apie mergelę, kuri visiems primena, kad jos gražus audimas yra nuopelnas jos mokytojų. Šaudyklėlė gražiai pralenda pro nytis neužgaudama, nesuveldama siūlų. _Pykšt pokšt tapu pupu klepu klepu_ – tai audimo stakles imituojanys garsažodžiai.\n\n---\n\n**Žodynas**\n- _šaudyklėlė_: įtaisas įdėti šeivai audimo staklėse/audžiant\n- _šeiva_: pailgos cilindrinės formos siūlų ritė vienu kūginiu, kitu pusapvaliu arba abiem kūginiais galais. Sudaroma ant tūtelės žiediniame verptuve, verpimo arba žiedinėje sukimo mašinoje\n\n---\n\n**Šaltiniai:**\n- Ethnicart.lt (lietuviškas pavadinimas - Prigimtis.lt)\n- https://www.lrt.lt/naujienos/kultura/12/1918051/libertas-klimka-isausti-audimeli\n- ir kitų internetinių svetainių medžiaga",
+      "EN Description": "In Lithuanian village life, weaving was a skill necessary to provide for a family’s household needs. As a result every young girl was taught how to weave. The skill was learned at home in the family environment. Sometimes men would weave as well. Clothes, bedcovers, rugs, and tablecloths were woven for family use, because they were expensive to purchase. Village women would work at their loom most frequently during the Lenten season and in springtime, as this was the time of year requiring less attention to farmwork. An additional reason for weaving in spring was that the threads spun in winter needed to be used without delay, before they became brittle or rough. The loom would always be stationed in the best lit corner of the house.\n\nMost village women knew how to weave “ordinary” linens: bedcovers, towels, and tablecloths made with simple patterns. Woven products were an excellent means to clothe one’s family or fill up a dowry chest. Few could make a living solely from weaving. As time went on and factories began to mass produce woven goods, the tradition of weaving faded from village life.\n\nThis brief song (or dance) describes a young girl who reminds everyone that her skillful weaving should be attributed to her masterful teachers. The shuttle flies smoothly through the loom not catching on the threads. “_Pykšt pokšt tapu pupu klepu klepu_” are noisemaking syllables, imitating the sound of a working loom.\n\n---\n\n**Sources**\n- Ethnicart.lt\n- https://www.lrt.lt/naujienos/kultura/12/1918051/libertas-klimka-isausti-audimeli\n- and other websites."
     }
   },
   {
@@ -7950,7 +7901,7 @@ const songs: SongFile = [
         "rec13mX4XeBSK6yCR": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Krambambulis – tai palikimas,\nKą gėrė mūs tėvai.\nVienintelis yra linksmumas,\nKai susirenka draugai.\n\nEi juli, tuomet kaip mes juli, juli,\nKai išgeriam krambambulį,\nKram, krim, krambambulį,\nKrambambuli!\nPo šimts velnių, krambambulį (2 k.)\nKram, krim, krambambulį\nKrambambulį!\n\nTėvelis rašo sūnui laišką\nAr mokslus jau baigei?\nSūneliui viskas yra aišku\nTik su pinigu blogai.\n\nEi juli...\nKai kartais tenka užvažiuoti\nĮ blaivią arbatinę,\nNegalim mes nei papietauti,\nNepažvelgę į degtinę.\n\nEi juli...\n"
+          "Lyrics & Chords": "Krambambulis – tai palikimas,\nKą gėrė mūs tėvai.\nVienintelis yra linksmumas,\nKai susirenka draugai.\n\nEi juli, tuomet kaip mes juli, juli,\nKai išgeriam krambambulį,\nKram, krim, krambambulį,\nKrambambuli!\nPo šimts velnių, krambambulį (2k.)\nKram, krim, krambambulį\nKrambambulį!\n\nTėvelis rašo sūnui laišką\nAr mokslus jau baigei?\nSūneliui viskas yra aišku\nTik su pinigu blogai.\n\nEi juli...\nKai kartais tenka užvažiuoti\nĮ blaivią arbatinę,\nNegalim mes nei papietauti,\nNepažvelgę į degtinę.\n\nEi juli...\n"
         }
       },
       "Audio": {},
@@ -8182,18 +8133,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recpDptGsWp4A3W7r": {
-          "Title": "Kupolinis (Midsummer Festival Song)",
+          "Title": "Midsummer night festivities",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "There, by father’s manor, the birches swayed,\nTender branches I gently lulled, gently lulled.\n\nBut who will cut those tender branches,\nAnd on St. John’s Night build the fires?\n\nThe eldest brother will cut the branches,\nThe youngest sister will light the fires.\n\nBlooming in the wreath, you little wreath,\nHow can I find a sweetheart for myself?\n\nAh, ah, ah, kupolia, kupolia,\nAh, ah, ah, little kupolė, kupolia.\n\nWe’ll dance through the night, kupolia,\nWith young lads in the dark little grove.",
-          "AI Generated": true
+          "Lyrics": "The birch trees swayed on my father’s estate\nWillowy branches _liūliau liūliau_.\n\nWho will chop those willowy branches?\nWho will light the bonfire on St. John’s eve?\n\nThe oldest brother will chop the branches,\nThe youngest sister will light the bonfire.\n\nO blossoming wreath, dear wreath,\nHow can I find myself a young man?\n\n_A, a, a, kupolia, kupolia_\n_A, a, a, kupolėli, kupolia._\n\nWe will dance all night, _kupolia_,\nWith the young men in the dark forest."
         }
       },
       "Music Author": "Balys Dvarionas",
       "Text Author": " Eduardas Pilypaitis",
-      "LT Description": "Šioje dainoje pasakojama apie Joninių arba Kupolinių papročius: šakelių rinkimą, ugnies kūrimą ir vainikų pynimą. Daina gali simbolizuoti jaunimo viltį sutikti mylimąjį ir artumą su gamta per šią šventę.",
-      "EN Description": "This song describes traditional activities during the midsummer festival, known as Joninės or Kupolinės in Lithuania. The lyrics mention birch trees, collecting branches, lighting fires, and searching for a beloved, all of which are part of ancient rituals celebrating nature and romance. The song may symbolize the hope of finding love and the connection between people and nature during this important holiday.",
-      "AI-Generated Description": true
+      "LT Description": "**Kupolinis** – kalendorinė daina-šokis priskiriamas Joninių švenčių temai, kurių tradicijos artimai siejasi su gamtos reiškiniais – saulėgrįža. Dainos, žaidimai, šokiai, apeigos, Joninių švenčių metu, tai žmogaus noras daryti įtaką derliui, vaisingumui, užtikrinti asmeninio gyvenimo sėkmę. Tiek vyrai, tiek moterys šį vasaros saulėgrįžos metą sieja su vilčių ir lūkesčių išsipildymu. Šviesa, laimė, gyvenimo džiaugsmas - visa, atrodo, žengia pro gyvybės angą.\n\nPirmame dainos posme „piešiamas“ vaizdas: tėvelio dvaras, kuriame auga beržas, siūbuoja šakos, artėja Joninių naktis ir bus kuriama ugnelė. O kas ją kurs?\n\n**Dvaras**, dvarelis, tai dainose ir kitose tautosakos rūšyse vadinamos kaimo žmonių sodybos nieko bendro neturinčios su turtingųjų dvarais.\n\n**Beržas**, beržo tošis – ilgai degantis medis buvo plačiai naudojamas Joninių laužams kurti. Beržų šakelėmis būdavo išpuošiami namai Švenčiausios Trejybės (Devintinių) metu, o Joninių naktį iš tų beržų šakų sukraudavo didžiausius laužus. Buvo tikima, kad laužo ugnis, apšviesdama laukus, pasėlius, apsaugo juos nuo visokių gamtos stichijų, blogų dvasių, raganų ar užkalbėjimų. Laužus kurdavo ir ganyklose dėl galvijų gerovės.\n\n**Ugnis** – labai svarbi Joninių nakties dalis buvo laužo kūrimas, laužo liepsna. Tai šviesa, šiluma, judėjimas ir gyvybė. Tautosakoje saulė, saulelė buvo vadinama motulės vardu, o per Jonines, kada saulė buvo aukščiausiame dangaus taške, jos vaidmenį žemėje atlikdavo laužas. Laužų kūrenimas buvo pagarba saulei, be kurios nebūtų gyvybės.\n\nAntrame posmelyje - atsakymas į iškeltą klausimą kas ugnelę kurs? - brolelis pasirūpins dėl laužo šakų, jauniausia sesutė užkurs ugnelę, o mergelė pins vainiką ir rūpinsis kaip susirasti bernužėlį. Laužo kūrimo apeigas dažniausiai atlikdavo svarbus ir gerbiamas žmogus: vyriausias Jonas, garbingiausias kaimo senolis, svarbiausias šeimos narys ar panašiai. Šioje dainoje laužo kūrimas patikėtas vyriausiam broliui, kuris šeimoje būdavo atsakingas už ūkį, senų tėvų priežiūrą, seserims kraičio parūpinimą, jų ištekinimą. Jam padės jauniausia sesula, kuri tikriausiai neužilgo irgi pinsis vainiką ir ieškos bernelio.\n\n_Žydintis vainike, tu vainikėli_\n_Kaip man surasti sau bernužėlį._\n\n**Vainikas** - nemirtingumo ir meilės simbolis, kuriuos pynė merginos. Gėles skindavo pievose, savo užaugintuose darželiuose, taip pat į vainikus įpindavo ir įvairių medžių šakeles, lapus, vijoklius. Tikėta, kad žolynai, supinti į vainiką, įgauna ypatingų galių. Vainikas, būdamas apskritimo formos, laikomas saulės ženklu, jos simboline išraiška, jis tampa tam tikra apsauga. Ąžuolo lapų vainikai, simbolizuojantys stiprybę, buvo pinami ir dovanojami Jonams ir Janinoms arba kabinami ant varduvininkų namo durų.\n\nSaulė, ugnis/šiluma, vanduo - tai gyvybė, tai motina, o kad ja tapti, reikia išsirinkti bernelį, sukurti šeimą. Joninių naktis stebuklinga, nes jos metu, atliekant įvairias apeigas, buvo tikima, kad galima nuspėti savo ateitį, su kuriuo berneliu teks kurti gyvenimą. \n\n_A, a, a, kupolia, kupolia_\n_A, a, a, kupolėli, kupolia._\n_Šoksim per naktely, kupolia,_\n_Su bernužėliais tumsioj girelėj._\n\n**Kupolia** – tai augmenijos klestėjimo, viešėjimo šventė. Manoma, kad senasis šventės pavadinimas kilęs iš žodžio kūpėti – gerai augti, viešėti. Kupoliavimas (gydomųjų ir pievos žolių rinkimas per Kupolines) – vienas iš svarbių apeiginių momentų. Kupoliauti, kupolioti ir pan. reiškia ne tik dainuojant rinkti žoles, bet ir švęsti Joninių išvakares, šokti, linksmintis.\n\n_Šoksim per naktely, kupolia_ – prie laužo šokdavo ir per laužą šokinėdavo ne tik jaunimas, bet ir suaugusieji, tikėdamiesi pasisemti sveikatos, skatinti javų ir linų augimą. Šokinėjant aukštyn tarsi norėta pasiekti pačią saulę, pasisemti iš jos gyvybės ir sveikatos.\n\nŠtai, sudėjus visus dainoje panaudotus simbolius, Joninių naktis ir jos metu atliekami ritualai, apeigos, žaidimai, kupoliavimas buvo ne tik dvasinio atsinaujinimo, meditacijos, tikėjimų, bet ir pasilinksminimo bei džiaugsmo šventė, sutelkianti visus gyvybės, laikinumo ir atsinaujinimo apmąstymams. \n\n---\n\n**Šaltiniai:**\n- Vydūnas, Raštai, IV t.,p. 35-39\n- Kupole Rože (Sekminių-Joninių papročiai ir tautosaka) Vilnius 2003",
+      "EN Description": "The traditions associated with the festivities of St. John’s eve are closely related to the phenomenon of nature known as the summer solstice. The songs, games, dances, and rituals all reflect an individual’s hope to positively influence the harvest, fertility, and success in life. Men and women equally connect the summer solstice with the fulfillment of hopes and dreams. Light, fortune, happiness – it seems all of these proceed through the portal of life.\n\nThe first verse draws a picture: the father’s estate, white birch trees, swaying branches – St. John’s eve is approaching and fires will be lit. Who will light the bonfire?\n\nThe **estate**. This is a simple village homestead, not a wealthy landowner’s estate.\n\nThe **birch tree**. Birch bark and wood are known as excellent firewood, and were commonly used in bonfires. Birch tree branches were used to decorate homes for the feast of the Holy Trinity (the Sunday after Pentecost). On St. John’s eve birch tree branches were piled up to build massive bonfires. It was believed that the light from the bonfires, as it illuminated the surrounding, newly planted fields, would protect them from any harm caused by nature, evil spirits, or witches’ incantations. Bonfires would also be lit in pastures to ensure the well-being of grazing cattle.\n\n**Fire**. The lighting of bonfires was an exceptionally important part of St. John’s eve rituals. Fire provided light, warmth, and symbolized vitality and life. In folklore, the sun was called “mother”: during the summer solstice, when the sun was at its highest peak, the bonfire took the sun’s place on earth. The burning of bonfires was a way to show respect for the sun, without which there would be no life.\n\nThe subsequent verses explain how the bonfire activities would proceed. The oldest brother will gather the branches; the youngest sister will light the fire; the young girl will weave a wreath and concern herself with finding a suitable young man. Bonfire rituals were typically entrusted to an important and respected person: the most senior village elder, the most important family member, the oldest person named John, and so on. In this song, preparation of the bonfire is entrusted to the oldest brother, who is responsible for the welfare of his parents, for providing dowries for his sisters, and also finding them suitable marriage partners. He will be assisted by his youngest sister, who in all likelihood will soon be weaving a wreath and searching for a young man. “O blossoming wreath, dear wreath, how can I find myself a young man?”\n\nThe **wreath** is a symbol of love and immortality. Young girls would weave wreaths from flowers grown in their own garden, from wildflowers picked in the fields, also sometimes incorporating small tree branches, leaves, and vines. It was believed that greenery woven into a wreath gained extraordinary powers. Because a wreath formed a circle, it was a representation of the sun, and had a protective connotation. Wreaths made from oak leaves signified strength. These wreaths would be presented to those named John or Jane, or provided to decorate the front door of their home.\n\nThe sun, fire, warmth, water – all indicate life and motherhood. But to become a mother, a young woman needed to find a young man and start a family. St. John’s eve was a magical night, because by performing certain rituals, it was believed that one could foretell the future – in particular, which young man would be one’s life partner.\n\n“Kupolia” or “Kupolinės” are ancient names for this feast, which celebrates the growth of all plant life. Variations of this word describe actions taken during this period of time. The verb “kupoliauti” refers to the gathering of medicinal grasses and herbs – one of the important rituals of St. John’s eve. The noun form of the word, “kupoliavimas”, additionally refers to the dancing and merrymaking that takes place during the festivities.\n\n“We will dance all night, kupolia”. There was dancing not only around the fire, but directly over the fire. People of all ages would jump over the fire, hoping to bring youthfulness to their lives and inspire the growth of all vegetation, especially the flax, wheat, and rye fields. One would leap as high as possible, as though trying to reach the sun, and draw on its health and energy.\n\nAdding together all the symbols we have mentioned, St. John’s eve and its associated rituals, games, and merrymaking made for a feast not only of meditation and spiritual renewal, but also joyful revelry. It joined together thoughts of both renewal, growth, and the transience of life.\n\n**Sources:**\n- Vydūnas, “Collected Works” vol. IV, p. 35-39\n- Kupole Rože: Folklore and Customs of Pentecost and St. John’s Eve, Vilnius 2003"
     }
   },
   {
@@ -8231,7 +8180,7 @@ const songs: SongFile = [
         "recBYwBXdLsRsrBAo": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur gintarais nusėtas marių krantas,\nTen, kur banguoja Nemūnas vaga.\nTenai kiekviens lietuviškai supranta\nTen mūsų žemė, brangi Lietuva. (2 k.)\n\nTenai mergaitės dar suktinį šoka,\nSmagu berniukams jas namo lydėt.\nVisam pasauly niekas taip nemoka,\nKaip lietuvaitės, džiaugtis ir mylėt.\n\nBrolelis renka pamary gintarą,\nSesutė sėja rūtas, lelijas.\nTėvelis mūsų gimtą žemę aria,\nMotulė audžia drobes linines.\n\nO koks gražus tas mūsų mielas kraštas!\nNerasiu laimės aš šaly kitoj.\nTegul svetur upeliai auksu teka,\nO man nebus geriau kaip Lietuvoj."
+          "Lyrics & Chords": "Kur gintarais nusėtas marių krantas,\nTen, kur banguoja Nemūnas vaga.\nTenai kiekviens lietuviškai supranta\nTen mūsų žemė, brangi Lietuva. (2k.)\n\nTenai mergaitės dar suktinį šoka,\nSmagu berniukams jas namo lydėt.\nVisam pasauly niekas taip nemoka,\nKaip lietuvaitės, džiaugtis ir mylėt.\n\nBrolelis renka pamary gintarą,\nSesutė sėja rūtas, lelijas.\nTėvelis mūsų gimtą žemę aria,\nMotulė audžia drobes linines.\n\nO koks gražus tas mūsų mielas kraštas!\nNerasiu laimės aš šaly kitoj.\nTegul svetur upeliai auksu teka,\nO man nebus geriau kaip Lietuvoj."
         }
       },
       "Audio": {},
@@ -8264,7 +8213,7 @@ const songs: SongFile = [
         "rec2hcxKKPqFhyQNV": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur lygūs laukai,\nSnaudžia tamsūs miškai.\nLietuviai barzdočiai dūmoja:\nGalanda kirvius,\nKalavijus aštrius\nIr juodbėrius žirgus balnoja.\n\nNuo Prūsų šalies,\nKaip sparnai debesies (2 k.)\nPadangėmis raitosi dūmai.\nTai gaisro ugnis\nŠviečia diena naktis: (2 k.)\nLiepsnoja ir girios ir rūmai.\n\nTarp tyrų plačių\nNe staugimas žvėrių,\nO ne!  Tai našlaitės lietuvės:\nAr verkia sūnaus,\nAr bernužio brangaus,\nKurs jų nebegins nes pražuvęs.\n\nKryžiuočių seniai\nSuvadinti svečiai (2 k.)\nĮ vaišes per Lietuvą traukia;\nIštroškę garbės\nKai aušra patekės (2 k.)\nIšvys, ko visai nebelaukia.\n\nLietuvių pulkai,\nKaip apsako žvalgai,\nTies Kaunu per Nemuną plaukia;\nPo kaimus šauklys,\nJo putotas arklys,\nĮ kovą lietuvninkus šaukia.\n\nKlaidu tarp miškų!\nVien tik ugnys gaisrų! (2 k.)\nPer Lietuvą kelią berodo.\nUžtemęs dangus,\nMėto tankius žaibus (2 k.)\nBeklaidžiot svečiams nusibodo."
+          "Lyrics & Chords": "Kur lygūs laukai,\nSnaudžia tamsūs miškai.\nLietuviai barzdočiai dūmoja:\nGalanda kirvius,\nKalavijus aštrius\nIr juodbėrius žirgus balnoja.\n\nNuo Prūsų šalies,\nKaip sparnai debesies (2k.)\nPadangėmis raitosi dūmai.\nTai gaisro ugnis\nŠviečia diena naktis: (2k.)\nLiepsnoja ir girios ir rūmai.\n\nTarp tyrų plačių\nNe staugimas žvėrių,\nO ne!  Tai našlaitės lietuvės:\nAr verkia sūnaus,\nAr bernužio brangaus,\nKurs jų nebegins nes pražuvęs.\n\nKryžiuočių seniai\nSuvadinti svečiai (2k.)\nĮ vaišes per Lietuvą traukia;\nIštroškę garbės\nKai aušra patekės (2k.)\nIšvys, ko visai nebelaukia.\n\nLietuvių pulkai,\nKaip apsako žvalgai,\nTies Kaunu per Nemuną plaukia;\nPo kaimus šauklys,\nJo putotas arklys,\nĮ kovą lietuvninkus šaukia.\n\nKlaidu tarp miškų!\nVien tik ugnys gaisrų! (2k.)\nPer Lietuvą kelią berodo.\nUžtemęs dangus,\nMėto tankius žaibus (2k.)\nBeklaidžiot svečiams nusibodo."
         }
       },
       "Audio": {},
@@ -8291,7 +8240,7 @@ const songs: SongFile = [
         "recj7Lt1UjBPt1YTD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur mes buvom, kur nebuvom,\nMes visuomet čia! (3 k).\nKur mes buvom, kur nebuvom,\nMes visuomet čia.\nMes visuomet esam čia, čia, čia!\n\nMūsų skautai stovyklauja,\nLinksmai su daina! (3 k.)\nMūsų skautai stovyklauja,\nLinksmai su daina!\nLinksmai, linksmai, su daina, a, a!"
+          "Lyrics & Chords": "Kur mes buvom, kur nebuvom,\nMes visuomet čia! (3k).\nKur mes buvom, kur nebuvom,\nMes visuomet čia.\nMes visuomet esam čia, čia, čia!\n\nMūsų skautai stovyklauja,\nLinksmai su daina! (3k.)\nMūsų skautai stovyklauja,\nLinksmai su daina!\nLinksmai, linksmai, su daina, a, a!"
         }
       },
       "Audio": {},
@@ -8372,16 +8321,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recULpvGctClJdkYU": {
-          "Title": "Where the Little Falcon",
+          "Title": "The falcon and the cuckoo",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Where the little falcon, there the cuckoo goes.\nThey both flew into one small garden.\nThey perched together on a single tree.\nThey picked a berry from the same cluster.\n\nThey drank the dew from a single leaf.\nWhere the maiden is, there is the young man.\nThey both arrived at a single manor.\nThey sat together at the same table.\nThey ate pastries from the same bite.\nFrom the same cup, they drank the wine.\n\nA single word they spoke together,\nA single word they both did say,\nWhere the cuckoo, there the falcon too.",
-          "AI Generated": true
+          "Lyrics": "Where there is a falcon, You will find a cuckoo.\nThey both flew into same orchard.\nPerched in the same tree.\nAte berries from the same cluster.\nDrank dew from the same leaf.\n\nWhere there is a lass, You will find a young lad.\nThey both came to the same homestead.\nSat at the same table.\nNibbled at the same morsel of cake.\nDrank wine from the same goblet.\n\nMade the same promises,\nMade the same promises.\nWhere there is a falcon, You will find a cuckoo."
         }
       },
-      "LT Description": "Daina pasakoja apie sakalą ir gegutę, kurie susitinka sode ir dalijasi uogomis bei rasa. Vėliau jaunuolis ir mergina susirenka dvare, kartu valgo, geria ir sako vieną žodį. Tai gali simbolizuoti meilę arba draugystę, bet tikslus prasmė nėra aiški.",
-      "EN Description": "The song tells about a falcon and a cuckoo meeting in a garden, sitting together on a tree, and sharing simple joys like eating berries and drinking dew. Later, a young man and woman come together at a manor, share food, wine, and speak a single word together. The animals and people might symbolize lovers or the harmony of nature and human life, but the meaning is open to interpretation.",
-      "AI-Generated Description": true
+      "LT Description": "Daina „Kur sakalalis“ yra priskiriama prie vestuvinių dainų. Joje pasakojama apie gegutę ir sakalėlį, kurie suskridę į vieną sodą, sutūpė ant vieno medžio, lesė uogelę nuo vienos kekės, gėrė raselę nuo vieno lapo. Lyg palyginimui daina tęsiasi tik vietoj gegutės ir sakalėlio – bernelis ir mergelė, kurie suvažiavę į vieną dvarą, susėdo už vieno stalo, valgė pyragą iš vieno kasnio, gėrė vyną iš vienos taurės (kupkos) ir vieną žodelį jie kalbėjo.\n\nDainoje gausu simbolių, kuriuos išsiaiškinus atsiveria gili dainos prasmė.\n\nVienas iš svarbiausių paukščių lietuvių folklore, ypač dainuojamojoje tautosakoje, – **gegutė** (pateikėjų manymu, vasarai baigiantis virstanti sakalu arba vanagu). Manoma, kad ji tarpininkė tarp gyvųjų ir vėlių (protėvių) pasaulių. Gegutė, kranklys, sakalas vestuvinėse dainose neretai sieti su žinojimu, o ant laivelio krašto tupintys sakalas ir gegutė lietuvių mitologijoje dažnai minimi kaip mirties pranašai, atnešantys nedžiugią naujieną. Taigi šiems paukščiams priskiriamų vaidmenų griežtai apibrėžti negalima, jie įvairiose dainose gali turėti, o ir turi, skirtingas reikšmes, kurių aiškinimui reikėtų pateikti žymiai daugiau medžiagos ir autorių darbų analizės.\n\nApsiribokime tuo, kad dainuojamojoje tautosakoje ir būtent šioje dainoje – gegutė ir sakalas/vanagėlis sudaro porą, siejamą su vestuvių jaunaisiais. Šie du paukščiai atskrido sodelin. **Sodas** - vaismedžiais, medžiais apsodintas plotas yra sielos prieglobstis, bei vertybė, reiškianti ypatingą dvasinę būseną, nuotaiką, yra tvarkos, skaistumo ir tyrumo simbolis.\n\n_Sutūpė anys (jie) un (ant) vieno medžio._ **Medis** – tai pasaulio ašis, nes buvo tikima, kad į žemę įleistos šaknys siurbia vandenį, o šakos siekia dangų ir amžinybę. Simbolizuoja neišsenkančią gyvybinę energiją ir pačią gyvybę, žemės jėgą, augimą, kilimą į viršų, vykdo saugomąją funkciją, reprezentuoja šventąsias vietas.\n\n_Lasė uogelą nuo vienos kekės.__ **Uogos**, uogelės lietuvių liaudies dainose turi ne vieną simbolinę reikšmę. Tai gali būti vargelio simbolis, skausmo, ašarėlių, bet gali būti ir bučinių, meilės, ypač raudonos, saldžios uogos neretai simbolizuoja vedybų užuominas, jaunimo tarpusavio trauką, viliojimą, mergelės gražumą ir kt. Taigi mūsų dainoje „Kur sakalalis“ tikriausiai reikėtų galvoti, kad uogelės, kurias lesa tie du paikščiai, yra saldžios, skanios, kvapnios ir simbolizuoja meilę.\n\n_Gėrė rasalį (rasos lašelį) nuo vieno lapo._ **Rasa** yra vandens lašelis, o vanduo - simbolis gyvybės, tai žemėje visko pradžia.\n\nSekantys posmai atkartoja viską tą patį, tik ten ne paukščiai, o kur mergužėla, ti bernužėlis. Suvažiauv anys vienan dvaralin. **Dvareliu** buvo vadinama gyvenama vieta, ar tai buvo kaimo gryčia, ar valstiečio pirkia, ar bajoro dvaras, ar vienkiemio sodyba.\n\nFolkloro šaltiniuose beveik niekur nėra sodybų, kalbama tik apie dvarelius ir dvarus.\n\n_Anys (jie) susėda až (už) viena stala._ **Stalas** - itin svarbi, šventa namų vieta prie kurios renkasi šeimyna, ant stalo dedama duona, prie stalo valgoma, kalbama, sprendžiama, meldžiamasi. Stalas puošiamas įvairių švenčių progomis, prie stalo kviečiamas svečias, stalas - šeimos šventa vieta su kuria susiję daugybė papročių, tikėjimų, pagarbos, tai lyg šeimos istorijos altorius.\n\n_Valgė pyragų iš vieną kasnią._ **Pyragu** buvo vadinama duona dar kartais net vadinama baltuoju pyragu. Anksčiau ji buvo kepama tik ypatingomis progomis, kaip pav. vestuvėms. Duonos dalijimasis simbolizuodavo jaunojo ir nuotakos giminių sąjungą.\n\n_Iš vieną kupką vynelė gėrė._ **Vynelio** gėrimas iš vienos taurės yra išlikęs iki šių dienų, kai jaunuosius sugrįžus iš bažnyčios prie durų pasitikę tėvai juos laimina duona, druska ir vynu – gyvybingumo ir vaisingumo simbolis .\n\n_Vienų žadelį (žodelis) anys kalbėj._ Tas vienas „**žodelis**“ tai - jų pasižadėjimas likti kartu visam gyvenimui, tai jų bendras kelias, mintys ir amžina meilė.\n\nDaina baigiasi kur gegutel, ti sakalal - Kur gegutė, ten sakalas – lyg palinkėjimas berneliui ir mergelei visada būti vienas šalia kito.\n\n---\n\n**Žodynas**\n- _sakalalis_: sakalas, paukštis\n- _ty_: ten\n- _anys_: jie\n- _un_: ant\n- _kupka_: taurė, puodelis / drauge, kartu\n\n---\n\n**Šaltiniai:**\n- LRT KLASIKOS laida „Ryto rasa krito“ V. Šatkauskienė\n- “Paukščiai – kelio aiškintojai” V. Stukaitė\n- “Lietuviškas pasaulio medis” A. Valiukevičienė\n- “Atlėkė trys raibos gegelės” O. Gaidamavičiūtė\n- „Tautosakinis gegutės įvaizdis“ L. Kudirkienė",
+      "EN Description": "“The falcon and the cuckoo” is a wedding song. It tells the story of a cuckoo and a falcon, who flew into the same orchard, perched in the same tree, ate berries from the same cluster, and drank dew from the same leaf. The song continues in a parallel mode, substituting a young man and a young woman. They both came to the same homestead, sat at the same table, nibbled at the same morsel of cake, drank wine from the same goblet, and made the same promises.\n\nThe song is replete with symbolism, which clarifies the deeper meaning of the song.\n\nThe cuckoo is one of the most significant birds in Lithuanian folklore, especially in sung folklore. Some believed that at the end of summer, a cuckoo would transform into a hawk or falcon. It was thought that the cuckoo was a medium, communicating between the world of the living and the world of the dead. In wedding songs, the cuckoo, the raven, and the falcon were considered to be all-knowing. In Lithuanian mythology, a cuckoo or a falcon perched on the gunwale of a boat was known as a messenger of bad news – a harbinger of death. It is evident that the roles assigned to these birds are many and varied. The actual role depends on the song and possibly some guesswork, as to what the author may have had in mind.\n\nWe can limit ourselves to the sung folklore tradition, particularly this song, and say that the cuckoo and the falcon make a pair, reflecting the wedding couple. The two birds flew into an **orchard**. The orchard filled with fruit trees signifies a place of shelter for the soul. It indicates a particular state of being – orderliness, freshness, and purity.\n\n“They perched in the same **tree**”. A tree is considered the axis of the world. Its roots draw water from the earth, while its branches reach the sky and eternity. The tree symbolizes endless life energy, the power of the earth, growth, and upwards expansion. The tree also has a protective function and represents a place of holiness.\n\n“They ate **berries** from the same cluster”. Berries can have multiple meanings. They can be a symbol of troubles, heartache, and tears. But equally they can represent love and kisses. Berries, especially red and sweet ones, hint at a young woman’s beauty, mutual attraction, enticement, and courtship. So in this song, surely the berries are sweet, fragrant, and indicative of love.\n\n“They drank **dew** from the same leaf”. Dew consists of a drop of water. Water is the symbol of life and the source of all creation.\n\nThe subsequent stanzas repeat the same ideas, but with the young man and woman instead of the birds. “They both came to the same homestead”. Home is home – a place dear to one’s heart, whether it be a poor peasant’s shack or a nobleman’s mansion.\n\n“They sat at the same **table**”. The table in the home is a special, holy place: where the family gathers, where bread is shared, a place of sustenance, a place for discussions, a place for decision-making, a place for prayer. The table is decorated for various holidays and feasts; guests are invited to the table. The table is a family’s holy place, a place for family traditions, communal prayers, mutual respect – as though the table is an altar to the family’s history.\n\n“They nibbled at the same morsel of **cake**”. “Cake” was the term used for bread, sometimes even known as “white cake”. In earlier times it was baked only on special occasions, such as weddings. The breaking of bread symbolized the union of the two families.\n\n“They drank **wine** from the same goblet”. Drinking wine from the same wineglass is a tradition that has endured to our times. Traditionally, the newlyweds are welcomed and blessed by their parents, with an offering of bread, salt, and wine – symbols of life and fruitfulness.\n\n“They made the same **promises**”. The promise is their vow to stay together for life, to share a common path in life, to love forever.\n\nThe song ends with the words: “where there is a falcon, you will find a cuckoo” – as though we were wishing the young couple all the best, and that they always remain at each other’s side\n\n---\n\n**Sources:**\n- V. Šatkauskienė – LRT Classic television program “The morning dew”.\n- V. Stukaitė – “Birds – interpreters of our way”.\n- A. Valiukevičienė – “ The tree in the Lithuanian world”.\n- O. Gaidamavičiūtė – “Three speckled cuckoos flew by”.\n- L. Kudirkienė – “The image of the cuckoo in folklore”."
     }
   },
   {
@@ -8392,7 +8339,7 @@ const songs: SongFile = [
         "reclXMj1eZbbvOeOZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur tas šaltinėlis,\nKur aš jaunas gėriau?\nKur ta mano mergužėlė,\nKurią aš mylėjau? (2 k.)\n\nKurią aš mylėjau,\nŠirdelėj turėjau,\nKas naktelę per sapnelį\nŽodelį kalbėjau. (2 k.)\n\nJau tas šaltinėlis\nŽolelė užaugo.\nJau ta mano mergužėlė\nUž kito išėjo. (2 k.)\n\nBalnosiu žirgelį,\nŽirgą, juodbėrėlį.\nVysiu, vysiu mergužėlę\nIr josios pulkelį. (2 k.)"
+          "Lyrics & Chords": "Kur tas šaltinėlis,\nKur aš jaunas gėriau?\nKur ta mano mergužėlė,\nKurią aš mylėjau? (2k.)\n\nKurią aš mylėjau,\nŠirdelėj turėjau,\nKas naktelę per sapnelį\nŽodelį kalbėjau. (2k.)\n\nJau tas šaltinėlis\nŽolelė užaugo.\nJau ta mano mergužėlė\nUž kito išėjo. (2k.)\n\nBalnosiu žirgelį,\nŽirgą, juodbėrėlį.\nVysiu, vysiu mergužėlę\nIr josios pulkelį. (2k.)"
         }
       },
       "Audio": {},
@@ -8419,7 +8366,7 @@ const songs: SongFile = [
         "recndwfsJrXYk8ZPJ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur upelis teka,\nTrys sesutės šneka: (2 k.)\n- Sesutėle, ar žinai, -\nAukštas vyras negerai. (2 k.)\n\nKai atsigul', reik suriest,\nKai atsikel', reik ištiest. (2 k.)\n- Sesutėle, ar žinai, -\nAukštas vyras negerai. (2 k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2 k.)\n- Sesutėle, ar žinai, -\nMažas vyras negerai. (2 k.)\n\nKai jis nori pabučiuot,\nReik kraselę jam paduot, (2 k.)\n- Sesutėle, ar žinai, -\nMažas vyras negerai. (2 k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2 k.)\n- Sesutėle, ar žinai, -\nStoras vyras negerai. (2 k.)\n\nKai atsigul', labai sten',\nKai atsikel', vėl kulden'. (2 k.)\n- Sesutėle, ar žinai, -\nStoras vyras negerai. (2 k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2 k.)\n- Sesutėle, ar žinai, -\nKatras myli, tai gerai. (2 k.)"
+          "Lyrics & Chords": "Kur upelis teka,\nTrys sesutės šneka: (2k.)\n- Sesutėle, ar žinai, -\nAukštas vyras negerai. (2k.)\n\nKai atsigul', reik suriest,\nKai atsikel', reik ištiest. (2k.)\n- Sesutėle, ar žinai, -\nAukštas vyras negerai. (2k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2k.)\n- Sesutėle, ar žinai, -\nMažas vyras negerai. (2k.)\n\nKai jis nori pabučiuot,\nReik kraselę jam paduot, (2k.)\n- Sesutėle, ar žinai, -\nMažas vyras negerai. (2k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2k.)\n- Sesutėle, ar žinai, -\nStoras vyras negerai. (2k.)\n\nKai atsigul', labai sten',\nKai atsikel', vėl kulden'. (2k.)\n- Sesutėle, ar žinai, -\nStoras vyras negerai. (2k.)\n\nKur upelis teka,\nTrys sesutės šneka: (2k.)\n- Sesutėle, ar žinai, -\nKatras myli, tai gerai. (2k.)"
         }
       },
       "Audio": {},
@@ -8446,7 +8393,7 @@ const songs: SongFile = [
         "recId6BJDgnur4yYK": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Gyveno kartą kurmis, turėjo keturias žmonas jis. 2 k.\n\nPoligami, poligamo, poligami ami amo,\nPoligami, poligamo, poligami amo.\nAtėjo karšta vasara, dvi žmonos numirė jam visai.\n\nDigami, digamo, digami ami amo,\nDigami, digamo, digami amo.\n\nAtėjo bjaurus ruduo, dar viena žmona numirė jam visai.\n\nMonogami, monogamo, monogami ami amo,\nMonogami, monogam,o monogami amo.\nAtėjo šalta žiema, paskutinė žmona numirė jam visai.\n\nOnoni, onono, ononi ami amo,\nOnoni, onono, ononi amo.\nAtėjo trys brakonieriai, nušovė kurmį visai visai.\n\nAgoni, agono, agoni ami amo,\nAgoni, agono, agoni amo.\nAtvažiavo tas, kur asfaltą lygina, suplojo kurmį plonai plonai.\n\nFilateli, filatelo, filateli ami amo,\nFilatel, filatelo, filateli amo.\nAtskrido juoda varna, nusinešė kurmio griaučius baltus.\n\nKleptomani, kleptomano, kleptomani ami amo,\nKleptomani, kleptomano, kleptomani amo.\nSusuko varna lizdą iš kurmio griaučių baltų baltų.\n\nPižoni, pižono, pižoni ami amo,\nPižoni, pižono, pižoni amo."
+          "Lyrics & Chords": "Gyveno kartą kurmis, turėjo keturias žmonas jis. 2k.\n\nPoligami, poligamo, poligami ami amo,\nPoligami, poligamo, poligami amo.\nAtėjo karšta vasara, dvi žmonos numirė jam visai.\n\nDigami, digamo, digami ami amo,\nDigami, digamo, digami amo.\n\nAtėjo bjaurus ruduo, dar viena žmona numirė jam visai.\n\nMonogami, monogamo, monogami ami amo,\nMonogami, monogam,o monogami amo.\nAtėjo šalta žiema, paskutinė žmona numirė jam visai.\n\nOnoni, onono, ononi ami amo,\nOnoni, onono, ononi amo.\nAtėjo trys brakonieriai, nušovė kurmį visai visai.\n\nAgoni, agono, agoni ami amo,\nAgoni, agono, agoni amo.\nAtvažiavo tas, kur asfaltą lygina, suplojo kurmį plonai plonai.\n\nFilateli, filatelo, filateli ami amo,\nFilatel, filatelo, filateli amo.\nAtskrido juoda varna, nusinešė kurmio griaučius baltus.\n\nKleptomani, kleptomano, kleptomani ami amo,\nKleptomani, kleptomano, kleptomani amo.\nSusuko varna lizdą iš kurmio griaučių baltų baltų.\n\nPižoni, pižono, pižoni ami amo,\nPižoni, pižono, pižoni amo."
         }
       },
       "Audio": {},
@@ -8503,7 +8450,7 @@ const songs: SongFile = [
         "reccAHZrJZXTnKXwj": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Aš jau](G) [nepakeliu](D) [minčių apie tave!](Em)\n[Kaip obelis,](C) [apsunkusi nuo vaisių,](D)\n[Užlaužiu tragiškai](G) [nusvirusias](D) [rankas,](Em)\n[O tu sakai:](C) [„Stovėk, kaip stovi laisvė!“](D) (2 k.)\n\n[Tai uždaryk](G) [mane, Tėvyne,](C) [savyje,](D)\n[Kaip giesmę](G) [gerklėje mirtis uždaro,](Em)\n[Taip, kaip uždaro](C) [vakarą](D) [naktis,]( )\n[O tu man atsakai:](C) [„Aš - tavo laisvė!“](D)\n\nO nesibaigianti kelionė į tave!\nJau kaip akmuo šalikelėj suklupęs\nAš pilku vakaru lyg samanom dengiuos,\nO tu sakai: „Eik taip, kaip eina laisvė!“",
+          "Lyrics & Chords": "[Aš jau](G) [nepakeliu](D) [minčių apie tave!](Em)\n[Kaip obelis,](C) [apsunkusi nuo vaisių,](D)\n[Užlaužiu tragiškai](G) [nusvirusias](D) [rankas,](Em)\n[O tu sakai:](C) [„Stovėk, kaip stovi laisvė!“](D) (2k.)\n\n[Tai uždaryk](G) [mane, Tėvyne,](C) [savyje,](D)\n[Kaip giesmę](G) [gerklėje mirtis uždaro,](Em)\n[Taip, kaip uždaro](C) [vakarą](D) [naktis,]( )\n[O tu man atsakai:](C) [„Aš - tavo laisvė!“](D)\n\nO nesibaigianti kelionė į tave!\nJau kaip akmuo šalikelėj suklupęs\nAš pilku vakaru lyg samanom dengiuos,\nO tu sakai: „Eik taip, kaip eina laisvė!“",
           "Show Chords": true
         }
       },
@@ -8727,7 +8674,7 @@ const songs: SongFile = [
         "recXwmQXKRFqjJYiX": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Nauji veidai, nauja diena,](D)  \n[Ir vis dar](D) [tęsiąs](G) [legenda,](D)  \n[Kur ošia](D) [jūros](G) [ir miškai,](D)  \n[Į dangų](D) [kyla](G) [aitvarai.](A)\n\n_Priedainis  \n[Nes](G) [aš ir tu - „Laužų](A) [karta“](D)  \n[Kol](G) [dega skautiška](A) [dvasia,](D)  \n[Liepsna](D) [negesta](G) [širdyse,](A) [ ](D) [   ](h-moll)  \n[Daina vis](G) [skamba](A) [miškuose](D) 2 k._\n\nGeri darbai - eime draugai,  \nKur praminti seni takai,  \nKur užrišti tikri mazgai,  \nKai žvaigždės žvelgia iš aukštai.\n\nGeri darbai - eime draugai,\nKur praminti seni takai,\nKur užrišti tikri mazgai,\nKai žvaigždės žvelgia iš aukštai.\n\n_Priedainis\nNes aš ir tu - „Laužų karta“,\nKol dega skautiška dvasia,\nIškelkim vėliavas aukštai\naukštai,\nTepasigirsta mūs protėvių balsai\n2 k._\n\nBrangi šalis, gimta kalba,\nMūs apdainuota Lietuva,\nKur ošia jūros ir miškai,\nĮ dangų kyla aitvarai!\n\n_Priedainis\nNes aš ir tu - „Laužų karta“\nKol dega skautiška dvasia,\nLiepsnoja šimtmetį laužai,\nIr dar negęs ugnis ilgai! 2 k._",
+          "Lyrics & Chords": "[Nauji veidai, nauja diena,](D)  \n[Ir vis dar](D) [tęsiąs](G) [legenda,](D)  \n[Kur ošia](D) [jūros](G) [ir miškai,](D)  \n[Į dangų](D) [kyla](G) [aitvarai.](A)\n\n_Priedainis  \n[Nes](G) [aš ir tu - „Laužų](A) [karta“](D)  \n[Kol](G) [dega skautiška](A) [dvasia,](D)  \n[Liepsna](D) [negesta](G) [širdyse,](A) [ ](D) [   ](h-moll)  \n[Daina vis](G) [skamba](A) [miškuose](D) 2k._\n\nGeri darbai - eime draugai,  \nKur praminti seni takai,  \nKur užrišti tikri mazgai,  \nKai žvaigždės žvelgia iš aukštai.\n\nGeri darbai - eime draugai,\nKur praminti seni takai,\nKur užrišti tikri mazgai,\nKai žvaigždės žvelgia iš aukštai.\n\n_Priedainis\nNes aš ir tu - „Laužų karta“,\nKol dega skautiška dvasia,\nIškelkim vėliavas aukštai\naukštai,\nTepasigirsta mūs protėvių balsai\n2k._\n\nBrangi šalis, gimta kalba,\nMūs apdainuota Lietuva,\nKur ošia jūros ir miškai,\nĮ dangų kyla aitvarai!\n\n_Priedainis\nNes aš ir tu - „Laužų karta“\nKol dega skautiška dvasia,\nLiepsnoja šimtmetį laužai,\nIr dar negęs ugnis ilgai! 2k._",
           "Show Chords": true
         }
       },
@@ -8787,7 +8734,7 @@ const songs: SongFile = [
         "recCwncAvXpmkobub": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Leiskit į tėvynę, leiskit pas savus,\nTen pradžiugs krūtinė, atgaivins jausmus. (2 k.)\n\nPirm negu aušrelė, skaisti užtekės\nTen mano dainelė, linksmai suskambės. (2 k.)\n\nKai medžių ūžimas, giedančiam pritars,\nŠventas įkvėpimas, dainą man sutvers. (2 k.)\n\nČia jausmai man žūva, kalinė širdis,\nLeiskit į Lietuvą, akys ten nušvis. (2 k.)\n\nSvetima padangė, nemaloni, ne...\nTėviskėlę brangią, vis regiu sapne. (2 k.)\n\nNemuną dabina, puikesni žiedai,\nŠirdį ten ramina, meilesni jausmai. (2 k.)\n"
+          "Lyrics & Chords": "Leiskit į tėvynę, leiskit pas savus,\nTen pradžiugs krūtinė, atgaivins jausmus. (2k.)\n\nPirm negu aušrelė, skaisti užtekės\nTen mano dainelė, linksmai suskambės. (2k.)\n\nKai medžių ūžimas, giedančiam pritars,\nŠventas įkvėpimas, dainą man sutvers. (2k.)\n\nČia jausmai man žūva, kalinė širdis,\nLeiskit į Lietuvą, akys ten nušvis. (2k.)\n\nSvetima padangė, nemaloni, ne...\nTėviskėlę brangią, vis regiu sapne. (2k.)\n\nNemuną dabina, puikesni žiedai,\nŠirdį ten ramina, meilesni jausmai. (2k.)\n"
         }
       },
       "Audio": {},
@@ -8923,7 +8870,7 @@ const songs: SongFile = [
         "recoIZLRVRPcRAvAp": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Lietuva brangi, mano tėvyne,\nŠalis, kur miega kapuos didvyriai!\nGraži tu savo dangaus mėlyne,\nBrangi, nes daugel vargų patyrei. (2 k.)\n\nKaip puikūs slėniai sraunios Dubysos,\nKalnai, lyg rūtoms, miškais žaliuoja,\nO po tuos kalnus sesutės visos\nGraudžiai maloniais dainas dainuoja.\n\nTen susimastęs tamsus Nevėžis\nKaip juosta juosia žaliąsias pievas;\nBanguoja, vagą giliai išrėžęs;\nJo gilią mintį težino Dievas.\n\nKaip puikūs tavo dvarai, tėvyne,\nBaltai iš sodų žalių bekyša.\nTik brangią kalbą tėvų pamynę\nJie mūsų širdis mažai ką riša.\n\nKaip linksma sodžiui, kai vyturėlis\nJaukiai pragysta, aukštai iškilęs;\nAr saulė leidžias, ar vakarėlis\nRamumą neša, saldžiai nutilęs.\n\nGraži tu, mano brangi tėvynė,\nŠalis, kur miega kapuos didvyriai!\nNeveltui bočiai tave taip gynė,\nNeveltui dainiai plačiai išgyrė."
+          "Lyrics & Chords": "Lietuva brangi, mano tėvyne,\nŠalis, kur miega kapuos didvyriai!\nGraži tu savo dangaus mėlyne,\nBrangi, nes daugel vargų patyrei. (2k.)\n\nKaip puikūs slėniai sraunios Dubysos,\nKalnai, lyg rūtoms, miškais žaliuoja,\nO po tuos kalnus sesutės visos\nGraudžiai maloniais dainas dainuoja.\n\nTen susimastęs tamsus Nevėžis\nKaip juosta juosia žaliąsias pievas;\nBanguoja, vagą giliai išrėžęs;\nJo gilią mintį težino Dievas.\n\nKaip puikūs tavo dvarai, tėvyne,\nBaltai iš sodų žalių bekyša.\nTik brangią kalbą tėvų pamynę\nJie mūsų širdis mažai ką riša.\n\nKaip linksma sodžiui, kai vyturėlis\nJaukiai pragysta, aukštai iškilęs;\nAr saulė leidžias, ar vakarėlis\nRamumą neša, saldžiai nutilęs.\n\nGraži tu, mano brangi tėvynė,\nŠalis, kur miega kapuos didvyriai!\nNeveltui bočiai tave taip gynė,\nNeveltui dainiai plačiai išgyrė."
         }
       },
       "Audio": {},
@@ -9022,18 +8969,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "reczGZK6lmN8eKniq": {
-          "Title": "We Were Born as Lithuanians",
+          "Title": "We were born Lithuanians",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "We were born as Lithuanians,\nWe wish to remain so!\nThis honor we received at birth,\nAnd we must not let it perish.\n\nLike a sturdy oak by the Nemunas,\nA Lithuanian fears nothing,\nLike a fir tree by the Šešupė,\nGreen in storm and winter, always.\n\nWe were born as Lithuanians,\nWe wish to remain so!\nThis honor we received at birth,\nAnd we must not let it perish.\nAnd we must not let it perish.",
-          "AI Generated": true
+          "Lyrics": "We are born Lithuanians,\nAnd we want to be Lithuanians!\nWe were given that honor at birth,\nWe must not let it perish!\n\nLike a strong oak tree near the Nemunas river\nThe Lithuanian is fearless!\nLike a spruce tree near the Šešupė river,\nEver green in storms and in winter!\n\nWe are born Lithuanians,\nAnd we want to be Lithuanians!\nWe were given that honor at birth,\nWe must not let it perish!\nWe must not let it perish!"
         }
       },
       "Music Author": "Stasys Šimkus",
       "Text Author": "Jurgis Zauerveius",
-      "LT Description": "Ši daina apie pasididžiavimą būti lietuviu ir norą išlikti lietuviais. Ji kalba apie garbę gimti lietuviu ir pareigą to neleisti prarasti. Medžiai, tokie kaip ąžuolas ir eglė, gali simbolizuoti stiprybę ir ištvermę.",
-      "EN Description": "This song is about being proud to be born Lithuanian and wanting to remain so. It talks about receiving the honor of being Lithuanian at birth and the responsibility not to let it disappear. The mention of strong trees like oaks and firs by Lithuanian rivers may symbolize the strength and perseverance of the Lithuanian people.",
-      "AI-Generated Description": true
+      "LT Description": "Kompozitoriaus ir dirigento Stasio Šimkaus (1887–1943) daina „Lietuviais esame mes gimę“, sukurta ir su dedikacija „giliai gerbiamam Vîdûnui“ išleista Peterburge, 1912 metais.\n\n„Lietuviais esame mes gimę“, daina ir neoficialus Mažosios Lietuvos himnas. Georgo Sauerweino-Girėno eilėraščio Lietuwninkai mes esam gimę žodžiai.\n\nEilėraštis pirmą kartą išspausdintas Lietuwiszkame Auszros kalendoriuje ant metų 1884. Jis buvo virtęs jaunųjų lietuvininkų giesmele ir giedotas pagal evangeliškos giesmės melodiją. Prieš 1912 m. sutrumpinus tekstą, kiek jį pakeitus bei kompozitoriui Stasiui Šimkui parašius muziką 4 balsų chorui, tapo populiaria lietuviška patriotine daina.\n\nS. Šimkaus sukurtos melodijos pradžia skambėdavo kaip Lietuvos radiofono šaukinys iki Lietuvos Respublikos prievartinio prijungimo prie SSRS (1944 m). \n\n---\n\n**Žodynas**\n_ąžuols drūts_ – storas, apvalus, stiprus\n_neatbos_ – nevengs, nebijos, atliks, padarys (boti-kreipti dėmesį, paisyti, bijoti)\n_Šešupėlė_ – mažybiniai pavadinta upė Šešupė\n_vėtra_ – didelis vėjas, audra",
+      "EN Description": "Composer and conductor Stasys Šimkus first published this song in St. Petersburg in 1912. It was dedicated to Vydūnas, a poet, philosopher, and leader of the PrussianLithuanian national movement in Lithuania Minor.\n\nThe lyrics are taken from a poem by Georg Sauerwein, first published in the “Aušra” calendar for 1884. The poem became the unofficial anthem of Lithuania Minor. It was originally sung according to the melody of an evangelical hymn.\n\nIn 1912 the text was somewhat modified and shortened, and choral music for four voices was composed by Stasys Šimkus. The song quickly became a popular Lithuanian patriotic song. The melody also rang out as the introduction to the Lithuanian Radio program for many years, until the forcible incorporation of Lithuania into the Soviet Union in 1944."
     }
   },
   {
@@ -9120,17 +9065,15 @@ const songs: SongFile = [
       },
       "Translations": {
         "recMljYYcwUkL6VtV": {
-          "Title": "National Anthem of Lithuania",
+          "Title": "Lithuanian National Anthem",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Lithuania, our Homeland,\nLand of heroes,\nLet your sons draw strength\nFrom the past.\n\nLet your children follow\nOnly the paths of virtue,\nLet them work for your benefit\nAnd for the good of all people.\n\nMay the sun in Lithuania\nDrive away all darkness,\nAnd may light and truth\nLead our steps!\n\nMay the love of Lithuania\nBurn in our hearts,\nFor the sake of Lithuania\nLet unity blossom!",
-          "AI Generated": true
+          "Lyrics": "Lithuania, our homeland,\nYou are the land of heroes.\nMay your sons draw strength\nFrom the past.\n\nMay your children walk\nSolely on the paths of righteousness,\nMay they work for your benefit\nAnd for the good of the people.\n\nMay the sun in Lithuania\nDispel the darkness\nAnd the light, and the truth\nGuide our footsteps!\n\nLet the love of Lithuania\nBurn in our hearts,\nIn the name of Lithuania\nMay unity continue to bloom!"
         }
       },
       "Music Author": "Vincas Kudirka",
-      "LT Description": "Ši daina yra tautinis himnas, išreiškiantis meilę ir pagarbą Lietuvai, kviečiantis jos žmones vienytis, būti doriems ir dirbti šalies bei žmonių labui. Joje minimas stiprybės semimasis iš praeities ir viltis, kad tiesa bei šviesa lydės tautą. Daina nenurodo konkrečių švenčių ar istorinių įvykių.",
-      "EN Description": "This song is a national hymn that expresses love and respect for Lithuania, calling its people to unity, virtue, and to work for the good of the country and its people. It speaks about drawing strength from the past, wishing for truth and light to guide the nation, and hopes for unity and love to flourish. It may symbolize national pride and the desire for moral guidance, but does not reference specific holidays or historical events.",
-      "AI-Generated Description": true
+      "LT Description": "Vincas Kudirka (1858-1899) šį kūrinį parašė ir paskelbė literatūros, politikos ir mokslo dvimėnesiniame laikraštyje “Varpas” 1898 m. Nuo tada „Tautiška giesmė“ buvo giedama lietuviškuose vakarėliuose, suėjimuose, 1905 m. Didžiojo Vilniaus seimo išvakarių koncerte Vilniuje, o nuo 1917 m. giedota viešose politinėse demonstracijose, susirinkimuose ir suvažiavimuose. 1917–1918 m. kūrinio žodžius ir muziką buvo siūlyta pakeisti, tačiau 1919 m. „Tautiška giesmė“ patvirtinta Lietuvos himnu.\n\n1940 m., po sovietinės okupacijos, himnas buvo uždraustas, vietoje jo buvo atliekamas „Internacionalas“, tačiau 1944 m. „Tautiška giesmė“ buvo atkurta kaip Lietuvos SSR himnas. 1950 m. sukūrus naująjį LSSR himną, už „Tautiškos giesmės“ atlikimą buvo persekiojama ir baudžiama. Nepaisant to, himnas buvo giedamas nedideliuose susibūrimuose, viešai skambėjo 1956 m. Vėlinių metu, vėliau Kaune, apie 1977 m. per Jonine Kernavėje, 1987 m, prie Adomo Mickeviciaus paminklo, 1988 m. prieš atkuriant Lietuvos nepriklausomybę, himnu vėl tapo „Tautiška giesmė“.",
+      "EN Description": "Vincas Kudirka (1858 – 1899) published the work in 1898 in “Varpas”, a bimonthly newspaper dedicated to literature, science, and politics. From that time on the anthem was sung at various informal gatherings. It was officially sung for the first time on June 6, 1905 at the evening concert prior to the opening session of parliament. From 1917 onwards, it was sung at various meetings and political demonstrations. There were discussions in 1917 – 1918, suggesting that the words and music be modified. However, in 1919 it was officially designated as Lithuania’s national anthem.\n\nThe anthem was banned in 1940 immediately after the Soviet occupation. “The Internationale” was required to be sung in its place. However, in 1944 it was reestablished as the hymn of the Lithuanian Soviet Socialist Republic (LSSR). The anthem was once again banned in 1950 and severe penalties enforced for its performance or singing. Regardless, the anthem continued to be sung in private gatherings. It was sung in public in 1956 during the feast of All Souls in Kaunas, in 1977 during midsummer eve festivities at Kernavė, and in 1987 at the memorial for Adomas Mickevičius. In 1988, just prior to Lithuania regaining its independence, it once again became the official national anthem."
     }
   },
   {
@@ -9141,7 +9084,7 @@ const songs: SongFile = [
         "rec9GzXeIgOci4pAd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mes Lietuvos kareivėliai niekad nedėjuojam.\nVisad jauni, visad linksmi, daineles dainuojam.\n\nMarš, marš kareivėliai, marš į kovą dobilėliai.\nĮ priešą pirmyn, pirmyn, pirmyn, pirmyn. (2 k.)\n\nKas nenori lauko arti ar tėvų klausyti,\nTegul eina į karužę vargo pamatyti.\n\nMarš, marš...\n\nLietus lyja darganuoja, ar giedra dienelė,\nKareivėliai vis dainuoja skamba jų dainelė.\n\nMarš, marš..."
+          "Lyrics & Chords": "Mes Lietuvos kareivėliai niekad nedėjuojam.\nVisad jauni, visad linksmi, daineles dainuojam.\n\nMarš, marš kareivėliai, marš į kovą dobilėliai.\nĮ priešą pirmyn, pirmyn, pirmyn, pirmyn. (2k.)\n\nKas nenori lauko arti ar tėvų klausyti,\nTegul eina į karužę vargo pamatyti.\n\nMarš, marš...\n\nLietus lyja darganuoja, ar giedra dienelė,\nKareivėliai vis dainuoja skamba jų dainelė.\n\nMarš, marš..."
         }
       },
       "Audio": {},
@@ -9195,7 +9138,7 @@ const songs: SongFile = [
         "recfa3XrdStNYAArd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Linelius raunu ne viena,\nVežiman kraunu ne viena,\nBet tai širdelei kažko vis trūksta,\nKažko vis negana. (2 k.)\n\nLinelius kloju ne viena,\nDainas dainuoju ne viena,\nBet ir dainelėm kažko vis trūksta,\nKazko vis negana. (2 k.)\n\nKai nematau jo – neramu,\nKai pamatau jį – negaliu,\nKad taip nors kartą jis palydėtų\nPer lauką lig namų. (2 k.)\n\nKad palydėtų prietemy,\nApsidairytų ar vieni,\nKad apkabintų, kad pabučiuotų,\nBūčiau tada rami."
+          "Lyrics & Chords": "Linelius raunu ne viena,\nVežiman kraunu ne viena,\nBet tai širdelei kažko vis trūksta,\nKažko vis negana. (2k.)\n\nLinelius kloju ne viena,\nDainas dainuoju ne viena,\nBet ir dainelėm kažko vis trūksta,\nKazko vis negana. (2k.)\n\nKai nematau jo – neramu,\nKai pamatau jį – negaliu,\nKad taip nors kartą jis palydėtų\nPer lauką lig namų. (2k.)\n\nKad palydėtų prietemy,\nApsidairytų ar vieni,\nKad apkabintų, kad pabučiuotų,\nBūčiau tada rami."
         }
       },
       "Audio": {},
@@ -9250,7 +9193,7 @@ const songs: SongFile = [
         "recq4t4jBOPTeRTsd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Linksmumas eina per girias -\nPaukšteliai kelia vestuves.\nIr tra-lia lia, ir tra-lia lia\nIr tra-lia ly-lia-lia. 2 k\n\nJaunikis buvo ta garnys,\nTurtingas ir gražus našlys.\nIr tra-lia lia...\n\nGegutė buvo nekvaila,\nSutiko būti jo žmona.\nIr tra-lia lia...\n\nRaudona skiautere gaidys\nSutiko būti pabrolys.\nIr tra-lia lia...\n\nGi kalakutas išdidus\nRikiavo pamergių pulkus.\nIr tra-lia lia...\n\nPemputė, ta su kuodeliu,\nKraitelį vežė važeliu.\nIr tra-lia lia...\n\nŽvirbleliai tie triukšmadariai,\nPyragą rijo kaip rykliai.\nIr tra-lia lia..."
+          "Lyrics & Chords": "Linksmumas eina per girias -\nPaukšteliai kelia vestuves.\nIr tra-lia lia, ir tra-lia lia\nIr tra-lia ly-lia-lia. 2k\n\nJaunikis buvo ta garnys,\nTurtingas ir gražus našlys.\nIr tra-lia lia...\n\nGegutė buvo nekvaila,\nSutiko būti jo žmona.\nIr tra-lia lia...\n\nRaudona skiautere gaidys\nSutiko būti pabrolys.\nIr tra-lia lia...\n\nGi kalakutas išdidus\nRikiavo pamergių pulkus.\nIr tra-lia lia...\n\nPemputė, ta su kuodeliu,\nKraitelį vežė važeliu.\nIr tra-lia lia...\n\nŽvirbleliai tie triukšmadariai,\nPyragą rijo kaip rykliai.\nIr tra-lia lia..."
         }
       },
       "Audio": {},
@@ -9445,7 +9388,7 @@ const songs: SongFile = [
         "recQoUMzSherXjA7P": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Vakaras gilus ir](D) [šilti namai,](A)\n[Už lango tyla...](G) [ ](A)\n[Dūsauja mieguos numesti](D) [žaislai,](A)\n[Kol sapno nėra.](G) [ ](A)\n\n[Vėl vartau seną](G) [knygą,](A) [ ](D)\n[Tą, kurioj](F) [savo pasaką](G) [radau.](C)\n[Ten šalis stebuklingas](Am) [aš](Am2) [mačiau,](FisVII)\n[Jas dviese su tavim lankiau...](D)\n\n_[Mama,](G) [pakylėk ligi dangaus](G2) [  ](Em)\n[Leisk suprasti ir pajaust](Em2) [laimės kainą!](C) [ ](D)\nMama, mano paukšte vieniša,\nArtima ir tolima – mūs širdis viena...\n[Pakylėk ligi dangaus…](Es) [ ](G) [ ](A)_\n\nŽodis nuostabus lyg tyli malda\nApsaugos ir gins...\nŽvilgsnio ramuma, gėlės gyvos\nPykčio upę praskirs.\nKas gražiau už gyvenimą?\nKas gražiau už vardus, kuriais šaukei?\nTu sakei, kad pasaulio neapeit,\nBet likimo jau žvaigždės nepakeisi!",
+          "Lyrics & Chords": "[Vakaras gilus ir](D) [šilti namai,](A)\n[Už lango tyla...](G) [ ](A)\n[Dūsauja mieguos numesti](D) [žaislai,](A)\n[Kol sapno nėra.](G) [ ](A)\n\n[Vėl vartau seną](G) [knygą,](A) [ ](D)\n[Tą, kurioj](F) [savo pasaką](G) [radau.](C)\n[Ten šalis stebuklingas](Am) [aš ma](Am2)[čiau,](FisVII)\n[Jas dviese su tavim lankiau...](D)\n\n_[Mama,](G) [pakylėk ligi dangaus](G2) [  ](Em)_\n_[Leisk suprasti ir pajaust](Em2) [laimės kainą!](C) [ ](D)_\n_Mama, mano paukšte vieniša,_\n_Artima ir tolima – mūs širdis viena..._\n_[Pakylėk ligi dangaus…](Es) [ ](G) [ ](A)_\n\nŽodis nuostabus lyg tyli malda\nApsaugos ir gins...\nŽvilgsnio ramuma, gėlės gyvos\nPykčio upę praskirs.\nKas gražiau už gyvenimą?\nKas gražiau už vardus, kuriais šaukei?\nTu sakei, kad pasaulio neapeit,\nBet likimo jau žvaigždės nepakeisi!",
           "Show Chords": true
         }
       },
@@ -9503,7 +9446,7 @@ const songs: SongFile = [
         "recBMWOrJROlABPA8": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mane motulė barė,\nLinelių raut išvarė.\nOi lylia lylia lylia,\nLinelių raut išvarė. 2x2 k.\n\nAš tų linų nerausiu,\nSvirnely ūliavosiu.\nOi lylia ...\n\nVidur tamsios naktelės\nAtjos šelmis bernelis.\nOi lylia ...\n\nKlebins svirno dureles,\nLodys piktus kurtelius.\nOi lylia ...\n\nLodys piktus kurtelius,\nŽadins senus tėvelius.\nOi lylia ...\n\nPabus sena močiutė,\nKur mane užaugino.\nOi lylia ...\n"
+          "Lyrics & Chords": "Mane motulė barė,\nLinelių raut išvarė.\nOi lylia lylia lylia,\nLinelių raut išvarė. 2x2k.\n\nAš tų linų nerausiu,\nSvirnely ūliavosiu.\nOi lylia ...\n\nVidur tamsios naktelės\nAtjos šelmis bernelis.\nOi lylia ...\n\nKlebins svirno dureles,\nLodys piktus kurtelius.\nOi lylia ...\n\nLodys piktus kurtelius,\nŽadins senus tėvelius.\nOi lylia ...\n\nPabus sena močiutė,\nKur mane užaugino.\nOi lylia ...\n"
         }
       },
       "Audio": {},
@@ -9559,7 +9502,7 @@ const songs: SongFile = [
         "recPSvfymDpBN8JAx": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mano mama Cecelija\nMan ženytis pazvalija. (2 k.)\nJuzik, Juzik, imk mane,\nNėr gražesnės už mane. (2 k.)\n\nMano melsvos jakelės\nIr geltonos kaselės. (2 k.)\nJuzik...\n\nTėvas davė man brikiuką,\nO motulė, kumeliuką. (2 k.)\nJuzik...\n\nTėvai, tėvai paimk šniūrą,\nDuok per skūrą, duok per skūrą. (2 k.)\nJuzik..."
+          "Lyrics & Chords": "Mano mama Cecelija\nMan ženytis pazvalija. (2k.)\nJuzik, Juzik, imk mane,\nNėr gražesnės už mane. (2k.)\n\nMano melsvos jakelės\nIr geltonos kaselės. (2k.)\nJuzik...\n\nTėvas davė man brikiuką,\nO motulė, kumeliuką. (2k.)\nJuzik...\n\nTėvai, tėvai paimk šniūrą,\nDuok per skūrą, duok per skūrą. (2k.)\nJuzik..."
         }
       },
       "Audio": {},
@@ -9615,7 +9558,7 @@ const songs: SongFile = [
         "recSvZCvNoxVHW3OZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mano pypkė kukavinė\nO cibukas riestas.\n   Ne iš medžio išdrožta,\n   Parvežta iš miesto. (2 k.)\n\nOi tai dūmas, tai gardumas,\nTai stripri taboka.\n   Mano pypkė kaip vijurkas,\n   Tik kalbėt nemoka. (2 k.)\n\nIeškau pypkės visą rytą,\nNegaliu surasti.\n   Tupi pypkė palubėj\n   Ant lentynos krašto. (2 k.)\n\nOi tai dūmas...\n\nAš po pietų apsidairęs,\nŽiūriu, pypkės trūksta.\n   Ji įkritus į batus,\n   Tik dūmelis rūksta. (2 k.)\n\nOi tai dūmas...\n\nIeškau pypkės aš kamaroj,\nDaržinėj ar jaujoj,\n   O jinai, kad ją bala,\n   Guli mano saujoj. (2 k.)\n\nOi tai dūmas...\n\nMano pypkė kukavinė\nNe obels, ne uosio.\n   Kas tą pypkę suieškos -\n   Porą dūmų duosiu. (2 k.)\n\nOi tai dūmas..."
+          "Lyrics & Chords": "Mano pypkė kukavinė\nO cibukas riestas.\n   Ne iš medžio išdrožta,\n   Parvežta iš miesto. (2k.)\n\nOi tai dūmas, tai gardumas,\nTai stripri taboka.\n   Mano pypkė kaip vijurkas,\n   Tik kalbėt nemoka. (2k.)\n\nIeškau pypkės visą rytą,\nNegaliu surasti.\n   Tupi pypkė palubėj\n   Ant lentynos krašto. (2k.)\n\nOi tai dūmas...\n\nAš po pietų apsidairęs,\nŽiūriu, pypkės trūksta.\n   Ji įkritus į batus,\n   Tik dūmelis rūksta. (2k.)\n\nOi tai dūmas...\n\nIeškau pypkės aš kamaroj,\nDaržinėj ar jaujoj,\n   O jinai, kad ją bala,\n   Guli mano saujoj. (2k.)\n\nOi tai dūmas...\n\nMano pypkė kukavinė\nNe obels, ne uosio.\n   Kas tą pypkę suieškos -\n   Porą dūmų duosiu. (2k.)\n\nOi tai dūmas..."
         }
       },
       "Audio": {},
@@ -9753,7 +9696,7 @@ const songs: SongFile = [
         "recqMSwORm3AvFKLa": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mažam kambarėly, ugnelę kuriu. (3 k.)\nGirdžiu, kaip motulė kalba su kariu.\n\nKalnus tu praėjai, upes perbridai. (3 k.)\nPasakyk, sūnelį – mirti ar bijai?\n\nKalnus aš praėjau, upes perbridau. (3 k.)\nOi, neklausk motule, mirti aš bijau.\n\nKas man iš tos laimės, ir iš tos garbės. (3 k.)\nJei aš vienas džiaugsiuos, o šimtai liūdės?\n\nMažas kaubūrėlis po žaliais beržais. (3 k.)\nVerkia motinėlė tyliai vakarais."
+          "Lyrics & Chords": "Mažam kambarėly, ugnelę kuriu. (3k.)\nGirdžiu, kaip motulė kalba su kariu.\n\nKalnus tu praėjai, upes perbridai. (3k.)\nPasakyk, sūnelį – mirti ar bijai?\n\nKalnus aš praėjau, upes perbridau. (3k.)\nOi, neklausk motule, mirti aš bijau.\n\nKas man iš tos laimės, ir iš tos garbės. (3k.)\nJei aš vienas džiaugsiuos, o šimtai liūdės?\n\nMažas kaubūrėlis po žaliais beržais. (3k.)\nVerkia motinėlė tyliai vakarais."
         }
       },
       "Audio": {},
@@ -10071,7 +10014,7 @@ const songs: SongFile = [
         "recXC87gLnVoJuNec": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mergyte jaunoji, ką atsakysi,\nAr savo žodžio neatmainysi?\nMergyte jaunoji, tikėki manim,\nNes tik tave myliu.\n\nTik tau tik tau dainuoju aš\nVisas gražiausias daineles.\nŠirdis nerimsta ilgesy,\nNes tikti tu esi. (2 k.)\n\nRausvuose rytuose aušta aušrelė,\nIšblėso žvaigždės teka saulelė,\nMan plieno dalgelis jau išpustytas\nSveikina mane rytas.\n\nRasotom pievom aš brendu,\nNuvyto gėlės, man graudu,\nTaip džiūsta, vysta žolynai,\nNoreč priskinti jai.\n\nBet gana, vėjelį, mane bučiuoti,\nPrikelk mergelę kiemelio šluoti.\nSakyk, kad atjos tasi, kurs myli,\nTik, vėjužėlį, tyliai.\n"
+          "Lyrics & Chords": "Mergyte jaunoji, ką atsakysi,\nAr savo žodžio neatmainysi?\nMergyte jaunoji, tikėki manim,\nNes tik tave myliu.\n\nTik tau tik tau dainuoju aš\nVisas gražiausias daineles.\nŠirdis nerimsta ilgesy,\nNes tikti tu esi. (2k.)\n\nRausvuose rytuose aušta aušrelė,\nIšblėso žvaigždės teka saulelė,\nMan plieno dalgelis jau išpustytas\nSveikina mane rytas.\n\nRasotom pievom aš brendu,\nNuvyto gėlės, man graudu,\nTaip džiūsta, vysta žolynai,\nNoreč priskinti jai.\n\nBet gana, vėjelį, mane bučiuoti,\nPrikelk mergelę kiemelio šluoti.\nSakyk, kad atjos tasi, kurs myli,\nTik, vėjužėlį, tyliai.\n"
         }
       },
       "Audio": {},
@@ -10093,17 +10036,12 @@ const songs: SongFile = [
   {
     "id": "rec5Cbh8QfNrNFW5l",
     "fields": {
-      "Name": "Mes broliukai abudu (du du du)",
+      "Name": "Mes broliukai abudu",
       "Lyrics": {
         "recu17f0EPliBRE27": {
-          "Variant Name": "Žodžiai 1",
-          "EN Variant Name": "Lyrics 1",
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
           "Lyrics & Chords": "Mes broliukai abudu,\nEisim girion abudu.\n\nEisim girion abudu,\nKirsim klevą jovaru.\n\nKirsim klevą jovaru,\nIr skabysim šakeles.\n\nIr skabysim šakeles,\nIr pjaustysim lentutes.\n\nIr pjaustysim lentutes\nIr statysim laivelį.\n\nIr statysim laivelį,\nPlauksim jūron marelėn."
-        },
-        "recpk2QDJn1KyPxU6": {
-          "Variant Name": "Žodžiai 2",
-          "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Mes broliukai du du du\nEisim girion abudu,\nOi ly, oi ly, oi lylia,\nEisim girion abudu.\n\nEisim girion abudu,\nKirsim žalią jovarį,\nOi ly, oi ly, oi lylia,\nKirsim žalią jovarį.\n\nKirsim žalią jovarį\nIr dirbdinsim lovelę,\nOj ly...\n\nIr dirbdinsim lovelę,\nJon guldysim mergelę,\nOi ly..."
         }
       },
       "Audio": {},
@@ -10119,6 +10057,25 @@ const songs: SongFile = [
       },
       "LT Description": "Ši daina pasakoja apie du brolius, kurie eina į mišką, pjauna medį, gamina lentas ir stato laivelį, kad galėtų išplaukti į jūrą. Daina vaizduoja jų bendrą darbą ir kelionę. Tai gali simbolizuoti brolišką vienybę arba tiesiog būti pasakojimas apie kasdienius darbus.",
       "EN Description": "This song tells about two brothers going into the forest together, cutting down a tree, making planks, and building a small boat to sail out to the sea. It describes their shared work and journey. The actions may symbolize unity and cooperation, but could also simply reflect a folk tradition of storytelling through everyday activities.",
+      "AI-Generated Description": true
+    }
+  },
+  {
+    "id": "recLZyetlUTUnSV9h",
+    "fields": {
+      "Name": "Mes broliukai du du du\n",
+      "Lyrics": {
+        "recpk2QDJn1KyPxU6": {
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
+          "Lyrics & Chords": "Mes broliukai du du du\nEisim girion abudu,\nOi ly, oi ly, oi lylia,\nEisim girion abudu.\n\nEisim girion abudu,\nKirsim žalią jovarį,\nOi ly, oi ly, oi lylia,\nKirsim žalią jovarį.\n\nKirsim žalią jovarį\nIr dirbdinsim lovelę,\nOj ly...\n\nIr dirbdinsim lovelę,\nJon guldysim mergelę,\nOi ly..."
+        }
+      },
+      "Audio": {},
+      "PDFs": {},
+      "Translations": {},
+      "LT Description": "Daina pasakoja apie du brolius, einančius į girią kirsti žalią jovarį ir iš jo gaminančius lovelę merginai. Dainoje daug pasikartojimų ir švelnaus ritmo, todėl ji gali būti lopšinė arba apeiginė daina. Lovelė gali simbolizuoti meilę, santuoką ar net mirtį, nors daina tai atvirai nepasako.",
+      "EN Description": "This song tells a simple, folk-like story of two brothers going together into the forest, cutting down a green maple tree, and crafting a cradle to lay a young maiden in. The lyrics use repetition and a lullaby-like rhythm, which suggest it may have been sung in a communal or ceremonial context. The cradle may symbolize birth, love, or death—Lithuanian folk songs often use such imagery symbolically, so this could represent a romantic gesture, a marriage rite, or even a funeral cradle, though the song does not make the purpose explicit.",
       "AI-Generated Description": true
     }
   },
@@ -10165,7 +10122,7 @@ const songs: SongFile = [
         "recRZlQMGHSdBVc4U": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, tėveli mano,\nTai gražiai dainuoja sūneliai tavo. (2x2 k.)\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, motule mano,\nTai gražiai dainuoja dukrelės tavo.\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, broleli mano,\nJau stainioje žvengia žirgelis tavo.\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, sesule mano,\nTai gražiai žaliuoja rūtelės tavo."
+          "Lyrics & Chords": "Mes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, tėveli mano,\nTai gražiai dainuoja sūneliai tavo. (2x2k.)\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, motule mano,\nTai gražiai dainuoja dukrelės tavo.\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, broleli mano,\nJau stainioje žvengia žirgelis tavo.\n\nMes vargstam vargelį, ir galo nėra,\nTada tik laimingi, kada už stalo.\nTai valgyk ir gerk, sesule mano,\nTai gražiai žaliuoja rūtelės tavo."
         }
       },
       "Audio": {},
@@ -10219,7 +10176,7 @@ const songs: SongFile = [
         "recPRTIjxGtNs4eR9": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Mieli draugai kai aš numirsiu,\nKaip žmonės kalba jau seniai.\n     Rubaršką, kelnias jums paliksiu\n     Ir porą marškinių tiktai. (2 k.)\n\nJūs man varpais neskambaliuokit,\nNes to iš jūsų neprašau.\n     Tik vyno taurę užliūliuokit\n     Tai šimtą kartų bus geriau. (2 k.)\n\nJūs man parinkit tokią vietą,\nKad aš gulėčiau po bačka.\n     lr josios kraną atsisukęs\n     Galėčiau gerti visada. (2 k.)\n\nJūs mano kapą apsodinkit\nGeriausiu turkų tabaku.\n     O vietoj kryžiaus pastatykit\n     Pypkelę riestu cibuku. (2 k.)\n\nVelniop nuėjo jaunos dienos,\nIr nebegrįš jos niekada.\n     Draugai išgerkit dar po vieną\n     Kad man mirtis būtų lengva. (2 k.)"
+          "Lyrics & Chords": "Mieli draugai kai aš numirsiu,\nKaip žmonės kalba jau seniai.\n     Rubaršką, kelnias jums paliksiu\n     Ir porą marškinių tiktai. (2k.)\n\nJūs man varpais neskambaliuokit,\nNes to iš jūsų neprašau.\n     Tik vyno taurę užliūliuokit\n     Tai šimtą kartų bus geriau. (2k.)\n\nJūs man parinkit tokią vietą,\nKad aš gulėčiau po bačka.\n     lr josios kraną atsisukęs\n     Galėčiau gerti visada. (2k.)\n\nJūs mano kapą apsodinkit\nGeriausiu turkų tabaku.\n     O vietoj kryžiaus pastatykit\n     Pypkelę riestu cibuku. (2k.)\n\nVelniop nuėjo jaunos dienos,\nIr nebegrįš jos niekada.\n     Draugai išgerkit dar po vieną\n     Kad man mirtis būtų lengva. (2k.)"
         }
       },
       "Audio": {},
@@ -10332,7 +10289,7 @@ const songs: SongFile = [
         "recX2xMY6EDqnjhZk": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Močiute, širdele, tai tau, tai tau:\nAuginai dukrelę ne sau, ne sau. (2 k.)\n\nSukrovei kraitelį į skryneles,\nIšleidai dukrelę į marteles. (2 k.)\n\nIšleidai dukrelę į marteles,\nĮdavei rūtelę į rankeles. (2 k.)\n\nNuskynei rūtelę nežydusią,\nIšleidai dukrelę neužaugusią. (2 k.)"
+          "Lyrics & Chords": "Močiute, širdele, tai tau, tai tau:\nAuginai dukrelę ne sau, ne sau. (2k.)\n\nSukrovei kraitelį į skryneles,\nIšleidai dukrelę į marteles. (2k.)\n\nIšleidai dukrelę į marteles,\nĮdavei rūtelę į rankeles. (2k.)\n\nNuskynei rūtelę nežydusią,\nIšleidai dukrelę neužaugusią. (2k.)"
         }
       },
       "Audio": {},
@@ -10414,7 +10371,7 @@ const songs: SongFile = [
         "reclsCtUZIamVyMPS": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tą pat saulė spindi tau ir man,\nIr mėnulis šypsosi kiekvienam,\nNaktį žvaigždės aukštai žiba, mirksi linksmai,\nMūs pasaulis nedidus.\n\nMūs pasaulis nedidus, (3 k.)\nJis suglaudžia mus visus.\n\nBalti debesys žaidžia tarp kalnų,\nJūrų bangos lūžta ant krantų,\nBet nei bangos, kalnai, debesėliai, krantai,\nNeišskirs mūsų širdžių.\n\nMūs pasaulis...\n\nMūs pasaulis jungia linksma daina,\nVaikų juoko, džiaugsmo kupina,\nIš rytų, vakarų, iš šiaurės, ir pietų,\nSkamba aidas jų balsų.\n\nMūs pasaulis..."
+          "Lyrics & Chords": "Tą pat saulė spindi tau ir man,\nIr mėnulis šypsosi kiekvienam,\nNaktį žvaigždės aukštai žiba, mirksi linksmai,\nMūs pasaulis nedidus.\n\nMūs pasaulis nedidus, (3k.)\nJis suglaudžia mus visus.\n\nBalti debesys žaidžia tarp kalnų,\nJūrų bangos lūžta ant krantų,\nBet nei bangos, kalnai, debesėliai, krantai,\nNeišskirs mūsų širdžių.\n\nMūs pasaulis...\n\nMūs pasaulis jungia linksma daina,\nVaikų juoko, džiaugsmo kupina,\nIš rytų, vakarų, iš šiaurės, ir pietų,\nSkamba aidas jų balsų.\n\nMūs pasaulis..."
         }
       },
       "Audio": {},
@@ -10471,7 +10428,7 @@ const songs: SongFile = [
         "recMKuTSsKGY1u4Id": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kai vakare užuodi palapinę\nIr šypsena jau slįsta į kuprinę\nAr broli girdi, ar sese jauti\nJuk esam visi mes vienas, o o o u ooo\n\nPriedainis 2 k.\nRyte žiogai, tamsoj laužai\nSek gėrio pėdomis\nRamiai, lygiuok ir uždainuok\nKur miškas - ten širdis, u ooo u ooo\n\nKai mes kartu, laukai ir pievos žydi\nKaip du kart du, brangiausia juk Tėvynė\nAr broli girdi ar sese jauti\nJuk esam visi mes vienas, o o o u ooo\n\nPriedainis 2 k.\nRyte žiogai, tamsoj laužai\nSek gėrio pėdomis\nRamiai, lygiuok ir uždainuok\nKur miškas - ten širdis, u ooo u ooo."
+          "Lyrics & Chords": "Kai vakare užuodi palapinę\nIr šypsena jau slįsta į kuprinę\nAr broli girdi, ar sese jauti\nJuk esam visi mes vienas, o o o u ooo\n\nPriedainis 2k.\nRyte žiogai, tamsoj laužai\nSek gėrio pėdomis\nRamiai, lygiuok ir uždainuok\nKur miškas - ten širdis, u ooo u ooo\n\nKai mes kartu, laukai ir pievos žydi\nKaip du kart du, brangiausia juk Tėvynė\nAr broli girdi ar sese jauti\nJuk esam visi mes vienas, o o o u ooo\n\nPriedainis 2k.\nRyte žiogai, tamsoj laužai\nSek gėrio pėdomis\nRamiai, lygiuok ir uždainuok\nKur miškas - ten širdis, u ooo u ooo."
         }
       },
       "Audio": {},
@@ -10611,7 +10568,8 @@ const songs: SongFile = [
         "rec7PR6Cb0goT5nSD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Namo namo,\nMes juk plaukiam namo\nSudie, jums sekmės\nSudie jums sekmės\nMes plaukiam ir laimė\nNamo mus lydės\nVisi drauge mes plaukiam namo\n\nNamo namo\nKaip skamba džiugiai\nPaėmę šturvalą laikysim tvirtai\n\nNamo namo,\niš džiaugsmo nors šauk\nSudie jums gražuolės ilgai mūsų laukt."
+          "Lyrics & Chords": "Namo namo,\nMes juk plaukiam namo\nSudie, jums sekmės\nSudie jums sekmės\nMes plaukiam ir laimė\nNamo mus lydės\nVisi drauge mes plaukiam namo\n\nNamo namo\nKaip skamba džiugiai\nPaėmę šturvalą laikysim tvirtai\n\nNamo namo,\niš džiaugsmo nors šauk\nSudie jums gražuolės ilgai mūsų laukt.",
+          "Show Chords": true
         }
       },
       "Audio": {},
@@ -10783,13 +10741,11 @@ const songs: SongFile = [
           "Title": "Not for Green Wine",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Oh, my dear one\nRose early in the morning\n\nNot for green wine,\nBut for green grass.\n\nOh, my dear one\nWashed his mouth bright and clean.\n\nOh, my dear one\nPut on his shirt.\n\nOh, my dear one\nFastened his homespun coat.\n\nOh, my dear one\nPut on his cap.\n\nSaddled his horse,\nRode off to the army.\n\nVilija (the girl) swung her scythe,\nGave her head (sacrificed herself). \n\nOh, my dear one\nGave his head.\n\nNot for green wine,\nBut for green grass.",
-          "AI Generated": true
+          "Lyrics": "My dear young man\nWoke up early in the morning\n\nNot for the green wine,\nBut for the verdant greenery.\n\nMy dear young man\nWashed his face sparkling clean.\n\nMy dear young man\nPut on his shirt.\n\nMy dear young man\nButtoned his coat.\n\nMy dear young man\nDonned his hat.\n\nHe saddled his horse\nAnd rode off to war.\n\nThe arrow struck,\nHe laid down his head.\n\nMy dear young man\nLaid down his head.\n\nNot for the green wine,\nBut for the verdant greenery."
         }
       },
-      "LT Description": "Ši daina pasakoja apie mylimąjį, kuris anksti keliasi ir ruošiasi išvykti, turbūt į karą ar pavojingą kelionę. Pasikartojanti eilutė apie 'ne dėl žalio vyno, o dėl žalio žolyno' gali reikšti, kad jis išvyksta ne dėl linksmybių, o dėl pareigos. Pabaigoje užsimenama, kad mylimasis žuvo, bet tai nepasakoma tiesiogiai.",
-      "EN Description": "This song tells about a loved one who rises early in the morning and prepares to leave, seemingly for war or a dangerous journey. The repeated line about 'not for green wine, but for green grass' may symbolize that the departure is not for pleasure, but for duty or sacrifice. The ending suggests the loved one loses his life, possibly in battle, though the lyrics do not state this directly.",
-      "AI-Generated Description": true
+      "LT Description": "Lietuvių liaudies dainose tankiai naudojamas žalios spalvos / žalumo įprasminimas, augalų, kurie žaliuoja ištisus metus garbinimas, tikėjimas jų gyvybingumu ir antgamtinėmis galiomis. Daina „Ne dėl žalio vyno“, daugiausia paplitusi Dzūkijoje, buvo dainuojama advento laikotarpiu, tačiau dainuodavo ją ir kitose Lietuvos vietovėse, bet truputį pakeistu vienu-kitu dainos posmu. Šioje, V. Mažintaitės harmonizuotoje dainoje pasakojama apie bernelį (mano mielas), kuris kėlėsi anksti ryte, prausėsi, vilkosi rūbus, balnojo žirgelį, išjojo į karužę ir ten žuvo. Visur kartojasi priedainis: „ne dėl žalio vyno, dėl žalio žolyno“ lyg būtų norima pabrėžti bernelio kelionės tikslas.\n\nDainoje vyraujanti “…žalia, gyvybės gamtoje spalva lietuvių folklore, mitologijoje, liaudies mene, papročiuose turėjo simbolinę maginę paskirtį. Tikėta, jog simboliai, susiję su žalia spalva, gali užtikrinti gyvybingumą, vaisingumą tiek gamtai, tiek žmogui ir turi lemiamą reikšmę virsmo apeigose... Žalia spalva simbolizavo amžinąją gyvybę, todėl tokios spalvos simboliai dažnai atliko ir apsauginę funkciją.“ rašo autorė Aušra Kavaliauskienė straipsnyje „Žalios spalvos simbolika lietuvių liaudies pasaulėžiūroje.\n\n**Žalias vynas** – žymūs lietuvos tautosakos tyrinėtojai spėlioja, iš kur lietuvių dainose/ tautosakoje „žalias vynas“. Žalio vyno nėra, o jeigu tai būtų kitas lietuviškas gėrimas - gira, midus, alus ir netgi slavų atvežta degtine, tai irgi nė vienas gėrimas nebūtų žalias. Remiantis įvairiais tyrinėjimais, tautosakininkai aiškina, kad žalias vynas - tai medis, vynmedis, bet vynmedžių lietuviai neaugino, tai ir tokia daina, apdainuojanti vyną, kaip žalią žolyną, greičiausiai yra nelietuviškos kilmės. Manoma, kad tai skolinys iš kaimyninių tautų, kuriose buvo apdainuojamas vyno medis, bet jeigu jis prigijo mūsų liaudyje, reiškia jis buvo svarbus ir mums, tik ne vyno-vynmedžio įvaizdžiu, o alkoholinio gėrimo – vyno reikšme. Taigi nenuostabu, kad mūsų dainoje, žaliu vynu galėjo būti pavadintas bet koks, greičiausiai švenčių metu vartotas gėrimas, todėl dainoje kaip tik ir sakoma, kad „ne dėl žalio vyno (gėrimo), dėl žalio žolyno (amžinos gyvybės, gamtos atbudimo ženklo. (A. Kavaliauskienė)\n\nŽalias vynas lietuvių folklore turėjo ne tik ypatingo, gero, brangaus gėrimo, bet ir tokio pat vandens reikšmę. Pas močiutę mergelė žaliu vynu burnelę prausiasi, iš šulinio žalio vyno pasisėmė, Kūčių naktį vanduo virsdavo vynu, vestuvinėse dainose dažnai apdainuojama ir žalio vyno upė ar šaltinis. Vadinant gėrimą žaliu, galbūt buvo siekta ir žodžio magija jį paversti gyvybingumą, vaisingumą teikiančiu gėrimu.\n\n**Žalias žolynas** - nors pirmoji žaluma pasirodydavo apie balandžio mėnesį, ir tuo laiku švęsta senoji pavasario sutikimo šventė, tačiau užtikrinti sėkmingą gyvybės gamtoje atgimimą buvo stengiamasi daug anksčiau. Jį nulemiantis magiškas laikas - Adventas-Kalėdos. Jau tuo laiku buvo simboliškai laukiama „atvažiuojančių žolynų”.\n\nLietuvių liaudies dainų vaizdiniai dažnai yra siejami su žalia spalva, netgi žalumo sąsajas  su vedybų, meilės tematika, gyvybingumo, virsmo ir atgimimo idėjomis. Su bernelio, mergelės jaunomis dienomis dainose dažnai tapatinamas ir medžio žaliavimas, o tie medžiai, kurie žaliuoja ištisus metus, buvo laikomi amžinojo gyvenimo rato simboliu. Vestuvinių dainų kontekste kaip simboliniai tarpininkai neretai iškyla žalias šilkelis (žalių šilkų šniūrelis), žalias tiltas, žalia karietėlė, žalias laivelis. (Bronė Stunžienė)\n\nŽaliais žolynais per sekmines puošdavo sodžiaus pirkias, klėtis, kiemo vartus. Darželiai būdavo išpuošiami daugiausia jaunais berželiais bei kitais žalumynais. Taip pat buvo puoštos ir bažnyčios, laukų kryžiai. Sekminėms į atlaidus žmonės važiuodavo irgi pasipuošę žalumynais. Per Sekmines, kaip ir per kitas gamtos atgimimą pažyminčias šventes, stalus puošė žalumynais, žaliais žolynais. Žolynai, gėlės, medžių šakos buvo naudojami ir kitomis kalendorinėmis šventėmis, bei šeimos tradicinėse apeigose: krikštynų metu, laidotuvių, vestuvių ir kt.\n\nTaigi žalias žolynas, kuris apdainuojamas ir mūsų dainoje, buvo amžinos gyvybės, atsinaujinimo, atgimimo ir gyvenimo tąsos simbolis tiek gamtoje, tiek žmogaus gyvenime\n\n---\n\n**Žodynas**\n- _sermėga (t. p. rudinė, milinė)_ – viršutinis storas milinis drabužis, dėvėtas daugiausia vyrų. Lietuvoje sermėgos dėvėtos iki XX a. pr.\n- _vilytėlė_ – strėlė",
+      "EN Description": "The color green is frequently encountered in Lithuanian folk songs. Greenery that keeps its color the entire year is worshipped and believed to have supernatural powers. The song “Not for the green wine” was most popular in the Dzūkija region of Lithuania, generally sung during Advent. It was also sung in other parts of Lithuania, albeit with somewhat modified lyrics. The song tells the story of a young man who got up early in the morning, washed, dressed, saddled his horse, and rode off to war, where he perished. The continuing refrain “Not for the green wine, but for the verdant greenery” seeks to emphasize his motivation for going off to war.\n\nAušra Kavaliauskienė helps explain the song in her article titled “Symbolism of the color green in the worldview of Lithuanian folklore”. “…In Lithuanian folklore, mythology, folk art, and traditions the color green was considered magical. It was believed that green symbols would ensure vitality and fruitfulness not only in nature, but also in one’s life. The color green signified eternal life, so that green symbols also indicated a protective function.”\n\n**Green wine**\n\nFolklore researchers have attempted to ascertain the source of the image “green wine” in Lithuanian folk songs. There is no green wine in Lithuania, and none of the traditional Lithuanian drinks (mead, kvass, beer, whiskey) are green. So it is thought that the image is not of Lithuanian origin and borrowed from neighboring countries, where the same sounding word could mean different things: green vine (the vine tree) = green wine (the drink). One way or another, the term became popular in Lithuanian folklore. “Green wine” can be taken to mean almost any alcoholic drink, particularly what is drunk during feasts and celebrations. What is significant in this song, is that the young man rode off to war not motivated by alcohol, but by a higher purpose. (A. Kavaliauskienė)\n\n“Green wine” in Lithuanian folklore not was not only used to denote a special, expensive drink of high quality. It could also indicate „water“. For example, „the young woman washed her face with green wine“. Or „the girl drew green wine from the well“. On Christmas Eve water was said to turn into wine. During wedding celebrations, there were songs about a fountain or river of green wine. To identify a drink as “green” could also symbolize that it was a magical potion.\n\n**Verdant greenery.**\n\nThe first greenery would appear typically in the month of April, at which time the arrival of spring would be celebrated. However, it was sought to guarantee the rebirth of nature much earlier – the „approaching greenery“ was celebrated during the time of Advent and Christmas. Images in Lithuanian folk songs frequently use the color green  Song Analysis when describing weddings, life, vitality, and the notions of change and rebirth. The growth and verdancy of trees is used to describe the time of life when a young man or woman grow into maturity. Trees which are green the entire year symbolized the eternal wheel of life. In the context of wedding songs, we see references to green silk, green bridges, green carriages, and green boats.\n\nGreenery was used during the feast of Pentecost to decorate homes, entrance gates, and barns. Young birch tree branches and other greenery were used to beautify gardens. Churches and wayside shrines were similarly adorned. People would drive to Pentecost services dressed up with greenery. Flowers, boughs of trees, and other greenery were used as decorations when celebrating holidays as well as traditional family ceremonies – baptisms, weddings, funerals, etc.\n\n“Verdant greenery”, as in this song, was symbolic of eternal life, renewal, and rebirth – as much in nature as in one’s own life."
     }
   },
   {
@@ -10800,7 +10756,7 @@ const songs: SongFile = [
         "recCGjjDURGmoppei": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Vėl](Am) [basa,](G) [kilimų žolė saugant](F) [slystu nuo kopos jūron](Dm)  \n[Su](Am) [audra,](G) [vėjas susitaikė, gimsta šiluma](F) [iš lėto](Dm)  \n[Ne](Am)[svarbu,](G) [kad naktį dar šąla, tau gražu ledinė](F) [žemė](Dm)  \n[Su](Am) [aušra,](G) paukščiai bunda, mes užmiegam.](F) [  ](Dm)\n\n_[Nes su](C) [tavim turiu](G) [naktį drąsos,](F) [ ](C)  \n[įsiklausyti](C) [kalbą](G) [tamsos](F) [ ](C)  \n[Lipt](C) [stogais](Am) [ir žiūrėt](G) [žemyn,](Fm)  \n[Kas brangu nebijot](F) [apkabint.](G) [(2k.)](C)_\n\nDienoje, daug ilgų savaičių kol užmiega saulė\nTekina, bėgu link tavęs nebėr sapne apgaulės\nAkyse, ilgesio mėnuliai nuo kurių vanduo liepsnoja\nGal gerai, kad dar nebuvom susitikę.\n\n_Nes su tavim turiu naktį drąsos,\nįsiklausyti kalbą tamsos\nLipt stogais ir žiūrėt žemyn,\nKas brangu nebijot apkabint._\n\nNes su tavim turiu naktį drąsos,\nįsiklausyti kalbą tamsos\nLipt stogais ir žiūrėt žemyn,\nKas brangu nebijot apkabint.",
+          "Lyrics & Chords": "[Vėl](Am) [basa,](G) [kilimų žolė saugant](F) [slystu nuo kopos jūron](Dm)  \n[Su](Am) [audra,](G) [vėjas susitaikė, gimsta šiluma](F) [iš lėto](Dm)  \n[Ne](Am)[svarbu,](G) [kad naktį dar šąla, tau gražu ledinė](F) [žemė](Dm)  \n[Su](Am) [aušra,](G) [paukščiai bunda, mes užmiegam.](F) [  ](Dm)\n\n_[Nes su](C) [tavim turiu](G) [naktį drąsos,](F) [ ](C)_\n_[įsiklausyti](C) [kalbą](G) [tamsos](F) [ ](C)_\n_[Lipt](C) [stogais](Am) [ir žiūrėt](G) [žemyn,](Fm)_\n_[Kas brangu nebijot](F) [apkabint.](G) [(2k.)](C)_\n\nDienoje, daug ilgų savaičių kol užmiega saulė\nTekina, bėgu link tavęs nebėr sapne apgaulės\nAkyse, ilgesio mėnuliai nuo kurių vanduo liepsnoja\nGal gerai, kad dar nebuvom susitikę.\n\n_Nes su tavim turiu naktį drąsos,_\n_įsiklausyti kalbą tamsos_\n_Lipt stogais ir žiūrėt žemyn,_\n_Kas brangu nebijot apkabint._\n\nNes su tavim turiu naktį drąsos,\nįsiklausyti kalbą tamsos\nLipt stogais ir žiūrėt žemyn,\nKas brangu nebijot apkabint.",
           "Show Chords": true
         }
       },
@@ -10830,7 +10786,7 @@ const songs: SongFile = [
         "recFSgWU59bpVEBSC": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Neišeik, neišeik tu iš sodžiaus\nNepaliki žilvyčių vienų\nBe tavęs vakarai bus nuobodūs,\nBe tavęs nebus sodžiuje dainų. (2 k.)\n\nTavo tėvo aplūžęs namelis\nLiks našlaitis apleistas visų,\nVyšnių žiedai gegužy pabalę,\nVien ilgėsis tavūjų dienų. (2 k.)\n\nNeišeik, dar palauk čia prie kelio\nParymoki tyliais vakarais,\nČia kuždės tau švelnučiai lapeliai\nGal ir laimė per laukus ateis. (2 k.)\n\nJau vėlu, jau naktis, lapai krinta,\nJau užgeso ugnis židinių,\nAkmenėliai upelyje kalba:\nPer vėlai, per vėlai ateini. (2 k.)\n"
+          "Lyrics & Chords": "Neišeik, neišeik tu iš sodžiaus\nNepaliki žilvyčių vienų\nBe tavęs vakarai bus nuobodūs,\nBe tavęs nebus sodžiuje dainų. (2k.)\n\nTavo tėvo aplūžęs namelis\nLiks našlaitis apleistas visų,\nVyšnių žiedai gegužy pabalę,\nVien ilgėsis tavūjų dienų. (2k.)\n\nNeišeik, dar palauk čia prie kelio\nParymoki tyliais vakarais,\nČia kuždės tau švelnučiai lapeliai\nGal ir laimė per laukus ateis. (2k.)\n\nJau vėlu, jau naktis, lapai krinta,\nJau užgeso ugnis židinių,\nAkmenėliai upelyje kalba:\nPer vėlai, per vėlai ateini. (2k.)\n"
         },
         "recqMXD2gTnL3RE5i": {
           "Variant Name": "Žodžiai 2",
@@ -10862,7 +10818,7 @@ const songs: SongFile = [
         "recc7VdRfgp10fOCY": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Ir ant](G) [manęs](Hm) [dangus](C) [dar nusileis,](D)\n[Dar aš](G) [per](Hm) [naktį grįšiu](C) [į tą pusę.](D)\n[Kaip](G) [paskenduoliai](Hm) [vėl](C) [išplaukskeliai,](D)\n[Kur](G) [kenčia](Hm) [vienkiemiai,](C) [palaidoti lig pusės.](D)\n\n[Dar](C) [mano](D) [balsas](Em) [properšoj nušvis](Hm)  \n[Ir į](C) [pusnis](D) [jo niekas](G) [neišlaistys.](Em)  \n[O ta](C) [tyla - kaip](D) [trokštanti](Em) [žuvis](Hm)  \n[Išplauks](C) [prieš srovę...](D) [Nemunais](G) [į](Em) [laisvę...](Hm) [  ](D7)\n\nTiktai neduok šalikelėj rūdyt,\nKad tarp pelėsių sienos neužgriūtų,\nPašviesk tu man kaip Ostija širdy,\nPabūk ant stalo plotkele su rūta.\n\nIr nieks manęs į pusnį neišleis,\nAnt gruodo neparblokš per vėtrą baisią.\nIr savo balsą ant pirmos žolės\nDelnais pajutęs vieškeliais paleisiu.",
+          "Lyrics & Chords": "[Ir ant](G) [manęs](Hm) [dangus](C) [dar nusileis,](D)\n[Dar aš](G) [per](Hm) [naktį grįšiu](C) [į tą pusę.](D)\n[Kaip](G) [paskenduoliai](Hm) [vėl](C) [išplaukskeliai,](D)\n[Kur](G) [kenčia](Hm) [vienkiemiai,](C) [palaidoti lig pusės.](D)\n\n[Dar](C) [mano](D) [balsas](Em) [properšoj nušvis](Hm)  \n[Ir į](C) [pusnis](D) [jo niekas](G) [neišlaistys.](Em)  \n[O ta](C) [tyla - kaip](D) [trokštanti](Em) [žuvis](Hm)  \n[Išplauks](C) [prieš srovę...](D) [Nemunais](G) [į lais](Em)[vę...](Hm) [  ](D7)\n\nTiktai neduok šalikelėj rūdyt,\nKad tarp pelėsių sienos neužgriūtų,\nPašviesk tu man kaip Ostija širdy,\nPabūk ant stalo plotkele su rūta.\n\nIr nieks manęs į pusnį neišleis,\nAnt gruodo neparblokš per vėtrą baisią.\nIr savo balsą ant pirmos žolės\nDelnais pajutęs vieškeliais paleisiu.",
           "Show Chords": true
         }
       },
@@ -10919,7 +10875,7 @@ const songs: SongFile = [
         "rec6mjKdNI9bVN6hb": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Čia baltosios ievos pražysta,\nNubarsto žiedeliai takus,\nO jauną krūtinėje širdį\nUžvaldo troškimas lakus. (2 k.)\n\nNemunėli, Nemunėli,\nPer laukus, per plačius, per girias.\nTyrą, tyrą plukdai vandenėlį\nĮ žydriausias pasauly marias.\n\nNemunėli, Nemunėli,\nPo gimtinės padange žydria,\nAš tėvelio sode serbentėlė,\nMotinėlės jauniausia dukra.\n\nPavasario džiaugsmą dainuoju,\nLyg paukštė stambia krūtine,\nO rūpesčių, sielvartų dienos\nNuskendo plačiam Nemune. (2 k.)\nNemunėli...\n\nČia baltosios ievos pražysta,\nBanguoja laukų platuma.\nUž viską tu, Nemuno žeme,\nKarščiausiai esi mylima. (2 k.)\nNemunėli..."
+          "Lyrics & Chords": "Čia baltosios ievos pražysta,\nNubarsto žiedeliai takus,\nO jauną krūtinėje širdį\nUžvaldo troškimas lakus. (2k.)\n\nNemunėli, Nemunėli,\nPer laukus, per plačius, per girias.\nTyrą, tyrą plukdai vandenėlį\nĮ žydriausias pasauly marias.\n\nNemunėli, Nemunėli,\nPo gimtinės padange žydria,\nAš tėvelio sode serbentėlė,\nMotinėlės jauniausia dukra.\n\nPavasario džiaugsmą dainuoju,\nLyg paukštė stambia krūtine,\nO rūpesčių, sielvartų dienos\nNuskendo plačiam Nemune. (2k.)\nNemunėli...\n\nČia baltosios ievos pražysta,\nBanguoja laukų platuma.\nUž viską tu, Nemuno žeme,\nKarščiausiai esi mylima. (2k.)\nNemunėli..."
         }
       },
       "Audio": {},
@@ -10974,7 +10930,7 @@ const songs: SongFile = [
         "recRFiAroq93551R9": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Norėčiau aš keliauti ten toli, toli, toli.  (2 k.)\nUž jūrų marių, už upių vandenėlių,\nKur šlama ošia girios ir gieda vieversiai. (2 k.)\n\nMinties sparnais skrendu aš ten toli, toli, toli. (2 k.)\nBrangios tėvynės, laukus, dirvonus, pievas,\nPilies apleistas sienas kasdiena aplankau. (2 k.)\n\nTėvyne, kaip sunku gyventi be tavęs. (2 k.)\nO kad išaustų ir man laimės dienelė.\nKada savon šalelėn galėčiau vėl sugrįžt. (2 k.)"
+          "Lyrics & Chords": "Norėčiau aš keliauti ten toli, toli, toli.  (2k.)\nUž jūrų marių, už upių vandenėlių,\nKur šlama ošia girios ir gieda vieversiai. (2k.)\n\nMinties sparnais skrendu aš ten toli, toli, toli. (2k.)\nBrangios tėvynės, laukus, dirvonus, pievas,\nPilies apleistas sienas kasdiena aplankau. (2k.)\n\nTėvyne, kaip sunku gyventi be tavęs. (2k.)\nO kad išaustų ir man laimės dienelė.\nKada savon šalelėn galėčiau vėl sugrįžt. (2k.)"
         }
       },
       "Audio": {},
@@ -11001,7 +10957,7 @@ const songs: SongFile = [
         "recPUP3bK3zdMpUHz": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Noriu miego, saldaus miego, negaliu užmigti;\nJaučiu kieme mergužėlę, negaliu nueiti. (2 k.)\n\nSiūsčiau tarną ir tarnaitę, pažiūrėt, ką veikia;\nSkina, pina vainikėlį iš žalių rūtelių. (2 k.)\n\nJi pindama, dabindama su vainiku kalba;\nVainikėlį žalių rūtų, kur aš tave dėsiu? (2 k.)\n\nJei tu žalias ant galvelės, tai aš už bernelio;\nJei tu žalias į purvelį, tai aš į vargelį. (2 k.)\n\nKaip aš buvau pas močiutę kaip rožė žydėjau;\nO pas tave, bernužėlį, kaip mėta pavytau. (2 k.)"
+          "Lyrics & Chords": "Noriu miego, saldaus miego, negaliu užmigti;\nJaučiu kieme mergužėlę, negaliu nueiti. (2k.)\n\nSiūsčiau tarną ir tarnaitę, pažiūrėt, ką veikia;\nSkina, pina vainikėlį iš žalių rūtelių. (2k.)\n\nJi pindama, dabindama su vainiku kalba;\nVainikėlį žalių rūtų, kur aš tave dėsiu? (2k.)\n\nJei tu žalias ant galvelės, tai aš už bernelio;\nJei tu žalias į purvelį, tai aš į vargelį. (2k.)\n\nKaip aš buvau pas močiutę kaip rožė žydėjau;\nO pas tave, bernužėlį, kaip mėta pavytau. (2k.)"
         }
       },
       "Audio": {},
@@ -11233,7 +11189,7 @@ const songs: SongFile = [
         "recnqXmcHqIHgXZa6": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Onyte, einam su manim pašokti\nLeisk man karštai priglaust tave\nVisokių šokių gali greit išmokti\nJeigu tu paklausysi manęs\n\nŠoky pažinsim mes\nMūsų širdžių gelmes\nGrieš muzika linksmai\nMylėsim amžinai\n\nOnyte, einam su manim pašokti\nLeisk man karštai priglaust tave.\n\nO disko, O disko, mes mylim\nTiktai disko! ] 2 k.\n\nWe’re stars on 45, weekend thought is in your mind\nAnd we can work it out, remember twist and shout\nYou still know tell me why and no reply.\n\nKeitės ir miestai ir veidai\nŠaukiau tave bet tu manęs neišgirdai.\nMetai nuskendo tolumoj\nBet tavo meilė vėl ir šaukia grįšk namo.\nMeilė man dar nesvetima\nBet širdyje nesutema nesutema\n\nNeša greiti žirgai mane\nTen kur lingavo rytų vėjuose vyšnia.\n\nO disko, o disko, mes mylim\ntiktai disko!\n\nJau aukso žiedus kala\nJau dengia baltą stalą\nJau bėrą žirgą veda\nJau vartai atkelti.\nO mano mylimoji\nKam širdį tu aukoji\nKad žiedą dovanoji\nTu jam nemylima\n\nO disko...\n\nMeilei nereikia pasakų rūmų\nMeilei reikia mylimo žmogaus\nBaltijos vėjo, jūros žydrumo\nIr žuvėdrom skambančio dangaus\nLa la la la la...\n\nWe’re stars on 45...\n\nOnytė, einam su manim pašokti\nLeisk man karštai priglaust tave\nVisokių šokių gali greit išmokti\nJeigu tu paklausysi manęs.\n\nŠoky pažinsim mes\nMūsų širdžių gelmes\nGrieš muzika linksmai\nMylėsim amžinai\n\nOnyte, einam su manim pašokti\nLeisk man karštai priglaust tave."
+          "Lyrics & Chords": "Onyte, einam su manim pašokti\nLeisk man karštai priglaust tave\nVisokių šokių gali greit išmokti\nJeigu tu paklausysi manęs\n\nŠoky pažinsim mes\nMūsų širdžių gelmes\nGrieš muzika linksmai\nMylėsim amžinai\n\nOnyte, einam su manim pašokti\nLeisk man karštai priglaust tave.\n\nO disko, O disko, mes mylim\nTiktai disko! ] 2k.\n\nWe’re stars on 45, weekend thought is in your mind\nAnd we can work it out, remember twist and shout\nYou still know tell me why and no reply.\n\nKeitės ir miestai ir veidai\nŠaukiau tave bet tu manęs neišgirdai.\nMetai nuskendo tolumoj\nBet tavo meilė vėl ir šaukia grįšk namo.\nMeilė man dar nesvetima\nBet širdyje nesutema nesutema\n\nNeša greiti žirgai mane\nTen kur lingavo rytų vėjuose vyšnia.\n\nO disko, o disko, mes mylim\ntiktai disko!\n\nJau aukso žiedus kala\nJau dengia baltą stalą\nJau bėrą žirgą veda\nJau vartai atkelti.\nO mano mylimoji\nKam širdį tu aukoji\nKad žiedą dovanoji\nTu jam nemylima\n\nO disko...\n\nMeilei nereikia pasakų rūmų\nMeilei reikia mylimo žmogaus\nBaltijos vėjo, jūros žydrumo\nIr žuvėdrom skambančio dangaus\nLa la la la la...\n\nWe’re stars on 45...\n\nOnytė, einam su manim pašokti\nLeisk man karštai priglaust tave\nVisokių šokių gali greit išmokti\nJeigu tu paklausysi manęs.\n\nŠoky pažinsim mes\nMūsų širdžių gelmes\nGrieš muzika linksmai\nMylėsim amžinai\n\nOnyte, einam su manim pašokti\nLeisk man karštai priglaust tave."
         }
       },
       "Audio": {},
@@ -11292,7 +11248,7 @@ const songs: SongFile = [
         "recJWMy6wrcKZcAjN": {
           "Variant Name": "Raibi gaideliai giedojo",
           "EN Variant Name": "Raibi gaideliai giedojo",
-          "Lyrics & Chords": "Raibi gaideliai giedojo,\nBrolis žirgelį balnojo.\nKelkis sesula, žalia rūtele,\nBrolelio rengejėle. (2x2 k.)\n\nUždek man šviesią ugnelę,\nAš nusiprausiu burnelę,\nAtsisveikinsiu tėvą, motulę\nIr brolį, seserėlę.\n\nO per dvarelį jodamas,\nVario vartelius keldamas,\nOi, ir pamačiau jauną mergelę\nSvirnely pas skrynelę.\n\nKą tu ten veiki, mergele?\nOi, kam tu rėžai drobeles?\nAš nenešiosiu tų marškinėlių\nKareivėliu būdams.\n\nDuos mums karalius žirgelius,\nO prie žirgelių balnelius.\nBūsim rėdyti ir išmokyti\nKaip vieno tėvužio.\n\nSueis kalneliai kloniuosna,\nPaskęs karaliai kraujuosna.\nO mes stovėsim ir nedrebėsim,\nMes visus pergalėsim."
+          "Lyrics & Chords": "Raibi gaideliai giedojo,\nBrolis žirgelį balnojo.\nKelkis sesula, žalia rūtele,\nBrolelio rengejėle. (2x2k.)\n\nUždek man šviesią ugnelę,\nAš nusiprausiu burnelę,\nAtsisveikinsiu tėvą, motulę\nIr brolį, seserėlę.\n\nO per dvarelį jodamas,\nVario vartelius keldamas,\nOi, ir pamačiau jauną mergelę\nSvirnely pas skrynelę.\n\nKą tu ten veiki, mergele?\nOi, kam tu rėžai drobeles?\nAš nenešiosiu tų marškinėlių\nKareivėliu būdams.\n\nDuos mums karalius žirgelius,\nO prie žirgelių balnelius.\nBūsim rėdyti ir išmokyti\nKaip vieno tėvužio.\n\nSueis kalneliai kloniuosna,\nPaskęs karaliai kraujuosna.\nO mes stovėsim ir nedrebėsim,\nMes visus pergalėsim."
         }
       },
       "Audio": {},
@@ -11512,7 +11468,7 @@ const songs: SongFile = [
         "recmhNjr0ybwiQlhy": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi jojau, jojau, dūmojau,\nOi jojau, jojau, dūmojau,\nPrijojau dvarelį, prijojau dvarelį,\nPrijojau dvarelį, sustojau. (2x2 k.)\n\nPririšau žirgą prie tvoros,\nPririšau žirgą prie tvoros,\nPrie žalių rūtelių, prie žalių rūtelių,\nPrie žalių rūtelių darželio.\n\nPamuistė žirgas galvelę,\nPamuistė žirgas galvelę,\nOi ir išmindžiojo, oi ir išmindžiojo,\nOi ir išmindžiojo žalias rūteles.\n\nIšėjo mergelė verkdama,\nIšėjo mergelė verkdama,\nŽaliųjų rūtelių, žaliųjų rūtelių,\nŽaliųjų rūtelių gailėdama.\n\n- Cit, neverk, mergele, neraudok,\nCit, neverk, mergele, neraudok,\nAš tau dovanosiu, aš tau dovanosiu,\nAš tau dovanosiu aukso žiedelį.\n\nMan nereikia tavo aukso žiedelio,\nMan nereikia tavo aukso žiedelio,\nMan mielesnės mano, man mielesnės mano\nMan mielesnės mano žalios rūtelės."
+          "Lyrics & Chords": "Oi jojau, jojau, dūmojau,\nOi jojau, jojau, dūmojau,\nPrijojau dvarelį, prijojau dvarelį,\nPrijojau dvarelį, sustojau. (2x2k.)\n\nPririšau žirgą prie tvoros,\nPririšau žirgą prie tvoros,\nPrie žalių rūtelių, prie žalių rūtelių,\nPrie žalių rūtelių darželio.\n\nPamuistė žirgas galvelę,\nPamuistė žirgas galvelę,\nOi ir išmindžiojo, oi ir išmindžiojo,\nOi ir išmindžiojo žalias rūteles.\n\nIšėjo mergelė verkdama,\nIšėjo mergelė verkdama,\nŽaliųjų rūtelių, žaliųjų rūtelių,\nŽaliųjų rūtelių gailėdama.\n\n- Cit, neverk, mergele, neraudok,\nCit, neverk, mergele, neraudok,\nAš tau dovanosiu, aš tau dovanosiu,\nAš tau dovanosiu aukso žiedelį.\n\nMan nereikia tavo aukso žiedelio,\nMan nereikia tavo aukso žiedelio,\nMan mielesnės mano, man mielesnės mano\nMan mielesnės mano žalios rūtelės."
         }
       },
       "Audio": {},
@@ -11545,7 +11501,7 @@ const songs: SongFile = [
         "rec5ufPsT6JmUWnJ2": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi, kur buvai, dieduk mano,\nOi, kur buvai, dūšia mano,\nOi kur buvai tu mano,\nPilkas karvelėli mano? (2 k.)\n\nVilniuj buvau, bobut mano,\nVilniuj buvau, dūšia mano,\nVilniuj buvau tu mano,\nRaiboji gegelė mano. (2 k.)\n\nKą parnešei, dieduk mano,\nKą parnešei, dūšia mano,\nKą parnešei tu mano,\nPilkas karvelėli mano? (2 k.)\n\nVyno bonką, bobut mano,\nVyno bonką, dūšia mano,\nVyno bonką, tu mano,\nRaiboji gegelė mano. (2 k.)\n\nUžgurguliuok, dieduk mano,\nUžgurguliuok, dūšia mano,\nUžgurguliuok, tu mano,\nPilkas karvelėli mano. (2 k.)"
+          "Lyrics & Chords": "Oi, kur buvai, dieduk mano,\nOi, kur buvai, dūšia mano,\nOi kur buvai tu mano,\nPilkas karvelėli mano? (2k.)\n\nVilniuj buvau, bobut mano,\nVilniuj buvau, dūšia mano,\nVilniuj buvau tu mano,\nRaiboji gegelė mano. (2k.)\n\nKą parnešei, dieduk mano,\nKą parnešei, dūšia mano,\nKą parnešei tu mano,\nPilkas karvelėli mano? (2k.)\n\nVyno bonką, bobut mano,\nVyno bonką, dūšia mano,\nVyno bonką, tu mano,\nRaiboji gegelė mano. (2k.)\n\nUžgurguliuok, dieduk mano,\nUžgurguliuok, dūšia mano,\nUžgurguliuok, tu mano,\nPilkas karvelėli mano. (2k.)"
         },
         "recUUCdnDjoyxcEC6": {
           "Variant Name": "Vai kur buvai",
@@ -11577,7 +11533,7 @@ const songs: SongFile = [
         "recEoYsuxXyy3483A": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi lunkela, lunkela, (2 k.)\nOi lunkela, žalioji pievela. (2 k.)\n\nOi, mes pjausim šienelį,\nOi, mes pjausim, berneli, šienelį.\n\nOi, mes josim Rygužėn,\nOi, mes josim, berneli, Rygužėn.\n\nSlaunus miestas Rygužė,\nDar slaunesni berneliai Lietuvos.\n\nStovi vaiskas kaip mūras,\nStovi vaiskas, berneli, kaip mūras.\n\nZvimb kulipkos kaip bites,\nZvimb kulipkos, berneli, kaip bites.\n\nKrenta vaiskas kaip mūras,\nKrenta vaiskas, berneli, kaip mūras.\n\nLiejas kraujas kaip vanduo,\nLiejas kraujas, berneli, kaip vanduo.\n\nLaka šunes kaip levai,\nLaka šunes, berneli, kaip levai."
+          "Lyrics & Chords": "Oi lunkela, lunkela, (2k.)\nOi lunkela, žalioji pievela. (2k.)\n\nOi, mes pjausim šienelį,\nOi, mes pjausim, berneli, šienelį.\n\nOi, mes josim Rygužėn,\nOi, mes josim, berneli, Rygužėn.\n\nSlaunus miestas Rygužė,\nDar slaunesni berneliai Lietuvos.\n\nStovi vaiskas kaip mūras,\nStovi vaiskas, berneli, kaip mūras.\n\nZvimb kulipkos kaip bites,\nZvimb kulipkos, berneli, kaip bites.\n\nKrenta vaiskas kaip mūras,\nKrenta vaiskas, berneli, kaip mūras.\n\nLiejas kraujas kaip vanduo,\nLiejas kraujas, berneli, kaip vanduo.\n\nLaka šunes kaip levai,\nLaka šunes, berneli, kaip levai."
         }
       },
       "Audio": {},
@@ -11604,7 +11560,7 @@ const songs: SongFile = [
         "recTXQ8bFCDCMhPJL": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi mergelės, mergužėlės,\nRidig dai, ridig do.\nGražios mūsų dainužėlės,\nRidig dai, ridig do.\nKai per Lietuvą važiuojam,\nKai užtraukiam, uždainuojam:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai.\nO, o, ridig do. (2 k.)\n\nKepures visi mums kelia...\nKai išgirsta šią dainelę...\nJa aplankom gimtą namą.\nJa beržai prie kelio šlama:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai...\n\nDarbininkai ir artojai...\nŠią dainelę atkartoja...\nJie sykiu į darbą žengia.\nJi plasnoja per padangę:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai...\n\nJei dainelę šią mokėsi...\nNiekada tu neliūdėsi...\nAr tu eisi, ar važiuosi\nJą visur linksmai dainuosi:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai..."
+          "Lyrics & Chords": "Oi mergelės, mergužėlės,\nRidig dai, ridig do.\nGražios mūsų dainužėlės,\nRidig dai, ridig do.\nKai per Lietuvą važiuojam,\nKai užtraukiam, uždainuojam:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai.\nO, o, ridig do. (2k.)\n\nKepures visi mums kelia...\nKai išgirsta šią dainelę...\nJa aplankom gimtą namą.\nJa beržai prie kelio šlama:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai...\n\nDarbininkai ir artojai...\nŠią dainelę atkartoja...\nJie sykiu į darbą žengia.\nJi plasnoja per padangę:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai...\n\nJei dainelę šią mokėsi...\nNiekada tu neliūdėsi...\nAr tu eisi, ar važiuosi\nJą visur linksmai dainuosi:\nRidig dai, ridig dai, ridig do.\n\nAi, ai, ridig dai..."
         }
       },
       "Audio": {},
@@ -11631,7 +11587,7 @@ const songs: SongFile = [
         "recbytaP37z3UfhtY": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi neverk, motinėle, kad jaunas sūnus\nEis ginti brangiosios tėvynės;\nKad pavirtęs, kaip ąžuolas girių puikus ]\nlauks teismo dienos paskutinės. ] 2x2 k.\n\nTad nelaužyk sau rankų, kaip beržo šakas\nKad laužo užrūstintas vėjas;\nTau dar liko sūnų, kas tėvynę praras,\nAntros neišmels apgailėjęs.\n\nTen už upių plačių žiba mūsų pulkai\nJie mylimą Lietuvą gina;\nKam nusviro galva, tam dangaus angelai\nVainiką iš deimantų pina.\n\nSaulė leidos raudona ant Vilniaus kapų,\nKai duobę kareiviai ten kasė,\nIr paguldė daug brolių greta milžinų,\nO Viešpats jų priglaudė dvasią."
+          "Lyrics & Chords": "Oi neverk, motinėle, kad jaunas sūnus\nEis ginti brangiosios tėvynės;\nKad pavirtęs, kaip ąžuolas girių puikus ]\nlauks teismo dienos paskutinės. ] 2x2k.\n\nTad nelaužyk sau rankų, kaip beržo šakas\nKad laužo užrūstintas vėjas;\nTau dar liko sūnų, kas tėvynę praras,\nAntros neišmels apgailėjęs.\n\nTen už upių plačių žiba mūsų pulkai\nJie mylimą Lietuvą gina;\nKam nusviro galva, tam dangaus angelai\nVainiką iš deimantų pina.\n\nSaulė leidos raudona ant Vilniaus kapų,\nKai duobę kareiviai ten kasė,\nIr paguldė daug brolių greta milžinų,\nO Viešpats jų priglaudė dvasią."
         }
       },
       "Audio": {},
@@ -11726,7 +11682,7 @@ const songs: SongFile = [
         "rechbxBTxiw8VXKGk": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi sergu sergu, negaliu, negaliu, 2 k.\nSkauda man galvelę, pakelt negaliu. 2 k.\n\nSiųsčiau paslelį pas savo tėvelį,\nKad atneštų vandenio, vandenėlio gerti!\n\nTėvelis nespėjo, kalne rugius sėjo,\nNeatnešė, vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo močiutę,\nKad atneštų vandenio, vandenėlio gerti.\n\nMočiutė nespėjo, kopūstus ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo seselę,\nKad atneštų vandenio, vandenėlio gerti!\n\nSesutė nespėjo, rūteles ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo bernelį,\nKad atneštų vandenio, vandenėlio gerti.\n\nBernelis suspėjo, darbus atidėjo,\nIr atnešė vandenio, vandenėlio gerti."
+          "Lyrics & Chords": "Oi sergu sergu, negaliu, negaliu, 2k.\nSkauda man galvelę, pakelt negaliu. 2k.\n\nSiųsčiau paslelį pas savo tėvelį,\nKad atneštų vandenio, vandenėlio gerti!\n\nTėvelis nespėjo, kalne rugius sėjo,\nNeatnešė, vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo močiutę,\nKad atneštų vandenio, vandenėlio gerti.\n\nMočiutė nespėjo, kopūstus ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo seselę,\nKad atneštų vandenio, vandenėlio gerti!\n\nSesutė nespėjo, rūteles ravėjo,\nNeatnešė vandenio, vandenėlio gerti.\n\nSiųsčiau paslelį pas savo bernelį,\nKad atneštų vandenio, vandenėlio gerti.\n\nBernelis suspėjo, darbus atidėjo,\nIr atnešė vandenio, vandenėlio gerti."
         },
         "recmcgCd7UiePHXcm": {
           "Variant Name": "Oi Dievuli, sergu",
@@ -11853,7 +11809,7 @@ const songs: SongFile = [
         "reclc5sVevylG7jmt": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi tu, Joneli,\nKodėl nesiženiji?\nŽenikis, vaike,\nGaspadinės reikia. ] 2x2 k.\n\nParsvedžiau aukštą,\nPaspringo su šaukštu.\nO kas man iš tokios,\nVelyk būti be pačios. ] 2x2 k.\n\nOi tu, Joneli. . .\n\nParsivedžiau storą,\nĮstrigo į tvorą.\nO kas man iš tokios,\nVelyk būti be pačios.\n\nOi tu, Joneli. . .\n\nParsivedžiau kūdą.\nĮkrito į blūdą.\nO kas man iš tokios,\nVelyk būti be pačios.\n\n\nOi tu, Joneli. . .\nParsivedžiau riebią,\nVisi už jos griebia.\nO kas man iš tokios,\nVelyk būti be pačios.\n\nOi tu, Joneli. . .\n\nGreit jau tu nupliksi,\nSenberniu paliksi,\nPer svietą keliausi,\nPačios nebegausi.\n\nOi tu, Joneli. . .\n\nPasigausiu ožką,\nKinkysiu į točką,\nPiršliu pasigarsinsiu\nIr jus visas apženysiu.\n\nOi tu, Joneli. . ."
+          "Lyrics & Chords": "Oi tu, Joneli,\nKodėl nesiženiji?\nŽenikis, vaike,\nGaspadinės reikia. ] 2x2k.\n\nParsvedžiau aukštą,\nPaspringo su šaukštu.\nO kas man iš tokios,\nVelyk būti be pačios. ] 2x2k.\n\nOi tu, Joneli. . .\n\nParsivedžiau storą,\nĮstrigo į tvorą.\nO kas man iš tokios,\nVelyk būti be pačios.\n\nOi tu, Joneli. . .\n\nParsivedžiau kūdą.\nĮkrito į blūdą.\nO kas man iš tokios,\nVelyk būti be pačios.\n\n\nOi tu, Joneli. . .\nParsivedžiau riebią,\nVisi už jos griebia.\nO kas man iš tokios,\nVelyk būti be pačios.\n\nOi tu, Joneli. . .\n\nGreit jau tu nupliksi,\nSenberniu paliksi,\nPer svietą keliausi,\nPačios nebegausi.\n\nOi tu, Joneli. . .\n\nPasigausiu ožką,\nKinkysiu į točką,\nPiršliu pasigarsinsiu\nIr jus visas apženysiu.\n\nOi tu, Joneli. . ."
         }
       },
       "Audio": {},
@@ -11880,7 +11836,7 @@ const songs: SongFile = [
         "recX88j6lqmFPVeau": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Oi žiba žiburėlis,\nKaip aukso liktorėlis.\nTen stovėjo sena močiutė,\nAnt dvarelio išėjus ] 2x2 k.\n\nAnt dvarelio išėjus,\nVartelius atsikėlus,\nKlausinėjo jauną dukrelę,\nAr su visai parėjo.\n\nNe su visai, močiutę,\nNe su visai, širdele,\nAš parėjau pas motinėle\nRūtelių vainikėlio.\n\nOi sakal, sakalėli,\nTu puikus paukštužėli,\nTu lakioji po žalias girias,\nParnešk man vainikėlį."
+          "Lyrics & Chords": "Oi žiba žiburėlis,\nKaip aukso liktorėlis.\nTen stovėjo sena močiutė,\nAnt dvarelio išėjus ] 2x2k.\n\nAnt dvarelio išėjus,\nVartelius atsikėlus,\nKlausinėjo jauną dukrelę,\nAr su visai parėjo.\n\nNe su visai, močiutę,\nNe su visai, širdele,\nAš parėjau pas motinėle\nRūtelių vainikėlio.\n\nOi sakal, sakalėli,\nTu puikus paukštužėli,\nTu lakioji po žalias girias,\nParnešk man vainikėlį."
         }
       },
       "Audio": {},
@@ -11935,7 +11891,7 @@ const songs: SongFile = [
         "recKBvKpc9F1DYwtj": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Padainuokim mes sustoję,\nOi oi oi,\nKaip paukšteliai žaliam gojuj,\nOi oi oi oi oi. (2x2 k.)\n\nPadainuokim mes susėdę,\nOi oi oi,\nKaip paukšteliai vienasėdy,\nOi oi oi oi oi.\n\nPadainuokim mes sutūpę,\nOi oi oi,\nKaip paukšteliai palei upę,\nOi oi oi oi oi.\n\nPadainuokim atsigulę,\nOi oi oi,\nKaip paukšteliai prieš mėnulį,\nOi oi oi oi oi."
+          "Lyrics & Chords": "Padainuokim mes sustoję,\nOi oi oi,\nKaip paukšteliai žaliam gojuj,\nOi oi oi oi oi. (2x2k.)\n\nPadainuokim mes susėdę,\nOi oi oi,\nKaip paukšteliai vienasėdy,\nOi oi oi oi oi.\n\nPadainuokim mes sutūpę,\nOi oi oi,\nKaip paukšteliai palei upę,\nOi oi oi oi oi.\n\nPadainuokim atsigulę,\nOi oi oi,\nKaip paukšteliai prieš mėnulį,\nOi oi oi oi oi."
         }
       },
       "Audio": {},
@@ -12140,7 +12096,7 @@ const songs: SongFile = [
         "recCeNqsXnule7kfQ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Palinko liepa šalia kelio,\nPravirko motina sena:\nSūneli, Tėvynė tave šaukia,\nIr vėl bus laisva Lietuva. 2x2 k.\n\nO jeigu teks man iškeliauti\nIš šios žemelės mylimos,\nMergaite, tu manęs neliūdėki,\nAš vėl sugrįšiu pas tave. 2 k.\n\nO jeigu žūsiu už Tėvynę,\nNuo priešo budelio rankos;\nMergaite, ir mirdamas kartosiu:\nMyliu Tėvynę ir tave. 2 k.\n\nLaukais pavasaris jau eina,\nLakštutė čiulba vakarais,\nMergaite, papuošk kareivio kapą\nBaltais akacijų žiedais. 2 k.\n\nGeltona, žalia ir raudona -\nTai mūsų trispalvė vėliava;\nKovokim už Tėvynę, broliai,\nIr vėl bus laisva Lietuva! 2 k.\n\nO jeigu kartais tektų žūti\nUž brangią laisvę Lietuvos\nMergaite, ir mirdamas kartosiu\nMyliu Tėvynę ir tave. 2 k.\n\nGreitu laiku aš iškeliausiu\nIš savo Tėviškės brangios.\nMergaite, manęs tu neliūdėki,\nAš vėl sugrįšiu pas tave. 2 k."
+          "Lyrics & Chords": "Palinko liepa šalia kelio,\nPravirko motina sena:\nSūneli, Tėvynė tave šaukia,\nIr vėl bus laisva Lietuva. 2x2k.\n\nO jeigu teks man iškeliauti\nIš šios žemelės mylimos,\nMergaite, tu manęs neliūdėki,\nAš vėl sugrįšiu pas tave. 2k.\n\nO jeigu žūsiu už Tėvynę,\nNuo priešo budelio rankos;\nMergaite, ir mirdamas kartosiu:\nMyliu Tėvynę ir tave. 2k.\n\nLaukais pavasaris jau eina,\nLakštutė čiulba vakarais,\nMergaite, papuošk kareivio kapą\nBaltais akacijų žiedais. 2k.\n\nGeltona, žalia ir raudona -\nTai mūsų trispalvė vėliava;\nKovokim už Tėvynę, broliai,\nIr vėl bus laisva Lietuva! 2k.\n\nO jeigu kartais tektų žūti\nUž brangią laisvę Lietuvos\nMergaite, ir mirdamas kartosiu\nMyliu Tėvynę ir tave. 2k.\n\nGreitu laiku aš iškeliausiu\nIš savo Tėviškės brangios.\nMergaite, manęs tu neliūdėki,\nAš vėl sugrįšiu pas tave. 2k."
         }
       },
       "Audio": {},
@@ -12290,7 +12246,7 @@ const songs: SongFile = [
         "reccvXbVEsmqakU94": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Ar](A) [tikrai tai](D) [tiesa](A) [-](D) [tavo](A) [širdis](E) [pykčio](A) [pilna?](E)\n[Argi](A) [gali taip](D) [būt](A) [-](D) [tu](A) [vėl](E) [verki](A) [vienumoje?](E)  \nNeapykanta vėl surišo rankas, aptemdė akis.\nAr galėtų kas nors priešui atleist, viską pamiršt?\n\n[Oo](A)[oo](D)[, ](A)[būkim](A) [draugai]E, [likim](A) [kartu,](E)\nOooo, ranką ištiest dar nevėlu.\n\nTame lauko gale vakar ryte gimė žmogus,\nDar jo akyse pykčio nėra, gal ir nebus.\nMes buvom tokie, mes vis dar tokie - prisipažink.\nMes niekada negyvensim tam, kad kariautume,\nNestatysim to, ką po to reikėtų griauti.\nJeigu nori būti ten, kur daug tokių pačių kaip tu,\nAteik arčiau, mes pabandysime dainuoti kartu.\n\nŠiandien džiaugsmo diena, dar niekada nebuvo šviesiau,\nŠiandien paukščių pulkai sugrįžo namo, nes čia jiems geriau.\nIr nesvarbu, kas tu toks ar kas tu tokia, svarbu, kad esi, čia,\nŠiandien visko pradžia - tavo ranka mano delne.",
+          "Lyrics & Chords": "[Ar](A) [tikrai tai](D) [tiesa](A) [-](D) [tavo](A) [širdis](E) [pykčio](A) [pilna?](E)\n[Argi](A) [gali taip](D) [būt](A) [-](D) [tu](A) [vėl](E) [verki](A) [vienumoje?](E)  \nNeapykanta vėl surišo rankas, aptemdė akis.\nAr galėtų kas nors priešui atleist, viską pamiršt?\n\n[Oo](A)[oo](D), [būkim](A) [draugai](E), [likim](A) [kartu,](E)\nOooo, ranką ištiest dar nevėlu.\n\nTame lauko gale vakar ryte gimė žmogus,\nDar jo akyse pykčio nėra, gal ir nebus.\nMes buvom tokie, mes vis dar tokie - prisipažink.\nMes niekada negyvensim tam, kad kariautume,\nNestatysim to, ką po to reikėtų griauti.\nJeigu nori būti ten, kur daug tokių pačių kaip tu,\nAteik arčiau, mes pabandysime dainuoti kartu.\n\nŠiandien džiaugsmo diena, dar niekada nebuvo šviesiau,\nŠiandien paukščių pulkai sugrįžo namo, nes čia jiems geriau.\nIr nesvarbu, kas tu toks ar kas tu tokia, svarbu, kad esi, čia,\nŠiandien visko pradžia - tavo ranka mano delne.",
           "Show Chords": true
         }
       },
@@ -12347,7 +12303,7 @@ const songs: SongFile = [
         "recYxMB6HqVR507Bx": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Broliai žemę išpurenę,\nApraudojo arimus.\nMielas broli partizane,\nAr sugrįši į namus? (2 k.)\n\nSugirgždėjo tik varteliai,\nIr išėjo jis tylus.\nJei negrįšiu - grįš paukšteliai\nĮ pavasario šilus. (2 k.)\n\nGriš į lauką artojėliai,\nGrįš į laisvę Lietuva.\nIr sudundo arimėliai,\nIr nusviro jo galva. (2 k.)"
+          "Lyrics & Chords": "Broliai žemę išpurenę,\nApraudojo arimus.\nMielas broli partizane,\nAr sugrįši į namus? (2k.)\n\nSugirgždėjo tik varteliai,\nIr išėjo jis tylus.\nJei negrįšiu - grįš paukšteliai\nĮ pavasario šilus. (2k.)\n\nGriš į lauką artojėliai,\nGrįš į laisvę Lietuva.\nIr sudundo arimėliai,\nIr nusviro jo galva. (2k.)"
         }
       },
       "Audio": {},
@@ -12466,7 +12422,7 @@ const songs: SongFile = [
         "recfUBmJ3xf2aCFs3": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasėjau dobilą, ant aukšto kalnelio, (2 k.)\nDobilo penki lapai,\nDobilėlio trys lapeliai, dobilo. (2 k.)\n\nIšdygo dobilas, ant aukšto kalnelio.  (2 k.)\nDobilo...\n\nUžaugo dobilas...\n\nPražydo dobilas...\n\nNupjoviau dobilą...\n\nSugrėbiau dobilą...\n\nSuvežiau dobilą..."
+          "Lyrics & Chords": "Pasėjau dobilą, ant aukšto kalnelio, (2k.)\nDobilo penki lapai,\nDobilėlio trys lapeliai, dobilo. (2k.)\n\nIšdygo dobilas, ant aukšto kalnelio.  (2k.)\nDobilo...\n\nUžaugo dobilas...\n\nPražydo dobilas...\n\nNupjoviau dobilą...\n\nSugrėbiau dobilą...\n\nSuvežiau dobilą..."
         }
       },
       "Audio": {},
@@ -12493,7 +12449,7 @@ const songs: SongFile = [
         "recMr1TNTPWI2ZCPq": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasėjau kanapę ant marių krantelio,\nOi vija, kanapija, ant marių krantelio. (2 k.)\n\nUžaugo kanapė ant marių krantelio,\nOi vija...\n\nNuroviau kanapę nuo marių krantelio,\nOi vija...\n\nIšmyniau kanapę ant marių krantelio,\nOi vija...\n\nBalto valaknėlio mezgiau kamanėles,\nOi vija...\n\nŽirgą kamanojau, pas mergelę jojau,\nOi vija..."
+          "Lyrics & Chords": "Pasėjau kanapę ant marių krantelio,\nOi vija, kanapija, ant marių krantelio. (2k.)\n\nUžaugo kanapė ant marių krantelio,\nOi vija...\n\nNuroviau kanapę nuo marių krantelio,\nOi vija...\n\nIšmyniau kanapę ant marių krantelio,\nOi vija...\n\nBalto valaknėlio mezgiau kamanėles,\nOi vija...\n\nŽirgą kamanojau, pas mergelę jojau,\nOi vija..."
         }
       },
       "Audio": {},
@@ -12553,7 +12509,7 @@ const songs: SongFile = [
         "recVqM0SjpZjyygtK": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasisėjau žalią rūtą –\nBus mergelė man, man.\nDar, dar, bernužėli,\nDar ne tavo valioj. (2 k.)\n\nIr išdygo žalia rūta...\n\nIr užaugo žalia rūta...\n\nIr pražydo žalia rūta...\n\nIr nuskyniau žalią rūtą...\n\nNusipyniau vainikėlį...\n\nIr sumainėm aukso žiedus,\nBus mergelė man, man.\nJau, jau, bernužėli,\nDabar tavo valioj. (2 k.)"
+          "Lyrics & Chords": "Pasisėjau žalią rūtą –\nBus mergelė man, man.\nDar, dar, bernužėli,\nDar ne tavo valioj. (2k.)\n\nIr išdygo žalia rūta...\n\nIr užaugo žalia rūta...\n\nIr pražydo žalia rūta...\n\nIr nuskyniau žalią rūtą...\n\nNusipyniau vainikėlį...\n\nIr sumainėm aukso žiedus,\nBus mergelė man, man.\nJau, jau, bernužėli,\nDabar tavo valioj. (2k.)"
         }
       },
       "Audio": {},
@@ -12580,7 +12536,7 @@ const songs: SongFile = [
         "recTKd9obBMki8kP6": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasivaikšioti išėjau\nŽaliais pagiriais 3 k.\nMergužėlė lelijėlė\nRaudonais skruostais. 3 k.\nTra lia lia, tra lia lia,\nTra lia lia lia. 2x3 k.\nTra lia lia, lia lia lia,\nLia lia lia lia.\n\nSusitikau bernužėlį\nLabai švelnutį\nMergužėle, duok man bučki\nLabai salduti.\nTra ...\n\nDuočiau duonos sviestu teptos,\nBet jau suvalgiau.\nPalydėk mane, berneli,\nlr nieko daugiau.\nTra..."
+          "Lyrics & Chords": "Pasivaikšioti išėjau\nŽaliais pagiriais 3k.\nMergužėlė lelijėlė\nRaudonais skruostais. 3k.\nTra lia lia, tra lia lia,\nTra lia lia lia. 2x3k.\nTra lia lia, lia lia lia,\nLia lia lia lia.\n\nSusitikau bernužėlį\nLabai švelnutį\nMergužėle, duok man bučki\nLabai salduti.\nTra ...\n\nDuočiau duonos sviestu teptos,\nBet jau suvalgiau.\nPalydėk mane, berneli,\nlr nieko daugiau.\nTra..."
         }
       },
       "Audio": {},
@@ -12634,7 +12590,7 @@ const songs: SongFile = [
         "reciw01KI8bI8eIG5": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasvarstyk, antele,\nTykiai plaukiodama,\nPamislyk, mergele,\nUž many eidama: (2 k.)\n\nAr tu moki verpti,\nAr tu moki austi,\nAr moki, mergele,\nKalne rugius pjauti? (2 k.)\n\nVai neklausk, berneli,\nAr aš moku darbą,\nTiktai pasiklauski\nAr eisiu už tavęs. (2 k.)\n\nNei aš pijokėlis,\nNei aš laidokėlis -\nTėvelio sūnelis,\nŽemės artojėlis. (2 k.)\n\nMoku lauką arti,\nMoku šieną pjauti,\nMoku ir mergelę\nPrie širdies priglausti. (2 k.)"
+          "Lyrics & Chords": "Pasvarstyk, antele,\nTykiai plaukiodama,\nPamislyk, mergele,\nUž many eidama: (2k.)\n\nAr tu moki verpti,\nAr tu moki austi,\nAr moki, mergele,\nKalne rugius pjauti? (2k.)\n\nVai neklausk, berneli,\nAr aš moku darbą,\nTiktai pasiklauski\nAr eisiu už tavęs. (2k.)\n\nNei aš pijokėlis,\nNei aš laidokėlis -\nTėvelio sūnelis,\nŽemės artojėlis. (2k.)\n\nMoku lauką arti,\nMoku šieną pjauti,\nMoku ir mergelę\nPrie širdies priglausti. (2k.)"
         }
       },
       "Audio": {},
@@ -12717,7 +12673,7 @@ const songs: SongFile = [
         "recWSVBsw2dpSQ8cV": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pempel’, pempel’ koudoutuoji,\nKamė tava kamarelė longoutuoji? (2 k.)\nPeivelie, kemselie,\nTėnai mona kamarelė longoutuoji. (2 k.)\n\nIš kur esi? Iš pakalnės.\nKeinuo esi?  Puona kalvės. (2 k.)\nAš pats gizelis,\nMon ož joustas kirvelis. (2 k.)\n\nKormel’, kormel’ kor bova,\nKam tu mona kamarelė išknėsa? (2 k.)\nGėriau, gėriau bornelė,\nĖr apsvaiga galvelė. (2 k.)\n\nŠiršūns bimbalą nukelniejė,\nKad ėr kudlas padulkiejė. (2 k.)\nAuskėt mergas abrūsus,\nVykėt bimbalą į Prūsus. (2 k.)"
+          "Lyrics & Chords": "Pempel’, pempel’ koudoutuoji,\nKamė tava kamarelė longoutuoji? (2k.)\nPeivelie, kemselie,\nTėnai mona kamarelė longoutuoji. (2k.)\n\nIš kur esi? Iš pakalnės.\nKeinuo esi?  Puona kalvės. (2k.)\nAš pats gizelis,\nMon ož joustas kirvelis. (2k.)\n\nKormel’, kormel’ kor bova,\nKam tu mona kamarelė išknėsa? (2k.)\nGėriau, gėriau bornelė,\nĖr apsvaiga galvelė. (2k.)\n\nŠiršūns bimbalą nukelniejė,\nKad ėr kudlas padulkiejė. (2k.)\nAuskėt mergas abrūsus,\nVykėt bimbalą į Prūsus. (2k.)"
         }
       },
       "Audio": {},
@@ -12805,7 +12761,7 @@ const songs: SongFile = [
         "recYZJbyMh31kQGrU": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Per šilą jojau,\nŠile šėką roviau, (2 k.)\nIr pašėriau bėrą žirgą\nPo žalia eglele. (2 k.)\n\nO kai nujojau\nPas savo mergelę, (2 k.)\nPasistačiau sau žirgelį\nUošvelio dvarely. (2 k.)\n\nIšein uošvelis\nSenas tėvelis. (2 k.)\nIma mane už rankeles,\nVeda už stalelio. (2 k.)\n\nŠėdžiu už stalelio,\nŽiūriu pro langelį, (2 k.)\nSniegti, lyja, rasa krinta\nAnt mano žirgelio. (2 k.)\n\nOi, uošvi, uošveli,\nSenasai tėveli, (2 k.)\nKad priėmei mane jauną\nPriimk ir žirgelį. (2 k.)"
+          "Lyrics & Chords": "Per šilą jojau,\nŠile šėką roviau, (2k.)\nIr pašėriau bėrą žirgą\nPo žalia eglele. (2k.)\n\nO kai nujojau\nPas savo mergelę, (2k.)\nPasistačiau sau žirgelį\nUošvelio dvarely. (2k.)\n\nIšein uošvelis\nSenas tėvelis. (2k.)\nIma mane už rankeles,\nVeda už stalelio. (2k.)\n\nŠėdžiu už stalelio,\nŽiūriu pro langelį, (2k.)\nSniegti, lyja, rasa krinta\nAnt mano žirgelio. (2k.)\n\nOi, uošvi, uošveli,\nSenasai tėveli, (2k.)\nKad priėmei mane jauną\nPriimk ir žirgelį. (2k.)"
         }
       },
       "Audio": {},
@@ -12887,7 +12843,7 @@ const songs: SongFile = [
         "recQurqUHHD2Kp2YZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Per tiltelį jojau, nuo kumelės dribt,\nO kad ją perkūnas, negaliu užlipt,\nLiūdna, oi liūdna, liūdna be tavęs,\nKodėl, mergužėle, nelankai manęs.\n\nRamta drylia oilia oi lylia lia (4 k.)\n\nSausis, vasaris, kovas, balandis,\nGegužė, birželis, liepa, rugpjūtis,\nRugsėjis, spalis, lapkritis, gruodis,\nSausis, vasaris, kovas, balandis.\n\nTrauk šią dainelę eidamas darban,\nTrauk šią dainelę guldamas graban.\nNes, kaip mums sako bočių išmintis,\nGyvenimo tikslas ir yra mirtis.\n\nPer Vilniaus miestą su didžia garbe\nŽengia studentai Čiurlionio gatve,\nKai jie užtraukia savo daineles,\nVisi faraonai kelia kepures."
+          "Lyrics & Chords": "Per tiltelį jojau, nuo kumelės dribt,\nO kad ją perkūnas, negaliu užlipt,\nLiūdna, oi liūdna, liūdna be tavęs,\nKodėl, mergužėle, nelankai manęs.\n\nRamta drylia oilia oi lylia lia (4k.)\n\nSausis, vasaris, kovas, balandis,\nGegužė, birželis, liepa, rugpjūtis,\nRugsėjis, spalis, lapkritis, gruodis,\nSausis, vasaris, kovas, balandis.\n\nTrauk šią dainelę eidamas darban,\nTrauk šią dainelę guldamas graban.\nNes, kaip mums sako bočių išmintis,\nGyvenimo tikslas ir yra mirtis.\n\nPer Vilniaus miestą su didžia garbe\nŽengia studentai Čiurlionio gatve,\nKai jie užtraukia savo daineles,\nVisi faraonai kelia kepures."
         }
       },
       "Audio": {},
@@ -13021,18 +12977,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "rec6nN03dN5LWMX79": {
-          "Title": "Dandelion Seed",
+          "Title": "Dandelion fluff in the wind",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Music and dance lift me high above the earth,\nLike a dandelion seed,\nThey cradle and spin me...\n\nAnd in folk melodies,\nI feel woven in,\nSo light, so weightless, just like\nA dandelion seed...\n\nSpread across the world, the wide, wide world,\nAnd putting down roots in foreign lands,\nBorne by song and dance, we’ve flown here,\nTo spin together like dandelion seeds.\nAll of us!\n\nLet your youth bloom with laughter and smiles,\nLet the morning’s glow light up our faces,\nInvite our homeland, little Lithuania, as a guest,\nAnd celebrate, Youth, while you are still young!\nWhile you are young!",
-          "AI Generated": true
+          "Lyrics": "Song and dance\nLift me up high above the ground\nLike dandelion fluff in the wind.\nSwaying, twirling...\n\nThe folk song weaves through me.\nI feel so light,\nAs light as dandelion fluff.\n\nScattered throughout the wide world,\nOur roots have grown in foreign soil.\nBlown together by song and dance\nWe flew here, so we might twirl\nLike dandelion fluff in the wind.\nAll of us!\n\nBlossom, o my youth, with smiles and laughter,\nLight up our faces with the light of dawn.\nInvite our homeland, dear Lithuania, to be our guest.\nBe merry, o my youth, while you are still young.\nWhile still young!"
         }
       },
       "Music Author": "Aleksandras Stankevičius",
       "Text Author": "Aušrinė Širvinskienė",
-      "LT Description": "Daina kalba apie lengvumą ir džiaugsmą, kurį suteikia muzika ir šokis, lygindama tai su piene pūku. Paminimos liaudiškos dainos ir šokiai, kurie suvienija žmones, kur jie bebūtų. Jaunimas skatinamas džiaugtis ir kviesti Lietuvą į savo šventę.",
-      "EN Description": "The song talks about the lightness and joy that music and dance bring, comparing this feeling to a dandelion seed floating in the air. It mentions traditions of folk songs and dances, suggesting they connect people wherever they are in the world. The lyrics also encourage youth to cherish their happiness and to invite their homeland into their celebrations.",
-      "AI-Generated Description": true
+      "LT Description": "Daina ir šokis sukviečia, suburia visus ir mes kol jauni, kaip pienės pūkas svetimoje žemėje įleidę šaknis, kviečiame Tėvynę į svečius. Linksma, smagi, jaunatviška, nerūpestinga daina subūrė mus visus, o kai esame visi kartu, tai jaučiamės beveik kaip Lietuva - lyg į svečius sulaukėme/ar iškvietėm tėvynę Lietuvą pas mus.\n \nNeįžvelgiu gilesnės minties šiose eilėse, tik tai kas parašyta, o interpretuoti kiekvienas gali asmeniškai-savaip, tik gal sustočiau kiek prie vaizdinio - pienės pūkas. Pienės pūkas - nepastovus, kur vėjas pučia, ten jis ir skrenda..... bet šis įvaizdis simbolizuoja (taip aš galvoju) ne mūsų nepastovumą, o jaunystę, dainą, šokį ir tą lengvumo jausmą, kada viskas pasiekiama ir įmanoma, kada atrodo visada būsime jauni, stiprūs, gražūs ir linksmi.\n \n_Ir linksminkis Jaunyste kol jauna!_\n_Kol jauna_",
+      "EN Description": "The song and dance invites us and gathers us together. Like a dandelion we have put down roots in foreign soil, but we invite our Homeland to be a guest at the party. This happy, cheerful, youthful song has not a care in the world. It brings us all together and makes us feel as though we invited Lithuania into our home.\n\nI have no insight into some deeper meaning, merely what is written in these lines. Every listener can have their own interpretation. But I would dwell on the image of “dandelion fluff”. The fluff is unstable – wherever the wind blows, there it flies. It seems to me this image represents not our own instability, but youthfulness, dance, song, and that light feeling – that anything is possible, that we will always be young, strong, beautiful, and happy.\n\n_Be merry, o my youth, while you are still young._\n_While still young!_"
     }
   },
   {
@@ -13043,7 +12997,7 @@ const songs: SongFile = [
         "recxCRKGocnONa1Ma": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pievos žalios, lygumėlis,\nBaltas, baltas kranto smėlis,\nTyliai teka Nemunėlis į marias.\n\nO, o, o,\nOja, oja, mes keliaujam,\nOja, oja iškylaujam,\nOja, oja stovyklaujam su daina. (2 k.)\n\nŽvejas žuvį meškerioja,\nLaužas dega ir liepsnoja,\nKatiliukas kunkuliuoja, bus sriubos.\n\nO, o, o...\n\nNors labai skani žuvienė,\nBaigias mūsų vakarienė,\nPalapinė šešiasienė kviečia mus.\n\nO, o, o...\n\nJau naktužė nusileido\nAnt rasoto žemės veido,\nLaužas kibirkštėles svaido vis lėtyn...\n\nO, o, o..."
+          "Lyrics & Chords": "Pievos žalios, lygumėlis,\nBaltas, baltas kranto smėlis,\nTyliai teka Nemunėlis į marias.\n\nO, o, o,\nOja, oja, mes keliaujam,\nOja, oja iškylaujam,\nOja, oja stovyklaujam su daina. (2k.)\n\nŽvejas žuvį meškerioja,\nLaužas dega ir liepsnoja,\nKatiliukas kunkuliuoja, bus sriubos.\n\nO, o, o...\n\nNors labai skani žuvienė,\nBaigias mūsų vakarienė,\nPalapinė šešiasienė kviečia mus.\n\nO, o, o...\n\nJau naktužė nusileido\nAnt rasoto žemės veido,\nLaužas kibirkštėles svaido vis lėtyn...\n\nO, o, o..."
         }
       },
       "Audio": {},
@@ -13070,7 +13024,7 @@ const songs: SongFile = [
         "recBrM7ew8eIYxkxT": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Perskaitėm gėlėtą pievų knygą,\nAšarų pribarstėm lyg rasų,\nAš nupinsiu tau gėlių vainiką\nIr uždėsiu ant gelsvų kasų. (2x2 k.)\n\nTu dabar esi tikra princesė, -\nTavo galvą puošia karūna,\nO ant beržo kelmo atsisėdus\nTarsi soste būsi amžina.\n\nO aš būsiu tavo geras, geras\nKaralaitės draugas juokdarys,\nKai atves jaunikį paukščių takas,\nAš jo neįleisiu pro duris.\n\nNa, o kai tave išves iš rūmų\nPaskutinį kartą prie manęs,\nAš turbūt numirsiu iš linksmumo,\nVerks širdis per tavo vestuves.\n\nPerskaitėm gėlėtą pievų knygą,\nAšarų pribarstėm lyg rasų,\nAš nuimsiu tau gėlių vainiką\nNuo tavo gelsvų kasų kasų."
+          "Lyrics & Chords": "Perskaitėm gėlėtą pievų knygą,\nAšarų pribarstėm lyg rasų,\nAš nupinsiu tau gėlių vainiką\nIr uždėsiu ant gelsvų kasų. (2x2k.)\n\nTu dabar esi tikra princesė, -\nTavo galvą puošia karūna,\nO ant beržo kelmo atsisėdus\nTarsi soste būsi amžina.\n\nO aš būsiu tavo geras, geras\nKaralaitės draugas juokdarys,\nKai atves jaunikį paukščių takas,\nAš jo neįleisiu pro duris.\n\nNa, o kai tave išves iš rūmų\nPaskutinį kartą prie manęs,\nAš turbūt numirsiu iš linksmumo,\nVerks širdis per tavo vestuves.\n\nPerskaitėm gėlėtą pievų knygą,\nAšarų pribarstėm lyg rasų,\nAš nuimsiu tau gėlių vainiką\nNuo tavo gelsvų kasų kasų."
         }
       },
       "Audio": {},
@@ -13097,7 +13051,7 @@ const songs: SongFile = [
         "rechjjGeWvNhNC6hp": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pilki keleliai dulka, pilki keliai\nPrie jų berželių pulkas, žali beržai.\nO kaip aš pasiilgau, močiut, tavęs\nKur tas kelelis ilgas mane nuves. (2 k.)\n\nKai rausta putinėliai, tai putinai,\nTai laukia motinėle, senai senai.\nO kaip aš pasiilgau, močiut, tavęs\nKur tas kelelis ilgas mane nuves. (2 k.)\n\nSkubėkit, vieškelėliai, laukais toli\nŠlamėkit motinėlei beržai žali.\nO kaip aš pasiilgau, močiut, tavęs\nJau greit kelelis ilgas namo parves. (2 k.)"
+          "Lyrics & Chords": "Pilki keleliai dulka, pilki keliai\nPrie jų berželių pulkas, žali beržai.\nO kaip aš pasiilgau, močiut, tavęs\nKur tas kelelis ilgas mane nuves. (2k.)\n\nKai rausta putinėliai, tai putinai,\nTai laukia motinėle, senai senai.\nO kaip aš pasiilgau, močiut, tavęs\nKur tas kelelis ilgas mane nuves. (2k.)\n\nSkubėkit, vieškelėliai, laukais toli\nŠlamėkit motinėlei beržai žali.\nO kaip aš pasiilgau, močiut, tavęs\nJau greit kelelis ilgas namo parves. (2k.)"
         }
       },
       "Audio": {},
@@ -13157,7 +13111,7 @@ const songs: SongFile = [
         "recnWujYz0F5h9GY6": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[Pirma valanda](G) [dvidešimt penkios minutės.](A7)\n[Po truputį pildos mano posmo eilutės.](Am)\n[Tavęs nėr šalia, nebebus ir ryte.](Em)\n\n[Ir bėga prabėga](G) [valandos ir minutės.](A7)\n[Ir nieko nebelieka tiktai meilės likutis.](Am)\n[Kol jis širdyje – [prisiminsiu Tave.](Em) \n\n[Man miego trūksta,](G) [bet nuorūkos rūksta,](A7)\n[Meilės siūlelis vėlei nutrūksta.](Am)\n[Gal laikas suriš, [bet mazgą paliks.](Em) \n\n[Kas buvo tarp mūsų](G) [daugiau nebeliko.](A7)  \n[Ką turėjom anksčiau šiandien viskas išnyko.](Am)\n[Tavęs nerandu, [neatrasiu daugiau.](Em) ",
+          "Lyrics & Chords": "[Pirma valanda](G) [dvidešimt penkios minutės.](A7)\n[Po truputį pildos mano posmo eilutės.](Am)\n[Tavęs nėr šalia, nebebus ir ryte.](Em)\n\n[Ir bėga prabėga](G) [valandos ir minutės.](A7)\n[Ir nieko nebelieka tiktai meilės likutis.](Am)\n[Kol jis širdyje – prisiminsiu Tave.](Em) \n\n[Man miego trūksta,](G) [bet nuorūkos rūksta,](A7)\n[Meilės siūlelis vėlei nutrūksta.](Am)\n[Gal laikas suriš, bet mazgą paliks.](Em) \n\n[Kas buvo tarp mūsų](G) [daugiau nebeliko.](A7)  \n[Ką turėjom anksčiau šiandien viskas išnyko.](Am)\n[Tavęs nerandu, neatrasiu daugiau.](Em) ",
           "Show Chords": true
         }
       },
@@ -13371,16 +13325,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recUuJ2sKDZWKTRqo": {
-          "Title": "The Dawn Will Begin to Break",
+          "Title": "Dawn begins to break",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "The dawn will begin to break,\nThe roosters will start to crow,\nOi lylia, lylia, lylia,\nThe roosters will start to crow.\n\nThe roosters will start to crow,\nThey won’t let me sleep anymore,\nOi lylia, lylia, lylia,\nThey won’t let me sleep anymore.\n\nQuickly I rode across the field,\nStopped by the little storehouse,\nLylia, oi liū-ly-lia,\nStopped by the little storehouse.\n\nIs this a door or is it a wall,\nOr does a maiden lie alone?\nLylia, oi liū-ly-lia,\nOr does a maiden lie alone?\n\nHere lies the dear mother,\nWith her little daughter,\nOi lylia, lylia, lylia,\nWith her little daughter.\n\nDon’t scold, young lad,\nDon’t wake her from her sleep,\nOi lylia, lylia, lylia,\nDon’t wake her from her sleep.",
-          "AI Generated": true
+          "Lyrics": "Dawn begins to break,\nRoosters begin to crow,\n_Oi lylia, lylia, lylia,_\nRoosters begin to crow.\n\nRoosters begin to crow,\nThey won’t let me sleep,\n_Oi lylia, lylia, lylia,_\nThey won’t let me sleep.\n\nI rode swiftly across the field\nAnd stopped by the granary\n_Lylia, oi liū-ly-lia,_\nAnd stopped by the granary.\n\nIs this a door, or is it a wall,\nOr is my fair maiden sleeping alone?\n_Lylia, oi liū-ly-lia,_\nOr is my fair maiden sleeping alone?\n\nThe mother is sleeping here\nWith her daughter nearby,\n_Oi lylia, lylia, lylia,_\nWith her daughter nearby.\n\nDon’t scold me, my young man,\nDon’t wake my daughter from her restful sleep,\n_Oi lylia, lylia, lylia,_\nDon’t wake my daughter from her restful sleep."
         }
       },
-      "LT Description": "Tai lietuvių liaudies daina apie ankstyvą rytą, kai gaidžiai pradeda giedoti ir neleidžia miegoti. Tekste pasakojama apie vaikiną, kuris joja per lauką ir sustoja prie klėties, norėdamas sužinoti, kas ten yra. Daina gali simbolizuoti ilgesį ar meilės pradžią, bet daugiausia pasakoja apie rytą ir susitikimą.",
-      "EN Description": "This is a traditional Lithuanian folk song about the early morning, when the rooster starts to crow and disrupts the singer's sleep. The lyrics describe a young man riding quickly across a field and stopping by a storehouse, wondering who is inside. The song may symbolize longing or courtship, common themes in Lithuanian folklore, but it mainly tells a simple story about morning and encounters.",
-      "AI-Generated Description": true
+      "LT Description": "Daina/šokis „Pradės aušrelė aušti“ – priskiriama piršlybų/vestuvinių dainų grupei. Ankstus rytas, brėkštanti aušra pirmoji apšviečia dangų, išsklaido tamsą. Pagal rytinę ir vakarinę žvaigždes ūkininkai pradėdavo ir baigdavo darbus.\n\nPirmieji posmai nusako ateinančią dieną: Pradės aušrelė aušti, pradės gaidžiai giedoti, kurie neduos berneliui miegoti, o gal tik jis pats negalės užmigti, nes labai rūpi mergelė. Gaidys – senovinis simbolis reiškiantis aušros, prabudimo, budrumo, šaukimo atgimti įvizdis, taip pat gaidys reiškia ir tvarką, tačiau pagrindinis gaidžio simbolis – vaisingumas.\n\n_Per laukelį greitai jojau, prie klėtelės apsistojau_ – greitai atjojęs bernelis sustoja prie klėtelės, kurioje miega mergelė. Tas lėkimas, šuoliavimas yra įspūdingas ir įtartinas, dėl ko bernelis taip skuba pas mergelę dar saulei nepatekėjus? Nes pats reikalas yra skubus: užklupti mergelę, rasti ją klėtelėje, aplenkiant jos tėvus, su kuriais tektų derėtis.\n\n_Ar čia durys, ar čia siena, ar mergelė guli viena_ - abejoja bernelis įjojęs į svetimą kiemą, į nežinomą aplinką įtardamas, kad mergelė gali miegoti klėtelėje ne viena, o su motinėle. Dukreles saugodavo tėvai ir broliai, kad nebūtų atimta jų skaistybė prieš vestuves, kad nebūtų „suteptas“ jos geras vardas, prieš išrenkant tinkamą vyrą. Klėtelėje, deja, miegojo dukrelė ir motinėlė, kuri subarė bernelį per anksti atjojus ir paliepė nežadinti dukrelės iš miegelio.\n\nMatomai šis bernelis nelabai patiko tėvams, o užuomina nežadink iš miegel(io) gali reikšti, kad dukrelė dar per jauna tekėti.",
+      "EN Description": "“Dawn Begins to Break” is a song (also a dance) in the matchmaking / wedding category. It‘s early morning, the approaching dawn begins to lighten the sky and disperse the darkness. For farmers, the morning and evening stars would mark the workday‘s beginning and end.\n\nThe first verses decribe the upcoming day: dawn begins to break, roosters begin to crow; they won’t let the young man sleep. Or perhaps he can’t sleep because he has a young girl on his mind. The rooster is an ancient symbol of dawn, awakening, alertness, and rebirth. A rooster also signifies orderliness. Primarily, however, a rooster is a symbol of fertility.\n\nThe young man rides as fast as he can and stops his horse by the building where he thinks the young girl is sleeping. The hurried ride is impressive, but also suspicious – why is the young man making an appearance before sunrise? His business is urgent – to catch the young girl by surprise, unawares and without her parents.\n\n“Is this a door, or is it a wall, or is my fair maiden sleeping alone?” The young man is having his doubts. He has ridden into unfamiliar surroundings and begins to wonder, whether the young girl is sleeping alone or with her mother. Young girls would be protected by their parents and brothers to ensure that nothing untoward would occur before a wedding to a suitably selected man. Unfortunately for the rider, the young girl is sleeping with her mother watching over her. The mother chastises the young man for showing up uninvited so early in the morning, and orders him to let her daughter sleep in peace. Evidently this young man was not approved of by the parents. The fact that the young girl needs her sleep may also indicate that she is too young for marriage."
     }
   },
   {
@@ -13451,7 +13403,7 @@ const songs: SongFile = [
         "recx2Y9TrsCjJ9YcA": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pražydo pirmos melsvos žibuoklės,\nPaukštelių dainos skrido laukais,\nTėvynės ginti išėjo broliai\nTylūs, bet narsūs, kaip sakalai. (2 k.)\n\nLange parimo sena motulė\nIr mergužėlė liko liūdna.\nJinai žinojo, ko vėjai pučia,\nKad partizano sunki dalia. (2 k.)\n\nVėjas įsiutęs blaškės ir staugė,\nRaškė žibuoklių melsvus žiedus.\nKvatojo ginklai, patrankos gaudė,\nDidėjo vėjas kovos laukuos. (2 k.)\n\nMiegoki tyliai, miels partizane,\nTavęs brangioji šalis liūdės!\nPadėjęs galvą pačioj jaunystėj -\nTave Lietuva laisva minės! (2 k.)"
+          "Lyrics & Chords": "Pražydo pirmos melsvos žibuoklės,\nPaukštelių dainos skrido laukais,\nTėvynės ginti išėjo broliai\nTylūs, bet narsūs, kaip sakalai. (2k.)\n\nLange parimo sena motulė\nIr mergužėlė liko liūdna.\nJinai žinojo, ko vėjai pučia,\nKad partizano sunki dalia. (2k.)\n\nVėjas įsiutęs blaškės ir staugė,\nRaškė žibuoklių melsvus žiedus.\nKvatojo ginklai, patrankos gaudė,\nDidėjo vėjas kovos laukuos. (2k.)\n\nMiegoki tyliai, miels partizane,\nTavęs brangioji šalis liūdės!\nPadėjęs galvą pačioj jaunystėj -\nTave Lietuva laisva minės! (2k.)"
         }
       },
       "Audio": {},
@@ -13561,7 +13513,7 @@ const songs: SongFile = [
         "recYo86KrZaD3peB7": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pučia vėjas, neša laivą,\nNuneš mane į Lietuvą.  (2 k.)\nTai bus linksma, tai bus linksma,\nTai bus linksma Lietuvoj!  (2 k.)\n\nLaukia brolis, laukia sesė\nManęs grįžtant į Lietuvą  (2 k.)\nTai bus linksma...\n\nLauk motulė, lauk tėvelis\nManęs grįžtant į Lietuvą.  (2 k.)\nTai bus linksma..."
+          "Lyrics & Chords": "Pučia vėjas, neša laivą,\nNuneš mane į Lietuvą.  (2k.)\nTai bus linksma, tai bus linksma,\nTai bus linksma Lietuvoj!  (2k.)\n\nLaukia brolis, laukia sesė\nManęs grįžtant į Lietuvą  (2k.)\nTai bus linksma...\n\nLauk motulė, lauk tėvelis\nManęs grįžtant į Lietuvą.  (2k.)\nTai bus linksma..."
         }
       },
       "Audio": {},
@@ -13735,7 +13687,8 @@ const songs: SongFile = [
         "recLCTYHkMbAHjtsW": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ramybė teka kaip upelis\nIš tavęs ir iš manęs\nTeka į neramę širdį\nTen džiaugsmu ji išsilies.\n\nJo džiaugsmas teka kaip upelis\nIš tavęs ir iš manęs\nTeka jis į liūdną širdį\nTen džiaugsmu ji išsilies.\n\nJo meilė teka kaip upelis\nIš tavęs ir iš manęs\nTeka ji į kietą širdį\nTen jo meilė išsilies."
+          "Lyrics & Chords": "Ramybė teka kaip upelis\nIš tavęs ir iš manęs\nTeka į neramę širdį\nTen džiaugsmu ji išsilies.\n\nJo džiaugsmas teka kaip upelis\nIš tavęs ir iš manęs\nTeka jis į liūdną širdį\nTen džiaugsmu ji išsilies.\n\nJo meilė teka kaip upelis\nIš tavęs ir iš manęs\nTeka ji į kietą širdį\nTen jo meilė išsilies.",
+          "Show Chords": true
         }
       },
       "Audio": {},
@@ -13762,8 +13715,7 @@ const songs: SongFile = [
         "rec7Wv7A6TI8wX8BZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš eičiau tenai kur aukštieji kalnai\nTen kur ganosi elnių banda\nTen kraštas jaukus, ten laimingas žmogus\nIr saulėta diena visada...\n\n_Savo rančą menu\nTen kur ganosi elnių banda\nTen kraštas jaukus ten laimingas žmogus\nIr saulėta diena visada._\n\nAš eičiau tenai kur melsvi vandenai\nAukso smiltys prie upės sraunios\nO ramiam vandey plauko gulbė švelni\nUžkerėta ramybės tylios...\n\n_Savo rančą menu\nAukso smiltys prie upės sraunios\nO ramiam vandeny plauko gulbė švelni\nUžkerėta ramybės tylios._\n\nRamybe tenai dvelkia vėjas švelniai\nTen tik būna laimingas žmogus\nNepakeis niekados mano rančos senos\nNet ir miestų puošnus spindesys...\n\n_Savo rančą menu\nTen tik būna laiminga širdis\nNepakeis niekados mano rančos senos\nNet ir miestų puošnus spindesys..._",
-          "Show Chords": true
+          "Lyrics & Chords": "Aš eičiau tenai kur aukštieji kalnai\nTen kur ganosi elnių banda\nTen kraštas jaukus, ten laimingas žmogus\nIr saulėta diena visada...\n\n_Savo rančą menu\nTen kur ganosi elnių banda\nTen kraštas jaukus ten laimingas žmogus\nIr saulėta diena visada._\n\nAš eičiau tenai kur melsvi vandenai\nAukso smiltys prie upės sraunios\nO ramiam vandey plauko gulbė švelni\nUžkerėta ramybės tylios...\n\n_Savo rančą menu\nAukso smiltys prie upės sraunios\nO ramiam vandeny plauko gulbė švelni\nUžkerėta ramybės tylios._\n\nRamybe tenai dvelkia vėjas švelniai\nTen tik būna laimingas žmogus\nNepakeis niekados mano rančos senos\nNet ir miestų puošnus spindesys...\n\n_Savo rančą menu\nTen tik būna laiminga širdis\nNepakeis niekados mano rančos senos\nNet ir miestų puošnus spindesys..._"
         }
       },
       "Audio": {},
@@ -13796,7 +13748,7 @@ const songs: SongFile = [
         "recaEc5MTOm6wYGNl": {
           "Variant Name": "Žodžiai 2",
           "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Tu paglostyk žolę, gėlę, (2 k.)\nLapas kaip armonikėlė. (2 k.)\n\n_Raskiloj, raskiloj,\nMūsų kiemo raskiloj. (2x2 k.)_\n\nVos tiktai aušra nušvinta -\nRaskiloj rasa sužimba.\n\nPirmas saulės spindulėlis\nNusiprausia atsikėlęs.\n\nTu paglostyk žolę, gėlę,\nLapas kaip armonikėlė."
+          "Lyrics & Chords": "Tu paglostyk žolę, gėlę, (2k.)\nLapas kaip armonikėlė. (2k.)\n\n_Raskiloj, raskiloj,\nMūsų kiemo raskiloj. (2x2k.)_\n\nVos tiktai aušra nušvinta -\nRaskiloj rasa sužimba.\n\nPirmas saulės spindulėlis\nNusiprausia atsikėlęs.\n\nTu paglostyk žolę, gėlę,\nLapas kaip armonikėlė."
         }
       },
       "Audio": {},
@@ -13904,7 +13856,7 @@ const songs: SongFile = [
         "recrWFdSz7F95yxex": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš išėjau į girelę, riešutėlių rinkti.\nRai, rai, ratatai, riesutelių rinkti. (2 k.)\n\nToj girelėj, toj žaliojoj tupi voveraitė.\nRai, rai, ratatai, tupi voveraitė. (2 k.)\n\nEi tu vover, voveraite, duok man riešutėlių.\nRai, rai, ratatai, duok man riešutėlių. (2 k.)\n\nAš tau duosiu riešutėlių jei tu geras būsi.\nRai, rai, ratatai, jei tu geras būsi. (2 k.)\n\nBūsiu geras voveraite, tik duok riešutėlių.\nRai, rai, ratatai, tik duok riešutėlių. (2 k.)"
+          "Lyrics & Chords": "Aš išėjau į girelę, riešutėlių rinkti.\nRai, rai, ratatai, riesutelių rinkti. (2k.)\n\nToj girelėj, toj žaliojoj tupi voveraitė.\nRai, rai, ratatai, tupi voveraitė. (2k.)\n\nEi tu vover, voveraite, duok man riešutėlių.\nRai, rai, ratatai, duok man riešutėlių. (2k.)\n\nAš tau duosiu riešutėlių jei tu geras būsi.\nRai, rai, ratatai, jei tu geras būsi. (2k.)\n\nBūsiu geras voveraite, tik duok riešutėlių.\nRai, rai, ratatai, tik duok riešutėlių. (2k.)"
         }
       },
       "Audio": {},
@@ -14188,12 +14140,12 @@ const songs: SongFile = [
         "recgLpXxJA1V8CvWy": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Šalia kelio, vieškelėlio\nGyveno šaltyšius.\n     Vai dūda ir vėl dūda,\n     Vai tai dūda, dūdytėlė,\n     Gyveno šaltyšius. (2 k.)\n\nJis turėjo tris sūnelius,\nVisus tris kaip vieną.\n     Vai dūda ir vėl dūda,\n     Vai tai dūda, dūdytėlė,\n     Visus tris kaip vieną. (2 k.)\n\nVienas Jonas, antras Baltrus,\nTrečias Matijošius.\n     Vai dūda...\n\nNuvažiavo į Alvitą\nPirkti Jonui dūdą.\n     Vai dūda...\n\nJonui dūdą, Baltrui skripką,\nMatjošiui pyragą.\n     Vai dūda...\n\nNuvažiavę į Alytų,\nMes nieko negavom.\n     Vai dūda..."
+          "Lyrics & Chords": "Šalia kelio, vieškelėlio\nGyveno šaltyšius.\n     Vai dūda ir vėl dūda,\n     Vai tai dūda, dūdytėlė,\n     Gyveno šaltyšius. (2k.)\n\nJis turėjo tris sūnelius,\nVisus tris kaip vieną.\n     Vai dūda ir vėl dūda,\n     Vai tai dūda, dūdytėlė,\n     Visus tris kaip vieną. (2k.)\n\nVienas Jonas, antras Baltrus,\nTrečias Matijošius.\n     Vai dūda...\n\nNuvažiavo į Alvitą\nPirkti Jonui dūdą.\n     Vai dūda...\n\nJonui dūdą, Baltrui skripką,\nMatjošiui pyragą.\n     Vai dūda...\n\nNuvažiavę į Alytų,\nMes nieko negavom.\n     Vai dūda..."
         },
         "recsI3TpBGIkRbzWr": {
           "Variant Name": "Žodžiai 2",
           "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Šalia kelio vieškelėlio\nGyveno šaltyšius.\nVai dūda ir vėl dūda,\nVai tai dūda dūdytėlė\nGyveno šaltyšius. 3x2 k.\n\nJis turėjo tris sūnelius,\nVisus tris, kaip vien ...\n\nVienas Jonas, antras Baltrus.\nTrečias Matijošius ...\n\nNuvažiavo i Alvitą\nPirkti Jonui dūdą ...\n\nJonui dūdą, Baltrui skripką,\nMatjošiui pyragą ...\n\nJis užėjo pas Maušiuką\nlr nieko nebliko ...\n\nAnei dūdos, anei skripkos,\nAnei pyragėlio ...\n\nVerkia Jonas, verkia Baltrus,\nVerkia Matijošius."
+          "Lyrics & Chords": "Šalia kelio vieškelėlio\nGyveno šaltyšius.\nVai dūda ir vėl dūda,\nVai tai dūda dūdytėlė\nGyveno šaltyšius. 3x2k.\n\nJis turėjo tris sūnelius,\nVisus tris, kaip vien ...\n\nVienas Jonas, antras Baltrus.\nTrečias Matijošius ...\n\nNuvažiavo i Alvitą\nPirkti Jonui dūdą ...\n\nJonui dūdą, Baltrui skripką,\nMatjošiui pyragą ...\n\nJis užėjo pas Maušiuką\nlr nieko nebliko ...\n\nAnei dūdos, anei skripkos,\nAnei pyragėlio ...\n\nVerkia Jonas, verkia Baltrus,\nVerkia Matijošius."
         }
       },
       "Audio": {},
@@ -14343,16 +14295,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recm1SobdeHPBmjCc": {
-          "Title": "Little Magpie, Little Crow",
+          "Title": "The magpie, the crow",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Little magpie, little crow,\nHow many children do you have?\n— Two in the grave, two at home,\nTwo slicing bread,\nTwo counting money,\nTwo running around the yard,\nTwo rolling a hoop,\nTwo weeping on the riverbank.",
-          "AI Generated": true
+          "Lyrics": "O magpie, you crow.\nHow many children do you have?\n— Two in the cemetery, two at home,\nTwo slicing bread,\nTwo counting coins,\nTwo playing in the yard,\nTwo rolling a ball around,\nTwo crying on the waterfront."
         }
       },
-      "LT Description": "Šioje liaudies dainoje klausiama šarkos ar varnos, kiek ji turi vaikų. Paukštis atsako, kad vaikai yra įvairiose vietose ir daro skirtingus dalykus: vieni mirę, kiti namie, dar kiti dirba ar žaidžia, o kai kurie verkia krante. Tai gali simbolizuoti skirtingus vaikų likimus.",
-      "EN Description": "This folk song is a conversation with a magpie or crow, asking how many children she has. The bird answers by describing her children in different situations: some have passed away, some are at home, some are working, some are playing, and some are crying by the riverbank. The song may symbolize the different paths or fates of children, but it's not clear if it's meant literally or as a metaphor for life’s variety and hardships. There are no direct references to specific Lithuanian holidays or historical events.",
-      "AI-Generated Description": true
+      "LT Description": "Paukščiai visais laikais gyveno šalia žmogaus, tad sulaukė įdomių vertinimų dėl savo išvaizdos, neįprasto balso, galiausiai dėl savitos elgsenos. Šimtmečius trunkantis paukščių stebėjimas žmogui leido atskleisti jų elgsenos dėsningumus, susieti juos su orų permainomis.\n\nVokiečių tikėjimuose pasirodanti čerškianti šarka pranašauja būsimas bėdas: mirtį, ligą, nelaimę. Tokią pat reikšmę turi ir šio paukščio sapnavimas (Taylor 1929–1930: 796).\n\nŠiaurinėje Anglijoje nelaimės ženklu laikyta, jei šarka perskrisdavo kelią iš kairės į dešinę, o geru – jei iš dešinės į kairę.\n\nVokietijoje šarkos pasirodymas buvo laikytas teigiamu, kai ji matyta tylinti. Geriausia buvo regėti du paukščius iš priekio ir pirmoje dienos pusėje (ten pat: 796, 797). Galbūt to paties pasaulėžiūros medžio, tik kita šaka, yra populiari lietuvių vaikų dainelė apie šarkos vaikelius: – Šarkela varnela, Kiek turi vaikelių? – Du namuose, du kapuose, du duonełį raiko, du pinigus skaito, du galvełį kraipo. Į akis krinta tai, kad vardijamas kuo didesnis šarkos vaikų skaičius, dažniausiai šarkiukus grupuojant po du. Kadangi tai vaikų folkloro kūrinys, tikėtina, kad dainelė turėjo didaktinę paskirtį – mokyti vaikus skaičiuoti (paprasčiausias skaičiavimas buvo objektų grupavimas po du).\n\nReikėtų pažymėti dar vieną svarbų dalyką – šarkos ryšį su jai giminingu paukščiu – varna. Liaudies pasaulėžiūroje tai, galima sakyti, paukščiai dvyniai, dvi obuolio puselės, pavyzdžiui, sakoma: Ko varnai, to ir šarkai (ką duodi vienam vaikui, to ir kitas įsigeidžia) (LKŽ XIV 516). Šarka mėgstama įvardyti dvigubu vardu – šarkelė varnelė – kaip ir pavadinta mūsų analizuojama daina.\n\n---\n\n**Žodynas**\n- _duoną raiko_: riekėmis pjausto duoną\n- _ripkelę – ripka_: apskrita medžio atpjova naudojama ritinėjimui, žaidimams, vežimo ratas, kas nors apvalus. Ritinis yra senas lietuvių komandinio sporto žaidimas, dar vadinamas „Ripka“ pagal apskritą medžio skritę, kurią dviejų komandų žaidėjai meta arba ridena ranka į vartus, o stabdo medinėmis lazdomis – ritmušomis.\n- _rauda - raudoti_: gailiai, balsu verkti, prašyti, aimanuoti, dejuoti, labai rūpintis\n\n---\n\n**Šaltiniai:** Daugiau apie šarkos įvaizdį: https://www.llti.lt/failai/10%20Slekonytes.pdf",
+      "EN Description": "Birds have always been part of our environment. Throughout history there have been varying assessments of bird behavior – because of their appearance, unusual voice, and unique mannerisms. Centuries of observation have allowed us to discover certain patterns in bird behavior and connect them with forecasting the future.\n\n- In German folklore a screeching magpie foretold misfortune: a future disaster, illness, or death. A dream of such a magpie had the same significance.\n- In Northern England it was an ominous portent if a magpie flew across the road from left to right. Conversely, it was a good sign if it flew from right to left.\n- In Germany the appearance of a magpie was a positive indication if the bird was silent. An even better omen was to see two birds in front of you early in the morning.\n\n“The Magpie, the Crow” is a popular Lithuanian children’s song describing the magpie’s offspring. “How many children do you have?“ What strikes us immediately is the ever increasing number of little magpies, always grouped in pairs. It is plausible that this song had an educational purpose – to teach children to count (the simplest calculations consisted of counting by twos).\n\nOne other item deserves mention – the important bond between the magpie and its cousin, the crow. In the worldview of folklore one could say that the birds are twins, two sides of the same coin. For example, it was said “what’s good for the magpie is good for the crow“ (when you give one child something, the second child also wants it). Frequently the magpie was referred to with a double name “magpie-crow“, just as in this song."
     }
   },
   {
@@ -14507,7 +14457,7 @@ const songs: SongFile = [
         "recEuWOtlMPux6nZI": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pramerkiu akis,\nAtveriu delnus,\nĮ ryto žvaigždes,\nKurios virto saule.\n\nAguonos bučiuoja\nMano šaltas kojas,\nMane kažkas kviečia,\nMano vardą kartoja.\n\n_[Se](C)[se,](G) [bro](F)[li!](C)\n[Mes aitvarą](C) [leidžiam,](C)  \n[Žiūrėk,](G) [koks laimingas-](G)  \n[Tie žmonės kartoja.](C-)\n\nSese, broli!\nMes su žvaigždėm tekam,\nŽiūrėk, kiek daug meilės-\nTie žmonės kartoja._\n\nAš klausiu to brolio,\nSese jis vadina,\nKodėl tiek daug meilės\nŽvaigždė atplukdino?\n\nTu, sese, prisėsk,\nTu daug nežinai,\nKodėl mus vadina\nSaulės vaikais.\n\n_Priedainis_\n\nNejau nežinai,\nKad mes jau seniai\nPo visa pasaulį\nVadinamės skautais.\n\nPo visa pasaulį\nRatu mes sustoję\nApjuosim šviesa\nŠimto metų istoriją.\n\n_Priedainis_\n\n[Mes bėgam kalnais](C)\n[Ežerų laukais](C)\n[Čia lyja lietus](G)\n[Kvepia medus](G)\n[Čia medžiai mus myli](F)\n[Saulę palydi.](G)\n\n_Priedainis_",
+          "Lyrics & Chords": "Pramerkiu akis,\nAtveriu delnus,\nĮ ryto žvaigždes,\nKurios virto saule.\n\nAguonos bučiuoja\nMano šaltas kojas,\nMane kažkas kviečia,\nMano vardą kartoja.\n\n_[Se](C)[se,](G) [bro](F)[li!](C)_\n_[Mes aitvarą](C) [leidžiam,](C)_\n_[Žiūrėk,](G) [koks laimingas-](G)_  \n_[Tie žmonės kartoja.](C-)_\n\nSese, broli!\nMes su žvaigždėm tekam,\nŽiūrėk, kiek daug meilės-\nTie žmonės kartoja._\n\nAš klausiu to brolio,\nSese jis vadina,\nKodėl tiek daug meilės\nŽvaigždė atplukdino?\n\nTu, sese, prisėsk,\nTu daug nežinai,\nKodėl mus vadina\nSaulės vaikais.\n\n_Priedainis_\n\nNejau nežinai,\nKad mes jau seniai\nPo visa pasaulį\nVadinamės skautais.\n\nPo visa pasaulį\nRatu mes sustoję\nApjuosim šviesa\nŠimto metų istoriją.\n\n_Priedainis_\n\n[Mes bėgam kalnais](C)\n[Ežerų laukais](C)\n[Čia lyja lietus](G)\n[Kvepia medus](G)\n[Čia medžiai mus myli](F)\n[Saulę palydi.](G)\n\n_Priedainis_",
           "Show Chords": true
         }
       },
@@ -14537,7 +14487,7 @@ const songs: SongFile = [
         "recKCWWjFiNRBq9wm": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Saulutė nusileido,\nMėnulis užtekėjo,\n    Jauna graži mergelė\n    Pro langelį žiūrėjo. (2 k.)\n\nKo sėdi už stalelio,\nKo žiūri pro langelį,\n    Ko neini į darželį\n    Skinti žalių rūtelių? (2 k.)\n\nNei man rūteles skinti,\nNei vainikėlį pinti –\n    Man dieną naktį rūpi,\n    Kaip su berneliu būti. (2 k.)\n\nNušluostyk ašarėles,\nPalaistyk rūtytėles –\n    Sugrįš tavo bernelis\n    Iš svetimos šalelės. (2 k.)"
+          "Lyrics & Chords": "Saulutė nusileido,\nMėnulis užtekėjo,\n    Jauna graži mergelė\n    Pro langelį žiūrėjo. (2k.)\n\nKo sėdi už stalelio,\nKo žiūri pro langelį,\n    Ko neini į darželį\n    Skinti žalių rūtelių? (2k.)\n\nNei man rūteles skinti,\nNei vainikėlį pinti –\n    Man dieną naktį rūpi,\n    Kaip su berneliu būti. (2k.)\n\nNušluostyk ašarėles,\nPalaistyk rūtytėles –\n    Sugrįš tavo bernelis\n    Iš svetimos šalelės. (2k.)"
         }
       },
       "Audio": {},
@@ -14651,7 +14601,7 @@ const songs: SongFile = [
         "rec2AQkAJ4STQp7CB": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Sėdžiu už stalelio,\nŽiūriu pro langelį.\nČiūčiuoja, liūliuoja\nAnt marių laivelis... (2 k.)\n\nO tame laively\nMergelė sėdėjo.\nJūrelių putelėm\nSau burnelę prausė. (2 k.)\n\nJūrelių putelėm\nSau burnelę prausė,\nŽuvelių šukelėm\nGalvelę šukavo. (2 k.)\n\nŽuvelių šukelėm\nGalvelę šukavo, \nSkandino žiedelį\nĮ marių dugnelį. (2 k.)\n\nPlauki sau, žiedeli,\nTolimon šalelėn,\nTolimon šalelėn,\nKur mano bernelis. (2 k.)"
+          "Lyrics & Chords": "Sėdžiu už stalelio,\nŽiūriu pro langelį.\nČiūčiuoja, liūliuoja\nAnt marių laivelis... (2k.)\n\nO tame laively\nMergelė sėdėjo.\nJūrelių putelėm\nSau burnelę prausė. (2k.)\n\nJūrelių putelėm\nSau burnelę prausė,\nŽuvelių šukelėm\nGalvelę šukavo. (2k.)\n\nŽuvelių šukelėm\nGalvelę šukavo, \nSkandino žiedelį\nĮ marių dugnelį. (2k.)\n\nPlauki sau, žiedeli,\nTolimon šalelėn,\nTolimon šalelėn,\nKur mano bernelis. (2k.)"
         }
       },
       "Audio": {},
@@ -14795,7 +14745,7 @@ const songs: SongFile = [
         "recqUDagbnyMUBoKA": {
           "Variant Name": "Snaudžia malūnas",
           "EN Variant Name": "Snaudžia malūnas",
-          "Lyrics & Chords": "Snaudžia malūnas prie kelio,\nSaulė seniai vakaruos:\nŽaidžia mėnulis upely\nKlausosi mano dainos.\n\nNors nėr tavęs čionai,\nNors tu toli,\nNoriu papasakot tau vienai,\nKas manoj širdy. (2 k.)\n\nNoriu šią vasaros naktį\nApie tave tik sapnuot.\nNoriu šią dainą nors kartą\nDviese prie upės dainuot.\n\nNors nėr tavęs čionai...\n\nKaip man tave pamatyti?\nKur man tave susitikt?\nEikim saulėlydžio laukti,\nGrįžkim aušros pasitikt.\n\nNors nėr tavęs čionai..."
+          "Lyrics & Chords": "Snaudžia malūnas prie kelio,\nSaulė seniai vakaruos:\nŽaidžia mėnulis upely\nKlausosi mano dainos.\n\nNors nėr tavęs čionai,\nNors tu toli,\nNoriu papasakot tau vienai,\nKas manoj širdy. (2k.)\n\nNoriu šią vasaros naktį\nApie tave tik sapnuot.\nNoriu šią dainą nors kartą\nDviese prie upės dainuot.\n\nNors nėr tavęs čionai...\n\nKaip man tave pamatyti?\nKur man tave susitikt?\nEikim saulėlydžio laukti,\nGrįžkim aušros pasitikt.\n\nNors nėr tavęs čionai..."
         }
       },
       "Audio": {},
@@ -14906,7 +14856,7 @@ const songs: SongFile = [
         "recreNxR6x0DrQKfR": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Šėriau žirgelį per savaitėlę,\nKai atėjo subatėlė,\nSavo bėrą žirgelį pasibalno(jau). (2 k.)\n\nOi žirge, žirge, žirgeli mano,\nAr nuneši mane jauną\nPer pusantros valandėlės šimtą mylių? (2 k.)\n\nNunešt nunešiu, parnešt parnešiu,\nJei pašersi avižėlėm,\nPagirdysi vandenėliu, tai nunešiu. (2 k.)\n\nOi, kad aš jojau per uošvės dvarą,\nČiulba ulba paukštužėliai\nŽaliam vyšnių sodely - tai gražiai gied(a). (2 k.)"
+          "Lyrics & Chords": "Šėriau žirgelį per savaitėlę,\nKai atėjo subatėlė,\nSavo bėrą žirgelį pasibalno(jau). (2k.)\n\nOi žirge, žirge, žirgeli mano,\nAr nuneši mane jauną\nPer pusantros valandėlės šimtą mylių? (2k.)\n\nNunešt nunešiu, parnešt parnešiu,\nJei pašersi avižėlėm,\nPagirdysi vandenėliu, tai nunešiu. (2k.)\n\nOi, kad aš jojau per uošvės dvarą,\nČiulba ulba paukštužėliai\nŽaliam vyšnių sodely - tai gražiai gied(a). (2k.)"
         }
       },
       "Audio": {},
@@ -14933,7 +14883,7 @@ const songs: SongFile = [
         "recYb2lZ8iTBEVTME": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Šėriau, šėriau sau žirgelį\nRytą, vakarėlį. (2 k.)\nDėl to šėriau, kad norėjau,\nKad jis gražus būtų. (2 k.)\n\nKai aš jojau per laukelį\nLaukelis dundėjo. (2 k.)\nVisos kaimo mergužėlės\nĮ mane žiūrėjo. (2 k.)\n\nAr jūs žiūrit, ar nežiūrit,\nAš jūsų nebūsiu: (2 k.)\nIšsirinkau sau mergelę\nIš kito kaimelio. (2 k.)"
+          "Lyrics & Chords": "Šėriau, šėriau sau žirgelį\nRytą, vakarėlį. (2k.)\nDėl to šėriau, kad norėjau,\nKad jis gražus būtų. (2k.)\n\nKai aš jojau per laukelį\nLaukelis dundėjo. (2k.)\nVisos kaimo mergužėlės\nĮ mane žiūrėjo. (2k.)\n\nAr jūs žiūrit, ar nežiūrit,\nAš jūsų nebūsiu: (2k.)\nIšsirinkau sau mergelę\nIš kito kaimelio. (2k.)"
         },
         "recb5NE0CN4ckb7pz": {
           "Variant Name": "Žodžiai 2",
@@ -15029,16 +14979,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recqX7CWcN5Xnq83Q": {
-          "Title": "This Night, All Night Long",
+          "Title": "I didn‘t sleep last night",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "This night, all through the night,\nI did not sleep, I did not sleep.\nWith my brother, an apple tree\nI planted, I planted. (repeat x2)\n\nTake root, take root, little apple tree,\nClean and pure, clean and pure.\nRipen your apples\nSo red, so red.\n\nI will pick the apples,\nRed ones, red ones,\nAnd take them to the maiden\nAs a gift, as a gift.\n\nMaiden, little lily,\nWhere were you, where were you?\nThat this night, with the youth,\nYou were not, you were not.\n\nThis night, all through the night,\nI did not sleep, I did not sleep.\nWith my brother, an apple tree\nI planted, I planted.",
-          "AI Generated": true
+          "Lyrics": "Last night, all night\nI didn‘t sleep at all.\nI was planting an apple tree\nWith my brother.\n\nDear little apple tree – take root\nAnd grow vigorously.\nRipen your apples\nTo be red, red.\n\nI will pick some apples,\nRed ones, red ones.\nAnd bring them to my fair maiden\nAs a gift, as a gift.\n\nMy fair maiden, my lily,\nWhere were you, where were you ?\nAt last night‘s dance party\nYou were missing, you were missing.\n\nLast night, all night\nI didn‘t sleep at all.\nI was planting an apple tree\nWith my brother."
         }
       },
-      "LT Description": "Šioje dainoje pasakojama apie naktį, kai kartu su broliu sodinama obelėlė, galinti simbolizuoti viltį ar meilę. Obuoliai vėliau dovanojami merginai kaip meilės ženklas. Dainoje taip pat klausiama, kodėl mergina tą naktį nebuvo su jaunimu.",
-      "EN Description": "This folk song tells about staying awake all night with a brother to plant an apple tree, which may symbolize hope, love, or new beginnings. The apples are later intended as a gift for a young woman, showing affection or courtship. The song also gently questions why the girl was not present with the youth that night, hinting at longing or missed opportunities.",
-      "AI-Generated Description": true
+      "LT Description": "Tai meilės ir piršlybų daina. Obelis lietuvių tautosakoje, tai vienas amžinumo simbolių – moters, motinos simbolis. Iš sode augančių medžių kaip konkretus atskiras objektas minima tik obelis – pati obelis arba jos vaisiai obuoliai.\n\nVisą žmogui atseikėtą gyvenimą į du skirtingus laikotarpius dalija trečias lemtingas įvykis – vedybos. Vedybos paprastai žymi ne tik žmogaus šeiminės padėties (vedęs, nevedęs), bet ir amžiaus (subrendęs, nesubrendęs) pasikeitimą. Subrendimas ir šeiminės padėties pakeitimas – du skirtingi žmogaus gyvenimo momentai, kurie dažniausiai sutampa.\n\nBernelis norėdamas pasirodyti, kad jau yra subrendęs ir prisivilioti mergelę, sodina obelėlę. Obelėlė buvo senosios motinėlės, moters, motinos įvaizdis. O obuolys buvo laikomas meilės ženklu, vaisingumo simboliu, tačiau įvairiose dainose raudoni obuolėliai gali būti palyginimu mergelės veidelių, jaunystės, arba būsimos sunkios dalios. Bernelis paprastai tik giriasi mergelei, kad už jo ištekėjusi ji tik po sodelį vaikščiosianti, obuolėlius raškysianti, uogeles rankiosianti, biteles saugosianti, jį, bernelį, myluosianti. Mergelė puikiai supranta, kad „Tie obuolėliai – Vargeliai“, „Sode obuolėliai – Juodi purvynai!“, „Juodos uogos – vis vargeliai, Serbentėlės – ašarėlės“.\n\nŠioje dainoje bernelis padedant broleliui sodina obelėlę savo sodelyje. Jam rūpi, kad obelėlė prigytų valyvai, valyvai (gerai, gražiai) nes kitaip nebus nei raudonų obuolėlių, nei sodelio. „Gražus broliuko sodelis: iš kraštų vyšnelės, vidury obelėlės (V 2233). Kitose dainose jodamas pas mergelę, bernelis dovanų jai neša „Nei aukso žiedelį, Nei šilkų skarelę, Tik vyninį obuolėlį raudonais krašteliais“ (LTt 1 315; žr. V 508, 509).“ – rašo N. Vėlius.\n\n„Obuolio ryšį su vedybomis galima pastebėti tiek lietuvių, tiek ir kitų tautų tautosakoje dainuojamojoje bei pasakojamojoje tautosakoje. J. Basanavičius mano, kad obuolys anksčiau buvo naudotas vestuvių apeigose, o vėliau jo vietą galėjo užimti rūtos. Todėl su vedybomis jis siejamas neatsitiktinai. Tyrinėtojas pastebi, kad jei jaunikis su merga mergaujasi (draugauja), tai Rytų Prūsijoje buvo sakoma, kad jie obuoliauja“ (Basanavičius J. Rinktiniai raštai. Vilnius, 1970, p 403).\n\nBernelis ne tik sodina obelėlę, bet ir buvo nulėkęs į šokius ar jaunimo suėjimą (jaunimėlin) ir ten apžiūrėjęs pamatė, kad jo mergelės nėra. Mergužėle, lelijėle, kur buvai, kad šią naktį jaunimėly nebuvai. Na reikia tikėtis, kad čia ne pavydas ir ne persekiojimas, o tik įsimylėjusio bernelio begalinis noras gauti išsirinktą mergelę, todėl ir stengiasi sodinti obelėlę, brolelio padedamas, rūpinasi jos prigyjimu ir visu tuo tikisi „pavergti“ mylimos mergelės širdelę.\n\n---\n\n**Žodynas**\n- _valyvai_: gražiai, tvarkingai, gerai\n\n---\n\n**Šaltiniai:** „Senieji vestuvinių dainų ir papročių semantikos klodai” Norbertas Vėlius; „Medžiai lietuvių pasakojamojoje tautosakoje“ Agnė Miliauskaitė; „Rinktiniai raštai“Jonas Basanavičius; Libertas Klimka „Obelėlė lietuvių papročiuose“.",
+      "EN Description": "It’s a song of matchmaking and love. In Lithuanian folklore, the apple tree is one of the universal symbols for a woman, a mother. Of all the trees that could be in an orchard, only the apple tree and its fruit is ever specifically mentioned.\n\nMarriage is a decisive event which divides a person’s life into two distinct phases. Marriage not only indicates a change in the family status (single / married), but also in age (immature / mature). Change in family status and maturity frequently occur at the same time in one’s life.\n\nThe young man plants an apple tree – to show that he has grown up and wishes to make an impression on a young woman. The apple tree variously represented a mother, grandmother, or woman. The apple represented fruitfulness and was a sign of love. In various songs red apples are variously compared to the appearance of a young lady’s face, or youthfulness, or a troubled future. A young man would typically boast to a young woman – if she marries him, she will stroll through the orchard, pick apples and berries, take care of the beehives, and be in love with him. On the other hand, the young woman understood that life will have hardships and will be much more complicated: “apples are troubles”, “orchards are a black mire”, “berries are additional troubles”, “black currants are tears”.\n\nThe young man in this song, with his brother’s assistance, is planting an apple tree in his orchard. He is anxious for the apple tree to take root properly – otherwise there will be no red apples. In similar songs, it is written that the young man brings a gift to his young lady: “Not a golden ring, not a silk scarf, but a wine colored apple with red edging”. (N. Vėlius)\n\n“The link between apples and weddings is evident not only in Lithuanian, but also in the sung and written folklore of other countries. It is theorized that in earlier times the apple was part of the wedding ceremony, later supplanted by rue. So the link with the wedding ceremony is not coincidental. In Eastern Prussia the roundabout way to indicate that a young man and woman were being friendly was to say “they are picking apples”. (J. Basanavičius)\n\nThe young man not only finds time to plant an apple, but also hurries off to the local youth dance party, where he cannot find his young lady. We would like to think that he is not jealous or a stalker, but motivated by an overpowering need to charm the young lady of his dreams. Which is why he plants the apple tree, worries about its growth – and hopes by all that to captivate the young lady’s heart.\n\n---\n\n**Sources:**\n- Norbert Vėlius: “The semantics of old wedding songs and traditions”.\n- Agnė Miliauskaitė: “Trees in Lithuanian oral folklore”.\n- Jonas Basanavičius: “Collected works”.\n- Libertas Klimka: “The apple tree in Lithuanian traditions”"
     }
   },
   {
@@ -15225,7 +15173,7 @@ const songs: SongFile = [
         "recEpklxN1dCN8nDJ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Šių naktį per naktį\nGaideliai giedoja. (2 k.)\nNegiedokit gaideliai,\nNetrumpykit naktelės. (2 k.)\n\nIšaušta aušrala,\nPatekės saulala. (2 k.)\nImsim broliai dalgelius,\nEisim pjauti šienelio. (2 k.)\n\nDa nenupjoviau\nPusę pradalgėlę, (2 k.)\nUnt dalgės pasirėmiau,\nUnt dalgės rymojau. (2 k.)"
+          "Lyrics & Chords": "Šių naktį per naktį\nGaideliai giedoja. (2k.)\nNegiedokit gaideliai,\nNetrumpykit naktelės. (2k.)\n\nIšaušta aušrala,\nPatekės saulala. (2k.)\nImsim broliai dalgelius,\nEisim pjauti šienelio. (2k.)\n\nDa nenupjoviau\nPusę pradalgėlę, (2k.)\nUnt dalgės pasirėmiau,\nUnt dalgės rymojau. (2k.)"
         }
       },
       "Audio": {},
@@ -15252,7 +15200,7 @@ const songs: SongFile = [
         "recDlNt037d6257Dy": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Siuntė mane motinėlė 3 k.\nĮ jūrelę vandenėlio. 2x2 k.\n\nMan besemiant vandenėli,\nlr atplaukė juod‘s laivėlis.\n\nTam laively, tam juodajam,\nSėdi jaunas bernužėlis.\n\nSėsk, mergele, i laivelį,\nAš perkelsiu per jūreles.\n\nDievas davė man protelį,\nKad nesėdau i laivelį.\n\nBūčiau sėdus į laivelį,\nBūčiau skendus į jūreles."
+          "Lyrics & Chords": "Siuntė mane motinėlė 3k.\nĮ jūrelę vandenėlio. 2x2k.\n\nMan besemiant vandenėli,\nlr atplaukė juod‘s laivėlis.\n\nTam laively, tam juodajam,\nSėdi jaunas bernužėlis.\n\nSėsk, mergele, i laivelį,\nAš perkelsiu per jūreles.\n\nDievas davė man protelį,\nKad nesėdau i laivelį.\n\nBūčiau sėdus į laivelį,\nBūčiau skendus į jūreles."
         }
       },
       "Audio": {},
@@ -15365,17 +15313,15 @@ const songs: SongFile = [
       },
       "Translations": {
         "recWAdwRZIdag8BNH": {
-          "Title": "Counting Rhymes",
+          "Title": "A children‘s counting rhyme",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "You walk, you wander, one-cap wearer,\nPull the root from the maguri, guri,\nHey, lei, lick, trick,\nAks laps, maple laps, maple laps.\n\nErcik percik pamaguli,\nVini teli pacekuli. Woo!\nYou walk, you wander, diki daki, daki,\nUrbi burbi, shmik shmak, shmak,\nAus baus, there will be honey,\nThe bee Rytė will have a taste.\nAus baus, there will be honey.\n\nEna bena, kuki baki,\nOrba torba, orbi maki, maki (maki!)\nWent, went to Motiejus,\nTumba, tumba, tumba, tumba, tumba, run. (tumba, run!)\n\nAnku dranku druli dru,\nShatar vatar under the bell, under the bell, (under the bell!)\nĖmus dėmus šaštautėmus,\nPedė ėdi, pedė ėdi, to graze for whom. (to graze for whom!)",
-          "AI Generated": true
+          "Lyrics": "_A folk rhyme of rhythmic nonsense words_"
         }
       },
       "Music Author": "Aleksandras Stankevičius",
-      "LT Description": "Ši daina yra linksma lietuviška skaičiuotė, dažnai naudojama vaikų žaidimuose. Daugiau čia girdime žaismingų, beprasmio skambesio žodžių ir ritminių frazių. Kai kurie žodžiai mini medų, bites ir gamtą, bet pagrindinis tikslas – linksminti ir padėti žaisti.",
-      "EN Description": "This song is a playful Lithuanian counting rhyme, often used in children's games. It is made up of nonsense words and rhythmic patterns, which might symbolize the fun and creativity found in folk traditions. While some lines reference honey, bees, and nature, the main purpose is likely to create a lively atmosphere for play rather than tell a specific story.",
-      "AI-Generated Description": true
+      "LT Description": "Išdykusi, prigalvotų įvairų skiemenų mišrainė, kuri ir juokinga, ir smagi, ir vaikiškai kūrybinga. Dainelė puikiausiai tinka ne tik dainų šventei, bet ir siūlau išmokti ir dainuoti visai šeimai keliaujant automobiliu ar šiaip ilgesnį laiką būnant kartu. Įvairių skiemenų rinkinys, traliavimas lavina vaikų tarimą, žodžių artikuliaciją, lavina klausą ir palieka šypseną tiek vyresniems tiek vaikams.",
+      "EN Description": "A mischievous hodgepodge of made up syllables – it’s jolly good fun and youthfully creative. I recommend this song not just for the song festival, but for a family traveling on a long automobile trip or otherwise spending extensive time together. The mixture of curious syllables develops a child’s pronunciation, articulation, intonation – and leaves a smile on everyone’s face, young and old."
     }
   },
   {
@@ -15386,7 +15332,7 @@ const songs: SongFile = [
         "recBHV5CU3psuqEwO": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Einam į virtuvę, visi puodai burbuliuoja.\nKvepia vakarienė, mano pilvas gurguliuoja.\nKas ten verda ? Kas ten kepa? Reikia pažiūrėti.\nKą mes valgysim šiandiena? Sunku iškentėti.\n\nPomidoras, agurki-gurki-gurkas,\nPlaukioja sriuboj.\nPons ridikas ir jo pana petruška\nŠoka jau į puodą, oi!\n\nKalifijoras, ot bajoras,\nBijo burbulų.\nO svogūnas – Koks kūnas! –\nKaitinasi ant garų!\n\nO, kaip mums skanu !\nReikia pilvą patapšnot.\nMes dainuojame visi\nIr negalime sustot.\n\nDešra nori atsipūsti tarp kopūstų,\nGuli ant lėkštės.\nBlynas žino, kad jis yra skanumynas,\nIeško sau garbės.\n\nBet kai bulvė praplaukė kaip gulbė,\nVisi, lyg apstulbę, žiurėjo\nKai bulvė garbingai praėjo….\n\nIr iš jos padarė kugelį!\n\nO, kaip mums skanu!\n.... (2 k.)\n\nRap :\n\nŠoka didelis arbūzas,\nDžiaugiasi ir kukurūzas!\nPop, pop, pop ir jau sprogūzas!\nŠoka jie visi.\n\nŠaltibarščiuose skamba bu’rock and roll’as,\nBliūdas trepsi kaip buivolas!\nMuzikos beklausant skilo migdolas!\nŠoka jie linksmi.\n\nMes esam alkani,\nMūsų pilvai dideli!\nDuoki valgyt, duok greičiau!\nDuoki valgyt tučtuojau!\n\nO, kaip mums skanu!\n.... (2 k)."
+          "Lyrics & Chords": "Einam į virtuvę, visi puodai burbuliuoja.\nKvepia vakarienė, mano pilvas gurguliuoja.\nKas ten verda ? Kas ten kepa? Reikia pažiūrėti.\nKą mes valgysim šiandiena? Sunku iškentėti.\n\nPomidoras, agurki-gurki-gurkas,\nPlaukioja sriuboj.\nPons ridikas ir jo pana petruška\nŠoka jau į puodą, oi!\n\nKalifijoras, ot bajoras,\nBijo burbulų.\nO svogūnas – Koks kūnas! –\nKaitinasi ant garų!\n\nO, kaip mums skanu !\nReikia pilvą patapšnot.\nMes dainuojame visi\nIr negalime sustot.\n\nDešra nori atsipūsti tarp kopūstų,\nGuli ant lėkštės.\nBlynas žino, kad jis yra skanumynas,\nIeško sau garbės.\n\nBet kai bulvė praplaukė kaip gulbė,\nVisi, lyg apstulbę, žiurėjo\nKai bulvė garbingai praėjo….\n\nIr iš jos padarė kugelį!\n\nO, kaip mums skanu!\n.... (2k.)\n\nRap :\n\nŠoka didelis arbūzas,\nDžiaugiasi ir kukurūzas!\nPop, pop, pop ir jau sprogūzas!\nŠoka jie visi.\n\nŠaltibarščiuose skamba bu’rock and roll’as,\nBliūdas trepsi kaip buivolas!\nMuzikos beklausant skilo migdolas!\nŠoka jie linksmi.\n\nMes esam alkani,\nMūsų pilvai dideli!\nDuoki valgyt, duok greičiau!\nDuoki valgyt tučtuojau!\n\nO, kaip mums skanu!\n.... (2k)."
         }
       },
       "Audio": {},
@@ -15667,7 +15613,7 @@ const songs: SongFile = [
         "rectA6nRWsPXEhw9v": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Stoviu aš parimus prie rūtų darželio,\nKai paspaudęs ranką tyliai išėjai.\nAšarom' sidabro verkė rūtos žalios,\nSkendo ūkanose Lietuvos laukai. (2 k.)\n\nKas paklaus, kodėl man ašaros taip byra,\nKas man, ravint rūtą, \"Padėkdiev\" sakys?\nKas akis manąsias atras lino žiede?\nKas, o kas, o kasgi, nerami širdis? (2 k.)\n\nTankiai varsto šeivos, staklės ąžuolinės,\nKlojas lino drobės taip švelniai, dailiai,\nRankšluostin įausiu: Lietuva tėvyne,\nTu didvyrių žemė, mes tavo vaikai. (2 k.)\n\nKada mūs žemelė bus nuo kraujo soti,\nTada tu sugrįši miško takeliu.\nAtnešiu vandens tau moliniam ąsoty,\nDuosiu nusišluostyt rankšluosčiu linų. (2 k.)"
+          "Lyrics & Chords": "Stoviu aš parimus prie rūtų darželio,\nKai paspaudęs ranką tyliai išėjai.\nAšarom' sidabro verkė rūtos žalios,\nSkendo ūkanose Lietuvos laukai. (2k.)\n\nKas paklaus, kodėl man ašaros taip byra,\nKas man, ravint rūtą, \"Padėkdiev\" sakys?\nKas akis manąsias atras lino žiede?\nKas, o kas, o kasgi, nerami širdis? (2k.)\n\nTankiai varsto šeivos, staklės ąžuolinės,\nKlojas lino drobės taip švelniai, dailiai,\nRankšluostin įausiu: Lietuva tėvyne,\nTu didvyrių žemė, mes tavo vaikai. (2k.)\n\nKada mūs žemelė bus nuo kraujo soti,\nTada tu sugrįši miško takeliu.\nAtnešiu vandens tau moliniam ąsoty,\nDuosiu nusišluostyt rankšluosčiu linų. (2k.)"
         }
       },
       "Audio": {},
@@ -15842,7 +15788,7 @@ const songs: SongFile = [
         "recRrWmquil9ZpxzD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "[ ](C)[ ](I)[ ](C)\n\n[Iš](C) [visų Žemės](C/B) [pusių](Am7)  \n[Iš toliausių jos](Fadd2) [vietų](C)  \n[Eikit,](C) [broliai, prie](C/B) [mūsų –](Am7)  \n[Sudainuosime](Fadd2) [Lietuvą –](C)  \n[Eikit,](Am) [sesės –](Am/B) [išglostysim](Fadd2)  \n[Tarsi](C) [mezginį](C/B) [nersime,](Am7)  \n[Su upokšniais jos](Fadd2) [juoksimės](C)  \n[Ir su vėjais](Fadd2) [jos verksime...](G)\n\nPried: [Taip dainuosim, kad](C) [keltųsi](G)  \n[Kunigaikščiai iš](Am) [pilkapių,](Fadd2)  \n[Ąžuolai,](C) [kad atželtų](G)  \n[Ir sapnai imtų](F) [pildytis –](C)  \n[Juk dainų tokių](C) [esama –](G)  \n[Jos per amžius](Am) [išlieka –](Fadd2)  \n[Eikim, broliai ir](C) [seserys –](G)  \n[Sudainuokime, sudainuokime](F) [Lietuvą!](C) [ ](I)[ ](C)\n\n[Karžygiai](C) [ir](C/B) [artojai](Am)\n[Partizanai,](Fadd2) [poetai,](Cadd2)  \n[Tie,](C) [kur šlovę](C/B) [giedojo,](Am7)  \n[Tie, kur aukurą](Fadd2) [lietė –](C)  \n[Viename](Am)[   ](Am/B)[saulės blyksnyje –](Fadd2)  \n[Amžinojoj](C)[  ](C/B)[Tėvynėje –](Am7) \n[Mes visi](Fadd2) [susiimsime](C)  \n[Užu rankų lyg](Fadd2) [giminės –](G)\n\nPried.: [Kad gyventi](C) [galėtume](G)  \n[Po dainos bendru](Am) [stogu –](Fadd2)  \n[Neišduokim –](C) [mylėkime](G)  \n[Savo Dievą](F) [ir žmogų –](C)  \n[Juk dainų](C) [tokių esama –](G)  \n[Jos per amžius](Am) [išlieka –](F)\n[Eikim, broliai ir](C) [seserys –](G)  \n[Sudainuokime, sudainuokime](F) [Lietuvą!](C)",
+          "Lyrics & Chords": "[ ](C)[ ](I)[ ](C)\n\n[Iš](C) [visų Žemės](C/B) [pusių](Am7)  \n[Iš toliausių jos](Fadd2) [vietų](C)  \n[Eikit,](C) [broliai, prie](C/B) [mūsų –](Am7)  \n[Sudainuosime](Fadd2) [Lietuvą –](C)  \n[Eikit,](Am) [sesės –](Am/B) [išglostysim](Fadd2)  \n[Tarsi](C) [mezginį](C/B) [nersime,](Am7)  \n[Su upokšniais jos](Fadd2) [juoksimės](C)  \n[Ir su vėjais](Fadd2) [jos verksime...](G)\n\n_Priedainis_\n[Taip dainuosim, kad](C) [keltųsi](G)  \n[Kunigaikščiai iš](Am) [pilkapių,](Fadd2)  \n[Ąžuolai,](C) [kad atželtų](G)  \n[Ir sapnai imtų](F) [pildytis –](C)  \n[Juk dainų tokių](C) [esama –](G)  \n[Jos per amžius](Am) [išlieka –](Fadd2)  \n[Eikim, broliai ir](C) [seserys –](G)  \n[Sudainuokime, sudainuokime](F) [Lietuvą!](C) [ ](I)[ ](C)\n\n[Karžygiai](C) [ir ar](C/B)[tojai](Am)\n[Partizanai,](Fadd2) [poetai,](Cadd2)  \n[Tie,](C) [kur šlovę](C/B) [giedojo,](Am7)  \n[Tie, kur aukurą](Fadd2) [lietė –](C)  \n[Viename](Am)[   ](Am/B)[saulės blyksnyje –](Fadd2)  \n[Amžinojoj](C)[  ](C/B)[Tėvynėje –](Am7) \n[Mes visi](Fadd2) [susiimsime](C)  \n[Užu rankų lyg](Fadd2) [giminės –](G)\n\n\n_Priedainis_\n[Kad gyventi](C) [galėtume](G)  \n[Po dainos bendru](Am) [stogu –](Fadd2)  \n[Neišduokim –](C) [mylėkime](G)  \n[Savo Dievą](F) [ir žmogų –](C)  \n[Juk dainų](C) [tokių esama –](G)  \n[Jos per amžius](Am) [išlieka –](F)\n[Eikim, broliai ir](C) [seserys –](G)  \n[Sudainuokime, sudainuokime](F) [Lietuvą!](C)",
           "Show Chords": true
         }
       },
@@ -15904,7 +15850,7 @@ const songs: SongFile = [
         "recwJZRdfimBS5zmQ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Suk, suk ratelį, suk į vieną pusę. (3 k.)\nPasakyk, mergele, ar tu mano būsi.\n\nNesuksiu ratelio nei į vieną pusę. (3 k.)\nOi, neklausk, berneli, aš tavo nebūsiu.\n\nNe savo žirgeliu pas mane atjojai. (3 k.)\nNe savo žiedelį man padovanojai.\n\nBrolelio žirgeliu pas mane atjojai. (3 k.)\nSeselės žiedelį man padovanojai."
+          "Lyrics & Chords": "Suk, suk ratelį, suk į vieną pusę. (3k.)\nPasakyk, mergele, ar tu mano būsi.\n\nNesuksiu ratelio nei į vieną pusę. (3k.)\nOi, neklausk, berneli, aš tavo nebūsiu.\n\nNe savo žirgeliu pas mane atjojai. (3k.)\nNe savo žiedelį man padovanojai.\n\nBrolelio žirgeliu pas mane atjojai. (3k.)\nSeselės žiedelį man padovanojai."
         }
       },
       "Audio": {},
@@ -16014,7 +15960,7 @@ const songs: SongFile = [
         "recMqsopwifgBY6yZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Sutems tamsi naktužėlė,\nNudrengs drangi drangužėlė, -\nKur aš nukeliausiu,\nNakvynėlę gausiu? (2 k.)\n\nAr ant bėro žirgužėlio,\nAr ant tymo balnužėlio,\nAr uošvės dvarely,\nMargojoj klėtelėj? (2 k.)\n\nGreičiau, greičiau, žirgužėli,\nPasiskubink, juodbėrėli,\nĮ uošvės dvarelį,\nĮ margą klėtelę. (2 k.)\n\nIšeik, išeik, uošvužėle,\nAtkelk vario vartužėlius,\nPriimki žentelį,\nTėvelio sūnelį. (2 k.)"
+          "Lyrics & Chords": "Sutems tamsi naktužėlė,\nNudrengs drangi drangužėlė, -\nKur aš nukeliausiu,\nNakvynėlę gausiu? (2k.)\n\nAr ant bėro žirgužėlio,\nAr ant tymo balnužėlio,\nAr uošvės dvarely,\nMargojoj klėtelėj? (2k.)\n\nGreičiau, greičiau, žirgužėli,\nPasiskubink, juodbėrėli,\nĮ uošvės dvarelį,\nĮ margą klėtelę. (2k.)\n\nIšeik, išeik, uošvužėle,\nAtkelk vario vartužėlius,\nPriimki žentelį,\nTėvelio sūnelį. (2k.)"
         }
       },
       "Audio": {},
@@ -16123,7 +16069,7 @@ const songs: SongFile = [
         "recDScLXzeqXqnGO7": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Lankoj drugys drugelį vejas,\nO saulė blyksti jų sparnuos.\nKo trokšta jaunos mano svajos -\nTik pienės pūkas težinos. (2 k.)\n\nŠvelnus pūkeli, ar žinai,\nKur mano meilė, kur jinai.\nNulėk pas jį su vėjeliu,\nSakyk, kad myliu, bet tyliu. (2 k.)\n\nPasiųsčiau jam rasos lašyti,\nŽodelį nerimo dainos;\nTaip trokštu viską išsakyti -\nTik pienės pūkas težinos. (2 k.)\n\nŠvelnus pūkeli...\n\nTiesiu rankas į žydrią viltį,\nŠypsausi jai saldžiuos sapnuos.\nAr lemta jam mane pamilti -\nTik pienės pūkas težinos. (2 k.)\n\nŠvelnus pūkeli..."
+          "Lyrics & Chords": "Lankoj drugys drugelį vejas,\nO saulė blyksti jų sparnuos.\nKo trokšta jaunos mano svajos -\nTik pienės pūkas težinos. (2k.)\n\nŠvelnus pūkeli, ar žinai,\nKur mano meilė, kur jinai.\nNulėk pas jį su vėjeliu,\nSakyk, kad myliu, bet tyliu. (2k.)\n\nPasiųsčiau jam rasos lašyti,\nŽodelį nerimo dainos;\nTaip trokštu viską išsakyti -\nTik pienės pūkas težinos. (2k.)\n\nŠvelnus pūkeli...\n\nTiesiu rankas į žydrią viltį,\nŠypsausi jai saldžiuos sapnuos.\nAr lemta jam mane pamilti -\nTik pienės pūkas težinos. (2k.)\n\nŠvelnus pūkeli..."
         }
       },
       "Audio": {},
@@ -16150,7 +16096,7 @@ const songs: SongFile = [
         "recIaR2aYEBR5E8hn": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Už gyvenimo malonę\nKuri šiandien keičia mus,\n     Šventas Jėzau, Tau dėkojam, \n     Mūsų Viešpatie brangus. (2 k.)\n\nVeski mus į Tėvo glėbį\nNuostabi Šventa Dvasia.\n     Mūsų širdys susilieja,\n     Šiandien garbina Tave."
+          "Lyrics & Chords": "Už gyvenimo malonę\nKuri šiandien keičia mus,\n     Šventas Jėzau, Tau dėkojam, \n     Mūsų Viešpatie brangus. (2k.)\n\nVeski mus į Tėvo glėbį\nNuostabi Šventa Dvasia.\n     Mūsų širdys susilieja,\n     Šiandien garbina Tave."
         }
       },
       "Audio": {},
@@ -16298,14 +16244,12 @@ const songs: SongFile = [
           "Title": "This is My Lithuania",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Reader:\nWhere will we go this summer?\nChorus:\nTo Dainava and Kretinga!\n\nWhere will we sing this summer?\nIn Romuva and Neringa!\n\nWhere will we light the scouts’ fire?\nOn Rambynas and at Rakas!\n\nThis is my Lithuania—\nA camp, a song, a dream,\nThere we gather as friends,\nTo picnic, joke, and scheme!\n\nJonas hurt his foot...\noh, oh\nMarius kissed Eglė...\nuhu\nIna was pouting...\nm, m\nAnd Antanas shaved his hair...\noh my!\n\nWe all come together,\nBoth small and tall,\nAnd there we light our campfires,\nBy the flames, our songs call.\n\nRokas has a runny nose today...\nnose, nose\nOna feels sick from cabbage...\nbad, bad\nVytas writes a letter to Mom...\nMom, Mom\nPlease, send a bag of sweets...\nsweets, sweets!\n\nWhen we sing our songs together\nThe whole forest seems to sway.\nSmiling is calm Spyglys\nAnd the Rambynas mound all day.\n\nThis is my Lithuania—\nKretinga and Dainava!\nThis is my Lithuania—\nOur Rambynas, Neringa!\nThis is my Lithuania—\nRakas trail, Romuva!",
-          "AI Generated": true
+          "Lyrics": "Where are we going this summer?\nTo Camp Dainava and Camp Kretinga!\nWhere will we sing this summer?\nAt Camp Romuva and Camp Neringa!\nWhere will the scouts light a campfire?\nAt Camp Rambynas and Camp Rakas!\n\nThis is my Lithuania -\nCamp, song, dream,\nMake friends,\nHike and laugh!\n\nJohn hurt his leg... oh, oh\nMarius kissed Eglė.... woo hoo\nIna was upset... m, m\nAnd Antanas shaved his hair... oh boy!\n\nWe all gather together\nYoung and old.\nWe light bonfires\nAnd our songs resound through its flames.\n\nRokas has a cold today... today, today\nOna ate some bad cabbage... abbage, abbage\nVytas writes his mother a letter... etter, etter\nI beg you, send me a bag of candy... andy, andy!\n\nWhen we sing songs together\nThe entire forest sways.\nThe calm lake smiles,\nAs do the hills.\n\nThis is my Lithuania –\nKretinga and Dainava!\nThis is my Lithuania –\nMy Rambynas, Neringa!\nThis is my Lithuania –\nThe path at Rakas, Romuva!"
         }
       },
       "Text Author": "Aušrinė Širvinskienė",
-      "LT Description": "Daina pasakoja apie draugų vasaros stovyklas skirtingose Lietuvos vietose, dainavimą, laužus ir smagius nuotykius kartu. Tekste minimi Lietuvos miestai, stovyklavimo tradicijos ir draugystė. Tai daina apie vasaros stovyklas, gamtą ir meilę Lietuvai.",
-      "EN Description": "The song tells about friends going to summer camps in different places in Lithuania, singing, making campfires, and sharing fun experiences together. It mentions several Lithuanian regions and camp traditions, like writing letters home and making jokes about daily adventures. The song celebrates friendship, camping, and Lithuanian nature, possibly symbolizing a strong connection to homeland and tradition.",
-      "AI-Generated Description": true
+      "LT Description": "Daina pasakoja apie draugus, vykstančius į vasaros stovyklas įvairiose lietuvių stovyklose Šiaurės Amerikoje – jie dainuoja, kūrena laužus ir kartu dalijasi smagiomis patirtimis.",
+      "EN Description": "The song tells about friends going to summer camps in different LIthuanian summer camps in North America, singing, making campfires, and sharing fun experiences together"
     }
   },
   {
@@ -16373,7 +16317,7 @@ const songs: SongFile = [
         "rec5ukuFuRo0qLjx1": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tarp purienų matėm gandrą\nVaikštinėjant kartą, antrą.\nStypu, stypu, tapu, tapu, tapu.\nTarp žalių purienos lapų. (2 k.)\n\nKelia kojas jis iš lėto,\nKaip šokėjas iš baleto. Stypu...\n\nŽengia, dairos, visas linksi,\nGal varlytę išsirinksi? Stypu..."
+          "Lyrics & Chords": "Tarp purienų matėm gandrą\nVaikštinėjant kartą, antrą.\nStypu, stypu, tapu, tapu, tapu.\nTarp žalių purienos lapų. (2k.)\n\nKelia kojas jis iš lėto,\nKaip šokėjas iš baleto. Stypu...\n\nŽengia, dairos, visas linksi,\nGal varlytę išsirinksi? Stypu..."
         }
       },
       "Audio": {},
@@ -16454,7 +16398,7 @@ const songs: SongFile = [
         "recCyg25YfKBc9DQd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tave aš pamačiau, tave aš pamylėjau,\nIr savo jauną širdį tik tau atidaviau.\nŽinau, kodėl juokiuos, žinau, kodėl ir verkiu,\nBet ar tu būsi mano - tikrai to nežinau.\n\nAtsimeni, kaip mes linksmai stovyklavom,\nAtsimeni, kai mes prie laužo dainavom,\nAtsimeni, kai mes per naktį budėjom ir kalbėjom. (2 k.)\n\nTik tu man žiedą duok, ir kitos nevilioki,\nBūsiu ištikima, tu meilė man viena.\nBet greit reiks išsiskirt, gal kitą tu mylėsi,\nBet apie šitas dienas svajosiu visada.\n\nAtsimeni..."
+          "Lyrics & Chords": "Tave aš pamačiau, tave aš pamylėjau,\nIr savo jauną širdį tik tau atidaviau.\nŽinau, kodėl juokiuos, žinau, kodėl ir verkiu,\nBet ar tu būsi mano - tikrai to nežinau.\n\nAtsimeni, kaip mes linksmai stovyklavom,\nAtsimeni, kai mes prie laužo dainavom,\nAtsimeni, kai mes per naktį budėjom ir kalbėjom. (2k.)\n\nTik tu man žiedą duok, ir kitos nevilioki,\nBūsiu ištikima, tu meilė man viena.\nBet greit reiks išsiskirt, gal kitą tu mylėsi,\nBet apie šitas dienas svajosiu visada.\n\nAtsimeni..."
         }
       },
       "Audio": {},
@@ -16513,12 +16457,12 @@ const songs: SongFile = [
         "recOykeobMCW5FnQU": {
           "Variant Name": "Žodžiai 2",
           "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Teka, teka šviesi saulė\n     Teka, teka šviesi saulė per girelį (2 k.)\n \nŠovė, šovė kareivėlis\n     Šovė, šovė kareivėlis in liepelį (2 k.)\n \nAtsimušė jo balselis\n     Atsimušė jo balselis in mergelį (2 k.)\n \nVai, mergela, lelijėla,\n     Vai, mergela, lelijėla, duok žodelį (2 k.)\n\nVai, mergela, lelijėla,\n     Vai, mergela, lelijėla, duok žodelį (2 k.)\n \nOi, berneli, dobilėli,\n     Aš neduosiu tau žodelio kareivėliui (2 k.)\n \nSunku augti stabarėliui\n     Sunku augti stabarėliui žalion girion (2 k.)\n \nTep man jaunam bernužėliui\n     Tep man jaunam bernužėliui be mergelės (2 k.)"
+          "Lyrics & Chords": "Teka, teka šviesi saulė\n     Teka, teka šviesi saulė per girelį (2k.)\n \nŠovė, šovė kareivėlis\n     Šovė, šovė kareivėlis in liepelį (2k.)\n \nAtsimušė jo balselis\n     Atsimušė jo balselis in mergelį (2k.)\n \nVai, mergela, lelijėla,\n     Vai, mergela, lelijėla, duok žodelį (2k.)\n\nVai, mergela, lelijėla,\n     Vai, mergela, lelijėla, duok žodelį (2k.)\n \nOi, berneli, dobilėli,\n     Aš neduosiu tau žodelio kareivėliui (2k.)\n \nSunku augti stabarėliui\n     Sunku augti stabarėliui žalion girion (2k.)\n \nTep man jaunam bernužėliui\n     Tep man jaunam bernužėliui be mergelės (2k.)"
         },
         "recmyUBhgbNTbbn24": {
           "Variant Name": "Žodžiai 3",
           "EN Variant Name": "Lyrics 3",
-          "Lyrics & Chords": "Teka, teka skaisti saulė (2 k.)\nPer girelį.\n\nŠovė, šovė kareivėlis\nIn liepelį.\n\nAtsimušė jo balselis\nIn mergelį.\n\n- Oi, mergela, lelijėla,\nDuok žodelį.\n\n- Aš neduosiu tau žodelio\nKareivėliui.\n\nAš tik duosiu sau žodelį\nArtojėliui.\n\nSunku augti dziemedėliui\nBe saulalės.\n\nTaip man jaunai mergužėlei -\nBe bernelio."
+          "Lyrics & Chords": "Teka, teka skaisti saulė (2k.)\nPer girelį.\n\nŠovė, šovė kareivėlis\nIn liepelį.\n\nAtsimušė jo balselis\nIn mergelį.\n\n- Oi, mergela, lelijėla,\nDuok žodelį.\n\n- Aš neduosiu tau žodelio\nKareivėliui.\n\nAš tik duosiu sau žodelį\nArtojėliui.\n\nSunku augti dziemedėliui\nBe saulalės.\n\nTaip man jaunai mergužėlei -\nBe bernelio."
         }
       },
       "Audio": {},
@@ -16637,18 +16581,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recYg0HeMUKTDbflO": {
-          "Title": "There Are My Dreams",
+          "Title": "The place of my dreams",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "It’s already dark, quiet everywhere\nSeems I’m alone in the world\nThat night brings thoughts\nAcross the fields to Dainava\n\nThere are my dreams, there my sleep\nThere I left my old friends\nThere are forests, lake shores\nWhispering softly: come back to us\n\nIt’s already dark, quiet everywhere\nSeems I’m alone in the world\nThough I’m at home in the city\nIn my mind I fly there\n\nThere are my dreams...\n\nThere are my dreams...\n\nThere are my dreams...",
-          "AI Generated": true
+          "Lyrics": "It‘s dark and quiet everywhere\nIt seems I am alone in the whole world.\nThe night carries my thoughts\nAcross the fields to Dainava.\n\n_My fantasies, my dreams are there._\n_The old friends I left behind._\n_The forest and the waterfront_\n_Speak quietly – return to us._\n\nIt‘s dark and quiet everywhere\nIt seems I am alone in the whole world.\nAlthough I am at home in the city\nIn my thoughts I am here...\n\n_My fantasies, my dreams..._\n_My fantasies, my dreams..._\n_My fantasies, my dreams..._"
         }
       },
       "Music Author": "Darius Polikaitis",
       "Text Author": "Darius Polikaitis",
-      "LT Description": "Šioje dainoje žmogus jaučiasi vienišas mieste ir mintimis grįžta į mylimą vietą – Dainavą. Žodžiai išreiškia ilgesį draugams, gamtai ir vaikystės prisiminimams. Dainava gali simbolizuoti namus ar gimtinę.",
-      "EN Description": "This song describes someone sitting alone at night, feeling isolated in the city, with their thoughts traveling back to a beloved place called Dainava. The lyrics express longing for friends, forests, and lakes left behind—possibly symbolizing homesickness or nostalgia for childhood. There are no direct references to specific Lithuanian traditions or holidays, but Dainava is a well-known region in Lithuania, often associated with natural beauty and folk heritage.",
-      "AI-Generated Description": true
+      "LT Description": "Eilėraštis yra apie stovyklą Dainavą, kuriose atostogavo ir iki šiol atostogauja daug išeivijos (pagrinde JAV lietuvių) jaunimo. Stovyklos aplinka primena Lietuvos gamtą, o ten vedamos turtingos ir įdomios programos supažindina jaunimą su jos istorija, tradicijomis, papročiais, muzika, šokiu. Jaunimui, smagiai ir turiningai praleidus laiką Dainavoje, visada sunku išsiskirti, o grįžus namo ne vienas dar ilgai prisimena vasara patirtus jausmus ir sutiktus draugus.\n\nŠios dainos “Ten mano svajos” žodžiai ir muzika buvo parašyta Dariaus Polikaičio, kada jis dar buvo paauglys, kaip tik stovyklos “Talentų vakaro” pasirodymui. Joje gilus ilgesys ir liūdesys dėl paliktų mielų draugų, nuostabios gamtos ir ten praleisto laiko, į kurį dabar galima sugrįžti tik prisiminimais. Tai labai panašūs jausmai, kuriuos išgyvena dauguma palikusių tėvynę ir tik prisiminimais grįžta į gimtus namus.\n\nJAV ir Kanados lietuvių stovyklos buvo ir yra jaunimo aktyvaus poilsio ir gilesnio susipažindinimo su Lietuva šaltiniai. ",
+      "EN Description": "The poem is about the well-known camp Dainava, where our youth have gathered for the past 70 years, and continue to assemble to this day. The camp environment reminds one of Lithuania’s ecosystem, with its forests, lakes, and rolling hills. The programs acquaint our youth with Lithuanian history, customs and traditions, music and dance. Having spent productive and funfilled days at Dainava, it is difficult to depart. Upon returning home, we long remember our experiences, emotions, and the friends we left behind.\n\nThe words and music were written by D. Polikaitis when he was just 16 years old. The mood is of sadness and longing – one is left with only memories of the wonderful environment, friendships, and shared experiences. In a way, these are the same emotions experienced by those who have left their homeland, and can only return in memories to the place of their birth. Lithuanian camps in the United States and Canada have always been and still remain a place for both an enjoyable vacation and a deeper connection to Lithuania. "
     }
   },
   {
@@ -16689,7 +16631,7 @@ const songs: SongFile = [
         "recKPGWyOZnzpWNFQ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ten, kur šlama pakelės beržynai,\nKur vingiuoja Nemuno vaga,\nTen ir mūsų mylima Tėvynė,\nTen per amžius buvo Lietuva. (2x2 k.)\n\nMažas būdams, kūdikiu bėgiojau\nPo žaliąsias tėviškės lankas,\nAš užaugęs niekad negalvojau,\nKad Tėvynė manęs pasiges.\n\nVėjas ūžia, propeleriai gaudžia,\nEskadrilė pakyla aukštai,\nŽydros akys sužiba padangėj,\nSudie, žeme ir gimti namai!\n\nAš nuskrisiu į gimtą sodybą,\nKur gyvena motina sena,\nIr apsuksiu žiaurią mirties kilpą,\nLai pamato mano mylima.\n\nŽūsta vadai, žūsta generolai,\nJuos palydi orkestrų garsai,\nO kai žūsta mylimas lietuvis,\nJam sučiulba lakštučių balsai.\n\nMums nereikia vėliavos raudonos,\nPenkiakampės žvaigždės kruvinos.\nMums tik reikia vėliavos trispalvės\nIr per amžius laisvos Lietuvos."
+          "Lyrics & Chords": "Ten, kur šlama pakelės beržynai,\nKur vingiuoja Nemuno vaga,\nTen ir mūsų mylima Tėvynė,\nTen per amžius buvo Lietuva. (2x2k.)\n\nMažas būdams, kūdikiu bėgiojau\nPo žaliąsias tėviškės lankas,\nAš užaugęs niekad negalvojau,\nKad Tėvynė manęs pasiges.\n\nVėjas ūžia, propeleriai gaudžia,\nEskadrilė pakyla aukštai,\nŽydros akys sužiba padangėj,\nSudie, žeme ir gimti namai!\n\nAš nuskrisiu į gimtą sodybą,\nKur gyvena motina sena,\nIr apsuksiu žiaurią mirties kilpą,\nLai pamato mano mylima.\n\nŽūsta vadai, žūsta generolai,\nJuos palydi orkestrų garsai,\nO kai žūsta mylimas lietuvis,\nJam sučiulba lakštučių balsai.\n\nMums nereikia vėliavos raudonos,\nPenkiakampės žvaigždės kruvinos.\nMums tik reikia vėliavos trispalvės\nIr per amžius laisvos Lietuvos."
         }
       },
       "Audio": {},
@@ -16722,7 +16664,7 @@ const songs: SongFile = [
         "reccPkCV7MZLJVE2g": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tėvas su motina savo, dar tiktai dar,\nĮ vėselę išvažiavo, dar tiktai dar.\n\nDar tiktai dar pamažu,\nDar toliau dar bus gražu,\nDar tiktai dar. (2 k.)\n\nDuktė viena pasiliko, dar tiktai dar.\nJai nelaimė atsitiko, dar tiktai dar.\n\nDar tiktai dar pamažu,\nDar toliau dar bus gražu,\nDar tiktai dar. (2 k.)\n\nPrisikvietė daug berniokų, dar tiktai dar.\nSukapojo du sūriokų, dar tiktai dar.\n\nDar tiktai dar pamažu...\n\nTėvas su motina savo...\nIš vėselės parvažiavo...\n\nDar tiktai dar pamažu...\n\nDuktė viena iš to strioko...\nPylė taukus į taboką...\n\nDar tiktai dar pamažu...\n\nKas čia velnias per taboka...\nAtsiduoda taukų smoku...\n\nDar tiktai dar pamažu..."
+          "Lyrics & Chords": "Tėvas su motina savo, dar tiktai dar,\nĮ vėselę išvažiavo, dar tiktai dar.\n\nDar tiktai dar pamažu,\nDar toliau dar bus gražu,\nDar tiktai dar. (2k.)\n\nDuktė viena pasiliko, dar tiktai dar.\nJai nelaimė atsitiko, dar tiktai dar.\n\nDar tiktai dar pamažu,\nDar toliau dar bus gražu,\nDar tiktai dar. (2k.)\n\nPrisikvietė daug berniokų, dar tiktai dar.\nSukapojo du sūriokų, dar tiktai dar.\n\nDar tiktai dar pamažu...\n\nTėvas su motina savo...\nIš vėselės parvažiavo...\n\nDar tiktai dar pamažu...\n\nDuktė viena iš to strioko...\nPylė taukus į taboką...\n\nDar tiktai dar pamažu...\n\nKas čia velnias per taboka...\nAtsiduoda taukų smoku...\n\nDar tiktai dar pamažu..."
         }
       },
       "Audio": {},
@@ -16749,7 +16691,7 @@ const songs: SongFile = [
         "recXJ21Nx99pg9ZzD": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Kur sodyba susisupus\nŽalio krūmo apdarais,\nDiemedis prie kryžiaus klūpo,\nLyg motulė vakarais. (2 k.)\n\nTen, kur vasaros už sodo\nŽydi dideliais žiedais,\nLaukt motulei nepabodo,\nKol vaikai namo pareis. (2 k.)\n\nTen, kur nendres supa vėjas\nMelsvo ežero krantuos,\nGrįžtančios namo grėbėjos\nŽavią dainą uždainuos. (2 k.)\n\nTen saulėlydžiai varsoti\nTyliai grimsta už miškų -\nTen norėtum parymoti,\nKylant rūkui iš laukų. (2 k.)"
+          "Lyrics & Chords": "Kur sodyba susisupus\nŽalio krūmo apdarais,\nDiemedis prie kryžiaus klūpo,\nLyg motulė vakarais. (2k.)\n\nTen, kur vasaros už sodo\nŽydi dideliais žiedais,\nLaukt motulei nepabodo,\nKol vaikai namo pareis. (2k.)\n\nTen, kur nendres supa vėjas\nMelsvo ežero krantuos,\nGrįžtančios namo grėbėjos\nŽavią dainą uždainuos. (2k.)\n\nTen saulėlydžiai varsoti\nTyliai grimsta už miškų -\nTen norėtum parymoti,\nKylant rūkui iš laukų. (2k.)"
         }
       },
       "Audio": {},
@@ -16776,7 +16718,7 @@ const songs: SongFile = [
         "rec8f8DOxB2V0ncbl": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tėviškėle, tėviškėle,\nMan brangi tartum širdis.\nTu svajonių mano gėle\nIr sapnų šviesi šalis. (2 k.)\n\nTavo upės sidabrinės,\nTavo žvaigždės gintarinės\nMan giliai, giliai krūtinėj\nAtminimais susipynė. (2 k.)\n\nIšsvajota, išsapnuota,\nTėviškėle, tėviškėle,\nTu svajonių mano gėle\nIr sapnų šviesi šalis. (2 k.)"
+          "Lyrics & Chords": "Tėviškėle, tėviškėle,\nMan brangi tartum širdis.\nTu svajonių mano gėle\nIr sapnų šviesi šalis. (2k.)\n\nTavo upės sidabrinės,\nTavo žvaigždės gintarinės\nMan giliai, giliai krūtinėj\nAtminimais susipynė. (2k.)\n\nIšsvajota, išsapnuota,\nTėviškėle, tėviškėle,\nTu svajonių mano gėle\nIr sapnų šviesi šalis. (2k.)"
         }
       },
       "Audio": {},
@@ -16885,7 +16827,7 @@ const songs: SongFile = [
         "recOjzSbtgu9pzj0U": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Trijų seselių jauną brolelį\nRagino joti į didį karą. (2 k.)\n\nViena seselė brolelį rengė,\nAntroji žirgą jam pabalnojo. (2 k.)\n\nO ši trečioji, pati jaunoji,\nVartus atkėlė ir palydėjo. (2 k.)\n\nAnt aukšto kalno seselės laukė\nGrįžtant brolelio iš didžio karo. (2 k.)"
+          "Lyrics & Chords": "Trijų seselių jauną brolelį\nRagino joti į didį karą. (2k.)\n\nViena seselė brolelį rengė,\nAntroji žirgą jam pabalnojo. (2k.)\n\nO ši trečioji, pati jaunoji,\nVartus atkėlė ir palydėjo. (2k.)\n\nAnt aukšto kalno seselės laukė\nGrįžtant brolelio iš didžio karo. (2k.)"
         }
       },
       "Audio": {},
@@ -17050,7 +16992,7 @@ const songs: SongFile = [
         "recH8IqB21BTMrI0L": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tu man patinki anksti rytą, kai čiulba,\nKai gieda, kai džiaugias vieversiai.\nTu man patinki kada lyja, kai krenta,\nKai šoka šalti lietaus lašai. (2 k.)\n\nBet vakare, pirmos žvaigždės šviesoj,\nEsi tik tu minty, tiktai tu širdy. (2 k.)\n\nTu man patinki kada ūžia, kai šniokščia,\nKai maišosi vėjas ir audra.\nTu man patinki kada dega, kai šildo,\nKai migdo vidudienio kaitra. (2 k.)\n\nBet vakare, pirmos žvaigždės šviesoj,\nEsi tik tu minty, tiktai tu širdy. (2 k.)"
+          "Lyrics & Chords": "Tu man patinki anksti rytą, kai čiulba,\nKai gieda, kai džiaugias vieversiai.\nTu man patinki kada lyja, kai krenta,\nKai šoka šalti lietaus lašai. (2k.)\n\nBet vakare, pirmos žvaigždės šviesoj,\nEsi tik tu minty, tiktai tu širdy. (2k.)\n\nTu man patinki kada ūžia, kai šniokščia,\nKai maišosi vėjas ir audra.\nTu man patinki kada dega, kai šildo,\nKai migdo vidudienio kaitra. (2k.)\n\nBet vakare, pirmos žvaigždės šviesoj,\nEsi tik tu minty, tiktai tu širdy. (2k.)"
         }
       },
       "Audio": {},
@@ -17077,7 +17019,7 @@ const songs: SongFile = [
         "recS5FBWpFtaGLdiO": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tu mano motinėlė,\nMočiute sengalvėle,\nGana pailsai, gana pavargai,\nKol mane užauginai. (2 k.)\n\nNaktužę ant rankelių,\nDienužę ant akelių,\nTu pražiūrėjai šviesias akeles,\nKol mane užauginai. (2 k.)\n\nKol mane užauginai,\nKol mane išauklėjai,\nTu prarymojai baltas rankeles\nAnt margų priegalvėlių. (2 k.)\n\nTu mano motinėle,\nMočiute sengalvėle,\nGana pailsai, gana nuvargai,\nKol mane užauginai. (2 k.)"
+          "Lyrics & Chords": "Tu mano motinėlė,\nMočiute sengalvėle,\nGana pailsai, gana pavargai,\nKol mane užauginai. (2k.)\n\nNaktužę ant rankelių,\nDienužę ant akelių,\nTu pražiūrėjai šviesias akeles,\nKol mane užauginai. (2k.)\n\nKol mane užauginai,\nKol mane išauklėjai,\nTu prarymojai baltas rankeles\nAnt margų priegalvėlių. (2k.)\n\nTu mano motinėle,\nMočiute sengalvėle,\nGana pailsai, gana nuvargai,\nKol mane užauginai. (2k.)"
         }
       },
       "Audio": {},
@@ -17161,7 +17103,7 @@ const songs: SongFile = [
         "recrxmNpwYzMP43Bs": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tu, žvaigždute sidabrine,\nNepasieksiu aš tavy,\nNepasieksiu aš žvaigždutės\nAukštai danguj žibančios, 2 k.\n\nTu žadėjau many jaunų,\nVest in rūtų darželį,\nApie meilą pakalbėti,\nApie meilą mudviejų,\n\nBet iš tą nieks neišėja,\nPer daug girts tu buvai,\nIr žvaigždutės sidabrinės\nAukštai danguj nematei.\n\nPasisiūsiu juodų suknių\nSu raudonais guzikais,\nJuoda suknia reiškia smertį,\nMeilą reiškia guzikai.\n\nEisiu eisiu tamsion girion,\nLai sudraska man vilkai,\nLai sudraska juodu suknių,\nLai palieka guzikai.\n\nAtsigulsiu aš un grabą\nAtsigulsiu įkypai,\nIr sudėsiu baltas rankas,\nTen, kur baigias guzikai."
+          "Lyrics & Chords": "Tu, žvaigždute sidabrine,\nNepasieksiu aš tavy,\nNepasieksiu aš žvaigždutės\nAukštai danguj žibančios, 2k.\n\nTu žadėjau many jaunų,\nVest in rūtų darželį,\nApie meilą pakalbėti,\nApie meilą mudviejų,\n\nBet iš tą nieks neišėja,\nPer daug girts tu buvai,\nIr žvaigždutės sidabrinės\nAukštai danguj nematei.\n\nPasisiūsiu juodų suknių\nSu raudonais guzikais,\nJuoda suknia reiškia smertį,\nMeilą reiškia guzikai.\n\nEisiu eisiu tamsion girion,\nLai sudraska man vilkai,\nLai sudraska juodu suknių,\nLai palieka guzikai.\n\nAtsigulsiu aš un grabą\nAtsigulsiu įkypai,\nIr sudėsiu baltas rankas,\nTen, kur baigias guzikai."
         }
       },
       "Audio": {},
@@ -17305,7 +17247,7 @@ const songs: SongFile = [
         "recQFpx9RCg1gISFj": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Turiu aš vištą,\nTik man reikia gaidžio. (2x2 k.)\nVisi nori sužinot,\nKaip tą gaidį vadina. (2x2 k.)\nTas gaidelis kapitons,\nToj vištytė šiurpa šiurpa,\nTas gaidelis kakarieku\nLabai gražiai gieda.\n\nTuriu aš gaidį,\nTik man reikia anties.\nVisi nori sužinot,\nKaip tą antį vadina.\nToj antytė krypu rypu,\nTas gaidelis kapitons,\nToj vištytė šiurpa šiurpa,\nTas gaidelis kakarieku\nLabai gražiai gieda.\n\nTuriu aš antį,\nTik man reikia žąsies.\nVisi nori sužinot,\nKaip tą žąsį vadina.\nToj žąsytė girgu gargu,\nToj antytė krypu rypu,\nTas gaidelis ...\n\nTuriu aš žąsį,\nTik man reikia kiaulės.\nVisi nori sužinot,\nKaip tą kiaulę vadina.\nToj kiaulytė kriu kriu,\nToj žąsytė girgu gargu,\nToj antytė ...\n\nTuriu aš kiaulę,\nTik man reikia avies.\nVisi nori sužinot,\nKaip tą avį vadina.\nToj avytė šilta vilna,\nToj kiaulytė kriu kriu,\nToj žąsytė ..."
+          "Lyrics & Chords": "Turiu aš vištą,\nTik man reikia gaidžio. (2x2k.)\nVisi nori sužinot,\nKaip tą gaidį vadina. (2x2k.)\nTas gaidelis kapitons,\nToj vištytė šiurpa šiurpa,\nTas gaidelis kakarieku\nLabai gražiai gieda.\n\nTuriu aš gaidį,\nTik man reikia anties.\nVisi nori sužinot,\nKaip tą antį vadina.\nToj antytė krypu rypu,\nTas gaidelis kapitons,\nToj vištytė šiurpa šiurpa,\nTas gaidelis kakarieku\nLabai gražiai gieda.\n\nTuriu aš antį,\nTik man reikia žąsies.\nVisi nori sužinot,\nKaip tą žąsį vadina.\nToj žąsytė girgu gargu,\nToj antytė krypu rypu,\nTas gaidelis ...\n\nTuriu aš žąsį,\nTik man reikia kiaulės.\nVisi nori sužinot,\nKaip tą kiaulę vadina.\nToj kiaulytė kriu kriu,\nToj žąsytė girgu gargu,\nToj antytė ...\n\nTuriu aš kiaulę,\nTik man reikia avies.\nVisi nori sužinot,\nKaip tą avį vadina.\nToj avytė šilta vilna,\nToj kiaulytė kriu kriu,\nToj žąsytė ..."
         }
       },
       "Audio": {},
@@ -17393,7 +17335,7 @@ const songs: SongFile = [
         "recimeCERZMQS6pYY": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tykus vakars be vėjo, be vėjo,\nLakštingėlė čiulbėjo, čiulbėjo. (2 k.)\n\nPo beržyną vaikščiojau, vaikščiojau,\nBėro žirgo ieškojau, ieškojau. (2 k.)\n\nBėro žirgo neradau, neradau,\nTik mergelę sutikau, sutikau. (2 k.)\n\nMergužėlė daržely, daržely,\nŽalias rūtas ravėjo, ravėjo. (2 k.)\n\nLabas vakars, mergele, mergele,\nAr nematei žirgelio, žirgelio? (2 k.)\n\nMatyt mačiau žirgelį, žirgelį,\nSavo tėvo dvarely, dvarely. (2 k.)"
+          "Lyrics & Chords": "Tykus vakars be vėjo, be vėjo,\nLakštingėlė čiulbėjo, čiulbėjo. (2k.)\n\nPo beržyną vaikščiojau, vaikščiojau,\nBėro žirgo ieškojau, ieškojau. (2k.)\n\nBėro žirgo neradau, neradau,\nTik mergelę sutikau, sutikau. (2k.)\n\nMergužėlė daržely, daržely,\nŽalias rūtas ravėjo, ravėjo. (2k.)\n\nLabas vakars, mergele, mergele,\nAr nematei žirgelio, žirgelio? (2k.)\n\nMatyt mačiau žirgelį, žirgelį,\nSavo tėvo dvarely, dvarely. (2k.)"
         }
       },
       "Audio": {},
@@ -17535,7 +17477,7 @@ const songs: SongFile = [
         "rec3koRRf11xKZzvu": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tyliu keleliu\nTyliai ėjau,\nPrie svirnelio\nSutrepsėjau. (4x2 k.)\n\n_Tyliu, kad myliu\nKad gyventi negaliu._ (2x2 k.)\n\nAr čia durys,\nAr čia siena,\nAr mergelė\nGuli viena.\n\nNei čia durys,\nNei čia siena,\nNei mergelė\nGuli viena.\n\nČia tai guli\nMotinėlė\nSu jauniausia\nDukružėle."
+          "Lyrics & Chords": "Tyliu keleliu\nTyliai ėjau,\nPrie svirnelio\nSutrepsėjau. (4x2k.)\n\n_Tyliu, kad myliu\nKad gyventi negaliu._ (2x2k.)\n\nAr čia durys,\nAr čia siena,\nAr mergelė\nGuli viena.\n\nNei čia durys,\nNei čia siena,\nNei mergelė\nGuli viena.\n\nČia tai guli\nMotinėlė\nSu jauniausia\nDukružėle."
         }
       },
       "Audio": {},
@@ -17562,7 +17504,7 @@ const songs: SongFile = [
         "recKxpGpMYprgONVZ": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Tylūs armonikos tonai\nPrimena tavo akis,\nPrimena tamsias blakstienas\nTylias ir juodas naktis 2x2 k.\n\nBuvo pavasaris šičia,\nAlyvos žydėjo baltai,\nPražydo mūs‘ meilė netyčia,\nPražydo visai nekaltai.\n\nBet sodai vis nyko ir balo,\nLakštingalos suokė nakty;\nTos dienos auksinės apsalo\nTyliajam dainų sūkury.\n\nTačiau aš prisimenu viską,\nlšvydus šią puokštę gėlių,\nMan vasara slenka akyse,\nBet jos sugrąžint negaliu."
+          "Lyrics & Chords": "Tylūs armonikos tonai\nPrimena tavo akis,\nPrimena tamsias blakstienas\nTylias ir juodas naktis 2x2k.\n\nBuvo pavasaris šičia,\nAlyvos žydėjo baltai,\nPražydo mūs‘ meilė netyčia,\nPražydo visai nekaltai.\n\nBet sodai vis nyko ir balo,\nLakštingalos suokė nakty;\nTos dienos auksinės apsalo\nTyliajam dainų sūkury.\n\nTačiau aš prisimenu viską,\nlšvydus šią puokštę gėlių,\nMan vasara slenka akyse,\nBet jos sugrąžint negaliu."
         }
       },
       "Audio": {},
@@ -17672,7 +17614,7 @@ const songs: SongFile = [
   {
     "id": "rec8GmlbF3hPaffpM",
     "fields": {
-      "Name": "Už Raseinių",
+      "Name": "Už Raseinių, ant Dubysos",
       "Lyrics": {
         "rec78ZbT6BbCsxpUx": {
           "Variant Name": "Žodžiai",
@@ -17726,16 +17668,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "rec4mnDxG6guKzkqL": {
-          "Title": "Beyond Raseiniai",
+          "Title": "Beyond the city of Raseiniai, by the Dubysa river",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Beyond Raseiniai, on the Dubysa,\nThe sun is rising, rising;\nGolden-haired beauties gather there,\nTalking, oh, talking.\n\nThrough the dew they comb their hair,\nThe sun dries it gently,\nWhen they start to sing together,\nIt moves the heart so deeply.\n\nThey have fallen in love with the high sky,\nIts pure, clear brightness,\nTheir eyes enchanted forever\nBy its blue, deep lightness.\n\nBlue eyes, golden braids,\nHearts, oh, warm and true.\nTall in stature, barefoot they walk,\nWhite from the morning dew.\n\nBut why do they, as they water\nGreen rue, look so sad?\nWhy, singing of Birutė,\nAre their tears never dried?\n\nHow could tears dry, when so many\nYoung men have gone, not returned!\nWhen so many become widows\nWith no hope, and hearts that yearn?",
-          "AI Generated": true
+          "Lyrics": "Dawn is breaking beyond the city of Raseiniai,\nBy the Dubysa river,\nWhere the young girls,\nAll with golden hair, are chatting.\n\nThey brush their hair in the morning dew,\nAnd the sun dries their braids.\nBut when they raise their voices in song,\nIt so touches the heart.\n\nThey fell in love with the heavens,\nThe clear brightness of the sky.\nTheir eyes were entranced\nBy its blue depths.\n\nClear eyes, golden braids,\nAhh – their hearts so warm.\nTall and strong, bare feet\nSo white from the dew.\n\nBut why are they so sad,\nAs they water the green rue?\nWhy, as they sing the song of Birute,\nDo their tears never dry?\n\nHow can their tears dry\nWhen so many young men are dying?\nAnd before their time\nThere will be so many widows without hope!"
         }
       },
-      "LT Description": "Daina vaizduoja merginas prie Dubysos upės, kalba apie jų grožį ir rytinius papročius, kai šukuojasi plaukus rasose. Tekste jaučiama ir liūdesio, nes merginos gedėti dėl prarastų arba išvykusių jaunuolių. Tai gali simbolizuoti lietuviškas gamtos, jaunystės ir ilgesio temas.",
-      "EN Description": "This song describes young women by the Dubysa river near Raseiniai, highlighting their beauty and daily rituals like combing their hair in the morning dew. The lyrics also express sadness, as the girls mourn lost or absent young men, possibly referencing the pain of war or emigration, though this is not stated directly. The song may symbolize traditional Lithuanian themes of nature, youth, and longing.",
-      "AI-Generated Description": true
+      "LT Description": "J. Naujalis sukūrė 27 chorines dainas. Trylika iš jų – Maironio eilėms. Visos dainos sukurtos iki 1924 m. \n\nEilėraštis-daina „Už Raseinių, ant Dubysos“ buvo išspausdintas leidinyje „Pavasario Balsai“ 1895 metais. Jame poetas piešia gamtos grožį, skaistų rytą, tekančios saulės ir rasa padengtos žolės gaivumą. Ten ir Lietuvos grožis - geltonplaukės merginos puikios visos, gėrisi jaunyste, kaip ir mes savo šeimos ir bendruomenių jaunimu. \n\nTema lyg būtų Lietuvos gamtos ir mergelių grožis, bei jų rūpesčiai. Pradžioje viskas gražu, džiaugsminga tik, deja, paskutiniuose posmuose atsiskleidžia nerimas ir liūdesys. Nors mergelės gražios, gamta nuostabi, saulė ryte patekėjo žadėdama gražią dieną, tačiau širdis nerami, širdis liūdi. Kodėl? \n\nAtsakymų ieškoma istorijoje: kada buvo parašytas eilėraštis? 1895 metais arba anksčiau. Kas darėsi Lietuvoje tuo laiku? Buvo spaudos draudimas, kurį panaikino tik apie 1905 metus. Ėmimas į rekrūtus baigėsi su Pirmuoju pasauliniu karu ir Rusijos imperijos žlugimu. 1917 metų revoliucija ir vėlesni politiniai įvykiai lėmė, kad senoji rekrūtų sistema buvo panaikinta. Pagal 1874 metų įstatymą, kuris nustatė universalią karinę prievolę, standartinis tarnybos laikotarpis buvo 6 metai aktyvioje kariuomenėje, po kurio sekdavo 9 metai rezervo tarnybos. Taigi, bendras laikotarpis, kurį rekrūtai buvo įsipareigoję praleisti kariuomenėje, buvo 15 metų. \n\nŠiame paskutiniame posme, kuris jau kuris laikas nebedainuojamas, drįstam teigti, kad yra paaiškinimas, dėl ko liūdi našlelės, dėl ko namo nebegrįžta jų vyrai, berneliai, broliai. Paimti į rekrūtus ir priversti ilgus metus tarnauti carinės Rusijos imperinėje kariuomenėje, kareivėliai prarasdavo sveikatą, netekdavo pačių gražiausių jaunystės metų, o kartais net žūdavo. Jų netektis likusiems namuose buvo ypač skausminga, nes gyvybę atiduodavo net ne už savo šalį. \n\n_Daugel žūna, daugel pūna_\n_O apverkt negali._\n_Už Uralo, žemės galo_\n_Ne po savo šalį._\n\nKas ta Birutė? Ar ji buvusi kunigaikščio Kęstučio žmona, Vytauto Didžiojo motina? Kuo ji ypatinga?\n\nPosmelyje: \n_Kam, dainuojant joms Birutę,_\n_Ašaros nedžiūsta?_\n\n„Viešpataudamas Trakuose ir Žemaičiuose, išgirdo Kęstutis esant Palangoje mergaitę, vardu Birutė, kuri pagoniškuoju papročiu pasižadėjo savo dievams išsaugoti skaistybę  ir pati buvo žmonių garbinama kaip dievaitė. Ir nuvyko ten pats kunigaikštis Kęstutis, ir didžiai ji jam patiko, nes buvo labai graži ta mergaitė ir protinga. Ir prašė ją, kad būtų jo žmona. Ir ji nenorėjo sutikti, ir atsisakė [tardama]: „Aš pasižadėjau savo dievams išsaugoti skaistybę iki mirties.“ Ir kunigaikštis Kęstutis paėmė ją prievarta iš tos vietos, ir su didžia pagarba palydėjo ją į savo sostinę, į Trakus, ir, sukvietęs brolius, pakėlė dideles vestuves su savaisiais broliais, ir paėmė tą panelę Birutę sau žmona.“ Istoriniai šaltiniai sako Birutės ir Kęstučio vedybas įvykus 1349 ar 1350 m. Legenda galėjo būti užrašyta ne anksčiau kaip 1405 m.\n\nLegendos romantiškai vaizdavo ir Birutės gyvenimo pabaigą: „Po Kęstučio mirties ir po visos Lietuvos apsikrikštijimo Birutė liko ištikima savo tėvų dievams ir nepakeitė tikėjimo, nors prašė to Vytautas, Jogaila ir karalienė Jadvyga. Paliko Trakus ir persikėlė į Palangą, ir tenai likusiąją dalį savo amžiaus praleido rūmuose, vyro jai pastatydintuose, visuotinai atsidavusi vaidilutės pareigoms ir rūpindamasi paprastųjų žmonių laime.“ Todėl ,,net kai jau visai sunyko pagonybė Žemaičiuose, paprastieji žmonės nesiliovė Birutės laikyti šventąja“. Žmonių vaizduotėje Birutė ilgam įsitvirtino kaip pats garbingiausias moters paveikslas Lietuvos istorijoje. Ji – „paskutinė lietuvių kunigaikštiškos šeimos atstovė, likusi ištikima senajai lietuvių religijai, kurios taip ilgai laikėsi Žemaičių kraštas, didvyriškai gynęs savo laisvę ir nenorėjęs priimti „vokiško dievo“. Birutė – patriotizmo, prisirišimo prie savo gimtojo krašto ir žmonių ir jų papročių simbolis.\n\nBirutės gyvenimo istorijos aprašyme matome, kai tai buvo graži, išdidi, nepriklausoma moteris, žmona, motina, narsi kunigaikštienė. Jos gyvenimas tapo legenda, o jos gyvenimo vertybės, ištikimybė savai tautai ir nesitaikstymas su užkariautojais, buvo garbinamos Lietuvos žmonių ne tik pasakojimuose, legendose, bet ir dainose. Štai apie tokią Birutę Maironio eilėraštyje “Už Raseinių, ant Dubysos” dainuodamos lietuvaitės ir graudinasi iš pasigėrėjimo Birutės didybe ir paprastumu, begaline meile savam kraštui, žmonėms ir laisvei.\n\n---\n\n**Šaltiniai:** https://www.trakai-visit.lt/traku-pusiasalio-pilis-kunigaikstiene-birute/",
+      "EN Description": "J. Naujalis composed 27 songs for choir, 13 of them with lyrics by Maironis. All of them were composed prior to 1924.\n\nThe poem “Beyond the City of Raseiniai, by the Dubysa River” appeared in the publication “Voices of Spring” in 1895. The poet draws a picture of the beauty of nature – a brilliant morning, the sun rising, the freshness of the dew-covered grass. And the pride of Lithuania: beautiful, blond girls delighting in their youth – much as we delight in the youth of our families and community.\n\nThe theme would seem to be the beauty of the countryside, the girls, and their concerns. At first everything is picturesque and wonderful. However, the later verses speak of anxiety and sadness. The girls are lovely, the scenery is splendid, the sunrise is promising a magnificent day. But the heart is restless and sad. Why?\n\nWe look for answers in the history of that time period: when was the poem written? In 1895 or somewhat earlier. What was happening in Lithuania at that time? Lithuania was under the rule of czarist Russia. All Lithuanian language publications printed in the Latin alphabet were banned (the ban ended in 1905). Compulsory service in the Russian army was for 6 years, followed by 9 years in the reserves, all together a 15 year commitment.\n\nThe final verse of the poem (which is generally not sung) provides insight into the reason for the anxiety and sadness:\n\nMany perish, many rot away\nWith no one to shed tears for them\nBeyond the Urals, beyond the ends of the earth,\nNot in their own homeland.\n\nThis is why the widows and young girls weep – when their husbands, betrothed, and brothers do not come home. Soldiers conscripted into the Russian Imperial Army and forced to serve long years would lose their health, the best years of their life, and possibly their lives. Such a loss was particularly painful for those at home, as the men would lose their lives fighting for a foreign country."
     }
   },
   {
@@ -17824,16 +17764,14 @@ const songs: SongFile = [
       },
       "Translations": {
         "recqwwZDASsjGir69": {
-          "Title": "The Linden Tree Grew",
+          "Title": "A Linden tree grew",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "The linden tree grew, lioj dautuvo.\nOn the open plain, lylia ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.\n\nThe linden had, lioj dautuvo,\nNine branches, lylia ratilio.\n\nAll nine, lioj dautuvo,\nWere broken off, lylia ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.\n\nFrom those branches, I will make a little bench,\nOn that little bench, I myself will sit.\n\nThe linden had nine branches,\nAll nine were broken off.\n\nFrom those branches, dautuvo,\nI will make a little bench, ratilali ratilio.\n\nDautuvo, dautuvala dautuvo.\nRatilio, ratilali ratilio.",
-          "AI Generated": true
+          "Lyrics": "A linden tree grew, _lioj dautuvo_.\nOn even ground, _lylia ratilio_.\n\n_Datuvo, datuvala datuvo,_\n_Ratilio, ratilali ratilio._\n\nThe linden had, _lioj dautuvo_,\nNine branches, _lylia ratilio_.\n\nAll nine lioj _dautuvo_\nWere broken by the storm _lylia ratilio_.\n\n_Datuvo datuvaula datuvo_\n_Ratilio, ratilali ratilio._\n\nFrom those branches I will make chairs,\nI myself will sit on those chairs.\n\nThe linden had nine branches,\nThe storm broke all nine.\n\nFrom those branches, _dautuvo_\nI will make chairs, _ratilali ratilio_.\n\n_Dautuvo datuvuala dautuvo._\n_Ratilio, ratilali ratilio._"
         }
       },
-      "LT Description": "Daina pasakoja apie užaugusią liepą su devyniomis šakomis, kurios buvo nulaužtos ir iš jų padarytas suolelis. Atspindimos gamtos ir gyvenimo temos, bet tiksli prasmė palikta klausytojo interpretacijai. Dainoje yra tradicinių priedainių žodžių, kurie neturi aiškios reikšmės.",
-      "EN Description": "This song tells about a linden tree that grew and had nine branches, which were all broken for a purpose. The branches are used to make a small bench, where the singer imagines sitting. The linden and its branches may symbolize growth, change, or the passage of time, but the exact meaning is open to interpretation. The song contains traditional refrain words that are typical in Lithuanian folk songs and don't have specific meanings.",
-      "AI-Generated Description": true
+      "LT Description": "Nuo seno sakraliniu medžiu lietuviai laikė liepą, todėl ir iki šių dienų išliko nemažai įspūdingų, senąsias sodybas, dvarus puošusių, šių medžių. Tikėta, kad tai meilės deivės Mildos arba Laimos medis.\n\nGimus kūdikiui mamos eidavo prie liepos prašyti savo vaikui sveikatos, ilgo ir gero gyvenimo. Vyras, susipykęs su žmona, turėdavo eiti prie liepos prašyti atleidimo. Liepomis sodybas ištisai apjuosdavo bitininkai – tai pagrindinis vasaros medaus aruodas, o jų medus yra viena naudingiausių ir labiausiai vertinamų medaus rūšių. Liepos karna (apatinė žievė) senovėje buvo naudojama vyžoms ir krepšeliams pinti, virvėms sukti. Iš kamieno būdavo gaminami indai medui laikyti. Mediena gražiai balta, minkšta, lengva, perdžiūvusi neskyla.\n\nDaina „Užaugo liepa“ priskiriama prie gyvenimo brandos, meilės, šeimos kūrimopiršlybų temos. **Liepa** – simbolis suaugusios merginos, moters, motinos, meilės, saugumo.\n\n**Devyni** – simbolis pilnatvės, simbolis meilės, naujos gyvybės atsiradimo, gali sietis su dvasiniais ir religiniais ritualais. Devynios šakos, šioje dainoje, tai moters gyvenimo vingiai, tai gali būti simbolis jos vaikų, jos gyvenimo džiaugsmo. Liepa, turinti gražias šakas yra sveika, graži, vasarą teikianti pavėsį, pavasarį pilna dūzgiančių bitelių, kvepianti poilsiu ir ramybe.\n\n**Vėtra** - įvaizdis gyvenimo sunkumų, gyvenimo skausmų ir negalių. Ir štai, vėtrala laužia liepos šakas, laužia net visas devynias šakas. Atrodo nebėra jokios vilties liepai išlikti ir žaliuoti toliau, bet dainoje ir lietuvių gyvenime (panaudota metafora-personifikacija) moteris visada buvo stipri, rami ir nepasiduodanti, o randanti išeitį. Ši daina kaip tik tą ir mokina, kad gyvenimo sunkumai, kokie jie bebūtų, yra laikini ir iš kiekvieno pergyvenimo, reikia rasti išeitį. Liepos personifikacija (metafora) – moteris iš nulaužtų šakelių pasidaro krėslalius ir pati atsisėda. Ar ne taip ir būna, praeina gyvenimo vėtros, ateina ir praeina visi sunkumai, o vėliau atsisėdus ir pagalvojus, grįžta prisiminimai, kuriuos perduodame kaip pamokymą savo dukroms, jaunimui.\n\nOriginaliuose, bet šioje išplėtotoje sutartinėje nepanaudotuose posmuose, moteris ne tik dirba krėslalius, bet dar iš plonų šakelių padaro patalėlį, jį minkštai pakloja ir ten paguldo bernelį. Štai kokią stiprią moterį augino Lietuvos kaimas. Kiek daug vertybių sudėta į dainos posmus paliekančius patiems susiprasti be pamokslavimo, be įsakančių pamokymų, o tik stebint gamtą ir naudojant paralelinį žmogaus gyvenimo sugretinimą.\n\nTokias mintis dainoje galėjo išsakyti gyvenimą praėjusios kaimo moterys, kad liktų priminimas jaunamartėms pasiruošti viskam, išlikti stiprioms, mylinčioms ir supratingoms, nes viskas praeina ir iš kiekvieno sunkumo/nelaimės galima rasti išeitį. \n\n---\n\n**Žodynas ir simboliai**\n- _devyni_: reiškia amžinybę, tobulumą ir pilnatvę, ko nors daugybę\n- _vatrala_: vėtra, stiprus vėjas, greitas vėjas. Šioje dainoje – gyvenimo sunkumų, negandų simbolis\n- kraslalis: kėdė su atkalte, kartais ir su šoninėmis atramomis, kėdė be atlošo, taburetė žema, kėdutė suolas, garbinga kėdė, sostas sėdynė ratuose, pasostė vežimo ar rogių dalis, į kurią įstatomi ramsčiai",
+      "EN Description": "From ancient times, Lithuanians considered the linden tree sacred. Even today some of these giants remain, adorning old homesteads and mansions. It was believed that this was the tree favored by the love goddesses Milda and Laima.\n\nWhen a child was born, the mother would visit the linden tree to ask for health and long life for their newborn. A husband who quarreled with his wife would need to stand by the linden tree and ask forgiveness. Beekeepers would plant linden trees completely surrounding their homestead, because honey from its flowers was of the best quality. In olden times the soft inner bark was used to make baskets, woven footwear, and ropes. The wood was of a pale color, soft, light, and resistant to fracturing.\n\nThe themes of “A Linden Tree Grew” are coming of age, matchmaking, love, and formation of a family.\n\n**The linden tree** is variously a symbol for a maturing young girl, a woman, a mother, love, protection and shelter.\n\n**Nine.** The number nine is a symbol of love, completeness, and the appearance of a new life. It is associated with various spiritual and religious rituals. The nine branches in this song are twists and turns in a woman’s life – possibly symbolic of her children and happy moments in life. A linden tree with beautiful branches is healthy, handsome, provides shade and shelter in summer, is full of busy bees in springtime, and radiates an air of restfulness and peace.\n\n**The storm.** It’s an image of hardships, trials and tribulations that one encounters in life. The storm breaks many branches, in fact all nine. It would seem hopeless that the linden tree will survive and continue to grow. But in the song and in life, the woman (metaphorical personification) is strong, calm, doesn’t give up, and finds a way out. That is the message of this song – difficulties in life, whatever they may be, are temporary and need to be surmounted. The woman makes chairs from the broken branches, and has a seat. Isn’t that how it is in life? The storms of life pass us by, difficulties come and go. Later on we sit down, reflect on what happened, and pass on the lessons from life experiences to our children.\n\nThe original song has verses not used in this variation. In these additional verses, the young woman not only makes chairs, but uses the smaller branches to make a bed, which she prepares for a young man. That is the type of strong woman who was raised in the Lithuanian village. The values important in life can be seen in the words of the song, without having to listen to a lecture or a sermon – just by observing nature and the parallel to our own lives.\n\n---\n\n**Sources:** https://www.sutartines.info/slaviunas/result.php?id=26094&kas=dok_tur"
     }
   },
   {
@@ -17926,12 +17864,12 @@ const songs: SongFile = [
         "recy9hdnYrJ8TwD90": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vai ko nusižvengei,\nBėrasai žirgeli?\nKo dairais aplinkui\nĮ dulkėtą kelią? (2 k.)\n\nTas kelias į Vilnių,\nGedimino pilį,\nKur garsieji amžiai\nUžmigdyti tyli. (2 k.)\n\nTas kelias į Vilnių,\nGedimino pilį,\nTen, kur mūsų broliai\nŽūsta už tėvynę. (2 k.)\n\nKurs lietuvis kenčia,\nLaisvės nepažinęs,\nKur prislėgtas verkia\nTėviškę atminęs. (2 k.)\n\nBet nurimk, žirgeli,\nDar ne laikas joti -\nAš turiu dar augti\nJėgomis ir protu. (2 k.)\n\nO kai aš užaugsiu,\nTai narsiai kariausiu,\nGedimino pily\nTrispalvę iškelsiu. (2 k.)\n\nTik tuomet į Vilnių\nTiesų kelią rasim -\nGedimino pily\nTrispalvę iškelsim. (2 k.)\n\nGedimino pily\nTrispalvę iškelsim\nIr prie Aušros Vartų\nKarštai pasilmelsim. (2 k.)\n\nO prie Aušros Vartų\nKarštai pasilmelsiu,\nTėvui, motinėlei\nŽemai nusilenksiu. (2 k.)\n\nDieve, Visagali,\nSaugok mūsų šalį,\nTėvą ir motulę\nIr mane sesulę. (2 k.)"
+          "Lyrics & Chords": "Vai ko nusižvengei,\nBėrasai žirgeli?\nKo dairais aplinkui\nĮ dulkėtą kelią? (2k.)\n\nTas kelias į Vilnių,\nGedimino pilį,\nKur garsieji amžiai\nUžmigdyti tyli. (2k.)\n\nTas kelias į Vilnių,\nGedimino pilį,\nTen, kur mūsų broliai\nŽūsta už tėvynę. (2k.)\n\nKurs lietuvis kenčia,\nLaisvės nepažinęs,\nKur prislėgtas verkia\nTėviškę atminęs. (2k.)\n\nBet nurimk, žirgeli,\nDar ne laikas joti -\nAš turiu dar augti\nJėgomis ir protu. (2k.)\n\nO kai aš užaugsiu,\nTai narsiai kariausiu,\nGedimino pily\nTrispalvę iškelsiu. (2k.)\n\nTik tuomet į Vilnių\nTiesų kelią rasim -\nGedimino pily\nTrispalvę iškelsim. (2k.)\n\nGedimino pily\nTrispalvę iškelsim\nIr prie Aušros Vartų\nKarštai pasilmelsim. (2k.)\n\nO prie Aušros Vartų\nKarštai pasilmelsiu,\nTėvui, motinėlei\nŽemai nusilenksiu. (2k.)\n\nDieve, Visagali,\nSaugok mūsų šalį,\nTėvą ir motulę\nIr mane sesulę. (2k.)"
         },
         "rec7UxwvrkOhI7XTC": {
           "Variant Name": "Oi ko nusižvengei",
           "EN Variant Name": "Oi ko nusižvengei",
-          "Lyrics & Chords": "Oi ko nusižvengei,\nBėrasai žirgelį?\nKo dairais aplinkui ]\nĮ dulkėtą kelią? ] 2x2 k.\n\nDar nežvenk žirgelį,\nDar nelaikas joti,\nDar nesustiprėjau\nJėgomis ir protu.\n\nTas kelias į Vilnių,\nGedimino pilį,\nTen kur mūsų broliai\nŽūsta už tėvynę.\n\nO kai aš užaugsiu,\nTai narsiai kariausiu,\nGedimino pily,\nTrispalvę iškelsiu.\n\nGedimino pily,\nTrispalvę iškelsiu,\nIr prie Aušros Vartų\nKarštai pasimelsiu.\n\nIr prie Aušros Vartų,\nKarštai pasimelsiu,\nSenesiems tėveliams,\nŽemai nusilenksiu.\n\nDieve visagali,\nSaugok mūsų šalį,\nTėvą ir močiutę\nIr mažą sesutę.\n\nTas narsus lietuvis,\nKurs narsiai kariavo,\nUž savo narsumą\nVyčio kryžių gavo."
+          "Lyrics & Chords": "Oi ko nusižvengei,\nBėrasai žirgelį?\nKo dairais aplinkui ]\nĮ dulkėtą kelią? ] 2x2k.\n\nDar nežvenk žirgelį,\nDar nelaikas joti,\nDar nesustiprėjau\nJėgomis ir protu.\n\nTas kelias į Vilnių,\nGedimino pilį,\nTen kur mūsų broliai\nŽūsta už tėvynę.\n\nO kai aš užaugsiu,\nTai narsiai kariausiu,\nGedimino pily,\nTrispalvę iškelsiu.\n\nGedimino pily,\nTrispalvę iškelsiu,\nIr prie Aušros Vartų\nKarštai pasimelsiu.\n\nIr prie Aušros Vartų,\nKarštai pasimelsiu,\nSenesiems tėveliams,\nŽemai nusilenksiu.\n\nDieve visagali,\nSaugok mūsų šalį,\nTėvą ir močiutę\nIr mažą sesutę.\n\nTas narsus lietuvis,\nKurs narsiai kariavo,\nUž savo narsumą\nVyčio kryžių gavo."
         }
       },
       "Audio": {},
@@ -17986,7 +17924,7 @@ const songs: SongFile = [
         "recs36q65Nf0BJUQp": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vai kelkitės vaikeliai,\nGamta jau atsigavo.\nSaulutė linksmai šviečia,\nGegutė užkukavo:\n\n-Vai kelk, vai kelk-\nGamta jau atsigavo;\nSaulutė linksmai šviečia,\nGegutė užkukavo.\n\nKu-ku, ku-ku, ku-ku, ku-ku,\nKu-ku, ku-ku, ku-ku. (2 k.)"
+          "Lyrics & Chords": "Vai kelkitės vaikeliai,\nGamta jau atsigavo.\nSaulutė linksmai šviečia,\nGegutė užkukavo:\n\n-Vai kelk, vai kelk-\nGamta jau atsigavo;\nSaulutė linksmai šviečia,\nGegutė užkukavo.\n\nKu-ku, ku-ku, ku-ku, ku-ku,\nKu-ku, ku-ku, ku-ku. (2k.)"
         }
       },
       "Audio": {},
@@ -18013,7 +17951,7 @@ const songs: SongFile = [
         "recAeQNWD4tWPSaAw": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vaikeli mažas, ar meni,\nSeniai, seniai kadais,\nKai tu ant mėlynos žvaigždės,\nAr jūroj gyvenai? (2x2 k.)\n\nKai broliai ganė žirgelius,\nDainuodami gražiai,\nPer naktį degė pagiry\nNaktigonių laužai.\n\nO sesės kaišė sau kasas\nŽalia rūta, žiedais,\nVaikeli mažas, aš menu\nSeniai, seniai kadais."
+          "Lyrics & Chords": "Vaikeli mažas, ar meni,\nSeniai, seniai kadais,\nKai tu ant mėlynos žvaigždės,\nAr jūroj gyvenai? (2x2k.)\n\nKai broliai ganė žirgelius,\nDainuodami gražiai,\nPer naktį degė pagiry\nNaktigonių laužai.\n\nO sesės kaišė sau kasas\nŽalia rūta, žiedais,\nVaikeli mažas, aš menu\nSeniai, seniai kadais."
         }
       },
       "Audio": {},
@@ -18040,7 +17978,7 @@ const songs: SongFile = [
         "rec0NvDLLtLJbfdz9": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vaikščiojau, vaikščiojau,\nPo žalią girelę vaikščiojau.\nTra-lia-lia, tra-lia-lia, tra lia-lia.\nTra lia-lia-lia-lia, lia-lia-lia,\nTra lia-lia. (2 k.)\n\nNešiojau, nešiojau\nAnt pečių strielbelę\nNešiojau.\nTra-lia-lia...\n\nPamačiau, pamačiau\nMargąją antelę\nPamačiau.\nTra-lia-lia.\n\nPagailau, nešoviau\nMargosios antelės\nNešoviau.\nTra-lia-lia..."
+          "Lyrics & Chords": "Vaikščiojau, vaikščiojau,\nPo žalią girelę vaikščiojau.\nTra-lia-lia, tra-lia-lia, tra lia-lia.\nTra lia-lia-lia-lia, lia-lia-lia,\nTra lia-lia. (2k.)\n\nNešiojau, nešiojau\nAnt pečių strielbelę\nNešiojau.\nTra-lia-lia...\n\nPamačiau, pamačiau\nMargąją antelę\nPamačiau.\nTra-lia-lia.\n\nPagailau, nešoviau\nMargosios antelės\nNešoviau.\nTra-lia-lia..."
         }
       },
       "Audio": {},
@@ -18397,18 +18335,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recMAKR48fYDDV5VR": {
-          "Title": "One Family, One Nation",
+          "Title": "One family – One nation",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Led by dreams in the amber castles,\nWe carried hope in our hearts, to be eternal.\nBorn in one nation, the descendants of Lithuania,\nWe declare to the world: Our homeland will always live.\n\nOne family, one nation.\nFor Lithuania, our homeland, unites us.\nOne heart, one prayer,\nOur homeland Lithuania rises towards the dawn of happiness.\n\nWe grow united like green oaks,\nAcross seas, the land calls: be strong,\nAnd today we answer with a ringing song,\nLet it rise to the skies, bright, alive, and free!\n\nOne family...",
-          "AI Generated": true
+          "Lyrics": "As we dreamed of amber castles,\nWe carried hope in our hearts that we would live forever.\nBorn of a common heritage,\nWe proclaim to the world: our homeland will live on.\n\n_One family, one nation._\n_Our homeland, Lithuania, brings us together._\n_One heart, one prayer,_\n_Our homeland, Lithuania, rises to a hopeful dawn._\n\nWe grow in solidarity, like oak trees;\nAcross the seas, the earth cries out to us: be strong!\nToday we answer with a resounding song,\nMay it rise to the heavens – radiant, alive, and free!\n\n_One family…_"
         }
       },
       "Music Author": "Rita Čyvaitė-Kliorienė",
       "Text Author": "Nijolė Kersnauskaitė",
-      "LT Description": "Ši daina apie vienybę, viltį ir pasididžiavimą Lietuva. Žmonės čia vaizduojami kaip viena šeima ir tauta, kurią jungia gimtinė. Žodžiai kalba apie svajones, stiprybę ir bendrą ateitį.",
-      "EN Description": "This song is about unity, hope, and pride in Lithuania. It describes people as one family and nation, connected by their homeland. The lyrics speak of dreams, resilience, and a shared future, possibly symbolizing national togetherness and the enduring spirit of the Lithuanian people.",
-      "AI-Generated Description": true
+      "LT Description": "_Viena šeima-viena tauta_, tai išeivijos lietuvių jausmus išreiškianti daina, kurios žodžiai ir muzika sukurti Cleveland‘e gyvenančių lietuvių Ritos Čyvaitės-Kliorienės ir Nijolės Kersnauskaitės.\n\nGintaro pilys – simbolis Lietuvos istorijos; viltis širdyje – buvo ir liko išeivių neblėstatis tikėjimas Lietuvos laisve, o priminimas, kad _vienoj tautoj užgimę, ainiai Lietuvos_ – tai lyg priesaika stiprinanti ištikimybę gimtąjai žemei, apie kurios buvusią priespaudą išeivija niekada nenustojo visiems kalbėjusi, prieš ją kovojusi ir tikėjusi, kad: _Tėvynė vėl gyvuos_.\n\nAntrame posme išreikštos mintys dar labiau paliūdija, kad išeivijos lietuviai buvo stiprūs, vieningi ir kaip _ąžuolai žali_ (ąžuolas-stiprybės, vyriškumo, žmogaus išminties simbolis). Savo tvirtu tikėjimu Lietuvos laisve jie stiprino vieni kitus, o artimai palaikydami ryšį su Tėvynėje likusiais broliais, seserimis, tėvais žinojo, kad gimtinė niekada jų neužmiršo: _Per jūras šaukia žemė: būkite tvirti_. Išliko tvirta išeivija ir laisvę atgavo Lietuva, kurios padangėje ir vėl nušvito naujas rytas.\n\n_Viena šeima, viena tauta_ – dainos žodžiai jungia visų širdis kviesdami džiaugtis mylima ir laisva Lietuva, nes tai mūsų tapatybė, mūsų pradžia, tai _mūsų tauta, mūsų šeima._",
+      "EN Description": "The venue for the XI Lithuanian Song Festival in North America is Cleveland, Ohio. It is only fitting that the festival’s theme song is composed by native Clevelanders: music by Rita Čyvaitė-Kliorienė and lyrics by Nijolė Kersnauskaitė. The song expresses the emotions of Lithuanians no longer living in the country of their ancestors.\n\n“Amber castles” – symbolic of Lithuania’s history.\n\n“Hope in our hearts” – our unwavering faith in Lithuania’s freedom.\n\n“Born of a common heritage” – an oath strengthening our commitment to the land of our forefathers.\n\n“Our homeland will live on” – surviving all the previous oppressions, which those of us living elsewhere never failed to publicize, and fought to overcome.\n\nThe second verse reinforces the notion that the Lithuanian diaspora was unified and strong – “like oak trees”. The oak tree is a symbol of strength and wisdom. Our fervent belief in Lithuania’s freedom strengthened each other. Close contacts with relatives remaining in Lithuania reminded us that the homeland will never forget us – “across the seas, the earth cries out to us: be strong!”. The diaspora remained strong, as did Lithuania, which once again saw the dawn of freedom.\n\n“One Family – One Nation”. The words of the song join our hearts together and invite us to celebrate our beloved and free Lithuania – it is our beginning, our identity, our nation, our family."
     }
   },
   {
@@ -18535,7 +18471,7 @@ const songs: SongFile = [
         "recdlQ3qoLxhpDnCd": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vilniaus mieste žali bromai, (2 k.)\nTen žirgus balnojo. (2x2 k.)\n\nPabalnojo ir išjojo,\nAnt kalno sustojo.\n\nIr pastatė armotėlę,\nO paskui iššovė.\n\nIr nušovė lenkų vadą,\nLenkų komandierių.\n\nLenkai krito kaip lapeliai,\nLietuviai - kaip mūrai.\n\nLenkai krito ir dejavo,\nLietuviai dainavo.\n\nLenkams buvo didi kova,\nLietuviams - zabova.\n\nVilnius mūsų nuo senovės,\nŽinokit panovės."
+          "Lyrics & Chords": "Vilniaus mieste žali bromai, (2k.)\nTen žirgus balnojo. (2x2k.)\n\nPabalnojo ir išjojo,\nAnt kalno sustojo.\n\nIr pastatė armotėlę,\nO paskui iššovė.\n\nIr nušovė lenkų vadą,\nLenkų komandierių.\n\nLenkai krito kaip lapeliai,\nLietuviai - kaip mūrai.\n\nLenkai krito ir dejavo,\nLietuviai dainavo.\n\nLenkams buvo didi kova,\nLietuviams - zabova.\n\nVilnius mūsų nuo senovės,\nŽinokit panovės."
         }
       },
       "Audio": {},
@@ -18623,7 +18559,7 @@ const songs: SongFile = [
         "recSCL2QwfBelI2Ol": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Visos upės akmenuotos, (2 k.)\nEch, visos upės akmenuotos,\nNėra iš ko gerti. (2x2 k.)\n\nParsivedžiau jauną žmoną,\nEch, parsivedžiau jauną žmoną,\nNėra už ką barti.\n\nIr pabariau kartą vieną,\nEch, ir pabariau kartą vieną,\nVerkė visą dieną.\n\nNuo to laiko, neduok Dieve,\nEch, nuo to laiko, neduok Dieve,\nDaugiau nebebarsiu.\n\nPats sau virsiu, pats sau kepsiu,\nEch, pats sau virsiu, pats sau kepsiu,\nPats vaikus gimdysiu.\n\nIr pabandžiau kartą vieną,\nEch, ir pabandžiau kartą vieną,\nVerkiau visą dieną.\n\nNuo to laiko, neduok Dieve,\nEch, nuo to laiko neduok Dieve,\nDaugiau nebandysiu."
+          "Lyrics & Chords": "Visos upės akmenuotos, (2k.)\nEch, visos upės akmenuotos,\nNėra iš ko gerti. (2x2k.)\n\nParsivedžiau jauną žmoną,\nEch, parsivedžiau jauną žmoną,\nNėra už ką barti.\n\nIr pabariau kartą vieną,\nEch, ir pabariau kartą vieną,\nVerkė visą dieną.\n\nNuo to laiko, neduok Dieve,\nEch, nuo to laiko, neduok Dieve,\nDaugiau nebebarsiu.\n\nPats sau virsiu, pats sau kepsiu,\nEch, pats sau virsiu, pats sau kepsiu,\nPats vaikus gimdysiu.\n\nIr pabandžiau kartą vieną,\nEch, ir pabandžiau kartą vieną,\nVerkiau visą dieną.\n\nNuo to laiko, neduok Dieve,\nEch, nuo to laiko neduok Dieve,\nDaugiau nebandysiu."
         }
       },
       "Audio": {},
@@ -18680,7 +18616,7 @@ const songs: SongFile = [
         "recxpWyAzeNrWxb6t": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Žalia pieva - nekelmynė,\nGera pjauti dobilyne,\nValio, valio, pjovėjėliai valio. (2 k.)\n\nAš dalgelę papustysiu,\nPradalgėlę išvarysiu,\nValio, valio, pjovėjėliai valio. (2 k.)\n\nMan dalgelę sunku traukti,\nPusrytėlių ilgu laukti.\nValio, valio, pjovėjėliai valio. (2 k.)\n\nMan dalgelė vieno plieno\nPjaunu šieną visą dieną.\nValio, valio, pjovėjėliai valio. (2 k.)"
+          "Lyrics & Chords": "Žalia pieva - nekelmynė,\nGera pjauti dobilyne,\nValio, valio, pjovėjėliai valio. (2k.)\n\nAš dalgelę papustysiu,\nPradalgėlę išvarysiu,\nValio, valio, pjovėjėliai valio. (2k.)\n\nMan dalgelę sunku traukti,\nPusrytėlių ilgu laukti.\nValio, valio, pjovėjėliai valio. (2k.)\n\nMan dalgelė vieno plieno\nPjaunu šieną visą dieną.\nValio, valio, pjovėjėliai valio. (2k.)"
         }
       },
       "Audio": {},
@@ -18848,15 +18784,13 @@ const songs: SongFile = [
           "Title": "The Gander",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "Gander, gander, the birds are singing,\nthe birds are singing,\nYou are plucking a dandelion flower,\na dandelion flower.\n\nInvite goose Gaga\n- honk honk honk honk honk ho Gaga,\nSing a cheerful little song\n- tra la la la la la la la.\n\nGirgitonas threw the flower,\n- honk honk honk honk Honk-i-tonas,\nThe baritone echoed,\n- ba-ri ba-ri baritone.\n\nIt rang out, resounded,\n- honk honk honk honk honk honk ga ga,\nDove into the bushes, who heard it –\n- tra la la la la la la la.\n\nTra la la, tra la la...\n\nGander, gander, can't do it\n- no-no-no-no- can't do it,\nYou creak your song like a gate\n- honk honk honk honk honk honk song.\n\nInvite goose Gaga\n- honk honk honk honk honk honk Gaga,\nSing a cheerful little song\n- tra la la la la la la la.\n\nThe gander calls at the gate\n- ga, ga ga!\nCalling the geese to join in\n- ga, ga ga!\n\nWhite geese hurried over\n- honk honk honk honk honk honk ga ga\nAnd the little song rang out\n- tra la la la la la la la.\nTra la la, tra la la...",
-          "AI Generated": true
+          "Lyrics": "O gander, gander, the birds are singing,\nthe birds are singing.\nYou are plucking at a dandelion blossom,\nat a dandelion blossom.\n\nInvite Gagę the goose\n_– gir gir gir gir gir gi Gagę,_\nSing a cheerful song\n_– tra lia lia lia lia lia lia lia._\n\nThe gander Girgitonas tossed a blossom,\n_gir gir gir gir Gir gi-tonas,_\nThe baritone echoed,\n_ba-ri ba-ri_ baritone.\n\nIt echoed and resounded,\n_gir gir gir gir gir gir ga ga_\nWhoever heard it ducked into the bushes\n_– tra lia lia lia lia lia lia lia._\n\n_Tra lia lia, tra lia lia..._\n\nGander, gander, it‘s not working out\n– no-no-no-no not working out.\nYour song sounds like a creaking gate\n_– gir gir gir gir gir gi song._\n\nInvite Gagę the goose\n_– gir gir gir gir gir gi_ Gagę,\nSing a cheerful song\n_– tra lia lia lia lia lia lia lia._\n\nThe gander at the gate shouts\n– ga ga ga!\nThe geese sing along\n– ga ga ga!\n\nThe white geese hurried over\n_– gir gir gir gir gir gir ga ga_\nAnd their song rang out\n_– tra lia lia lia lia lia lia lia._\n\n_Tra lia lia, tra lia lia..._"
         }
       },
       "Music Author": "Rasos Kauneckaitė",
       "Text Author": "Martyno Vainilaitis",
-      "LT Description": "Ši linksma daina pasakoja apie žąsiną, kuris peša pienės žiedą ir kviečia žąselę kartu dainuoti linksmą dainelę. Dainoje daug žąsų ir kitų garsų, todėl ji atrodo žaisminga ir nuotaikinga. Daina gali simbolizuoti draugystę ir bendrumą, bet dažniausiai tiesiog žaidžia su vaikiškais vaizdais ir garsais.",
-      "EN Description": "This playful song tells about a gander plucking a dandelion and calling his goose friend to sing a cheerful song together. The lyrics use onomatopoeic sounds to imitate the noises of geese and gates, creating a fun and lively atmosphere. The song might symbolize the joy of togetherness and play, but mainly focuses on simple, childlike imagery and sounds.",
-      "AI-Generated Description": true
+      "LT Description": "Jumoristinė dainelė vaikams, apie žąsiną, kurio balsas nelabai choriškas, bet kai aplinkui visi paukšteliai gieda, ir žąsinui norisi kartu gagenti. Žąsinas Girgitonas yra vaikams juokingas vardas, nuo kurio neatsilieka ir žąselės pavadinimas – Gagė. Dainelėje gausu įvairių garsažodžių: gir gir gir, ba-ri, ba-ri, tra lia lia ir kiti. Šie skiemenys pagyvina dainelę, lavina vaikų tarimą ir yra smagu juos dainuoti.\n\nDainos pabaigoje žąsinas irgi lieka patenkintas, nes jam padeda gagenti/dainuoti visas žąselių pulkas ir visi vienbalsiai traukia tra lia lia lia lia lia. \n\n---\n\n**Žodynas**\n- _girgitonas_: žąsis, žąsinas\n- _nėrė_: spruko, bėgo, lėkė\n- _plepetonas_: antis, antinas",
+      "EN Description": "A humorous children’s song about a gander whose creaky voice doesn’t really belong in a choir, but when all around the birds are singing, he also wants to join in. The gander’s name “Girgitonas” is funny sounding, just like the name of the goose “Gagė”. The song is full of “sound words”: “gir-gir-gir”, “ba-ri, ba-ri”, “tra-lia-lia”, and the like. These noise-making syllables liven up the song, develop children’s pronunciation skills, and are just fun to sing.\n\nAt the end of the song, the gander is finally satisfied, because the whole flock of geese join in, and with one voice they all sing “tra-lia-lia, tra-lia-lia”."
     }
   },
   {
@@ -18867,7 +18801,7 @@ const songs: SongFile = [
         "recClMChLpVYSt4Cp": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Žemė kėlė žolę, žolė kėlė rasą,\nRasa kėlė pasagėlę, pasagėlė žirgą. (2 k.)\n\nŽirgas kėlė balną, balnas kėlė raitą,\nRaitas kėlė kepurėlę sutikęs mergelę. (2 k.)"
+          "Lyrics & Chords": "Žemė kėlė žolę, žolė kėlė rasą,\nRasa kėlė pasagėlę, pasagėlė žirgą. (2k.)\n\nŽirgas kėlė balną, balnas kėlė raitą,\nRaitas kėlė kepurėlę sutikęs mergelę. (2k.)"
         }
       },
       "Audio": {},
@@ -19148,18 +19082,16 @@ const songs: SongFile = [
       },
       "Translations": {
         "recspS60ZpWyBhcyt": {
-          "Title": "People on the Hills",
+          "Title": "People on the hills",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "In the green grove, grasses grow,\nIn the grass, many larks lie low.\n\nThose larks have brown little feet,\nBrown little feet, sharp little eyes so neat.\n\nAnd all the people, standing on the hills,\nTry to catch the larks and call out with bird-like trills.\n\nThose larks wave their tiny hands,\nWaving little hands, soaring over the lands.\n\nSharp little eyes, a speckled tuft,\nBrown little wings, brown hands so soft.\n\nAnd all the people, standing on the hills,\nTry to catch the larks and call out with bird-like trills.\n\nPeople on the hills are calling out loud.\nThey want to fly high, to play with the lark crowd.\nAnd their wings are speckled, speckled and bright,\nAnd their necks are slender, slender and light.",
-          "AI Generated": true
+          "Lyrics": "Grass grows in the green forest\nA flock of larks rests on the grass.\n\nThe larks have brown feet,\nBrown feet, sharp eyes.\n\nAll the people standing on the hills\nAre cawing like birds and trying to capture the larks.\n\nThe larks wave their hands,\nWave their hands, soar to the heights.\n\nBright eyes, speckled crest,\nBrown wings, brown feet.\n\nAll the people standing on the hills\nAre cawing like birds and trying to capture the larks.\n\nPeople call out all over the hills.\nThey want to fly and frolic with the larks.\nTheir wings are speckled, speckled.\nTheir necks so slender, slender."
         }
       },
       "Music Author": "Laimis Vilkončiaus",
       "Text Author": "Sigitas Geda",
-      "LT Description": "Daina pasakoja apie žalią girią, kur žolėje ilsisi vieversėliai, o žmonės ant kalnų bando juos pagauti ar mėgdžioti, rėkdami kaip paukščiai. Tai gali simbolizuoti žmonių norą būti laisvais kaip paukščiai arba tiesiog būti žaisminga scena. Taip pat gali būti užuomina į pavasario tradicijas, kai Lietuvoje grįžta vieversiai.",
-      "EN Description": "The song describes a green forest where larks rest in the grass, and people gather on the hills trying to catch or imitate the birds, making bird-like noises. This may symbolize people's longing to be like the birds—free and joyful—or it could simply be a playful scene. The imagery of people wanting to fly and interact with the larks might refer to springtime traditions in Lithuania, when larks return and their songs are celebrated.",
-      "AI-Generated Description": true
+      "LT Description": "Sigito Gedos žodžiai sukurti 1981 metais. Pradžioje šis eilėraštis buvo pavadintas „Vieversėliai“ ir pirmą kartą spausdintas Sigito Gedos knygoje „Baltoji varnelė“, kuri buvo išleista 1985 metais.\n\nDabar šie eilėraščiai yra laikomi vaikų literatūros klasika. Jie atveria šviesų magišką būtų ir nebūtų dalykų pasaulį. Sigito Gedos eilėraščio „Žmonės ant kalnų“ analizė yra mano interpretacija. Aš analizuodama šį eilėraštį įžvelgiau gilesnes mintis, nei jas galėtų suprasti vaikai, kuriems šis eilėraštis skirtas, todėl jokiu būdu neteigiu, kad mano aiškinimas eilėraščio minties yra teisingas ir vienintelis. Jeigu kūrinys nepasiduoda „protingai“ išaiškinamas, tenka daugiau dėmesio skirti mūsų pačių interpretacijos taktikai.\n\nVieversys dažnai laikomas pavasario pranašu, nes jis grįžta iš šiltųjų kraštų, kai prasideda pavasario sezonas, vieversys simbolizuoja pavasarį, atgimimą ir gamtos atsinaujinimą. Vieversio skleidžiamas garsas, čirškėjimas linksmina artojus, kelia žemelę naujai gyvybei, jis laikomas laisvės ir natūralumo simboliu dėl nardymo padangėse, dėl džiaugsmingo čyrenimo, dėl naujos pradžios ženklinimo. Vieversio sugrįžimas pavasarį gali simbolizuoti paguodą ir viltį, nes tai yra ženklas, kad blogi laikai praeina ir ateina naujas, geresnis periodas.\n\nŽmones ant kalnų aš suvokiu kaip simbolį žmonių, kurie stengiasi įveikti sunkumus, pasiekti aukštumas. Tai gali būti metafora žmonių, kurie yra pakylėti savo idėjomis, idealais ar dvasiniais siekiais, bet taip pat gali jaustis izoliuoti ar atstumti. Gal tai žmonės, kurie tikėjo Lietuvos laisve ir „pogrindyje“ dirbo jos labui. Kadangi šis eilėraštis skirtas vaikams, tada atrodytų, kad vaiko pasaulyje, jo vaizduotėje mylimi daiktai, žmonės, juos supantis pasaulis gali būti matomi didesni už proporcingą tikrovę: tėvų ūgis – lyg ant kalnų stovintys žmonės, suaugusių tarpusavio kalba – lyg rėkavojimas, o paukštelių sparnelių plazdėjimas – lyg mojavimas rankelėmis.\n\nLaimio Vilkončiaus sukurta šiam eilėraščiui pakili muzika lyg ir „nubraukia“ eilėraščio prasmės gilumo ir rimties ieškojimą ir perkelia į nerūpestingą, saugų ir linksmą vaikų pasaulį.\n\n---\n\n**Šaltiniai:**\n- Kęstutis Nastopka „Pakeliui su Sigitu Geda.“\n- Visuotinė lietuvių enciklopedija „Sigitas Geda“\n- Sigitas Geda eilėraščių rinkinys vaikams „Baltoji varnelė“\n- Rimvydas Šilbajoris „Sigitas Geda: iš toliau ir iš arčiau“",
+      "EN Description": "The lyrics were written in 1981, in a poem originally titled “The Larks”. It was first published in 1985 in the author’s book of poetry “The White Crow”.\n\nCurrently these poems are considered classics of children’s literature. They present to us a magical world of fantasy.\n\nThis is my own personal interpretation of the poem. I perceive deeper ideas than children could understand. In no way do I claim that my explanations are the only accurate ones. If a work of art does not lend itself to “intelligent” analysis, then we should give consideration to a personal approach.\n\nThe **lark** is a harbinger of spring. It returns from warmer climates in springtime, and symbolizes the renewal and rebirth of nature. The lark’s happy song brings joy to the plowman working the field and calls the earth to new life. The lark’s melodious song and soaring / dipping flight have come to represent naturalness and freedom. Its return in spring brings to mind a new beginning and brings comfort and hope, because it foretells that bad times are ending and a new, better period is approaching.\n\n**People on the hills** can be interpreted as individuals who strive to overcome obstacles and reach for the heights. It might be a metaphor for people who are inspired by ideas, ideals, or spiritual goals – but also may feel isolated or rejected. Perhaps these are people who believed in Lithuania’s independence and worked in the “underground” to achieve it. Because this is a children’s poem, perhaps things in a child’s world appear larger than life: the parents’ size and height – like people standing on a mountain; adult conversation – like shouting; the fluttering of a bird’s wings – like someone waving their arms.\n\nThe exhilarated mood of Laimis Vilkončius’ music truly supersedes any search for serious and profound meanings in the poem. Instead, the music transports us to the carefree, safe, and joyful world of a child.\n\n---\n\n**Sources**\n- Kęstutis Nastopka: “On the Way with Sigitas Geda.”\n- Lithuanian Encyclopedia: “Sigitas Geda”\n- Sigitas Geda: “The White Crow”, a book of poetry for children\n- Rimvydas Šilbajoris: “Sigitas Geda: from Near and Far"
     }
   },
   {
@@ -19320,15 +19252,13 @@ const songs: SongFile = [
           "Title": "Sparrows",
           "Variant Name": "Vertimas",
           "EN Variant Name": "Translation",
-          "Lyrics": "We are two sparrows, two two two.\nAcross the yard, just us two.\nTwo two two, two two two,\nAcross the yard, across the yard, just us two.\nTwo two two, two two two,\nAcross the yard (chirp chirp), across the yard, just us two.\n\nWe are two sparrows, two two two.\nAcross the market, just us two.\nTwo two two, two two two,\nAcross the market, across the market, just us two.\nTwo two two, two two two,\nAcross the market (chirp chirp), across the market, just us two.\n\nWe are two sparrows, two two two.\nTo the market, to peck some grain.\nTwo two two, two two two,\nTo the market, to the market, to peck some grain.\nTwo two two, two two two,\nTo the market (chirp chirp), to the market, to peck some grain.\n\nChirp...\nTwo two two, two two two,\nWe'll find at the market (chirp chirp), we'll find at the market lots of grain.\nWe'll find at the market lots of grain\nChirp chirp chirp!",
-          "AI Generated": true
+          "Lyrics": "We two sparrows, two-two-two.\nAcross the yard, the two of us\nTwo-two-two, two-two-two,\nAcross the yard,\n  across the yard, the two of us.\nTwo-two-two, two-two-two,\nAcross the yard (čir čir),\n  across the yard, the two of us.\n\nWe two sparrows, two-two-two.\nAcross the marketplace, the two of us\nTwo-two-two, two-two-two,\nAcross the marketplace,\n  across the marketplace, the two of us.\nTwo-two-two, two-two-two,\nAcross the marketplace (čir čir),\n  across the marketplace, the two of us.\n\nWe two sparrows, two-two-two.\nTo the marketplace to eat some grain.\nTwo-two-two, two-two-two,\nTo the marketplace,\n  to the marketplace, to eat some grain.\nTwo-two-two, two-two-two,\nTo the marketplace,\n  to the marketplace, to eat some grain.\n\nČir...\nTwo-two-two, two-two-two,\nWe‘ll find lots of grain (čir čir) in the market,\n  in the market.\nWe‘ll find lots of grain in the market.\nČir čir čir!"
         }
       },
       "Music Author": "Algirdas Šumskis",
       "Text Author": "Leonardas Gutauskas",
-      "LT Description": "Ši daina pasakoja apie du žvirblius, kurie kartu keliauja per kiemą ir turgų ieškodami grūdų. Žodžiai paprasti, linksmi ir kartojasi, todėl tikėtina, kad tai vaikų daina arba žaidimams skirta eilėraštukė. Žvirbliai gali simbolizuoti draugystę, bet tekstas labiau apie jų kelionę kartu.",
-      "EN Description": "This song is about two sparrows moving together through different places, like a yard and a market, looking for grain to eat. The lyrics are simple, repetitive, and playful, which suggests it might be a children's song or a rhyme for games. The sparrows could symbolize friendship or togetherness, but the text mainly focuses on their cheerful journey.",
-      "AI-Generated Description": true
+      "LT Description": "**Du** – porinis skaičius, siejamas su vaisingumu, poravimusi, atspindžiu, šešėliu, dviveidiškumu, priešingybėmis: kairė-dešinė; gėris-blogis; gyvybė-mirtis, dienanaktis. Kitaip sakant, tai lyg pusiausvyra, dvi linijos, du taškai.\n\nDaina jumoristinė, linksma, žaisminga, puikiai atkurianti turgaus šurmulį, judančius, lekiančius, perkančius, parduodančius savo prekes žmones, arba žvirblius, kurių turgaus aikštėje visada pilna, savo judrumu ir nukritusių trupinėlių ar grūdų lesimu, jie pagyvina turgaus šurmulį, turgaus kultūrą-charakterį.\n\n**Žvirblis** – smulkus paukštelis, lietuvių tautosakoje dažnai vaizduojamas kaip gudrus, vikrus ir įkyrus vagišius. Literatūroje šio paukštelio simbolis kartais vaizduojamas kaip Dievo palankumo ženklas. Labai geras ženklas, jeigu žvirblis namuose susisuka lizdą. Sakoma, jog žvirblio čirškimas pranašauja lietų.",
+      "EN Description": "**Two** is an even number connected with fertility, pairing off, a reflection, a shadow, and twofacedness. It is also associated with opposites: left – right, good – evil, life – death, day – night, etc. In other words it represents balance between two points, two lines.\n\nThe song is funny, happy, and playful. It perfectly describes the ongoing commotion of an outdoor marketplace: people moving, hurrying, buying, selling. It portrays the sparrows – always present in an outdoor market, always looking for seeds or crumbs, always enlivening the action and providing the marketplace its unique character.\n\nThe **sparrow** is a diminutive bird, described in Lithuanian folklore as intelligent, nimble – and also an annoying thief. In the literature a sparrow is sometimes a symbol of God‘s benificence to mankind. It is considered a good omen if a sparrow builds a nest near one‘s home. A sparrow‘s chirping song is said to forecast rain."
     }
   },
   {
@@ -19339,7 +19269,7 @@ const songs: SongFile = [
         "recQXLqoUE6SL64aS": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Vėliavos iškeltos plakas,\nRenkas vyrai, žygis bus,\nUž kalnų karalių takas,\nVilnius vėl priglaus pulkus. (2 k.)\n\nIr sustos prie vyro vyras,\nŽygį priesaika parems,\nSudrebės po kojom žvyras,\nUžtvarų nebus keliams. (2 k.)\n\nKils iš dulkių Gediminas,\nŽilas kalnas sudrebės,\nKad pulkai jo kaulus gina,\nIš dešinės ir iš kairės. (2 k.)\n\nVėliava nuskaidrins veidus,\nKils ir rymos ant pilies,\nIr skardės po miestą aidas,\nIš dešinės ir iš kairės. (2 k.)"
+          "Lyrics & Chords": "Vėliavos iškeltos plakas,\nRenkas vyrai, žygis bus,\nUž kalnų karalių takas,\nVilnius vėl priglaus pulkus. (2k.)\n\nIr sustos prie vyro vyras,\nŽygį priesaika parems,\nSudrebės po kojom žvyras,\nUžtvarų nebus keliams. (2k.)\n\nKils iš dulkių Gediminas,\nŽilas kalnas sudrebės,\nKad pulkai jo kaulus gina,\nIš dešinės ir iš kairės. (2k.)\n\nVėliava nuskaidrins veidus,\nKils ir rymos ant pilies,\nIr skardės po miestą aidas,\nIš dešinės ir iš kairės. (2k.)"
         }
       },
       "Audio": {},

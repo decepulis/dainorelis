@@ -50,7 +50,7 @@ export default function Page() {
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
-          headerTitle: () => <HeaderTitle showTitle subtitle={t('translationTitle')} title={ogTitle} />,
+          headerTitle: () => <HeaderTitle showTitle title={t('translationTitle')} subtitle={ogTitle} />,
         }}
       />
       <ScrollViewWithHeader>

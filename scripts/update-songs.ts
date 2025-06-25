@@ -223,6 +223,19 @@ async function updateSongs() {
         'Translation'
       );
 
+      // throw alert if translations or descriptions are missing; we should generate those with AI if necessary
+      if (!Array.isArray(song.fields.Translations) || song.fields.Translations.length === 0) {
+        const isAlreadyTranslated =
+          typeof song.fields.Name === 'string' &&
+          (song.fields.Name.startsWith('JAV ') || song.fields.Name.startsWith('Kanados '));
+
+        if (!isAlreadyTranslated)
+          console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
+      }
+      if (!song.fields['EN Description'] || !song.fields['LT Description']) {
+        console.warn(`⚠️  No descriptions found for song "${song.fields.Name}". Consider generating them with AI.`);
+      }
+
       return {
         id: song.id,
         fields: {
@@ -282,7 +295,7 @@ export default songFestival`;
           filteredSongFile.findIndex((song) => song.fields.Name === 'Dzūkit, dzūkit girnelės'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ir įšoko ožėlis'),
           filteredSongFile.findIndex((song) => song.fields.Name === 'Ne dėl žalio vyno'),
-          filteredSongFile.findIndex((song) => song.fields.Name === 'Už Raseinių'),
+          filteredSongFile.findIndex((song) => song.fields.Name === 'Už Raseinių, ant Dubysos'),
         ],
       },
       {

@@ -28,20 +28,20 @@
 		13B07F961A680F5B00A75B9A /* Dainorlis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dainorlis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dainorlis/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Dainorlis/Info.plist; sourceTree = "<group>"; };
-		1DF9C76181B64EEA9BAEA8E9 /* Nunito_500Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf"; sourceTree = "<group>"; };
-		1E9D110D43874CA8B375650D /* Nunito_700Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf"; sourceTree = "<group>"; };
-		277E2EB9E4FA48B8B88D2D73 /* Nunito_700Bold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf"; sourceTree = "<group>"; };
-		38897C9DA09047A5873888AE /* Nunito_800ExtraBold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf"; sourceTree = "<group>"; };
-		556F20F64ABA452B9E17982D /* Nunito_800ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf"; sourceTree = "<group>"; };
-		824E6E5E4CD74B1895DC503D /* Nunito_900Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf"; sourceTree = "<group>"; };
+		1DF9C76181B64EEA9BAEA8E9 /* Nunito_500Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf"; sourceTree = "<group>"; };
+		1E9D110D43874CA8B375650D /* Nunito_700Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf"; sourceTree = "<group>"; };
+		277E2EB9E4FA48B8B88D2D73 /* Nunito_700Bold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf"; sourceTree = "<group>"; };
+		38897C9DA09047A5873888AE /* Nunito_800ExtraBold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf"; sourceTree = "<group>"; };
+		556F20F64ABA452B9E17982D /* Nunito_800ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf"; sourceTree = "<group>"; };
+		824E6E5E4CD74B1895DC503D /* Nunito_900Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf"; sourceTree = "<group>"; };
 		A3B3E43D82701F9F9217BDB1 /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A51592E1C25BD43B16E45955 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A51592E1C25BD43B16E45955 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Dainorlis/SplashScreen.storyboard; sourceTree = "<group>"; };
 		ABAF7DC4FB2025844E6D823F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		B997649CBC924AED88C59F07 /* Nunito_900Black_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf"; sourceTree = "<group>"; };
+		B997649CBC924AED88C59F07 /* Nunito_900Black_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		BCF46BBEEA7EAD64AD7A6DE4 /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
-		C3C035815CA5405A9DAE189B /* Nunito_500Medium_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf"; sourceTree = "<group>"; };
+		C3C035815CA5405A9DAE189B /* Nunito_500Medium_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F0FF6E1BC28B3AE8870233FD /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Dainorlis/AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +152,6 @@
 				B997649CBC924AED88C59F07 /* Nunito_900Black_Italic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		D85E48FBCC3AC278B1FA6207 /* Pods */ = {
@@ -161,7 +160,6 @@
 				BCF46BBEEA7EAD64AD7A6DE4 /* Pods-Dainorlis.debug.xcconfig */,
 				F0FF6E1BC28B3AE8870233FD /* Pods-Dainorlis.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -396,6 +394,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Dainorlis/Dainorlis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BPU37MJR9;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -415,7 +414,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
-				PRODUCT_NAME = Dainorlis;
+				PRODUCT_NAME = "Dainorlis";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -432,6 +431,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Dainorlis/Dainorlis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BPU37MJR9;
 				INFOPLIST_FILE = Dainorlis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -446,7 +446,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
-				PRODUCT_NAME = Dainorlis;
+				PRODUCT_NAME = "Dainorlis";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -509,10 +509,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -567,10 +564,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
