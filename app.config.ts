@@ -104,6 +104,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           './assets/images/icons/menu_book_20px.xml',
           './assets/images/icons/share_20px.xml',
           './assets/images/icons/music_note_20px.xml',
+          './assets/images/icons/translate_20px.xml',
         ],
       },
     ],

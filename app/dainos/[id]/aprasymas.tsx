@@ -48,7 +48,7 @@ export default function Page() {
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
-          headerTitle: () => <HeaderTitle showTitle subtitle={t('aboutSongTitle')} title={title} />,
+          headerTitle: () => <HeaderTitle showTitle title={t('aboutSongTitle')} subtitle={title} />,
         }}
       />
       <ScrollViewWithHeader>

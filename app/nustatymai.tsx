@@ -64,10 +64,6 @@ export default function Page() {
   );
   const [isWriteToUsPressed, setIsWriteToUsPressed] = useState(false);
 
-  // I don't want to decide who put the most into this project,
-  // so I'm just going to randomize what order the team shows in every time this component mounts
-  const [teamInRandomOrder] = useState(() => [...team].sort(() => Math.random() - 0.5));
-
   return (
     <>
       <Stack.Screen
@@ -122,7 +118,7 @@ export default function Page() {
               onPress={() => openFeedback()}
               hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
             >
-              <ThemedText style={[styles.paragraph]}>
+              <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
                 {t('settingsWriteToUsText1')}{' '}
                 <ThemedText
                   style={[
@@ -132,6 +128,7 @@ export default function Page() {
                   {t('settingsWriteToUsText2')}
                 </ThemedText>
               </ThemedText>
+              <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
             </Pressable>
           </View>
           <View style={styles.section}>
@@ -155,7 +152,7 @@ export default function Page() {
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
-              {teamInRandomOrder.map((member, idx) => (
+              {team.map((member, idx) => (
                 <View key={idx} style={styles.profile}>
                   <Image source={member.image} style={[styles.profileImage, { backgroundColor: card }]} />
                   <ThemedText style={styles.paragraph}>

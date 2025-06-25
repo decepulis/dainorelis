@@ -40,6 +40,8 @@ const en = {
   settingsWriteToUsTitle: 'Write to us',
   settingsWriteToUsText1: 'Do you have any questions or suggestions, or just want to say hello?',
   settingsWriteToUsText2: 'Get in touch here!',
+  settingsWriteToUsText3:
+    'In particular, we would love your help building Dainorėlis. Send us your stovyklos dainorėliai, chords, sheet music, and recordings of songs being sung.',
   settingsAboutUsTitle: 'About us',
   settingsOurGoalTitle: 'Our goal',
   settingsOurGoalText:
@@ -94,6 +96,8 @@ const lt = {
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
   settingsWriteToUsText2: 'Susisiekite su mumis čia!',
+  settingsWriteToUsText3:
+    'Ypač laukiame Jūsų pagalbos kuriant Dainorėlį. Siųskite mums savo stovyklos dainorėlius, akordus, natas ir dainų įrašus.',
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:
