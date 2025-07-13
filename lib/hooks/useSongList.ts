@@ -15,9 +15,10 @@ import useStorage from './useStorage';
 const fuseSettings: IFuseOptions<unknown> = {
   isCaseSensitive: false,
   ignoreDiacritics: true,
-  findAllMatches: false,
+  findAllMatches: true,
   includeMatches: true,
   shouldSort: true,
+  ignoreLocation: true,
 };
 // @ts-expect-error this is fine, I promise
 const titleIndex = Fuse.parseIndex(titleIndexJson);
@@ -35,7 +36,6 @@ const lyricFuse = new Fuse(
   songs,
   {
     ...fuseSettings,
-    ignoreLocation: true,
     threshold: 0.1,
   },
   lyricIndex

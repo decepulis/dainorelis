@@ -94,8 +94,8 @@ android {
         applicationId 'com.dainorelis.dainorelis'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 25062502
-        versionName "2.1.0"
+        versionCode 25071301
+        versionName "2.1.1"
     }
     signingConfigs {
         debug {

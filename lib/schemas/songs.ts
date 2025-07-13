@@ -10,7 +10,7 @@ export const SongSchema = z.object({
   fields: z.object({
     Name: z.string(),
     Lyrics: z.record(LyricsSchema),
-    Videos: z.record(VideosSchema),
+    Videos: z.record(VideosSchema).optional(),
     Audio: z.record(AudioSchema),
     PDFs: z.record(PDFsSchema),
     Translations: z.record(TranslationsSchema),
