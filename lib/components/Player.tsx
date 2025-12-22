@@ -3,15 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, View } from 'react-native';
 import { AudioPro, useAudioPro } from 'react-native-audio-pro';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  runOnJS,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
+import Animated, { useAnimatedReaction, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
 
@@ -190,7 +185,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
       // side-effect: bump!
       if (!didBumpSv.value && (newValue === 0 || newValue === 1)) {
-        runOnJS(Haptics.impactAsync)(Haptics.ImpactFeedbackStyle.Medium);
+        scheduleOnRN(Haptics.impactAsync, Haptics.ImpactFeedbackStyle.Medium);
         didBumpSv.value = true;
       } else if (didBumpSv.value && newValue !== 0 && newValue !== 1) {
         // reset state
@@ -199,7 +194,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
     })
     .onEnd(() => {
       const seekTime = (progressSv.value * (duration || 0)) / 1000;
-      runOnJS(seekOnGestureFinalize)(seekTime);
+      scheduleOnRN(seekOnGestureFinalize, seekTime);
     });
 
   // commit gesture stuff to styles
@@ -224,7 +219,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
       const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
       return timeMode.value === 'elapsed' ? formattedTime : `-${formattedTime}`;
     },
-    (t) => runOnJS(setTime)(t)
+    (t) => scheduleOnRN(setTime, t)
   );
   // TODO add tap gesture to toggle time mode
 

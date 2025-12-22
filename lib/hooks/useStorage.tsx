@@ -1,11 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { MMKV } from 'react-native-mmkv';
+import { createMMKV } from 'react-native-mmkv';
 
-// TODO zod 4 for perf
 import { z } from 'zod';
 
 // Create a single MMKV instance
-export const storage = new MMKV();
+export const storage = createMMKV();
 
 // if you wanna store anything in async storage, define it here
 const schemas = {
@@ -14,12 +13,12 @@ const schemas = {
     defaultValue: [] as string[],
   },
   activeVariantIdBySongId: {
-    validator: z.record(z.string().optional()),
-    defaultValue: {} as Record<string, string>,
+    validator: z.record(z.string(), z.string().optional()),
+    defaultValue: {} as Record<string, string | undefined>,
   },
   activeMediaIdBySongId: {
-    validator: z.record(z.string().optional()),
-    defaultValue: {} as Record<string, string>,
+    validator: z.record(z.string(), z.string().optional()),
+    defaultValue: {} as Record<string, string | undefined>,
   },
   language: {
     validator: z.enum(['en', 'lt']),
@@ -63,19 +62,27 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
   const [values, setValues] = useState(() => defaultContextValues);
 
   const setValue: StorageContextSetValue = useCallback(async function (key, value) {
-    // validate the value
-    const { validator } = schemas[key];
-    const validValue = validator.parse(value);
+    try {
+      // validate the value
+      const { validator } = schemas[key];
+      const validValue = validator.parse(value);
 
-    // then, update state
-    setValues((prev) => ({
-      ...prev,
-      [key]: { ...prev[key], value: validValue },
-    }));
+      // then, update state
+      setValues((prev) => ({
+        ...prev,
+        [key]: { ...prev[key], value: validValue },
+      }));
 
-    // finally, set the value in Storage
-    // todo: error behavior
-    storage.set(key, JSON.stringify(validValue));
+      // finally, set the value in Storage
+      storage.set(key, JSON.stringify(validValue));
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        console.error(`Invalid value for ${key}:`, z.prettifyError(e));
+        // Consider: show user-facing toast/alert here
+        throw e; // Re-throw so caller knows it failed
+      }
+      throw e;
+    }
   }, []);
 
   // on load, initialize all the values using the setValue function we just wrote
@@ -89,16 +96,15 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
         } catch (e) {
           if (e instanceof z.ZodError) {
             // treat parsing errors as if the key doesn't exist in local storage
-            console.error(`Error parsing ${key} from MMKV:`, e.errors);
-            // todo fix ts
-            setValue(key, schemas[key].defaultValue);
+            console.error(`Error parsing ${key} from MMKV:`, z.prettifyError(e));
+            setValue(key, schemas[key].defaultValue as any);
           } else {
             throw e;
           }
         }
       } else {
         // no value? default.
-        setValue(key, schemas[key].defaultValue);
+        setValue(key, schemas[key].defaultValue as any);
       }
     }
   }, [setValue]);

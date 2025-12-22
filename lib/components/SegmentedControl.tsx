@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef, useEffect } from 'react';
 import { LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 
 import * as Haptics from 'expo-haptics';
 

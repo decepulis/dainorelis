@@ -2,6 +2,7 @@ import Airtable, { FieldSet, Records } from 'airtable';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import { z } from 'zod';
 
 import { Song, SongFile, SongFileSchema } from '../lib/schemas/songs';
 
@@ -244,7 +245,19 @@ async function updateSongs() {
         },
       };
     });
-    const validSongFile = SongFileSchema.parse(songFile);
+
+    let validSongFile: SongFile;
+    try {
+      validSongFile = SongFileSchema.parse(songFile);
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        console.error('❌ Airtable data validation failed:');
+        console.error(z.prettifyError(e));
+        process.exit(1);
+      }
+      throw e;
+    }
+
     const filteredSongFile = validSongFile.map((song) => {
       return {
         id: song.id,

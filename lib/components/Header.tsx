@@ -6,11 +6,11 @@ import Animated, {
   SharedValue,
   interpolate,
   useAnimatedStyle,
-  useScrollViewOffset,
+  useScrollOffset,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 
 import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -35,8 +35,8 @@ type HeaderBackgroundProps = {
 };
 
 export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBackgroundProps) {
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const headerStyle = useAnimatedStyle(() => ({
     opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
@@ -80,8 +80,8 @@ export const HeaderTitle = ({
   const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
 
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const hasSubtitleOrVariantName = !!subtitle || !!variantName;
   const showSubtitle = !!subtitle && !variantName;
