@@ -165,8 +165,8 @@ const songs: SongFile = [
       },
       "Music Author": "Taja",
       "Text Author": "Taja",
-      "LT Description": "Šioje dainoje pasakojama apie vienišumą ir ilgesį, kai žmogų supa tamsa ir šaltis, o sapnai jo nebelanko. Balto angelo ant debesies vaizdas gali simbolizuoti prarastą viltį ar tyrumą, bet tai nėra aiškiai pasakoma. Daina nemini jokių konkrečių lietuviškų tradicijų ar švenčių.",
-      "EN Description": "This song tells of a person experiencing loneliness and longing, wrapped in darkness and coldness, where dreams no longer come to them. The image of a white angel sleeping peacefully on a cloud may symbolize lost hope or innocence, but it is not stated directly. The song does not refer to any specific Lithuanian tradition or holiday.",
+      "LT Description": "Šioje dainoje pasakojama apie vienišumą ir ilgesį, kai žmogų supa tamsa ir šaltis, o sapnai jo nebelanko. Balto angelo ant debesies vaizdas gali simbolizuoti prarastą viltį ar tyrumą, bet tai nėra aiškiai pasakoma.",
+      "EN Description": "This song tells of a person experiencing loneliness and longing, wrapped in darkness and coldness, where dreams no longer come to them. The image of a white angel sleeping peacefully on a cloud may symbolize lost hope or innocence, but it is not stated directly.",
       "AI-Generated Description": true
     }
   },
@@ -479,7 +479,7 @@ const songs: SongFile = [
         "recHhFpNPl9aEniG8": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Ant kalno mūrai, joja lietuviai!\nAnt kalno mūrai, joja lietuviai!\nJoja, joja lietuvaičiai,\nNeša, neša jaunikaičiai,\nVainiką rūtų, vainiką rūtų!\n\nŠtai ir prijojo uošvės dvarelį\nŠtai ir prijojo uošvės dvarelį.\nKelkis, kelkis, mergužėle,\nBalta, graži lelijėle,\nŽirgelių girdyt, žirgelių girdyt.\n\nDar nesikelsiu, dar ne dienelė.\nDar nesikelsiu, dar ne dienelė.\nMan močiutė taip įsakė.\nSu berneliais nekalbėti.\nMočiutės klausau, širdelės klausau."
+          "Lyrics & Chords": "Ant kalno mūrai, joja lietuviai!\nAnt kalno mūrai, joja lietuviai!\nJoja, joja lietuvaičiai,\nNeša, neša vainikaitį\n     Vainiką rūtų, vainiką rūtų! (2k.)\n\nŠtai ir prijojo uošvės dvarelį\nŠtai ir prijojo uošvės dvarelį.\nKelkis, kelkis, mergužėle,\nBalta, graži lelijėle,\n     Žirgelių girdyt, žirgelių girdyt. (2k.)\n\nDar nesikelsiu, dar ne dienelė.\nDar nesikelsiu, dar ne dienelė.\nMan močiutė taip įsakė.\nSu berneliais nekalbėti.\n     Močiutės klausau, širdelės klausau. (2k.)\n"
         }
       },
       "Audio": {},
@@ -1044,7 +1044,7 @@ const songs: SongFile = [
         "recic8m6t544335Vu": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš nupirksiu batukus tau,\nBus raudoni labai gražūs,\nBet sunku bus išsirinkti,\nNes kojytės labai mažos. (2k.)\n\nJei nori, vyksime mes į marias.\nJei nori, vyksime mes į marias.\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nŽiūrėk kaip šoka, žiūrėk kaip šoka,\nKojytės mažos batais raudonais. (2k.)\n\nAš nunešiu maestrui Pėdro,\nKad sidabru juos apaustų,\nKad šilkais išsiuvinėtų\nIr kojyčių tau nespaustų. (2k.)\n\nJei nori vyksime..."
+          "Lyrics & Chords": "Aš nupirksiu batukus tau,\nBus raudoni labai gražūs,\nBet sunku bus išsirinkti,\nNes kojytės labai mažos. (2k.)\n\nJei nori, vyksime mes į marias.\nJei nori, vyksime mes į marias.\n     Žiūrėk kaip šoka, žiūrėk kaip šoka,\n     Žiūrėk kaip šoka, žiūrėk kaip šoka,\n     Žiūrėk kaip šoka, žiūrėk kaip šoka,\n     Kojytės mažos batais raudonais. (2k.)\n\nAš nunešiu maestrui Pėdro,\nKad sidabru juos apaustų,\nKad šilkais išsiuvinėtų\nIr kojyčių tau nespaustų. (2k.)\n\nJei nori vyksime...\n"
         }
       },
       "Audio": {},
@@ -1125,7 +1125,7 @@ const songs: SongFile = [
         "recGyZtJmbAsoWKjg": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Aš pasėjau linelį\nTėtušėlio daržely.\n_Ritin dobila,\nRitin dobilą,\nRitin dobil ja._\n\nIr išdygo linelis\nTėtušėlio daržely.\n_Ritin dobila..._\n\nIr užaugo linelis\nTėtušelio daržely.\n_Ritin dobila..._\n\nIr pražydo dobilas\nTėtušėlio daržely.\n_Ritin dobila..._"
+          "Lyrics & Chords": "Aš pasėjau linelį\nTėtušėlio daržely.\n     Ritin dobil, ritin dobil,\n     Ritin dobil ja. (2 k.)\n\nIr išdygo linelis\nTėtušėlio daržely.\n     Ritin dobil, ritin dobil,\n     Ritin dobil ja. (2 k.)\n\nIr užaugo linelis\nTėtušelio daržely.\n     Ritin dobil...\n\nIr pražydo linelis\nTėtušėlio daržely.\n     Ritin dobil..."
         }
       },
       "Audio": {
@@ -3553,7 +3553,7 @@ const songs: SongFile = [
         }
       },
       "LT Description": "Ši daina kalba apie žmogaus laimės paieškas ir ragina tarnauti Dievui, Tėvynei bei artimui. Joje pabrėžiamos tikėjimo, meilės ir vilties svarba bei raginama būti užjaučiantiems, ypač tiems, kurie galbūt paklydę. Daina gali simbolizuoti krikščioniškas vertybes ir bendruomeniškumą.",
-      "EN Description": "This song speaks about a person's search for happiness and encourages serving God, the homeland, and others. It mentions faith, love, and hope as guides in life and highlights the importance of compassion, especially towards those who may be lost or struggling. The text may symbolize Christian values and community, but it does not reference a specific Lithuanian holiday or historical event.",
+      "EN Description": "This song speaks about a person's search for happiness and encourages serving God, the homeland, and others. It mentions faith, love, and hope as guides in life and highlights the importance of compassion, especially towards those who may be lost or struggling. The text may symbolize Christian values and community.",
       "AI-Generated Description": true
     }
   },
@@ -3579,6 +3579,7 @@ const songs: SongFile = [
           "AI Generated": true
         }
       },
+      "Text Author": "Jonas Daugirdas",
       "LT Description": "Ši daina pasitelkia muzikos garsų pavadinimus (do, re, mi ir t. t.), kad apibūdintų žaismingą ir gyvybingą vaiko prigimtį. Kiekviena eilutė prasideda kitu garsu ir siejama su paprastais vaikystės momentais, pavyzdžiui, meilė tėvams ar lakstymas namuose. Daina gali simbolizuoti vaikystės džiaugsmą ir energiją.",
       "EN Description": "This song uses the syllables of the musical scale (do, re, mi, etc.) to describe the playful and lively nature of a child. Each line starts with a different note and connects it to a simple aspect of childhood, such as loving parents, being clever, or running around. The song may symbolize the innocence and energy of childhood, but it mainly celebrates everyday moments in a child's life.",
       "AI-Generated Description": true
@@ -5561,7 +5562,7 @@ const songs: SongFile = [
         "rec32aXTpgmebFxVS": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Išėjo tėvelis į mišką,\nIšėjo motinėlė į mišką;\nIšėjo tėvelis, išėjo motinėlė,\nIšėjo visi vaikai į mišką...\n\nPamatė...\n\nNušovė...\n\nParnešė...\n\nIškepė...\n\nSuvalgė..."
+          "Lyrics & Chords": "Išėjo tėvelis į mišką,\nIšėjo motinėlė į mišką;\nIšėjo tėvelis, išėjo motinėlė,\nIšėjo visi vaikai į mišką.\n\nPamatė tėvelis pelėdą, \nPamatė motinėlė pelėdą;\nPamatė tėvelis, pamatė motinėlė,\nPamatė visi vaikai pelėdą.\n\nNušovė tėvelis pelėdą...\n\nParnešė...\n\nIškepė...\n\nSuvalgė..."
         }
       },
       "Audio": {},
@@ -9683,6 +9684,8 @@ const songs: SongFile = [
           "AI Generated": true
         }
       },
+      "Music Author": "Saulius Mykolaitis",
+      "Text Author": "Saulius Mykolaitis",
       "LT Description": "Daina poetiškai kalba apie ilgesį, nežinomybę ir prasmės ieškojimą. Joje daug gamtos, nakties ir jausmų vaizdų, kurie gali simbolizuoti vidines kovas ar pokyčius. Tekstas atviras įvairioms interpretacijoms.",
       "EN Description": "The song uses poetic language to explore feelings of longing, uncertainty, and the search for meaning. It mixes images of nature, night, and personal emotions, possibly symbolizing inner struggles or transformation. There are references to hope, fear, and a relationship with the world that may suggest themes of personal growth, but the text leaves much open to interpretation.",
       "AI-Generated Description": true
@@ -12028,6 +12031,8 @@ const songs: SongFile = [
           "AI Generated": true
         }
       },
+      "Music Author": "Vytautas Kernagis",
+      "Text Author": "Vytautas Kernagis",
       "LT Description": "Ši daina ragina džiaugtis gyvenimu ir linksmintis, kol esame jauni, nes senatvėje tam gali nebelikti laiko. Žodžiai pabrėžia, kad jaunystė yra ypatingas ir nerūpestingas laikas. Daina gali atspindėti lietuvišką tradiciją vertinti jaunystę ir bendrą dainavimą.",
       "EN Description": "This song encourages young people to enjoy life and celebrate while they are still young, as old age will bring worries and less opportunity for fun. The lyrics reflect on youth as a precious, carefree time, and suggest that joy and happiness are natural when one is young. The song may symbolize a traditional attitude in Lithuanian culture that values youth, communal singing, and enjoying the present moment.",
       "AI-Generated Description": true
@@ -12422,7 +12427,7 @@ const songs: SongFile = [
         "recfUBmJ3xf2aCFs3": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pasėjau dobilą, ant aukšto kalnelio, (2k.)\nDobilo penki lapai,\nDobilėlio trys lapeliai, dobilo. (2k.)\n\nIšdygo dobilas, ant aukšto kalnelio.  (2k.)\nDobilo...\n\nUžaugo dobilas...\n\nPražydo dobilas...\n\nNupjoviau dobilą...\n\nSugrėbiau dobilą...\n\nSuvežiau dobilą..."
+          "Lyrics & Chords": "Pasėjau dobilą, ant aukšto kalnelio, (2k.)\n     Dobilo penki lapai,\n     Dobilėlio trys lapeliai, dobilo. (2k.)\n\nIšdygo dobilas, ant aukšto kalnelio.  (2k.)\n     Dobilo penki lapai...\n\nUžaugo dobilas...\n\nPražydo dobilas...\n\nNupjoviau dobilą...\n\nSugrėbiau dobilą...\n\nSuvežiau dobilą..."
         }
       },
       "Audio": {},
@@ -13513,7 +13518,7 @@ const songs: SongFile = [
         "recYo86KrZaD3peB7": {
           "Variant Name": "Žodžiai",
           "EN Variant Name": "Lyrics",
-          "Lyrics & Chords": "Pučia vėjas, neša laivą,\nNuneš mane į Lietuvą.  (2k.)\nTai bus linksma, tai bus linksma,\nTai bus linksma Lietuvoj!  (2k.)\n\nLaukia brolis, laukia sesė\nManęs grįžtant į Lietuvą  (2k.)\nTai bus linksma...\n\nLauk motulė, lauk tėvelis\nManęs grįžtant į Lietuvą.  (2k.)\nTai bus linksma..."
+          "Lyrics & Chords": "Pučia vėjas, neša laivą,\nNuneš mane į Lietuvą.  (2k.)\n     Tai bus linksma, tai bus linksma,\n     Tai bus linksma Lietuvoj!  (2k.)\n\nLaukia brolis, laukia sesė\nManęs grįžtant į Lietuvą  (2k.)\n     Tai bus linksma...\n\nLauk motulė, lauk tėvelis\nManęs grįžtant į Lietuvą.  (2k.)\n     Tai bus linksma..."
         }
       },
       "Audio": {},
@@ -15346,6 +15351,8 @@ const songs: SongFile = [
           "AI Generated": true
         }
       },
+      "Music Author": "Kęstutis Daugirdas",
+      "Text Author": "Kęstutis Daugirdas",
       "LT Description": "Ši linksma daina pasakoja apie smagią nuotaiką virtuvėje, kai gaminamas ir valgomas maistas. Daržovės ir kiti produktai vaizduojami kaip veikėjai, kurie šoka ir bendrauja, todėl valgymas tampa smagia švente. Daina gali simbolizuoti bendrumą ir džiaugsmą valgant kartu.",
       "EN Description": "This playful song describes the lively atmosphere of cooking and eating together in the kitchen. The lyrics personify vegetables and foods as characters dancing and interacting, making the process of preparing and enjoying a meal joyful and fun. It may symbolize the importance of food and togetherness in everyday Lithuanian life, but mainly it is a lighthearted celebration of mealtime.",
       "AI-Generated Description": true

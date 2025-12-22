@@ -6,7 +6,7 @@ import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle,
-  useScrollViewOffset,
+  useScrollOffset,
   useSharedValue,
 } from 'react-native-reanimated';
 
@@ -54,8 +54,7 @@ export default function Search({
   const separator = useThemeColor('separator');
   const card = useThemeColor('card');
   const isDark = useColorScheme() === 'dark';
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
   const headerHeight = useHeaderHeight();
   const { setDidSongFestivalLoad } = useDidImagesLoad();
   const [showClearButton, setShowClearButton] = useState(false);

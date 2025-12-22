@@ -25,6 +25,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: 'myapp',
   userInterfaceStyle: 'automatic',
   newArchEnabled: true,
+  experiments: {
+    reactCompiler: true,
+  },
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
