@@ -22,7 +22,6 @@ export default function SongMenu({ song }: Props) {
   const hasTranslation = Object.values(song.fields['Translations']).length > 0;
   const isDark = useColorScheme() === 'dark';
 
-  // TODO song info
   // TODO share sheet (dainorelis.app web app)
   const actions: (MenuAction | null)[] = [
     {

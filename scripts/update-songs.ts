@@ -20,7 +20,6 @@ const fieldFlags: Record<keyof Song['fields'], boolean> = {
   'Text Author': true,
   'LT Description': true,
   'EN Description': true,
-  'AI-Generated Description': true,
 } as const;
 
 const outputDir = path.join(__dirname, '..');
@@ -64,7 +63,6 @@ async function getSongs() {
         'Text Author',
         'LT Description',
         'EN Description',
-        'AI-Generated Description',
       ],
       sort: [{ field: 'Name', direction: 'asc' }],
       filterByFormula: 'NOT(Hide)',

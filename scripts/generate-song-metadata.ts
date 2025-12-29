@@ -21,8 +21,6 @@ const openai = new OpenAI({
 const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base('appW24b09D9VHYHfi');
 
 interface SongMetadata {
-  ltDescription: string;
-  enDescription: string;
   enTitle: string;
   enTranslation: string;
 }
@@ -39,25 +37,19 @@ Lyrics:
 ${lyrics}
 
 Provide the following:
-1. A short description in English (1-3 sentences) explaining what the song is about. Offer interpretation if themes are clear, but express uncertainty when speculating (use phrases like "gali simbolizuoti" instead of definitive statements). Focus more on the text than on interpretation. Use simple and accessible language. If the song references specific Lithuanian traditions, holidays, or historical events, briefly explain their significance. You don't need to mention the name of the song in the description.
+1. An English translation of the title
 
-2. A short description in Lithuanian (1-3 sentences) with the same information. Use simple and accessible language. Not everyone using reading this has the best Lithuanian skills.
-
-3. An English translation of the title
-
-3. An English translation of the lyrics. Ignore markdown links when translating. Try to preserve the poetic elements like rhythm when possible, while ensuring the meaning is accurately conveyed. For idiomatic expressions or culturally-specific concepts, aim for the closest English equivalent that captures the intended meaning.
+2. An English translation of the lyrics. Ignore markdown links when translating. Try to preserve the poetic elements like rhythm when possible, while ensuring the meaning is accurately conveyed. For idiomatic expressions or culturally-specific concepts, aim for the closest English equivalent that captures the intended meaning.
 
 Format your response as JSON:
 {
-  "enDescription": "English description here",
-  "ltDescription": "Lithuanian description here",
   "enTitle": "English translation of title here",
   "enTranslation": "English translation of lyrics here"
 }
 `;
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-4.1',
+      model: 'gpt-5.2',
       messages: [
         { role: 'system', content: 'You are an expert in Lithuanian music, culture, and poetry analysis.' },
         { role: 'user', content: prompt },
@@ -77,8 +69,6 @@ Format your response as JSON:
   } catch (error) {
     console.error(`Error generating metadata for "${songName}":`, error);
     return {
-      enDescription: `Failed to generate description.`,
-      ltDescription: `Failed to generate description.`,
       enTitle: `Failed to translate title.`,
       enTranslation: `Failed to generate translation.`,
     };
@@ -120,15 +110,7 @@ async function processSongs(limit?: number) {
     // Create a single query to get all the data we need
     let query = base('Songs').select({
       view: 'Grid view',
-      fields: [
-        'Name',
-        'Lyrics',
-        'LT Description',
-        'EN Description',
-        'AI-Generated Description',
-        'EN Title',
-        'EN Translation',
-      ],
+      fields: ['Name', 'Lyrics', 'AI-Generated Translation', 'EN Title', 'EN Translation'],
     });
 
     // Get all records (we'll filter for processing later)
@@ -164,23 +146,11 @@ async function processSongs(limit?: number) {
       const songName = record.fields.Name as string;
 
       // Skip if the song already has AI-generated metadata (but don't skip if this is a test run with limit)
-      if (
-        !limit &&
-        record.fields['LT Description'] &&
-        record.fields['EN Description'] &&
-        record.fields['EN Title'] &&
-        record.fields['EN Translation']
-      ) {
-        console.log(`Skipping "${songName}" - already has AI-generated metadata`);
+      if (!limit && record.fields['EN Title'] && record.fields['EN Translation']) {
+        console.log(`Skipping "${songName}" - already has translation`);
         skipped++;
         continue;
-      } else if (
-        limit &&
-        (record.fields['LT Description'] ||
-          record.fields['EN Description'] ||
-          record.fields['EN Title'] ||
-          record.fields['EN Translation'])
-      ) {
+      } else if (limit && (record.fields['EN Title'] || record.fields['EN Translation'])) {
         console.log(`Test run: Overwriting existing metadata for "${songName}"`);
       }
 
@@ -214,9 +184,7 @@ async function processSongs(limit?: number) {
         updates.push({
           id: record.id,
           fields: {
-            'EN Description': metadata.enDescription,
-            'LT Description': metadata.ltDescription,
-            'AI-Generated Description': true,
+            'AI-Generated Translation': true,
             'EN Title': metadata.enTitle,
             'EN Translation': metadata.enTranslation,
           },

@@ -12,6 +12,10 @@ export const useContentContainerStyle = () => {
   };
 };
 
+/**
+ * I don't remember why this complicated scroll view wrapper is necessary,
+ * TODO: At some point, I should try removing it to see what happens...
+ */
 const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewProps>(
   ({ children, contentContainerStyle: argContentContainerStyle, ...props }, ref) => {
     const contentContainerStyle = useContentContainerStyle();

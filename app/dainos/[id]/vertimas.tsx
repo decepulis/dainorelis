@@ -72,7 +72,7 @@ export default function Page() {
             {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
           </View>
           <Markdown>{firstTranslation['Lyrics']}</Markdown>
-          {song.fields['AI-Generated Description'] ? (
+          {firstTranslation['AI Generated'] ? (
             <View style={{ marginTop: padding * 2, opacity: isHighContrastEnabled ? 1 : 0.7 }}>
               <Pressable
                 style={{ flexDirection: 'row', alignItems: 'center', gap: padding / 2 }}
