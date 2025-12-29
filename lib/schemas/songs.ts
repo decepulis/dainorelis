@@ -21,7 +21,6 @@ export const SongSchema = z.object({
     'Text Author': z.string().optional(),
     'LT Description': z.string().optional(),
     'EN Description': z.string().optional(),
-    'AI-Generated Description': z.boolean().optional(),
   }),
 });
 export type Song = z.infer<typeof SongSchema>;

@@ -86,6 +86,7 @@ export const styles = StyleSheet.create({
     borderRadius: width,
     width: width,
     height: width,
+    flexBasis: width,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',

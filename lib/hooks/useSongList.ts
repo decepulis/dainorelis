@@ -57,10 +57,10 @@ const groupSongsByLetter = (songs: SongFile) => {
   const sections = Array.from(songsByLetter.entries()).map(([letter, songs]) => {
     return {
       title: letter,
-      // assume these are sorted by airtable
       data: songs,
     };
   });
+  sections.sort((a, b) => a.title.localeCompare(b.title, 'lt', { sensitivity: 'variant' }));
   return sections;
 };
 
@@ -81,16 +81,15 @@ export const useSongFestivalList = () => {
   return songsByPart;
 };
 
-type RenderItem = { type: 'render'; id: 'search' | 'search-background' };
 type SongItem = { type: 'song'; item: Song; id: string };
 type HeaderItem = { type: 'header'; item: string; id: string };
-export type SongListItem = RenderItem | SongItem | HeaderItem;
+export type SongListItem = SongItem | HeaderItem;
 
 /**
  * An output compatible with FlatList and FlashList, with search added on
  */
 const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
-  const items: (RenderItem | SongItem | HeaderItem)[] = [];
+  const items: (SongItem | HeaderItem)[] = [];
   sections.forEach((section) => {
     items.push({ type: 'header', item: section.title, id: section.title });
     section.data.forEach((song) => {
@@ -106,10 +105,7 @@ const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
 export const useManualItems = ({ isSongFestivalMode }: { isSongFestivalMode?: boolean }) => {
   const { t } = useTranslation();
 
-  let manualItems: SongListItem[] = [
-    { type: 'render', id: 'search' },
-    { type: 'render', id: 'search-background' },
-  ];
+  let manualItems: SongListItem[] = [];
   if (isSongFestivalMode) {
     manualItems.push({
       type: 'header',

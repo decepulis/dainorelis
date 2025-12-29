@@ -82,7 +82,7 @@ const en = {
 };
 const lt = {
   songs: 'Dainos',
-  allSongs: 'Visos',
+  allSongs: 'Visos dainos',
   favoriteSongs: 'Mėgstamos',
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
   noFavorites1: 'Žiūrėdami dainą, spauskite',

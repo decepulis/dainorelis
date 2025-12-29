@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Dainorėlis is a React Native mobile and web app built with Expo for viewing and performing Lithuanian folk songs. The app displays song lyrics with chords, translations, audio recordings, sheet music (PDFs), and AI-generated descriptions. All song data is sourced from an Airtable database.
+Dainorėlis is a React Native mobile and web app built with Expo for viewing and performing Lithuanian folk songs. The app displays song lyrics with chords, translations, audio recordings, sheet music (PDFs), and descriptions. All song data is sourced from an Airtable database.
 
 ## Essential Commands
 

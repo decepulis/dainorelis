@@ -1,16 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-
 import { HeaderBackground, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
@@ -68,31 +65,6 @@ export default function Page() {
               ? (song.fields['EN Description'] ?? song.fields['LT Description'])
               : song.fields['LT Description']}
           </Markdown>
-          {song.fields['AI-Generated Description'] ? (
-            <View style={{ marginTop: padding, opacity: isHighContrastEnabled ? 1 : 0.7 }}>
-              <Pressable
-                style={{ flexDirection: 'row', alignItems: 'center', gap: padding / 2 }}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
-                onPress={() => openFeedback(song.fields['Name'])}
-                hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
-              >
-                <FontAwesome6 name="wand-magic-sparkles" size={12} />
-                <View style={{ flexShrink: 1 }}>
-                  <ThemedText>
-                    {t('genAiText1')}{' '}
-                    <ThemedText
-                      style={[
-                        { textDecorationLine: isPressed ? undefined : 'underline', textDecorationColor: primary },
-                      ]}
-                    >
-                      {t('genAiText2')}
-                    </ThemedText>
-                  </ThemedText>
-                </View>
-              </Pressable>
-            </View>
-          ) : null}
         </View>
       </ScrollViewWithHeader>
     </>

@@ -1,4 +1,4 @@
-import React, { memo, startTransition, useCallback, useState } from 'react';
+import React, { startTransition, useCallback, useState } from 'react';
 import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -22,9 +22,6 @@ import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useSongList, { SongListItem, useManualItems } from '@/lib/hooks/useSongList';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
-
-const MemoListItem = memo(ListItem);
-const MemoListHeader = memo(ListHeader);
 
 export default function Index() {
   // just a bunch of global state
@@ -58,7 +55,6 @@ export default function Index() {
     },
     [titleLayout]
   );
-  const [searchHeight, setSearchHeight] = useState(0);
 
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(width - 80, 360);
@@ -67,75 +63,33 @@ export default function Index() {
   const logoContainerPaddingBottom = 100 + padding;
 
   const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
-  const visibleListItems = listItems.filter(
-    (item) => item.type !== 'render' && (listItems.length > 10 || item.type !== 'header')
-  );
+  const visibleListItems = listItems.filter((item) => listItems.length > 10 || item.type !== 'header');
   const footerTargetHeight =
-    height - visibleListItems.length * listItemHeight - headerHeight - searchHeight + padding + padding - padding / 4;
+    height - visibleListItems.length * listItemHeight - headerHeight + padding + padding - padding / 4;
   const footerHeight = Math.max(footerMinHeight, footerTargetHeight);
 
   // rendering
-  const renderItem = useCallback(
-    ({ item, index }: { item: SongListItem; index: number }) =>
-      item.type === 'render' ? (
-        item.id === 'search' ? (
-          <Search
-            scrollRef={listRef}
-            isFavorites={isFavorites}
-            setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
-            isSongFestivalMode={isSongFestivalMode}
-            setIsSongFestivalMode={(isSongFestivalMode) =>
-              startTransition(() => {
-                setIsSongFestivalMode(isSongFestivalMode);
-              })
-            }
-            setSearchText={(text) => startTransition(() => setSearchText(text))}
-            setSearchHeight={setSearchHeight}
-          />
-        ) : (
-          <View
-            style={[
-              styles.searchBackground,
-              {
-                marginTop: -searchHeight,
-                paddingTop: searchHeight,
-                backgroundColor: background,
-              },
-            ]}
-          />
-        )
-      ) : item.type === 'header' ? (
-        listItems.length > 10 ? (
-          <MemoListHeader title={item.item} background={background} separator={separator} />
-        ) : null
-      ) : (
-        <MemoListItem
-          item={item.item}
-          primary={primary}
-          favorites={favorites}
-          background={background}
-          separator={separator}
-          isLast={index === listItems.length - 1}
-        />
-      ),
-    [
-      background,
-      favorites,
-      isFavorites,
-      isSongFestivalMode,
-      listItems.length,
-      listRef,
-      primary,
-      searchHeight,
-      separator,
-    ]
-  );
+  const renderItem = ({ item, index }: { item: SongListItem; index: number }) =>
+    item.type === 'header' ? (
+      listItems.length > 10 ? (
+        <ListHeader title={item.item} background={background} separator={separator} />
+      ) : null
+    ) : (
+      <ListItem
+        item={item.item}
+        primary={primary}
+        favorites={favorites}
+        background={background}
+        separator={separator}
+        isLast={index === listItems.length - 1}
+      />
+    );
 
   return (
     <>
       <Stack.Screen
         options={{
-          headerBackground: () => <HeaderBackground scrollRef={listRef} shadow={false} />,
+          headerBackground: () => <HeaderBackground scrollRef={listRef} />,
           headerTitleAlign: 'center',
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} titleLayout={titleLayout}>
@@ -174,7 +128,6 @@ export default function Index() {
           // todo add jump-to-letter bar
           ref={listRef}
           data={listItems}
-          stickyHeaderIndices={[1]}
           renderItem={renderItem}
           keyboardDismissMode="on-drag"
           contentContainerStyle={contentContainerStyle}
@@ -217,7 +170,7 @@ export default function Index() {
                   style={[
                     styles.listFooter,
                     {
-                      minHeight: height - headerHeight - searchHeight,
+                      minHeight: height - headerHeight,
                     },
                   ]}
                 >
@@ -226,6 +179,18 @@ export default function Index() {
               ) : null}
             </View>
           }
+        />
+        <Search
+          scrollRef={listRef}
+          isFavorites={isFavorites}
+          setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
+          isSongFestivalMode={isSongFestivalMode}
+          setIsSongFestivalMode={(isSongFestivalMode) =>
+            startTransition(() => {
+              setIsSongFestivalMode(isSongFestivalMode);
+            })
+          }
+          setSearchText={(text) => startTransition(() => setSearchText(text))}
         />
       </View>
     </>
