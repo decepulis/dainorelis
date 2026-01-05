@@ -9,6 +9,7 @@ Dainorėlis is a React Native mobile and web app built with Expo for viewing and
 ## Essential Commands
 
 ### Development
+
 ```bash
 npm run dev              # Start Expo dev server (choose platform)
 npm run dev:web          # Start web development server
@@ -17,12 +18,14 @@ npm run dev:android      # Start Android development server (requires setup)
 ```
 
 ### Data Synchronization
+
 ```bash
 npm run update-songs     # Fetch songs from Airtable and regenerate search indices
 npm run generate-indices # Regenerate search indices (title and lyric search)
 ```
 
 ### Code Quality
+
 ```bash
 npm run lint             # Run ESLint
 npm run lint:fix         # Run ESLint with auto-fix
@@ -30,6 +33,7 @@ npm run format           # Format code with Prettier
 ```
 
 ### Building
+
 ```bash
 # Production builds for local device testing
 npx expo run:android --variant release --device
@@ -40,6 +44,7 @@ npx expo prebuild --clean
 ```
 
 ### AI Metadata Generation
+
 ```bash
 npm run generate-metadata       # Generate AI descriptions/translations for all songs
 npm run generate-metadata:test  # Test on first 5 songs only
@@ -48,6 +53,7 @@ npm run generate-metadata:test  # Test on first 5 songs only
 ## Architecture
 
 ### Core Technology Stack
+
 - **Framework**: Expo (React Native framework)
 - **Router**: expo-router (file-based routing)
 - **State Management**: React Context + MMKV storage for persistent settings
@@ -117,9 +123,12 @@ npm run generate-metadata:test  # Test on first 5 songs only
 
 **Platform-Specific Code**: Web-specific variants use `.web.ts` extension (e.g., `useColorScheme.web.ts`).
 
+**React Compiler**: This project uses React Compiler for automatic optimization. Do not use manual memoization techniques like `useCallback`, `useMemo`, or `React.memo` - the compiler handles this automatically.
+
 ## Environment Variables
 
 The app requires a `.env` file (see `.env.example`):
+
 - `AIRTABLE_TOKEN` - For fetching songs via Airtable API
 - `OPENAI_API_KEY` - For generating AI metadata
 - `SENTRY_AUTH_TOKEN` - For uploading source maps (production builds only)
@@ -138,6 +147,7 @@ For production releases, see the Expo documentation on creating production build
 ## Linting and Formatting
 
 ESLint uses Expo's flat config with Prettier integration. Key rules:
+
 - Prettier formatting enforced as errors
 - Unused imports are automatically flagged and removed
 - Ignores build artifacts (dist, ios, android, .expo)

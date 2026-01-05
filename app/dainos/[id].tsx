@@ -14,11 +14,18 @@ import { useHeaderHeight } from '@react-navigation/elements';
 import * as Sentry from '@sentry/react-native';
 
 import Button from '@/lib/components/Button';
-import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import {
+  HeaderBackground,
+  HeaderButtonContainer,
+  HeaderLeft,
+  HeaderTitle,
+  isLiquidGlassStyleHeader,
+  useHeaderLeftItems,
+} from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu from '@/lib/components/SongMenu';
+import SongMenu, { useSongMenuItem } from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -45,7 +52,7 @@ export default function Page() {
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const { value: showChords } = useStorage('showChords');
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
@@ -135,19 +142,20 @@ export default function Page() {
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = useCallback(
     (event: LayoutChangeEvent) => {
-      titleLayout.value = event.nativeEvent.layout;
+      titleLayout.set(event.nativeEvent.layout);
     },
     [titleLayout]
   );
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const showLyrics = isLyrics(activeVariant);
 
+  const songMenuItem = useSongMenuItem({ song });
+
   return (
     <Fragment>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground opaque />,
-          // TODO can I force this to re-render when activeVariant changes?
           headerTitle: () => (
             <HeaderTitle
               scrollRef={showLyrics ? scrollRef : undefined}
@@ -169,18 +177,46 @@ export default function Page() {
               title={title}
               subtitle={subtitle}
               variantName={variantName}
+              withControls
             />
           ),
-          headerLeft: (props) => <HeaderLeft {...props} />,
+          unstable_headerLeftItems: useHeaderLeftItems(),
+          headerLeft: HeaderLeft,
+          unstable_headerRightItems: isLiquidGlassStyleHeader()
+            ? () => [
+                {
+                  type: 'button',
+                  label: isFavorite ? t('removeFromFavorites') : t('addToFavorites'),
+                  onPress: () => {
+                    if (isFavorite) {
+                      setFavorites(favorites.filter((id) => id !== song.id));
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+                    } else {
+                      setFavorites([...favorites, song.id]);
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                    }
+                  },
+                  selected: isFavorite,
+                  icon: {
+                    type: 'sfSymbol',
+                    name: isFavorite ? 'heart.fill' : 'heart',
+                  },
+                },
+                songMenuItem,
+              ]
+            : undefined,
           headerRight: () => (
             <HeaderButtonContainer>
               <Button
-                onPress={() =>
-                  isFavorite
-                    ? setFavorites(favorites.filter((id) => id !== song.id))
-                    : setFavorites([...favorites, song.id])
-                }
-                haptics={isFavorite ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
+                onPress={() => {
+                  if (isFavorite) {
+                    setFavorites(favorites.filter((id) => id !== song.id));
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+                  } else {
+                    setFavorites([...favorites, song.id]);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                  }
+                }}
               >
                 <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
               </Button>
@@ -203,21 +239,29 @@ export default function Page() {
               },
             ]}
           >
-            <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
+            <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
+              {isLiquidGlassStyleHeader() ? (
+                <View
+                  style={{
+                    backgroundColor: primary,
+                    position: 'absolute',
+                    left: -maxWidthPadding.paddingLeft,
+                    right: -maxWidthPadding.paddingRight,
+                    top: -headerHeight * 10,
+                    bottom: -padding / 2,
+                  }}
+                />
+              ) : null}
               <View style={styles.titleAndSubtitle}>
-                <ThemedText bold style={[styles.mainTitle]}>
+                <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
                   {title}
                 </ThemedText>
-                {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
+                {subtitle ? (
+                  <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                    {subtitle}
+                  </ThemedText>
+                ) : null}
               </View>
-              {hasChords ? (
-                <Button
-                  onPress={() => setShowChords(!showChords)}
-                  haptics={showChords ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-                >
-                  <FontAwesome6 name="guitar" solid={showChords} size={16} color="white" />
-                </Button>
-              ) : null}
             </View>
 
             <Markdown showLinksAsChords showChords={hasChords && showChords}>
@@ -247,9 +291,7 @@ export default function Page() {
           </View>
         </ScrollViewWithHeader>
       ) : (
-        // TODO this not falling behind the menu bar makes me sad
-        <View style={{ flex: 1, paddingTop: headerHeight }}>
-          {/* TODO isTitleBehind on scroll */}
+        <View style={{ flex: 1, paddingTop: Platform.OS === 'android' ? headerHeight : undefined }}>
           {/* TODO scroll is off on load? */}
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}
@@ -264,8 +306,8 @@ export default function Page() {
               console.error(error);
               Sentry.captureException(error);
             }}
-            // TODO maybe a better offline experience?
-            renderActivityIndicator={(progress) => (
+            // TODO a better offline experience?
+            renderActivityIndicator={(_progress) => (
               <View
                 style={{
                   flex: 1,
@@ -294,6 +336,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   titleContainer: {
+    position: 'relative',
     marginTop: padding * 2,
     marginBottom: padding,
     flexDirection: 'row',

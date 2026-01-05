@@ -1,12 +1,14 @@
-import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, useColorScheme } from 'react-native';
+
+import { GlassView } from 'expo-glass-effect';
 
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
 import isLyrics from '../utils/isLyrics';
+import { isLiquidGlassStyleHeader } from './Header';
 import MenuView from './MenuView';
 
 type Props = {
@@ -32,23 +34,38 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
     };
   });
 
-  const onPressAction = useCallback(
-    (e: NativeActionEvent) => {
-      const { event } = e.nativeEvent;
-      setActiveVariantId(event);
-    },
-    [setActiveVariantId]
-  );
+  const onPressAction = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setActiveVariantId(event);
+  };
+
+  const Wrapper = ({ children }: { children: React.ReactNode }) =>
+    isLiquidGlassStyleHeader() ? (
+      <GlassView
+        style={{
+          height: 44,
+          borderRadius: 22,
+          paddingHorizontal: 22,
+          justifyContent: 'center',
+        }}
+      >
+        {children}
+      </GlassView>
+    ) : (
+      children
+    );
 
   return (
-    <MenuView
-      // on most platforms, this menu ends up left-justified
-      hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
-      actions={actions}
-      onPressAction={onPressAction}
-      title={t('variantsMenuTitle')}
-    >
-      {children}
-    </MenuView>
+    <Wrapper>
+      <MenuView
+        // on most platforms, this menu ends up left-justified
+        hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
+        actions={actions}
+        onPressAction={onPressAction}
+        title={t('variantsMenuTitle')}
+      >
+        {children}
+      </MenuView>
+    </Wrapper>
   );
 }

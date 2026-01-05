@@ -1,21 +1,27 @@
 import React, { startTransition, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Image } from 'expo-image';
-import { Link, Stack } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Link, Stack, router } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
 
 import Button from '@/lib/components/Button';
-import { HeaderBackground, HeaderButtonContainer, HeaderTitle } from '@/lib/components/Header';
+import {
+  HeaderBackground,
+  HeaderButtonContainer,
+  HeaderTitle,
+  isLiquidGlassStyleHeader,
+} from '@/lib/components/Header';
 import { NoFavorites, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import { ListHeader, ListItem, listItemHeight } from '@/lib/components/Index/ListItem';
 import Search from '@/lib/components/Index/Search';
-import { useContentContainerStyle } from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
@@ -28,13 +34,13 @@ export default function Index() {
   const inset = useSafeAreaInsets();
   const { width, height } = useSafeAreaFrame();
   const headerHeight = useHeaderHeight();
-  const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
+  const { setDidBackgroundLoad, setDidLogoLoad, setDidWordmarkLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
   const separator = useThemeColor('separator');
   const { value: favorites } = useStorage('favorites');
-  const contentContainerStyle = useContentContainerStyle();
+  const { t } = useTranslation();
 
   // list state
   const [isFavorites, setIsFavorites] = useState(false);
@@ -51,7 +57,7 @@ export default function Index() {
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = useCallback(
     (event: LayoutChangeEvent) => {
-      titleLayout.value = event.nativeEvent.layout;
+      titleLayout.set(event.nativeEvent.layout);
     },
     [titleLayout]
   );
@@ -59,7 +65,7 @@ export default function Index() {
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(width - 80, 360);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
-  const logoContainerPaddingTop = 100 + inset.top - headerHeight + 5; // idk why 5 it looks good
+  const logoContainerPaddingTop = 100 + inset.top + 5; // idk why 5 it looks good
   const logoContainerPaddingBottom = 100 + padding;
 
   const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
@@ -92,10 +98,25 @@ export default function Index() {
           headerBackground: () => <HeaderBackground scrollRef={listRef} />,
           headerTitleAlign: 'center',
           headerTitle: () => (
-            <HeaderTitle scrollRef={listRef} titleLayout={titleLayout}>
-              <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidLogoLoad(true)} />
+            <HeaderTitle scrollRef={listRef} titleLayout={titleLayout} center>
+              <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidWordmarkLoad(true)} />
             </HeaderTitle>
           ),
+          // For iOS 26+
+          unstable_headerRightItems: isLiquidGlassStyleHeader()
+            ? () => [
+                {
+                  type: 'button',
+                  label: t('settingsTitle'),
+                  onPress: () => router.navigate('/nustatymai'),
+                  icon: {
+                    type: 'sfSymbol',
+                    name: 'slider.horizontal.3',
+                  },
+                },
+              ]
+            : undefined,
+          // For everyone else
           headerRight: () => (
             <HeaderButtonContainer>
               <Link href="/nustatymai" asChild>
@@ -108,21 +129,6 @@ export default function Index() {
         }}
       />
       <View style={[styles.container, { backgroundColor: wideLayoutMode ? card0 : undefined }]}>
-        <Image
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: ultraWideLayoutMode
-              ? height
-              : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
-          }}
-          source={require('@/assets/images/miskas_fade_10.png')}
-          onLoadEnd={() => setDidBackgroundLoad(true)}
-          contentFit="cover"
-          contentPosition="bottom"
-        ></Image>
         <Animated.FlatList
           // todo reduce jank by telling it about height
           // todo add jump-to-letter bar
@@ -130,26 +136,61 @@ export default function Index() {
           data={listItems}
           renderItem={renderItem}
           keyboardDismissMode="on-drag"
-          contentContainerStyle={contentContainerStyle}
+          // contentContainerStyle={contentContainerStyle}
           ListHeaderComponent={
             <View
-              onLayout={calculateTitleHeight}
-              style={[
-                styles.logoContainer,
-                {
-                  marginTop: logoContainerPaddingTop,
-                  marginBottom: logoContainerPaddingBottom,
-                  width: logoContainerWidth,
-                  height: logoContainerHeight,
-                },
-              ]}
+              style={{
+                position: 'relative',
+                height: logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom,
+                paddingTop: logoContainerPaddingTop,
+                paddingBottom: logoContainerPaddingBottom,
+              }}
             >
+              {/* the background itself */}
               <Image
-                style={StyleSheet.absoluteFillObject}
-                source={require('@/assets/images/logo_white_v3.png')}
-                contentFit="contain"
-                onLoadEnd={() => setDidLogoLoad(true)}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: ultraWideLayoutMode
+                    ? height
+                    : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
+                }}
+                source={require('@/assets/images/miskas_fade_10.png')}
+                onLoadEnd={() => setDidBackgroundLoad(true)}
+                contentFit="cover"
+                contentPosition="bottom"
+              ></Image>
+              {/* feather the top for overscroll */}
+              <LinearGradient
+                colors={[`${background}`, `${background}00`]}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  height: 50,
+                  left: 0,
+                  right: 0,
+                }}
               />
+              {/* the logo is separate so we can measure its extents */}
+              <View
+                onLayout={calculateTitleHeight}
+                style={[
+                  styles.logoContainer,
+                  {
+                    width: logoContainerWidth,
+                    height: logoContainerHeight,
+                  },
+                ]}
+              >
+                <Image
+                  style={StyleSheet.absoluteFillObject}
+                  source={require('@/assets/images/logo_white_v3.png')}
+                  contentFit="contain"
+                  onLoadEnd={() => setDidLogoLoad(true)}
+                />
+              </View>
             </View>
           }
           ListFooterComponent={
@@ -182,6 +223,7 @@ export default function Index() {
         />
         <Search
           scrollRef={listRef}
+          top={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
           isFavorites={isFavorites}
           setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
           isSongFestivalMode={isSongFestivalMode}
@@ -203,7 +245,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginHorizontal: 'auto',
-    position: 'relative',
   },
   searchBackground: {
     width: '100%',

@@ -1,19 +1,16 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { HeaderBackground, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, HeaderTitle, useHeaderLeftItems } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
-import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
-import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song } from '@/lib/schemas/songs';
 import { splitTitle } from '@/lib/utils/useTitle';
 import songs from '@/songs';
@@ -28,10 +25,6 @@ export default function Page() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const { t, i18n } = useTranslation();
-  const openFeedback = useOpenFeedback();
-  const primary = useThemeColor('primary');
-  const { isHighContrastEnabled } = useAccessibilityInfo();
-  const [isPressed, setIsPressed] = useState(false);
 
   if (!song || !song.fields['LT Description']) {
     // TODO 404 not found
@@ -43,6 +36,7 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
+          unstable_headerLeftItems: useHeaderLeftItems(true),
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
           headerTitle: () => <HeaderTitle showTitle title={t('aboutSongTitle')} subtitle={title} />,

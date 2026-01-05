@@ -1,5 +1,5 @@
 PODS:
-  - AudioPro (10.1.2):
+  - AudioPro (9.9.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -56,6 +56,8 @@ PODS:
     - ExpoModulesCore
   - ExpoFont (14.0.10):
     - ExpoModulesCore
+  - ExpoGlassEffect (0.1.8):
+    - ExpoModulesCore
   - ExpoHaptics (15.0.8):
     - ExpoModulesCore
   - ExpoHead (6.0.21):
@@ -69,6 +71,8 @@ PODS:
     - SDWebImageSVGCoder (~> 1.7.0)
     - SDWebImageWebPCoder (~> 0.14.6)
   - ExpoKeepAwake (15.0.8):
+    - ExpoModulesCore
+  - ExpoLinearGradient (15.0.8):
     - ExpoModulesCore
   - ExpoLinking (8.0.11):
     - ExpoModulesCore
@@ -100,6 +104,8 @@ PODS:
   - ExpoSymbols (1.0.8):
     - ExpoModulesCore
   - ExpoSystemUI (6.0.9):
+    - ExpoModulesCore
+  - ExpoUI (0.2.0-beta.9):
     - ExpoModulesCore
   - ExpoWebBrowser (15.0.10):
     - ExpoModulesCore
@@ -1474,6 +1480,51 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
+  - react-native-keyboard-controller (1.18.5):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - react-native-keyboard-controller/common (= 1.18.5)
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - react-native-keyboard-controller/common (1.18.5):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - react-native-menu (2.0.0):
     - hermes-engine
     - RCTRequired
@@ -2055,7 +2106,7 @@ PODS:
     - ReactNativeDependencies
     - RNWorklets
     - Yoga
-  - RNScreens (4.19.0):
+  - RNScreens (4.18.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2077,9 +2128,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNScreens/common (= 4.19.0)
+    - RNScreens/common (= 4.18.0)
     - Yoga
-  - RNScreens/common (4.19.0):
+  - RNScreens/common (4.18.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2219,15 +2270,18 @@ DEPENDENCIES:
   - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
+  - ExpoGlassEffect (from `../node_modules/expo-glass-effect/ios`)
   - ExpoHaptics (from `../node_modules/expo-haptics/ios`)
   - ExpoHead (from `../node_modules/expo-router/ios`)
   - ExpoImage (from `../node_modules/expo-image/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - ExpoLinking (from `../node_modules/expo-linking/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - ExpoSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - ExpoSymbols (from `../node_modules/expo-symbols/ios`)
   - ExpoSystemUI (from `../node_modules/expo-system-ui/ios`)
+  - "ExpoUI (from `../node_modules/@expo/ui/ios`)"
   - ExpoWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
@@ -2268,6 +2322,7 @@ DEPENDENCIES:
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
+  - react-native-keyboard-controller (from `../node_modules/react-native-keyboard-controller`)
   - "react-native-menu (from `../node_modules/@react-native-menu/menu`)"
   - react-native-pdf (from `../node_modules/react-native-pdf`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -2337,6 +2392,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
     :path: "../node_modules/expo-font/ios"
+  ExpoGlassEffect:
+    :path: "../node_modules/expo-glass-effect/ios"
   ExpoHaptics:
     :path: "../node_modules/expo-haptics/ios"
   ExpoHead:
@@ -2345,6 +2402,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-image/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  ExpoLinearGradient:
+    :path: "../node_modules/expo-linear-gradient/ios"
   ExpoLinking:
     :path: "../node_modules/expo-linking/ios"
   ExpoModulesCore:
@@ -2355,6 +2414,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-symbols/ios"
   ExpoSystemUI:
     :path: "../node_modules/expo-system-ui/ios"
+  ExpoUI:
+    :path: "../node_modules/@expo/ui/ios"
   ExpoWebBrowser:
     :path: "../node_modules/expo-web-browser/ios"
   FBLazyVector:
@@ -2434,6 +2495,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
   react-native-blob-util:
     :path: "../node_modules/react-native-blob-util"
+  react-native-keyboard-controller:
+    :path: "../node_modules/react-native-keyboard-controller"
   react-native-menu:
     :path: "../node_modules/@react-native-menu/menu"
   react-native-pdf:
@@ -2518,22 +2581,25 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AudioPro: e4fa99954c783a5ac415b7a0e64c87caa4028718
+  AudioPro: 83e2e11bf4bff7fddb56875d80056406356e4136
   EXConstants: 805f35b1b295c542ca6acce836f21a1f9ee104d5
   Expo: 60c21ba34593688a2a6e8445c1f8b44abb0e3fae
   ExpoAsset: f867e55ceb428aab99e1e8c082b5aee7c159ea18
   ExpoBlur: b90747a3f22a8b6ceffd9cb0dc41a4184efdc656
   ExpoFileSystem: 858a44267a3e6e9057e0888ad7c7cfbf55d52063
   ExpoFont: 35ac6191ed86bbf56b3ebd2d9154eda9fad5b509
+  ExpoGlassEffect: 8ce45eca31f12e949e23a4ee13e2bfb59e9b0785
   ExpoHaptics: d3a6375d8dcc3a1083d003bc2298ff654fafb536
   ExpoHead: 9719a74953454fac328e90f34eea55ebbb3bbbf9
   ExpoImage: 686f972bff29525733aa13357f6691dc90aa03d8
   ExpoKeepAwake: 55f75eca6499bb9e4231ebad6f3e9cb8f99c0296
+  ExpoLinearGradient: 809102bdb979f590083af49f7fa4805cd931bd58
   ExpoLinking: 8f0aaf69aa56f832913030503b6263dc6f647f37
   ExpoModulesCore: f3da4f1ab5a8375d0beafab763739dbee8446583
   ExpoSplashScreen: bc3cffefca2716e5f22350ca109badd7e50ec14d
   ExpoSymbols: 349ee2b4d7d5ff3ea8436467914f8a67635aa354
   ExpoSystemUI: 2ad325f361a2fcd96a464e8574e19935c461c9cc
+  ExpoUI: b75e5ed95b5966b273f1305346f4b5fd911360be
   ExpoWebBrowser: 17b064c621789e41d4816c95c93f429b84971f52
   FBLazyVector: e95a291ad2dadb88e42b06e0c5fb8262de53ec12
   hermes-engine: 9f4dfe93326146a1c99eb535b1cb0b857a3cd172
@@ -2577,6 +2643,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 9050ee10c19f4f7fca8963d0211b2854d624973e
   React-microtasksnativemodule: f775db9e991c6f3b8ccbc02bfcde22770f96e23b
   react-native-blob-util: bfb80aa3cd30c5c13ed62d799fbb742ec6011135
+  react-native-keyboard-controller: 1ad78688f744e0ebdf3b04007b91089a254b80f9
   react-native-menu: 2de122c54dc10056932c0c0f73b82adfa4231faf
   react-native-pdf: 70836b3b48595c7f85a3aa2b5d122b175c455733
   react-native-safe-area-context: 37e680fc4cace3c0030ee46e8987d24f5d3bdab2
@@ -2614,7 +2681,7 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: 71ce9c28beb282aa720ea7b46980fff9669f428a
   RNGestureHandler: e0d0bce5599f6120b7adf90c38d2805e2935795f
   RNReanimated: 8a7182314bb7afc01041a529e409a9112c007a50
-  RNScreens: 6f7a6128b0d33ce66e60309b6c998a2235abe1f3
+  RNScreens: 61c18865ab074f4d995ac8d7cf5060522a649d05
   RNSentry: d32cbfc5b5a7cbefbcf51daa5bf00587d1298049
   RNWorklets: 9eb6d567fa43984e96b6924a6df504b8a15980cd
   SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
