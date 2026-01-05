@@ -1,10 +1,9 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, useState } from 'react';
 import { View } from 'react-native';
 
 import { MenuView as LibMenuView } from '@react-native-menu/menu';
 
 import { buttonSlop, styles as buttonStyles } from './Button';
-import SystemView from './SystemView';
 
 type Props = {
   /**
@@ -18,10 +17,9 @@ type Props = {
     left: number;
     right: number;
   }>;
-  asButton?: boolean;
 } & Omit<ComponentPropsWithoutRef<typeof LibMenuView>, 'hitSlop'>;
 
-const MenuView = ({ hitSlop: argHitSlop, asButton, children, style, ...props }: Props) => {
+const MenuView = ({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMenu, ...props }: Props) => {
   const hitSlop = {
     ...buttonSlop,
     ...argHitSlop,
@@ -39,19 +37,25 @@ const MenuView = ({ hitSlop: argHitSlop, asButton, children, style, ...props }: 
     paddingBottom: hitSlop.bottom,
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   // TODO ripple
   return (
     // TODO this hit slop thing doesn't work on android. the nested view is a misguided attempt to solve it
-    <LibMenuView hitSlop={hitSlop} style={[hitSlopMargin]} {...props}>
-      <View style={[buttonStyles.container, hitSlopPadding, style]}>
-        {asButton ? (
-          <SystemView shadow={false} style={[buttonStyles.button]}>
-            {children}
-          </SystemView>
-        ) : (
-          children
-        )}
-      </View>
+    <LibMenuView
+      hitSlop={hitSlop}
+      style={[hitSlopMargin]}
+      onOpenMenu={() => {
+        setIsMenuOpen(true);
+        onOpenMenu?.();
+      }}
+      onCloseMenu={() => {
+        setIsMenuOpen(false);
+        onCloseMenu?.();
+      }}
+      {...props}
+    >
+      <View style={[buttonStyles.container, hitSlopPadding, { opacity: isMenuOpen ? 0.5 : 1 }, style]}>{children}</View>
     </LibMenuView>
   );
 };

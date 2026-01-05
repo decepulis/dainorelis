@@ -1,13 +1,16 @@
 import { ComponentPropsWithoutRef, forwardRef, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
 
 import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
 
 import SystemView from './SystemView';
 
-const width = 32;
+const glassWidth = 44;
+const basicWidth = 32;
+const width = isLiquidGlassAvailable() ? glassWidth : basicWidth;
 const slop = (44 - width) / 2;
 export const buttonSlop = { top: slop, bottom: slop, left: slop, right: slop };
 
@@ -25,10 +28,12 @@ type Props = {
     left: number;
     right: number;
   }>;
+  noGlass?: boolean;
+  innerStyle?: StyleProp<ViewStyle>;
 } & Omit<ComponentPropsWithoutRef<typeof BorderlessButton>, 'hitSlop'>;
 
 const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
-  ({ children, onPress: argOnPress, haptics, style, hitSlop: argHitSlop, ...rest }, ref) => {
+  ({ children, onPress: argOnPress, haptics, style, hitSlop: argHitSlop, noGlass, innerStyle, ...rest }, ref) => {
     const onPress = useCallback(
       (pointerInside: boolean) => {
         if (haptics) {
@@ -43,6 +48,8 @@ const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
       ...buttonSlop,
       ...argHitSlop,
     };
+
+    const Wrapper = isLiquidGlassAvailable() ? (noGlass ? View : GlassView) : SystemView;
 
     return (
       // TODO iPad cursor hover styles
@@ -68,9 +75,9 @@ const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
         ]}
         {...rest}
       >
-        <SystemView shadow={false} style={styles.button}>
+        <Wrapper shadow={false} style={[styles.button, innerStyle]}>
           {children}
-        </SystemView>
+        </Wrapper>
       </BorderlessButton>
     );
   }

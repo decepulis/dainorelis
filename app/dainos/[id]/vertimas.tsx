@@ -7,7 +7,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
-import { HeaderBackground, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, HeaderTitle, useHeaderLeftItems } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import ThemedText from '@/lib/components/ThemedText';
@@ -48,8 +48,9 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
+          unstable_headerLeftItems: useHeaderLeftItems(true),
           headerLeft: (props) => <HeaderLeft {...props} modal />,
-          headerBackground: () => <HeaderBackground opaque />,
+          headerBackground: () => <HeaderBackground />,
           headerTitle: () => <HeaderTitle showTitle title={t('translationTitle')} subtitle={ogTitle} />,
         }}
       />

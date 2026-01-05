@@ -4,7 +4,7 @@ import { ConfigContext, ExpoConfig } from 'expo/config';
 import packageJson from './package.json';
 
 // Generate build number in format yymmdd##
-const buildToday = '01';
+const buildToday = '01'; // Increment this manually for multiple builds in one day
 const generateBuildNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
@@ -29,6 +29,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     reactCompiler: true,
   },
   ios: {
+    icon: './assets/images/icon.icon',
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
     buildNumber: buildNumber,

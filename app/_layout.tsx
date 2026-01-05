@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
 import { AudioPro, AudioProContentType } from 'react-native-audio-pro';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -33,7 +34,6 @@ function App({ onLayout }: AppProps) {
           screenOptions={{
             headerTransparent: true,
             title: '',
-            headerTintColor: '#fff',
           }}
         >
           <Stack.Screen name="index" />
@@ -60,7 +60,7 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
-  const { didBackgroundLoad, didLogoLoad } = useDidImagesLoad();
+  const { didLogoLoad, didWordmarkLoad, didBackgroundLoad } = useDidImagesLoad();
   const { value: colorSchemePreference } = useStorage('theme');
 
   // keep color scheme in sync with storage
@@ -94,10 +94,10 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didBackgroundLoad && didLogoLoad) {
+    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didLogoLoad && didBackgroundLoad && didWordmarkLoad) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didBackgroundLoad, didLogoLoad]);
+  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didLogoLoad, didBackgroundLoad, didWordmarkLoad]);
 
   if (asyncWorkIsDone && isColorSchemeSet) {
     return <App onLayout={() => setDidAppLayout(true)} />;
@@ -110,13 +110,15 @@ export default Sentry.wrap(function RootLayout() {
 
   return (
     <GestureHandlerRootView>
-      <StorageProvider>
-        <DidImagesLoadProvider>
-          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-            <AppWithLoading />
-          </ThemeProvider>
-        </DidImagesLoadProvider>
-      </StorageProvider>
+      <KeyboardProvider>
+        <StorageProvider>
+          <DidImagesLoadProvider>
+            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+              <AppWithLoading />
+            </ThemeProvider>
+          </DidImagesLoadProvider>
+        </StorageProvider>
+      </KeyboardProvider>
     </GestureHandlerRootView>
   );
 });
