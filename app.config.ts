@@ -85,6 +85,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
           'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',
           'node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf',
+          './assets/fonts/Modekan.ttf',
         ],
       },
     ],

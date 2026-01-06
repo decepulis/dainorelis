@@ -33,7 +33,7 @@
       </dict>
     </array>
     <key>CFBundleVersion</key>
-    <string>25123102</string>
+    <string>26010502</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
     <key>LSMinimumSystemVersion</key>
@@ -63,6 +63,7 @@
       <string>Nunito_800ExtraBold_Italic.ttf</string>
       <string>Nunito_900Black.ttf</string>
       <string>Nunito_900Black_Italic.ttf</string>
+      <string>Modekan.ttf</string>
     </array>
     <key>UIBackgroundModes</key>
     <array>

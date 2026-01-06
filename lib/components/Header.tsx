@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { LayoutRectangle, Platform, View } from 'react-native';
+import { DynamicColorIOS, LayoutRectangle, Platform, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -171,7 +171,11 @@ export const HeaderTitle = ({
                   position: 'relative',
                   top: !variantName ? 1 : 0,
                 },
-                isLiquidGlassStyleHeader() ? {} : { color: '#fff' },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {title}
@@ -192,7 +196,11 @@ export const HeaderTitle = ({
                   position: 'relative',
                   top: 0,
                 },
-                isLiquidGlassStyleHeader() ? {} : { color: '#fff' },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {subtitle}
@@ -223,7 +231,11 @@ export const HeaderTitle = ({
                   position: 'relative',
                   top: 0,
                 },
-                isLiquidGlassStyleHeader() ? {} : { color: '#fff' },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {variantName}

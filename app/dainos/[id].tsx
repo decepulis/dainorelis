@@ -30,6 +30,7 @@ import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
+import { fonts } from '@/lib/constants/themes';
 import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -248,7 +249,7 @@ export default function Page() {
                     left: -maxWidthPadding.paddingLeft,
                     right: -maxWidthPadding.paddingRight,
                     top: -headerHeight * 10,
-                    bottom: -padding / 2,
+                    bottom: -padding,
                   }}
                 />
               ) : null}
@@ -337,8 +338,8 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'relative',
-    marginTop: padding * 2,
-    marginBottom: padding,
+    marginTop: isLiquidGlassStyleHeader() ? padding : padding * 2,
+    marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
     flexDirection: 'row',
     gap: padding,
     alignItems: 'center',
@@ -348,6 +349,7 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     fontSize: 28,
+    ...fonts.display,
   },
   subtitle: {
     fontSize: 19,
