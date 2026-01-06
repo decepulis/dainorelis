@@ -26,10 +26,10 @@ import ThemedText from './ThemedText';
 
 const artwork = require('@/assets/images/icon.png');
 
-const padding = buttonSlop.left + buttonSlop.right;
+const padding = isLiquidGlassAvailable() ? 6 : buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
 const buttonWidth = buttonStyles.button.width;
-export const playerHeight = buttonStyles.button.height + 2 * padding;
+export const playerHeight = buttonWidth + 2 * padding;
 
 const springConfig: SpringConfig = {
   mass: 1,
@@ -205,7 +205,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
   // commit gesture stuff to styles
   const durationContainerStyles = useAnimatedStyle(() => ({
-    height: withSpring(isGesturingSv.get() ? padding : padding / 2, { mass: 1, damping: 30, stiffness: 500 }),
+    height: withSpring(isGesturingSv.get() ? 12 : 6, { mass: 1, damping: 30, stiffness: 500 }),
   }));
   const durationStyles = useAnimatedStyle(() => ({
     width: `${progressSv.get() * 100}%`,
@@ -264,47 +264,48 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
         style,
       ]}
     >
-      {/* TODO blocker? why are these not rippling? */}
-      <Button
-        noGlass
-        hitSlop={{ top: padding, bottom: padding, left: padding }}
-        style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
-        onPress={() => {
-          isOpenSv.set(!isOpenSv.get());
-          setLoadIntention(true);
-        }}
-      >
-        <Animated.View style={[infoButtonStyles]}>
-          <FontAwesome6
-            name="info"
-            size={isLiquidGlassAvailable() ? 18 : 15}
-            color={color}
-            style={{ position: 'relative', top: -1 }}
-          />
-        </Animated.View>
-        <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
-          <FontAwesome6 name="chevron-right" size={isLiquidGlassAvailable() ? 19 : 16} color={color} />
-        </Animated.View>
-      </Button>
-
-      <GestureDetector gesture={gesture}>
-        <Animated.View
-          style={[
-            opacityStyles,
-            {
-              position: 'absolute',
-              right:
-                Object.keys(media).length > 1
-                  ? padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding
-                  : padding + buttonWidth + padding + extraDurationPadding,
-              width: durationWidth,
-              top: padding,
-              bottom: padding,
-              justifyContent: Object.keys(media).length > 1 ? 'space-between' : 'center',
-            },
-          ]}
+      <View style={{ overflow: 'hidden', position: 'absolute', inset: 0 }}>
+        {/* TODO blocker? why are these not rippling? */}
+        <Button
+          noGlass
+          hitSlop={{ top: padding, bottom: padding, left: padding }}
+          style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
+          onPress={() => {
+            isOpenSv.set(!isOpenSv.get());
+            setLoadIntention(true);
+          }}
         >
-          {Object.keys(media).length > 1 ? (
+          <Animated.View style={[infoButtonStyles]}>
+            <FontAwesome6
+              name="info"
+              size={isLiquidGlassAvailable() ? 18 : 15}
+              color={color}
+              style={{ position: 'relative', top: -1 }}
+            />
+          </Animated.View>
+          <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
+            <FontAwesome6 name="chevron-right" size={isLiquidGlassAvailable() ? 19 : 16} color={color} />
+          </Animated.View>
+        </Button>
+
+        <GestureDetector gesture={gesture}>
+          <Animated.View
+            style={[
+              opacityStyles,
+              {
+                position: 'absolute',
+                right:
+                  Object.keys(media).length > 1
+                    ? padding + buttonWidth + padding + buttonWidth + padding + extraDurationPadding
+                    : padding + buttonWidth + padding + extraDurationPadding,
+                width: durationWidth,
+                top: padding,
+                bottom: padding,
+                justifyContent: 'center',
+                gap: 6,
+              },
+            ]}
+          >
             <View style={{ flexDirection: 'row', gap: padding / 2, justifyContent: 'space-between' }}>
               <ThemedText style={{ color, flexShrink: 1 }} numberOfLines={1}>
                 {i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name']}
@@ -320,91 +321,91 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
                 {time}
               </ThemedText>
             </View>
-          ) : null}
-          <Animated.View
-            style={[
-              durationContainerStyles,
-              {
-                borderRadius: 9999,
-                overflow: 'hidden',
-              },
-              isHighContrastEnabled
-                ? {
-                    borderColor: `${trackColor}64`,
-                    borderWidth: 1,
-                  }
-                : {
-                    backgroundColor: `${trackColor}64`,
-                  },
-            ]}
-          >
             <Animated.View
               style={[
-                durationStyles,
+                durationContainerStyles,
                 {
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
                   borderRadius: 9999,
-                  backgroundColor: trackColor,
+                  overflow: 'hidden',
                 },
+                isHighContrastEnabled
+                  ? {
+                      borderColor: `${trackColor}64`,
+                      borderWidth: 1,
+                    }
+                  : {
+                      backgroundColor: `${trackColor}64`,
+                    },
               ]}
+            >
+              <Animated.View
+                style={[
+                  durationStyles,
+                  {
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    borderRadius: 9999,
+                    backgroundColor: trackColor,
+                  },
+                ]}
+              />
+            </Animated.View>
+          </Animated.View>
+        </GestureDetector>
+
+        {Object.keys(media).length > 1 ? (
+          <Animated.View
+            style={[
+              opacityStyles,
+              {
+                position: 'absolute',
+                right: padding + buttonWidth + padding,
+                top: padding,
+                bottom: padding,
+              },
+            ]}
+          >
+            {/* TODO media menu closes when audio is playing */}
+            <MediaMenu
+              hitSlop={{ top: padding, bottom: padding }}
+              media={media}
+              activeMediaId={activeMediaId}
+              setActiveMediaId={(m) => {
+                setActiveMediaId(m);
+                AudioPro.clear();
+              }}
+              color={color}
             />
           </Animated.View>
-        </Animated.View>
-      </GestureDetector>
+        ) : null}
 
-      {Object.keys(media).length > 1 ? (
-        <Animated.View
-          style={[
-            opacityStyles,
-            {
-              position: 'absolute',
-              right: padding + buttonWidth + padding,
-              top: padding,
-              bottom: padding,
-            },
-          ]}
+        <Button
+          noGlass
+          hitSlop={{ top: padding, bottom: padding, right: padding }}
+          style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
+          onPress={() => {
+            if (!track) return;
+            if (playing) {
+              AudioPro.pause();
+            } else if (playingTrack) {
+              AudioPro.resume();
+            } else {
+              AudioPro.play(track);
+            }
+            setLoadIntention(true);
+          }}
         >
-          {/* TODO media menu closes when audio is playing */}
-          <MediaMenu
-            hitSlop={{ top: padding, bottom: padding }}
-            media={media}
-            activeMediaId={activeMediaId}
-            setActiveMediaId={(m) => {
-              setActiveMediaId(m);
-              AudioPro.clear();
-            }}
-            color={color}
-          />
-        </Animated.View>
-      ) : null}
-
-      <Button
-        noGlass
-        hitSlop={{ top: padding, bottom: padding, right: padding }}
-        style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
-        onPress={() => {
-          if (!track) return;
-          if (playing) {
-            AudioPro.pause();
-          } else if (playingTrack) {
-            AudioPro.resume();
-          } else {
-            AudioPro.play(track);
-          }
-          setLoadIntention(true);
-        }}
-      >
-        {loading ? (
-          <ActivityIndicator color={color} />
-        ) : playing ? (
-          <FontAwesome6 name="pause" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
-        ) : (
-          <FontAwesome6 name="play" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
-        )}
-      </Button>
+          {loading ? (
+            <ActivityIndicator color={color} />
+          ) : playing ? (
+            <FontAwesome6 name="pause" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+          ) : (
+            <FontAwesome6 name="play" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+          )}
+        </Button>
+      </View>
     </Wrapper>
   ) : null;
 }

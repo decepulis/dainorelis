@@ -235,7 +235,7 @@ export default function Search({
                 gap: padding / 3,
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingHorizontal: padding / 1.5,
+                paddingHorizontal: buttonSize / 3,
               },
             ]}
           >

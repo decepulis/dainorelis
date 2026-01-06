@@ -39,6 +39,10 @@ export const fonts = {
     fontWeight: Platform.select({ default: '900', android: 'normal' }),
     fontStyle: 'italic',
   },
+  display: {
+    fontFamily: 'Modekan',
+    fontWeight: '400',
+  },
 } as { [weight: string]: TextStyle };
 
 export interface Theme extends LibTheme {

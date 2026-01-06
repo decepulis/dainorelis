@@ -7,42 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		101EEC6BBDB14E23B4E70CDE /* Nunito_700Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46A07359B3414AA0817E0555 /* Nunito_700Bold.ttf */; };
+		0453A6B1CE294E27AF17D79D /* Nunito_500Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEC34C73B83F4EF793F474D0 /* Nunito_500Medium.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		37D310EA6F3F41329A263E5F /* Nunito_500Medium_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95DAFCD03D84189B7536C61 /* Nunito_500Medium_Italic.ttf */; };
+		2728840267E04E45AEC0F9C8 /* Modekan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92B6AAC56E5E4E80AC440A40 /* Modekan.ttf */; };
+		35FD6B55B0DC4850AB317A4C /* Nunito_800ExtraBold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD46DB96F5834A3FB2CE4ED0 /* Nunito_800ExtraBold_Italic.ttf */; };
+		37924EA740A3987CBE9A61CB /* libPods-Dainorlis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3FA225BB84E6DB2EB3C223D /* libPods-Dainorlis.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		5019826DDF1E41E18C3DE921 /* Nunito_800ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7734C2ED7E344F53805E07F1 /* Nunito_800ExtraBold.ttf */; };
-		5388B07630A66DD2A57297CD /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C09758CB50844118C3D1A19 /* ExpoModulesProvider.swift */; };
-		6FE0AD9B0ECC4C108D638082 /* Nunito_800ExtraBold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EFAEA7F6C8D45D98EB7ED0A /* Nunito_800ExtraBold_Italic.ttf */; };
-		75C8F9736F3666B9884E7CA4 /* libPods-Dainorlis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32B347DDA3373B1DA0DB470 /* libPods-Dainorlis.a */; };
-		A7FCD5520E144EA7897B27C2 /* Nunito_900Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB148A2D62A14B41BD414A5B /* Nunito_900Black.ttf */; };
-		ADF211E90CBD4BE6AF03E327 /* Nunito_900Black_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66E837C46D1C40F1A97C4B3B /* Nunito_900Black_Italic.ttf */; };
+		673048E0E307A33E0D00875F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB6DFF72621148F1B9E305 /* ExpoModulesProvider.swift */; };
+		6B007D5AD4214BF7B618C824 /* Nunito_900Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D215297049F0456E8F305FF3 /* Nunito_900Black.ttf */; };
+		7D0006EA81C0416D9DB730C9 /* Nunito_800ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B43A00990B99434E9103D597 /* Nunito_800ExtraBold.ttf */; };
+		9714EDC6EFE144D7BBD332B0 /* Nunito_500Medium_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52376FABA4B94E298E75AC1C /* Nunito_500Medium_Italic.ttf */; };
+		9C1C938076B2472F940D428A /* icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A69CB65538BE437B8AB9F77E /* icon.icon */; };
+		B54165D8D802461D97D68697 /* Nunito_700Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C599719B1264976953220B1 /* Nunito_700Bold.ttf */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		C38FAB51515C4E7DB76A90A1 /* Nunito_500Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A415E5969DC4806A946FE4E /* Nunito_500Medium.ttf */; };
-		DF2E6AD9888B41A1B1E35B7D /* Nunito_700Bold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C52915FE76542658939B13E /* Nunito_700Bold_Italic.ttf */; };
+		D0665D3C685745C79BDBD0D8 /* Nunito_700Bold_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8747ABBC0798441FBB5E9CAF /* Nunito_700Bold_Italic.ttf */; };
+		E5189117ED574821A36525B0 /* Nunito_900Black_Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A01948F4935446D9C5DECB6 /* Nunito_900Black_Italic.ttf */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F5D7DFC66294297FE64FFA83 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1234D8C03042464588D1AB94 /* PrivacyInfo.xcprivacy */; };
+		FA1E7A219DCA0EF2447414F4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 946714BBC0D1EBC484441219 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1234D8C03042464588D1AB94 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Dainorlis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dainorlis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dainorlis/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Dainorlis/Info.plist; sourceTree = "<group>"; };
-		1C52915FE76542658939B13E /* Nunito_700Bold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf"; sourceTree = "<group>"; };
-		2EFAEA7F6C8D45D98EB7ED0A /* Nunito_800ExtraBold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf"; sourceTree = "<group>"; };
-		46A07359B3414AA0817E0555 /* Nunito_700Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf"; sourceTree = "<group>"; };
-		5838B3D17D1A42E1CB987220 /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
-		5A415E5969DC4806A946FE4E /* Nunito_500Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf"; sourceTree = "<group>"; };
-		66E837C46D1C40F1A97C4B3B /* Nunito_900Black_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf"; sourceTree = "<group>"; };
-		6C09758CB50844118C3D1A19 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		7734C2ED7E344F53805E07F1 /* Nunito_800ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf"; sourceTree = "<group>"; };
-		8C31F9E5566A7037AEC23C65 /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
+		1F65790653CB4F963A73CA00 /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
+		4C599719B1264976953220B1 /* Nunito_700Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf"; sourceTree = "<group>"; };
+		52376FABA4B94E298E75AC1C /* Nunito_500Medium_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf"; sourceTree = "<group>"; };
+		8747ABBC0798441FBB5E9CAF /* Nunito_700Bold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_700Bold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf"; sourceTree = "<group>"; };
+		92B6AAC56E5E4E80AC440A40 /* Modekan.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Modekan.ttf; path = ../assets/fonts/Modekan.ttf; sourceTree = "<group>"; };
+		93DB6DFF72621148F1B9E305 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		946714BBC0D1EBC484441219 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9A01948F4935446D9C5DECB6 /* Nunito_900Black_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf"; sourceTree = "<group>"; };
+		A69CB65538BE437B8AB9F77E /* icon.icon */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icon.icon; path = Dainorlis/icon.icon; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Dainorlis/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B95DAFCD03D84189B7536C61 /* Nunito_500Medium_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf"; sourceTree = "<group>"; };
+		AD46DB96F5834A3FB2CE4ED0 /* Nunito_800ExtraBold_Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold_Italic.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf"; sourceTree = "<group>"; };
+		B43A00990B99434E9103D597 /* Nunito_800ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_800ExtraBold.ttf; path = "../node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CB148A2D62A14B41BD414A5B /* Nunito_900Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf"; sourceTree = "<group>"; };
-		D32B347DDA3373B1DA0DB470 /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3FA225BB84E6DB2EB3C223D /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D215297049F0456E8F305FF3 /* Nunito_900Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_900Black.ttf; path = "../node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf"; sourceTree = "<group>"; };
+		DEC34C73B83F4EF793F474D0 /* Nunito_500Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Nunito_500Medium.ttf; path = "../node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf"; sourceTree = "<group>"; };
+		E7612DDFCC7623648967A6C4 /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Dainorlis/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Dainorlis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Dainorlis-Bridging-Header.h"; path = "Dainorlis/Dainorlis-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -53,21 +57,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75C8F9736F3666B9884E7CA4 /* libPods-Dainorlis.a in Frameworks */,
+				37924EA740A3987CBE9A61CB /* libPods-Dainorlis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08169C7AF37AA350747BB468 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				C41C5B533DC5D2A328CD78EC /* Dainorlis */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* Dainorlis */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +73,8 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				1234D8C03042464588D1AB94 /* PrivacyInfo.xcprivacy */,
+				A69CB65538BE437B8AB9F77E /* icon.icon */,
+				946714BBC0D1EBC484441219 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Dainorlis;
 			sourceTree = "<group>";
@@ -86,34 +83,25 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				D32B347DDA3373B1DA0DB470 /* libPods-Dainorlis.a */,
+				C3FA225BB84E6DB2EB3C223D /* libPods-Dainorlis.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		421983C3909444D69A195D47 /* Resources */ = {
+		3654A097B246B038C9FE484D /* Dainorlis */ = {
 			isa = PBXGroup;
 			children = (
-				5A415E5969DC4806A946FE4E /* Nunito_500Medium.ttf */,
-				B95DAFCD03D84189B7536C61 /* Nunito_500Medium_Italic.ttf */,
-				46A07359B3414AA0817E0555 /* Nunito_700Bold.ttf */,
-				1C52915FE76542658939B13E /* Nunito_700Bold_Italic.ttf */,
-				7734C2ED7E344F53805E07F1 /* Nunito_800ExtraBold.ttf */,
-				2EFAEA7F6C8D45D98EB7ED0A /* Nunito_800ExtraBold_Italic.ttf */,
-				CB148A2D62A14B41BD414A5B /* Nunito_900Black.ttf */,
-				66E837C46D1C40F1A97C4B3B /* Nunito_900Black_Italic.ttf */,
+				93DB6DFF72621148F1B9E305 /* ExpoModulesProvider.swift */,
 			);
-			name = Resources;
-			path = "";
+			name = Dainorlis;
 			sourceTree = "<group>";
 		};
-		618B3CF75CD189B9061996B1 /* Pods */ = {
+		4D8835E96B6996976B4CF355 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5838B3D17D1A42E1CB987220 /* Pods-Dainorlis.debug.xcconfig */,
-				8C31F9E5566A7037AEC23C65 /* Pods-Dainorlis.release.xcconfig */,
+				E7612DDFCC7623648967A6C4 /* Pods-Dainorlis.debug.xcconfig */,
+				1F65790653CB4F963A73CA00 /* Pods-Dainorlis.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -131,9 +119,9 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				421983C3909444D69A195D47 /* Resources */,
-				618B3CF75CD189B9061996B1 /* Pods */,
-				08169C7AF37AA350747BB468 /* ExpoModulesProviders */,
+				C3F722EA34F642E5AC69E8CC /* Resources */,
+				4D8835E96B6996976B4CF355 /* Pods */,
+				8E6C7C744F085B0C3EC35322 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -148,6 +136,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8E6C7C744F085B0C3EC35322 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				3654A097B246B038C9FE484D /* Dainorlis */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,12 +153,20 @@
 			path = Dainorlis/Supporting;
 			sourceTree = "<group>";
 		};
-		C41C5B533DC5D2A328CD78EC /* Dainorlis */ = {
+		C3F722EA34F642E5AC69E8CC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6C09758CB50844118C3D1A19 /* ExpoModulesProvider.swift */,
+				DEC34C73B83F4EF793F474D0 /* Nunito_500Medium.ttf */,
+				52376FABA4B94E298E75AC1C /* Nunito_500Medium_Italic.ttf */,
+				4C599719B1264976953220B1 /* Nunito_700Bold.ttf */,
+				8747ABBC0798441FBB5E9CAF /* Nunito_700Bold_Italic.ttf */,
+				B43A00990B99434E9103D597 /* Nunito_800ExtraBold.ttf */,
+				AD46DB96F5834A3FB2CE4ED0 /* Nunito_800ExtraBold_Italic.ttf */,
+				D215297049F0456E8F305FF3 /* Nunito_900Black.ttf */,
+				9A01948F4935446D9C5DECB6 /* Nunito_900Black_Italic.ttf */,
+				92B6AAC56E5E4E80AC440A40 /* Modekan.ttf */,
 			);
-			name = Dainorlis;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,14 +177,14 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Dainorlis" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				35E9A9A9BFE1F2F780CFED95 /* [Expo] Configure project */,
+				31E955B0EB9F5D58CECF9C3B /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				05F4B5FEC8A94925B6CFA8AB /* Upload Debug Symbols to Sentry */,
-				405E7E4ED85709876FB4846A /* [CP] Embed Pods Frameworks */,
+				A2D7CA88259D4E9F8F9DE9BA /* Upload Debug Symbols to Sentry */,
+				6494CDDE1DFCCED823A276C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,8 +205,6 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
-						DevelopmentTeam = "5BPU37MJR9";
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -232,15 +234,17 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				C38FAB51515C4E7DB76A90A1 /* Nunito_500Medium.ttf in Resources */,
-				37D310EA6F3F41329A263E5F /* Nunito_500Medium_Italic.ttf in Resources */,
-				101EEC6BBDB14E23B4E70CDE /* Nunito_700Bold.ttf in Resources */,
-				DF2E6AD9888B41A1B1E35B7D /* Nunito_700Bold_Italic.ttf in Resources */,
-				5019826DDF1E41E18C3DE921 /* Nunito_800ExtraBold.ttf in Resources */,
-				6FE0AD9B0ECC4C108D638082 /* Nunito_800ExtraBold_Italic.ttf in Resources */,
-				A7FCD5520E144EA7897B27C2 /* Nunito_900Black.ttf in Resources */,
-				ADF211E90CBD4BE6AF03E327 /* Nunito_900Black_Italic.ttf in Resources */,
-				F5D7DFC66294297FE64FFA83 /* PrivacyInfo.xcprivacy in Resources */,
+				9C1C938076B2472F940D428A /* icon.icon in Resources */,
+				0453A6B1CE294E27AF17D79D /* Nunito_500Medium.ttf in Resources */,
+				9714EDC6EFE144D7BBD332B0 /* Nunito_500Medium_Italic.ttf in Resources */,
+				B54165D8D802461D97D68697 /* Nunito_700Bold.ttf in Resources */,
+				D0665D3C685745C79BDBD0D8 /* Nunito_700Bold_Italic.ttf in Resources */,
+				7D0006EA81C0416D9DB730C9 /* Nunito_800ExtraBold.ttf in Resources */,
+				35FD6B55B0DC4850AB317A4C /* Nunito_800ExtraBold_Italic.ttf in Resources */,
+				6B007D5AD4214BF7B618C824 /* Nunito_900Black.ttf in Resources */,
+				E5189117ED574821A36525B0 /* Nunito_900Black_Italic.ttf in Resources */,
+				2728840267E04E45AEC0F9C8 /* Modekan.ttf in Resources */,
+				FA1E7A219DCA0EF2447414F4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,20 +268,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n/bin/sh `\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('@sentry/react-native/package.json')) + '/scripts/sentry-xcode.sh'\"` `\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
 		};
-		05F4B5FEC8A94925B6CFA8AB /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh `${NODE_BINARY:-node} --print \"require('path').dirname(require.resolve('@sentry/react-native/package.json')) + '/scripts/sentry-xcode-debug-files.sh'\"`";
-		};
 		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,7 +290,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		35E9A9A9BFE1F2F780CFED95 /* [Expo] Configure project */ = {
+		31E955B0EB9F5D58CECF9C3B /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -324,7 +314,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Dainorlis/expo-configure-project.sh\"\n";
 		};
-		405E7E4ED85709876FB4846A /* [CP] Embed Pods Frameworks */ = {
+		6494CDDE1DFCCED823A276C1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -380,6 +370,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A2D7CA88259D4E9F8F9DE9BA /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh `${NODE_BINARY:-node} --print \"require('path').dirname(require.resolve('@sentry/react-native/package.json')) + '/scripts/sentry-xcode-debug-files.sh'\"`";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -388,7 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				5388B07630A66DD2A57297CD /* ExpoModulesProvider.swift in Sources */,
+				673048E0E307A33E0D00875F /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,12 +401,13 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5838B3D17D1A42E1CB987220 /* Pods-Dainorlis.debug.xcconfig */;
+			baseConfigurationReference = E7612DDFCC7623648967A6C4 /* Pods-Dainorlis.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Dainorlis/Dainorlis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BPU37MJR9;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -422,26 +427,24 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
-				PRODUCT_NAME = "Dainorlis";
+				PRODUCT_NAME = Dainorlis;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "5BPU37MJR9";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C31F9E5566A7037AEC23C65 /* Pods-Dainorlis.release.xcconfig */;
+			baseConfigurationReference = 1F65790653CB4F963A73CA00 /* Pods-Dainorlis.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Dainorlis/Dainorlis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BPU37MJR9;
 				INFOPLIST_FILE = Dainorlis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,14 +459,11 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dainorelis.dainorelis;
-				PRODUCT_NAME = "Dainorlis";
+				PRODUCT_NAME = Dainorlis;
 				SWIFT_OBJC_BRIDGING_HEADER = "Dainorlis/Dainorlis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "5BPU37MJR9";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};
@@ -471,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -534,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
