@@ -244,7 +244,7 @@ export const HeaderTitle = ({
               <FontAwesome6
                 name="circle-chevron-down"
                 size={9}
-                color={isLiquidGlassStyleHeader() ? text : '#fff'}
+                color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
                 style={{ marginTop: -1 }}
               />
             ) : null}

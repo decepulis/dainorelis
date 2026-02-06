@@ -26,6 +26,7 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
       id,
       title: i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'],
       state: activeVariantId === id ? 'on' : 'off',
+      // TODO right now I can't make this dynamic; let's move to the expo/ui menu and see if that helps
       imageColor: isDark ? 'white' : 'black',
       image: Platform.select({
         ios: isLyrics(variant) ? 'text.quote' : 'document',

@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'relative',
-    marginTop: isLiquidGlassStyleHeader() ? padding : padding * 2,
+    marginTop: isLiquidGlassStyleHeader() ? padding * 1.5 : padding * 2,
     marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
     flexDirection: 'row',
     gap: padding,

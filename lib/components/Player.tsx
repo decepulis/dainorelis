@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, StyleProp, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, DynamicColorIOS, StyleProp, View, ViewStyle } from 'react-native';
 import { AudioPro, useAudioPro } from 'react-native-audio-pro';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedReaction, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -247,8 +247,11 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
         <SystemView style={{ flex: 1 }}>{children}</SystemView>
       </Animated.View>
     );
-  const color = isLiquidGlassAvailable() ? text : '#ffffff';
-  const trackColor = isLiquidGlassAvailable() ? primary : '#ffffff';
+  const color = isLiquidGlassAvailable() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#ffffff';
+  const trackColor = isLiquidGlassAvailable()
+    ? DynamicColorIOS({ light: `${primary}64`, dark: '#ffffff64' })
+    : '#ffffff64';
+  const progressColor = isLiquidGlassAvailable() ? primary : '#ffffff';
 
   return activeMedia ? (
     <Wrapper
@@ -330,11 +333,11 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
                 },
                 isHighContrastEnabled
                   ? {
-                      borderColor: `${trackColor}64`,
+                      borderColor: trackColor,
                       borderWidth: 1,
                     }
                   : {
-                      backgroundColor: `${trackColor}64`,
+                      backgroundColor: trackColor,
                     },
               ]}
             >
@@ -347,7 +350,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
                     top: 0,
                     bottom: 0,
                     borderRadius: 9999,
-                    backgroundColor: trackColor,
+                    backgroundColor: progressColor,
                   },
                 ]}
               />
