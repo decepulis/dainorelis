@@ -1,26 +1,4 @@
 PODS:
-  - AudioPro (9.9.1):
-    - hermes-engine
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-Core-prebuilt
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - ReactNativeDependencies
-    - Yoga
   - EXConstants (55.0.3):
     - ExpoModulesCore
   - Expo (55.0.0-preview.9):
@@ -49,6 +27,8 @@ PODS:
     - ReactNativeDependencies
     - Yoga
   - ExpoAsset (55.0.3):
+    - ExpoModulesCore
+  - ExpoAudio (55.0.4):
     - ExpoModulesCore
   - ExpoBlur (55.0.4):
     - ExpoModulesCore
@@ -2396,10 +2376,10 @@ PODS:
   - Yoga (0.0.0)
 
 DEPENDENCIES:
-  - AudioPro (from `../node_modules/react-native-audio-pro`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
+  - ExpoAudio (from `../node_modules/expo-audio/ios`)
   - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - "ExpoDomWebView (from `../node_modules/@expo/dom-webview/ios`)"
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -2518,14 +2498,14 @@ SPEC REPOS:
     - SDWebImageWebPCoder
 
 EXTERNAL SOURCES:
-  AudioPro:
-    :path: "../node_modules/react-native-audio-pro"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
   Expo:
     :path: "../node_modules/expo"
   ExpoAsset:
     :path: "../node_modules/expo-asset/ios"
+  ExpoAudio:
+    :path: "../node_modules/expo-audio/ios"
   ExpoBlur:
     :path: "../node_modules/expo-blur/ios"
   ExpoDomWebView:
@@ -2737,10 +2717,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AudioPro: 83e2e11bf4bff7fddb56875d80056406356e4136
   EXConstants: 9b0ceaa3eb81fc2501ba4f857c1c108a5148c792
   Expo: 4bfa72dbfa43e212d6a3dac550ed70f6b054642b
   ExpoAsset: 247242c8177e7d9f80ce5590119b5dd09d97db10
+  ExpoAudio: 14c5909ec48267bfc514bb44c546fcf6fac93837
   ExpoBlur: 20dfc34d3d4fdc13f43e5e21d1aa37f9afb778a0
   ExpoDomWebView: c0343b93dabed758db1e14ef1d1e570a1498562a
   ExpoFileSystem: 134b6426e62c1a4e8a75504a3d01bf79b752dbac

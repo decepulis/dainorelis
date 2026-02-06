@@ -57,7 +57,7 @@ npm run generate-metadata:test  # Test on first 5 songs only
 - **Framework**: Expo (React Native framework)
 - **Router**: expo-router (file-based routing)
 - **State Management**: React Context + MMKV storage for persistent settings
-- **Audio**: react-native-audio-pro for background audio playback
+- **Audio**: expo-audio for background audio playback
 - **Search**: Fuse.js with pre-generated indices
 - **Backend**: Airtable (song database)
 - **AI**: OpenAI API for generating song descriptions and translations
@@ -116,7 +116,7 @@ npm run generate-metadata:test  # Test on first 5 songs only
 
 **I18n**: Uses i18next with Lithuanian (lt) and English (en) translations. Language files are in `lib/constants/i18n.ts`. The app detects device language and falls back to English.
 
-**Audio Playback**: Configured for background playback with lock screen controls. Uses `react-native-audio-pro` configured in `app/_layout.tsx`.
+**Audio Playback**: Configured for background playback with lock screen controls. Uses `expo-audio` configured in `app/_layout.tsx`.
 
 **Storage**: MMKV via `useStorage` hook for fast, synchronous persistent storage of user preferences (theme, language, etc.).
 

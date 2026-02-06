@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, DynamicColorIOS, StyleProp, View, ViewStyle } from 'react-native';
-import { AudioPro, useAudioPro } from 'react-native-audio-pro';
+import { ActivityIndicator, DynamicColorIOS, Image, StyleProp, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedReaction, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
+import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
 
@@ -24,7 +24,7 @@ import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const artwork = require('@/assets/images/icon.png');
+const artworkUrl = Image.resolveAssetSource(require('@/assets/images/icon.png')).uri;
 
 const padding = isLiquidGlassAvailable() ? 6 : buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
@@ -96,35 +96,17 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
     return activeMediaId ? media[activeMediaId] : Object.values(media)[0];
   }, [media, activeMediaId]);
 
-  // AudioPro state
-  const { state, position, duration, playingTrack } = useAudioPro();
-  const playing = state === 'PLAYING';
-  const loading = state === 'LOADING';
+  // expo-audio state
+  const player = useAudioPlayer(activeMedia?.URL ?? null);
+  const { playing, isBuffering: loading, currentTime, duration } = useAudioPlayerStatus(player);
 
-  const track = useMemo(
-    () =>
-      activeMedia
-        ? {
-            id: activeMedia.URL,
-            url: activeMedia.URL,
-            title,
-            artist: i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'],
-            artwork: artwork,
-          }
-        : null,
-    [activeMedia, title, i18n.language]
-  );
-  const [loadIntention, setLoadIntention] = useState(false);
+  // Lock screen controls
   useEffect(() => {
-    // if (track && loadIntention && !playingTrack) AudioPro.play(track, { autoPlay: false });
-  }, [track, loadIntention, playingTrack]);
-
-  useEffect(() => {
-    // Clean up when component unmounts or media changes
-    return () => {
-      AudioPro.clear();
-    };
-  }, []);
+    if (activeMedia) {
+      const variantName = i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'];
+      player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl });
+    }
+  }, [activeMedia, title, i18n.language, player]);
 
   // Manage animations
   const isOpenSv = useSharedValue(false);
@@ -159,20 +141,29 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const progressSv = useSharedValue(0);
   const gestureStartProgressSv = useSharedValue(0);
   const isGesturingSv = useSharedValue(false);
+  const seekTargetSv = useSharedValue<number | null>(null);
   const didBumpSv = useSharedValue(false);
 
   // sync state with time elapsed
   useEffect(() => {
-    if (state !== 'LOADING' && !isGesturingSv.get()) {
-      progressSv.set(duration ? position / duration : 0);
+    if (loading || isGesturingSv.get()) return;
+    const target = seekTargetSv.get();
+    if (target !== null) {
+      // wait for currentTime to catch up to the seek target before unlocking
+      if (Math.abs(currentTime - target) < 1) {
+        seekTargetSv.set(null);
+      }
+      return;
     }
-  }, [position, duration, isGesturingSv, progressSv, state]);
+    progressSv.set(duration ? currentTime / duration : 0);
+  }, [currentTime, duration, isGesturingSv, progressSv, loading, seekTargetSv]);
   const seekOnGestureFinalize = useCallback(
     (time: number) => {
-      AudioPro.seekTo(time * 1000);
+      seekTargetSv.set(time);
+      player.seekTo(time);
       isGesturingSv.set(false);
     },
-    [isGesturingSv]
+    [isGesturingSv, player, seekTargetSv]
   );
 
   // override playback state with gesture
@@ -199,7 +190,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
       }
     })
     .onEnd(() => {
-      const seekTime = (progressSv.get() * (duration || 0)) / 1000;
+      const seekTime = progressSv.get() * (duration || 0);
       scheduleOnRN(seekOnGestureFinalize, seekTime);
     });
 
@@ -217,9 +208,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   useAnimatedReaction(
     () => {
       const timeInSeconds =
-        timeMode.get() === 'elapsed'
-          ? (progressSv.get() * (duration || 0)) / 1000
-          : ((1 - progressSv.get()) * (duration || 0)) / 1000;
+        timeMode.get() === 'elapsed' ? progressSv.get() * (duration || 0) : (1 - progressSv.get()) * (duration || 0);
       const minutes = Math.floor(timeInSeconds / 60);
       const seconds = Math.floor(timeInSeconds % 60);
       const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -275,7 +264,6 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           onPress={() => {
             isOpenSv.set(!isOpenSv.get());
-            setLoadIntention(true);
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
@@ -375,10 +363,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
               hitSlop={{ top: padding, bottom: padding }}
               media={media}
               activeMediaId={activeMediaId}
-              setActiveMediaId={(m) => {
-                setActiveMediaId(m);
-                AudioPro.clear();
-              }}
+              setActiveMediaId={setActiveMediaId}
               color={color}
             />
           </Animated.View>
@@ -389,15 +374,11 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           onPress={() => {
-            if (!track) return;
             if (playing) {
-              AudioPro.pause();
-            } else if (playingTrack) {
-              AudioPro.resume();
+              player.pause();
             } else {
-              AudioPro.play(track);
+              player.play();
             }
-            setLoadIntention(true);
           }}
         >
           {loading ? (
