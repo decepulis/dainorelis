@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { startTransition, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, StyleProp, TextInput, View, ViewStyle } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
@@ -8,6 +8,7 @@ import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-cont
 
 import { GlassContainer, GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Stack, router } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
@@ -18,6 +19,7 @@ import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 
 import { useThemeColor } from '../../hooks/useThemeColor';
 import Button, { styles as buttonStyles } from '../Button';
+import { isLiquidGlassStyleHeader } from '../Header';
 import MenuView from '../MenuView';
 import SystemView from '../SystemView';
 import ThemedText from '../ThemedText';
@@ -72,11 +74,13 @@ export default function Search({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isAppWide = width > maxWidth;
   const compressedSearchWidth = buttonSize;
-  const expandedSearchWidth = isAppWide ? 360 : width - padding / 2 - padding / 2 - expandedSearchHeight - padding / 2;
+  const expandedSearchWidth = isAppWide
+    ? 360
+    : width - padding * 1.25 - padding * 1.25 - expandedSearchHeight - padding;
 
   const playlistMenuAnimatedStyle = useAnimatedStyle(() => {
     const targetScale = isSearchOpen ? 0 : 1;
-    const targetLeft = isSearchOpen ? padding * 2 : padding / 2;
+    const targetLeft = isSearchOpen ? padding * 2 : padding * 1.25;
     return {
       transform: [{ scale: isReduceMotionEnabled ? targetScale : withSpring(targetScale, springConfig) }],
       left: isReduceMotionEnabled ? targetLeft : withSpring(targetLeft, springConfig),
@@ -86,7 +90,7 @@ export default function Search({
   const searchBoxAnimatedStyle = useAnimatedStyle(() => {
     const targetWidth = isSearchOpen ? expandedSearchWidth : compressedSearchWidth;
     const targetHeight = isSearchOpen ? expandedSearchHeight : buttonSize;
-    const targetRight = isSearchOpen ? expandedSearchHeight + padding / 2 + padding / 2 : padding / 2;
+    const targetRight = isSearchOpen ? expandedSearchHeight + padding * 1.25 + padding : padding * 1.25;
 
     return {
       width: isReduceMotionEnabled ? targetWidth : withSpring(targetWidth, springConfig),
@@ -97,7 +101,7 @@ export default function Search({
 
   const cancelButtonAnimatedStyle = useAnimatedStyle(() => {
     const targetScale = isSearchOpen ? 1 : 0;
-    const targetRight = isSearchOpen ? padding / 2 : buttonSize + padding / 2;
+    const targetRight = isSearchOpen ? padding * 1.25 : buttonSize + padding * 1.25;
 
     return {
       right: isReduceMotionEnabled ? targetRight : withSpring(targetRight, springConfig),
@@ -223,7 +227,10 @@ export default function Search({
               state: isFavorites ? 'on' : 'off',
             },
           ]}
-          onPressAction={({ nativeEvent }) => setIsFavorites(nativeEvent.event === 'favoriteSongs')}
+          onPressAction={({ nativeEvent }) => {
+            setIsFavorites(nativeEvent.event === 'favoriteSongs');
+            scrollToTop();
+          }}
         >
           <ButtonWrapper
             style={[
@@ -310,5 +317,82 @@ export default function Search({
         </ButtonWrapper>
       </AnimatedGlassView>
     </AnimatedGlassContainer>
+  );
+}
+
+type IndexToolbarProps = {
+  listRef: AnimatedRef<Animated.FlatList<any>>;
+  scrollToSearchOffset: number;
+  isFavorites: boolean;
+  setIsFavorites: (value: boolean) => void;
+  setSearchText: (text: string) => void;
+};
+export function IndexToolbar({
+  listRef,
+  scrollToSearchOffset,
+  isFavorites,
+  setIsFavorites,
+  setSearchText,
+}: IndexToolbarProps) {
+  const { t } = useTranslation();
+  const primary = useThemeColor('primary');
+
+  if (!isLiquidGlassStyleHeader()) return null;
+
+  return (
+    <>
+      <Stack.SearchBar
+        placeholder={t('search')}
+        onChangeText={(e) => {
+          const text = e.nativeEvent.text;
+          startTransition(() => setSearchText(text));
+          if (text.length > 0) {
+            listRef.current?.scrollToOffset({
+              offset: scrollToSearchOffset,
+              animated: true,
+            });
+          }
+        }}
+        onFocus={() => {
+          listRef.current?.scrollToOffset({
+            offset: scrollToSearchOffset,
+            animated: true,
+          });
+        }}
+      />
+      <Stack.Toolbar>
+        <Stack.Toolbar.Menu
+          title={t('playlists')}
+          separateBackground
+          icon="music.note.list"
+          tintColor={isFavorites ? primary : undefined}
+        >
+          <Stack.Toolbar.MenuAction
+            isOn={!isFavorites}
+            onPress={() => {
+              startTransition(() => setIsFavorites(false));
+              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
+            }}
+          >
+            {t('allSongs')}
+          </Stack.Toolbar.MenuAction>
+          <Stack.Toolbar.MenuAction
+            isOn={isFavorites}
+            onPress={() => {
+              startTransition(() => setIsFavorites(true));
+              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
+            }}
+          >
+            {t('favoriteSongs')}
+          </Stack.Toolbar.MenuAction>
+        </Stack.Toolbar.Menu>
+        <Stack.Toolbar.SearchBarSlot />
+      </Stack.Toolbar>
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button icon="slider.horizontal.3" onPress={() => router.navigate('/nustatymai')}>
+          {t('settingsTitle')}
+        </Stack.Toolbar.Button>
+      </Stack.Toolbar>
+    </>
   );
 }

@@ -19,17 +19,15 @@ import {
   HeaderLeft,
   HeaderTitle,
   isLiquidGlassStyleHeader,
-  useHeaderLeftItems,
 } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu, { useSongMenuItem } from '@/lib/components/SongMenu';
+import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import { fonts } from '@/lib/constants/themes';
 import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -149,7 +147,15 @@ export default function Page() {
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const showLyrics = isLyrics(activeVariant);
 
-  const songMenuItem = useSongMenuItem({ song });
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      setFavorites(favorites.filter((id) => id !== song.id));
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+    } else {
+      setFavorites([...favorites, song.id]);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  };
 
   return (
     <Fragment>
@@ -180,51 +186,20 @@ export default function Page() {
               withControls
             />
           ),
-          unstable_headerLeftItems: useHeaderLeftItems(),
-          headerLeft: HeaderLeft,
-          unstable_headerRightItems: isLiquidGlassStyleHeader()
-            ? () => [
-                {
-                  type: 'button',
-                  label: isFavorite ? t('removeFromFavorites') : t('addToFavorites'),
-                  onPress: () => {
-                    if (isFavorite) {
-                      setFavorites(favorites.filter((id) => id !== song.id));
-                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-                    } else {
-                      setFavorites([...favorites, song.id]);
-                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                    }
-                  },
-                  selected: isFavorite,
-                  icon: {
-                    type: 'sfSymbol',
-                    name: isFavorite ? 'heart.fill' : 'heart',
-                  },
-                },
-                songMenuItem,
-              ]
+          headerLeft: !isLiquidGlassStyleHeader() ? HeaderLeft : undefined,
+          headerRight: !isLiquidGlassStyleHeader()
+            ? () => (
+                <HeaderButtonContainer>
+                  <Button onPress={toggleFavorite}>
+                    <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
+                  </Button>
+                  <SongMenu song={song} hasChords={hasChords} />
+                </HeaderButtonContainer>
+              )
             : undefined,
-          headerRight: () => (
-            <HeaderButtonContainer>
-              <Button
-                onPress={() => {
-                  if (isFavorite) {
-                    setFavorites(favorites.filter((id) => id !== song.id));
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-                  } else {
-                    setFavorites([...favorites, song.id]);
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                  }
-                }}
-              >
-                <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
-              </Button>
-              <SongMenu song={song} />
-            </HeaderButtonContainer>
-          ),
         }}
       />
+      <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
       {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View
@@ -336,7 +311,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'relative',
-    marginTop: isLiquidGlassStyleHeader() ? padding * 1.5 : padding * 2,
+    marginTop: isLiquidGlassStyleHeader() ? padding * 2 : padding * 2,
     marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
     flexDirection: 'row',
     gap: padding,
@@ -347,7 +322,6 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     fontSize: 28,
-    ...fonts.display,
   },
   subtitle: {
     fontSize: 19,

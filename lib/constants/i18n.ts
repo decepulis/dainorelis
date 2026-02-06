@@ -24,7 +24,9 @@ const getLanguageFromStorage: LanguageDetectorModule = {
 };
 
 const en = {
+  search: 'Search',
   songs: 'Songs',
+  playlists: 'Playlists',
   allSongs: 'All Songs',
   favoriteSongs: 'Favorites',
   favoriteSong: 'Favorite',
@@ -54,6 +56,7 @@ const en = {
   autoTheme: 'Auto',
   darkTheme: 'Dark',
   lightTheme: 'Light',
+  chords: 'Chords',
   showChords: 'Show chords',
   hideChords: 'Hide chords',
   musicBy: 'Music by ',
@@ -84,7 +87,9 @@ const en = {
   songFestivalRepertoire4: "Part IV: Let's open the hope chest of song & dance",
 };
 const lt = {
+  search: 'Ieškoti',
   songs: 'Dainos',
+  playlists: 'Grojaraščiai',
   allSongs: 'Visos dainos',
   favoriteSongs: 'Mėgstamos',
   addToFavorites: 'Pridėti prie mėgstamų',
@@ -113,6 +118,7 @@ const lt = {
   autoTheme: 'Auto',
   darkTheme: 'Tamsus',
   lightTheme: 'Šviesus',
+  chords: 'Akordai',
   showChords: 'Rodyti akordus',
   hideChords: 'Nerodyti akordų',
   musicBy: 'Muzika: ',

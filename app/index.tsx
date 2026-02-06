@@ -6,7 +6,7 @@ import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-cont
 
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link, Stack, router } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -21,7 +21,7 @@ import {
 import { NoFavorites, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import { ListHeader, ListItem, listItemHeight } from '@/lib/components/Index/ListItem';
-import Search from '@/lib/components/Index/Search';
+import Search, { IndexToolbar } from '@/lib/components/Index/Search';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
@@ -48,6 +48,11 @@ export default function Index() {
   const [searchText, setSearchText] = useState('');
   const listItems = useSongList({ isFavorites, isSongFestivalMode, searchText });
   const manualListItems = useManualItems({ isSongFestivalMode });
+
+  const showPlaylistHeader = isLiquidGlassStyleHeader() && isFavorites;
+  const displayItems = showPlaylistHeader
+    ? [{ type: 'header' as const, item: t('favoriteSongs'), id: 'playlistHeader' }, ...listItems]
+    : listItems;
 
   // some heights and stuff we need to know for layout and animation
   const wideLayoutMode = width > maxWidth;
@@ -77,7 +82,7 @@ export default function Index() {
   // rendering
   const renderItem = ({ item, index }: { item: SongListItem; index: number }) =>
     item.type === 'header' ? (
-      listItems.length > 10 ? (
+      listItems.length > 10 || item.id === 'playlistHeader' ? (
         <ListHeader title={item.item} background={background} separator={separator} />
       ) : null
     ) : (
@@ -87,7 +92,7 @@ export default function Index() {
         favorites={favorites}
         background={background}
         separator={separator}
-        isLast={index === listItems.length - 1}
+        isLast={index === displayItems.length - 1}
       />
     );
 
@@ -102,38 +107,32 @@ export default function Index() {
               <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidWordmarkLoad(true)} />
             </HeaderTitle>
           ),
-          // For iOS 26+
-          unstable_headerRightItems: isLiquidGlassStyleHeader()
-            ? () => [
-                {
-                  type: 'button',
-                  label: t('settingsTitle'),
-                  onPress: () => router.navigate('/nustatymai'),
-                  icon: {
-                    type: 'sfSymbol',
-                    name: 'slider.horizontal.3',
-                  },
-                },
-              ]
+          headerRight: !isLiquidGlassStyleHeader()
+            ? () => (
+                <HeaderButtonContainer>
+                  <Link href="/nustatymai" asChild>
+                    <Button>
+                      <FontAwesome6 name="sliders" size={16} color="#fff" />
+                    </Button>
+                  </Link>
+                </HeaderButtonContainer>
+              )
             : undefined,
-          // For everyone else
-          headerRight: () => (
-            <HeaderButtonContainer>
-              <Link href="/nustatymai" asChild>
-                <Button>
-                  <FontAwesome6 name="sliders" size={16} color="#fff" />
-                </Button>
-              </Link>
-            </HeaderButtonContainer>
-          ),
         }}
+      />
+      <IndexToolbar
+        listRef={listRef}
+        scrollToSearchOffset={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
+        isFavorites={isFavorites}
+        setIsFavorites={(v) => startTransition(() => setIsFavorites(v))}
+        setSearchText={(text) => startTransition(() => setSearchText(text))}
       />
       <View style={[styles.container, { backgroundColor: wideLayoutMode ? card0 : undefined }]}>
         <Animated.FlatList
           // todo reduce jank by telling it about height
           // todo add jump-to-letter bar
           ref={listRef}
-          data={listItems}
+          data={displayItems}
           renderItem={renderItem}
           keyboardDismissMode="on-drag"
           // contentContainerStyle={contentContainerStyle}
@@ -221,19 +220,21 @@ export default function Index() {
             </View>
           }
         />
-        <Search
-          scrollRef={listRef}
-          top={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
-          isFavorites={isFavorites}
-          setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
-          isSongFestivalMode={isSongFestivalMode}
-          setIsSongFestivalMode={(isSongFestivalMode) =>
-            startTransition(() => {
-              setIsSongFestivalMode(isSongFestivalMode);
-            })
-          }
-          setSearchText={(text) => startTransition(() => setSearchText(text))}
-        />
+        {!isLiquidGlassStyleHeader() && (
+          <Search
+            scrollRef={listRef}
+            top={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
+            isFavorites={isFavorites}
+            setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
+            isSongFestivalMode={isSongFestivalMode}
+            setIsSongFestivalMode={(isSongFestivalMode) =>
+              startTransition(() => {
+                setIsSongFestivalMode(isSongFestivalMode);
+              })
+            }
+            setSearchText={(text) => startTransition(() => setSearchText(text))}
+          />
+        )}
       </View>
     </>
   );

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { DynamicColorIOS, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { fonts } from '@/lib/constants/themes';
+
 import { isLiquidGlassStyleHeader } from '../Header';
 
 export default function HeaderLogo({ onLoadEnd, headerHeight }: { headerHeight: number; onLoadEnd?: () => void }) {
@@ -16,6 +18,7 @@ export default function HeaderLogo({ onLoadEnd, headerHeight }: { headerHeight: 
       adjustsFontSizeToFit
       style={[
         {
+          ...fonts.brand,
           textAlign: 'center',
           fontSize: 28,
           marginBottom: -4, // optical alignment

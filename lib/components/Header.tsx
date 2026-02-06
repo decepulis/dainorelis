@@ -13,8 +13,7 @@ import Animated, {
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
-import { Link, router } from 'expo-router';
-import { ExtendedStackNavigationOptions } from 'expo-router/build/layouts/StackClient';
+import { Link, Stack, router } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 
@@ -159,7 +158,7 @@ export const HeaderTitle = ({
         <Animated.View style={[animatedTitleStyle]}>
           {title ? (
             <ThemedText
-              numberOfLines={hasSubtitleOrVariantName ? 1 : 2}
+              numberOfLines={1}
               bold
               style={[
                 {
@@ -257,7 +256,9 @@ export const HeaderTitle = ({
 
 type HeaderLeftProps = {
   modal?: boolean;
-} & Parameters<NonNullable<ExtendedStackNavigationOptions['headerLeft']>>[0];
+  href?: string;
+  canGoBack?: boolean;
+};
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   return (
@@ -273,24 +274,14 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   );
 };
 
-export const useHeaderLeftItems: (modal?: boolean) => ExtendedStackNavigationOptions['unstable_headerLeftItems'] = (
-  modal
-) => {
-  if (Platform.OS !== 'ios' || parseInt(Platform.Version as string, 10) < 26) {
-    return undefined;
-  }
-  return ({ canGoBack }) => [
-    {
-      type: 'button',
-      label: 'Back',
-      onPress: () => router.navigate(canGoBack ? '../' : '/'),
-      icon: {
-        type: 'sfSymbol',
-        name: modal ? 'xmark' : 'chevron.left',
-      },
-    },
-  ];
-};
+export function ModalToolbar() {
+  if (!isLiquidGlassStyleHeader()) return null;
+  return (
+    <Stack.Toolbar placement="left">
+      <Stack.Toolbar.Button icon="xmark" onPress={() => router.navigate('../')} />
+    </Stack.Toolbar>
+  );
+}
 
 const gap = buttonSlop.left + buttonSlop.right;
 
