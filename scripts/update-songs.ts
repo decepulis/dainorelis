@@ -227,9 +227,6 @@ async function updateSongs() {
         if (!isAlreadyTranslated)
           console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
       }
-      if (!song.fields['EN Description'] || !song.fields['LT Description']) {
-        console.warn(`⚠️  No descriptions found for song "${song.fields.Name}". Consider generating them with AI.`);
-      }
 
       return {
         id: song.id,
