@@ -72,11 +72,11 @@ export default function Search({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isAppWide = width > maxWidth;
   const compressedSearchWidth = buttonSize;
-  const expandedSearchWidth = isAppWide ? 360 : width - padding - padding - expandedSearchHeight - padding / 2;
+  const expandedSearchWidth = isAppWide ? 360 : width - padding / 2 - padding / 2 - expandedSearchHeight - padding / 2;
 
   const playlistMenuAnimatedStyle = useAnimatedStyle(() => {
     const targetScale = isSearchOpen ? 0 : 1;
-    const targetLeft = isSearchOpen ? padding * 2 : padding;
+    const targetLeft = isSearchOpen ? padding * 2 : padding / 2;
     return {
       transform: [{ scale: isReduceMotionEnabled ? targetScale : withSpring(targetScale, springConfig) }],
       left: isReduceMotionEnabled ? targetLeft : withSpring(targetLeft, springConfig),
@@ -86,7 +86,7 @@ export default function Search({
   const searchBoxAnimatedStyle = useAnimatedStyle(() => {
     const targetWidth = isSearchOpen ? expandedSearchWidth : compressedSearchWidth;
     const targetHeight = isSearchOpen ? expandedSearchHeight : buttonSize;
-    const targetRight = isSearchOpen ? expandedSearchHeight + padding + padding / 2 : padding;
+    const targetRight = isSearchOpen ? expandedSearchHeight + padding / 2 + padding / 2 : padding / 2;
 
     return {
       width: isReduceMotionEnabled ? targetWidth : withSpring(targetWidth, springConfig),
@@ -97,7 +97,7 @@ export default function Search({
 
   const cancelButtonAnimatedStyle = useAnimatedStyle(() => {
     const targetScale = isSearchOpen ? 1 : 0;
-    const targetRight = isSearchOpen ? padding : buttonSize + padding;
+    const targetRight = isSearchOpen ? padding / 2 : buttonSize + padding / 2;
 
     return {
       right: isReduceMotionEnabled ? targetRight : withSpring(targetRight, springConfig),
