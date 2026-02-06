@@ -1,6 +1,8 @@
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
@@ -70,62 +72,99 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
     ) : null,
   ].filter(Boolean);
 
+  const swipeableRef = useRef<ReanimatedSwipeable>(null);
+
+  const renderRightActions = () => (
+    <RectButton
+      style={[styles.swipeAction, { backgroundColor: primary }]}
+      onPress={() => {
+        toggleFavorite();
+        swipeableRef.current?.close();
+      }}
+    >
+      <FontAwesome6 name="heart" size={20} solid={!isFavorite} color="#fff" />
+    </RectButton>
+  );
+
   return (
     <View style={[styles.outerContainer, { backgroundColor: background }]}>
-      <Link href={`/dainos/${item.id}`} asChild>
-        <Link.Trigger>
-          <RectButton>
-            <View
-              style={[
-                styles.container,
-                styles.itemContainer,
-                {
-                  borderBottomColor: separator,
-                  borderBottomWidth: Platform.OS === 'ios' && !isLast ? StyleSheet.hairlineWidth : 0,
-                },
-              ]}
-            >
-              <View style={styles.itemText}>
-                <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
-                  {title}
-                </ThemedText>
-                {subtitle ? (
-                  <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
+      <ReanimatedSwipeable
+        ref={swipeableRef}
+        renderRightActions={renderRightActions}
+        overshootRight={false}
+        onSwipeableWillOpen={() => {
+          toggleFavorite();
+          swipeableRef.current?.close();
+        }}
+      >
+        <Link href={`/dainos/${item.id}`} asChild>
+          <Link.Trigger>
+            <RectButton>
+              <View
+                style={[
+                  styles.itemContainer,
+                  {
+                    backgroundColor: background,
+                    paddingVertical: PixelRatio.roundToNearestPixel(paddingVertical),
+                    paddingLeft: padding,
+                    paddingRight: padding,
+                  },
+                ]}
+              >
+                <View style={styles.itemText}>
+                  <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+                    {title}
+                  </ThemedText>
+                  {subtitle ? (
+                    <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
+                  ) : null}
+                </View>
+                {icons.length > 0 ? (
+                  <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
                 ) : null}
               </View>
-              {icons.length > 0 ? (
-                <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
+            </RectButton>
+          </Link.Trigger>
+          <Link.Preview
+            style={{
+              backgroundColor: background,
+              paddingHorizontal: padding,
+              paddingVertical: padding * 1.5,
+              width: 340,
+              height: 440,
+            }}
+          >
+            <View style={{ marginBottom: 20, gap: 4 }}>
+              <ThemedText bold style={{ fontSize: 22 }}>
+                {title}
+              </ThemedText>
+              {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
+              {isLyrics(firstLyrics) ? (
+                <Markdown showLinksAsChords showChords={false}>
+                  {firstLyrics['Lyrics & Chords']}
+                </Markdown>
               ) : null}
             </View>
-          </RectButton>
-        </Link.Trigger>
-        <Link.Preview
+          </Link.Preview>
+          <Link.Menu>
+            <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
+              {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+            </Link.MenuAction>
+          </Link.Menu>
+        </Link>
+      </ReanimatedSwipeable>
+      {Platform.OS === 'ios' && !isLast ? (
+        <View
           style={{
-            backgroundColor: background,
-            paddingHorizontal: padding,
-            paddingVertical: padding * 1.5,
-            width: 340,
-            height: 440,
+            position: 'absolute',
+            bottom: 0,
+            left: padding,
+            right: 0,
+            height: StyleSheet.hairlineWidth,
+            backgroundColor: separator,
           }}
-        >
-          <View style={{ marginBottom: 20, gap: 4 }}>
-            <ThemedText bold style={{ fontSize: 22 }}>
-              {title}
-            </ThemedText>
-            {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
-            {isLyrics(firstLyrics) ? (
-              <Markdown showLinksAsChords showChords={false}>
-                {firstLyrics['Lyrics & Chords']}
-              </Markdown>
-            ) : null}
-          </View>
-        </Link.Preview>
-        <Link.Menu>
-          <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
-            {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-          </Link.MenuAction>
-        </Link.Menu>
-      </Link>
+        />
+      ) : null}
     </View>
   );
 }
@@ -201,5 +240,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     marginLeft: padding,
+  },
+  swipeAction: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 70,
   },
 });
