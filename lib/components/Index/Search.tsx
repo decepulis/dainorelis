@@ -24,8 +24,8 @@ import ThemedText from '../ThemedText';
 
 const AnimatedGlassContainer = createAnimatedComponent(GlassContainer);
 const AnimatedGlassView = createAnimatedComponent(GlassView);
-const expandedSearchHeight = isLiquidGlassAvailable() ? 62 : 44;
-const buttonSize = isLiquidGlassAvailable() ? 62 : 44;
+const expandedSearchHeight = isLiquidGlassAvailable() ? 56 : 44;
+const buttonSize = isLiquidGlassAvailable() ? 56 : 44;
 
 type Props = {
   scrollRef: AnimatedRef<Animated.FlatList<any>>;
