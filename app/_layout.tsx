@@ -8,18 +8,12 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { ThemeProvider } from '@react-navigation/native';
-import * as Sentry from '@sentry/react-native';
 
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
-
-Sentry.init({
-  dsn: 'https://32e018a748671fa59063479f82810140@o4509108229242880.ingest.us.sentry.io/4509108265680896',
-  sampleRate: __DEV__ ? 0 : 1,
-});
 
 type AppProps = {
   onLayout: (e: LayoutChangeEvent) => void;
@@ -105,7 +99,7 @@ function AppWithLoading() {
   return null;
 }
 
-export default Sentry.wrap(function RootLayout() {
+export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
@@ -121,4 +115,4 @@ export default Sentry.wrap(function RootLayout() {
       </KeyboardProvider>
     </GestureHandlerRootView>
   );
-});
+}

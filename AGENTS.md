@@ -61,7 +61,6 @@ npm run generate-metadata:test  # Test on first 5 songs only
 - **Search**: Fuse.js with pre-generated indices
 - **Backend**: Airtable (song database)
 - **AI**: OpenAI API for generating song descriptions and translations
-- **Monitoring**: Sentry
 
 ### Project Structure
 
@@ -131,7 +130,6 @@ The app requires a `.env` file (see `.env.example`):
 
 - `AIRTABLE_TOKEN` - For fetching songs via Airtable API
 - `OPENAI_API_KEY` - For generating AI metadata
-- `SENTRY_AUTH_TOKEN` - For uploading source maps (production builds only)
 
 ## Testing and Release
 
