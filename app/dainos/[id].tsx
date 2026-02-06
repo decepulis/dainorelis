@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -7,10 +7,11 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
+import { useRoute } from '@react-navigation/native';
 
 import Button from '@/lib/components/Button';
 import {
@@ -47,6 +48,7 @@ export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
+  const background = useThemeColor('background');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
@@ -57,6 +59,16 @@ export default function Page() {
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
+
+  // Detect if this screen is preloaded for peek preview.
+  // Stack.Toolbar calls navigation.setOptions() which crashes on placeholder screens.
+  const route = useRoute();
+  const navigation = useNavigation();
+  const navigationState = navigation.getState();
+  const isPreloaded =
+    navigationState?.type === 'stack' &&
+    (navigationState as any).preloadedRoutes?.some((r: any) => r.key === route.key);
+
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
@@ -158,7 +170,7 @@ export default function Page() {
   };
 
   return (
-    <Fragment>
+    <View style={{ flex: 1, backgroundColor: background }}>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground opaque />,
@@ -199,7 +211,14 @@ export default function Page() {
             : undefined,
         }}
       />
-      <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
+      {!isPreloaded && (
+        <SongDetailToolbar
+          song={song}
+          hasChords={hasChords}
+          isFavorite={isFavorite}
+          onToggleFavorite={toggleFavorite}
+        />
+      )}
       {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View
@@ -296,7 +315,7 @@ export default function Page() {
         </View>
       )}
       <Player title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
-    </Fragment>
+    </View>
   );
 }
 
