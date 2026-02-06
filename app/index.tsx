@@ -26,7 +26,6 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useSongList, { SongListItem, useManualItems } from '@/lib/hooks/useSongList';
-import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 export default function Index() {
@@ -39,7 +38,6 @@ export default function Index() {
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
   const separator = useThemeColor('separator');
-  const { value: favorites } = useStorage('favorites');
   const { t } = useTranslation();
 
   // list state
@@ -89,7 +87,6 @@ export default function Index() {
       <ListItem
         item={item.item}
         primary={primary}
-        favorites={favorites}
         background={background}
         separator={separator}
         isLast={index === displayItems.length - 1}

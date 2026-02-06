@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
+import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
@@ -9,24 +11,39 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import useStorage from '@/lib/hooks/useStorage';
 import { Song } from '@/lib/schemas/songs';
+import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 
+import Markdown from '../Markdown';
 import ThemedText from '../ThemedText';
 
 type Props = {
   item: Song;
   primary: string;
-  favorites: string[];
   background: string;
   separator: string;
   isLast?: boolean;
 };
-export function ListItem({ item, background, primary, favorites, separator, isLast }: Props) {
-  // TODO slide to favorite
+export function ListItem({ item, background, primary, separator, isLast }: Props) {
+  const { t } = useTranslation();
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
   const { width } = useSafeAreaFrame();
+  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
+  const isFavorite = favorites.includes(item.id);
+  const firstLyrics = Object.values(item.fields.Lyrics)[0];
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      setFavorites(favorites.filter((id) => id !== item.id));
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+    } else {
+      setFavorites([...favorites, item.id]);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  };
 
   // from 375px to 450px, gently scale the icon size up
   const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
@@ -54,36 +71,60 @@ export function ListItem({ item, background, primary, favorites, separator, isLa
   ].filter(Boolean);
 
   return (
-    <View style={styles.outerContainer}>
+    <View style={[styles.outerContainer, { backgroundColor: background }]}>
       <Link href={`/dainos/${item.id}`} asChild>
-        <RectButton
-          style={{
-            backgroundColor: background,
-          }}
-        >
-          <View
-            style={[
-              styles.container,
-              styles.itemContainer,
-              {
-                borderBottomColor: separator,
-                borderBottomWidth: Platform.OS === 'ios' && !isLast ? StyleSheet.hairlineWidth : 0,
-              },
-            ]}
-          >
-            <View style={styles.itemText}>
-              <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
-                {title}
-              </ThemedText>
-              {subtitle ? (
-                <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
+        <Link.Trigger>
+          <RectButton>
+            <View
+              style={[
+                styles.container,
+                styles.itemContainer,
+                {
+                  borderBottomColor: separator,
+                  borderBottomWidth: Platform.OS === 'ios' && !isLast ? StyleSheet.hairlineWidth : 0,
+                },
+              ]}
+            >
+              <View style={styles.itemText}>
+                <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+                  {title}
+                </ThemedText>
+                {subtitle ? (
+                  <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
+                ) : null}
+              </View>
+              {icons.length > 0 ? (
+                <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
               ) : null}
             </View>
-            {icons.length > 0 ? (
-              <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
+          </RectButton>
+        </Link.Trigger>
+        <Link.Preview
+          style={{
+            backgroundColor: background,
+            paddingHorizontal: padding,
+            paddingVertical: padding * 1.5,
+            width: 340,
+            height: 440,
+          }}
+        >
+          <View style={{ marginBottom: 20, gap: 4 }}>
+            <ThemedText bold style={{ fontSize: 22 }}>
+              {title}
+            </ThemedText>
+            {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
+            {isLyrics(firstLyrics) ? (
+              <Markdown showLinksAsChords showChords={false}>
+                {firstLyrics['Lyrics & Chords']}
+              </Markdown>
             ) : null}
           </View>
-        </RectButton>
+        </Link.Preview>
+        <Link.Menu>
+          <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
+            {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+          </Link.MenuAction>
+        </Link.Menu>
       </Link>
     </View>
   );

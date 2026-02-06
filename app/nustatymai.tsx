@@ -8,7 +8,7 @@ import { Stack } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
-import { HeaderBackground, HeaderLeft, ModalToolbar, isLiquidGlassStyleHeader } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, ModalToolbar } from '@/lib/components/Header';
 import MenuView from '@/lib/components/MenuView';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import Switch from '@/lib/components/Switch';
