@@ -42,8 +42,6 @@ If you _do_ want to deal with TestFlight or Google Play Console to test a produc
 
 - [Create a production build locally](https://docs.expo.dev/guides/local-app-production/)
 
-  > You may have to make `SENTRY_AUTH_TOKEN` available in your environment.
-
 ### Make changes
 
 [Routes](https://docs.expo.dev/router/introduction) live in the **app** directory. Those routes' components/hooks/utils/whatever live in the **lib** directory.

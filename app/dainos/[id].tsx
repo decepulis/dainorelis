@@ -11,7 +11,6 @@ import { Stack, router, useLocalSearchParams } from 'expo-router';
 
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
-import * as Sentry from '@sentry/react-native';
 
 import Button from '@/lib/components/Button';
 import {
@@ -305,7 +304,6 @@ export default function Page() {
             spacing={padding}
             onError={(error) => {
               console.error(error);
-              Sentry.captureException(error);
             }}
             // TODO a better offline experience?
             renderActivityIndicator={(_progress) => (

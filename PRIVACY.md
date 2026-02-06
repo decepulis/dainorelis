@@ -38,7 +38,6 @@ We do **not** use this data for marketing, tracking, or advertising.
 
 We use the following third-party services that may collect information to provide their functionality:
 
-- [**Sentry**](https://sentry.io/privacy/): Used for error tracking and performance monitoring
 - [**Google Play Services**](https://www.google.com/policies/privacy/): Required for app distribution and certain background services on Android devices
 
 Each of these services has its own privacy policy that governs the use of data they may collect.

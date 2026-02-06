@@ -24,7 +24,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: './assets/images/icon.png',
   scheme: 'myapp',
   userInterfaceStyle: 'automatic',
-  newArchEnabled: true,
   experiments: {
     reactCompiler: true,
   },
@@ -47,7 +46,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
-    edgeToEdgeEnabled: true,
   },
   web: {
     bundler: 'metro',
@@ -55,14 +53,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     favicon: './assets/images/favicon.png',
   },
   plugins: [
-    [
-      '@sentry/react-native/expo',
-      {
-        url: 'https://sentry.io/',
-        project: 'react-native',
-        organization: 'darius-cepulis',
-      },
-    ],
     'expo-router',
     [
       'expo-splash-screen',
