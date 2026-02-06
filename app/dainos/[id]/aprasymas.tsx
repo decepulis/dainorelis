@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { HeaderBackground, HeaderLeft, HeaderTitle, useHeaderLeftItems } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -36,12 +36,12 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
-          unstable_headerLeftItems: useHeaderLeftItems(true),
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
           headerTitle: () => <HeaderTitle showTitle title={t('aboutSongTitle')} subtitle={title} />,
         }}
       />
+      <ModalToolbar />
       <ScrollViewWithHeader>
         <View
           style={[

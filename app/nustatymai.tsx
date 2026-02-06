@@ -8,7 +8,7 @@ import { Stack } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
-import { HeaderBackground, HeaderLeft, useHeaderLeftItems } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, ModalToolbar, isLiquidGlassStyleHeader } from '@/lib/components/Header';
 import MenuView from '@/lib/components/MenuView';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import Switch from '@/lib/components/Switch';
@@ -96,11 +96,11 @@ export default function Page() {
     <>
       <Stack.Screen
         options={{
-          unstable_headerLeftItems: useHeaderLeftItems(true),
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground />,
         }}
       />
+      <ModalToolbar />
       <ScrollViewWithHeader>
         <View style={[styles.container, maxWidthPadding]}>
           <View style={[styles.section]}>
