@@ -1,7 +1,7 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
 // Import package.json to get version number
-import packageJson from './package.json';
+import packageJson from './package.json' with { type: 'json' };
 
 // Generate build number in format yymmdd##
 const buildToday = '01'; // Increment this manually for multiple builds in one day
