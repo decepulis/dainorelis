@@ -7,33 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C8F26950B5B6685BB58947 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 955DD4AA5689D479D966C5B1 /* PrivacyInfo.xcprivacy */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		3266966C3C351CE803D0BB4E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128742880A58C7428F1118D1 /* ExpoModulesProvider.swift */; };
+		2649A81AB9F6FAF5484E68B4 /* libPods-Dainorlis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F311A9FCE38902BD5C3DE22C /* libPods-Dainorlis.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		74658A2C44696D6B6B84F4C9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4AC9138D1D6469348DD2DB0B /* PrivacyInfo.xcprivacy */; };
+		679990D5F17B656C2B4D85E7 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4F8ACE67DBA54CCFDBC357 /* ExpoModulesProvider.swift */; };
+		6A4FE7C10DE0427495948252 /* Modekan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94AEF493BF324B869C858C2C /* Modekan.ttf */; };
+		8A0B2EFEEE09477CA2E6FE8D /* icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = C65938FAF67445428B140159 /* icon.icon */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DBCF929EFC4B3BF8F57FAC7F /* libPods-Dainorlis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4500F98706D43273B284149E /* libPods-Dainorlis.a */; };
-		E2B6CFF158C1429FACC22179 /* icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 565EAD4C67CC4F90AA70C154 /* icon.icon */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F3C7D53E762844239B7BBD89 /* Modekan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 956924DB70CB40239011CF18 /* Modekan.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		128742880A58C7428F1118D1 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Dainorlis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dainorlis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dainorlis/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Dainorlis/Info.plist; sourceTree = "<group>"; };
-		4500F98706D43273B284149E /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AC9138D1D6469348DD2DB0B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		565EAD4C67CC4F90AA70C154 /* icon.icon */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = icon.icon; path = Dainorlis/icon.icon; sourceTree = "<group>"; };
-		956924DB70CB40239011CF18 /* Modekan.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Modekan.ttf; path = ../assets/fonts/Modekan.ttf; sourceTree = "<group>"; };
+		94AEF493BF324B869C858C2C /* Modekan.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Modekan.ttf; path = ../assets/fonts/Modekan.ttf; sourceTree = "<group>"; };
+		955DD4AA5689D479D966C5B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Dainorlis/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Dainorlis/SplashScreen.storyboard; sourceTree = "<group>"; };
+		AF4F8ACE67DBA54CCFDBC357 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Dainorlis/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C4DE6ADC1757F5F4DE917F42 /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
-		E2276CFEE67A6CB2197D362E /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
+		BF7BC87DDDDBC3A84FE976DE /* Pods-Dainorlis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.release.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.release.xcconfig"; sourceTree = "<group>"; };
+		C65938FAF67445428B140159 /* icon.icon */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = icon.icon; path = Dainorlis/icon.icon; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Dainorlis/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Dainorlis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Dainorlis-Bridging-Header.h"; path = "Dainorlis/Dainorlis-Bridging-Header.h"; sourceTree = "<group>"; };
+		F311A9FCE38902BD5C3DE22C /* libPods-Dainorlis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dainorlis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEE5ED101A9392264523A870 /* Pods-Dainorlis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dainorlis.debug.xcconfig"; path = "Target Support Files/Pods-Dainorlis/Pods-Dainorlis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBCF929EFC4B3BF8F57FAC7F /* libPods-Dainorlis.a in Frameworks */,
+				2649A81AB9F6FAF5484E68B4 /* libPods-Dainorlis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,8 +57,8 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				565EAD4C67CC4F90AA70C154 /* icon.icon */,
-				4AC9138D1D6469348DD2DB0B /* PrivacyInfo.xcprivacy */,
+				C65938FAF67445428B140159 /* icon.icon */,
+				955DD4AA5689D479D966C5B1 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Dainorlis;
 			sourceTree = "<group>";
@@ -67,25 +67,26 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				4500F98706D43273B284149E /* libPods-Dainorlis.a */,
+				F311A9FCE38902BD5C3DE22C /* libPods-Dainorlis.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2F28F87DB075ABDDA1C2FA76 /* ExpoModulesProviders */ = {
+		3DD240CA0178E664B813F92E /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				4ACB9738F576B7C4E9A51C5A /* Dainorlis */,
+				AC4DF6322A5677ACA0EB0842 /* Dainorlis */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		4ACB9738F576B7C4E9A51C5A /* Dainorlis */ = {
+		6966077D96314241A10353D6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				128742880A58C7428F1118D1 /* ExpoModulesProvider.swift */,
+				94AEF493BF324B869C858C2C /* Modekan.ttf */,
 			);
-			name = Dainorlis;
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -102,9 +103,9 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				B2E3C3CFDE9F479A8794D24A /* Resources */,
-				C963BE211D3D9E05D9B493EA /* Pods */,
-				2F28F87DB075ABDDA1C2FA76 /* ExpoModulesProviders */,
+				6966077D96314241A10353D6 /* Resources */,
+				F4DFC11FA8E68DB461E5195B /* Pods */,
+				3DD240CA0178E664B813F92E /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -119,13 +120,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2E3C3CFDE9F479A8794D24A /* Resources */ = {
+		AC4DF6322A5677ACA0EB0842 /* Dainorlis */ = {
 			isa = PBXGroup;
 			children = (
-				956924DB70CB40239011CF18 /* Modekan.ttf */,
+				AF4F8ACE67DBA54CCFDBC357 /* ExpoModulesProvider.swift */,
 			);
-			name = Resources;
-			path = "";
+			name = Dainorlis;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -137,11 +137,11 @@
 			path = Dainorlis/Supporting;
 			sourceTree = "<group>";
 		};
-		C963BE211D3D9E05D9B493EA /* Pods */ = {
+		F4DFC11FA8E68DB461E5195B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E2276CFEE67A6CB2197D362E /* Pods-Dainorlis.debug.xcconfig */,
-				C4DE6ADC1757F5F4DE917F42 /* Pods-Dainorlis.release.xcconfig */,
+				FEE5ED101A9392264523A870 /* Pods-Dainorlis.debug.xcconfig */,
+				BF7BC87DDDDBC3A84FE976DE /* Pods-Dainorlis.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -155,13 +155,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Dainorlis" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				BF0DA22DE8E9BF1A199457AA /* [Expo] Configure project */,
+				BC0CD26DAD357113880668FF /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				8DE3C416FA7E08FA52E52E0D /* [CP] Embed Pods Frameworks */,
+				97D23C2DF28B82FE0A0C71AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,6 +182,8 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
+						DevelopmentTeam = "5BPU37MJR9";
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -211,9 +213,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				E2B6CFF158C1429FACC22179 /* icon.icon in Resources */,
-				F3C7D53E762844239B7BBD89 /* Modekan.ttf in Resources */,
-				74658A2C44696D6B6B84F4C9 /* PrivacyInfo.xcprivacy in Resources */,
+				8A0B2EFEEE09477CA2E6FE8D /* icon.icon in Resources */,
+				6A4FE7C10DE0427495948252 /* Modekan.ttf in Resources */,
+				12C8F26950B5B6685BB58947 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +293,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DE3C416FA7E08FA52E52E0D /* [CP] Embed Pods Frameworks */ = {
+		97D23C2DF28B82FE0A0C71AB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,7 +315,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Dainorlis/Pods-Dainorlis-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF0DA22DE8E9BF1A199457AA /* [Expo] Configure project */ = {
+		BC0CD26DAD357113880668FF /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -345,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				3266966C3C351CE803D0BB4E /* ExpoModulesProvider.swift in Sources */,
+				679990D5F17B656C2B4D85E7 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +356,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2276CFEE67A6CB2197D362E /* Pods-Dainorlis.debug.xcconfig */;
+			baseConfigurationReference = FEE5ED101A9392264523A870 /* Pods-Dainorlis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ENABLE_MODULES = YES;
@@ -385,12 +387,15 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "5BPU37MJR9";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4DE6ADC1757F5F4DE917F42 /* Pods-Dainorlis.release.xcconfig */;
+			baseConfigurationReference = BF7BC87DDDDBC3A84FE976DE /* Pods-Dainorlis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = icon;
 				CLANG_ENABLE_MODULES = YES;
@@ -415,6 +420,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "5BPU37MJR9";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};
