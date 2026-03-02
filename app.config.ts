@@ -90,6 +90,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
+    './plugins/withAndroidReleaseSigning',
+    './plugins/withIosReleaseScheme',
     [
       './plugins/withAndroidDrawables',
       {
