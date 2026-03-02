@@ -1,6 +1,8 @@
 import { ComponentPropsWithoutRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, View, useColorScheme } from 'react-native';
+import { Platform, View } from 'react-native';
+
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { isLiquidGlassAvailable } from 'expo-glass-effect/build/isLiquidGlassAvailable';
 

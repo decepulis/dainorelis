@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import { createMMKV } from 'react-native-mmkv';
 
 import { z } from 'zod';
@@ -59,7 +59,23 @@ const defaultContext: StorageContextType = { values: defaultContextValues, setVa
 const StorageContext = createContext(defaultContext);
 
 export function StorageProvider({ children }: { children: React.ReactNode }) {
-  const [values, setValues] = useState(() => defaultContextValues);
+  const [values, setValues] = useState<StorageContextValues>(() => {
+    return Object.fromEntries(
+      Object.entries(schemas).map(([key, { defaultValue, validator }]) => {
+        const stored = storage.getString(key);
+        if (stored) {
+          try {
+            return [key, { value: validator.parse(JSON.parse(stored)) }];
+          } catch (e) {
+            if (e instanceof z.ZodError) {
+              console.error(`Error parsing ${key} from MMKV:`, z.prettifyError(e));
+            }
+          }
+        }
+        return [key, { value: defaultValue }];
+      })
+    ) as StorageContextValues;
+  });
 
   const setValue: StorageContextSetValue = useCallback(async function (key, value) {
     try {
@@ -84,30 +100,6 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
       throw e;
     }
   }, []);
-
-  // on load, initialize all the values using the setValue function we just wrote
-  useEffect(() => {
-    for (const key of Object.keys(schemas) as (keyof typeof schemas)[]) {
-      const value = storage.getString(key);
-      if (value) {
-        try {
-          const parsedValue = JSON.parse(value);
-          setValue(key, parsedValue);
-        } catch (e) {
-          if (e instanceof z.ZodError) {
-            // treat parsing errors as if the key doesn't exist in local storage
-            console.error(`Error parsing ${key} from MMKV:`, z.prettifyError(e));
-            setValue(key, schemas[key].defaultValue as any);
-          } else {
-            throw e;
-          }
-        }
-      } else {
-        // no value? default.
-        setValue(key, schemas[key].defaultValue as any);
-      }
-    }
-  }, [setValue]);
 
   return <StorageContext.Provider value={{ values, setValue }}>{children}</StorageContext.Provider>;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Appearance, LayoutChangeEvent, View, useColorScheme } from 'react-native';
+import { Appearance, LayoutChangeEvent, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
@@ -11,8 +11,9 @@ import { ThemeProvider } from '@react-navigation/native';
 
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
-import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
+import { StorageProvider, storage } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 type AppProps = {
@@ -50,19 +51,37 @@ SplashScreen.setOptions({
   duration: 400,
   fade: true,
 });
+
+// Set initial color scheme from stored preference before React renders.
+// This avoids calling Appearance.setColorScheme(null) in an effect, which on
+// RN 0.83 can emit null/'unspecified' and break useColorScheme().
+const _storedTheme = (() => {
+  try {
+    const v = storage.getString('theme');
+    return v ? JSON.parse(v) : 'auto';
+  } catch {
+    return 'auto';
+  }
+})();
+if (_storedTheme === 'light' || _storedTheme === 'dark') {
+  Appearance.setColorScheme(_storedTheme);
+}
+
+// Keep native appearance in sync with runtime theme preference changes
+storage.addOnValueChangedListener((key) => {
+  if (key === 'theme') {
+    try {
+      const v = storage.getString('theme');
+      const theme = v ? JSON.parse(v) : 'auto';
+      Appearance.setColorScheme(theme === 'auto' ? null : theme);
+    } catch {}
+  }
+});
+
 function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
-  const [isColorSchemeSet, setIsColorSchemeSet] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
   const { didLogoLoad, didWordmarkLoad, didBackgroundLoad } = useDidImagesLoad();
-  const { value: colorSchemePreference } = useStorage('theme');
-
-  // keep color scheme in sync with storage
-  useEffect(() => {
-    Appearance.setColorScheme(colorSchemePreference === 'auto' ? null : colorSchemePreference);
-    // due to batching, I might be setting this too early. tbd.
-    setIsColorSchemeSet(true);
-  }, [colorSchemePreference]);
 
   // do async work that needs to be done before the splash screen here
   useEffect(() => {
@@ -88,12 +107,12 @@ function AppWithLoading() {
 
   // hide the splash screen when we're good to go
   useEffect(() => {
-    if (asyncWorkIsDone && isColorSchemeSet && didAppLayout && didLogoLoad && didBackgroundLoad && didWordmarkLoad) {
+    if (asyncWorkIsDone && didAppLayout && didLogoLoad && didBackgroundLoad && didWordmarkLoad) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, isColorSchemeSet, didAppLayout, didLogoLoad, didBackgroundLoad, didWordmarkLoad]);
+  }, [asyncWorkIsDone, didAppLayout, didLogoLoad, didBackgroundLoad, didWordmarkLoad]);
 
-  if (asyncWorkIsDone && isColorSchemeSet) {
+  if (asyncWorkIsDone) {
     return <App onLayout={() => setDidAppLayout(true)} />;
   }
   return null;

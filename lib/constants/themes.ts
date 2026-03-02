@@ -82,7 +82,7 @@ export const LightHighContrastTheme: Theme = {
   },
 };
 export const DarkTheme: Theme = {
-  dark: false,
+  dark: true,
   colors: {
     primary: '#53745e',
     card0: '#080910', // darker
