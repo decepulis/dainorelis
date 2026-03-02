@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Platform, useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
+
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { GlassView } from 'expo-glass-effect';
 
