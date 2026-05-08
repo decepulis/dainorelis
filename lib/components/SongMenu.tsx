@@ -5,7 +5,7 @@ import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { Stack, router } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Song } from '@/lib/schemas/songs';
@@ -105,7 +105,7 @@ export default function SongMenu({ song, hasChords }: Props) {
   return (
     <MenuView actions={filteredActions} onPressAction={onPressAction}>
       <SystemView shadow={false} style={[buttonStyles.button]}>
-        <FontAwesome6 name="ellipsis" size={18} color="white" />
+        <FontAwesome6 name="ellipsis" iconStyle="solid" size={18} color="white" />
       </SystemView>
     </MenuView>
   );

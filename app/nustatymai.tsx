@@ -5,8 +5,8 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { HeaderBackground, HeaderLeft, ModalToolbar } from '@/lib/components/Header';
 import MenuView from '@/lib/components/MenuView';
@@ -113,7 +113,7 @@ export default function Page() {
                 <MenuView actions={languageActions} onPressAction={handleLanguageChange}>
                   <View style={styles.pickerTrigger}>
                     <ThemedText style={styles.pickerValue}>{language === 'lt' ? 'Lietuvių' : 'English'}</ThemedText>
-                    <FontAwesome6 name="chevron-down" size={12} color={text} />
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
                   </View>
                 </MenuView>
               </View>
@@ -124,7 +124,7 @@ export default function Page() {
                     <ThemedText style={styles.pickerValue}>
                       {theme === 'auto' ? t('autoTheme') : theme === 'dark' ? t('darkTheme') : t('lightTheme')}
                     </ThemedText>
-                    <FontAwesome6 name="chevron-down" size={12} color={text} />
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
                   </View>
                 </MenuView>
               </View>

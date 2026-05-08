@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
 import {
@@ -109,7 +109,7 @@ export default function Index() {
                 <HeaderButtonContainer>
                   <Link href="/nustatymai" asChild>
                     <Button>
-                      <FontAwesome6 name="sliders" size={16} color="#fff" />
+                      <FontAwesome6 name="sliders" iconStyle="solid" size={16} color="#fff" />
                     </Button>
                   </Link>
                 </HeaderButtonContainer>

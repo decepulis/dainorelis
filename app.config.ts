@@ -90,6 +90,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
+    '@react-native-vector-icons/fontawesome6',
     './plugins/withAndroidReleaseSigning',
     './plugins/withIosReleaseScheme',
     [
