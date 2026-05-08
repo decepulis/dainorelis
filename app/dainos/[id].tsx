@@ -8,10 +8,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
 import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useHeaderHeight, useRoute } from 'expo-router/react-navigation';
 
 import { FontAwesome6 } from '@expo/vector-icons';
-import { useHeaderHeight } from '@react-navigation/elements';
-import { useRoute } from '@react-navigation/native';
 
 import Button from '@/lib/components/Button';
 import {

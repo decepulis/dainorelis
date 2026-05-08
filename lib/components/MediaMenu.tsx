@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, View } from 'react-native';
+import { ColorValue, Platform, View } from 'react-native';
 
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
@@ -20,7 +20,7 @@ type Props = {
   setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof MenuView>['style'];
   hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
-  color: string;
+  color: ColorValue;
 };
 export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style, color }: Props) {
   const { t, i18n } = useTranslation();

@@ -72,7 +72,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
     ) : null,
   ].filter(Boolean);
 
-  const swipeableRef = useRef<ReanimatedSwipeable>(null);
+  const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
   const renderRightActions = () => (
     <RectButton

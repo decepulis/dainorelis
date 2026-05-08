@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Appearance, LayoutChangeEvent, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { setAudioModeAsync } from 'expo-audio';
 import { Stack } from 'expo-router';
+import { ThemeProvider } from 'expo-router/react-navigation';
 import * as SplashScreen from 'expo-splash-screen';
-
-import { ThemeProvider } from '@react-navigation/native';
 
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
-import { StorageProvider, storage } from '@/lib/hooks/useStorage';
+import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 type AppProps = {
@@ -50,32 +49,6 @@ SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
   duration: 400,
   fade: true,
-});
-
-// Set initial color scheme from stored preference before React renders.
-// This avoids calling Appearance.setColorScheme(null) in an effect, which on
-// RN 0.83 can emit null/'unspecified' and break useColorScheme().
-const _storedTheme = (() => {
-  try {
-    const v = storage.getString('theme');
-    return v ? JSON.parse(v) : 'auto';
-  } catch {
-    return 'auto';
-  }
-})();
-if (_storedTheme === 'light' || _storedTheme === 'dark') {
-  Appearance.setColorScheme(_storedTheme);
-}
-
-// Keep native appearance in sync with runtime theme preference changes
-storage.addOnValueChangedListener((key) => {
-  if (key === 'theme') {
-    try {
-      const v = storage.getString('theme');
-      const theme = v ? JSON.parse(v) : 'auto';
-      Appearance.setColorScheme(theme === 'auto' ? null : theme);
-    } catch {}
-  }
 });
 
 function AppWithLoading() {
@@ -118,17 +91,30 @@ function AppWithLoading() {
   return null;
 }
 
-export default function RootLayout() {
+// Sync the user's stored theme preference ('auto' | 'light' | 'dark') with
+// react-native's Appearance API, then forward the resolved colorScheme to
+// react-navigation's ThemeProvider. Pattern from
+// https://reactnavigation.org/docs/themes/#using-the-current-theme-in-your-own-components
+function ThemedRoot({ children }: { children: React.ReactNode }) {
+  const { value: storedTheme } = useStorage('theme');
   const colorScheme = useColorScheme();
 
+  useLayoutEffect(() => {
+    Appearance.setColorScheme(storedTheme === 'auto' ? 'unspecified' : storedTheme);
+  }, [storedTheme]);
+
+  return <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>{children}</ThemeProvider>;
+}
+
+export default function RootLayout() {
   return (
     <GestureHandlerRootView>
       <KeyboardProvider>
         <StorageProvider>
           <DidImagesLoadProvider>
-            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>
+            <ThemedRoot>
               <AppWithLoading />
-            </ThemeProvider>
+            </ThemedRoot>
           </DidImagesLoadProvider>
         </StorageProvider>
       </KeyboardProvider>

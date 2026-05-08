@@ -1,8 +1,9 @@
-import type { SwitchProps as JetpackSwitchProps } from '@expo/ui/jetpack-compose';
-import type { ToggleProps as SwiftUIToggleProps } from '@expo/ui/swift-ui';
+import { Host, Switch as UISwitch, type SwitchProps } from '@expo/ui';
 
-type Props = JetpackSwitchProps & SwiftUIToggleProps;
-
-export default function Switch(_props: Props) {
-  return null; // not implemented
+export default function Switch(props: SwitchProps) {
+  return (
+    <Host matchContents>
+      <UISwitch {...props} />
+    </Host>
+  );
 }
