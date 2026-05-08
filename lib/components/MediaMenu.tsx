@@ -6,7 +6,7 @@ import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { isLiquidGlassAvailable } from 'expo-glass-effect/build/isLiquidGlassAvailable';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Audio } from '../schemas/audio';
@@ -66,7 +66,7 @@ export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitS
       title={t('mediaMenuTitle')}
     >
       <ButtonWrapper>
-        <FontAwesome6 name="bars" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+        <FontAwesome6 name="bars" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
       </ButtonWrapper>
     </MenuView>
   );

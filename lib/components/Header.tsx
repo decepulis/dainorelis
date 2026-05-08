@@ -15,7 +15,7 @@ import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/s
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { Link, Stack, router } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 
 import { useThemeColor } from '../hooks/useThemeColor';
 import Button, { buttonSlop } from './Button';
@@ -242,6 +242,7 @@ export const HeaderTitle = ({
             {hasTitleWrapper ? (
               <FontAwesome6
                 name="circle-chevron-down"
+                iconStyle="solid"
                 size={9}
                 color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
                 style={{ marginTop: -1 }}
@@ -265,9 +266,9 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
     <Link href={href || canGoBack ? '../' : '/'} asChild>
       <Button>
         {modal && Platform.OS === 'ios' ? (
-          <FontAwesome6 name="xmark" size={18} color="white" />
+          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
         ) : (
-          <FontAwesome6 name="chevron-left" size={17} color="white" />
+          <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
         )}
       </Button>
     </Link>

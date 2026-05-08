@@ -10,7 +10,7 @@ import { GlassContainer, GlassView, isLiquidGlassAvailable } from 'expo-glass-ef
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, router } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -196,7 +196,7 @@ export default function Search({
             borderRadius: expandedSearchHeight / 2,
           }}
         >
-          <FontAwesome6 name="xmark" size={18} color={color} />
+          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color={color} />
         </Button>
       </AnimatedGlassView>
       {/* Playlist Menu */}
@@ -256,6 +256,7 @@ export default function Search({
             </ThemedText>
             <FontAwesome6
               name="chevron-up"
+              iconStyle="solid"
               color={color}
               size={isLiquidGlassAvailable() ? 16 : 12}
               style={{ marginTop: 2 }}
@@ -312,7 +313,7 @@ export default function Search({
               pointerEvents: 'none',
             }}
           >
-            <FontAwesome6 name="magnifying-glass" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+            <FontAwesome6 name="magnifying-glass" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
           </View>
         </ButtonWrapper>
       </AnimatedGlassView>

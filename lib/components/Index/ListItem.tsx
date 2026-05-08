@@ -8,7 +8,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -52,23 +52,23 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
   const icons = [
     favorites.includes(item.id) ? (
-      <FontAwesome6 name="heart" key="heart" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6 name="heart" key="heart" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
     ) : null,
     Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
       <FontAwesome6
         name="guitar"
         key="guitar"
         size={iconSize * 1.1}
-        solid
+        iconStyle="solid"
         color={primary}
         style={iconStyle(iconSize * 1.1)}
       />
     ) : null,
     Object.keys(item.fields.PDFs).length ? (
-      <FontAwesome6 name="file" key="file" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6 name="file" key="file" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
     ) : null,
     Object.keys(item.fields.Audio).length ? (
-      <FontAwesome6 name="play" key="play" size={iconSize} solid color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6 name="play" key="play" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
     ) : null,
   ].filter(Boolean);
 
@@ -82,7 +82,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
         swipeableRef.current?.close();
       }}
     >
-      <FontAwesome6 name="heart" size={20} solid={!isFavorite} color="#fff" />
+      <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
     </RectButton>
   );
 

@@ -17,7 +17,7 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 
 import appPadding from '@/lib/constants/padding';
 
@@ -275,13 +275,14 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           <Animated.View style={[infoButtonStyles]}>
             <FontAwesome6
               name="info"
+              iconStyle="solid"
               size={isLiquidGlassAvailable() ? 18 : 15}
               color={color}
               style={{ position: 'relative', top: -1 }}
             />
           </Animated.View>
           <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="chevron-right" size={isLiquidGlassAvailable() ? 19 : 16} color={color} />
+            <FontAwesome6 name="chevron-right" iconStyle="solid" size={isLiquidGlassAvailable() ? 19 : 16} color={color} />
           </Animated.View>
         </Button>
 
@@ -390,9 +391,9 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           {loading ? (
             <ActivityIndicator color={color} />
           ) : playing ? (
-            <FontAwesome6 name="pause" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+            <FontAwesome6 name="pause" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
           ) : (
-            <FontAwesome6 name="play" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+            <FontAwesome6 name="play" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
           )}
         </Button>
       </View>

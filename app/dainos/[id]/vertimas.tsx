@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
@@ -82,7 +82,7 @@ export default function Page() {
                 onPress={() => openFeedback(song.fields['Name'])}
                 hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
               >
-                <FontAwesome6 name="wand-magic-sparkles" size={12} />
+                <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} />
                 <View style={{ flexShrink: 1 }}>
                   <ThemedText>
                     {t('genAiText1')}{' '}

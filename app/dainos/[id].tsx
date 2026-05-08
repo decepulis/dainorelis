@@ -10,7 +10,7 @@ import * as Haptics from 'expo-haptics';
 import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useHeaderHeight, useRoute } from 'expo-router/react-navigation';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
 import {
@@ -202,7 +202,7 @@ export default function Page() {
             ? () => (
                 <HeaderButtonContainer>
                   <Button onPress={toggleFavorite}>
-                    <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
+                    <FontAwesome6 name="heart" iconStyle={isFavorite ? 'solid' : 'regular'} size={16} color="white" />
                   </Button>
                   <SongMenu song={song} hasChords={hasChords} />
                 </HeaderButtonContainer>
