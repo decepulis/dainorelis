@@ -1,6 +1,6 @@
 import { Platform, PlatformColor, TextStyle } from 'react-native';
 
-import type { Theme as LibTheme } from '@react-navigation/native';
+import type { Theme as LibTheme } from 'expo-router/react-navigation';
 
 export const fonts = {
   regular: {
@@ -47,8 +47,14 @@ export const fonts = {
   },
 } as { [weight: string]: TextStyle };
 
-export interface Theme extends LibTheme {
-  colors: LibTheme['colors'] & {
+export interface Theme extends Omit<LibTheme, 'colors'> {
+  colors: {
+    primary: string;
+    background: string;
+    card: string;
+    text: string;
+    border: string;
+    notification: string;
     card0: string;
     separator: string;
   };

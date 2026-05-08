@@ -7,9 +7,9 @@ import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-cont
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
+import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import { FontAwesome6 } from '@expo/vector-icons';
-import { useHeaderHeight } from '@react-navigation/elements';
 
 import Button from '@/lib/components/Button';
 import {
@@ -181,7 +181,7 @@ export default function Index() {
                 ]}
               >
                 <Image
-                  style={StyleSheet.absoluteFillObject}
+                  style={StyleSheet.absoluteFill}
                   source={require('@/assets/images/logo_white_v3.png')}
                   contentFit="contain"
                   onLoadEnd={() => setDidLogoLoad(true)}

@@ -2,7 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, DynamicColorIOS, Image, StyleProp, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useAnimatedReaction, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import Animated, {
+  type AnimatedStyle,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -218,7 +224,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   );
   // TODO add tap gesture to toggle time mode
 
-  const Wrapper = ({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) =>
+  const Wrapper = ({ children, style }: { children: React.ReactNode; style?: StyleProp<AnimatedStyle<ViewStyle>> }) =>
     isLiquidGlassAvailable() ? (
       <AnimatedGlassView isInteractive style={style}>
         {children}

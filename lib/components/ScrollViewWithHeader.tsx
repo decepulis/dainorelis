@@ -1,8 +1,7 @@
-import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
-import Animated, { AnimatedScrollViewProps } from 'react-native-reanimated';
+import Animated, { type AnimatedRef, type AnimatedScrollViewProps } from 'react-native-reanimated';
 
-import { useHeaderHeight } from '@react-navigation/elements';
+import { useHeaderHeight } from 'expo-router/react-navigation';
 
 export const useContentContainerStyle = () => {
   const headerHeight = useHeaderHeight();
@@ -12,25 +11,28 @@ export const useContentContainerStyle = () => {
   };
 };
 
+type Props = AnimatedScrollViewProps & {
+  ref?: AnimatedRef<Animated.ScrollView> | React.Ref<Animated.ScrollView>;
+};
+
 /**
  * I don't remember why this complicated scroll view wrapper is necessary,
  * TODO: At some point, I should try removing it to see what happens...
  */
-const ScrollViewWithHeader = forwardRef<Animated.ScrollView, AnimatedScrollViewProps>(
-  ({ children, contentContainerStyle: argContentContainerStyle, ...props }, ref) => {
-    const contentContainerStyle = useContentContainerStyle();
-    return (
-      <Animated.ScrollView
-        ref={ref}
-        contentContainerStyle={[contentContainerStyle, argContentContainerStyle]}
-        {...props}
-      >
-        {children}
-      </Animated.ScrollView>
-    );
-  }
-);
-
-ScrollViewWithHeader.displayName = 'ScrollViewWithHeader';
-
-export default ScrollViewWithHeader;
+export default function ScrollViewWithHeader({
+  children,
+  contentContainerStyle: argContentContainerStyle,
+  ref,
+  ...props
+}: Props) {
+  const contentContainerStyle = useContentContainerStyle();
+  return (
+    <Animated.ScrollView
+      ref={ref as React.Ref<Animated.ScrollView>}
+      contentContainerStyle={[contentContainerStyle, argContentContainerStyle]}
+      {...props}
+    >
+      {children}
+    </Animated.ScrollView>
+  );
+}

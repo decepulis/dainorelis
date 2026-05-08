@@ -1,14 +1,16 @@
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { ComponentPropsWithoutRef, type Ref, useState } from 'react';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
-export default function BorderlessButtonOpacity({
-  onActiveStateChange,
-  ...rest
-}: ComponentPropsWithoutRef<typeof BorderlessButton>) {
+type Props = ComponentPropsWithoutRef<typeof BorderlessButton> & {
+  ref?: Ref<React.ComponentRef<typeof BorderlessButton>>;
+};
+
+export default function BorderlessButtonOpacity({ onActiveStateChange, ref, ...rest }: Props) {
   const [_, setWeirdIOSWorkAround] = useState(false);
 
   return (
     <BorderlessButton
+      ref={ref}
       activeOpacity={0.8}
       onActiveStateChange={(a) => {
         // weird bug. activeOpacity doesn't work unless I keep some sort of local state like this

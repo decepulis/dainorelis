@@ -12,7 +12,7 @@ import titleIndexJson from '@/title-index.json';
 import useStorage from './useStorage';
 
 // set up fuse
-const fuseSettings: IFuseOptions<unknown> = {
+const fuseSettings: IFuseOptions<Song> = {
   isCaseSensitive: false,
   ignoreDiacritics: true,
   findAllMatches: true,
@@ -20,8 +20,7 @@ const fuseSettings: IFuseOptions<unknown> = {
   shouldSort: true,
   ignoreLocation: true,
 };
-// @ts-expect-error this is fine, I promise
-const titleIndex = Fuse.parseIndex(titleIndexJson);
+const titleIndex = Fuse.parseIndex<Song>(titleIndexJson);
 const titleFuse = new Fuse(
   songs,
   {
@@ -30,8 +29,7 @@ const titleFuse = new Fuse(
   },
   titleIndex
 );
-// @ts-expect-error this is fine, I promise
-const lyricIndex = Fuse.parseIndex(lyricIndexJson);
+const lyricIndex = Fuse.parseIndex<Song>(lyricIndexJson);
 const lyricFuse = new Fuse(
   songs,
   {
@@ -136,8 +134,8 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
   // search results
   const searchResults: string[] | null = useMemo(() => {
     if (searchText.length > 0) {
-      const titleSearchResults = titleFuse.search<Song>(searchText, { limit: 20 });
-      const lyricSearchResults = lyricFuse.search<Song>(searchText, { limit: 20 });
+      const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
+      const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
       const searchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
       const exclusiveSearchResults = new Set(searchResults);
       return Array.from(exclusiveSearchResults);
