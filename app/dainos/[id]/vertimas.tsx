@@ -33,6 +33,7 @@ export default function Page() {
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');
+  const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const [isPressed, setIsPressed] = useState(false);
   const firstTranslation = Object.values(song.fields['Translations'])[0];
@@ -82,7 +83,7 @@ export default function Page() {
                 onPress={() => openFeedback(song.fields['Name'])}
                 hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
               >
-                <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} />
+                <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} color={text} />
                 <View style={{ flexShrink: 1 }}>
                   <ThemedText>
                     {t('genAiText1')}{' '}

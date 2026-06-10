@@ -94,9 +94,6 @@ const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
       items.push({ type: 'song', item: song, id: song.id });
     });
   });
-  if (items.length <= 10) {
-    items.filter((item) => item.type !== 'header');
-  }
   return items;
 };
 
