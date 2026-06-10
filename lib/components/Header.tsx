@@ -263,7 +263,7 @@ type HeaderLeftProps = {
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   return (
-    <Link href={href || canGoBack ? '../' : '/'} asChild>
+    <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
       <Button>
         {modal && Platform.OS === 'ios' ? (
           <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
