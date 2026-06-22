@@ -130,7 +130,7 @@ export default function Page() {
               </View>
               <View style={styles.hSetting}>
                 <ThemedText style={[styles.settingTitle]}>{t('showChords')}</ThemedText>
-                <Switch value={showChords} onValueChange={setShowChords} label={t('showChords')} />
+                <Switch value={showChords} onValueChange={setShowChords} />
               </View>
             </View>
           </View>

@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>26030201</string>
+	<string>26061901</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSMinimumSystemVersion</key>
@@ -55,6 +55,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
 		<string>Modekan.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
