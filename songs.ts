@@ -8334,7 +8334,7 @@ const songs: SongFile = [
   {
     "id": "recKurTasKugel001",
     "fields": {
-      "Name": "Kur tas Kugelis?",
+      "Name": "Kur tas kugelis?",
       "Lyrics": {
         "recKurTasKugLyr1": {
           "Variant Name": "Žodžiai",
@@ -8351,7 +8351,15 @@ const songs: SongFile = [
         }
       },
       "PDFs": {},
-      "Translations": {},
+      "Translations": {
+        "recKurTasKugTr1": {
+          "Title": "Where's the Kugelis?",
+          "Variant Name": "Vertimas",
+          "EN Variant Name": "Translation",
+          "Lyrics": "Don't forget the bacon bits (lots of cracklings)\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\nDon't forget the sour cream\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\n\nDon't forget the bacon bits\nDon't forget the sour cream\nDon't forget to call me\nDon't forget, don't forget!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!\n\nDon't forget the onion\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\nDon't forget my plate\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\n\nDon't forget the onion\nDon't forget my plate\nDon't forget to call me\nDon't forget, don't forget!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!",
+          "AI Generated": true
+        }
+      },
       "Text Author": "M. Adomaitis, E. Kezys"
     }
   },
