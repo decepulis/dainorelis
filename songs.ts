@@ -8332,6 +8332,30 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recKurTasKugel001",
+    "fields": {
+      "Name": "Kur tas Kugelis?",
+      "Lyrics": {
+        "recKurTasKugLyr1": {
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
+          "Lyrics & Chords": "[Nepamiršk ](A)[lašiniukų ](D)[(daug ](G)[spirgučių)](A)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_  \n[Nepamiršk ](A)[tą ](D)[grietinę](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_\n\n[Nepamiršk ](C)[lašiniukų](G)  \n[Nepamiršk tą ](C)[grietinę](D)  \n[Nepamiršk man ](C)[paskambint](G)  \n[Nepamiršk, ](C)[Nepamiršk!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)\n\n[Nepamiršk ](A)[tą ](D)[svogūną](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_  \n[Nepamiršk ](A)[mano ](D)[lėkštę](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_\n\n[Nepamiršk tą ](C)[svogūną](G)  \n[Nepamiršk mano ](C)[lėkštę](D)  \n[Nepamiršk man ](C)[paskambint](G)  \n[Nepamiršk, ](C)[Nepamiršk!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)",
+          "Show Chords": true
+        }
+      },
+      "Audio": {
+        "recKurTasKugAud1": {
+          "Variant Name": "Įrašas",
+          "EN Variant Name": "Recording",
+          "URL": "https://media.dainorelis.app/Kur%20Tas%20Kugelis.mp3"
+        }
+      },
+      "PDFs": {},
+      "Translations": {},
+      "Text Author": "M. Adomaitis, E. Kezys"
+    }
+  },
+  {
     "id": "recNq0xuRpz8QNegp",
     "fields": {
       "Name": "Kur tas šaltinėlis?",
