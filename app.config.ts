@@ -57,6 +57,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-asset',
     'expo-image',
     'expo-web-browser',
+    'expo-status-bar',
     [
       'expo-splash-screen',
       {
