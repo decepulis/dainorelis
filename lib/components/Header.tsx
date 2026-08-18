@@ -72,7 +72,6 @@ type HeaderTitleProps = {
   subtitle?: string;
   variantName?: string;
   center?: boolean;
-  withControls?: boolean;
 };
 export const HeaderTitle = ({
   scrollRef,
@@ -84,7 +83,6 @@ export const HeaderTitle = ({
   subtitle,
   variantName,
   center,
-  withControls,
 }: HeaderTitleProps) => {
   const text = useThemeColor('text');
 
@@ -148,8 +146,8 @@ export const HeaderTitle = ({
       style={[
         {
           flex: center ? undefined : 1,
-          // This is an unfortunate hack while I wait on https://github.com/software-mansion/react-native-screens/pull/3210
-          marginRight: center ? undefined : isLiquidGlassStyleHeader() ? (withControls ? 135 : 65) : 0,
+          // on iOS 26, patches/react-native-screens@4.25.2.patch sizes this view to the space
+          // actually left over by the toolbar buttons, so no width hacks are needed here
           paddingHorizontal: isLiquidGlassStyleHeader() ? undefined : buttonSlop.left,
         },
       ]}
