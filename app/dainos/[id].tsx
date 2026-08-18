@@ -194,7 +194,6 @@ export default function Page() {
               title={title}
               subtitle={subtitle}
               variantName={variantName}
-              withControls
             />
           ),
           headerLeft: !isLiquidGlassStyleHeader() ? HeaderLeft : undefined,

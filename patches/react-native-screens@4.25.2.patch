@@ -1,0 +1,145 @@
+diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
+index 5970e3e..e3c95bb 100644
+--- a/ios/RNSScreenStackHeaderConfig.mm
++++ b/ios/RNSScreenStackHeaderConfig.mm
+@@ -201,6 +201,35 @@ RNS_IGNORE_SUPER_CALL_END
+   }
+ }
+ 
++// PATCH(dainorelis): collect the views that occupy horizontal space in the navigation bar's
++// content view (bar button items, custom left/right header subviews), skipping the title
++// subview itself. Recursion is needed because on iOS 26 UIKit nests buttons inside group
++// wrapper views (see -rnscreens_ios26_findDescendantBackButtonWrapper in UINavigationBar+RNSUtility).
++static void RNSDainorelisCollectOccupyingViews(UIView *view,
++                                               UIView *_Nullable titleSubview,
++                                               Class _Nullable barButtonClass,
++                                               NSMutableArray<UIView *> *result)
++{
++  if (view.hidden || view.alpha < 0.01) {
++    return;
++  }
++  if (view == titleSubview) {
++    return;
++  }
++  if ([view isKindOfClass:[RNSScreenStackHeaderSubview class]]) {
++    // A custom left/right header item; count it as occupied space, don't descend into it.
++    [result addObject:view];
++    return;
++  }
++  if ((barButtonClass != nil && [view isKindOfClass:barButtonClass]) || [view isKindOfClass:[UIControl class]]) {
++    [result addObject:view];
++    return;
++  }
++  for (UIView *subview in view.subviews) {
++    RNSDainorelisCollectOccupyingViews(subview, titleSubview, barButtonClass, result);
++  }
++}
++
+ - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
+ {
+   NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
+@@ -218,9 +247,104 @@ RNS_IGNORE_SUPER_CALL_END
+       .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
+   };
+ 
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    return [self dainorelis_computeEdgeInsetsOfNavigationBar:navigationBar fallbackInsets:edgeInsets];
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++
+   return edgeInsets;
+ }
+ 
++// PATCH(dainorelis): account for bar button items when computing header edge insets on iOS 26.
++//
++// The stock implementation above only reserves space for the system back button. On iOS 26
++// (liquid glass), header actions are UIBarButtonItems (e.g. expo-router's Stack.Toolbar) whose
++// widths never enter this computation, and UIKit no longer force-resizes an oversized custom
++// titleView to fit between the button groups like it did on earlier iOS versions. The result is
++// that Yoga sizes the title subview to nearly the full bar width and it renders underneath the
++// buttons. Upstream attempt: https://github.com/software-mansion/react-native-screens/pull/3210
++// (closed unmerged; the proper fix ships with the stack rewrite in react-native-screens 5.x,
++// where custom title views are sized by UIKit auto layout).
++//
++// This measures the actual horizontal space occupied by the button groups in the navigation
++// bar's content view, so the title subview is sized to the true available gap on any device.
++// Falls back to the margin-based insets whenever the measurement looks degenerate (e.g. mid
++// transition, or if a future iOS restructures the view hierarchy).
++//
++// Note: like the stock implementation, this maps geometric left/right onto leading/trailing,
++// which is only correct for LTR layouts.
++- (NSDirectionalEdgeInsets)dainorelis_computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
++                                                        fallbackInsets:(NSDirectionalEdgeInsets)fallbackInsets
++{
++  UIView *contentView = navigationBar.rnscreens_findContentView;
++  const CGFloat navBarWidth = navigationBar.bounds.size.width;
++  if (contentView == nil || navBarWidth <= 0 || contentView.bounds.size.width <= 0) {
++    return fallbackInsets;
++  }
++
++  RNSScreenStackHeaderSubview *titleSubview = nil;
++  for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
++    if (subview.type == RNSScreenStackHeaderSubviewTypeTitle ||
++        subview.type == RNSScreenStackHeaderSubviewTypeCenter) {
++      titleSubview = subview;
++      break;
++    }
++  }
++
++  static Class BarButtonViewClass = NSClassFromString(@"_UIButtonBarButton");
++  NSMutableArray<UIView *> *occupyingViews = [NSMutableArray new];
++  for (UIView *subview in contentView.subviews) {
++    RNSDainorelisCollectOccupyingViews(subview, titleSubview, BarButtonViewClass, occupyingViews);
++  }
++
++  const CGFloat contentMidX = CGRectGetMidX(contentView.bounds);
++  CGFloat leftOccupiedEdge = 0;
++  CGFloat rightOccupiedEdge = contentView.bounds.size.width;
++  BOOL foundLeftViews = NO;
++  BOOL foundRightViews = NO;
++
++  for (UIView *view in occupyingViews) {
++    const CGRect frame = [view convertRect:view.bounds toView:contentView];
++    if (CGRectIsEmpty(frame)) {
++      continue;
++    }
++    // A view spanning the center is not a button group (some decoration / hit area); ignore it.
++    if (CGRectGetMinX(frame) < contentMidX && CGRectGetMaxX(frame) > contentMidX) {
++      continue;
++    }
++    if (CGRectGetMidX(frame) <= contentMidX) {
++      leftOccupiedEdge = MAX(leftOccupiedEdge, CGRectGetMaxX(frame));
++      foundLeftViews = YES;
++    } else {
++      rightOccupiedEdge = MIN(rightOccupiedEdge, CGRectGetMinX(frame));
++      foundRightViews = YES;
++    }
++  }
++
++  // Breathing room between the title and the neighboring button group.
++  const CGFloat titleToButtonSpacing = 8.0f;
++
++  // Convert to insets relative to the navigation bar's full width — the coordinate space of the
++  // Yoga node these insets are applied to as padding.
++  const CGRect contentFrameInNavBar = [contentView convertRect:contentView.bounds toView:navigationBar];
++  CGFloat leadingInset = contentFrameInNavBar.origin.x + leftOccupiedEdge +
++      (foundLeftViews ? titleToButtonSpacing : 0);
++  CGFloat trailingInset = navBarWidth - (contentFrameInNavBar.origin.x + rightOccupiedEdge) +
++      (foundRightViews ? titleToButtonSpacing : 0);
++
++  leadingInset = MAX(leadingInset, fallbackInsets.leading);
++  trailingInset = MAX(trailingInset, fallbackInsets.trailing);
++
++  // Sanity check: if there is no reasonable space left for a title, the measurement is likely
++  // taken mid-transition or the view hierarchy changed under us — use the stock insets instead.
++  if (navBarWidth - leadingInset - trailingInset < 44.0f) {
++    return fallbackInsets;
++  }
++
++  return NSDirectionalEdgeInsets{.leading = leadingInset, .trailing = trailingInset};
++}
++
+ - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
+ {
+   for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {

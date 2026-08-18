@@ -90,6 +90,9 @@
     "overrides": {
       "zod-validation-error": "^4.0.2",
       "@expo/dom-webview": "57.0.0"
+    },
+    "patchedDependencies": {
+      "react-native-screens@4.25.2": "patches/react-native-screens@4.25.2.patch"
     }
   },
   "private": true
