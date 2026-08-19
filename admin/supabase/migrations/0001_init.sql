@@ -14,8 +14,6 @@
 --      `position`, because the generated number comes from the record's
 --      ordinal within its parent song.
 
-create extension if not exists pgcrypto;
-
 -- New records get Airtable-shaped ids so nothing downstream has to care which
 -- system a song was created in.
 create or replace function gen_record_id() returns text
