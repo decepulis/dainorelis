@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Dainorėlis is a React Native mobile and web app built with Expo for viewing and performing Lithuanian folk songs. The app displays song lyrics with chords, translations, audio recordings, sheet music (PDFs), and descriptions. All song data is sourced from an Airtable database.
+Dainorėlis is a React Native mobile and web app built with Expo for viewing and performing Lithuanian folk songs. The app displays song lyrics with chords, translations, audio recordings, sheet music (PDFs), and descriptions. All song data comes from the custom admin app in `admin/`, which stores it in Supabase Postgres.
 
 ## Essential Commands
 
@@ -20,9 +20,14 @@ npm run dev:android      # Start Android development server (requires setup)
 ### Data Synchronization
 
 ```bash
-npm run update-songs     # Fetch songs from Airtable and regenerate search indices
+npm run update-songs     # Fetch songs from the admin app and regenerate search indices
 npm run generate-indices # Regenerate search indices (title and lyric search)
+npm run admin            # Run the admin app locally (see admin/README.md)
 ```
+
+`update-songs` reads `ADMIN_EXPORT_URL` and `ADMIN_EXPORT_TOKEN` from `.env`. It
+never talks to the database directly — the admin app's `/api/export` endpoint
+owns the content transforms.
 
 ### Code Quality
 
@@ -59,8 +64,8 @@ npm run generate-metadata:test  # Test on first 5 songs only
 - **State Management**: React Context + MMKV storage for persistent settings
 - **Audio**: expo-audio for background audio playback
 - **Search**: Fuse.js with pre-generated indices
-- **Backend**: Airtable (song database)
-- **AI**: OpenAI API for generating song descriptions and translations
+- **Backend**: `admin/` — a Next.js CMS on Vercel backed by Supabase Postgres
+- **AI**: OpenAI API for generating song descriptions and translations (in `admin/`)
 
 ### Project Structure
 
@@ -80,27 +85,34 @@ npm run generate-metadata:test  # Test on first 5 songs only
   - `/utils` - Utility functions
 
 - **`/scripts`** - Data pipeline scripts (run with ts-node)
-  - `update-songs.ts` - Fetch all song data from Airtable
+  - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
   - `generate-search-indices.ts` - Create Fuse.js search indices
-  - `generate-song-metadata.ts` - Use OpenAI to generate descriptions/translations
+
+- **`/admin`** - The CMS (separate Vercel deployment, its own README)
+  - Owns the schema, the editor UI, and every content transform
+  - `scripts/import-from-airtable.ts` - the one-time migration
+  - `scripts/generate-metadata.ts` - OpenAI translations (was `generate-song-metadata.ts`)
 
 - **Generated Files** (do not edit manually)
-  - `songs.ts` - Complete song database exported from Airtable
+  - `songs.ts` - Complete song database exported from the admin app
   - `song-festival.ts` - Curated lists for song festival repertoire
   - `title-index.json` - Search index for song titles
   - `lyric-index.json` - Search index for song lyrics
 
 ### Data Flow
 
-1. Song data lives in Airtable with these related tables:
-   - Songs (main table)
-   - Lyrics & Chords (multiple variants per song)
-   - Translations (English translations of lyrics)
-   - Audio (Spotify/YouTube links)
-   - PDFs (sheet music)
-   - Videos (performance recordings)
+1. Song data lives in Supabase Postgres, edited through `admin/`:
+   - `songs` (main table)
+   - `lyrics` (multiple variants per song)
+   - `translations` (English translations of lyrics)
+   - `audio` (Spotify/YouTube links)
+   - `pdfs` (sheet music)
+   - `videos` (performance recordings)
 
-2. `update-songs.ts` fetches from Airtable, validates with Zod schemas, and generates `songs.ts` and `song-festival.ts`
+2. `admin/`'s `/api/export` applies the content transforms (variant naming, chord
+   whitespace, hidden-song filtering, title ordering) and returns the song file.
+   `update-songs.ts` fetches it, validates with Zod schemas, drops the fields
+   `fieldFlags` disables, and generates `songs.ts` and `song-festival.ts`
 
 3. `generate-search-indices.ts` processes `songs.ts` to create Fuse.js indices for fast client-side search
 
@@ -108,9 +120,9 @@ npm run generate-metadata:test  # Test on first 5 songs only
 
 ### Key Design Patterns
 
-**Lyrics with Chords**: Lyrics are stored as markdown with inline chord notation `[space](Chord)`. The `update-songs.ts` script automatically adjusts whitespace based on chord width to improve visual alignment. The `Lyrics` component renders this markdown with react-native-markdown-display.
+**Lyrics with Chords**: Lyrics are stored as markdown with inline chord notation `[space](Chord)`. The admin app's export automatically adjusts whitespace based on chord width to improve visual alignment. The `Lyrics` component renders this markdown with react-native-markdown-display.
 
-**Variant Names**: Each song can have multiple variants (different arrangements, translations, etc.). If a variant lacks a name in Airtable, the script auto-generates one as `"Default Name {number}"` (e.g., "Žodžiai 1", "Lyrics 2"). The script normalizes Lithuanian and English variant names.
+**Variant Names**: Each song can have multiple variants (different arrangements, translations, etc.). If a variant lacks a name, the export auto-generates one as `"Default Name {number}"` (e.g., "Žodžiai 1", "Lyrics 2"), numbered by the variant's position within its song. A blank variant name in the admin UI is therefore meaningful, not missing data.
 
 **Theme System**: The app uses React Navigation's theming with custom light/dark themes defined in `lib/constants/themes.ts`. The user's theme preference is stored in MMKV and applied via `Appearance.setColorScheme()`.
 
@@ -128,8 +140,10 @@ npm run generate-metadata:test  # Test on first 5 songs only
 
 The app requires a `.env` file (see `.env.example`):
 
-- `AIRTABLE_TOKEN` - For fetching songs via Airtable API
-- `OPENAI_API_KEY` - For generating AI metadata
+- `ADMIN_EXPORT_URL` - The admin app's export endpoint (defaults to production)
+- `ADMIN_EXPORT_TOKEN` - Shared secret for that endpoint
+
+The admin app has its own variables; see `admin/.env.example`.
 
 ## Testing and Release
 
@@ -139,16 +153,16 @@ For production releases, see the Expo documentation on creating production build
 
 ## TypeScript Configuration
 
-- `tsconfig.json` - Main app TypeScript config (React Native with path aliases)
+- `tsconfig.json` - Main app TypeScript config (React Native with path aliases). Excludes `admin/` and `dainorelisapp.com`, which have their own configs.
 - `tsconfig.scripts.json` - Extends main config for Node.js scripts with CommonJS modules
 
 ## Linting and Formatting
 
-ESLint uses Expo's flat config with Prettier integration. Key rules:
+ESLint uses Expo's flat config with Prettier integration. `admin/` is excluded and uses the Next.js config instead. Key rules:
 
 - Prettier formatting enforced as errors
 - Unused imports are automatically flagged and removed
-- Ignores build artifacts (dist, ios, android, .expo)
+- Ignores build artifacts (dist, ios, android, .expo) and `admin/`
 
 ## Astro Website
 

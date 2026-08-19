@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --color-ink: oklch(0.22 0.02 260);
+  --color-parchment: oklch(0.98 0.008 90);
+}
+
+/* The editor is a text-heavy tool; keep long lyric fields legible and let the
+   browser follow the operator's own light/dark preference. */
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100;
+}
+
+textarea,
+input,
+select {
+  @apply w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm
+    outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-300
+    dark:border-stone-700 dark:bg-stone-900 dark:focus:ring-stone-700;
+}
+
+textarea {
+  @apply font-mono leading-relaxed;
+  field-sizing: content;
+}
+
+label {
+  @apply mb-1 block text-xs font-medium tracking-wide text-stone-500 uppercase dark:text-stone-400;
+}
