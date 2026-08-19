@@ -11,7 +11,8 @@ module.exports = defineConfig([
   prettierConfig,
   reactCompiler.configs.recommended,
   {
-    ignores: ['dist/*', 'ios/*', 'android/*', '.expo/*', 'app-example/*', 'expo-env.d.ts'],
+    // admin/ is a Next.js app with its own ESLint config; Expo's rules do not apply there.
+    ignores: ['dist/*', 'ios/*', 'android/*', '.expo/*', 'app-example/*', 'expo-env.d.ts', 'admin/*'],
     plugins: {
       prettier: prettierPlugin,
       'unused-imports': unusedImportsPlugin,
