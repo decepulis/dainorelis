@@ -1,12 +1,18 @@
 import { ComponentPropsWithoutRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, useColorScheme } from 'react-native';
+import { ColorValue, Platform, View } from 'react-native';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
+
+import { isLiquidGlassAvailable } from 'expo-glass-effect/build/isLiquidGlassAvailable';
+
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
 
 import { Audio } from '../schemas/audio';
+import { styles as buttonStyles } from './Button';
 import MenuView from './MenuView';
+import SystemView from './SystemView';
 
 type Props = {
   media: { [id: string]: Audio };
@@ -14,8 +20,9 @@ type Props = {
   setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof MenuView>['style'];
   hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
+  color: ColorValue;
 };
-export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style }: Props) {
+export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style, color }: Props) {
   const { t, i18n } = useTranslation();
   const isDark = useColorScheme() === 'dark';
 
@@ -40,16 +47,27 @@ export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitS
     [setActiveMediaId]
   );
 
+  const ButtonWrapper = ({ children }: { children: React.ReactNode }) =>
+    isLiquidGlassAvailable() ? (
+      <View style={[buttonStyles.button]}>{children}</View>
+    ) : (
+      <SystemView shadow={false} style={[buttonStyles.button]}>
+        {children}
+      </SystemView>
+    );
+
+  // TODO prevent this from morphing the whole gosh darned player
   return (
     <MenuView
-      asButton
       style={style}
       hitSlop={hitSlop}
       actions={actions}
       onPressAction={onPressAction}
       title={t('mediaMenuTitle')}
     >
-      <FontAwesome6 name="bars" size={14} color="white" />
+      <ButtonWrapper>
+        <FontAwesome6 name="bars" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+      </ButtonWrapper>
     </MenuView>
   );
 }

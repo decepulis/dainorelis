@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
-import { LayoutRectangle, Platform, View } from 'react-native';
+import { DynamicColorIOS, LayoutRectangle, Platform, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
   SharedValue,
   interpolate,
   useAnimatedStyle,
-  useScrollViewOffset,
+  useScrollOffset,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
+import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 
-import { Link } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
+import { Link, Stack, router } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { NativeStackHeaderLeftProps } from '@react-navigation/native-stack';
+import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 
+import { useThemeColor } from '../hooks/useThemeColor';
 import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
@@ -28,29 +28,34 @@ const springConfig: SpringConfig = {
   stiffness: 500,
 };
 
+export const isLiquidGlassStyleHeader = () =>
+  Platform.OS === 'ios' && parseInt(Platform.Version as string, 10) >= 26 && isLiquidGlassAvailable();
+
 type HeaderBackgroundProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
   opaque?: boolean;
-  shadow?: boolean;
 };
 
-export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBackgroundProps) {
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+export function HeaderBackground({ scrollRef, opaque }: HeaderBackgroundProps) {
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const headerStyle = useAnimatedStyle(() => ({
-    opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
+    opacity: opaque ? 1 : interpolate(scrollOffset.get(), [0, 40], [0, 1], Extrapolation.CLAMP),
   }));
+
+  if (isLiquidGlassStyleHeader()) {
+    return null;
+  }
 
   return (
     <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
-      <StatusBar style="light" />
-      <SystemView shadow={shadow} style={{ flex: 1 }}></SystemView>
+      <SystemView shadow style={{ flex: 1 }}></SystemView>
     </Animated.View>
   );
 }
 
-const titleFontSize = 16;
+const titleFontSize = isLiquidGlassStyleHeader() ? 17 : 16;
 const titleLineHeight = 1.65;
 const titleWithSubtitleFontSize = 15;
 const titleWithSubtitleLineHeight = 1.25;
@@ -66,6 +71,7 @@ type HeaderTitleProps = {
   title?: string;
   subtitle?: string;
   variantName?: string;
+  center?: boolean;
 };
 export const HeaderTitle = ({
   scrollRef,
@@ -76,12 +82,15 @@ export const HeaderTitle = ({
   title,
   subtitle,
   variantName,
+  center,
 }: HeaderTitleProps) => {
+  const text = useThemeColor('text');
+
   const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
 
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const hasSubtitleOrVariantName = !!subtitle || !!variantName;
   const showSubtitle = !!subtitle && !variantName;
@@ -89,19 +98,20 @@ export const HeaderTitle = ({
   const showTitleSv = useSharedValue(typeof showTitle === 'boolean' ? showTitle : null);
   useEffect(() => {
     if (typeof showTitle === 'boolean') {
-      showTitleSv.value = showTitle;
+      showTitleSv.set(showTitle);
     } else {
-      showTitleSv.value = null;
+      showTitleSv.set(null);
     }
   }, [showTitle, showTitleSv]);
 
   const animatedTitleStyle = useAnimatedStyle(() => {
     // default to whatever the prop dragged in
-    let animateTitleIn = showTitleSv.value;
+    let animateTitleIn = showTitleSv.get();
     // if the prop is null, we need to calculate it
     if (animateTitleIn === null) {
-      if (titleLayout?.value) {
-        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      const layoutValue = titleLayout?.get();
+      if (layoutValue) {
+        animateTitleIn = scrollOffset.get() > layoutValue.y + layoutValue.height;
       }
     }
     return {
@@ -111,11 +121,12 @@ export const HeaderTitle = ({
   });
   const animatedVariantNameStyle = useAnimatedStyle(() => {
     // default to whatever the prop dragged in
-    let animateTitleIn = showTitleSv.value;
+    let animateTitleIn = showTitleSv.get();
     // if the prop is null, we need to calculate it
     if (animateTitleIn === null) {
-      if (titleLayout?.value) {
-        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      const layoutValue = titleLayout?.get();
+      if (layoutValue) {
+        animateTitleIn = scrollOffset.get() > layoutValue.y + layoutValue.height;
       }
     }
     return {
@@ -131,12 +142,21 @@ export const HeaderTitle = ({
   });
 
   return (
-    <View style={{ paddingHorizontal: buttonSlop.left }}>
+    <View
+      style={[
+        {
+          flex: center ? undefined : 1,
+          // on iOS 26, patches/react-native-screens@4.25.2.patch sizes this view to the space
+          // actually left over by the toolbar buttons, so no width hacks are needed here
+          paddingHorizontal: isLiquidGlassStyleHeader() ? undefined : buttonSlop.left,
+        },
+      ]}
+    >
       <TitleWrapper>
         <Animated.View style={[animatedTitleStyle]}>
           {title ? (
             <ThemedText
-              numberOfLines={hasSubtitleOrVariantName ? 1 : 2}
+              numberOfLines={1}
               bold
               style={[
                 {
@@ -144,11 +164,15 @@ export const HeaderTitle = ({
                   lineHeight: hasSubtitleOrVariantName
                     ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
                     : titleFontSize * titleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  textAlign: 'left',
                   position: 'relative',
                   top: !variantName ? 1 : 0,
-                  color: '#fff',
                 },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {title}
@@ -165,11 +189,15 @@ export const HeaderTitle = ({
                 {
                   fontSize: subtitleFontSize,
                   lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  textAlign: 'left',
                   position: 'relative',
                   top: 0,
-                  color: '#fff',
                 },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {subtitle}
@@ -184,8 +212,8 @@ export const HeaderTitle = ({
                 // width: '100%',
                 flexDirection: 'row',
                 alignItems: 'center',
-                transformOrigin: Platform.select({ ios: 'center', default: 'left center' }),
-                justifyContent: Platform.select({ ios: 'center', default: 'flex-start' }),
+                transformOrigin: 'left center',
+                justifyContent: 'flex-start',
                 gap: 4,
               },
             ]}
@@ -196,16 +224,28 @@ export const HeaderTitle = ({
                 {
                   fontSize: subtitleFontSize,
                   lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
+                  textAlign: 'left',
                   position: 'relative',
                   top: 0,
-                  color: '#fff',
                 },
+                isLiquidGlassStyleHeader()
+                  ? {
+                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                    }
+                  : { color: '#fff' },
               ]}
             >
               {variantName}
             </ThemedText>
-            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={10} color="white" /> : null}
+            {hasTitleWrapper ? (
+              <FontAwesome6
+                name="circle-chevron-down"
+                iconStyle="solid"
+                size={9}
+                color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
+                style={{ marginTop: -1 }}
+              />
+            ) : null}
           </Animated.View>
         ) : null}
       </TitleWrapper>
@@ -215,21 +255,32 @@ export const HeaderTitle = ({
 
 type HeaderLeftProps = {
   modal?: boolean;
-} & NativeStackHeaderLeftProps;
+  href?: string;
+  canGoBack?: boolean;
+};
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   return (
-    <Link href={href || canGoBack ? '../' : '/'} asChild>
+    <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
       <Button>
         {modal && Platform.OS === 'ios' ? (
-          <FontAwesome6 name="xmark" size={18} color="white" />
+          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
         ) : (
-          <FontAwesome6 name="chevron-left" size={17} color="white" />
+          <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
         )}
       </Button>
     </Link>
   );
 };
+
+export function ModalToolbar() {
+  if (!isLiquidGlassStyleHeader()) return null;
+  return (
+    <Stack.Toolbar placement="left">
+      <Stack.Toolbar.Button icon="xmark" onPress={() => router.navigate('../')} />
+    </Stack.Toolbar>
+  );
+}
 
 const gap = buttonSlop.left + buttonSlop.right;
 

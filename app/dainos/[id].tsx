@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -7,18 +7,23 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useHeaderHeight, useRoute } from 'expo-router/react-navigation';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { useHeaderHeight } from '@react-navigation/elements';
-import * as Sentry from '@sentry/react-native';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
-import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import {
+  HeaderBackground,
+  HeaderButtonContainer,
+  HeaderLeft,
+  HeaderTitle,
+  isLiquidGlassStyleHeader,
+} from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu from '@/lib/components/SongMenu';
+import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -42,16 +47,27 @@ export default function Page() {
   const { t } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
+  const background = useThemeColor('background');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const { value: showChords } = useStorage('showChords');
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
+
+  // Detect if this screen is preloaded for peek preview.
+  // Stack.Toolbar calls navigation.setOptions() which crashes on placeholder screens.
+  const route = useRoute();
+  const navigation = useNavigation();
+  const navigationState = navigation.getState();
+  const isPreloaded =
+    navigationState?.type === 'stack' &&
+    (navigationState as any).preloadedRoutes?.some((r: any) => r.key === route.key);
+
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
 
@@ -135,19 +151,28 @@ export default function Page() {
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = useCallback(
     (event: LayoutChangeEvent) => {
-      titleLayout.value = event.nativeEvent.layout;
+      titleLayout.set(event.nativeEvent.layout);
     },
     [titleLayout]
   );
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const showLyrics = isLyrics(activeVariant);
 
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      setFavorites(favorites.filter((id) => id !== song.id));
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+    } else {
+      setFavorites([...favorites, song.id]);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  };
+
   return (
-    <Fragment>
+    <View style={{ flex: 1, backgroundColor: background }}>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground opaque />,
-          // TODO can I force this to re-render when activeVariant changes?
           headerTitle: () => (
             <HeaderTitle
               scrollRef={showLyrics ? scrollRef : undefined}
@@ -171,24 +196,27 @@ export default function Page() {
               variantName={variantName}
             />
           ),
-          headerLeft: (props) => <HeaderLeft {...props} />,
-          headerRight: () => (
-            <HeaderButtonContainer>
-              <Button
-                onPress={() =>
-                  isFavorite
-                    ? setFavorites(favorites.filter((id) => id !== song.id))
-                    : setFavorites([...favorites, song.id])
-                }
-                haptics={isFavorite ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-              >
-                <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
-              </Button>
-              <SongMenu song={song} />
-            </HeaderButtonContainer>
-          ),
+          headerLeft: !isLiquidGlassStyleHeader() ? HeaderLeft : undefined,
+          headerRight: !isLiquidGlassStyleHeader()
+            ? () => (
+                <HeaderButtonContainer>
+                  <Button onPress={toggleFavorite}>
+                    <FontAwesome6 name="heart" iconStyle={isFavorite ? 'solid' : 'regular'} size={16} color="white" />
+                  </Button>
+                  <SongMenu song={song} hasChords={hasChords} />
+                </HeaderButtonContainer>
+              )
+            : undefined,
         }}
       />
+      {!isPreloaded && (
+        <SongDetailToolbar
+          song={song}
+          hasChords={hasChords}
+          isFavorite={isFavorite}
+          onToggleFavorite={toggleFavorite}
+        />
+      )}
       {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View
@@ -203,21 +231,29 @@ export default function Page() {
               },
             ]}
           >
-            <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
+            <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
+              {isLiquidGlassStyleHeader() ? (
+                <View
+                  style={{
+                    backgroundColor: primary,
+                    position: 'absolute',
+                    left: -maxWidthPadding.paddingLeft,
+                    right: -maxWidthPadding.paddingRight,
+                    top: -headerHeight * 10,
+                    bottom: -padding,
+                  }}
+                />
+              ) : null}
               <View style={styles.titleAndSubtitle}>
-                <ThemedText bold style={[styles.mainTitle]}>
+                <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
                   {title}
                 </ThemedText>
-                {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
+                {subtitle ? (
+                  <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                    {subtitle}
+                  </ThemedText>
+                ) : null}
               </View>
-              {hasChords ? (
-                <Button
-                  onPress={() => setShowChords(!showChords)}
-                  haptics={showChords ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-                >
-                  <FontAwesome6 name="guitar" solid={showChords} size={16} color="white" />
-                </Button>
-              ) : null}
             </View>
 
             <Markdown showLinksAsChords showChords={hasChords && showChords}>
@@ -247,9 +283,7 @@ export default function Page() {
           </View>
         </ScrollViewWithHeader>
       ) : (
-        // TODO this not falling behind the menu bar makes me sad
-        <View style={{ flex: 1, paddingTop: headerHeight }}>
-          {/* TODO isTitleBehind on scroll */}
+        <View style={{ flex: 1, paddingTop: Platform.OS === 'android' ? headerHeight : undefined }}>
           {/* TODO scroll is off on load? */}
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}
@@ -262,10 +296,9 @@ export default function Page() {
             spacing={padding}
             onError={(error) => {
               console.error(error);
-              Sentry.captureException(error);
             }}
-            // TODO maybe a better offline experience?
-            renderActivityIndicator={(progress) => (
+            // TODO a better offline experience?
+            renderActivityIndicator={(_progress) => (
               <View
                 style={{
                   flex: 1,
@@ -280,7 +313,7 @@ export default function Page() {
         </View>
       )}
       <Player title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
-    </Fragment>
+    </View>
   );
 }
 
@@ -294,8 +327,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   titleContainer: {
-    marginTop: padding * 2,
-    marginBottom: padding,
+    position: 'relative',
+    marginTop: isLiquidGlassStyleHeader() ? padding * 2 : padding * 2,
+    marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
     flexDirection: 'row',
     gap: padding,
     alignItems: 'center',

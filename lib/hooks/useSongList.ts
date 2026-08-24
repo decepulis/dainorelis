@@ -12,7 +12,7 @@ import titleIndexJson from '@/title-index.json';
 import useStorage from './useStorage';
 
 // set up fuse
-const fuseSettings: IFuseOptions<unknown> = {
+const fuseSettings: IFuseOptions<Song> = {
   isCaseSensitive: false,
   ignoreDiacritics: true,
   findAllMatches: true,
@@ -20,8 +20,7 @@ const fuseSettings: IFuseOptions<unknown> = {
   shouldSort: true,
   ignoreLocation: true,
 };
-// @ts-expect-error this is fine, I promise
-const titleIndex = Fuse.parseIndex(titleIndexJson);
+const titleIndex = Fuse.parseIndex<Song>(titleIndexJson);
 const titleFuse = new Fuse(
   songs,
   {
@@ -30,8 +29,7 @@ const titleFuse = new Fuse(
   },
   titleIndex
 );
-// @ts-expect-error this is fine, I promise
-const lyricIndex = Fuse.parseIndex(lyricIndexJson);
+const lyricIndex = Fuse.parseIndex<Song>(lyricIndexJson);
 const lyricFuse = new Fuse(
   songs,
   {
@@ -57,10 +55,10 @@ const groupSongsByLetter = (songs: SongFile) => {
   const sections = Array.from(songsByLetter.entries()).map(([letter, songs]) => {
     return {
       title: letter,
-      // assume these are sorted by airtable
       data: songs,
     };
   });
+  sections.sort((a, b) => a.title.localeCompare(b.title, 'lt', { sensitivity: 'variant' }));
   return sections;
 };
 
@@ -81,35 +79,28 @@ export const useSongFestivalList = () => {
   return songsByPart;
 };
 
-type RenderItem = { type: 'render'; id: 'search' | 'search-background' };
 type SongItem = { type: 'song'; item: Song; id: string };
 type HeaderItem = { type: 'header'; item: string; id: string };
-export type SongListItem = RenderItem | SongItem | HeaderItem;
+export type SongListItem = SongItem | HeaderItem;
 
 /**
  * An output compatible with FlatList and FlashList, with search added on
  */
 const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
-  const items: (RenderItem | SongItem | HeaderItem)[] = [];
+  const items: (SongItem | HeaderItem)[] = [];
   sections.forEach((section) => {
     items.push({ type: 'header', item: section.title, id: section.title });
     section.data.forEach((song) => {
       items.push({ type: 'song', item: song, id: song.id });
     });
   });
-  if (items.length <= 10) {
-    items.filter((item) => item.type !== 'header');
-  }
   return items;
 };
 
 export const useManualItems = ({ isSongFestivalMode }: { isSongFestivalMode?: boolean }) => {
   const { t } = useTranslation();
 
-  let manualItems: SongListItem[] = [
-    { type: 'render', id: 'search' },
-    { type: 'render', id: 'search-background' },
-  ];
+  let manualItems: SongListItem[] = [];
   if (isSongFestivalMode) {
     manualItems.push({
       type: 'header',
@@ -140,8 +131,8 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
   // search results
   const searchResults: string[] | null = useMemo(() => {
     if (searchText.length > 0) {
-      const titleSearchResults = titleFuse.search<Song>(searchText, { limit: 20 });
-      const lyricSearchResults = lyricFuse.search<Song>(searchText, { limit: 20 });
+      const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
+      const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
       const searchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
       const exclusiveSearchResults = new Set(searchResults);
       return Array.from(exclusiveSearchResults);

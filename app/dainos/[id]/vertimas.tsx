@@ -5,9 +5,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import { HeaderBackground, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import ThemedText from '@/lib/components/ThemedText';
@@ -33,6 +33,7 @@ export default function Page() {
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');
+  const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const [isPressed, setIsPressed] = useState(false);
   const firstTranslation = Object.values(song.fields['Translations'])[0];
@@ -49,10 +50,11 @@ export default function Page() {
       <Stack.Screen
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
-          headerBackground: () => <HeaderBackground opaque />,
+          headerBackground: () => <HeaderBackground />,
           headerTitle: () => <HeaderTitle showTitle title={t('translationTitle')} subtitle={ogTitle} />,
         }}
       />
+      <ModalToolbar />
       <ScrollViewWithHeader>
         <View
           style={[
@@ -72,7 +74,7 @@ export default function Page() {
             {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
           </View>
           <Markdown>{firstTranslation['Lyrics']}</Markdown>
-          {song.fields['AI-Generated Description'] ? (
+          {firstTranslation['AI Generated'] ? (
             <View style={{ marginTop: padding * 2, opacity: isHighContrastEnabled ? 1 : 0.7 }}>
               <Pressable
                 style={{ flexDirection: 'row', alignItems: 'center', gap: padding / 2 }}
@@ -81,7 +83,7 @@ export default function Page() {
                 onPress={() => openFeedback(song.fields['Name'])}
                 hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
               >
-                <FontAwesome6 name="wand-magic-sparkles" size={12} />
+                <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} color={text} />
                 <View style={{ flexShrink: 1 }}>
                   <ThemedText>
                     {t('genAiText1')}{' '}

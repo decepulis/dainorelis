@@ -1,10 +1,24 @@
-import Airtable, { FieldSet, Records } from 'airtable';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import { z } from 'zod';
 
 import { Song, SongFile, SongFileSchema } from '../lib/schemas/songs';
 
+/**
+ * Pulls the song database into the files the app bundles.
+ *
+ * Songs live in the admin app (admin/, deployed to admin.dainorelis.app) and
+ * are fetched from its token-authenticated export endpoint. The admin app owns
+ * the content transforms — variant naming, chord whitespace, hidden-song
+ * filtering, title ordering — so this script's job is narrow: validate the
+ * payload, drop the fields the app does not ship, and write the files.
+ *
+ * The app itself never talks to the CMS. It only ever reads the generated
+ * files, which are committed so releases are reproducible offline.
+ */
+
+/** Which fields make it into the bundle. Flip one on and re-run to include it. */
 const fieldFlags: Record<keyof Song['fields'], boolean> = {
   Name: true,
   Lyrics: true,
@@ -19,7 +33,6 @@ const fieldFlags: Record<keyof Song['fields'], boolean> = {
   'Text Author': true,
   'LT Description': true,
   'EN Description': true,
-  'AI-Generated Description': true,
 } as const;
 
 const outputDir = path.join(__dirname, '..');
@@ -41,210 +54,54 @@ console.log('🎵 Fetching songs...');
 // load .env file
 dotenv.config();
 
-// get ready!
-const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base('appW24b09D9VHYHfi');
+const exportUrl = process.env.ADMIN_EXPORT_URL ?? 'https://admin.dainorelis.app/api/export';
+const exportToken = process.env.ADMIN_EXPORT_TOKEN;
 
-// get set!
-async function getSongs() {
-  return await base('Songs')
-    .select({
-      view: 'Grid view',
-      fields: [
-        'Name',
-        'Lyrics',
-        'Videos',
-        'Audio',
-        'PDFs',
-        'Translations',
-        'Tags',
-        'Sources',
-        'Recommended Key',
-        'Music Author',
-        'Text Author',
-        'LT Description',
-        'EN Description',
-        'AI-Generated Description',
-      ],
-      sort: [{ field: 'Name', direction: 'asc' }],
-      filterByFormula: 'NOT(Hide)',
-    })
-    .all();
-}
-async function getLyrics() {
-  return await base('Lyrics & Chords')
-    .select({
-      view: 'Grid view',
-      fields: ['Variant Name', 'EN Variant Name', 'Lyrics & Chords', 'Show Chords', 'Notes'],
-    })
-    .all();
-}
-async function getVideos() {
-  return await base('Videos')
-    .select({
-      view: 'Grid view',
-      fields: ['Variant Name', 'EN Variant Name', 'YouTube Link'],
-    })
-    .all();
-}
-async function getAudio() {
-  return await base('Audio')
-    .select({
-      view: 'Grid view',
-      fields: ['Variant Name', 'EN Variant Name', 'URL', 'Album', 'Artist'],
-    })
-    .all();
-}
-async function getPDFs() {
-  return await base('PDFs')
-    .select({
-      view: 'Grid view',
-      fields: ['Variant Name', 'EN Variant Name', 'URL'],
-    })
-    .all();
-}
-async function getTranslations() {
-  return await base('Translations')
-    .select({
-      view: 'Grid view',
-      fields: ['Title', 'Variant Name', 'EN Variant Name', 'Lyrics', 'AI Generated', 'Notes'],
-    })
-    .all();
-}
+async function fetchSongFile(): Promise<unknown> {
+  if (!exportToken) {
+    throw new Error('ADMIN_EXPORT_TOKEN is not set. Copy it from the admin app’s Vercel environment into .env.');
+  }
 
-function getRecordsForField(field: undefined | any[], records: Records<FieldSet>): { [id: string]: FieldSet } {
-  if (!field) return {};
-  return Object.fromEntries(
-    field
-      .map((id) => {
-        if (typeof id !== 'string') return null;
-        const record = records.find((record) => record.id === id);
-        if (!record) return null;
-        return [record.id, record.fields];
-      })
-      .filter((entry) => entry !== null)
-  );
-}
-
-/**
- * When `Variant Name` is not defined, we default to `${defaultName} ${idx + 1}`
- * When `EN Variant Name` is not defined, we default to `Variant Name`
- */
-function assignVariantNames(records: { [id: string]: FieldSet }, defaultLtName: string, defaultEnName: string) {
-  const numberOfMissingVariantNames = Object.values(records).filter((record) => !record['Variant Name']).length;
-  const shouldAppendIndexNumber = numberOfMissingVariantNames > 1;
-
-  Object.entries(records).forEach(([id, record], idx) => {
-    const alreadyHasName = !!record['Variant Name'];
-    let ltName = alreadyHasName ? record['Variant Name'] : defaultLtName;
-    let enName = alreadyHasName ? (record['EN Variant Name'] ?? record['Variant Name']) : defaultEnName;
-    if (shouldAppendIndexNumber && !alreadyHasName) {
-      ltName += ` ${idx + 1}`;
-      enName += ` ${idx + 1}`;
-    }
-    records[id] = {
-      ...record,
-      'Variant Name': ltName,
-      'EN Variant Name': enName,
-    };
+  const response = await fetch(exportUrl, {
+    headers: { authorization: `Bearer ${exportToken}` },
   });
 
-  return records;
+  if (!response.ok) {
+    const detail = await response.text().catch(() => '');
+    throw new Error(`${exportUrl} responded ${response.status} ${response.statusText}. ${detail}`.trim());
+  }
+
+  return response.json();
 }
 
-/**
- * Throughout lyrics, the pattern [space](Chord) is frequently used
- * Since that's often not enough space, we do a lil magic to fix it up a bit
- * Based on the number of wide characters in the chord, we add that many em spaces (Max 4)
- * E.g., [space](C) => [emspace](C)
- *       [space](C#) => [emspace emspace](C#)
- *       [space](C/D) => [emspace emspace](C/D)
- *       [space](C#maj7) => [emspace emspace emspace ](C#maj7)
- */
-function adjustChordWhitespace(lyrics: { [id: string]: FieldSet }): { [id: string]: FieldSet } {
-  const emSpace = ' ';
-  const wideCharRegex = /[a-zA-Z0-9#]/g; // Only count alphanumeric and "#" as wide characters
-  Object.entries(lyrics).forEach(([id, record]) => {
-    const lyricsText = record['Lyrics & Chords'];
-    if (typeof lyricsText !== 'string') return record;
-
-    const adjustedLyrics = lyricsText.replace(/\[\s*\]\(([^\)]+)\)/g, (match, chord) => {
-      // Count wide characters in the chord
-      const wideCount = (chord.match(wideCharRegex) || []).length;
-      const emSpaces = emSpace.repeat(Math.min(3, wideCount));
-      return `[${emSpaces}](${chord})`;
-    });
-
-    lyrics[id] = {
-      ...record,
-      'Lyrics & Chords': adjustedLyrics,
-    };
-  });
-  return lyrics;
-}
-
-// get those songs
 async function updateSongs() {
   try {
-    const [songs, lyrics, videos, audio, pdfs, translations] = await Promise.all([
-      getSongs(),
-      getLyrics(),
-      getVideos(),
-      getAudio(),
-      getPDFs(),
-      getTranslations(),
-    ]);
+    const songFile = await fetchSongFile();
 
-    const songFile = songs.map((song) => {
-      const Lyrics = adjustChordWhitespace(
-        assignVariantNames(getRecordsForField(song.fields.Lyrics as undefined | any[], lyrics), 'Žodžiai', 'Lyrics')
-      );
-      const PDFs = assignVariantNames(
-        getRecordsForField(song.fields.PDFs as undefined | any[], pdfs),
-        'Natos',
-        'Score'
-      );
-      const Audio = assignVariantNames(
-        getRecordsForField(song.fields.Audio as undefined | any[], audio),
-        'Įrašas',
-        'Recording'
-      );
-      const Videos = assignVariantNames(
-        getRecordsForField(song.fields.Videos as undefined | any[], videos),
-        'Įrašas',
-        'Recording'
-      );
-      const Translations = assignVariantNames(
-        getRecordsForField(song.fields.Translations as undefined | any[], translations),
-        'Vertimas',
-        'Translation'
-      );
-
-      // throw alert if translations or descriptions are missing; we should generate those with AI if necessary
-      if (!Array.isArray(song.fields.Translations) || song.fields.Translations.length === 0) {
-        const isAlreadyTranslated =
-          typeof song.fields.Name === 'string' &&
-          (song.fields.Name.startsWith('JAV ') || song.fields.Name.startsWith('Kanados '));
-
-        if (!isAlreadyTranslated)
-          console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
+    let validSongFile: SongFile;
+    try {
+      validSongFile = SongFileSchema.parse(songFile);
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        console.error('❌ Song data validation failed:');
+        console.error(z.prettifyError(e));
+        console.error('\nℹ️  The admin app’s /export page lists the same problems with links to each song.');
+        process.exit(1);
       }
-      if (!song.fields['EN Description'] || !song.fields['LT Description']) {
-        console.warn(`⚠️  No descriptions found for song "${song.fields.Name}". Consider generating them with AI.`);
-      }
+      throw e;
+    }
 
-      return {
-        id: song.id,
-        fields: {
-          ...song.fields,
-          Lyrics,
-          Videos,
-          Audio,
-          PDFs,
-          Translations,
-        },
-      };
-    });
-    const validSongFile = SongFileSchema.parse(songFile);
+    // Flag anything an editor probably wants to fill in with AI assistance.
+    for (const song of validSongFile) {
+      if (Object.keys(song.fields.Translations).length > 0) continue;
+
+      const isAlreadyTranslated = song.fields.Name.startsWith('JAV ') || song.fields.Name.startsWith('Kanados ');
+
+      if (!isAlreadyTranslated) {
+        console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
+      }
+    }
+
     const filteredSongFile = validSongFile.map((song) => {
       return {
         id: song.id,
@@ -256,7 +113,7 @@ async function updateSongs() {
 
     // Write the song file
     fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(filteredSongFile, null, 2) + fileFooter);
-    console.log('✅ Songs fetched and saved to songs.ts');
+    console.log(`✅ ${filteredSongFile.length} songs fetched and saved to songs.ts`);
     console.log(
       Object.entries(fieldFlags)
         .map(([key, value]) => `  - ${value ? 'Enabled  ' : 'Disabled '} ${key}`)
@@ -272,6 +129,9 @@ const songFestival = `;
 
 export default songFestival`;
 
+    // The repertoire is curated here rather than in the CMS, so these are
+    // matched by title. Renaming a song in the admin app breaks the match and
+    // fails this script — which is the intended safety net.
     const songFestivalList = [
       {
         title: 'songFestivalRepertoire0',
@@ -348,7 +208,7 @@ export default songFestival`;
     );
     console.log('✅ Song festival list created and saved to song-festival.ts');
   } catch (e) {
-    console.error('❌ Error fetching songs.', e);
+    console.error('❌ Error fetching songs.', e instanceof Error ? e.message : e);
     console.log('\nℹ️  Falling back to saved songs');
   }
 }

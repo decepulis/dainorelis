@@ -13,5 +13,10 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dainorelisapp.com",
+    "admin"
   ]
 }

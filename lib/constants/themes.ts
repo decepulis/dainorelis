@@ -1,48 +1,60 @@
 import { Platform, PlatformColor, TextStyle } from 'react-native';
 
-import type { Theme as LibTheme } from '@react-navigation/native';
+import type { Theme as LibTheme } from 'expo-router/react-navigation';
 
 export const fonts = {
   regular: {
-    fontFamily: Platform.select({ ios: 'Nunito-Medium', default: 'Nunito_500Medium' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-Medium', default: 'Nunito_500Medium' }),
+    // fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontWeight: Platform.select({ default: '400', android: 'normal' }),
   },
   regularItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-MediumItalic', default: 'Nunito_500Medium_Italic' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-MediumItalic', default: 'Nunito_500Medium_Italic' }),
+    // fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontWeight: Platform.select({ default: '400', android: 'normal' }),
     fontStyle: 'italic',
   },
   medium: {
-    fontFamily: Platform.select({ ios: 'Nunito-Bold', default: 'Nunito_700Bold' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-Bold', default: 'Nunito_700Bold' }),
     fontWeight: Platform.select({ default: '700', android: 'normal' }),
   },
   mediumItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-BoldItalic', default: 'Nunito_700Bold_Italic' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-BoldItalic', default: 'Nunito_700Bold_Italic' }),
     fontWeight: Platform.select({ default: '700', android: 'normal' }),
     fontStyle: 'italic',
   },
   bold: {
-    fontFamily: Platform.select({ ios: 'Nunito-ExtraBold', default: 'Nunito_800ExtraBold' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-ExtraBold', default: 'Nunito_800ExtraBold' }),
     fontWeight: Platform.select({ default: '800', android: 'normal' }),
   },
   boldItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-ExtraBoldItalic', default: 'Nunito_800ExtraBold_Italic' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-ExtraBoldItalic', default: 'Nunito_800ExtraBold_Italic' }),
     fontWeight: Platform.select({ default: '800', android: 'normal' }),
     fontStyle: 'italic',
   },
   heavy: {
-    fontFamily: Platform.select({ ios: 'Nunito-Black', default: 'Nunito_900Black' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-Black', default: 'Nunito_900Black' }),
     fontWeight: Platform.select({ default: '900', android: 'normal' }),
   },
   heavyItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-BlackItalic', default: 'Nunito_900Black_Italic' }),
+    // fontFamily: Platform.select({ ios: 'Nunito-BlackItalic', default: 'Nunito_900Black_Italic' }),
     fontWeight: Platform.select({ default: '900', android: 'normal' }),
     fontStyle: 'italic',
   },
+  brand: {
+    fontFamily: 'Modekan',
+    fontWeight: '400',
+  },
 } as { [weight: string]: TextStyle };
 
-export interface Theme extends LibTheme {
-  colors: LibTheme['colors'] & {
+export interface Theme extends Omit<LibTheme, 'colors'> {
+  colors: {
+    primary: string;
+    background: string;
+    card: string;
+    text: string;
+    border: string;
+    notification: string;
     card0: string;
     separator: string;
   };
@@ -76,7 +88,7 @@ export const LightHighContrastTheme: Theme = {
   },
 };
 export const DarkTheme: Theme = {
-  dark: false,
+  dark: true,
   colors: {
     primary: '#53745e',
     card0: '#080910', // darker

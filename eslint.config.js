@@ -1,6 +1,7 @@
 // https://docs.expo.dev/guides/using-eslint/
 const { defineConfig } = require('eslint/config');
 const expoConfig = require('eslint-config-expo/flat');
+const reactCompiler = require('eslint-plugin-react-compiler');
 const prettierConfig = require('eslint-config-prettier');
 const prettierPlugin = require('eslint-plugin-prettier');
 const unusedImportsPlugin = require('eslint-plugin-unused-imports');
@@ -8,8 +9,10 @@ const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 module.exports = defineConfig([
   expoConfig,
   prettierConfig,
+  reactCompiler.configs.recommended,
   {
-    ignores: ['dist/*', 'ios/*', 'android/*', '.expo/*', 'app-example/*', 'expo-env.d.ts'],
+    // admin/ is a Next.js app with its own ESLint config; Expo's rules do not apply there.
+    ignores: ['dist/*', 'ios/*', 'android/*', '.expo/*', 'app-example/*', 'expo-env.d.ts', 'admin/*'],
     plugins: {
       prettier: prettierPlugin,
       'unused-imports': unusedImportsPlugin,
