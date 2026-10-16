@@ -245,7 +245,8 @@ export async function createSong(formData: FormData) {
   if (error) throw new Error(error.message);
 
   // A song with no lyrics fails the app's schema, so start it with one variant.
-  await supabase.from('lyrics').insert({ song_id: data.id, position: 0 });
+  const { error: lyricsError } = await supabase.from('lyrics').insert({ song_id: data.id, position: 0 });
+  if (lyricsError) throw new Error(lyricsError.message);
 
   revalidatePath('/');
   redirect(`/songs/${data.id}`);
