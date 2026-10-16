@@ -3,19 +3,10 @@ import { NextResponse } from 'next/server';
 import { buildSongFileFromDatabase } from '@/lib/song-file/query';
 import { exportToken } from '@/lib/supabase/env';
 import { createServiceClient } from '@/lib/supabase/service';
+import { tokenMatches } from '@/lib/token-matches';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
-
-/** Constant-time compare so the token can't be probed a byte at a time. */
-function tokenMatches(provided: string, expected: string): boolean {
-  if (provided.length !== expected.length) return false;
-  let mismatch = 0;
-  for (let i = 0; i < provided.length; i += 1) {
-    mismatch |= provided.charCodeAt(i) ^ expected.charCodeAt(i);
-  }
-  return mismatch === 0;
-}
 
 /**
  * The song file, exactly as the app's `scripts/update-songs.ts` expects it.

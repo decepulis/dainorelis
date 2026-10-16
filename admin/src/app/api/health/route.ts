@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { createServiceClient } from '@/lib/supabase/service';
+import { tokenMatches } from '@/lib/token-matches';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +25,7 @@ export async function GET(request: Request) {
 
   if (cronSecret) {
     const provided = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '');
-    if (provided !== cronSecret) {
+    if (!provided || !tokenMatches(provided, cronSecret)) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
   }
