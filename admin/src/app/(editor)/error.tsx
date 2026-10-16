@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 
 import Link from 'next/link';
 
+import { PRIMARY_BUTTON } from '@/lib/styles';
+
 /**
  * Catches what the editor pages and the create/delete actions throw on a
  * database error, inside the editor layout so the header stays usable. In
@@ -26,11 +28,7 @@ export default function EditorError({ error, retry }: { error: unknown; retry: (
       {digest ? <p className="mt-1 font-mono text-xs text-stone-500 dark:text-stone-400">Reference: {digest}</p> : null}
 
       <div className="mt-6 flex items-center gap-4">
-        <button
-          type="button"
-          onClick={() => retry()}
-          className="rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
-        >
+        <button type="button" onClick={() => retry()} className={PRIMARY_BUTTON}>
           Try again
         </button>
         <Link href="/" className="text-sm text-stone-500 hover:underline dark:text-stone-400">

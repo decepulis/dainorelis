@@ -93,9 +93,11 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 
 6. **Verify.** Open `/export` in the admin app and confirm the song count and
    that there are no blocking errors. Then, in the app repo, run
-   `pnpm update-songs` and check `git diff songs.ts` — immediately after the
-   migration it should be **empty**. A clean diff proves the new pipeline
-   reproduces Airtable's output exactly.
+   `pnpm update-songs` and check `git diff songs.ts`. Immediately after the
+   migration, expect exactly one changed line: the importer trims song names,
+   and one Airtable title (`"Mes broliukai du du du\n"`) carries a trailing
+   newline. Anything beyond that means the new pipeline does not reproduce
+   Airtable's output, and is worth chasing before going further.
 
 ## Local development
 

@@ -2,6 +2,8 @@
 
 import { useActionState } from 'react';
 
+import { PRIMARY_BUTTON } from '@/lib/styles';
+
 import { type ResetState, requestPasswordReset } from '../actions';
 
 export default function ForgotForm() {
@@ -36,11 +38,7 @@ export default function ForgotForm() {
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
-      >
+      <button type="submit" disabled={pending} className={PRIMARY_BUTTON}>
         {pending ? 'Sending…' : 'Email me a reset link'}
       </button>
     </form>

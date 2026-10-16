@@ -5,6 +5,7 @@ import { useActionState, useRef } from 'react';
 import Link from 'next/link';
 
 import { assignVariantNames, byPosition } from '@/lib/song-file/variant-names';
+import { PRIMARY_BUTTON } from '@/lib/styles';
 
 import { type EditorState, deleteSong, saveSong } from '../../actions';
 import SubmitButton from '../../submit-button';
@@ -40,6 +41,15 @@ type Song = {
 
 function text(value: unknown): string {
   return typeof value === 'string' ? value : '';
+}
+
+/** Help text under a field; the field points at it with `aria-describedby`. */
+function Hint({ id, children }: { id: string | undefined; children: React.ReactNode }) {
+  return (
+    <p id={id} className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+      {children}
+    </p>
+  );
 }
 
 /** `table:id` for a variant's field name (`table:id:column`), or null for a song field. */
@@ -117,6 +127,8 @@ function ChildField({
     );
   }
 
+  const hintId = field.hint ? `${inputId}-hint` : undefined;
+
   return (
     <div className={field.wide ? 'sm:col-span-2' : undefined}>
       <label htmlFor={inputId}>{field.label}</label>
@@ -126,6 +138,7 @@ function ChildField({
           name={name}
           rows={field.column === 'notes' ? 2 : 12}
           defaultValue={draft?.[name] ?? text(value)}
+          aria-describedby={hintId}
         />
       ) : (
         <input
@@ -133,9 +146,10 @@ function ChildField({
           name={name}
           type={field.kind === 'url' ? 'url' : 'text'}
           defaultValue={draft?.[name] ?? text(value)}
+          aria-describedby={hintId}
         />
       )}
-      {field.hint ? <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{field.hint}</p> : null}
+      {field.hint ? <Hint id={hintId}>{field.hint}</Hint> : null}
     </div>
   );
 }
@@ -252,6 +266,11 @@ export default function SongEditor({ song }: { song: Song }) {
         ← All songs
       </Link>
 
+      {/* Outside the keyed form so it stays mounted; the time makes each save a change worth announcing. */}
+      <p role="status" className="sr-only">
+        {state.savedAt && !state.error ? `Saved at ${new Date(state.savedAt).toLocaleTimeString()}.` : ''}
+      </p>
+
       {/*
         `key` remounts the form after a save so every field picks up the fresh
         server values — including ids of records that were just added. A failed
@@ -289,14 +308,24 @@ export default function SongEditor({ song }: { song: Song }) {
           </div>
           <div>
             <label htmlFor="tags">Tags</label>
-            <input id="tags" name="tags" defaultValue={draft?.tags ?? (song.tags ?? []).join(', ')} />
-            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Comma separated.</p>
+            <input
+              id="tags"
+              name="tags"
+              defaultValue={draft?.tags ?? (song.tags ?? []).join(', ')}
+              aria-describedby="tags-hint"
+            />
+            <Hint id="tags-hint">Comma separated.</Hint>
           </div>
 
           <div className="sm:col-span-2">
             <label htmlFor="sources">Sources</label>
-            <input id="sources" name="sources" defaultValue={draft?.sources ?? (song.sources ?? []).join(', ')} />
-            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Comma separated.</p>
+            <input
+              id="sources"
+              name="sources"
+              defaultValue={draft?.sources ?? (song.sources ?? []).join(', ')}
+              aria-describedby="sources-hint"
+            />
+            <Hint id="sources-hint">Comma separated.</Hint>
           </div>
 
           <div className="sm:col-span-2">
@@ -352,19 +381,16 @@ export default function SongEditor({ song }: { song: Song }) {
           className="sticky bottom-0 flex items-center gap-3 border-t border-stone-200 bg-stone-50/90
             py-3 backdrop-blur dark:border-stone-800 dark:bg-stone-950/90"
         >
-          <button
-            type="submit"
-            name="intent"
-            value="save"
-            disabled={pending}
-            className="rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-white
-              hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900
-              dark:hover:bg-stone-300"
-          >
+          <button type="submit" name="intent" value="save" disabled={pending} className={PRIMARY_BUTTON}>
             {pending ? 'Saving…' : 'Save'}
           </button>
           {state.savedAt && !state.error ? (
-            <span className="text-sm text-stone-500 dark:text-stone-400">Saved.</span>
+            // Announced by the status region above the form instead: this one
+            // remounts with the form, and a live region that arrives already
+            // filled in is often not read out.
+            <span aria-hidden="true" className="text-sm text-stone-500 dark:text-stone-400">
+              Saved.
+            </span>
           ) : null}
           <span className="ml-auto font-mono text-xs text-stone-400 dark:text-stone-600">{song.id}</span>
         </div>
