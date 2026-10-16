@@ -22,12 +22,17 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 
 1. **Create the Supabase project.** Install Supabase from the Vercel
    Marketplace so the connection variables are wired into the deployment for
-   you, then run `supabase/migrations/0001_init.sql` in the SQL editor.
+   you, then run each file in `supabase/migrations/` in the SQL editor, in
+   order. On a project that already has the schema, run only the files it
+   hasn't had yet: `0001_init.sql` can't run twice, the later ones can.
 
 2. **Turn off sign-ups.** Authentication → Sign In / Providers → disable
    "Allow new users to sign up". There are no roles in this app: anyone who can
    sign in is an editor, so accounts are created by invitation only
-   (Authentication → Users → Add user → Send invitation).
+   (Authentication → Users → Add user → Send invitation). Leave "Allow
+   anonymous sign-ins" off too. Anonymous users also get the `authenticated`
+   role; `0002_editors_not_anonymous.sql` keeps them out of the policies, but
+   there is no reason to rely on that alone.
 
 3. **Point the auth emails at the app.** The invite and password-reset links
    land on `/auth/confirm`, which signs the editor in and sends them to
