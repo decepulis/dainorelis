@@ -2,10 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=https://dainorelisapp.com" />
+    <meta http-equiv="refresh" content="0; url=https://www.dainorelisapp.com/" />
+    <script>
+      // Fallback for when vercel.json's redirects don't apply: keep the path (e.g. /qr).
+      location.replace('https://www.dainorelisapp.com' + location.pathname + location.search + location.hash);
+    </script>
     <title>Redirecting...</title>
   </head>
   <body>
-    <p>If you are not redirected, <a href="https://dainorelisapp.com">click here</a>.</p>
+    <p>If you are not redirected, <a href="https://www.dainorelisapp.com/">click here</a>.</p>
   </body>
 </html>

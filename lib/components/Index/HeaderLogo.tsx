@@ -1,26 +1,37 @@
-import { StyleSheet } from 'react-native';
+import { DynamicColorIOS, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Image } from 'expo-image';
+import { fonts } from '@/lib/constants/themes';
 
-export default function HeaderLogo({ onLoadEnd, headerHeight }: { headerHeight: number; onLoadEnd?: () => void }) {
+import { isLiquidGlassStyleHeader } from '../Header';
+
+// The wordmark is text in the natively embedded Modekan font, so there's nothing to wait for at launch
+export default function HeaderLogo({ headerHeight }: { headerHeight: number }) {
   const inset = useSafeAreaInsets();
   return (
-    <Image
-      source={require('@/assets/images/logo_white_v3.png')}
-      onLoadEnd={onLoadEnd}
+    <Text
+      numberOfLines={1}
+      adjustsFontSizeToFit
       style={[
-        headerStyles.title,
         {
-          height: Math.min((headerHeight - inset.top) * 0.75, 30),
+          ...fonts.brand,
+          textAlign: 'center',
+          fontSize: 28,
+          marginBottom: -4, // optical alignment
+          paddingTop: 2, // diacriticals
+          height: isLiquidGlassStyleHeader()
+            ? Math.min((headerHeight - inset.top) * 0.6, 30)
+            : Math.min((headerHeight - inset.top) * 0.7, 30),
+          color: isLiquidGlassStyleHeader()
+            ? DynamicColorIOS({
+                light: '#000',
+                dark: '#fff',
+              })
+            : '#fff',
         },
       ]}
-      contentFit="contain"
-    />
+    >
+      {'Dainorėlis'.toLocaleUpperCase()}
+    </Text>
   );
 }
-const headerStyles = StyleSheet.create({
-  title: {
-    aspectRatio: 747 / 177,
-  },
-});

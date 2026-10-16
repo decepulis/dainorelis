@@ -1,56 +1,62 @@
 import React, { useEffect } from 'react';
-import { LayoutRectangle, Platform, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { DynamicColorIOS, LayoutRectangle, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
   SharedValue,
+  WithSpringConfig,
   interpolate,
   useAnimatedStyle,
-  useScrollViewOffset,
+  useScrollOffset,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/springUtils';
 
-import { Link } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
+import { Link, Stack, useRouter } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { NativeStackHeaderLeftProps } from '@react-navigation/native-stack';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
+import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const springConfig: SpringConfig = {
+const springConfig: WithSpringConfig = {
   mass: 1,
   damping: 50,
   stiffness: 500,
 };
 
+// expo-glass-effect's native constant is already false below iOS 26 (and off iOS), and it's cached
+export const isLiquidGlassStyleHeader = () => isLiquidGlassAvailable();
+
 type HeaderBackgroundProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
   opaque?: boolean;
-  shadow?: boolean;
 };
 
-export function HeaderBackground({ scrollRef, opaque, shadow = true }: HeaderBackgroundProps) {
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+export function HeaderBackground({ scrollRef, opaque }: HeaderBackgroundProps) {
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const headerStyle = useAnimatedStyle(() => ({
-    opacity: opaque ? 1 : interpolate(scrollOffset.value, [0, 40], [0, 1], Extrapolation.CLAMP),
+    opacity: opaque ? 1 : interpolate(scrollOffset.get(), [0, 40], [0, 1], Extrapolation.CLAMP),
   }));
+
+  if (isLiquidGlassStyleHeader()) {
+    return null;
+  }
 
   return (
     <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
-      <StatusBar style="light" />
-      <SystemView shadow={shadow} style={{ flex: 1 }}></SystemView>
+      <SystemView shadow style={{ flex: 1 }}></SystemView>
     </Animated.View>
   );
 }
 
-const titleFontSize = 16;
+const titleFontSize = isLiquidGlassStyleHeader() ? 17 : 16;
 const titleLineHeight = 1.65;
 const titleWithSubtitleFontSize = 15;
 const titleWithSubtitleLineHeight = 1.25;
@@ -62,10 +68,15 @@ type HeaderTitleProps = {
   titleLayout?: SharedValue<LayoutRectangle | null>;
   showTitle?: boolean;
   children?: React.ReactNode;
-  titleWrapper?: React.FC<{ children: React.ReactNode }>;
+  /**
+   * Wraps the title, e.g. in a menu. A render function, not a component: an inline component would be a
+   * new type on every render and remount whatever it wraps (the native variant menu).
+   */
+  titleWrapper?: (title: React.ReactNode) => React.ReactNode;
   title?: string;
   subtitle?: string;
   variantName?: string;
+  center?: boolean;
 };
 export const HeaderTitle = ({
   scrollRef,
@@ -76,12 +87,15 @@ export const HeaderTitle = ({
   title,
   subtitle,
   variantName,
+  center,
 }: HeaderTitleProps) => {
-  const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
+  // live Reduce Motion: the title jumps in and out instead of springing
+  const { reduceMotion } = useAccessibilityInfo();
+  const spring = { ...springConfig, reduceMotion };
 
-  // @ts-expect-error useScrollViewOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollViewOffset(scrollRef ?? null);
+  // @ts-expect-error useScrollOffset doesn't know this works with flatlist
+  const scrollOffset = useScrollOffset(scrollRef ?? null);
 
   const hasSubtitleOrVariantName = !!subtitle || !!variantName;
   const showSubtitle = !!subtitle && !variantName;
@@ -89,147 +103,203 @@ export const HeaderTitle = ({
   const showTitleSv = useSharedValue(typeof showTitle === 'boolean' ? showTitle : null);
   useEffect(() => {
     if (typeof showTitle === 'boolean') {
-      showTitleSv.value = showTitle;
+      showTitleSv.set(showTitle);
     } else {
-      showTitleSv.value = null;
+      showTitleSv.set(null);
     }
   }, [showTitle, showTitleSv]);
 
   const animatedTitleStyle = useAnimatedStyle(() => {
     // default to whatever the prop dragged in
-    let animateTitleIn = showTitleSv.value;
+    let animateTitleIn = showTitleSv.get();
     // if the prop is null, we need to calculate it
     if (animateTitleIn === null) {
-      if (titleLayout?.value) {
-        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      const layoutValue = titleLayout?.get();
+      if (layoutValue) {
+        animateTitleIn = scrollOffset.get() > layoutValue.y + layoutValue.height;
       }
     }
     return {
-      opacity: withSpring(animateTitleIn ? 1 : 0, springConfig),
-      transform: [{ translateY: withSpring(animateTitleIn ? 0 : 5, springConfig) }],
+      opacity: withSpring(animateTitleIn ? 1 : 0, spring),
+      transform: [{ translateY: withSpring(animateTitleIn ? 0 : 5, spring) }],
     };
   });
   const animatedVariantNameStyle = useAnimatedStyle(() => {
     // default to whatever the prop dragged in
-    let animateTitleIn = showTitleSv.value;
+    let animateTitleIn = showTitleSv.get();
     // if the prop is null, we need to calculate it
     if (animateTitleIn === null) {
-      if (titleLayout?.value) {
-        animateTitleIn = scrollOffset.value > titleLayout.value.y + titleLayout.value.height;
+      const layoutValue = titleLayout?.get();
+      if (layoutValue) {
+        animateTitleIn = scrollOffset.get() > layoutValue.y + layoutValue.height;
       }
     }
     return {
       transform: [
         {
-          translateY: withSpring(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, springConfig),
+          translateY: withSpring(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, spring),
         },
         {
-          scale: withSpring(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, springConfig),
+          scale: withSpring(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, spring),
         },
       ],
     };
   });
 
-  return (
-    <View style={{ paddingHorizontal: buttonSlop.left }}>
-      <TitleWrapper>
-        <Animated.View style={[animatedTitleStyle]}>
-          {title ? (
-            <ThemedText
-              numberOfLines={hasSubtitleOrVariantName ? 1 : 2}
-              bold
-              style={[
-                {
-                  fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
-                  lineHeight: hasSubtitleOrVariantName
-                    ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
-                    : titleFontSize * titleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
-                  position: 'relative',
-                  top: !variantName ? 1 : 0,
-                  color: '#fff',
-                },
-              ]}
-            >
-              {title}
-            </ThemedText>
-          ) : typeof children === 'string' ? (
-            <ThemedText>{children}</ThemedText>
-          ) : (
-            children
-          )}
-          {showSubtitle ? (
-            <ThemedText
-              numberOfLines={1}
-              style={[
-                {
-                  fontSize: subtitleFontSize,
-                  lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
-                  position: 'relative',
-                  top: 0,
-                  color: '#fff',
-                },
-              ]}
-            >
-              {subtitle}
-            </ThemedText>
-          ) : null}
-        </Animated.View>
-        {variantName ? (
-          <Animated.View
+  const content = (
+    <>
+      <Animated.View style={[animatedTitleStyle]}>
+        {title ? (
+          <ThemedText
+            numberOfLines={1}
+            bold
             style={[
-              animatedVariantNameStyle,
               {
-                // width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                transformOrigin: Platform.select({ ios: 'center', default: 'left center' }),
-                justifyContent: Platform.select({ ios: 'center', default: 'flex-start' }),
-                gap: 4,
+                fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
+                lineHeight: hasSubtitleOrVariantName
+                  ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
+                  : titleFontSize * titleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: !variantName ? 1 : 0,
               },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
             ]}
           >
-            <ThemedText
-              numberOfLines={1}
-              style={[
-                {
-                  fontSize: subtitleFontSize,
-                  lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: Platform.select({ ios: 'center', default: 'left' }),
-                  position: 'relative',
-                  top: 0,
-                  color: '#fff',
-                },
-              ]}
-            >
-              {variantName}
-            </ThemedText>
-            {hasTitleWrapper ? <FontAwesome6 name="caret-down" size={10} color="white" /> : null}
-          </Animated.View>
+            {title}
+          </ThemedText>
+        ) : typeof children === 'string' ? (
+          <ThemedText>{children}</ThemedText>
+        ) : (
+          children
+        )}
+        {showSubtitle ? (
+          <ThemedText
+            numberOfLines={1}
+            style={[
+              {
+                fontSize: subtitleFontSize,
+                lineHeight: subtitleFontSize * subtitleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: 0,
+              },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
+            ]}
+          >
+            {subtitle}
+          </ThemedText>
         ) : null}
-      </TitleWrapper>
+      </Animated.View>
+      {variantName ? (
+        <Animated.View
+          style={[
+            animatedVariantNameStyle,
+            {
+              flexDirection: 'row',
+              alignItems: 'center',
+              transformOrigin: 'left center',
+              justifyContent: 'flex-start',
+              gap: 4,
+            },
+          ]}
+        >
+          <ThemedText
+            numberOfLines={1}
+            style={[
+              {
+                fontSize: subtitleFontSize,
+                lineHeight: subtitleFontSize * subtitleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: 0,
+              },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
+            ]}
+          >
+            {variantName}
+          </ThemedText>
+          {hasTitleWrapper ? (
+            <FontAwesome6
+              name="circle-chevron-down"
+              iconStyle="solid"
+              size={9}
+              color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
+              style={{ marginTop: -1 }}
+            />
+          ) : null}
+        </Animated.View>
+      ) : null}
+    </>
+  );
+
+  return (
+    <View
+      style={[
+        {
+          flex: center ? undefined : 1,
+          // on iOS 26, patches/react-native-screens@4.30.0.patch sizes this view to the space
+          // actually left over by the toolbar buttons, so no width hacks are needed here
+          paddingHorizontal: isLiquidGlassStyleHeader() ? undefined : buttonSlop.left,
+        },
+      ]}
+    >
+      {titleWrapper ? titleWrapper(content) : content}
     </View>
   );
 };
 
 type HeaderLeftProps = {
   modal?: boolean;
-} & NativeStackHeaderLeftProps;
+  href?: string;
+  canGoBack?: boolean;
+};
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
+  const { t } = useTranslation();
+  const isClose = modal && process.env.EXPO_OS === 'ios';
+  // role overrides the 'link' role Link passes down: this is a navigation-bar button
   return (
-    <Link href={href || canGoBack ? '../' : '/'} asChild>
-      <Button>
-        {modal && Platform.OS === 'ios' ? (
-          <FontAwesome6 name="xmark" size={18} color="white" />
+    <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
+      <Button role="button" accessibilityLabel={isClose ? t('close') : t('back')}>
+        {isClose ? (
+          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
         ) : (
-          <FontAwesome6 name="chevron-left" size={17} color="white" />
+          <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
         )}
       </Button>
     </Link>
   );
 };
+
+/** The iOS 26 close button for modals; `back` shows a back chevron instead, for pushed screens */
+export function ModalToolbar({ back }: { back?: boolean }) {
+  const router = useRouter();
+  const { t } = useTranslation();
+  if (!isLiquidGlassStyleHeader()) return null;
+  return (
+    <Stack.Toolbar placement="left">
+      <Stack.Toolbar.Button
+        icon={back ? 'chevron.left' : 'xmark'}
+        accessibilityLabel={back ? t('back') : t('close')}
+        // the root layout's anchor keeps index under a deep-linked screen; fall back to it anyway
+        onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+      />
+    </Stack.Toolbar>
+  );
+}
 
 const gap = buttonSlop.left + buttonSlop.right;
 

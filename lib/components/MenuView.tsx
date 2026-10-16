@@ -1,15 +1,17 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 
-import { MenuView as LibMenuView } from '@react-native-menu/menu';
+import { type MenuComponentProps, MenuView as UIMenuView } from '@expo/ui/community/menu';
 
-import { buttonSlop, styles as buttonStyles } from './Button';
-import SystemView from './SystemView';
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
+
+import { buttonSlop } from './Button';
+
+export type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 
 type Props = {
   /**
-   * don't mistake this for the hitSlop prop on BorderlessButton
-   * it's implemented with negative margin and positive padding to improve performance
+   * implemented with negative margin and positive padding so the touch target is real layout
    * (at the cost of fiddliness)
    */
   hitSlop?: Partial<{
@@ -18,41 +20,75 @@ type Props = {
     left: number;
     right: number;
   }>;
-  asButton?: boolean;
-} & Omit<ComponentPropsWithoutRef<typeof LibMenuView>, 'hitSlop'>;
+  /**
+   * screen reader name for the trigger; without it, the trigger's text children are read instead.
+   * @expo/ui leaves the trigger to declare its own accessibility (its Android Pressable is
+   * `accessible={false}`), so it goes on our wrapper View, the element that takes focus
+   */
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+} & Omit<MenuComponentProps, 'colorScheme'>;
 
-const MenuView = ({ hitSlop: argHitSlop, asButton, children, style, ...props }: Props) => {
+/**
+ * Native menu (SwiftUI Menu on iOS, Compose DropdownMenu on Android) with the app's hit slop
+ * and color scheme applied.
+ */
+export default function MenuView({
+  hitSlop: argHitSlop,
+  children,
+  style,
+  onOpenMenu,
+  onCloseMenu,
+  accessibilityLabel,
+  accessibilityHint,
+  ...props
+}: Props) {
+  const colorScheme = useColorScheme();
   const hitSlop = {
     ...buttonSlop,
     ...argHitSlop,
   };
-  const hitSlopMargin = {
-    marginLeft: -hitSlop.left,
-    marginRight: -hitSlop.right,
-    marginTop: -hitSlop.top,
-    marginBottom: -hitSlop.bottom,
-  };
-  const hitSlopPadding = {
-    paddingLeft: hitSlop.left,
-    paddingRight: hitSlop.right,
-    paddingTop: hitSlop.top,
-    paddingBottom: hitSlop.bottom,
-  };
 
-  // TODO ripple
+  // only fires on Android; SwiftUI menus don't report open/close
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    // TODO this hit slop thing doesn't work on android. the nested view is a misguided attempt to solve it
-    <LibMenuView hitSlop={hitSlop} style={[hitSlopMargin]} {...props}>
-      <View style={[buttonStyles.container, hitSlopPadding, style]}>
-        {asButton ? (
-          <SystemView shadow={false} style={[buttonStyles.button]}>
-            {children}
-          </SystemView>
-        ) : (
-          children
-        )}
+    <UIMenuView
+      colorScheme={colorScheme}
+      style={{
+        marginLeft: -hitSlop.left,
+        marginRight: -hitSlop.right,
+        marginTop: -hitSlop.top,
+        marginBottom: -hitSlop.bottom,
+      }}
+      onOpenMenu={() => {
+        setIsMenuOpen(true);
+        onOpenMenu?.();
+      }}
+      onCloseMenu={() => {
+        setIsMenuOpen(false);
+        onCloseMenu?.();
+      }}
+      {...props}
+    >
+      <View
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint={accessibilityHint}
+        style={[
+          {
+            paddingLeft: hitSlop.left,
+            paddingRight: hitSlop.right,
+            paddingTop: hitSlop.top,
+            paddingBottom: hitSlop.bottom,
+            opacity: isMenuOpen ? 0.5 : 1,
+          },
+          style,
+        ]}
+      >
+        {children}
       </View>
-    </LibMenuView>
+    </UIMenuView>
   );
-};
-export default MenuView;
+}

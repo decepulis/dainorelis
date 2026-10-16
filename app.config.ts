@@ -1,10 +1,10 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
 // Import package.json to get version number
-import packageJson from './package.json';
+import packageJson from './package.json' with { type: 'json' };
 
 // Generate build number in format yymmdd##
-const buildToday = '01';
+const buildToday = '01'; // Increment this manually for multiple builds in one day
 const generateBuildNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
@@ -22,10 +22,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: packageJson.version,
   orientation: 'default',
   icon: './assets/images/icon.png',
-  scheme: 'myapp',
+  scheme: 'dainorelis',
   userInterfaceStyle: 'automatic',
-  newArchEnabled: true,
+  experiments: {
+    reactCompiler: true,
+  },
   ios: {
+    icon: './assets/images/icon.icon',
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
     buildNumber: buildNumber,
@@ -35,6 +38,30 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     infoPlist: {
       UIBackgroundModes: ['audio'],
     },
+    // Required-reason API declarations. Previously a hand-carried PrivacyInfo.xcprivacy in ios/;
+    // declared here so prebuild regenerates it.
+    privacyManifests: {
+      NSPrivacyTracking: false,
+      NSPrivacyCollectedDataTypes: [],
+      NSPrivacyAccessedAPITypes: [
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults',
+          NSPrivacyAccessedAPITypeReasons: ['CA92.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp',
+          NSPrivacyAccessedAPITypeReasons: ['C617.1', '0A2A.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryDiskSpace',
+          NSPrivacyAccessedAPITypeReasons: ['85F4.1', 'E174.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime',
+          NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+        },
+      ],
+    },
   },
   android: {
     adaptiveIcon: {
@@ -43,7 +70,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
-    edgeToEdgeEnabled: true,
   },
   web: {
     bundler: 'metro',
@@ -51,15 +77,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     favicon: './assets/images/favicon.png',
   },
   plugins: [
-    [
-      '@sentry/react-native/expo',
-      {
-        url: 'https://sentry.io/',
-        project: 'react-native',
-        organization: 'darius-cepulis',
-      },
-    ],
     'expo-router',
+    'expo-asset',
+    'expo-image',
+    'expo-web-browser',
+    'expo-status-bar',
     [
       'expo-splash-screen',
       {
@@ -72,41 +94,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-font',
       {
-        fonts: [
-          'node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf',
-          'node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf',
-          'node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf',
-          'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',
-          'node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf',
-        ],
+        fonts: ['./assets/fonts/Modekan.ttf'],
       },
     ],
     [
       'expo-build-properties',
       {
         android: {
-          minSdkVersion: 26,
-          compileSdkVersion: 35,
-          targetSdkVersion: 35,
+          // compileSdk / targetSdk / minSdk / buildTools come from the SDK's version catalog
+          // (react-native/gradle/libs.versions.toml); none of them is overridden here.
+          // SDK 58 enables R8 in release builds. react-native-pdf's pdfium binding is reached
+          // through JNI by class name, so R8 must not rename or strip it.
+          extraProguardRules: '-keep class io.legere.pdfiumandroid.** { *; }',
         },
       },
     ],
-    [
-      './plugins/withAndroidDrawables',
-      {
-        drawableFiles: [
-          './assets/images/icons/description_20px.xml',
-          './assets/images/icons/feedback_20px.xml',
-          './assets/images/icons/format_quote_20px.xml',
-          './assets/images/icons/menu_book_20px.xml',
-          './assets/images/icons/share_20px.xml',
-          './assets/images/icons/music_note_20px.xml',
-          './assets/images/icons/translate_20px.xml',
-        ],
-      },
-    ],
+    ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
+    '@react-native-vector-icons/fontawesome6',
+    './plugins/withAndroidReleaseSigning',
+    './plugins/withIosReleaseScheme',
   ],
 });

@@ -1,13 +1,16 @@
-import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PixelRatio, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
 
-import { HeaderBackground, HeaderLeft } from '@/lib/components/Header';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
+
+import { HeaderBackground, HeaderLeft, ModalToolbar } from '@/lib/components/Header';
+import MenuView from '@/lib/components/MenuView';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SegmentedControl from '@/lib/components/SegmentedControl';
+import Switch from '@/lib/components/Switch';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -48,6 +51,7 @@ export default function Page() {
   const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
   const { value: theme, setValue: setTheme } = useStorage('theme');
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const maxWidthPadding = useMaxWidthPadding();
   const openFeedback = useOpenFeedback();
 
@@ -55,23 +59,45 @@ export default function Page() {
   const card = useThemeColor('card');
   const separator = useThemeColor('separator');
 
-  const onLanguageChange = useCallback(
-    (language: 'en' | 'lt') => {
-      setLanguage(language);
-      i18n.changeLanguage(language);
-    },
-    [setLanguage, i18n]
-  );
-  const [isWriteToUsPressed, setIsWriteToUsPressed] = useState(false);
+  const onLanguageChange = (language: 'en' | 'lt') => {
+    setLanguage(language);
+    i18n.changeLanguage(language);
+  };
+
+  const text = useThemeColor('text');
+
+  // Language menu actions
+  const languageActions: MenuAction[] = [
+    { id: 'lt', title: 'Lietuvių', state: language === 'lt' ? 'on' : 'off' },
+    { id: 'en', title: 'English', state: language === 'en' ? 'on' : 'off' },
+  ];
+
+  const handleLanguageChange = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    onLanguageChange(event as 'en' | 'lt');
+  };
+
+  // Theme menu actions
+  const themeActions: MenuAction[] = [
+    { id: 'auto', title: t('autoTheme'), state: theme === 'auto' ? 'on' : 'off' },
+    { id: 'dark', title: t('darkTheme'), state: theme === 'dark' ? 'on' : 'off' },
+    { id: 'light', title: t('lightTheme'), state: theme === 'light' ? 'on' : 'off' },
+  ];
+
+  const handleThemeChange = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setTheme(event as 'auto' | 'dark' | 'light');
+  };
 
   return (
     <>
       <Stack.Screen
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
-          headerBackground: () => <HeaderBackground opaque />,
+          headerBackground: () => <HeaderBackground />,
         }}
       />
+      <ModalToolbar />
       <ScrollViewWithHeader>
         <View style={[styles.container, maxWidthPadding]}>
           <View style={[styles.section]}>
@@ -79,32 +105,29 @@ export default function Page() {
               {t('settingsTitle')}
             </ThemedText>
             <View style={styles.settings}>
-              <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
-                  {t('language')}
-                </ThemedText>
-                <SegmentedControl
-                  options={[
-                    { label: 'Lietuvių', value: 'lt' },
-                    { label: 'English', value: 'en' },
-                  ]}
-                  value={language}
-                  onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
-                />
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('language')}</ThemedText>
+                <MenuView actions={languageActions} onPressAction={handleLanguageChange}>
+                  <View style={styles.pickerTrigger}>
+                    <ThemedText style={styles.pickerValue}>{language === 'lt' ? 'Lietuvių' : 'English'}</ThemedText>
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
+                  </View>
+                </MenuView>
               </View>
-              <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
-                  {t('theme')}
-                </ThemedText>
-                <SegmentedControl
-                  options={[
-                    { label: t('autoTheme'), value: 'auto' },
-                    { label: t('darkTheme'), value: 'dark' },
-                    { label: t('lightTheme'), value: 'light' },
-                  ]}
-                  value={theme}
-                  onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
-                />
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('theme')}</ThemedText>
+                <MenuView actions={themeActions} onPressAction={handleThemeChange}>
+                  <View style={styles.pickerTrigger}>
+                    <ThemedText style={styles.pickerValue}>
+                      {theme === 'auto' ? t('autoTheme') : theme === 'dark' ? t('darkTheme') : t('lightTheme')}
+                    </ThemedText>
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
+                  </View>
+                </MenuView>
+              </View>
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('showChords')}</ThemedText>
+                <Switch value={showChords} onValueChange={setShowChords} accessibilityLabel={t('showChords')} />
               </View>
             </View>
           </View>
@@ -113,22 +136,22 @@ export default function Page() {
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <Pressable
-              onPressIn={() => setIsWriteToUsPressed(true)}
-              onPressOut={() => setIsWriteToUsPressed(false)}
               onPress={() => openFeedback()}
               hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
             >
-              <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
-                {t('settingsWriteToUsText1')}{' '}
-                <ThemedText
-                  style={[
-                    { textDecorationLine: isWriteToUsPressed ? undefined : 'underline', textDecorationColor: primary },
-                  ]}
-                >
-                  {t('settingsWriteToUsText2')}
-                </ThemedText>
-              </ThemedText>
-              <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+              {({ pressed }) => (
+                <>
+                  <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
+                    {t('settingsWriteToUsText1')}{' '}
+                    <ThemedText
+                      style={[{ textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary }]}
+                    >
+                      {t('settingsWriteToUsText2')}
+                    </ThemedText>
+                  </ThemedText>
+                  <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+                </>
+              )}
             </Pressable>
           </View>
           <View style={styles.section}>
@@ -144,11 +167,11 @@ export default function Page() {
             <ThemedText style={[styles.header, { borderColor: separator }]} bold>
               {t('settingsAboutUsTitle')}
             </ThemedText>
-            <ThemedText style={[styles.subheader]} italic bold>
+            <ThemedText style={[styles.subheader]} bold>
               {t('settingsOurGoalTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-            <ThemedText style={[styles.subheader, { marginTop: padding }]} italic bold>
+            <ThemedText style={[styles.subheader, { marginTop: padding }]} bold>
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
@@ -181,17 +204,27 @@ const styles = StyleSheet.create({
     marginBottom: padding * 1.5,
   },
   settings: {
-    gap: padding / 2,
+    gap: padding,
   },
-  setting: {
+  hSetting: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     gap: padding,
   },
   settingTitle: {
-    fontSize: 14,
+    fontSize: 16,
     flexGrow: 0,
     flexShrink: 0,
+  },
+  pickerTrigger: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: padding / 4,
+    flexShrink: 1,
+  },
+  pickerValue: {
+    fontSize: 16,
   },
   header: {
     fontSize: 23,

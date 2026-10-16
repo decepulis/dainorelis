@@ -1,12 +1,15 @@
-import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, useColorScheme } from 'react-native';
 
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import { GlassView } from 'expo-glass-effect';
+
+import Description from '@expo/material-symbols/description.xml';
+import FormatQuote from '@expo/material-symbols/format_quote.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 
 import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
 import isLyrics from '../utils/isLyrics';
+import { isLiquidGlassStyleHeader } from './Header';
 import MenuView from './MenuView';
 
 type Props = {
@@ -17,38 +20,50 @@ type Props = {
 };
 export default function VariantMenu({ children, variants, activeVariantId, setActiveVariantId }: Props) {
   const { t, i18n } = useTranslation();
-  const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = Object.entries(variants).map(([id, variant]) => {
     return {
       id,
       title: i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'],
       state: activeVariantId === id ? 'on' : 'off',
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: isLyrics(variant) ? 'text.quote' : 'document',
-        default: isLyrics(variant) ? 'format_quote_20px' : 'description_20px',
-      }),
+      image: isLyrics(variant)
+        ? process.env.EXPO_OS === 'ios'
+          ? 'text.quote'
+          : FormatQuote
+        : process.env.EXPO_OS === 'ios'
+          ? 'document'
+          : Description,
     };
   });
 
-  const onPressAction = useCallback(
-    (e: NativeActionEvent) => {
-      const { event } = e.nativeEvent;
-      setActiveVariantId(event);
-    },
-    [setActiveVariantId]
-  );
+  const onPressAction = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setActiveVariantId(event);
+  };
 
   return (
-    <MenuView
-      // on most platforms, this menu ends up left-justified
-      hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
-      actions={actions}
-      onPressAction={onPressAction}
-      title={t('variantsMenuTitle')}
-    >
+    <VariantMenuSurface>
+      <MenuView
+        // on most platforms, this menu ends up left-justified
+        hitSlop={process.env.EXPO_OS === 'ios' ? undefined : { left: 0 }}
+        actions={actions}
+        onPressAction={onPressAction}
+        title={t('variantsMenuTitle')}
+        // the label is the title and variant name the trigger shows
+        accessibilityHint={t('variantsMenuHint')}
+      >
+        {children}
+      </MenuView>
+    </VariantMenuSurface>
+  );
+}
+
+function VariantMenuSurface({ children }: { children: React.ReactNode }) {
+  return isLiquidGlassStyleHeader() ? (
+    <GlassView style={{ height: 44, borderRadius: 22, paddingHorizontal: 22, justifyContent: 'center' }}>
       {children}
-    </MenuView>
+    </GlassView>
+  ) : (
+    children
   );
 }

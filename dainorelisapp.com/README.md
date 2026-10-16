@@ -1,48 +1,19 @@
-# Astro Starter Kit: Basics
+# dainorelisapp.com
+
+The Astro marketing site for Dainorėlis: App Store / Google Play links, and `/qr`, which sends
+phones to the right store by user agent (`src/pages/qr.ts`, a Vercel function).
+
+It is a pnpm workspace package (`marketing-site`), so install from the repo root and run:
 
 ```sh
-npm create astro@latest -- --template basics
+pnpm --filter marketing-site dev     # http://localhost:4321
+pnpm --filter marketing-site build   # static pages + the /qr function, via @astrojs/vercel
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Astro 7 (Vite 8) needs Node 22.22 or later. Images are imported from the app's `assets/images/`
+through the `~` alias in `astro.config.mjs`, which also pins Vite to this directory's
+`tsconfig.json` so the build never reads the Expo app's.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Deployed on Vercel as its own project, with Root Directory `dainorelisapp.com` (see
+`vercel.json`). The canonical host is `https://www.dainorelisapp.com`; the repo-root Vercel
+project only redirects there.

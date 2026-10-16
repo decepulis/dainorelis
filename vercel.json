@@ -1,13 +1,17 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "echo 'Redirect-only deployment; nothing to install'",
+  "buildCommand": "echo 'Redirect-only deployment; nothing to build'",
+  "outputDirectory": "public",
   "redirects": [
     {
       "source": "/",
-      "destination": "https://dainorelisapp.com/",
+      "destination": "https://www.dainorelisapp.com/",
       "permanent": false
     },
     {
       "source": "/:path*",
-      "destination": "https://dainorelisapp.com/",
+      "destination": "https://www.dainorelisapp.com/:path*",
       "permanent": false
     }
   ]

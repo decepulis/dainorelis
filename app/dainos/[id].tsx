@@ -1,24 +1,28 @@
-import { Fragment, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
-import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useHeaderHeight } from 'expo-router/react-navigation';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { useHeaderHeight } from '@react-navigation/elements';
-import * as Sentry from '@sentry/react-native';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
-import { HeaderBackground, HeaderButtonContainer, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import {
+  HeaderBackground,
+  HeaderButtonContainer,
+  HeaderLeft,
+  HeaderTitle,
+  isLiquidGlassStyleHeader,
+} from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
+import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu from '@/lib/components/SongMenu';
+import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -40,43 +44,43 @@ export async function generateStaticParams() {
 
 export default function Page() {
   const { t } = useTranslation();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const song = songs.find((song) => song.id === id);
+  if (!song) {
+    return <NotFound message={t('songNotFound')} />;
+  }
+  return <SongPage song={song} />;
+}
+
+function SongPage({ song }: { song: Song }) {
+  const router = useRouter();
+  const { t } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
+  const background = useThemeColor('background');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const { value: showChords } = useStorage('showChords');
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
-  const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
-  const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
-  const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
+  // ?v= / ?m= only exist once the user picks from a menu (or a link carries them)
+  const { v: variantIdParam, m: mediaIdParam } = useLocalSearchParams<{ v?: string; m?: string }>();
 
-  // Variants
-  const storedActiveVariantId = useMemo(() => activeVariantIdBySongId[id], [activeVariantIdBySongId, id]);
-  const variants: { [id: string]: LyricsType | PDFs } = useMemo(
-    () => ({ ...song.fields.Lyrics, ...song.fields.PDFs }),
-    [song]
-  );
-  useEffect(() => {
-    // on load, check the query param for a variant id
-    if (!activeVariantId) {
-      // if none is provided...
-      if (storedActiveVariantId) {
-        // try and load it from storage
-        router.setParams({ v: storedActiveVariantId });
-      } else {
-        // otherwise, try and set it to the first variant id
-        const firstVariantId = Object.keys(variants)[0];
-        if (firstVariantId) {
-          router.setParams({ v: firstVariantId });
-        }
-      }
-    }
-  }, [activeVariantId, variants, storedActiveVariantId]);
+  const { id } = song;
+  const isFavorite = favorites.includes(song.id);
+
+  // Variants: the URL's choice, else the one remembered for this song, else the first. Either may
+  // name a variant that no longer exists (deleted in the admin, or a bad link), so only valid ids
+  // count. Derived on every render rather than synced into the URL, so the first frame is right.
+  const variants: { [id: string]: LyricsType | PDFs } = { ...song.fields.Lyrics, ...song.fields.PDFs };
+  const variantIds = Object.keys(variants);
+  const activeVariantId =
+    [variantIdParam, activeVariantIdBySongId[id]].find((v) => v !== undefined && variantIds.includes(v)) ??
+    variantIds[0];
 
   const setActiveVariantId = (v: string) => {
     router.setParams({ v });
@@ -85,11 +89,8 @@ export default function Page() {
       [id]: v,
     });
   };
-  const activeVariant = useMemo(
-    () => (activeVariantId ? variants[activeVariantId] : Object.values(variants)[0]),
-    [variants, activeVariantId]
-  );
-  const hasMultipleVariants = useMemo(() => Object.keys(variants).length > 1, [variants]);
+  const activeVariant = variants[activeVariantId];
+  const hasMultipleVariants = variantIds.length > 1;
 
   // chords
   const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
@@ -100,25 +101,12 @@ export default function Page() {
   const hasSameAuthor = hasMusicAuthor && hasTextAuthor && song.fields['Music Author'] === song.fields['Text Author'];
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
-  // Media
-  const storedActiveMediaId = useMemo(() => activeMediaIdBySongId[id], [activeMediaIdBySongId, id]);
-  const media: { [id: string]: Audio } = useMemo(() => ({ ...song.fields.Audio }), [song]);
-  useEffect(() => {
-    // on load, check the query param for a media id
-    if (!activeMediaId) {
-      // if none is provided...
-      if (storedActiveMediaId) {
-        // try and load it from storage
-        router.setParams({ m: storedActiveMediaId });
-      } else {
-        // otherwise, try and set it to the first media id
-        const firstMediaId = Object.keys(media)[0];
-        if (firstMediaId) {
-          router.setParams({ m: firstMediaId });
-        }
-      }
-    }
-  }, [activeMediaId, media, storedActiveMediaId]);
+  // Media: same fallbacks as variants; undefined when the song has no recordings
+  // not copied: song data is static and never mutated, so this stays referentially stable across renders
+  const media: { [id: string]: Audio } = song.fields.Audio;
+  const mediaIds = Object.keys(media);
+  const activeMediaId: string | undefined =
+    [mediaIdParam, activeMediaIdBySongId[id]].find((m) => m !== undefined && mediaIds.includes(m)) ?? mediaIds[0];
 
   const setActiveMediaId = (m: string) => {
     router.setParams({ m });
@@ -128,26 +116,32 @@ export default function Page() {
     });
   };
 
-  const activeMedia = useMemo(() => (activeMediaId ? (media[activeMediaId] ?? null) : null), [media, activeMediaId]);
+  const activeMedia = activeMediaId ? media[activeMediaId] : null;
 
   // Title
-  const scrollRef = useAnimatedRef<AnimatedScrollView>();
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
-  const calculateTitleHeight = useCallback(
-    (event: LayoutChangeEvent) => {
-      titleLayout.value = event.nativeEvent.layout;
-    },
-    [titleLayout]
-  );
+  const calculateTitleHeight = (event: LayoutChangeEvent) => {
+    titleLayout.set(event.nativeEvent.layout);
+  };
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const showLyrics = isLyrics(activeVariant);
 
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      setFavorites(favorites.filter((id) => id !== song.id));
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
+    } else {
+      setFavorites([...favorites, song.id]);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  };
+
   return (
-    <Fragment>
+    <View style={{ flex: 1, backgroundColor: background }}>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground opaque />,
-          // TODO can I force this to re-render when activeVariant changes?
           headerTitle: () => (
             <HeaderTitle
               scrollRef={showLyrics ? scrollRef : undefined}
@@ -155,13 +149,13 @@ export default function Page() {
               showTitle={isLyrics(activeVariant) ? undefined : true}
               titleWrapper={
                 hasMultipleVariants
-                  ? ({ children }) => (
+                  ? (title) => (
                       <VariantMenu
                         variants={variants}
                         activeVariantId={activeVariantId}
                         setActiveVariantId={setActiveVariantId}
                       >
-                        {children}
+                        {title}
                       </VariantMenu>
                     )
                   : undefined
@@ -171,24 +165,23 @@ export default function Page() {
               variantName={variantName}
             />
           ),
-          headerLeft: (props) => <HeaderLeft {...props} />,
-          headerRight: () => (
-            <HeaderButtonContainer>
-              <Button
-                onPress={() =>
-                  isFavorite
-                    ? setFavorites(favorites.filter((id) => id !== song.id))
-                    : setFavorites([...favorites, song.id])
-                }
-                haptics={isFavorite ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-              >
-                <FontAwesome6 name="heart" solid={isFavorite} size={16} color="white" />
-              </Button>
-              <SongMenu song={song} />
-            </HeaderButtonContainer>
-          ),
+          headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
+          headerRight: !isLiquidGlassStyleHeader()
+            ? () => (
+                <HeaderButtonContainer>
+                  <Button
+                    onPress={toggleFavorite}
+                    accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+                  >
+                    <FontAwesome6 name="heart" iconStyle={isFavorite ? 'solid' : 'regular'} size={16} color="white" />
+                  </Button>
+                  <SongMenu song={song} hasChords={hasChords} />
+                </HeaderButtonContainer>
+              )
+            : undefined,
         }}
       />
+      <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
       {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View
@@ -203,26 +196,32 @@ export default function Page() {
               },
             ]}
           >
-            <View style={styles.titleContainer} onLayout={calculateTitleHeight}>
+            <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
+              {isLiquidGlassStyleHeader() ? (
+                <View
+                  style={{
+                    backgroundColor: primary,
+                    position: 'absolute',
+                    left: -maxWidthPadding.paddingLeft,
+                    right: -maxWidthPadding.paddingRight,
+                    top: -headerHeight * 10,
+                    bottom: -padding,
+                  }}
+                />
+              ) : null}
               <View style={styles.titleAndSubtitle}>
-                <ThemedText bold style={[styles.mainTitle]}>
+                <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
                   {title}
                 </ThemedText>
-                {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
+                {subtitle ? (
+                  <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                    {subtitle}
+                  </ThemedText>
+                ) : null}
               </View>
-              {hasChords ? (
-                <Button
-                  onPress={() => setShowChords(!showChords)}
-                  haptics={showChords ? Haptics.ImpactFeedbackStyle.Soft : Haptics.ImpactFeedbackStyle.Medium}
-                >
-                  <FontAwesome6 name="guitar" solid={showChords} size={16} color="white" />
-                </Button>
-              ) : null}
             </View>
 
-            <Markdown showLinksAsChords showChords={hasChords && showChords}>
-              {activeVariant['Lyrics & Chords']}
-            </Markdown>
+            <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
             {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
             {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
             {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
@@ -247,25 +246,23 @@ export default function Page() {
           </View>
         </ScrollViewWithHeader>
       ) : (
-        // TODO this not falling behind the menu bar makes me sad
-        <View style={{ flex: 1, paddingTop: headerHeight }}>
-          {/* TODO isTitleBehind on scroll */}
+        <View style={{ flex: 1, paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}>
           {/* TODO scroll is off on load? */}
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}
             style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
-            // https://github.com/wonday/react-native-pdf/issues/837
-            trustAllCerts={Platform.OS === 'android' ? false : undefined}
+            // the default (true) skips TLS certificate validation on every platform;
+            // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
+            trustAllCerts={false}
             fitPolicy={0}
             minScale={0.5}
             maxScale={4}
             spacing={padding}
             onError={(error) => {
               console.error(error);
-              Sentry.captureException(error);
             }}
-            // TODO maybe a better offline experience?
-            renderActivityIndicator={(progress) => (
+            // TODO a better offline experience?
+            renderActivityIndicator={(_progress) => (
               <View
                 style={{
                   flex: 1,
@@ -280,7 +277,7 @@ export default function Page() {
         </View>
       )}
       <Player title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
-    </Fragment>
+    </View>
   );
 }
 
@@ -294,8 +291,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 'auto',
   },
   titleContainer: {
+    position: 'relative',
     marginTop: padding * 2,
-    marginBottom: padding,
+    marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
     flexDirection: 'row',
     gap: padding,
     alignItems: 'center',

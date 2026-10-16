@@ -1,14 +1,14 @@
-import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import { HeaderBackground, HeaderLeft, HeaderTitle } from '@/lib/components/Header';
+import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
+import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -18,6 +18,7 @@ import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song } from '@/lib/schemas/songs';
+import { Translations } from '@/lib/schemas/translations';
 import { splitTitle } from '@/lib/utils/useTitle';
 import songs from '@/songs';
 
@@ -26,20 +27,28 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const { t } = useTranslation();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const song = songs.find((song) => song.id === id);
+  if (!song) {
+    return <NotFound modal message={t('songNotFound')} />;
+  }
+  // a few songs have no translation ("Translations": {})
+  const firstTranslation = Object.values(song.fields['Translations'])[0] as Translations | undefined;
+  if (!firstTranslation) {
+    return <NotFound modal message={t('pageNotFound')} />;
+  }
+  return <TranslationPage song={song} firstTranslation={firstTranslation} />;
+}
+
+function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslation: Translations }) {
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');
+  const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const [isPressed, setIsPressed] = useState(false);
-  const firstTranslation = Object.values(song.fields['Translations'])[0];
-
-  if (!song || !firstTranslation) {
-    // TODO 404 not found
-  }
 
   const [ogTitle] = splitTitle(song.fields['Name']);
   const [title, subtitle] = splitTitle(firstTranslation['Title']);
@@ -49,10 +58,11 @@ export default function Page() {
       <Stack.Screen
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
-          headerBackground: () => <HeaderBackground opaque />,
+          headerBackground: () => <HeaderBackground />,
           headerTitle: () => <HeaderTitle showTitle title={t('translationTitle')} subtitle={ogTitle} />,
         }}
       />
+      <ModalToolbar />
       <ScrollViewWithHeader>
         <View
           style={[
@@ -72,28 +82,30 @@ export default function Page() {
             {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
           </View>
           <Markdown>{firstTranslation['Lyrics']}</Markdown>
-          {song.fields['AI-Generated Description'] ? (
+          {firstTranslation['AI Generated'] ? (
             <View style={{ marginTop: padding * 2, opacity: isHighContrastEnabled ? 1 : 0.7 }}>
               <Pressable
                 style={{ flexDirection: 'row', alignItems: 'center', gap: padding / 2 }}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
                 onPress={() => openFeedback(song.fields['Name'])}
                 hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
               >
-                <FontAwesome6 name="wand-magic-sparkles" size={12} />
-                <View style={{ flexShrink: 1 }}>
-                  <ThemedText>
-                    {t('genAiText1')}{' '}
-                    <ThemedText
-                      style={[
-                        { textDecorationLine: isPressed ? undefined : 'underline', textDecorationColor: primary },
-                      ]}
-                    >
-                      {t('genAiText2')}
-                    </ThemedText>
-                  </ThemedText>
-                </View>
+                {({ pressed }) => (
+                  <>
+                    <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} color={text} />
+                    <View style={{ flexShrink: 1 }}>
+                      <ThemedText>
+                        {t('genAiText1')}{' '}
+                        <ThemedText
+                          style={[
+                            { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                          ]}
+                        >
+                          {t('genAiText2')}
+                        </ThemedText>
+                      </ThemedText>
+                    </View>
+                  </>
+                )}
               </Pressable>
             </View>
           ) : null}

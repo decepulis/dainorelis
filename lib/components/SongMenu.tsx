@@ -1,91 +1,150 @@
-import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, useColorScheme } from 'react-native';
 
-import { router } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import Feedback from '@expo/material-symbols/feedback.xml';
+import MenuBook from '@expo/material-symbols/menu_book.xml';
+import MusicNote from '@expo/material-symbols/music_note.xml';
+import Translate from '@expo/material-symbols/translate.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { Song } from '@/lib/schemas/songs';
 
 import useOpenFeedback from '../hooks/useOpenFeedback';
+import useStorage from '../hooks/useStorage';
+import { styles as buttonStyles } from './Button';
+import { isLiquidGlassStyleHeader } from './Header';
 import MenuView from './MenuView';
+import SystemView from './SystemView';
 
 type Props = {
   song: Song;
+  hasChords: boolean;
 };
-export default function SongMenu({ song }: Props) {
+export default function SongMenu({ song, hasChords }: Props) {
+  const router = useRouter();
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
   const hasTranslation = Object.values(song.fields['Translations']).length > 0;
-  const isDark = useColorScheme() === 'dark';
 
-  // TODO song info
   // TODO share sheet (dainorelis.app web app)
   const actions: (MenuAction | null)[] = [
-    {
-      id: 'info',
-      title: t('aboutSong'),
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'book',
-        default: 'menu_book_20px',
-      }),
-      attributes: { disabled: !hasDescriptions },
-    },
-    {
-      id: 'translation',
-      title: t('translateSong'),
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'translate',
-        default: 'translate_20px',
-      }),
-      attributes: { disabled: !hasTranslation },
-    },
+    hasDescriptions
+      ? {
+          id: 'info',
+          title: t('aboutSong'),
+          image: process.env.EXPO_OS === 'ios' ? 'book' : MenuBook,
+        }
+      : null,
+    hasTranslation
+      ? {
+          id: 'translation',
+          title: t('translateSong'),
+          image: process.env.EXPO_OS === 'ios' ? 'translate' : Translate,
+        }
+      : null,
+    hasChords
+      ? {
+          id: 'toggleChords',
+          title: t('chords'),
+          image: process.env.EXPO_OS === 'ios' ? 'guitars' : MusicNote,
+          state: showChords ? 'on' : 'off',
+        }
+      : null,
     {
       id: 'feedback',
       title: t('feedback'),
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'exclamationmark.bubble',
-        default: 'feedback_20px',
-      }),
+      image: process.env.EXPO_OS === 'ios' ? 'exclamationmark.bubble' : Feedback,
     },
-    // {
-    //   id: 'share',
-    //   title: t('shareSong'),
-    //   imageColor: isDark ? 'white' : 'black',
-    //   image: Platform.select({
-    //     ios: 'square.and.arrow.up',
-    //     default: 'share_20px',
-    //   }),
-    //   attributes: { disabled: true },
-    // },
   ];
   const filteredActions = actions.filter(Boolean) as MenuAction[];
 
-  const onPressAction = useCallback(
-    (e: NativeActionEvent) => {
-      const { event } = e.nativeEvent;
-      if (event === 'info') {
-        router.push(`/dainos/${song.id}/aprasymas`);
-      } else if (event === 'translation') {
-        router.push(`/dainos/${song.id}/vertimas`);
-      } else if (event === 'feedback') {
-        openFeedback(song.fields.Name);
-      } else if (event === 'share') {
-        console.log('share');
-      }
-    },
-    [openFeedback, song.fields.Name, song.id]
-  );
+  const onPressAction = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    if (event === 'info') {
+      router.push(`/dainos/${song.id}/aprasymas`);
+    } else if (event === 'translation') {
+      router.push(`/dainos/${song.id}/vertimas`);
+    } else if (event === 'toggleChords') {
+      setShowChords(!showChords);
+    } else if (event === 'feedback') {
+      openFeedback(song.fields.Name);
+    }
+  };
 
   return (
-    <MenuView asButton actions={filteredActions} onPressAction={onPressAction}>
-      <FontAwesome6 name="ellipsis" size={18} color="white" />
+    <MenuView actions={filteredActions} onPressAction={onPressAction} accessibilityLabel={t('moreOptions')}>
+      <SystemView shadow={false} style={[buttonStyles.button]}>
+        {/* overflow menus are vertical dots on Android, horizontal on iOS */}
+        <FontAwesome6
+          name={process.env.EXPO_OS === 'android' ? 'ellipsis-vertical' : 'ellipsis'}
+          iconStyle="solid"
+          size={18}
+          color="white"
+        />
+      </SystemView>
     </MenuView>
+  );
+}
+
+type SongDetailToolbarProps = {
+  song: Song;
+  hasChords: boolean;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+};
+export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorite }: SongDetailToolbarProps) {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const openFeedback = useOpenFeedback();
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
+  const hasTranslation = Object.values(song.fields['Translations']).length > 0;
+
+  if (!isLiquidGlassStyleHeader()) return null;
+
+  return (
+    <>
+      <Stack.Toolbar placement="left">
+        <Stack.Toolbar.Button
+          icon="chevron.left"
+          accessibilityLabel={t('back')}
+          // the root layout's anchor keeps index under a deep-linked song; fall back to it anyway
+          onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+        />
+      </Stack.Toolbar>
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button
+          icon={isFavorite ? 'heart.fill' : 'heart'}
+          selected={isFavorite}
+          onPress={onToggleFavorite}
+        >
+          {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+        </Stack.Toolbar.Button>
+        <Stack.Toolbar.Menu icon="ellipsis" accessibilityLabel={t('moreOptions')}>
+          {hasDescriptions ? (
+            <Stack.Toolbar.MenuAction icon="book" onPress={() => router.push(`/dainos/${song.id}/aprasymas`)}>
+              {t('aboutSong')}
+            </Stack.Toolbar.MenuAction>
+          ) : null}
+          {hasTranslation ? (
+            <Stack.Toolbar.MenuAction icon="translate" onPress={() => router.push(`/dainos/${song.id}/vertimas`)}>
+              {t('translateSong')}
+            </Stack.Toolbar.MenuAction>
+          ) : null}
+          {hasChords ? (
+            <Stack.Toolbar.MenuAction icon="guitars" isOn={showChords} onPress={() => setShowChords(!showChords)}>
+              {t('chords')}
+            </Stack.Toolbar.MenuAction>
+          ) : null}
+          <Stack.Toolbar.MenuAction icon="exclamationmark.bubble" onPress={() => openFeedback(song.fields.Name)}>
+            {t('feedback')}
+          </Stack.Toolbar.MenuAction>
+        </Stack.Toolbar.Menu>
+      </Stack.Toolbar>
+    </>
   );
 }
