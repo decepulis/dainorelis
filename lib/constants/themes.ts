@@ -4,41 +4,31 @@ import type { Theme as LibTheme } from 'expo-router/react-navigation';
 
 export const fonts = {
   regular: {
-    // fontFamily: Platform.select({ ios: 'Nunito-Medium', default: 'Nunito_500Medium' }),
-    // fontWeight: Platform.select({ default: '500', android: 'normal' }),
-    fontWeight: Platform.select({ default: '400', android: 'normal' }),
+    fontWeight: '400',
   },
   regularItalic: {
-    // fontFamily: Platform.select({ ios: 'Nunito-MediumItalic', default: 'Nunito_500Medium_Italic' }),
-    // fontWeight: Platform.select({ default: '500', android: 'normal' }),
-    fontWeight: Platform.select({ default: '400', android: 'normal' }),
+    fontWeight: '400',
     fontStyle: 'italic',
   },
   medium: {
-    // fontFamily: Platform.select({ ios: 'Nunito-Bold', default: 'Nunito_700Bold' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontWeight: '700',
   },
   mediumItalic: {
-    // fontFamily: Platform.select({ ios: 'Nunito-BoldItalic', default: 'Nunito_700Bold_Italic' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontWeight: '700',
     fontStyle: 'italic',
   },
   bold: {
-    // fontFamily: Platform.select({ ios: 'Nunito-ExtraBold', default: 'Nunito_800ExtraBold' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontWeight: '800',
   },
   boldItalic: {
-    // fontFamily: Platform.select({ ios: 'Nunito-ExtraBoldItalic', default: 'Nunito_800ExtraBold_Italic' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontWeight: '800',
     fontStyle: 'italic',
   },
   heavy: {
-    // fontFamily: Platform.select({ ios: 'Nunito-Black', default: 'Nunito_900Black' }),
-    fontWeight: Platform.select({ default: '900', android: 'normal' }),
+    fontWeight: '900',
   },
   heavyItalic: {
-    // fontFamily: Platform.select({ ios: 'Nunito-BlackItalic', default: 'Nunito_900Black_Italic' }),
-    fontWeight: Platform.select({ default: '900', android: 'normal' }),
+    fontWeight: '900',
     fontStyle: 'italic',
   },
   brand: {
