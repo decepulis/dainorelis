@@ -100,7 +100,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **`/docs/plans`** - Scoped-but-not-started work (Android Stack.Toolbar, master-detail, App Intents)
 
-- **`/scripts`** - Data pipeline scripts (run with ts-node)
+- **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
   - `generate-search-indices.ts` - Create Fuse.js search indices
 
@@ -180,7 +180,7 @@ For production releases, see the Expo documentation on creating production build
 ## TypeScript Configuration
 
 - `tsconfig.json` - Main app TypeScript config (React Native with path aliases). Excludes `admin/` and `dainorelisapp.com`, which have their own configs.
-- `tsconfig.scripts.json` - Extends main config for Node.js scripts with CommonJS modules
+- Scripts in `/scripts` run with `tsx` (no separate tsconfig; `tsc --noEmit` typechecks them with the app)
 
 ## Linting and Formatting
 
