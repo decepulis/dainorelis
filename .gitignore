@@ -9,6 +9,11 @@ dist/
 web-build/
 expo-env.d.ts
 
+# Vercel / framework build output (root redirect project, site, admin)
+.vercel/
+.next/
+.astro/
+
 # Native
 *.orig.*
 *.jks

@@ -5,19 +5,9 @@
     "resolveJsonModule": true,
     "rootDir": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dainorelisapp.com",
-    "admin",
-    ".claude/worktrees"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dainorelisapp.com", "admin", ".claude/worktrees"]
 }
