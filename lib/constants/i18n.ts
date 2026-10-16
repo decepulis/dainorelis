@@ -158,10 +158,13 @@ const lt = {
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
 };
 
-export async function initI18n() {
+// Synchronous: the resources are inline and the language detector is a sync MMKV read, so with
+// initAsync: false i18next is initialized (language set) by the time this returns.
+export function initI18n() {
+  if (i18n.isInitialized) return; // e.g. the root layout re-evaluated by Fast Refresh
   // i18next's documented chaining API, not the named `use` export
   // eslint-disable-next-line import/no-named-as-default-member
-  await i18n
+  i18n
     .use(initReactI18next)
     .use(getLanguageFromStorage)
     .init({
@@ -170,6 +173,7 @@ export async function initI18n() {
         lt: { translation: lt },
       },
       fallbackLng: 'lt',
+      initAsync: false,
       interpolation: {
         escapeValue: false, // React already escapes values
       },
