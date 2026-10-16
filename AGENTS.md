@@ -98,7 +98,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **`/patches`** - pnpm patches for dependencies (see Building)
 
-- **`/docs/plans`** - Scoped-but-not-started work (master-detail, App Intents) and one decision memo (Android stays on the custom header)
+- **`/docs/plans`** - Scoped-but-not-started work (master-detail, App Intents, the at-the-keyboard layout-migration runbook) and one decision memo (Android stays on the custom header)
 
 - **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
