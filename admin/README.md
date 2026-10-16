@@ -12,7 +12,7 @@ admin (Next.js on Vercel)  ──▶  Supabase Postgres
         │
         │  GET /api/export   (bearer token)
         ▼
-app repo: npm run update-songs  ──▶  songs.ts + song-festival.ts + search indices
+app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search indices
         │
         ▼
    bundled into the app
@@ -62,7 +62,7 @@ app repo: npm run update-songs  ──▶  songs.ts + song-festival.ts + search 
 
 5. **Verify.** Open `/export` in the admin app and confirm the song count and
    that there are no blocking errors. Then, in the app repo, run
-   `npm run update-songs` and check `git diff songs.ts` — immediately after the
+   `pnpm update-songs` and check `git diff songs.ts` — immediately after the
    migration it should be **empty**. A clean diff proves the new pipeline
    reproduces Airtable's output exactly.
 
