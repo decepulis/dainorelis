@@ -70,17 +70,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-font',
       {
-        fonts: [
-          // 'node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',
-          // 'node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf',
-          './assets/fonts/Modekan.ttf',
-        ],
+        fonts: ['./assets/fonts/Modekan.ttf'],
       },
     ],
     [
@@ -97,19 +87,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     '@react-native-vector-icons/fontawesome6',
     './plugins/withAndroidReleaseSigning',
     './plugins/withIosReleaseScheme',
-    [
-      './plugins/withAndroidDrawables',
-      {
-        drawableFiles: [
-          './assets/images/icons/description_20px.xml',
-          './assets/images/icons/feedback_20px.xml',
-          './assets/images/icons/format_quote_20px.xml',
-          './assets/images/icons/menu_book_20px.xml',
-          './assets/images/icons/share_20px.xml',
-          './assets/images/icons/music_note_20px.xml',
-          './assets/images/icons/translate_20px.xml',
-        ],
-      },
-    ],
   ],
 });

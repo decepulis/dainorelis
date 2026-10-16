@@ -1,14 +1,17 @@
-import { ComponentPropsWithoutRef, useState } from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 
-import { MenuView as LibMenuView } from '@react-native-menu/menu';
+import { type MenuComponentProps, MenuView as UIMenuView } from '@expo/ui/community/menu';
+
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { buttonSlop } from './Button';
 
+export type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+
 type Props = {
   /**
-   * don't mistake this for the hitSlop prop on BorderlessButton
-   * it's implemented with negative margin and positive padding to improve performance
+   * implemented with negative margin and positive padding so the touch target is real layout
    * (at the cost of fiddliness)
    */
   hitSlop?: Partial<{
@@ -17,34 +20,31 @@ type Props = {
     left: number;
     right: number;
   }>;
-} & Omit<ComponentPropsWithoutRef<typeof LibMenuView>, 'hitSlop'>;
+} & Omit<MenuComponentProps, 'colorScheme'>;
 
-const MenuView = ({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMenu, ...props }: Props) => {
+/**
+ * Native menu (SwiftUI Menu on iOS, Compose DropdownMenu on Android) with the app's hit slop
+ * and color scheme applied.
+ */
+export default function MenuView({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMenu, ...props }: Props) {
+  const colorScheme = useColorScheme();
   const hitSlop = {
     ...buttonSlop,
     ...argHitSlop,
   };
-  const hitSlopMargin = {
-    marginLeft: -hitSlop.left,
-    marginRight: -hitSlop.right,
-    marginTop: -hitSlop.top,
-    marginBottom: -hitSlop.bottom,
-  };
-  const hitSlopPadding = {
-    paddingLeft: hitSlop.left,
-    paddingRight: hitSlop.right,
-    paddingTop: hitSlop.top,
-    paddingBottom: hitSlop.bottom,
-  };
 
+  // only fires on Android; SwiftUI menus don't report open/close
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // TODO ripple
   return (
-    // TODO this hit slop thing doesn't work on android. the nested view is a misguided attempt to solve it
-    <LibMenuView
-      hitSlop={hitSlop}
-      style={[hitSlopMargin]}
+    <UIMenuView
+      colorScheme={colorScheme}
+      style={{
+        marginLeft: -hitSlop.left,
+        marginRight: -hitSlop.right,
+        marginTop: -hitSlop.top,
+        marginBottom: -hitSlop.bottom,
+      }}
       onOpenMenu={() => {
         setIsMenuOpen(true);
         onOpenMenu?.();
@@ -55,8 +55,20 @@ const MenuView = ({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMen
       }}
       {...props}
     >
-      <View style={[hitSlopPadding, { opacity: isMenuOpen ? 0.5 : 1 }, style]}>{children}</View>
-    </LibMenuView>
+      <View
+        style={[
+          {
+            paddingLeft: hitSlop.left,
+            paddingRight: hitSlop.right,
+            paddingTop: hitSlop.top,
+            paddingBottom: hitSlop.bottom,
+            opacity: isMenuOpen ? 0.5 : 1,
+          },
+          style,
+        ]}
+      >
+        {children}
+      </View>
+    </UIMenuView>
   );
-};
-export default MenuView;
+}
