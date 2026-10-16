@@ -153,7 +153,7 @@ Three things about the schema are deliberate and easy to "tidy up" by mistake:
 - **Variant names are nullable.** A blank variant name is not missing data — it
   is the signal for the export to generate one ("Žodžiai 2"). The number comes
   from the record's position within its song, which is why child rows carry an
-  explicit `position`.
+  explicit `position`, unique per song (`0003_unique_child_positions.sql`).
 - **Checkboxes distinguish false from absent.** Airtable omits an unchecked
   field entirely, so the export drops falsy booleans rather than emitting
   `false`. Emitting it would add a key to hundreds of songs.
