@@ -24,7 +24,7 @@
 From the device checklist in `docs/branch-changelog.md`. Layout work on a broken build just
 records bugs in the baseline.
 
-- [ ] Clean `pnpm install` (pnpm 10.28); the `react-native-screens@4.30.0` patch applies.
+- [ ] Clean `pnpm install` (pnpm 10.x, Node 22.13+; see README); the `react-native-screens@4.30.0` patch applies.
 - [ ] `cd ios && pod install`; commit `ios/Podfile.lock`. Build `ios/Dainorelis.xcworkspace` with
       **Xcode 27.1** (27.0 runs Duo builds in a compatibility box, no edge-to-edge).
 - [ ] `npx expo run:ios` on: an iOS 26+ iPhone sim, an **iOS 18** sim (the non-glass header and

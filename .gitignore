@@ -17,6 +17,8 @@ expo-env.d.ts
 # Native
 *.orig.*
 *.jks
+*.keystore
+!android/app/debug.keystore
 *.p8
 *.p12
 *.key
@@ -43,7 +45,6 @@ yarn-error.*
 
 app-example
 .env
-my-upload-key.keystore
 
 # Claude Code agent worktrees
 .claude/worktrees/
