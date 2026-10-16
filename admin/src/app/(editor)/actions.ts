@@ -151,13 +151,32 @@ async function persist(formData: FormData) {
   return { supabase, songId };
 }
 
-export type EditorState = { error?: string; savedAt?: number };
+export type EditorState = {
+  error?: string;
+  savedAt?: number;
+  /** After a failed save, every submitted field by name, to fill the form back in. */
+  values?: Record<string, string>;
+};
+
+/**
+ * React resets an uncontrolled form once its action returns, error or not, so
+ * after a failed save every field would snap back to the stored value and the
+ * operator's typing would be gone. Returning the submission lets the editor
+ * render it as the fields' defaults, which is what the reset then restores.
+ */
+function submittedValues(formData: FormData): Record<string, string> {
+  const values: Record<string, string> = {};
+  for (const [key, value] of formData.entries()) {
+    if (typeof value === 'string') values[key] = value;
+  }
+  return values;
+}
 
 /**
  * Single entry point for the song editor form. `intent` carries the structural
  * change requested by whichever submit button was clicked.
  */
-export async function saveSong(_prev: EditorState, formData: FormData): Promise<EditorState> {
+export async function saveSong(prev: EditorState, formData: FormData): Promise<EditorState> {
   let songId = '';
 
   try {
@@ -193,8 +212,9 @@ export async function saveSong(_prev: EditorState, formData: FormData): Promise<
       await swapPositions(supabase, table, songId, recordId, action);
     }
   } catch (error) {
-    if (error instanceof ValidationError) return { error: error.message };
-    return { error: error instanceof Error ? error.message : 'Something went wrong.' };
+    const message = error instanceof Error ? error.message : 'Something went wrong.';
+    // Keep `savedAt` so the form's key, and with it the form, stays put.
+    return { error: message, savedAt: prev.savedAt, values: submittedValues(formData) };
   }
 
   revalidatePath(`/songs/${songId}`);
