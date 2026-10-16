@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-import type { SongFile } from './types';
+import { BUNDLED_FIELDS, LINK_KEYS } from './bundled-fields';
+import type { SongFields, SongFile } from './types';
 
 /**
  * A mirror of the app's `lib/schemas/*` Zod schemas.
@@ -18,7 +19,7 @@ const VariantSchema = {
 const SongSchema = z.object({
   id: z.string(),
   fields: z.object({
-    Name: z.string().min(1),
+    Name: z.string(),
     Lyrics: z.record(
       z.string(),
       z.object({
@@ -82,12 +83,45 @@ export function findIssues(songs: SongFile): Issue[] {
     const add = (severity: Issue['severity'], message: string) =>
       issues.push({ songId: song.id, songName, severity, message });
 
-    const parsed = SongSchema.safeParse(song);
+    // Validate what `update-songs` validates: the bundled fields, less the
+    // rows it skips for a blank link. Anything else can't block the app.
+    const bundled: Record<string, unknown> = {};
+    for (const [field, value] of Object.entries(song.fields)) {
+      if (BUNDLED_FIELDS.has(field as keyof SongFields)) bundled[field] = value;
+    }
+
+    for (const [field, linkKey] of Object.entries(LINK_KEYS)) {
+      const records = bundled[field] as Record<string, Record<string, unknown>> | undefined;
+      if (!records) continue;
+
+      bundled[field] = Object.fromEntries(
+        Object.entries(records).filter(([recordId, record]) => {
+          if (typeof record[linkKey] !== 'string' || record[linkKey].trim() !== '') return true;
+          add('warning', `${field} ${recordId} has no ${linkKey}, so the app leaves it out.`);
+          return false;
+        })
+      );
+    }
+
+    const parsed = SongSchema.safeParse({ id: song.id, fields: bundled });
     if (!parsed.success) {
       for (const issue of parsed.error.issues) {
         add('error', `${issue.path.join(' → ') || 'song'}: ${issue.message}`);
       }
     }
+
+    // Fields the app doesn't bundle yet are still worth keeping valid.
+    const unbundled = SongSchema.safeParse(song);
+    if (!unbundled.success) {
+      for (const issue of unbundled.error.issues) {
+        const field = issue.path[1];
+        if (typeof field === 'string' && !BUNDLED_FIELDS.has(field as keyof SongFields)) {
+          add('warning', `${issue.path.join(' → ')}: ${issue.message} (not bundled by the app, so not blocking)`);
+        }
+      }
+    }
+
+    if (!songName.trim()) add('warning', 'The title is blank.');
 
     if (Object.keys(song.fields.Lyrics).length === 0) {
       add('error', 'No lyrics variant — the app requires at least one.');
