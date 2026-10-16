@@ -2,7 +2,6 @@
   "name": "dainorelis",
   "main": "expo-router/entry",
   "version": "3.0.0",
-  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "update-songs": "tsx ./scripts/update-songs.ts && pnpm run generate-indices",
     "generate-indices": "tsx ./scripts/generate-search-indices.ts",
