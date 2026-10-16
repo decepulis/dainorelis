@@ -151,6 +151,8 @@ const lt = {
 };
 
 export async function initI18n() {
+  // i18next's documented chaining API, not the named `use` export
+  // eslint-disable-next-line import/no-named-as-default-member
   await i18n
     .use(initReactI18next)
     .use(getLanguageFromStorage)

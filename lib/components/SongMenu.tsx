@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
-
 import { Stack, router } from 'expo-router';
 
-import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { Song } from '@/lib/schemas/songs';
 
 import useOpenFeedback from '../hooks/useOpenFeedback';

@@ -44,13 +44,12 @@ const styles = StyleSheet.create({
 
 type Props = {
   children?: string;
-  showLinksAsChords?: boolean;
   showChords?: boolean;
 };
 /**
  * Lyrics are rendered using a controlled subset of markdown
  */
-export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
+export default function Markdown({ children, showChords = false }: Props) {
   const { isHighContrastEnabled } = useAccessibilityInfo();
 
   // TODO selectable text

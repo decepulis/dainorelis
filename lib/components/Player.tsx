@@ -18,7 +18,7 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
 
-import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import appPadding from '@/lib/constants/padding';
 
@@ -60,7 +60,6 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const { i18n } = useTranslation();
   const isAppWide = useMemo(() => width > maxWidth, [width]);
-  const text = useThemeColor('text');
   const primary = useThemeColor('primary');
 
   // layout
@@ -225,24 +224,6 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   );
   // TODO add tap gesture to toggle time mode
 
-  const Wrapper = ({ children, style }: { children: React.ReactNode; style?: StyleProp<AnimatedStyle<ViewStyle>> }) =>
-    isLiquidGlassAvailable() ? (
-      <AnimatedGlassView isInteractive style={style}>
-        {children}
-      </AnimatedGlassView>
-    ) : (
-      <Animated.View
-        style={[
-          {
-            overflow: 'hidden',
-            boxShadow: '0 0 20px rgba(64, 64, 64, 0.1)',
-          },
-          style,
-        ]}
-      >
-        <SystemView style={{ flex: 1 }}>{children}</SystemView>
-      </Animated.View>
-    );
   const color = isLiquidGlassAvailable() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#ffffff';
   const trackColor = isLiquidGlassAvailable()
     ? DynamicColorIOS({ light: `${primary}64`, dark: '#ffffff64' })
@@ -250,7 +231,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const progressColor = isLiquidGlassAvailable() ? primary : '#ffffff';
 
   return activeMedia ? (
-    <Wrapper
+    <PlayerSurface
       style={[
         containerStyles,
         {
@@ -283,7 +264,12 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
             />
           </Animated.View>
           <Animated.View style={[closeButtonStyles, { position: 'absolute' }]}>
-            <FontAwesome6 name="chevron-right" iconStyle="solid" size={isLiquidGlassAvailable() ? 19 : 16} color={color} />
+            <FontAwesome6
+              name="chevron-right"
+              iconStyle="solid"
+              size={isLiquidGlassAvailable() ? 19 : 16}
+              color={color}
+            />
           </Animated.View>
         </Button>
 
@@ -398,6 +384,32 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           )}
         </Button>
       </View>
-    </Wrapper>
+    </PlayerSurface>
   ) : null;
+}
+
+function PlayerSurface({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: StyleProp<AnimatedStyle<ViewStyle>>;
+}) {
+  return isLiquidGlassAvailable() ? (
+    <AnimatedGlassView isInteractive style={style}>
+      {children}
+    </AnimatedGlassView>
+  ) : (
+    <Animated.View
+      style={[
+        {
+          overflow: 'hidden',
+          boxShadow: '0 0 20px rgba(64, 64, 64, 0.1)',
+        },
+        style,
+      ]}
+    >
+      <SystemView style={{ flex: 1 }}>{children}</SystemView>
+    </Animated.View>
+  );
 }
