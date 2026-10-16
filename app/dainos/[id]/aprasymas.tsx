@@ -6,6 +6,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
+import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -19,15 +20,23 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const { t } = useTranslation();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const song = songs.find((song) => song.id === id);
+  if (!song) {
+    return <NotFound modal message={t('songNotFound')} />;
+  }
+  // SongMenu offers this screen when either description exists
+  if (!song.fields['LT Description'] && !song.fields['EN Description']) {
+    return <NotFound modal message={t('pageNotFound')} />;
+  }
+  return <DescriptionPage song={song} />;
+}
+
+function DescriptionPage({ song }: { song: Song }) {
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const song = songs.find((song) => song.id === id) as Song;
   const { t, i18n } = useTranslation();
-
-  if (!song || !song.fields['LT Description']) {
-    // TODO 404 not found
-  }
 
   const [title] = splitTitle(song.fields['Name']);
 
@@ -56,7 +65,7 @@ export default function Page() {
           <Markdown>
             {i18n.language === 'en'
               ? (song.fields['EN Description'] ?? song.fields['LT Description'])
-              : song.fields['LT Description']}
+              : (song.fields['LT Description'] ?? song.fields['EN Description'])}
           </Markdown>
         </View>
       </ScrollViewWithHeader>

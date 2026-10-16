@@ -274,16 +274,17 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   );
 };
 
-export function ModalToolbar() {
+/** The iOS 26 close button for modals; `back` shows a back chevron instead, for pushed screens */
+export function ModalToolbar({ back }: { back?: boolean }) {
   const router = useRouter();
   const { t } = useTranslation();
   if (!isLiquidGlassStyleHeader()) return null;
   return (
     <Stack.Toolbar placement="left">
       <Stack.Toolbar.Button
-        icon="xmark"
-        accessibilityLabel={t('close')}
-        // the root layout's anchor keeps index under a deep-linked modal; fall back to it anyway
+        icon={back ? 'chevron.left' : 'xmark'}
+        accessibilityLabel={back ? t('back') : t('close')}
+        // the root layout's anchor keeps index under a deep-linked screen; fall back to it anyway
         onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
       />
     </Stack.Toolbar>
