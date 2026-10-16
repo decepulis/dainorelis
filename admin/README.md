@@ -151,6 +151,11 @@ un-pausing is a manual trip to the dashboard. `vercel.json` registers a daily
 cron against `/api/health`, which issues one trivial query. That is enough to
 keep the project counted as active between editing sessions.
 
+Set `CRON_SECRET` on the Vercel project. Vercel's cron sends it as a bearer
+token, and in production the endpoint refuses every request (503) while it is
+unset, so a missing secret also means the keep-alive silently stops. Under
+`next dev` the endpoint stays open when the variable is unset.
+
 ## AI translations
 
 ```bash
