@@ -71,10 +71,13 @@ function collectChildUpdates(formData: FormData) {
     if (BOOLEAN_COLUMNS.has(column)) {
       record[column] = String(rawValue) === 'on' || String(rawValue) === 'true';
     } else if (URL_COLUMNS.has(column)) {
+      // A freshly added row starts with an empty URL, and rejecting that here
+      // would block every save on the song, including deleting the row. Empty
+      // is stored as-is and reported as a blocking error on /export instead.
       const url = String(rawValue ?? '').trim();
-      if (!urlSchema.safeParse(url).success) {
+      if (url && !urlSchema.safeParse(url).success) {
         throw new ValidationError(
-          `“${url || 'empty'}” is not a valid URL. The app refuses to build with an invalid ${table} link.`
+          `“${url}” is not a valid URL. Fix or clear it; the app refuses to build with an invalid ${table} link.`
         );
       }
       record[column] = url;
