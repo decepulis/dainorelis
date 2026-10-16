@@ -63,16 +63,14 @@ async function confirmDestructiveWrite(supabase: ReturnType<typeof createService
  * seeding and re-seeding, and a partial merge would silently keep rows that
  * were deleted upstream.
  */
-export async function writePayload(payload: ImportPayload, { replace }: { replace: boolean }) {
+export async function writePayload(payload: ImportPayload) {
   const supabase = createServiceClient();
 
   await confirmDestructiveWrite(supabase);
-  console.log(`✍️  Writing to Supabase${replace ? ' (replacing existing rows)' : ''}…`);
+  console.log('✍️  Writing to Supabase (replacing existing rows)…');
 
-  if (replace) {
-    const { error } = await supabase.from('songs').delete().neq('id', '');
-    if (error) throw new Error(`Failed to clear existing songs: ${error.message}`);
-  }
+  const { error } = await supabase.from('songs').delete().neq('id', '');
+  if (error) throw new Error(`Failed to clear existing songs: ${error.message}`);
 
   await batched(payload.songs, async (chunk) => {
     const { error } = await supabase.from('songs').upsert(chunk);

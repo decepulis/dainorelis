@@ -55,8 +55,6 @@ function isChildTable(value: string): value is ChildTable {
   return (CHILD_TABLES as readonly string[]).includes(value);
 }
 
-class ValidationError extends Error {}
-
 /** Collects `table:id:column` entries back into per-record update payloads. */
 function collectChildUpdates(formData: FormData) {
   const updates = new Map<ChildTable, Map<string, Record<string, unknown>>>();
@@ -81,7 +79,7 @@ function collectChildUpdates(formData: FormData) {
       // row out of the app until it has a link.
       const url = String(rawValue ?? '').trim();
       if (url && !urlSchema.safeParse(url).success) {
-        throw new ValidationError(
+        throw new Error(
           `“${url}” is not a valid URL. Fix or clear it; the app refuses to build with an invalid ${table} link.`
         );
       }
@@ -112,12 +110,12 @@ function collectChildUpdates(formData: FormData) {
 
 async function persist(formData: FormData) {
   const songId = String(formData.get('songId') ?? '');
-  if (!songId) throw new ValidationError('Missing song id.');
+  if (!songId) throw new Error('Missing song id.');
 
   const supabase = await createClient();
 
   const name = nullable(formData.get('name'));
-  if (!name) throw new ValidationError('A song needs a name.');
+  if (!name) throw new Error('A song needs a name.');
 
   // Collect and validate the children first. This throws on a bad URL, which
   // would otherwise leave the song row updated and its variants untouched.
@@ -289,11 +287,11 @@ async function swapPositions(
   if (swapError) throw new Error(swapError.message);
 }
 
-export async function createSong(formData: FormData) {
-  const name = nullable(formData.get('name')) ?? 'Nauja daina';
+/** Starts a placeholder song and opens it; the editor names it from there. */
+export async function createSong() {
   const supabase = await createClient();
 
-  const { data, error } = await supabase.from('songs').insert({ name }).select('id').single();
+  const { data, error } = await supabase.from('songs').insert({ name: 'Nauja daina' }).select('id').single();
   if (error) throw new Error(error.message);
 
   // A song with no lyrics fails the app's schema, so start it with one variant.

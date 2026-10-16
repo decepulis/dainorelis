@@ -27,7 +27,7 @@ async function main() {
   const payload = payloadFromSongFile(readSongFile(filePath));
   console.log(`   ${summarize(payload)}`);
 
-  await writePayload(payload, { replace: true });
+  await writePayload(payload);
   console.log('✅ Done.');
   console.log('⚠️  Hide, Tags, Sources and Recommended Key are absent from songs.ts and were not restored.');
 }

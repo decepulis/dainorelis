@@ -4,8 +4,6 @@ import { buildSongFileFromDatabase } from '@/lib/song-file/query';
 import { countRecords, findIssues } from '@/lib/song-file/validate';
 import { createClient } from '@/lib/supabase/server';
 
-export const dynamic = 'force-dynamic';
-
 function Stat({ label, value }: { label: string; value: number | string }) {
   return (
     <div className="rounded-lg border border-stone-200 p-3 dark:border-stone-800">

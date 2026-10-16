@@ -16,7 +16,7 @@ const SELECT = `
   videos       ( id, position, variant_name, en_variant_name, youtube_link )
 `;
 
-export async function fetchSongRows(supabase: SupabaseClient<Database>): Promise<SongRow[]> {
+async function fetchSongRows(supabase: SupabaseClient<Database>): Promise<SongRow[]> {
   const { data, error } = await fetchAll((from, to) =>
     supabase
       .from('songs')

@@ -243,7 +243,7 @@ async function main() {
     return;
   }
 
-  await writePayload(payload, { replace: true });
+  await writePayload(payload);
   console.log('✅ Migration complete. Check /export in the admin app, then run update-songs in the app repo.');
 }
 

@@ -5,8 +5,6 @@ import { createSong } from './actions';
 import SongList from './song-list';
 import SubmitButton from './submit-button';
 
-export const dynamic = 'force-dynamic';
-
 export default async function SongsPage() {
   const supabase = await createClient();
 
