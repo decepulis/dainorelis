@@ -8,7 +8,7 @@ which is generated at build time from the export endpoint here and committed to
 the repo, so a release build is reproducible and works offline.
 
 ```
-admin (Next.js on Vercel)  ──▶  Supabase Postgres
+admin (Next.js 16 on Vercel)  ──▶  Supabase Postgres
         │
         │  GET /api/export   (bearer token)
         ▼
@@ -97,6 +97,15 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 ```bash
 pnpm --filter @dainorelis/admin dev     # or `pnpm admin` from the repo root
 ```
+
+Next.js 16 needs Node 20.9 or later, and builds with Turbopack by default.
+Lint with `pnpm lint` (the ESLint CLI; `next lint` no longer exists), and
+typecheck with `pnpm typecheck`.
+
+Every request except static assets goes through `src/proxy.ts` (Next 16's name
+for middleware; it always runs on the Node.js runtime). It refreshes the
+Supabase session cookie and sends signed-out visitors to `/login`. The routes
+reachable without a session are listed in `src/lib/supabase/proxy.ts`.
 
 To work against a throwaway database, seed it from the app's committed data:
 

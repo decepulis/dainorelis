@@ -74,7 +74,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 - **State Management**: React Context + MMKV storage for persistent settings
 - **Audio**: expo-audio for background audio playback
 - **Search**: Fuse.js with pre-generated indices
-- **Backend**: `admin/` — a Next.js CMS on Vercel backed by Supabase Postgres
+- **Backend**: `admin/` — a Next.js 16 CMS on Vercel backed by Supabase Postgres
 - **AI**: OpenAI API for generating song descriptions and translations (in `admin/`)
 
 ### Project Structure
@@ -106,6 +106,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **`/admin`** - The CMS (separate Vercel deployment, its own README)
   - Owns the schema, the editor UI, and every content transform
+  - `src/proxy.ts` - Next 16's renamed middleware: refreshes the Supabase session, gates every non-public route
   - `scripts/import-from-airtable.ts` - the one-time migration
   - `scripts/generate-metadata.ts` - OpenAI translations (was `generate-song-metadata.ts`)
 
@@ -184,7 +185,7 @@ For production releases, see the Expo documentation on creating production build
 
 ## Linting and Formatting
 
-ESLint uses Expo's flat config (which includes eslint-plugin-react-hooks 7 and its React Compiler rules) with Prettier integration. `admin/` uses the Next.js config instead. Key rules:
+ESLint uses Expo's flat config (which includes eslint-plugin-react-hooks 7 and its React Compiler rules) with Prettier integration. `admin/` uses `eslint-config-next`'s flat config instead (run with the ESLint CLI; Next 16 removed `next lint`). Key rules:
 
 - Prettier formatting enforced as errors
 - Unused imports are automatically flagged and removed
