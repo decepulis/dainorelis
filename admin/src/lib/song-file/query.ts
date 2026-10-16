@@ -27,6 +27,10 @@ export async function fetchSongRows(supabase: SupabaseClient<Database>): Promise
       .from('songs')
       .select(SELECT)
       .order('name', { ascending: true })
+      // Names are not unique, so without a tie-breaker two songs sharing a
+      // name could swap across a page boundary and be skipped or duplicated.
+      // The bundle's own order is set later by buildSongFile's en collation.
+      .order('id', { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
 
     if (error) throw new Error(`Failed to read songs: ${error.message}`);
