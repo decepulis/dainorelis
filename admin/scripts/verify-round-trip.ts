@@ -12,27 +12,17 @@
 import path from 'node:path';
 
 import { buildSongFile } from '../src/lib/song-file/build';
-import type { SongFile } from '../src/lib/song-file/types';
+import { BUNDLED_FIELDS } from '../src/lib/song-file/bundled-fields';
+import type { SongFields, SongFile } from '../src/lib/song-file/types';
 import { payloadFromSongFile, readSongFile } from './from-song-file';
 import { payloadToSongRows } from './payload-to-rows';
-
-/** Mirrors `fieldFlags` in the app's scripts/update-songs.ts. */
-const BUNDLED_FIELDS = new Set([
-  'Name',
-  'Lyrics',
-  'Audio',
-  'PDFs',
-  'Translations',
-  'Music Author',
-  'Text Author',
-  'LT Description',
-  'EN Description',
-]);
 
 function applyFieldFlags(songs: SongFile) {
   return songs.map((song) => ({
     id: song.id,
-    fields: Object.fromEntries(Object.entries(song.fields).filter(([key]) => BUNDLED_FIELDS.has(key))),
+    fields: Object.fromEntries(
+      Object.entries(song.fields).filter(([key]) => BUNDLED_FIELDS.has(key as keyof SongFields))
+    ),
   }));
 }
 

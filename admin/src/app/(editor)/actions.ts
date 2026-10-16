@@ -73,7 +73,8 @@ function collectChildUpdates(formData: FormData) {
     } else if (URL_COLUMNS.has(column)) {
       // A freshly added row starts with an empty URL, and rejecting that here
       // would block every save on the song, including deleting the row. Empty
-      // is stored as-is and reported as a blocking error on /export instead.
+      // is stored as-is; /export warns about it, and update-songs leaves the
+      // row out of the app until it has a link.
       const url = String(rawValue ?? '').trim();
       if (url && !urlSchema.safeParse(url).success) {
         throw new ValidationError(
