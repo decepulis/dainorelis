@@ -18,6 +18,7 @@ import dotenv from 'dotenv';
 import path from 'node:path';
 import OpenAI from 'openai';
 
+import { fetchAll } from '../src/lib/supabase/fetch-all';
 import { createServiceClient } from '../src/lib/supabase/service';
 
 dotenv.config({ path: path.join(__dirname, '..', '.env.local') });
@@ -92,10 +93,14 @@ async function main() {
   const supabase = createServiceClient();
 
   console.log('🎵 Reading songs…');
-  const { data: songs, error } = await supabase
-    .from('songs')
-    .select('id, name, lyrics(position, lyrics_and_chords), translations(id)')
-    .order('name', { ascending: true });
+  const { data: songs, error } = await fetchAll((from, to) =>
+    supabase
+      .from('songs')
+      .select('id, name, lyrics(position, lyrics_and_chords), translations(id)')
+      .order('name', { ascending: true })
+      .order('id', { ascending: true })
+      .range(from, to)
+  );
 
   if (error) throw new Error(error.message);
 

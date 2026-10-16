@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+import { fetchAll } from '@/lib/supabase/fetch-all';
 import type { Database } from '@/lib/supabase/types';
 
 import { type SongRow, buildSongFile } from './build';
@@ -15,15 +16,9 @@ const SELECT = `
   videos       ( id, position, variant_name, en_variant_name, youtube_link )
 `;
 
-/** PostgREST caps a single response, so walk the table in pages. */
-const PAGE_SIZE = 500;
-
 export async function fetchSongRows(supabase: SupabaseClient<Database>): Promise<SongRow[]> {
-  const rows: SongRow[] = [];
-
-  for (let page = 0; ; page += 1) {
-    const from = page * PAGE_SIZE;
-    const { data, error } = await supabase
+  const { data, error } = await fetchAll((from, to) =>
+    supabase
       .from('songs')
       .select(SELECT)
       .order('name', { ascending: true })
@@ -31,16 +26,12 @@ export async function fetchSongRows(supabase: SupabaseClient<Database>): Promise
       // name could swap across a page boundary and be skipped or duplicated.
       // The bundle's own order is set later by buildSongFile's en collation.
       .order('id', { ascending: true })
-      .range(from, from + PAGE_SIZE - 1);
+      .range(from, to)
+  );
 
-    if (error) throw new Error(`Failed to read songs: ${error.message}`);
-    if (!data || data.length === 0) break;
+  if (error) throw new Error(`Failed to read songs: ${error.message}`);
 
-    rows.push(...(data as unknown as SongRow[]));
-    if (data.length < PAGE_SIZE) break;
-  }
-
-  return rows;
+  return data as unknown as SongRow[];
 }
 
 export async function buildSongFileFromDatabase(supabase: SupabaseClient<Database>): Promise<SongFile> {

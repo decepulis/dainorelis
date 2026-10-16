@@ -1,3 +1,4 @@
+import { fetchAll } from '@/lib/supabase/fetch-all';
 import { createClient } from '@/lib/supabase/server';
 
 import { createSong } from './actions';
@@ -10,10 +11,14 @@ export default async function SongsPage() {
 
   // 619 songs is small enough to filter in the browser, which keeps search
   // instant and avoids a round trip per keystroke.
-  const { data: songs, error } = await supabase
-    .from('songs')
-    .select('id, name, hide, lyrics(count), translations(count), audio(count), pdfs(count)')
-    .order('name', { ascending: true });
+  const { data: songs, error } = await fetchAll((from, to) =>
+    supabase
+      .from('songs')
+      .select('id, name, hide, lyrics(count), translations(count), audio(count), pdfs(count)')
+      .order('name', { ascending: true })
+      .order('id', { ascending: true })
+      .range(from, to)
+  );
 
   if (error) {
     return (
