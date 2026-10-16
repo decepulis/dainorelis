@@ -41,6 +41,16 @@ function App({ onLayout }: AppProps) {
   );
 }
 
+// Keep index at the bottom of the stack even when a deep link opens another screen first
+// (cold start on dainorelis://dainos/<id>), so back has somewhere to go and Index mounts.
+export const unstable_settings = {
+  anchor: 'index',
+};
+
+// Never hold the splash longer than this waiting on Index's images: if Index's images don't load (it
+// isn't the focused screen, or a decode fails), launch would otherwise hang on the splash.
+const splashImageTimeoutMs = 1500;
+
 // Wrapping App is the Root Layout, which manages resource loading and the splash screen
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -54,6 +64,7 @@ SplashScreen.setOptions({
 function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
+  const [didImagesTimeOut, setDidImagesTimeOut] = useState(false);
   const { didLogoLoad, didWordmarkLoad, didBackgroundLoad } = useDidImagesLoad();
 
   // do async work that needs to be done before the splash screen here
@@ -78,12 +89,23 @@ function AppWithLoading() {
     prepare();
   }, []);
 
-  // hide the splash screen when we're good to go
+  const isAppReady = asyncWorkIsDone && didAppLayout;
+  const didImagesLoad = didLogoLoad && didBackgroundLoad && didWordmarkLoad;
+
+  // stop waiting for the images a little while after the app is otherwise ready
   useEffect(() => {
-    if (asyncWorkIsDone && didAppLayout && didLogoLoad && didBackgroundLoad && didWordmarkLoad) {
+    if (!isAppReady) return;
+    const timeout = setTimeout(() => setDidImagesTimeOut(true), splashImageTimeoutMs);
+    return () => clearTimeout(timeout);
+  }, [isAppReady]);
+
+  // hide the splash screen when we're good to go; every flag only ever flips to true, so this runs once
+  const shouldHideSplash = isAppReady && (didImagesLoad || didImagesTimeOut);
+  useEffect(() => {
+    if (shouldHideSplash) {
       SplashScreen.hide();
     }
-  }, [asyncWorkIsDone, didAppLayout, didLogoLoad, didBackgroundLoad, didWordmarkLoad]);
+  }, [shouldHideSplash]);
 
   if (asyncWorkIsDone) {
     return <App onLayout={() => setDidAppLayout(true)} />;

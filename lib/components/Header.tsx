@@ -280,7 +280,12 @@ export function ModalToolbar() {
   if (!isLiquidGlassStyleHeader()) return null;
   return (
     <Stack.Toolbar placement="left">
-      <Stack.Toolbar.Button icon="xmark" accessibilityLabel={t('close')} onPress={() => router.navigate('../')} />
+      <Stack.Toolbar.Button
+        icon="xmark"
+        accessibilityLabel={t('close')}
+        // the root layout's anchor keeps index under a deep-linked modal; fall back to it anyway
+        onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+      />
     </Stack.Toolbar>
   );
 }
