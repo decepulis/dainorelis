@@ -32,6 +32,10 @@ const FIELD_SEPARATOR = ':';
 
 const urlSchema = z.string().url();
 
+/** For a write that matched no row; see `persist`. */
+const GONE =
+  'Part of this song no longer exists; another editor may have deleted it. Reload to see the current version.';
+
 /** Blank text is stored as NULL, because the export treats absent and blank alike. */
 function nullable(value: FormDataEntryValue | null): string | null {
   const text = String(value ?? '').trim();
@@ -119,7 +123,11 @@ async function persist(formData: FormData) {
   // would otherwise leave the song row updated and its variants untouched.
   const childUpdates = collectChildUpdates(formData);
 
-  const { error: songError } = await supabase
+  // PostgREST answers an UPDATE or DELETE that matched nothing with a plain
+  // success, so every write below asks for the affected ids back. An empty
+  // list means another editor deleted the row (or RLS hid it), and saying
+  // "Saved." would be a lie.
+  const { data: songRows, error: songError } = await supabase
     .from('songs')
     .update({
       name,
@@ -132,20 +140,27 @@ async function persist(formData: FormData) {
       en_description: nullable(formData.get('en_description')),
       hide: formData.get('hide') === 'on',
     })
-    .eq('id', songId);
+    .eq('id', songId)
+    .select('id');
 
   if (songError) throw new Error(songError.message);
+  if (songRows.length === 0) throw new Error(GONE);
 
+  // The editor only submits the variants that were changed (see
+  // `dropUntouchedRecords`), so this writes those and leaves the rest, and
+  // whatever another editor saved to them meanwhile, alone.
   for (const [table, byId] of childUpdates) {
     for (const [id, values] of byId) {
       // `values` is assembled from the COLUMNS allowlist above, so it is
       // known-good for this table even though its type is dynamic.
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from(table)
         .update(values as never)
         .eq('id', id)
-        .eq('song_id', songId);
+        .eq('song_id', songId)
+        .select('id');
       if (error) throw new Error(`Failed to save ${table}: ${error.message}`);
+      if (data.length === 0) throw new Error(GONE);
     }
   }
 
@@ -205,8 +220,9 @@ export async function saveSong(prev: EditorState, formData: FormData): Promise<E
     }
 
     if (action === 'delete' && isChildTable(table) && recordId) {
-      const { error } = await supabase.from(table).delete().eq('id', recordId).eq('song_id', songId);
+      const { data, error } = await supabase.from(table).delete().eq('id', recordId).eq('song_id', songId).select('id');
       if (error) throw new Error(error.message);
+      if (data.length === 0) throw new Error(GONE);
     }
 
     if ((action === 'up' || action === 'down') && isChildTable(table) && recordId) {
@@ -214,6 +230,10 @@ export async function saveSong(prev: EditorState, formData: FormData): Promise<E
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Something went wrong.';
+    // `songId` is only set once persist() has written, so the database has
+    // changed even though the requested add, move or delete didn't happen.
+    // Refresh the page's data so the editor shows the structure as it is.
+    if (songId) revalidatePath(`/songs/${songId}`);
     // Keep `savedAt` so the form's key, and with it the form, stays put.
     return { error: message, savedAt: prev.savedAt, values: submittedValues(formData) };
   }
@@ -241,31 +261,32 @@ async function swapPositions(
     .order('position', { ascending: true });
 
   if (error) throw new Error(error.message);
-  if (!rows) return;
 
   const index = rows.findIndex((row) => row.id === recordId);
-  const swapWith = direction === 'up' ? index - 1 : index + 1;
-  if (index === -1 || swapWith < 0 || swapWith >= rows.length) return;
+  if (index === -1) throw new Error(GONE);
 
-  // Renumber the whole list so gaps left by imports and deletions settle into
-  // a clean 0..n-1 sequence.
-  const reordered = [...rows];
-  [reordered[index], reordered[swapWith]] = [reordered[swapWith], reordered[index]];
+  const neighbour = rows[direction === 'up' ? index - 1 : index + 1];
+  if (!neighbour) return;
 
-  // (song_id, position) is unique and every update below is its own
-  // transaction, so moving a row straight onto a position a sibling still
-  // holds would fail. Park the rows below every position in use first, then
-  // move each one to its final place.
-  const parked = Math.min(0, ...rows.map((row) => row.position)) - reordered.length;
-  for (const offset of [parked, 0]) {
-    for (const [position, row] of reordered.entries()) {
-      const { error: updateError } = await supabase
-        .from(table)
-        .update({ position: offset + position })
-        .eq('id', row.id);
-      if (updateError) throw new Error(updateError.message);
-    }
-  }
+  // The two rows trade positions in one statement. An upsert is the only
+  // single PostgREST request that can write a different value to each row,
+  // and one statement is one transaction, so 0003's DEFERRABLE INITIALLY
+  // DEFERRED unique (song_id, position) is checked once both have moved.
+  // `song_id` is included because Postgres checks NOT NULL on the proposed
+  // insert before it finds the conflict on `id`. Gaps in the sequence don't
+  // matter: only the order is used, never the number itself.
+  //
+  // The catch: a row deleted between the read above and this write would be
+  // inserted again, blank. That takes two editors on the same song within
+  // milliseconds; an RPC would close it, at the price of a migration.
+  const { error: swapError } = await supabase.from(table).upsert(
+    [
+      { id: rows[index].id, song_id: songId, position: neighbour.position },
+      { id: neighbour.id, song_id: songId, position: rows[index].position },
+    ] as never,
+    { onConflict: 'id' }
+  );
+  if (swapError) throw new Error(swapError.message);
 }
 
 export async function createSong(formData: FormData) {
@@ -288,8 +309,9 @@ export async function deleteSong(formData: FormData) {
   if (!songId) return;
 
   const supabase = await createClient();
-  const { error } = await supabase.from('songs').delete().eq('id', songId);
+  const { data, error } = await supabase.from('songs').delete().eq('id', songId).select('id');
   if (error) throw new Error(error.message);
+  if (data.length === 0) throw new Error(GONE);
 
   revalidatePath('/');
   redirect('/');

@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 
 import { createSong } from './actions';
 import SongList from './song-list';
+import SubmitButton from './submit-button';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,13 +39,13 @@ export default async function SongsPage() {
           </p>
         </div>
         <form action={createSong}>
-          <button
-            type="submit"
+          <SubmitButton
+            pendingLabel="Creating…"
             className="rounded-md bg-stone-900 px-3 py-2 text-sm font-medium text-white
-              hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
+              hover:bg-stone-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-300"
           >
             New song
-          </button>
+          </SubmitButton>
         </form>
       </div>
 

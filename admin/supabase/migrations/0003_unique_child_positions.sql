@@ -8,9 +8,9 @@
 --
 -- DEFERRABLE INITIALLY DEFERRED checks at commit, so one statement or
 -- transaction can permute positions (a re-import moving rows around) without
--- tripping over its own intermediate states. The editor's reorder issues one
--- request per row, each its own transaction, so it parks rows on spare
--- negative positions first instead (see swapPositions in actions.ts).
+-- tripping over its own intermediate states. The editor's reorder relies on
+-- this: it swaps two rows' positions in a single upsert (see swapPositions
+-- in actions.ts).
 --
 -- Safe to re-run.
 
