@@ -3,10 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Fuse, { IFuseOptions } from 'fuse.js/basic';
 
 import { Song, SongFile } from '@/lib/schemas/songs';
-import lyricIndexJson from '@/lyric-index.json';
 import songFestival from '@/song-festival';
 import songs from '@/songs';
-import titleIndexJson from '@/title-index.json';
 
 import useStorage from './useStorage';
 
@@ -15,28 +13,25 @@ const fuseSettings: IFuseOptions<Song> = {
   isCaseSensitive: false,
   ignoreDiacritics: true,
   findAllMatches: true,
-  includeMatches: true,
   shouldSort: true,
   ignoreLocation: true,
 };
-const titleIndex = Fuse.parseIndex<Song>(titleIndexJson);
-const titleFuse = new Fuse(
-  songs,
-  {
-    ...fuseSettings,
-    threshold: 0.25,
-  },
-  titleIndex
-);
-const lyricIndex = Fuse.parseIndex<Song>(lyricIndexJson);
-const lyricFuse = new Fuse(
-  songs,
-  {
-    ...fuseSettings,
-    threshold: 0.1,
-  },
-  lyricIndex
-);
+
+// The indices (lyric-index.json is ~370 KB) are only required, parsed and turned into Fuse
+// instances on the first search, not while the home screen is starting up: Metro doesn't evaluate a
+// module until its first require().
+let fuses: { titleFuse: Fuse<Song>; lyricFuse: Fuse<Song> } | null = null;
+const getFuses = () => {
+  if (!fuses) {
+    const titleIndex = Fuse.parseIndex<Song>(require('@/title-index.json'));
+    const lyricIndex = Fuse.parseIndex<Song>(require('@/lyric-index.json'));
+    fuses = {
+      titleFuse: new Fuse(songs, { ...fuseSettings, threshold: 0.25 }, titleIndex),
+      lyricFuse: new Fuse(songs, { ...fuseSettings, threshold: 0.1 }, lyricIndex),
+    };
+  }
+  return fuses;
+};
 
 /**
  * an output compatible with SectionList
@@ -124,6 +119,7 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
   // search results
   let searchResults: string[] | null = null;
   if (searchText.length > 0) {
+    const { titleFuse, lyricFuse } = getFuses();
     const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
     const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
     const allSearchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
