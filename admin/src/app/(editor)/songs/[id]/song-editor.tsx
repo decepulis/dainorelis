@@ -227,7 +227,16 @@ export default function SongEditor({ song }: { song: Song }) {
 
       <form action={deleteSong} className="mt-10 border-t border-stone-200 pt-6 dark:border-stone-800">
         <input type="hidden" name="songId" value={song.id} />
-        <button type="submit" className="text-sm text-red-600 hover:underline dark:text-red-400">
+        <button
+          type="submit"
+          // The delete cascades to every variant and cannot be undone.
+          onClick={(event) => {
+            if (!window.confirm(`Delete “${song.name}” and every variant attached to it? This cannot be undone.`)) {
+              event.preventDefault();
+            }
+          }}
+          className="text-sm text-red-600 hover:underline dark:text-red-400"
+        >
           Delete this song
         </button>
         <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
