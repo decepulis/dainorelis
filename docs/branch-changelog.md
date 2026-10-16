@@ -7,18 +7,20 @@ one-line markers so the timeline makes sense.
 **Short version:**
 
 - Expo SDK 55 → **58**, React Native 0.83 → **0.88** (React 19.3).
-- Airtable was replaced by a Next.js + Supabase admin CMS in `admin/`. It's code only and not
-  provisioned yet.
+- Airtable was replaced by a Next.js + Supabase admin CMS in `admin/`, now on **Next.js 16**. It's
+  code only and not provisioned yet.
 - The iOS 26 header-title hack became a native patch to react-native-screens.
 - Today (2026-10-16): the native projects were regenerated, custom code was swapped for
-  Expo-provided equivalents, and the earlier agent work was audited and fixed.
+  Expo-provided equivalents, the earlier agent work was audited and fixed, the admin got its
+  missing auth flow and RLS hardening, the marketing site deploys were fixed, and a second audit
+  pass over the app, admin and tooling fixed several crashes and a stuck splash screen.
 - **Nobody has run the app on a device since about March 2026.** Everything since SDK 56 has only
   passed typecheck, lint and bundling. The checklist at the end says what's needed to ship.
 
 > Notes in Phases 0–4 that say something is still pending were written before Phase 5. Phase 5
 > resolved several of them: the native projects were regenerated, both pnpm overrides were removed,
 > the Switch colours were restored, the screens patch was re-ported, and lint now actually runs.
-> The checklist at the end is current.
+> The checklist and open decisions at the end are current.
 
 ---
 
@@ -70,7 +72,7 @@ _(authored by you, `Co-Authored-By: Claude Opus 4.6`)_
 ### 2026-06-10 · `bec7aff` · fix: post-SDK-56 cleanups
 
 - Ran `expo install --fix` again for 13 drifted packages (expo ~56.0.9, expo-router 56.2.9, screens **4.25.2**, @expo/ui 56.0.16).
-- **Android `compileSdkVersion`/`targetSdkVersion` went from 35 → 36** in `app.config.ts` (expo-build-properties). Play requires targetSdk 36 from Aug 2026. Your `a5131d5` prebuild did carry this into `android/gradle.properties`.
+- **Android `compileSdkVersion`/`targetSdkVersion` went from 35 → 36** in `app.config.ts` (expo-build-properties). Play requires targetSdk 36 from Aug 2026. Your `a5131d5` prebuild did carry this into `android/gradle.properties`. (Phase 5's `137b78e` dropped both pins again: SDK 58's defaults are compileSdk 37 / targetSdk 36.)
 - `openai` moved to devDependencies. It later moved again, into `admin/`.
 - Visible fix: the AI-translation wand icon on the translation screen now uses the theme text colour, so you can see it in dark mode.
 - Latent fixes: an operator-precedence bug in `HeaderLeft`'s `href` (no current caller is affected), and a no-op `items.filter` in `useSongList` was deleted.
@@ -133,7 +135,9 @@ One session working from the [SDK 58 release notes](https://expo.dev/changelog/s
 [Expo Router 57 → 58 migration guide](https://docs.expo.dev/router/migrate/sdk-57-to-58/). Read-only
 subagents audited Phases 1–4 (reports summarised below) and scoped iPhone Duo and App Intents
 (`docs/plans/`). A worktree subagent fixed the admin CMS audit findings, and its commits were
-cherry-picked here.
+cherry-picked here. Later the same day: accessibility labels, the admin follow-ups the first audit
+left open, Next.js 16, the marketing-site deploy fix, and a second audit pass over the app, admin
+and tooling.
 
 ### Upgrade
 
@@ -197,11 +201,12 @@ cherry-picked here.
 - `a9d3d11`
   - **Android Switch brand colours restored** (Compose Switch). Phase 1 dropped them and its
     follow-up never happened. The Switch also gets an accessibility label on both platforms.
-  - `packageManager: pnpm@10.28.0` pinned. Reverted later: the `dainorelis-site` Vercel
-    deploys failed from the first push that included it.
+  - `packageManager: pnpm@10.28.0` pinned. **Removed again in `2ffb01d`**: the `dainorelis-site`
+    Vercel deploys failed from the first push that included it (see "Marketing site deploy fix").
   - The redirect-only root Vercel project skips install and build. Its deploys had failed on
-    every commit since the screens patch landed. **The root cause is unconfirmed**: I couldn't
-    read the Vercel logs.
+    every commit since the screens patch landed. Likely cause, per `2ffb01d`: by project age
+    Vercel gives it pnpm 9, which rejects the lockfile's pnpm 10 patch hash. Still unconfirmed,
+    since nobody could read the Vercel logs.
 - `091278b` `ts-node` → `tsx` for the data scripts. ts-node is unmaintained, and
   `tsconfig.scripts.json` didn't typecheck under TS 6, so it's deleted. `lyric-index.json` was
   regenerated for fuse.js 7.5 (only the scoring norms changed).
@@ -216,7 +221,7 @@ cherry-picked here.
 - `e766eaa` The importers delete every song and re-insert. They now print the target, refuse a
   non-empty DB without `--force`, and require `--yes`.
 - `d3d56ad` An empty audio/PDF/video URL no longer locks the whole song in the editor. `/export`
-  still flags it.
+  still flags it (since `cee72a5`, only as a warning).
 - `97c0c1b` Fixed an open redirect via the login `next` parameter.
 - `f0efd9e` The paged export gets an `id` tie-breaker.
 - `dd139b1` `/api/health` fails closed in production without `CRON_SECRET`.
@@ -236,6 +241,13 @@ cherry-picked here.
   `headerLeft`/`headerRight` with Compose icon buttons inside the existing header. Android already
   has native Compose menus, and `SearchBarSlot` renders nothing there, so the gain is cosmetic and
   the cost is a third header code path.
+- `664a82c` Both READMEs use pnpm commands.
+- `1b6fe18` `docs/plans/interactive-layout-migration.md`: a runbook for you and an agent working
+  together at the keyboard with simulators and devices. It starts from the device checklist below,
+  takes a baseline screenshot matrix with fixed test songs, then goes through seven small steps
+  that can each ship alone: native content insets, a screens-patch re-check, Player/Search on
+  resizable windows, the `(dainos)` layout route, list/detail panes, Duo/iPad/foldable tuning, and
+  a11y plus dark mode. Each step has acceptance criteria, a rollback and decision points.
 
 ### What the audits concluded about Phases 1–4
 
@@ -246,10 +258,160 @@ cherry-picked here.
   but may measure button frames one layout pass early, and may misplace a centred title.
 - **Admin side:** the design is sound. RLS is on every table, there's no service key in the
   browser, and the export reproduces Airtable's order exactly (all 619 songs checked). It had
-  first-deploy blockers and data-loss footguns, fixed above. Still open, needing your call: no
-  backups after cut-over; access depends on dashboard toggles (any `authenticated` user, including
-  anonymous sign-ins if those are ever enabled, gets full write); Next 16; edits lost on a failed
-  save; the `/auth` route is missing, so invite emails and password reset go nowhere.
+  first-deploy blockers and data-loss footguns, fixed above. The items it left open were mostly
+  fixed later the same day (next sections): anonymous sign-ins can no longer write (`8fc3588`),
+  Next 16 (`b4d861a`), a failed save keeps your edits (`e9e9d91`), and invites and password
+  resets have a route (`d86a853`, `52420a8`). **Still open:** no backups after cut-over, and any
+  non-anonymous signed-in user is an editor (no allowlist in RLS).
+
+### Accessibility
+
+- `5394a9f` **Bug:** VoiceOver and TalkBack announced the header, player and search buttons as
+  unlabelled, or read out the icon font's private-use glyph. RNGH 3's `Touchable` sets no role.
+  - `Button` defaults to `accessible` + role `button`, and every caller passes a label (back/close,
+    favourite, settings, play/pause, player details, clear search).
+  - `@expo/ui`'s menu leaves the trigger to declare its own accessibility, so our `MenuView`
+    wrapper View is now the focusable button with a label/hint: song ⋯, recording picker, variant
+    title.
+  - The iOS 26 `Stack.Toolbar` icon buttons are labelled. The collapsed player controls and the
+    hidden search cancel button / playlist menu are hidden from screen readers, as they are from
+    touch. New en + lt strings.
+- `c866f96` Android's song "more" button shows the vertical ellipsis, Material's overflow
+  convention.
+- `c896c14` Search only renders without Liquid Glass, so its `isLiquidGlassAvailable()` branches
+  were dead and are inlined. No visual change.
+
+### Admin follow-ups
+
+- **Auth flow** (`d86a853`, reworked in `52420a8` below): invite emails had nowhere to land
+  (`/auth` was a public path with no route), there was no way to set a first password, and a
+  forgotten password meant a manual reset in the dashboard. New: `/auth/confirm`,
+  `/account/password` (linked from the header, so editors can change theirs) and `/login/forgot`,
+  which doesn't reveal who is an editor. The README documents the Site URL and the Invite /
+  Reset password email templates.
+- **RLS hardening** (`8fc3588`): Supabase's anonymous users get the `authenticated` role too, so
+  enabling anonymous sign-ins would have made the whole database writable with the publishable
+  key that ships in the browser. `0002_editors_not_anonymous.sql` adds an `is_anonymous = false`
+  check to every policy. It can be re-run; 0001 is unchanged.
+- **Unique positions** (`8422ccf`): two variants of one song could share a `position`, which made
+  their order and the generated "Žodžiai N" names depend on Postgres's row order.
+  `0003_unique_child_positions.sql` renumbers any duplicates and adds a deferrable
+  `unique (song_id, position)` to all five child tables. `generate-metadata` now inserts at
+  max + 1. (The reorder approach from this commit was replaced by `07c7f22`.)
+- **Paging** (`9a3c984`): PostgREST silently caps a response at 1000 rows. The editor's song list
+  and `generate-metadata` now use the export's paging loop (`src/lib/supabase/fetch-all.ts`),
+  with the `id` tie-breaker.
+- **Form state** (`e9e9d91`): **one invalid URL threw away everything typed since the last save.**
+  React 19 resets an uncontrolled form after its action returns. A failed save now returns the
+  submitted values as the fields' defaults and keeps the form key.
+- `5149610` A failed lyrics insert in `createSong` now throws instead of leaving a song with no
+  lyrics. `9829224` `CRON_SECRET` is compared in constant time, like the export token.
+
+### Next.js 16
+
+- `b4d861a` next and eslint-config-next 15.5 → **16.4.2**. React stays on 19.3.0, now pinned
+  exactly to match the app, because with the hoisted layout a caret range could add a second
+  React copy. ESLint uses eslint-config-next 16's native flat configs. No source changes were
+  needed: the request APIs were already awaited and there's no `next/image` or webpack config.
+- `bd9a75a` `middleware.ts` → `proxy.ts` (official codemod). It never used the edge runtime, so
+  nothing changes.
+- `7ea3b0b` AGENTS.md and `admin/README.md` say Next.js 16, Node 20.9+, `src/proxy.ts`, and that
+  lint goes through the ESLint CLI (Next 16 removed `next lint`).
+
+### Marketing site deploy fix
+
+- `2ffb01d` **Bug: every `dainorelis-site` deploy failed after `a9d3d11`**, within about 5
+  seconds, during install setup. From the GitHub commit statuses: `4b5c6ea` deployed, and the next
+  push (`a9d3d11..e43c15b`) failed. In that push only the root `package.json` and lockfile could
+  affect the site, and the lockfile only dropped RN deps. That leaves the `packageManager` pin:
+  Vercel reads it when choosing the pnpm binary, and pnpm 10 then re-execs as exactly 10.28.0.
+  The failing step couldn't be reproduced locally, so the exact cause is unconfirmed, but without
+  the pin Vercel goes back to choosing pnpm as it did when deploys worked. Locally,
+  `pnpm install --frozen-lockfile` + `pnpm run build` pass with pnpm 10.28 and 10.34. pnpm 9
+  rejects the lockfile, so the site has always been on pnpm 10.
+- `52d148f` `dainorelisapp.com/vercel.json` pins the site's build settings in code: framework
+  astro, `pnpm install --frozen-lockfile`, `pnpm run build`, and no `outputDirectory` (the Astro
+  adapter writes `.vercel/output`). No `corepack enable`: without a `packageManager` field it
+  would pick its own pnpm, possibly 11+.
+
+### Second audit pass
+
+**App**
+
+- `ea6371d` **Bug: a cold-start deep link (`dainorelis://dainos/<id>`, `/nustatymai`) left the app
+  on the splash screen forever.** Router 58 seeded the stack with only that screen, so the home
+  screen whose images gate the splash never mounted, and the iOS 26 back/close buttons had no
+  history to go back to. Fixed with `unstable_settings = { anchor: 'index' }`, a 1.5 s splash
+  fallback, and back/close that replace with `/` when there's no history.
+- `df603e1` **Bug: an unknown song id, or `/vertimas` for one of the 3 songs without a
+  translation, crashed the app in release.** The "TODO 404" guards were empty. Each route now
+  shows a localized not-found screen with a working back/close. The description screen falls
+  back to the English description in Lithuanian.
+- `1b84498` **Bug: a stored or linked variant id that no longer exists crashed the song screen;
+  a stale recording id made the player (and its recording menu) disappear for that song for
+  good; and every song open flashed the first variant before switching.** The variant and
+  recording are now derived on each render (URL, then stored, then first) instead of synced into
+  the URL by effects.
+- `a390e0b` **Bug:** the variant menu remounted on every song-screen render, the same class of
+  bug as `40ac348`. `titleWrapper` is now a render function.
+- `ddbac0a` **Bug:** the bottom search bar lagged the keyboard while it animated (the keyboard
+  height was multiplied by progress twice). It now uses `KeyboardStickyView`. Reduce Motion is
+  left to reanimated's springs.
+- `9b0d0c2` **Bug: on iOS, sheet-music PDFs were downloaded without checking the TLS
+  certificate.** react-native-pdf defaults `trustAllCerts` to true and the old workaround only
+  turned it off on Android.
+- Performance: `dcb3101` one shared accessibility-settings store instead of five native queries
+  and listeners per `ThemedText` (thousands on a chorded song); `e410bd0` forest background as
+  WebP, 4.5 MB → 0.8 MB, with the alpha fade bit-identical; `38f8aeb` search indices load on the
+  first search, not at startup; `c2a8a21` i18n initializes synchronously, so the first render no
+  longer waits on an effect.
+- Cleanups, no behaviour change: `359b574` the vestigial wordmark splash gate; `5f1e4ef` dead
+  code, unused styles and i18n keys, stale comments; `6b186ba` `process.env.EXPO_OS` everywhere
+  and one Liquid Glass check; `1b7a35e` Pressable's own press state instead of mirrored state.
+
+**Admin**
+
+- `52420a8` **Bug: mail security scanners open every link before the recipient, so they used up
+  the single-use invite and reset tokens.** `/auth/confirm` is now a page with a Continue button
+  whose server action verifies the token. `type` is allowlisted to invite/recovery, a bad link
+  shows its error on that page, the Redirect URLs step is gone from the README, and login and
+  forgot-password keep the typed email after an error.
+- `07c7f22` Editor writes:
+  - **Reorder** swaps two rows in one upsert (one transaction) instead of 2n PATCHes, so a failure
+    can no longer leave the list rotated and the "Žodžiai N" names renumbered.
+  - UPDATE and DELETE check that a row matched, so "Saved." no longer shows when another editor
+    deleted the song or variant.
+  - Saving only writes variants that changed, so their `updated_at` and other editors' edits to
+    them survive.
+  - Deleting a variant asks first; Add/Move/Delete are disabled while saving; "New song" can't be
+    double-submitted; an error page keeps the editor header.
+- `cee72a5` `/export`'s "Blocking errors" now mean exactly what fails `update-songs`; blank links
+  and fields the app doesn't bundle are warnings.
+- `26cfb79` dead code; `fb19c79` one home each for the "already English" prefixes, the song
+  SELECT and variant naming (the editor's "(auto)" label now uses the export's code); `24a130d`
+  field hints and "Saved." reach screen readers, one primary button style, pnpm commands on
+  `/export`, `turbopack.root` pinned. `pnpm verify` stays byte-identical across 619 songs.
+
+**Tooling, scripts and site**
+
+- `1c45fef` **Bug: one untouched "Add video" row on any song failed `update-songs` for the whole
+  catalogue.** It now drops disabled fields before validating, skips blank audio/PDF links with a
+  SKIPPED warning, and `generate-indices` exits 1 on failure instead of leaving stale indices.
+- `137b78e` Dropped the stale compileSdk/targetSdk 36 pins; SDK 58 defaults to compileSdk 37.
+  `minSdkVersion` 26 stays.
+- `8b5d722` `withIosReleaseScheme` no longer requires an undeclared `glob`.
+- `6b469b2` `pnpm format` no longer rewrites generated files, the lockfile or build output.
+- `ef5581d` Dropped unused `markdown-it` and `eslint-plugin-expo`, `zod` moved to dependencies,
+  and pnpm's build-script warning silenced.
+- `478747e` Deleted the unused `useAppState` hook and the `find-similar-lyrics` script, which had
+  silently done nothing since `76fa58b`.
+- `1320219` README and AGENTS.md: Node 22.13+ / 24.3+, pnpm 10.x, the `MYAPP_UPLOAD_*` signing
+  properties, and that the build number is only written at prebuild.
+- `eb72eea` **Bug:** link previews of dainorelisapp.com had no image (relative `og:image`). Also
+  dead CSS and a real README.
+- `d868f85` **Bug:** the root redirect dropped the path, so **the `/qr` link printed on QR codes
+  landed on the home page**, after two hops. It now goes straight to
+  `https://www.dainorelisapp.com/:path*`.
 
 ---
 
@@ -259,8 +421,9 @@ cherry-picked here.
 - **`2cb53d8` bumped more than it listed:** safe-area-context 5.7, webview 13.16.1, react-native-web `~0.21.0`.
 - **`218d091` says expo-doctor passes "aside from a pre-existing prebuild/native-folders note".** That note is real: the committed native projects are SDK 56 while the JS is SDK 57.
 - **`6f656e6` says the CMS is "deployed separately to admin.dainorelis.app" and "sign-ups are disabled in the dashboard".** Nothing in the repo provisions or confirms either one. Read both as a description of the intended setup, not of what has been done.
-- `admin/README.md` and `AGENTS.md` said `npm run update-songs` even though the repo has been pnpm since `ba9666c`. Phase 5 switched `AGENTS.md` (`16710f1`) and both READMEs (the final docs commit) to pnpm.
+- `admin/README.md` and `AGENTS.md` said `npm run update-songs` even though the repo has been pnpm since `ba9666c`. Phase 5 switched `AGENTS.md` (`16710f1`), both READMEs (`664a82c`) and the admin's `/export` page (`24a130d`) to pnpm.
 - **Several messages claimed `expo lint` passes.** Here, `expo lint` lints nothing, and real ESLint had been failing since `9fae3b6`. Phase 5 fixed it in `69b2176` (`pnpm lint` now runs `eslint .`) and `40ac348` (the actual errors).
+- **The Vercel root causes are inferred, not seen.** `2ffb01d` and `a9d3d11` reason from GitHub commit statuses and Vercel's build-utils source; nobody could read the deploy logs.
 
 ---
 
@@ -268,60 +431,118 @@ cherry-picked here.
 
 ### Build and run (nothing since SDK 55 has run on a device)
 
-- [ ] `pnpm install` from a clean `node_modules` (pnpm 10; pnpm 9 rejects the lockfile's patch hash). Confirm the
-      react-native-screens patch applies.
+- [ ] `pnpm install` from a clean `node_modules` with Node 22.13+ / 24.3+ and pnpm 10.x (pnpm 9
+      rejects the lockfile's patch hash). Confirm the react-native-screens patch applies.
 - [ ] On a Mac: `cd ios && pod install`, then open **`ios/Dainorelis.xcworkspace`** (renamed from
       `Dainorlis`) and build. Commit the new `Podfile.lock`.
-- [ ] `npx expo run:android`, and **also a release build** (`--variant release`). R8 is on now:
+- [ ] `npx expo run:android`, and **also a release build** (`--variant release`, with the
+      `MYAPP_UPLOAD_*` properties in `~/.gradle/gradle.properties` or it's unsigned). R8 is on now:
       open a PDF-variant song to exercise pdfium, and play audio.
-- [ ] Decide on continuous native generation (CNG): either keep committing `ios/`/`android/` after
-      every `expo prebuild --clean` (the current approach), or gitignore them and let EAS or
-      `expo run` generate them. The custom plugins already make prebuild the source of truth.
+- [ ] Before a store release, run `npx expo prebuild --clean` so the build number is current
+      (the committed native folders keep the old one).
 
 ### Runtime checks on iOS (26+ and older) and Android
 
 - [ ] Theme: light, dark and auto in settings, each with the system in light and in dark, plus a
-      cold start with each stored value (`2cb53d8` rewrote this and it has never run).
+      cold start with each stored value (`2cb53d8` rewrote this and it has never run). The forest
+      background (now WebP) looks right in both, including the fade and the top overscroll.
+- [ ] Cold launch in each language: the splash fades onto the song list with logo and forest
+      drawn, and there's no flash of the other language.
 - [ ] Header title and variant dropdown on an iPhone and an **iPad** with iOS 26+, including
-      push/pop, switching variant and rotation (screens patch).
+      push/pop, switching variant and rotation (screens patch). iOS 26 shows the native toolbar,
+      iOS < 26 and Android the green header.
 - [ ] Every native menu (song ⋯, variant title, media, playlist, settings language and theme):
       opens, picks, shows the checkmark, icons tinted correctly in dark mode (new `@expo/ui` menus).
+      Switching variants repeatedly doesn't flicker.
+- [ ] A song whose saved variant isn't the first opens on it with no flash; leave and reopen, and
+      both variant and recording are remembered.
 - [ ] Buttons and list rows: press feedback, ripple on Android, swipe-to-favourite, peek-and-pop
-      (gesture-handler 3).
-- [ ] Player: scrub the progress bar (now `usePanGesture`), lock-screen controls, background audio.
-- [ ] Android: bold text is bold now; the Switch shows the green brand colours.
-- [ ] Deep link `dainorelis://dainos/<id>` opens a song (scheme renamed).
+      (gesture-handler 3). The translation feedback and "Write to us" links lose their underline
+      while held.
+- [ ] Player: scrub the progress bar (now `usePanGesture`), lock-screen controls, background audio
+      with the silent switch on.
+- [ ] Search: title and lyric searches return the same results as before, and the bottom bar
+      tracks the keyboard while it opens and closes (Android, iOS < 26).
+- [ ] Open a PDF on iOS with an empty cache (TLS is verified now).
+- [ ] Android: bold text is bold now; the Switch shows the green brand colours; the song menu uses
+      the vertical ellipsis.
+- [ ] Deep links from a cold start: `dainorelis://dainos/<id>` and `dainorelis://nustatymai` clear
+      the splash and back/close lands on the list. `dainorelis://dainos/does-not-exist` and
+      `/vertimas` on a song without a translation show the not-found message.
+- [ ] Toggle Bold Text / Increase Contrast (Android: high-contrast text) with the app open.
+- [ ] Screen readers (`5394a9f`): VoiceOver and TalkBack read every icon button; double-tap opens
+      the song ⋯, media and variant menus (the label sits on our wrapper View around `@expo/ui`'s
+      menu trigger); the collapsed player and hidden search buttons are skipped.
 
 ### Admin CMS (Supabase + Vercel); none of it is provisioned yet
 
 - [ ] Create a Supabase project (the Vercel Marketplace wires `NEXT_PUBLIC_SUPABASE_URL`,
-      `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`). Run
-      `admin/supabase/migrations/0001_init.sql`.
+      `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`). Run the migrations in order:
+      `0001_init.sql`, `0002_editors_not_anonymous.sql`, `0003_unique_child_positions.sql`.
 - [ ] Supabase Auth: turn **off** sign-ups and **keep anonymous sign-ins off**. Invite editors by
-      hand. Set the Site URL.
-- [ ] Vercel project with Root Directory `admin`, domain `admin.dainorelis.app`, env
-      `EXPORT_TOKEN` and **`CRON_SECRET`** (required in production now).
+      hand.
+- [ ] Supabase auth emails, exactly as `admin/README.md` step 3: Site URL
+      `https://admin.dainorelis.app`; the **Invite user** and **Reset password** templates link to
+      `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite` (or `type=recovery`).
+      No Redirect URLs entry is needed any more. Optionally set up custom SMTP.
+- [ ] Vercel project with Root Directory `admin`, Node 20.9+ (Next 16; the 22.x/24.x defaults are
+      fine), domain `admin.dainorelis.app`, env `EXPORT_TOKEN` and **`CRON_SECRET`** (required in
+      production).
+- [ ] In a browser, try invite → Continue → set password, and forgot password, once each.
 - [ ] **Export Airtable as a backup** before cut-over, then
       `cd admin && pnpm import:airtable -- --dry-run`, then run it for real with `--yes`.
-- [ ] Put `ADMIN_EXPORT_TOKEN` in the app's `.env` and run `pnpm update-songs`. Expect a one-line
-      diff in `songs.ts`: the importer trims the name `"Mes broliukai du du du\n"`.
+- [ ] In the editor: reorder variants, delete one (confirm prompt), save with a validation error
+      (typing is kept), double-click Add (one row).
+- [ ] Put `ADMIN_EXPORT_TOKEN` in the app's `.env` and run `pnpm update-songs` against the real
+      admin. Blank links print SKIPPED warnings rather than failing. Expect a one-line diff in
+      `songs.ts`: the importer trims the name `"Mes broliukai du du du\n"`.
 - [ ] Decide on backups (`pg_dump` cron or an unfiltered export) and an editor allowlist in RLS.
+
+### Infra
+
+- [ ] Check the Vercel dashboards: is the root redirect project green after `a9d3d11`, and does
+      `/qr` keep its path (`d868f85`)? Is `dainorelis-site` green after `2ffb01d` / `52d148f`? If
+      either still fails, its dashboard settings may override `vercel.json`.
+- [ ] Paste dainorelisapp.com into a chat app and check the link preview has an image.
 
 ## Open decisions for you
 
-1. **Android header: decided. Keep the custom green header** (`9b03cd7`). Android `Stack.Toolbar`
-   would only swap the button styling and can't host the bottom search. Reopen this only if you
-   want a stock Material look. Separately, the custom header buttons have no accessibility labels,
-   which is worth fixing. See `docs/plans/android-stack-toolbar.md`.
-2. **Master-detail / iPhone Duo:** recommended approach is a width-based layout route (5–8 days),
-   after a short Device Hub test pass. See `docs/plans/master-detail-iphone-duo.md`.
-3. **App Intents:** Spotlight search for all 619 songs is the realistic win (Siri has no
-   Lithuanian), and the library is alpha. Estimated 1–1.5 weeks. See
-   `docs/plans/app-intents-song-search.md`.
-4. **Not done, could be later cleanups:**
-   - `ScrollViewWithHeader` (its own comment says "I don't remember why"). SDK 58 recommends
-     `contentInsetAdjustmentBehavior="automatic"` instead.
-   - The header-title native patch can go once react-native-screens 5 lands.
-   - The `Button` hit-slop margin trick could become `Touchable`'s native `hitSlop`.
-   - Expo's experimental Rust transformer ("Noxcturnal") skips Reanimated files, so it's not
-     worth enabling yet.
+None of these have been answered yet.
+
+1. **Song-festival mode.** There's been no toggle for it since `23998cf`, but `update-songs` still
+   builds `song-festival.ts` and `useSongList` still computes the sections. `update-songs` fails if
+   a festival song is renamed in the admin. Bring the mode back, or delete it (script, file,
+   i18n keys).
+2. **~124 MB of unreferenced binaries** (design files and screenshots) live in the repo. Delete them or move them elsewhere?
+3. **Astro 5 → 7** for `dainorelisapp.com`.
+4. **Continuous native generation (CNG):** gitignore `ios/` and `android/` and let EAS or
+   `expo run` generate them. The custom plugins already make prebuild the source of truth. This
+   would also fix the frozen build number and expo-doctor's native-folders warning.
+5. **`minSdkVersion` 26** vs React Native's default 24: a device-support call (`137b78e` kept 26).
+6. **`@supabase/ssr` 0.7 → 0.12** in the admin (forwards cache-control headers from the proxy).
+7. **Supabase type generation** to replace the admin's hand-written row types.
+8. **Concurrent editors can still overwrite each other.** `07c7f22` narrowed it (only changed
+   variants are written), but there's no version check, so two editors saving the same variant
+   lose one edit, and a variant deleted mid-reorder comes back blank.
+9. **CI:** a GitHub Actions workflow running tsc and ESLint for the app and admin. On hold.
+10. **Master-detail / iPhone Duo:** recommended approach is a width-based layout route (5–8 days),
+    after a short Device Hub test pass. See `docs/plans/master-detail-iphone-duo.md`.
+11. **App Intents:** Spotlight search for all 619 songs is the realistic win (Siri has no
+    Lithuanian), and the library is alpha. Estimated 1–1.5 weeks. See
+    `docs/plans/app-intents-song-search.md`.
+12. **Layout migration:** when to run the at-the-keyboard session in
+    `docs/plans/interactive-layout-migration.md` (it needs the device checklist above first).
+13. **Android header: decided. Keep the custom green header** (`9b03cd7`). Android `Stack.Toolbar`
+    would only swap the button styling and can't host the bottom search. Reopen this only if you
+    want a stock Material look. The header buttons now have accessibility labels (`5394a9f`). See
+    `docs/plans/android-stack-toolbar.md`.
+
+**Not decisions, just possible later cleanups:**
+
+- `ScrollViewWithHeader` (its own comment says "I don't remember why"). SDK 58 recommends
+  `contentInsetAdjustmentBehavior="automatic"` instead; it's step 1 of the layout-migration
+  runbook.
+- The header-title native patch can go once react-native-screens 5 lands.
+- The `Button` hit-slop margin trick could become `Touchable`'s native `hitSlop`.
+- Expo's experimental Rust transformer ("Noxcturnal") skips Reanimated files, so it's not worth
+  enabling yet.
