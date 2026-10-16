@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Fuse, { IFuseOptions } from 'fuse.js/basic';
@@ -61,6 +60,8 @@ const groupSongsByLetter = (songs: SongFile) => {
   sections.sort((a, b) => a.title.localeCompare(b.title, 'lt', { sensitivity: 'variant' }));
   return sections;
 };
+// songs is static, so this only needs computing once
+const songsByLetter = groupSongsByLetter(songs);
 
 /**
  * the song festival list is stored in a format without translations or full songs.
@@ -68,14 +69,10 @@ const groupSongsByLetter = (songs: SongFile) => {
  */
 export const useSongFestivalList = () => {
   const { t } = useTranslation();
-  const songsByPart: { title: string; data: Song[] }[] = useMemo(
-    () =>
-      songFestival.map((part) => ({
-        title: t(part.title),
-        data: part.data.map((songIndex) => songs[songIndex]),
-      })),
-    [t]
-  );
+  const songsByPart: { title: string; data: Song[] }[] = songFestival.map((part) => ({
+    title: t(part.title),
+    data: part.data.map((songIndex) => songs[songIndex]),
+  }));
   return songsByPart;
 };
 
@@ -122,48 +119,34 @@ export default function useSongList({ isFavorites, isSongFestivalMode, searchTex
 
   // make those lists
   const songsBySongFestivalSection = useSongFestivalList();
-  const songsByLetter = useMemo(() => groupSongsByLetter(songs), []);
-  const songList = useMemo(
-    () => (isSongFestivalMode ? songsBySongFestivalSection : songsByLetter),
-    [isSongFestivalMode, songsByLetter, songsBySongFestivalSection]
-  );
+  const songList = isSongFestivalMode ? songsBySongFestivalSection : songsByLetter;
 
   // search results
-  const searchResults: string[] | null = useMemo(() => {
-    if (searchText.length > 0) {
-      const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
-      const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
-      const searchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
-      const exclusiveSearchResults = new Set(searchResults);
-      return Array.from(exclusiveSearchResults);
-    }
-    return null;
-  }, [searchText]);
+  let searchResults: string[] | null = null;
+  if (searchText.length > 0) {
+    const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
+    const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
+    const allSearchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
+    searchResults = Array.from(new Set(allSearchResults));
+  }
 
-  const filteredSongList = useMemo(
-    () =>
-      songList
-        .map((section) => ({
-          ...section,
-          data: section.data.filter((song) => {
-            let keepSong = true;
-            if (searchResults && !searchResults.includes(song.id)) {
-              keepSong = false;
-            }
-            if (isFavorites && !favorites.includes(song.id)) {
-              keepSong = false;
-            }
-            return keepSong;
-          }),
-        }))
-        .filter((section) => section.data.length > 0),
-    [favorites, isFavorites, searchResults, songList]
-  );
+  const filteredSongList = songList
+    .map((section) => ({
+      ...section,
+      data: section.data.filter((song) => {
+        let keepSong = true;
+        if (searchResults && !searchResults.includes(song.id)) {
+          keepSong = false;
+        }
+        if (isFavorites && !favorites.includes(song.id)) {
+          keepSong = false;
+        }
+        return keepSong;
+      }),
+    }))
+    .filter((section) => section.data.length > 0);
 
   const manualItems = useManualItems({ isSongFestivalMode });
-  const unrolledSongList = useMemo(() => {
-    const unrolledSongList = unrollSectionList(filteredSongList);
-    return [...manualItems, ...unrolledSongList];
-  }, [filteredSongList, manualItems]);
+  const unrolledSongList = [...manualItems, ...unrollSectionList(filteredSongList)];
   return unrolledSongList;
 }

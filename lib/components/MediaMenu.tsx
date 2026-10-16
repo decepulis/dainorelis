@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useCallback } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ColorValue } from 'react-native';
 
@@ -32,13 +32,10 @@ export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitS
     };
   });
 
-  const onPressAction = useCallback(
-    (e: NativeActionEvent) => {
-      const { event } = e.nativeEvent;
-      setActiveMediaId(event);
-    },
-    [setActiveMediaId]
-  );
+  const onPressAction = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setActiveMediaId(event);
+  };
 
   // TODO prevent this from morphing the whole gosh darned player
   return (

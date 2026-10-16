@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, DynamicColorIOS, StyleProp, View, ViewStyle } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   type AnimatedStyle,
+  type WithSpringConfig,
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
@@ -38,7 +38,7 @@ const extraDurationPadding = padding / 2;
 const buttonWidth = buttonStyles.button.width;
 export const playerHeight = buttonWidth + 2 * padding;
 
-const springConfig: SpringConfig = {
+const springConfig: WithSpringConfig = {
   mass: 1,
   damping: 30,
   stiffness: 300,
@@ -59,48 +59,42 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const { i18n } = useTranslation();
-  const isAppWide = useMemo(() => width > maxWidth, [width]);
+  const isAppWide = width > maxWidth;
   const primary = useThemeColor('primary');
 
   // layout
-  const playerWidth = useMemo(
-    () => (isAppWide ? 360 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2)),
-    [isAppWide, width, inset.left, inset.right]
-  );
+  const playerWidth = isAppWide
+    ? 360
+    : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2);
   // this is ludicrous, I know. but dang is that animation smooth.
-  const durationWidth = useMemo(
-    () =>
-      Object.keys(media).length > 1
-        ? playerWidth -
-          padding -
-          buttonWidth -
-          padding -
-          buttonWidth -
-          padding -
-          extraDurationPadding -
-          // duration goes here
-          extraDurationPadding -
-          padding -
-          buttonWidth -
-          padding
-        : playerWidth -
-          padding -
-          buttonWidth -
-          padding -
-          extraDurationPadding -
-          // duration goes here
-          extraDurationPadding -
-          padding -
-          buttonWidth -
-          padding,
-    [media, playerWidth]
-  );
+  const durationWidth =
+    Object.keys(media).length > 1
+      ? playerWidth -
+        padding -
+        buttonWidth -
+        padding -
+        buttonWidth -
+        padding -
+        extraDurationPadding -
+        // duration goes here
+        extraDurationPadding -
+        padding -
+        buttonWidth -
+        padding
+      : playerWidth -
+        padding -
+        buttonWidth -
+        padding -
+        extraDurationPadding -
+        // duration goes here
+        extraDurationPadding -
+        padding -
+        buttonWidth -
+        padding;
 
   // Manage media
-  const activeMedia = useMemo(() => {
-    if (Object.values(media).length === 0) return null;
-    return activeMediaId ? media[activeMediaId] : Object.values(media)[0];
-  }, [media, activeMediaId]);
+  const activeMedia =
+    Object.values(media).length === 0 ? null : activeMediaId ? media[activeMediaId] : Object.values(media)[0];
 
   // expo-audio state
   const player = useAudioPlayer(activeMedia?.URL ?? null);
@@ -163,14 +157,11 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
     }
     progressSv.set(duration ? currentTime / duration : 0);
   }, [currentTime, duration, isGesturingSv, progressSv, loading, seekTargetSv]);
-  const seekOnGestureFinalize = useCallback(
-    (time: number) => {
-      seekTargetSv.set(time);
-      player.seekTo(time);
-      isGesturingSv.set(false);
-    },
-    [isGesturingSv, player, seekTargetSv]
-  );
+  const seekOnGestureFinalize = (time: number) => {
+    seekTargetSv.set(time);
+    player.seekTo(time);
+    isGesturingSv.set(false);
+  };
 
   // override playback state with gesture
   const gesture = usePanGesture({

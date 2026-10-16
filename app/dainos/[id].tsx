@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
-import { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
+import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
@@ -44,6 +43,7 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const router = useRouter();
   const { t } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
@@ -59,15 +59,14 @@ export default function Page() {
 
   const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
 
-  const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
-  const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
+  const song = songs.find((song) => song.id === id) as Song;
+  const isFavorite = favorites.includes(song.id);
 
   // Variants
-  const storedActiveVariantId = useMemo(() => activeVariantIdBySongId[id], [activeVariantIdBySongId, id]);
-  const variants: { [id: string]: LyricsType | PDFs } = useMemo(
-    () => ({ ...song.fields.Lyrics, ...song.fields.PDFs }),
-    [song]
-  );
+  const storedActiveVariantId = activeVariantIdBySongId[id];
+  const variants: { [id: string]: LyricsType | PDFs } = { ...song.fields.Lyrics, ...song.fields.PDFs };
+  // a primitive, so the effect below doesn't depend on the identity of the merged `variants` object
+  const firstVariantId: string | undefined = Object.keys(variants)[0];
   useEffect(() => {
     // on load, check the query param for a variant id
     if (!activeVariantId) {
@@ -77,13 +76,12 @@ export default function Page() {
         router.setParams({ v: storedActiveVariantId });
       } else {
         // otherwise, try and set it to the first variant id
-        const firstVariantId = Object.keys(variants)[0];
         if (firstVariantId) {
           router.setParams({ v: firstVariantId });
         }
       }
     }
-  }, [activeVariantId, variants, storedActiveVariantId]);
+  }, [activeVariantId, firstVariantId, storedActiveVariantId, router]);
 
   const setActiveVariantId = (v: string) => {
     router.setParams({ v });
@@ -92,11 +90,8 @@ export default function Page() {
       [id]: v,
     });
   };
-  const activeVariant = useMemo(
-    () => (activeVariantId ? variants[activeVariantId] : Object.values(variants)[0]),
-    [variants, activeVariantId]
-  );
-  const hasMultipleVariants = useMemo(() => Object.keys(variants).length > 1, [variants]);
+  const activeVariant = activeVariantId ? variants[activeVariantId] : Object.values(variants)[0];
+  const hasMultipleVariants = Object.keys(variants).length > 1;
 
   // chords
   const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
@@ -108,8 +103,9 @@ export default function Page() {
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
   // Media
-  const storedActiveMediaId = useMemo(() => activeMediaIdBySongId[id], [activeMediaIdBySongId, id]);
-  const media: { [id: string]: Audio } = useMemo(() => ({ ...song.fields.Audio }), [song]);
+  const storedActiveMediaId = activeMediaIdBySongId[id];
+  // not copied: song data is static and never mutated, so this stays referentially stable across renders
+  const media: { [id: string]: Audio } = song.fields.Audio;
   useEffect(() => {
     // on load, check the query param for a media id
     if (!activeMediaId) {
@@ -125,7 +121,7 @@ export default function Page() {
         }
       }
     }
-  }, [activeMediaId, media, storedActiveMediaId]);
+  }, [activeMediaId, media, storedActiveMediaId, router]);
 
   const setActiveMediaId = (m: string) => {
     router.setParams({ m });
@@ -135,17 +131,14 @@ export default function Page() {
     });
   };
 
-  const activeMedia = useMemo(() => (activeMediaId ? (media[activeMediaId] ?? null) : null), [media, activeMediaId]);
+  const activeMedia = activeMediaId ? (media[activeMediaId] ?? null) : null;
 
   // Title
-  const scrollRef = useAnimatedRef<AnimatedScrollView>();
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
-  const calculateTitleHeight = useCallback(
-    (event: LayoutChangeEvent) => {
-      titleLayout.set(event.nativeEvent.layout);
-    },
-    [titleLayout]
-  );
+  const calculateTitleHeight = (event: LayoutChangeEvent) => {
+    titleLayout.set(event.nativeEvent.layout);
+  };
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const showLyrics = isLyrics(activeVariant);
 

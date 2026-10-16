@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -29,7 +29,7 @@ export default function Page() {
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
+  const song = songs.find((song) => song.id === id) as Song;
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');

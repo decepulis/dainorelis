@@ -2,13 +2,18 @@ import { startTransition, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, TextInput, type TextInputInstance, View } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, { AnimatedRef, createAnimatedComponent, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
+import Animated, {
+  AnimatedRef,
+  WithSpringConfig,
+  createAnimatedComponent,
+  useAnimatedStyle,
+  withSpring,
+} from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GlassContainer, GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, router } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
@@ -37,7 +42,7 @@ type Props = {
   setIsSongFestivalMode: (value: boolean) => void;
   setSearchText: (text: string) => void;
 };
-const springConfig: SpringConfig = {
+const springConfig: WithSpringConfig = {
   mass: 1,
   damping: 30,
   stiffness: 400,
@@ -330,6 +335,7 @@ export function IndexToolbar({
   setIsFavorites,
   setSearchText,
 }: IndexToolbarProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
 
