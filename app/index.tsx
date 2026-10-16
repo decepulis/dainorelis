@@ -150,7 +150,7 @@ export default function Index() {
                     ? height
                     : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
                 }}
-                source={require('@/assets/images/miskas_fade_10.png')}
+                source={require('@/assets/images/miskas_fade_10.webp')}
                 onLoadEnd={() => setDidBackgroundLoad(true)}
                 contentFit="cover"
                 contentPosition="bottom"
