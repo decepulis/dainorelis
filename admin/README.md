@@ -22,17 +22,32 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 
 1. **Create the Supabase project.** Install Supabase from the Vercel
    Marketplace so the connection variables are wired into the deployment for
-   you, then run each file in `supabase/migrations/` in the SQL editor, in
-   order. On a project that already has the schema, run only the files it
-   hasn't had yet: `0001_init.sql` can't run twice, the later ones can.
+   you.
+
+   Then create the schema (via migrations — no dashboard SQL editor needed).
+   It lives as versioned migrations in `supabase/migrations/` and is applied
+   by the **Apply DB migrations** GitHub Action
+   (`.github/workflows/db-push.yml` at the repo root). Add three repository
+   secrets under **GitHub → Settings → Secrets and variables → Actions**:
+   - `SUPABASE_PROJECT_REF` — your project ref (Supabase **Project Settings →
+     General**, or the `<ref>` in the dashboard URL).
+   - `SUPABASE_ACCESS_TOKEN` — a personal access token from
+     [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens).
+   - `SUPABASE_DB_PASSWORD` — the database password (Supabase **Project
+     Settings → Database**; reset it there if you don't have it).
+
+   Then trigger it once: run it by hand from **Actions → Apply DB migrations →
+   Run workflow**, or push any change under `admin/supabase/` to `main`. (The
+   workflow has to be on `main` before either works.) It applies every
+   migration the project hasn't recorded yet, so a second run is a no-op.
 
 2. **Turn off sign-ups.** Authentication → Sign In / Providers → disable
    "Allow new users to sign up". There are no roles in this app: anyone who can
    sign in is an editor, so accounts are created by invitation only
    (Authentication → Users → Add user → Send invitation). Leave "Allow
    anonymous sign-ins" off too. Anonymous users also get the `authenticated`
-   role; `0002_editors_not_anonymous.sql` keeps them out of the policies, but
-   there is no reason to rely on that alone.
+   role; the `editors_not_anonymous` migration keeps them out of the
+   policies, but there is no reason to rely on that alone.
 
 3. **Point the auth emails at the app.** The invite and password-reset links
    land on `/auth/confirm`. The editor clicks **Continue** there, which signs
@@ -98,6 +113,27 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    and one Airtable title (`"Mes broliukai du du du\n"`) carries a trailing
    newline. Anything beyond that means the new pipeline does not reproduce
    Airtable's output, and is worth chasing before going further.
+
+## Changing the database schema
+
+Schema changes are code, not dashboard clicks. Each change is a SQL file in
+`supabase/migrations/`; once it reaches `main`, the **Apply DB migrations** Action
+runs `supabase db push` and applies anything the project hasn't seen yet. Pushes
+that don't touch `admin/supabase/` leave the database alone.
+
+To add one (with the [Supabase CLI](https://supabase.com/docs/guides/local-development/cli/getting-started)
+installed), from `admin/`:
+
+```bash
+supabase migration new add_whatever   # creates a timestamped .sql file
+#  ...write the ALTER/CREATE SQL in it...
+git add supabase/migrations && git commit   # CI applies it once it reaches main
+```
+
+Keep `src/lib/supabase/types.ts` in step with it. You never have to open the SQL
+editor. If you'd rather apply a migration from your machine instead of via CI,
+`supabase link --project-ref <ref>` once (from `admin/`), then
+`supabase db push`.
 
 ## Local development
 
@@ -169,7 +205,8 @@ Three things about the schema are deliberate and easy to "tidy up" by mistake:
 - **Variant names are nullable.** A blank variant name is not missing data — it
   is the signal for the export to generate one ("Žodžiai 2"). The number comes
   from the record's position within its song, which is why child rows carry an
-  explicit `position`, unique per song (`0003_unique_child_positions.sql`).
+  explicit `position`, unique per song (the `unique_child_positions`
+  migration).
 - **Checkboxes distinguish false from absent.** Airtable omits an unchecked
   field entirely, so the export drops falsy booleans rather than emitting
   `false`. Emitting it would add a key to hundreds of songs.
