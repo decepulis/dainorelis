@@ -1,4 +1,4 @@
-import { startTransition, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, TextInput, type TextInputInstance, View } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
@@ -11,7 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { GlassContainer, GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
+import { GlassContainer, GlassView } from 'expo-glass-effect';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useRouter } from 'expo-router';
 
@@ -30,8 +30,9 @@ import ThemedText from '../ThemedText';
 
 const AnimatedGlassContainer = createAnimatedComponent(GlassContainer);
 const AnimatedGlassView = createAnimatedComponent(GlassView);
-const expandedSearchHeight = isLiquidGlassAvailable() ? 56 : 44;
-const buttonSize = isLiquidGlassAvailable() ? 56 : 44;
+const expandedSearchHeight = 44;
+const buttonSize = 44;
+const color = '#ffffff';
 
 type Props = {
   scrollRef: AnimatedRef<Animated.FlatList<any>>;
@@ -48,6 +49,12 @@ const springConfig: WithSpringConfig = {
   stiffness: 400,
 };
 
+/**
+ * The bottom search bar for headers without Liquid Glass. app/index.tsx renders it only when
+ * !isLiquidGlassStyleHeader(), and expo-glass-effect's isLiquidGlassAvailable() is only ever true
+ * on iOS 26+, where isLiquidGlassStyleHeader() is true too, so nothing here needs a Liquid Glass
+ * branch. The iOS 26 header gets IndexToolbar below instead.
+ */
 export default function Search({
   scrollRef,
   top,
@@ -58,8 +65,6 @@ export default function Search({
   setSearchText,
 }: Props) {
   const { t } = useTranslation();
-  const primary = useThemeColor('primary');
-  const text = useThemeColor('text');
   const background = useThemeColor('background');
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
@@ -133,8 +138,6 @@ export default function Search({
   };
 
   const playlistTitle = isFavorites ? t('favoriteSongs') : t('allSongs');
-  const color = isLiquidGlassAvailable() ? text : '#ffffff';
-  const accent = isLiquidGlassAvailable() ? primary : '#ffffff';
 
   return (
     <AnimatedGlassContainer
@@ -175,8 +178,8 @@ export default function Search({
             width: expandedSearchHeight,
             height: expandedSearchHeight,
             borderRadius: expandedSearchHeight / 2,
+            overflow: 'hidden',
           },
-          isLiquidGlassAvailable() ? {} : { overflow: 'hidden' },
           cancelButtonAnimatedStyle,
         ]}
       >
@@ -212,8 +215,8 @@ export default function Search({
             bottom: inset.bottom,
             height: buttonSize,
             borderRadius: buttonSize,
+            overflow: 'hidden',
           },
-          isLiquidGlassAvailable() ? {} : { overflow: 'hidden' },
         ]}
       >
         <MenuView
@@ -248,21 +251,10 @@ export default function Search({
               },
             ]}
           >
-            <ThemedText
-              bold
-              adjustsFontSizeToFit
-              numberOfLines={1}
-              style={{ fontSize: isLiquidGlassAvailable() ? 19 : 17, color }}
-            >
+            <ThemedText bold adjustsFontSizeToFit numberOfLines={1} style={{ fontSize: 17, color }}>
               {playlistTitle}
             </ThemedText>
-            <FontAwesome6
-              name="chevron-up"
-              iconStyle="solid"
-              color={color}
-              size={isLiquidGlassAvailable() ? 16 : 12}
-              style={{ marginTop: 2 }}
-            />
+            <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
           </ButtonSurface>
         </MenuView>
       </AnimatedGlassView>
@@ -275,8 +267,8 @@ export default function Search({
             position: 'absolute',
             bottom: inset.bottom,
             borderRadius: buttonSize,
+            overflow: 'hidden',
           },
-          isLiquidGlassAvailable() ? {} : { overflow: 'hidden' },
           searchBoxAnimatedStyle,
         ]}
       >
@@ -301,7 +293,7 @@ export default function Search({
               setIsSearchOpen(true);
             }}
             returnKeyType="done"
-            selectionColor={accent}
+            selectionColor={color}
           />
           <View
             style={{
@@ -316,12 +308,7 @@ export default function Search({
               pointerEvents: 'none',
             }}
           >
-            <FontAwesome6
-              name="magnifying-glass"
-              iconStyle="solid"
-              size={isLiquidGlassAvailable() ? 18 : 14}
-              color={color}
-            />
+            <FontAwesome6 name="magnifying-glass" iconStyle="solid" size={14} color={color} />
           </View>
         </ButtonSurface>
       </AnimatedGlassView>
@@ -329,6 +316,7 @@ export default function Search({
   );
 }
 
+// the setters arrive already wrapped in startTransition by app/index.tsx
 type IndexToolbarProps = {
   listRef: AnimatedRef<Animated.FlatList<any>>;
   scrollToSearchOffset: number;
@@ -355,7 +343,7 @@ export function IndexToolbar({
         placeholder={t('search')}
         onChangeText={(e) => {
           const text = e.nativeEvent.text;
-          startTransition(() => setSearchText(text));
+          setSearchText(text);
           if (text.length > 0) {
             listRef.current?.scrollToOffset({
               offset: scrollToSearchOffset,
@@ -380,7 +368,7 @@ export function IndexToolbar({
           <Stack.Toolbar.MenuAction
             isOn={!isFavorites}
             onPress={() => {
-              startTransition(() => setIsFavorites(false));
+              setIsFavorites(false);
               listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
             }}
           >
@@ -389,7 +377,7 @@ export function IndexToolbar({
           <Stack.Toolbar.MenuAction
             isOn={isFavorites}
             onPress={() => {
-              startTransition(() => setIsFavorites(true));
+              setIsFavorites(true);
               listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
             }}
           >
