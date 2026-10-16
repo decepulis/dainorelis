@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { z } from 'zod';
 
-import { Song, SongFile, SongFileSchema } from '../lib/schemas/songs';
+import { Song, SongFile, SongSchema } from '../lib/schemas/songs';
 
 /**
  * Pulls the song database into the files the app bundles.
@@ -11,8 +11,8 @@ import { Song, SongFile, SongFileSchema } from '../lib/schemas/songs';
  * Songs live in the admin app (admin/, deployed to admin.dainorelis.app) and
  * are fetched from its token-authenticated export endpoint. The admin app owns
  * the content transforms — variant naming, chord whitespace, hidden-song
- * filtering, title ordering — so this script's job is narrow: validate the
- * payload, drop the fields the app does not ship, and write the files.
+ * filtering, title ordering — so this script's job is narrow: drop the fields
+ * and rows the app does not ship, validate what is left, and write the files.
  *
  * The app itself never talks to the CMS. It only ever reads the generated
  * files, which are committed so releases are reproducible offline.
@@ -54,7 +54,8 @@ console.log('🎵 Fetching songs...');
 // load .env file
 dotenv.config();
 
-const exportUrl = process.env.ADMIN_EXPORT_URL ?? 'https://admin.dainorelis.app/api/export';
+// `||`, not `??`: a blank `ADMIN_EXPORT_URL=` left in .env means "unset".
+const exportUrl = process.env.ADMIN_EXPORT_URL || 'https://admin.dainorelis.app/api/export';
 const exportToken = process.env.ADMIN_EXPORT_TOKEN;
 
 async function fetchSongFile(): Promise<unknown> {
@@ -74,13 +75,81 @@ async function fetchSongFile(): Promise<unknown> {
   return response.json();
 }
 
+/** The records whose rows are only usable with a link, and the key that holds it. */
+const linkKeys = { Audio: 'URL', PDFs: 'URL', Videos: 'YouTube Link' } as const;
+
+/** Just enough structure to filter on before the real validation runs. */
+const EnvelopeSchema = z.array(z.object({ id: z.string(), fields: z.record(z.string(), z.unknown()) }));
+
+/**
+ * The app's schema, narrowed to the fields it bundles. Disabled fields are
+ * dropped before validation, so a problem in content the app never ships (an
+ * untouched "Add video" row, say) can't block an update. The mask follows the
+ * schema's key order, because that is the order the parsed output keeps.
+ */
+const BundledSongFileSchema = z.array(
+  SongSchema.extend({
+    fields: SongSchema.shape.fields.pick(
+      Object.fromEntries(
+        Object.keys(SongSchema.shape.fields.shape)
+          .filter((key) => fieldFlags[key as keyof Song['fields']])
+          .map((key) => [key, true])
+      ) as Partial<Record<keyof Song['fields'], true>>
+    ),
+  })
+);
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/**
+ * The editor saves a freshly added audio or PDF row with an empty link, since
+ * an operator may add the row before they have the URL, and /export lists it.
+ * Shipping it would give the app a dead button, and failing would let one
+ * unfinished row hold back every other change, so it is left out, loudly.
+ */
+function dropBlankLinks(song: { id: string; fields: Record<string, unknown> }) {
+  for (const [field, linkKey] of Object.entries(linkKeys)) {
+    const records = song.fields[field];
+    if (!isObject(records)) continue;
+
+    song.fields[field] = Object.fromEntries(
+      Object.entries(records).filter(([recordId, record]) => {
+        const link = isObject(record) ? record[linkKey] : undefined;
+        if (typeof link !== 'string' || link.trim() !== '') return true;
+
+        console.warn(
+          `⚠️  SKIPPED ${field} ${recordId} on "${song.fields.Name}" (${song.id}): its ${linkKey} is blank. ` +
+            'Fill it in or delete the row in the admin app.'
+        );
+        return false;
+      })
+    );
+  }
+}
+
 async function updateSongs() {
+  let written = false;
+
   try {
     const songFile = await fetchSongFile();
 
-    let validSongFile: SongFile;
+    let filteredSongFile: SongFile;
     try {
-      validSongFile = SongFileSchema.parse(songFile);
+      const bundled = EnvelopeSchema.parse(songFile).map((song) => {
+        const fields = Object.fromEntries(
+          Object.entries(song.fields).filter(([key]) => fieldFlags[key as keyof Song['fields']])
+        );
+        const filtered = { id: song.id, fields };
+        dropBlankLinks(filtered);
+        return filtered;
+      });
+
+      // Every bundled field is still held to the app's schema in full. The
+      // cast covers the disabled fields, which SongFile only lets the bundle
+      // omit because none of them is required.
+      filteredSongFile = BundledSongFileSchema.parse(bundled) as SongFile;
     } catch (e) {
       if (e instanceof z.ZodError) {
         console.error('❌ Song data validation failed:');
@@ -92,7 +161,7 @@ async function updateSongs() {
     }
 
     // Flag anything an editor probably wants to fill in with AI assistance.
-    for (const song of validSongFile) {
+    for (const song of filteredSongFile) {
       if (Object.keys(song.fields.Translations).length > 0) continue;
 
       const isAlreadyTranslated = song.fields.Name.startsWith('JAV ') || song.fields.Name.startsWith('Kanados ');
@@ -102,17 +171,8 @@ async function updateSongs() {
       }
     }
 
-    const filteredSongFile = validSongFile.map((song) => {
-      return {
-        id: song.id,
-        fields: Object.fromEntries(
-          Object.entries(song.fields).filter(([key]) => fieldFlags[key as keyof Song['fields']])
-        ),
-      };
-    }) as SongFile;
-
     // now do the song festival
-    const songFestivalFileHeader = /* ts */ `// Do not edit. This file was generated by scripts/update-ts
+    const songFestivalFileHeader = /* ts */ `// Do not edit. This file was generated by scripts/update-songs.ts
 
 const songFestival = `;
 
@@ -196,6 +256,7 @@ export default songFestival`;
     }
 
     // Write the song file
+    written = true;
     fs.writeFileSync(songFilePath, fileHeader + JSON.stringify(filteredSongFile, null, 2) + fileFooter);
     console.log(`✅ ${filteredSongFile.length} songs fetched and saved to songs.ts`);
     console.log(
@@ -212,7 +273,7 @@ export default songFestival`;
     console.log('✅ Song festival list created and saved to song-festival.ts');
   } catch (e) {
     console.error('❌ Error fetching songs.', e instanceof Error ? e.message : e);
-    console.log('\nℹ️  Falling back to saved songs');
+    if (!written) console.log('\nℹ️  Nothing was written; songs.ts and song-festival.ts are unchanged.');
     process.exit(1);
   }
 }
