@@ -21,7 +21,7 @@
 
 ## 2. Prerequisites (gate: do not start Session 0 until all pass)
 
-From the device checklist in `docs/branch-changelog.md`. Layout work on a broken build just
+From the device checklist in the PR #52 description ("Action required from you"). Layout work on a broken build just
 records bugs in the baseline.
 
 - [ ] Clean `pnpm install` (pnpm 10.x, Node 22.13+; see README); the `react-native-screens@4.30.0` patch applies.
