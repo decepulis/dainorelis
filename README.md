@@ -55,8 +55,8 @@ Run in Xcode also builds Release.
 
 `plugins/withAndroidReleaseSigning.js` makes the release build type use an upload keystore read
 from Gradle properties. Without them the release build is unsigned and can't be installed. Put
-them in `~/.gradle/gradle.properties` (not the committed `android/gradle.properties`, which
-prebuild regenerates):
+them in `~/.gradle/gradle.properties` (not `android/gradle.properties`, which prebuild
+generates):
 
 ```properties
 MYAPP_UPLOAD_STORE_FILE=/absolute/path/to/upload-key.keystore
@@ -75,24 +75,28 @@ If you _do_ want to deal with TestFlight or Google Play Console to test a produc
 
 **Run `npx expo prebuild --clean` right before every store build.** `app.config.ts` generates
 the build number (`yymmdd##`, used for both `versionCode` and `CFBundleVersion`) and reads the
-version from `package.json`, but only when prebuild runs. `ios/` and `android/` are committed,
-so `expo run:*`, Gradle and Xcode reuse whatever number the last prebuild wrote, and the stores
-reject a reused one. For a second build on the same day, bump `buildToday` in `app.config.ts`
-first. Prebuilding iOS runs `pod install`, so do it on a Mac; commit the regenerated folders.
+version from `package.json` when prebuild generates `ios/` and `android/`. `expo run:*` only
+prebuilds when a folder is missing, and Gradle and Xcode reuse what is on disk, so an older folder
+carries an old number and the stores reject a reused one. For a second build on the same
+day, bump `buildToday` in `app.config.ts` first. Prebuilding iOS runs `pod install`, so do it on
+a Mac.
 
 ### Make changes
 
 [Routes](https://docs.expo.dev/router/introduction) live in the **app** directory. Those routes' components/hooks/utils/whatever live in the **lib** directory.
 
-After making changes to assets or libraries, you might have to sync some stuff up with
+`ios/` and `android/` aren't committed: they are generated
+([Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/))
+from `app.config.ts` and the config plugins in `plugins/`. `pnpm dev:ios` / `pnpm dev:android`
+generate them the first time. After an SDK bump, or changing `app.config.ts`, a plugin, assets
+or a library with native code, regenerate them with
 
 ```bash
 npx expo prebuild --clean
 ```
 
-before continuing with the dev commands up above. `ios/` and `android/` are committed, so
-commit what prebuild regenerates; never hand-edit them (put native config in `app.config.ts` or
-a plugin in `plugins/`).
+before continuing with the dev commands up above. Never hand-edit the generated folders (the
+next prebuild wipes them); put native config in `app.config.ts` or a plugin in `plugins/`.
 
 ## Learn more
 
