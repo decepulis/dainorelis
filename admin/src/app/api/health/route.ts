@@ -11,11 +11,16 @@ export const dynamic = 'force-dynamic';
  * project counted as active. Doubles as a health check.
  *
  * Vercel sends `Authorization: Bearer $CRON_SECRET` on cron invocations when
- * that variable is set, so setting it closes the endpoint off. It stays open if
- * unset, which keeps local development and a first deploy simple.
+ * that variable is set, so setting it closes the endpoint off. In production
+ * it fails closed when unset, since an open endpoint runs a service-role query
+ * for anyone; outside production it stays open so local development is simple.
  */
 export async function GET(request: Request) {
   const cronSecret = process.env.CRON_SECRET;
+
+  if (!cronSecret && process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'CRON_SECRET is not configured' }, { status: 503 });
+  }
 
   if (cronSecret) {
     const provided = (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '');
