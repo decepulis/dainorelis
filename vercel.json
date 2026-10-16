@@ -1,4 +1,8 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "echo 'Redirect-only deployment; nothing to install'",
+  "buildCommand": "echo 'Redirect-only deployment; nothing to build'",
+  "outputDirectory": "public",
   "redirects": [
     {
       "source": "/",
