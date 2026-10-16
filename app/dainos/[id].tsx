@@ -251,8 +251,9 @@ function SongPage({ song }: { song: Song }) {
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}
             style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
-            // https://github.com/wonday/react-native-pdf/issues/837
-            trustAllCerts={Platform.OS === 'android' ? false : undefined}
+            // the default (true) skips TLS certificate validation on every platform;
+            // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
+            trustAllCerts={false}
             fitPolicy={0}
             minScale={0.5}
             maxScale={4}
