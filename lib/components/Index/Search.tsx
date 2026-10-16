@@ -7,7 +7,6 @@ import Animated, {
   WithSpringConfig,
   createAnimatedComponent,
   useAnimatedStyle,
-  useReducedMotion,
   withSpring,
 } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -69,9 +68,9 @@ export default function Search({
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const searchRef = useRef<TextInputInstance>(null);
-  const { isBoldTextEnabled } = useAccessibilityInfo();
-  // reanimated's springs already honor the system Reduce Motion setting; only the scroll needs telling
-  const isReduceMotionEnabled = useReducedMotion();
+  // live Reduce Motion: the springs jump to their targets and the list scrolls without animating
+  const { isBoldTextEnabled, isReduceMotionEnabled, reduceMotion } = useAccessibilityInfo();
+  const spring = { ...springConfig, reduceMotion };
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isAppWide = width > maxWidth;
@@ -84,8 +83,8 @@ export default function Search({
     const targetScale = isSearchOpen ? 0 : 1;
     const targetLeft = isSearchOpen ? padding * 2 : padding * 1.25;
     return {
-      transform: [{ scale: withSpring(targetScale, springConfig) }],
-      left: withSpring(targetLeft, springConfig),
+      transform: [{ scale: withSpring(targetScale, spring) }],
+      left: withSpring(targetLeft, spring),
     };
   });
 
@@ -95,9 +94,9 @@ export default function Search({
     const targetRight = isSearchOpen ? expandedSearchHeight + padding * 1.25 + padding : padding * 1.25;
 
     return {
-      width: withSpring(targetWidth, springConfig),
-      height: withSpring(targetHeight, springConfig),
-      right: withSpring(targetRight, springConfig),
+      width: withSpring(targetWidth, spring),
+      height: withSpring(targetHeight, spring),
+      right: withSpring(targetRight, spring),
     };
   });
 
@@ -106,8 +105,8 @@ export default function Search({
     const targetRight = isSearchOpen ? padding * 1.25 : buttonSize + padding * 1.25;
 
     return {
-      right: withSpring(targetRight, springConfig),
-      transform: [{ scale: withSpring(targetScale, springConfig) }],
+      right: withSpring(targetRight, spring),
+      transform: [{ scale: withSpring(targetScale, spring) }],
     };
   });
 
@@ -324,6 +323,7 @@ export function IndexToolbar({
   const router = useRouter();
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
+  const { isReduceMotionEnabled } = useAccessibilityInfo();
 
   if (!isLiquidGlassStyleHeader()) return null;
 
@@ -337,14 +337,14 @@ export function IndexToolbar({
           if (text.length > 0) {
             listRef.current?.scrollToOffset({
               offset: scrollToSearchOffset,
-              animated: true,
+              animated: !isReduceMotionEnabled,
             });
           }
         }}
         onFocus={() => {
           listRef.current?.scrollToOffset({
             offset: scrollToSearchOffset,
-            animated: true,
+            animated: !isReduceMotionEnabled,
           });
         }}
       />
@@ -359,7 +359,7 @@ export function IndexToolbar({
             isOn={!isFavorites}
             onPress={() => {
               setIsFavorites(false);
-              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
+              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
             }}
           >
             {t('allSongs')}
@@ -368,7 +368,7 @@ export function IndexToolbar({
             isOn={isFavorites}
             onPress={() => {
               setIsFavorites(true);
-              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: true });
+              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
             }}
           >
             {t('favoriteSongs')}

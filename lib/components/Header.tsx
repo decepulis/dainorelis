@@ -18,6 +18,7 @@ import { Link, Stack, useRouter } from 'expo-router';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
+import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
@@ -89,6 +90,9 @@ export const HeaderTitle = ({
   center,
 }: HeaderTitleProps) => {
   const hasTitleWrapper = !!titleWrapper;
+  // live Reduce Motion: the title jumps in and out instead of springing
+  const { reduceMotion } = useAccessibilityInfo();
+  const spring = { ...springConfig, reduceMotion };
 
   // @ts-expect-error useScrollOffset doesn't know this works with flatlist
   const scrollOffset = useScrollOffset(scrollRef ?? null);
@@ -116,8 +120,8 @@ export const HeaderTitle = ({
       }
     }
     return {
-      opacity: withSpring(animateTitleIn ? 1 : 0, springConfig),
-      transform: [{ translateY: withSpring(animateTitleIn ? 0 : 5, springConfig) }],
+      opacity: withSpring(animateTitleIn ? 1 : 0, spring),
+      transform: [{ translateY: withSpring(animateTitleIn ? 0 : 5, spring) }],
     };
   });
   const animatedVariantNameStyle = useAnimatedStyle(() => {
@@ -133,10 +137,10 @@ export const HeaderTitle = ({
     return {
       transform: [
         {
-          translateY: withSpring(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, springConfig),
+          translateY: withSpring(animateTitleIn ? 0 : -0.5 * subtitleFontSize * subtitleLineHeight, spring),
         },
         {
-          scale: withSpring(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, springConfig),
+          scale: withSpring(animateTitleIn ? 1 : titleFontSize / subtitleFontSize, spring),
         },
       ],
     };
