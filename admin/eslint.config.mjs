@@ -1,14 +1,12 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import prettierConfig from 'eslint-config-prettier';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import prettierConfig from 'eslint-config-prettier/flat';
 import prettierPlugin from 'eslint-plugin-prettier';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
-
-const config = [
-  // A config object containing only `ignores` sets them globally. Combined with
-  // other keys they would apply to that one config block only.
-  { ignores: ['.next/**', 'next-env.d.ts'] },
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
   prettierConfig,
   {
     plugins: { prettier: prettierPlugin },
@@ -16,6 +14,6 @@ const config = [
       'prettier/prettier': 'error',
     },
   },
-];
-
-export default config;
+  // Replaces eslint-config-next's default ignores, so they are repeated here.
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+]);
