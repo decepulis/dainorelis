@@ -4,8 +4,12 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { supabasePublishableKey, supabaseUrl } from './env';
 import type { Database } from './types';
 
-/** Routes reachable without a session. Everything else redirects to /login. */
-const PUBLIC_PATHS = ['/login', '/auth', '/api/export', '/api/health'];
+/**
+ * Routes reachable without a session (each with everything below it, so
+ * `/login` covers `/login/forgot`). Everything else redirects to /login.
+ * `/auth/confirm` is where the invite and password-reset emails land.
+ */
+const PUBLIC_PATHS = ['/login', '/auth/confirm', '/api/export', '/api/health'];
 
 function isPublic(pathname: string): boolean {
   return PUBLIC_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));

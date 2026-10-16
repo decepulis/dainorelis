@@ -2,6 +2,8 @@
 
 import { useActionState } from 'react';
 
+import Link from 'next/link';
+
 import { type LoginState, signIn } from './actions';
 
 export default function LoginForm({ next }: { next: string }) {
@@ -19,6 +21,12 @@ export default function LoginForm({ next }: { next: string }) {
       <div>
         <label htmlFor="password">Password</label>
         <input id="password" name="password" type="password" autoComplete="current-password" required />
+        <Link
+          href="/login/forgot"
+          className="mt-1 inline-block text-xs text-stone-500 hover:underline dark:text-stone-400"
+        >
+          Forgot your password?
+        </Link>
       </div>
 
       {state.error ? (

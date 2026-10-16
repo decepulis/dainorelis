@@ -27,9 +27,30 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 2. **Turn off sign-ups.** Authentication → Sign In / Providers → disable
    "Allow new users to sign up". There are no roles in this app: anyone who can
    sign in is an editor, so accounts are created by invitation only
-   (Authentication → Users → Add user).
+   (Authentication → Users → Add user → Send invitation).
 
-3. **Set the environment variables.** See `.env.example`. The Supabase
+3. **Point the auth emails at the app.** The invite and password-reset links
+   land on `/auth/confirm`, which signs the editor in and sends them to
+   `/account/password` to choose a password. Supabase's default templates link
+   to its own verify endpoint instead, so change them:
+
+   - Authentication → URL Configuration: set **Site URL** to
+     `https://admin.dainorelis.app` and add `https://admin.dainorelis.app/**`
+     to **Redirect URLs**. The reset form passes its own origin as
+     `redirectTo`, and Supabase ignores any URL not on that list.
+   - Authentication → Emails → **Invite user**: make the link
+     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
+   - Authentication → Emails → **Reset password**: make the link
+     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
+
+   The links are built from the Site URL, so they always go to production;
+   to try the flow against `next dev`, temporarily point the Site URL at
+   `http://localhost:3100`. Supabase's built-in mailer only sends a few emails
+   an hour; configure custom SMTP (Authentication → Emails → SMTP) if that
+   gets in the way. Signed-in editors can change their password from the
+   "Password" link in the header.
+
+4. **Set the environment variables.** See `.env.example`. The Supabase
    integration provides `NEXT_PUBLIC_SUPABASE_URL`,
    `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_SECRET_KEY`. The legacy
    `NEXT_PUBLIC_SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` names still
@@ -37,7 +58,7 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    `EXPORT_TOKEN` is a secret you generate yourself (`openssl rand -hex 32`) and
    share with the app repo's `.env` as `ADMIN_EXPORT_TOKEN`.
 
-4. **Migrate from Airtable**, once, from a machine holding the Airtable token:
+5. **Migrate from Airtable**, once, from a machine holding the Airtable token:
 
    ```bash
    cd admin
@@ -60,7 +81,7 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    Remember that `.env.local` holds the production keys after a
    `vercel env pull`.
 
-5. **Verify.** Open `/export` in the admin app and confirm the song count and
+6. **Verify.** Open `/export` in the admin app and confirm the song count and
    that there are no blocking errors. Then, in the app repo, run
    `pnpm update-songs` and check `git diff songs.ts` — immediately after the
    migration it should be **empty**. A clean diff proves the new pipeline
