@@ -96,7 +96,7 @@ async function main() {
   const { data: songs, error } = await fetchAll((from, to) =>
     supabase
       .from('songs')
-      .select('id, name, lyrics(position, lyrics_and_chords), translations(id)')
+      .select('id, name, lyrics(position, lyrics_and_chords), translations(id, position)')
       .order('name', { ascending: true })
       .order('id', { ascending: true })
       .range(from, to)
@@ -133,7 +133,9 @@ async function main() {
 
       const { error: insertError } = await supabase.from('translations').insert({
         song_id: song.id,
-        position: song.translations.length,
+        // After the last existing one; deletions can leave gaps, so the
+        // count could land on a position that is still taken.
+        position: Math.max(-1, ...song.translations.map((translation) => translation.position)) + 1,
         title: metadata.enTitle,
         lyrics: metadata.enTranslation,
         ai_generated: true,

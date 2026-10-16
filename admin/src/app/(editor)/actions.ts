@@ -226,14 +226,24 @@ async function swapPositions(
   const swapWith = direction === 'up' ? index - 1 : index + 1;
   if (index === -1 || swapWith < 0 || swapWith >= rows.length) return;
 
-  // Renumber the whole list so imported gaps and duplicates settle into a
-  // clean 0..n-1 sequence.
+  // Renumber the whole list so gaps left by imports and deletions settle into
+  // a clean 0..n-1 sequence.
   const reordered = [...rows];
   [reordered[index], reordered[swapWith]] = [reordered[swapWith], reordered[index]];
 
-  for (const [position, row] of reordered.entries()) {
-    const { error: updateError } = await supabase.from(table).update({ position }).eq('id', row.id);
-    if (updateError) throw new Error(updateError.message);
+  // (song_id, position) is unique and every update below is its own
+  // transaction, so moving a row straight onto a position a sibling still
+  // holds would fail. Park the rows below every position in use first, then
+  // move each one to its final place.
+  const parked = Math.min(0, ...rows.map((row) => row.position)) - reordered.length;
+  for (const offset of [parked, 0]) {
+    for (const [position, row] of reordered.entries()) {
+      const { error: updateError } = await supabase
+        .from(table)
+        .update({ position: offset + position })
+        .eq('id', row.id);
+      if (updateError) throw new Error(updateError.message);
+    }
   }
 }
 
