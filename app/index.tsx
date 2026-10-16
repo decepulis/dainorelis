@@ -33,7 +33,7 @@ export default function Index() {
   const inset = useSafeAreaInsets();
   const { width, height } = useSafeAreaFrame();
   const headerHeight = useHeaderHeight();
-  const { setDidBackgroundLoad, setDidLogoLoad, setDidWordmarkLoad } = useDidImagesLoad();
+  const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
@@ -98,7 +98,7 @@ export default function Index() {
           headerTitleAlign: 'center',
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} titleLayout={titleLayout} center>
-              <HeaderLogo headerHeight={headerHeight} onLoadEnd={() => setDidWordmarkLoad(true)} />
+              <HeaderLogo headerHeight={headerHeight} />
             </HeaderTitle>
           ),
           headerRight: !isLiquidGlassStyleHeader()

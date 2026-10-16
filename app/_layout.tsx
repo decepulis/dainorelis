@@ -65,7 +65,7 @@ function AppWithLoading() {
   const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
   const [didImagesTimeOut, setDidImagesTimeOut] = useState(false);
-  const { didLogoLoad, didWordmarkLoad, didBackgroundLoad } = useDidImagesLoad();
+  const { didLogoLoad, didBackgroundLoad } = useDidImagesLoad();
 
   // do async work that needs to be done before the splash screen here
   useEffect(() => {
@@ -90,7 +90,7 @@ function AppWithLoading() {
   }, []);
 
   const isAppReady = asyncWorkIsDone && didAppLayout;
-  const didImagesLoad = didLogoLoad && didBackgroundLoad && didWordmarkLoad;
+  const didImagesLoad = didLogoLoad && didBackgroundLoad;
 
   // stop waiting for the images a little while after the app is otherwise ready
   useEffect(() => {
