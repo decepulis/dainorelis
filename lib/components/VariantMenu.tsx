@@ -3,9 +3,9 @@ import { Platform } from 'react-native';
 
 import { GlassView } from 'expo-glass-effect';
 
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
-
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
+import Description from '@expo/material-symbols/description.xml';
+import FormatQuote from '@expo/material-symbols/format_quote.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 
 import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
@@ -21,19 +21,19 @@ type Props = {
 };
 export default function VariantMenu({ children, variants, activeVariantId, setActiveVariantId }: Props) {
   const { t, i18n } = useTranslation();
-  const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = Object.entries(variants).map(([id, variant]) => {
     return {
       id,
       title: i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'],
       state: activeVariantId === id ? 'on' : 'off',
-      // TODO right now I can't make this dynamic; let's move to the expo/ui menu and see if that helps
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: isLyrics(variant) ? 'text.quote' : 'document',
-        default: isLyrics(variant) ? 'format_quote_20px' : 'description_20px',
-      }),
+      image: isLyrics(variant)
+        ? process.env.EXPO_OS === 'ios'
+          ? 'text.quote'
+          : FormatQuote
+        : process.env.EXPO_OS === 'ios'
+          ? 'document'
+          : Description,
     };
   });
 

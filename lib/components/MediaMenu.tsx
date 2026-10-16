@@ -1,13 +1,12 @@
 import { ComponentPropsWithoutRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ColorValue, Platform } from 'react-native';
+import { ColorValue } from 'react-native';
 
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import MusicNote from '@expo/material-symbols/music_note.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
-
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { Audio } from '../schemas/audio';
 import { ButtonSurface, styles as buttonStyles } from './Button';
@@ -23,18 +22,13 @@ type Props = {
 };
 export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style, color }: Props) {
   const { t, i18n } = useTranslation();
-  const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = Object.entries(media).map(([id, m]) => {
     return {
       id,
       title: i18n.language === 'en' ? m['EN Variant Name'] : m['Variant Name'],
       state: activeMediaId === id ? 'on' : 'off',
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'music.note',
-        default: 'music_note_20px',
-      }),
+      image: process.env.EXPO_OS === 'ios' ? 'music.note' : MusicNote,
     };
   });
 

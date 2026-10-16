@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { Platform } from 'react-native';
 
 import { Stack, router } from 'expo-router';
 
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import Feedback from '@expo/material-symbols/feedback.xml';
+import MenuBook from '@expo/material-symbols/menu_book.xml';
+import MusicNote from '@expo/material-symbols/music_note.xml';
+import Translate from '@expo/material-symbols/translate.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { Song } from '@/lib/schemas/songs';
 
 import useOpenFeedback from '../hooks/useOpenFeedback';
@@ -26,7 +28,6 @@ export default function SongMenu({ song, hasChords }: Props) {
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
   const hasTranslation = Object.values(song.fields['Translations']).length > 0;
-  const isDark = useColorScheme() === 'dark';
 
   // TODO share sheet (dainorelis.app web app)
   const actions: (MenuAction | null)[] = [
@@ -34,53 +35,33 @@ export default function SongMenu({ song, hasChords }: Props) {
       ? {
           id: 'info',
           title: t('aboutSong'),
-          imageColor: isDark ? 'white' : 'black',
-          image: Platform.select({
-            ios: 'book',
-            default: 'menu_book_20px',
-          }),
+          image: process.env.EXPO_OS === 'ios' ? 'book' : MenuBook,
         }
       : null,
     hasTranslation
       ? {
           id: 'translation',
           title: t('translateSong'),
-          imageColor: isDark ? 'white' : 'black',
-          image: Platform.select({
-            ios: 'translate',
-            default: 'translate_20px',
-          }),
+          image: process.env.EXPO_OS === 'ios' ? 'translate' : Translate,
         }
       : null,
     hasChords
       ? {
           id: 'toggleChords',
           title: t('chords'),
-          imageColor: isDark ? 'white' : 'black',
-          image: Platform.select({
-            ios: 'guitars',
-            default: 'music_note_20px',
-          }),
+          image: process.env.EXPO_OS === 'ios' ? 'guitars' : MusicNote,
           state: showChords ? 'on' : 'off',
         }
       : null,
     {
       id: 'feedback',
       title: t('feedback'),
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'exclamationmark.bubble',
-        default: 'feedback_20px',
-      }),
+      image: process.env.EXPO_OS === 'ios' ? 'exclamationmark.bubble' : Feedback,
     },
     // {
     //   id: 'share',
     //   title: t('shareSong'),
-    //   imageColor: isDark ? 'white' : 'black',
-    //   image: Platform.select({
-    //     ios: 'square.and.arrow.up',
-    //     default: 'share_20px',
-    //   }),
+    //   image: process.env.EXPO_OS === 'ios' ? 'square.and.arrow.up' : Share, // @expo/material-symbols/share.xml
     //   attributes: { disabled: true },
     // },
   ];

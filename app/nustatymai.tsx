@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
 
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { HeaderBackground, HeaderLeft, ModalToolbar } from '@/lib/components/Header';
