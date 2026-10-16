@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -68,31 +67,20 @@ function SongPage({ song }: { song: Song }) {
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
-  const { v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ v?: string; m?: string }>();
+  // ?v= / ?m= only exist once the user picks from a menu (or a link carries them)
+  const { v: variantIdParam, m: mediaIdParam } = useLocalSearchParams<{ v?: string; m?: string }>();
 
   const { id } = song;
   const isFavorite = favorites.includes(song.id);
 
-  // Variants
-  const storedActiveVariantId = activeVariantIdBySongId[id];
+  // Variants: the URL's choice, else the one remembered for this song, else the first. Either may
+  // name a variant that no longer exists (deleted in the admin, or a bad link), so only valid ids
+  // count. Derived on every render rather than synced into the URL, so the first frame is right.
   const variants: { [id: string]: LyricsType | PDFs } = { ...song.fields.Lyrics, ...song.fields.PDFs };
-  // a primitive, so the effect below doesn't depend on the identity of the merged `variants` object
-  const firstVariantId: string | undefined = Object.keys(variants)[0];
-  useEffect(() => {
-    // on load, check the query param for a variant id
-    if (!activeVariantId) {
-      // if none is provided...
-      if (storedActiveVariantId) {
-        // try and load it from storage
-        router.setParams({ v: storedActiveVariantId });
-      } else {
-        // otherwise, try and set it to the first variant id
-        if (firstVariantId) {
-          router.setParams({ v: firstVariantId });
-        }
-      }
-    }
-  }, [activeVariantId, firstVariantId, storedActiveVariantId, router]);
+  const variantIds = Object.keys(variants);
+  const activeVariantId =
+    [variantIdParam, activeVariantIdBySongId[id]].find((v) => v !== undefined && variantIds.includes(v)) ??
+    variantIds[0];
 
   const setActiveVariantId = (v: string) => {
     router.setParams({ v });
@@ -101,8 +89,8 @@ function SongPage({ song }: { song: Song }) {
       [id]: v,
     });
   };
-  const activeVariant = activeVariantId ? variants[activeVariantId] : Object.values(variants)[0];
-  const hasMultipleVariants = Object.keys(variants).length > 1;
+  const activeVariant = variants[activeVariantId];
+  const hasMultipleVariants = variantIds.length > 1;
 
   // chords
   const hasChords = isLyrics(activeVariant) && !!activeVariant['Show Chords'];
@@ -113,26 +101,12 @@ function SongPage({ song }: { song: Song }) {
   const hasSameAuthor = hasMusicAuthor && hasTextAuthor && song.fields['Music Author'] === song.fields['Text Author'];
   const hasFootnote = isLyrics(activeVariant) && !!activeVariant.Notes;
 
-  // Media
-  const storedActiveMediaId = activeMediaIdBySongId[id];
+  // Media: same fallbacks as variants; undefined when the song has no recordings
   // not copied: song data is static and never mutated, so this stays referentially stable across renders
   const media: { [id: string]: Audio } = song.fields.Audio;
-  useEffect(() => {
-    // on load, check the query param for a media id
-    if (!activeMediaId) {
-      // if none is provided...
-      if (storedActiveMediaId) {
-        // try and load it from storage
-        router.setParams({ m: storedActiveMediaId });
-      } else {
-        // otherwise, try and set it to the first media id
-        const firstMediaId = Object.keys(media)[0];
-        if (firstMediaId) {
-          router.setParams({ m: firstMediaId });
-        }
-      }
-    }
-  }, [activeMediaId, media, storedActiveMediaId, router]);
+  const mediaIds = Object.keys(media);
+  const activeMediaId: string | undefined =
+    [mediaIdParam, activeMediaIdBySongId[id]].find((m) => m !== undefined && mediaIds.includes(m)) ?? mediaIds[0];
 
   const setActiveMediaId = (m: string) => {
     router.setParams({ m });
@@ -142,7 +116,7 @@ function SongPage({ song }: { song: Song }) {
     });
   };
 
-  const activeMedia = activeMediaId ? (media[activeMediaId] ?? null) : null;
+  const activeMedia = activeMediaId ? media[activeMediaId] : null;
 
   // Title
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
