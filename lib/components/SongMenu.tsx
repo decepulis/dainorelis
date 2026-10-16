@@ -59,12 +59,6 @@ export default function SongMenu({ song, hasChords }: Props) {
       title: t('feedback'),
       image: process.env.EXPO_OS === 'ios' ? 'exclamationmark.bubble' : Feedback,
     },
-    // {
-    //   id: 'share',
-    //   title: t('shareSong'),
-    //   image: process.env.EXPO_OS === 'ios' ? 'square.and.arrow.up' : Share, // @expo/material-symbols/share.xml
-    //   attributes: { disabled: true },
-    // },
   ];
   const filteredActions = actions.filter(Boolean) as MenuAction[];
 
@@ -78,8 +72,6 @@ export default function SongMenu({ song, hasChords }: Props) {
       setShowChords(!showChords);
     } else if (event === 'feedback') {
       openFeedback(song.fields.Name);
-    } else if (event === 'share') {
-      console.log('share');
     }
   };
 

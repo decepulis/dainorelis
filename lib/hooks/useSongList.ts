@@ -34,7 +34,7 @@ const getFuses = () => {
 };
 
 /**
- * an output compatible with SectionList
+ * songs grouped into sections by first letter
  */
 const groupSongsByLetter = (songs: SongFile) => {
   const songsByLetter = new Map<string, Song[]>();
@@ -76,7 +76,7 @@ type HeaderItem = { type: 'header'; item: string; id: string };
 export type SongListItem = SongItem | HeaderItem;
 
 /**
- * An output compatible with FlatList and FlashList, with search added on
+ * Flattens sections into the header and song rows the home screen's FlatList renders
  */
 const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
   const items: (SongItem | HeaderItem)[] = [];

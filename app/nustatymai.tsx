@@ -209,13 +209,6 @@ const styles = StyleSheet.create({
   settings: {
     gap: padding,
   },
-  setting: {
-    flexDirection: 'column',
-    gap: padding / 8,
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
-  },
   hSetting: {
     flexDirection: 'row',
     justifyContent: 'space-between',

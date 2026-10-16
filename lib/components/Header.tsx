@@ -200,7 +200,6 @@ export const HeaderTitle = ({
           style={[
             animatedVariantNameStyle,
             {
-              // width: '100%',
               flexDirection: 'row',
               alignItems: 'center',
               transformOrigin: 'left center',
@@ -247,7 +246,7 @@ export const HeaderTitle = ({
       style={[
         {
           flex: center ? undefined : 1,
-          // on iOS 26, patches/react-native-screens@4.25.2.patch sizes this view to the space
+          // on iOS 26, patches/react-native-screens@4.30.0.patch sizes this view to the space
           // actually left over by the toolbar buttons, so no width hacks are needed here
           paddingHorizontal: isLiquidGlassStyleHeader() ? undefined : buttonSlop.left,
         },
