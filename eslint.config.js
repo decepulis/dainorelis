@@ -20,6 +20,7 @@ module.exports = defineConfig([
     'dainorelisapp.com/',
     'songs.ts',
     'song-festival.ts',
+    '.claude/worktrees/',
   ]),
   {
     plugins: {
