@@ -98,7 +98,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **`/patches`** - pnpm patches for dependencies (see Building)
 
-- **`/docs/plans`** - Scoped-but-not-started work (Android Stack.Toolbar, master-detail, App Intents)
+- **`/docs/plans`** - Scoped-but-not-started work (master-detail, App Intents) and one decision memo (Android stays on the custom header)
 
 - **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
@@ -150,7 +150,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Platform-Specific Code**: Platform variants use `.web.ts` / `.android.tsx` extensions (e.g., `useColorScheme.web.ts`, `Switch.android.tsx`). For small branches inside a file prefer `process.env.EXPO_OS`, which Metro inlines and tree-shakes.
 
-**Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. See `docs/plans/android-stack-toolbar.md` for moving Android to `Stack.Toolbar`.
+**Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. Android deliberately keeps the custom header; see `docs/plans/android-stack-toolbar.md` for why.
 
 **Icons**: In-app glyphs use `@react-native-vector-icons/fontawesome6`. Native menus and toolbars use SF Symbol names on iOS and Material Symbols on Android (`import X from '@expo/material-symbols/<name>.xml'`), chosen with `process.env.EXPO_OS === 'ios' ? 'sf.name' : X`.
 
