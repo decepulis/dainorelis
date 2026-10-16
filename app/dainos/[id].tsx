@@ -7,8 +7,8 @@ import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/compo
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
-import { Stack, router, useLocalSearchParams, useNavigation } from 'expo-router';
-import { useHeaderHeight, useRoute } from 'expo-router/react-navigation';
+import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
@@ -58,15 +58,6 @@ export default function Page() {
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
-
-  // Detect if this screen is preloaded for peek preview.
-  // Stack.Toolbar calls navigation.setOptions() which crashes on placeholder screens.
-  const route = useRoute();
-  const navigation = useNavigation();
-  const navigationState = navigation.getState();
-  const isPreloaded =
-    navigationState?.type === 'stack' &&
-    (navigationState as any).preloadedRoutes?.some((r: any) => r.key === route.key);
 
   const song = useMemo(() => songs.find((song) => song.id === id), [id]) as Song;
   const isFavorite = useMemo(() => favorites.includes(song.id), [favorites, song.id]);
@@ -209,14 +200,7 @@ export default function Page() {
             : undefined,
         }}
       />
-      {!isPreloaded && (
-        <SongDetailToolbar
-          song={song}
-          hasChords={hasChords}
-          isFavorite={isFavorite}
-          onToggleFavorite={toggleFavorite}
-        />
-      )}
+      <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
       {showLyrics ? (
         <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
           <View

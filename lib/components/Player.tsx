@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, DynamicColorIOS, Image, StyleProp, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, DynamicColorIOS, StyleProp, View, ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   type AnimatedStyle,
@@ -13,6 +13,7 @@ import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/s
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
+import { Asset } from 'expo-asset';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
@@ -30,7 +31,7 @@ import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const artworkUrl = Image.resolveAssetSource(require('@/assets/images/icon.png')).uri;
+const artworkUrl = Asset.fromModule(require('@/assets/images/icon.png')).uri;
 
 const padding = isLiquidGlassAvailable() ? 6 : buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;

@@ -1,6 +1,6 @@
 import { startTransition, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, StyleProp, TextInput, View, ViewStyle } from 'react-native';
+import { Platform, StyleProp, TextInput, type TextInputInstance, View, ViewStyle } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, { AnimatedRef, createAnimatedComponent, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
@@ -59,7 +59,7 @@ export default function Search({
   const background = useThemeColor('background');
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
-  const searchRef = useRef<TextInput>(null);
+  const searchRef = useRef<TextInputInstance>(null);
   const { isBoldTextEnabled, isReduceMotionEnabled } = useAccessibilityInfo();
   const { height, progress } = useReanimatedKeyboardAnimation();
 

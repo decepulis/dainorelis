@@ -4,7 +4,7 @@ import { ColorValue, Platform, View } from 'react-native';
 
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
-import { isLiquidGlassAvailable } from 'expo-glass-effect/build/isLiquidGlassAvailable';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
 
 import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
