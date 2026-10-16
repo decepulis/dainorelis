@@ -18,6 +18,7 @@ import dotenv from 'dotenv';
 import path from 'node:path';
 import OpenAI from 'openai';
 
+import { isAlreadyEnglish } from '../src/lib/song-file/already-english';
 import { fetchAll } from '../src/lib/supabase/fetch-all';
 import { createServiceClient } from '../src/lib/supabase/service';
 
@@ -25,9 +26,6 @@ dotenv.config({ path: path.join(__dirname, '..', '.env.local') });
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const MODEL = 'gpt-5.2';
-
-/** Titles that are already English; a missing translation is expected. */
-const ALREADY_TRANSLATED = ['JAV ', 'Kanados '];
 
 function numberArg(name: string): number | undefined {
   const index = process.argv.indexOf(`--${name}`);
@@ -106,7 +104,7 @@ async function main() {
 
   const candidates = (songs ?? []).filter((song) => {
     if (!force && song.translations.length > 0) return false;
-    if (ALREADY_TRANSLATED.some((prefix) => song.name.startsWith(prefix))) return false;
+    if (isAlreadyEnglish(song.name)) return false;
     return song.lyrics.length > 0;
   });
 

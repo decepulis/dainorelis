@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { z } from 'zod';
 
+// The one piece of admin code this script uses: /export applies the same rule.
+import { isAlreadyEnglish } from '../admin/src/lib/song-file/already-english';
 import { Song, SongFile, SongSchema } from '../lib/schemas/songs';
 
 /**
@@ -162,13 +164,9 @@ async function updateSongs() {
 
     // Flag anything an editor probably wants to fill in with AI assistance.
     for (const song of filteredSongFile) {
-      if (Object.keys(song.fields.Translations).length > 0) continue;
+      if (Object.keys(song.fields.Translations).length > 0 || isAlreadyEnglish(song.fields.Name)) continue;
 
-      const isAlreadyTranslated = song.fields.Name.startsWith('JAV ') || song.fields.Name.startsWith('Kanados ');
-
-      if (!isAlreadyTranslated) {
-        console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
-      }
+      console.warn(`⚠️  No translations found for song "${song.fields.Name}". Consider generating them with AI.`);
     }
 
     // now do the song festival

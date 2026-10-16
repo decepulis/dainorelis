@@ -4,11 +4,18 @@ import { useActionState, useRef } from 'react';
 
 import Link from 'next/link';
 
+import { assignVariantNames, byPosition } from '@/lib/song-file/variant-names';
+
 import { type EditorState, deleteSong, saveSong } from '../../actions';
 import SubmitButton from '../../submit-button';
 import { type FieldSpec, SECTIONS, type SectionSpec } from './fields';
 
-type ChildRecord = { id: string; position: number } & Record<string, unknown>;
+type ChildRecord = {
+  id: string;
+  position: number;
+  variant_name: string | null;
+  en_variant_name: string | null;
+} & Record<string, unknown>;
 
 /** The submitted fields after a failed save; see `EditorState.values`. */
 type Draft = Record<string, string> | undefined;
@@ -145,8 +152,9 @@ function Section({
   /** A save is in flight; a second click would add or delete twice. */
   pending: boolean;
 }) {
-  const sorted = [...records].sort((a, b) => a.position - b.position);
-  const unnamed = sorted.filter((record) => !text(record.variant_name)).length;
+  // Labelled with the names the export will give them, so an unnamed variant
+  // shows the "Žodžiai 2" the app will show.
+  const sorted = assignVariantNames(byPosition(records), section.table);
 
   return (
     <section className="border-t border-stone-200 pt-6 dark:border-stone-800">
@@ -168,8 +176,7 @@ function Section({
 
       <div className="flex flex-col gap-4">
         {sorted.map((record, index) => {
-          const label =
-            text(record.variant_name) || `${section.defaultName}${unnamed > 1 ? ` ${index + 1}` : ''} (auto)`;
+          const label = record.variant_name ? record.ltName : `${record.ltName} (auto)`;
 
           return (
             <fieldset key={record.id} className="rounded-lg border border-stone-200 p-4 dark:border-stone-800">
