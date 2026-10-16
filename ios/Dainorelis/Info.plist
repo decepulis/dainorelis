@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>myapp</string>
+          <string>dainorelis</string>
           <string>com.dainorelis.dainorelis</string>
         </array>
       </dict>
