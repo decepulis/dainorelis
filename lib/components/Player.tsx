@@ -57,7 +57,8 @@ type Props = {
 export default function Player({ title, media, activeMediaId, setActiveMediaId, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
-  const { isHighContrastEnabled } = useAccessibilityInfo();
+  // live Reduce Motion: the player opens, closes and resizes without springing
+  const { isHighContrastEnabled, reduceMotion } = useAccessibilityInfo();
   const { t, i18n } = useTranslation();
   const isAppWide = width > maxWidth;
   const primary = useThemeColor('primary');
@@ -112,29 +113,27 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   // isOpen mirrors isOpenSv for what React renders (accessibility); the worklets read the shared value
   const [isOpen, setIsOpen] = useState(false);
   const isOpenSv = useSharedValue(false);
+  const spring = { ...springConfig, reduceMotion };
   const containerStyles = useAnimatedStyle(() => ({
-    width: withSpring(
-      isOpenSv.get() ? playerWidth : padding + buttonWidth + padding + buttonWidth + padding,
-      springConfig
-    ),
+    width: withSpring(isOpenSv.get() ? playerWidth : padding + buttonWidth + padding + buttonWidth + padding, spring),
   }));
   const opacityStyles = useAnimatedStyle(() => ({
-    opacity: withSpring(isOpenSv.get() ? 1 : 0, springConfig),
+    opacity: withSpring(isOpenSv.get() ? 1 : 0, spring),
     pointerEvents: isOpenSv.get() ? 'auto' : 'none',
   }));
   const infoButtonStyles = useAnimatedStyle(() => ({
-    opacity: withSpring(isOpenSv.get() ? 0 : 1, springConfig),
+    opacity: withSpring(isOpenSv.get() ? 0 : 1, spring),
     transform: [
       {
-        scale: withSpring(isOpenSv.get() ? 0.8 : 1, springConfig),
+        scale: withSpring(isOpenSv.get() ? 0.8 : 1, spring),
       },
     ],
   }));
   const closeButtonStyles = useAnimatedStyle(() => ({
-    opacity: withSpring(isOpenSv.get() ? 1 : 0, springConfig),
+    opacity: withSpring(isOpenSv.get() ? 1 : 0, spring),
     transform: [
       {
-        scale: withSpring(isOpenSv.get() ? 1 : 0.8, springConfig),
+        scale: withSpring(isOpenSv.get() ? 1 : 0.8, spring),
       },
     ],
   }));
@@ -196,7 +195,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
   // commit gesture stuff to styles
   const durationContainerStyles = useAnimatedStyle(() => ({
-    height: withSpring(isGesturingSv.get() ? 12 : 6, { mass: 1, damping: 30, stiffness: 500 }),
+    height: withSpring(isGesturingSv.get() ? 12 : 6, { mass: 1, damping: 30, stiffness: 500, reduceMotion }),
   }));
   const durationStyles = useAnimatedStyle(() => ({
     width: `${progressSv.get() * 100}%`,
