@@ -13,6 +13,11 @@
 --      ("Žodžiai 2", "Lyrics 2"). Child rows therefore also carry an explicit
 --      `position`, because the generated number comes from the record's
 --      ordinal within its parent song.
+--
+-- Unlike the later migrations this one is not safe to re-run (plain `create
+-- table`, `create trigger`, `create policy`). It doesn't need to be: it was
+-- written for an empty project, and `supabase db push` records each applied
+-- version in supabase_migrations.schema_migrations, so it runs exactly once.
 
 -- New records get Airtable-shaped ids so nothing downstream has to care which
 -- system a song was created in.

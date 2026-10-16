@@ -1,9 +1,9 @@
 -- Keep anonymous users out of the editor policies.
 --
--- 0001 lets the `authenticated` role do anything, on the basis that sign-ups
--- are off and every account is an invited editor. Supabase's anonymous
--- sign-ins are a separate dashboard toggle, though, and an anonymous user also
--- gets the `authenticated` role. Turning that toggle on would make the whole
+-- The init migration lets the `authenticated` role do anything, on the basis
+-- that sign-ups are off and every account is an invited editor. Supabase's
+-- anonymous sign-ins are a separate dashboard toggle, though, and an anonymous
+-- user also gets the `authenticated` role. Turning that toggle on would make the whole
 -- database writable by anyone holding the publishable key, which ships in the
 -- browser bundle. Their JWT carries `is_anonymous: true`, so require it to be
 -- false (it is absent on older tokens, hence the coalesce).

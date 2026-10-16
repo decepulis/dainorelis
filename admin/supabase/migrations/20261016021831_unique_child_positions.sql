@@ -44,8 +44,8 @@ begin
       t, t || '_song_position_key'
     );
 
-    -- The constraint's index covers (song_id, position), so 0001's plain
-    -- index on the same columns is now redundant.
+    -- The constraint's index covers (song_id, position), so the init
+    -- migration's plain index on the same columns is now redundant.
     execute format('drop index if exists %I', t || '_song_idx');
   end loop;
 end;
