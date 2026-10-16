@@ -14,11 +14,16 @@ one-line markers so the timeline makes sense.
   Expo-provided equivalents, the earlier agent work was audited and fixed, the admin got its
   missing auth flow and RLS hardening, the marketing site deploys were fixed, and a second audit
   pass over the app, admin and tooling fixed several crashes and a stuck splash screen.
+- Then, acting on your answers: `ios/` and `android/` are generated instead of committed (CNG),
+  minSdk follows the SDK default (24), Supabase migrations are applied by a GitHub Actions
+  workflow, the site is on Astro 7, and Reduce Motion follows the setting live again (an earlier
+  fix in the same session had broken that).
 - **Nobody has run the app on a device since about March 2026.** Everything since SDK 56 has only
   passed typecheck, lint and bundling. The checklist at the end says what's needed to ship.
 
 > Notes in Phases 0–4 that say something is still pending were written before Phase 5. Phase 5
-> resolved several of them: the native projects were regenerated, both pnpm overrides were removed,
+> resolved several of them: the native projects were regenerated (and are no longer committed at
+> all), both pnpm overrides were removed,
 > the Switch colours were restored, the screens patch was re-ported, and lint now actually runs.
 > The checklist and open decisions at the end are current.
 
@@ -83,7 +88,7 @@ _(authored by you, `Co-Authored-By: Claude Opus 4.6`)_
 - `pnpm-workspace.yaml` now lists `packages: [dainorelisapp.com]`, and the root lockfile gained the Astro importer. `dainorelisapp.com/.gitignore` now ignores `.vercel/`.
 - Verified locally with `pnpm --filter marketing-site build`. **Check that Vercel actually went green after this landed.**
 
-- you: `a5131d5` wip: prebuild (2026-06-22). You regenerated `ios/` and `android/` against SDK 56: Podfile.lock at RN 0.85.3 / ExpoModulesCore 56.0.15, compileSdk 36, FontAwesome6 fonts, iOS deployment target 16.4, new launcher and splash assets, build number 26061901. You also removed the `label` prop from the settings `Switch`. **This is the last time the committed native folders were regenerated.**
+- you: `a5131d5` wip: prebuild (2026-06-22). You regenerated `ios/` and `android/` against SDK 56: Podfile.lock at RN 0.85.3 / ExpoModulesCore 56.0.15, compileSdk 36, FontAwesome6 fonts, iOS deployment target 16.4, new launcher and splash assets, build number 26061901. You also removed the `label` prop from the settings `Switch`. **This was the last time the native folders were regenerated before Phase 5.**
 
 ---
 
@@ -95,7 +100,7 @@ _(authored by you, `Co-Authored-By: Claude Opus 4.6`)_
 - Only `package.json`, `app.config.ts` and the lockfile changed. **No app code changed and no codemods ran.** Checks were limited to typecheck, lint and expo-doctor. Nobody tested it at runtime.
 - **New config plugin:** `expo-status-bar`.
 - **Another pnpm override:** `@expo/dom-webview: 57.0.0`, to fix a stale 56.0.4 transitive copy.
-- ⚠️ **The native folders were not regenerated.** At `origin/dc/2026.1`, `ios/Podfile.lock` still pins React-Core 0.85.3 and ExpoModulesCore 56.0.15. The JS is SDK 57 but the native projects are still SDK 56. expo-doctor's "prebuild/native-folders" note was waved off as pre-existing.
+- ⚠️ **The native folders were not regenerated.** Until Phase 5, `ios/Podfile.lock` still pinned React-Core 0.85.3 and ExpoModulesCore 56.0.15: the JS was SDK 57 but the native projects were still SDK 56. expo-doctor's "prebuild/native-folders" note was waved off as pre-existing.
 
 ---
 
@@ -125,7 +130,7 @@ _(authored by you, `Co-Authored-By: Claude Opus 4.6`)_
 
 ### 2026-08-19 · `c5e5663` · chore: drop unneeded pgcrypto extension from the admin migration
 
-- Removed `create extension if not exists pgcrypto` from `admin/supabase/migrations/0001_init.sql`. `gen_record_id()` only uses core functions. The commit says it was checked against a fresh Postgres 16.
+- Removed `create extension if not exists pgcrypto` from the init migration (then `0001_init.sql`, now `admin/supabase/migrations/20260819234728_init.sql`). `gen_record_id()` only uses core functions. The commit says it was checked against a fresh Postgres 16.
 
 ---
 
@@ -137,7 +142,8 @@ subagents audited Phases 1–4 (reports summarised below) and scoped iPhone Duo 
 (`docs/plans/`). A worktree subagent fixed the admin CMS audit findings, and its commits were
 cherry-picked here. Later the same day: accessibility labels, the admin follow-ups the first audit
 left open, Next.js 16, the marketing-site deploy fix, and a second audit pass over the app, admin
-and tooling.
+and tooling. A last round acted on your answers to the open decisions (CNG, minSdk, Astro 7, the
+festival list) and moved the Supabase migrations to GitHub Actions.
 
 ### Upgrade
 
@@ -162,7 +168,8 @@ and tooling.
     requires.
   - The Xcode project is now **`Dainorelis`** (the old prebuild dropped the "ė" and produced
     `Dainorlis`). Bundle id and display name are unchanged.
-  - `ios/Podfile.lock` removed (it was two SDKs stale; regenerate with `pod install`).
+  - `ios/Podfile.lock` removed (it was two SDKs stale). Since `b4331b2` neither native folder is
+    committed, so pods always resolve fresh.
   - The privacy manifest moved into `app.config.ts` `ios.privacyManifests`, with the same
     declarations.
   - Android: **R8 enabled in release builds** (the SDK 58 default), with a keep rule for
@@ -227,7 +234,8 @@ and tooling.
 - `dd139b1` `/api/health` fails closed in production without `CRON_SECRET`.
 - `1ae5ee1` Deleting a song now asks for confirmation.
 - `a5493b2` `update-songs` validates the festival list before writing anything and exits 1 on
-  failure. It used to write `songs.ts`, then swallow the error.
+  failure. It used to write `songs.ts`, then swallow the error. (`58a6c9b` later made a missing
+  festival song a warning.)
 
 ### Docs
 
@@ -291,13 +299,14 @@ and tooling.
   Reset password email templates.
 - **RLS hardening** (`8fc3588`): Supabase's anonymous users get the `authenticated` role too, so
   enabling anonymous sign-ins would have made the whole database writable with the publishable
-  key that ships in the browser. `0002_editors_not_anonymous.sql` adds an `is_anonymous = false`
-  check to every policy. It can be re-run; 0001 is unchanged.
+  key that ships in the browser. `20261016021807_editors_not_anonymous.sql` (then `0002_…`) adds
+  an `is_anonymous = false` check to every policy. It can be re-run; the init migration is
+  unchanged.
 - **Unique positions** (`8422ccf`): two variants of one song could share a `position`, which made
   their order and the generated "Žodžiai N" names depend on Postgres's row order.
-  `0003_unique_child_positions.sql` renumbers any duplicates and adds a deferrable
-  `unique (song_id, position)` to all five child tables. `generate-metadata` now inserts at
-  max + 1. (The reorder approach from this commit was replaced by `07c7f22`.)
+  `20261016021831_unique_child_positions.sql` (then `0003_…`) renumbers any duplicates and adds
+  a deferrable `unique (song_id, position)` to all five child tables. `generate-metadata` now
+  inserts at max + 1. (The reorder approach from this commit was replaced by `07c7f22`.)
 - **Paging** (`9a3c984`): PostgREST silently caps a response at 1000 rows. The editor's song list
   and `generate-metadata` now use the export's paging loop (`src/lib/supabase/fetch-all.ts`),
   with the `id` tie-breaker.
@@ -355,8 +364,9 @@ and tooling.
 - `a390e0b` **Bug:** the variant menu remounted on every song-screen render, the same class of
   bug as `40ac348`. `titleWrapper` is now a render function.
 - `ddbac0a` **Bug:** the bottom search bar lagged the keyboard while it animated (the keyboard
-  height was multiplied by progress twice). It now uses `KeyboardStickyView`. Reduce Motion is
-  left to reanimated's springs.
+  height was multiplied by progress twice). It now uses `KeyboardStickyView`. It also left Reduce
+  Motion to reanimated's springs, which only read the setting at launch; `59529cd` undid that part
+  (see the last round below).
 - `9b0d0c2` **Bug: on iOS, sheet-music PDFs were downloaded without checking the TLS
   certificate.** react-native-pdf defaults `trustAllCerts` to true and the old workaround only
   turned it off on Android.
@@ -398,7 +408,7 @@ and tooling.
   catalogue.** It now drops disabled fields before validating, skips blank audio/PDF links with a
   SKIPPED warning, and `generate-indices` exits 1 on failure instead of leaving stale indices.
 - `137b78e` Dropped the stale compileSdk/targetSdk 36 pins; SDK 58 defaults to compileSdk 37.
-  `minSdkVersion` 26 stays.
+  (`671a97d` later dropped the `minSdkVersion` 26 pin too.)
 - `8b5d722` `withIosReleaseScheme` no longer requires an undeclared `glob`.
 - `6b469b2` `pnpm format` no longer rewrites generated files, the lockfile or build output.
 - `ef5581d` Dropped unused `markdown-it` and `eslint-plugin-expo`, `zod` moved to dependencies,
@@ -413,13 +423,53 @@ and tooling.
   landed on the home page**, after two hops. It now goes straight to
   `https://www.dainorelisapp.com/:path*`.
 
+### Last round: CNG, the migrations Action, Astro 7
+
+- `b4331b2` **`ios/` and `android/` are no longer committed (Continuous Native Generation).**
+  `npx expo prebuild` / `npx expo run:*` (or EAS) generate them from `app.config.ts` and
+  `plugins/`. Safety check before untracking: a clean `npx expo prebuild --clean --no-install`
+  reproduced the committed tree exactly, apart from random object IDs in `project.pbxproj`.
+  Release signing, the Release scheme, the privacy manifest, the Modekan font, the icon, the R8
+  keep rule and the Info.plist keys all come out of config. This also ends the stale build
+  numbers and expo-doctor's native-folders warning. `c03d11e` rewrote AGENTS.md, the README and
+  the layout-migration plan for this workflow (no more committing `Podfile.lock`).
+- `671a97d` `minSdkVersion` follows the SDK default (**24**, from React Native's version
+  catalog) instead of the pinned 26, as compileSdk and targetSdk already did.
+- `59529cd` **Bug, introduced earlier this session by `ddbac0a`: toggling Reduce Motion with the
+  app open did nothing until the next launch.** `ddbac0a` left Reduce Motion to reanimated, but
+  reanimated 4.7 reads the setting once at startup. Reduce Motion is back in the shared
+  accessibility store (still one query and one listener, so `dcb3101`'s win stays), and every
+  spring passes `ReduceMotion.Always`/`.Never` from the live value: the search bar, the header
+  title, and the audio player (which had only ever had the launch-time value). List scrolls use
+  `animated: !isReduceMotionEnabled`.
+- `58a6c9b` `update-songs` **warns** about a festival title that no longer matches a song, leaves
+  it out of `song-festival.ts` and carries on. Since `a5493b2` it had exited 1, so renaming one
+  song in the admin blocked every data update. Fetch and validation failures still exit 1.
+- `4000172` **Supabase migrations are applied by GitHub Actions**
+  (`.github/workflows/db-push.yml`, "Apply DB migrations"), modelled on your apartment-hunt repo:
+  `supabase link` + `supabase db push` from `admin/` with three repository secrets. It runs on
+  pushes to `main` that touch the migrations, the Supabase config or the workflow, can be run by
+  hand, and queues instead of racing. Supabase's migration history makes a re-run a no-op. The
+  migrations were renamed to the timestamp prefixes `supabase migration new` generates:
+  `20260819234728_init.sql`, `20261016021807_editors_not_anonymous.sql`,
+  `20261016021831_unique_child_positions.sql`. Tested with `supabase db push` against a fresh
+  Postgres: all three apply and a second push reports "up to date". `a364c6a` replaced the
+  README's "paste each migration into the SQL editor" step and added a "Changing the database
+  schema" section.
+- `9d905d3` **dainorelisapp.com: Astro 5 → 7** (7.4.0) and `@astrojs/vercel` 8 → **11**. Nothing
+  in the v6/v7 upgrade guides touches the site. The one break was Vite 8, which reads the
+  nearest tsconfig for every module: images imported through `~` landed on the app's tsconfig,
+  whose `extends: "expo/tsconfig.base"` the new resolver can't follow. `vite.tsconfig` now points
+  at the site's own tsconfig. Astro 7 needs **Node 22.22+**. Checked: the Vercel build output,
+  absolute `og:image`, `/qr` still redirects by user agent, and `astro check` is clean.
+
 ---
 
 ## Where the commit messages and the diffs disagree, or where to be careful
 
 - **`2cb53d8` quietly undoes `368bc74`.** The earlier dark-mode fix (module-level `Appearance` init and a defensive `useColorScheme`) was replaced on the theory that RN 0.85 fixed the bug. That theory hasn't been tested on a device. If dark mode or "auto" breaks again, look here first.
 - **`2cb53d8` bumped more than it listed:** safe-area-context 5.7, webview 13.16.1, react-native-web `~0.21.0`.
-- **`218d091` says expo-doctor passes "aside from a pre-existing prebuild/native-folders note".** That note is real: the committed native projects are SDK 56 while the JS is SDK 57.
+- **`218d091` says expo-doctor passes "aside from a pre-existing prebuild/native-folders note".** That note was real: the committed native projects were SDK 56 while the JS was SDK 57. `08ef613` regenerated them, and since `b4331b2` they aren't committed at all.
 - **`6f656e6` says the CMS is "deployed separately to admin.dainorelis.app" and "sign-ups are disabled in the dashboard".** Nothing in the repo provisions or confirms either one. Read both as a description of the intended setup, not of what has been done.
 - `admin/README.md` and `AGENTS.md` said `npm run update-songs` even though the repo has been pnpm since `ba9666c`. Phase 5 switched `AGENTS.md` (`16710f1`), both READMEs (`664a82c`) and the admin's `/export` page (`24a130d`) to pnpm.
 - **Several messages claimed `expo lint` passes.** Here, `expo lint` lints nothing, and real ESLint had been failing since `9fae3b6`. Phase 5 fixed it in `69b2176` (`pnpm lint` now runs `eslint .`) and `40ac348` (the actual errors).
@@ -433,13 +483,19 @@ and tooling.
 
 - [ ] `pnpm install` from a clean `node_modules` with Node 22.13+ / 24.3+ and pnpm 10.x (pnpm 9
       rejects the lockfile's patch hash). Confirm the react-native-screens patch applies.
-- [ ] On a Mac: `cd ios && pod install`, then open **`ios/Dainorelis.xcworkspace`** (renamed from
-      `Dainorlis`) and build. Commit the new `Podfile.lock`.
+- [ ] In an existing clone, delete the stale `ios/` and `android/` (git ignores them now, so a
+      pull leaves the old SDK 56 copies behind), or just run `npx expo prebuild --clean`.
+- [ ] On a Mac: `npx expo run:ios` (it prebuilds and runs `pod install`; pods resolve fresh and
+      there's nothing to commit), or open **`ios/Dainorelis.xcworkspace`** (renamed from
+      `Dainorlis`) after a prebuild and build there.
 - [ ] `npx expo run:android`, and **also a release build** (`--variant release`, with the
       `MYAPP_UPLOAD_*` properties in `~/.gradle/gradle.properties` or it's unsigned). R8 is on now:
       open a PDF-variant song to exercise pdfium, and play audio.
-- [ ] Before a store release, run `npx expo prebuild --clean` so the build number is current
-      (the committed native folders keep the old one).
+- [ ] Smoke-test on an **Android 7 (API 24) emulator** now that minSdk is the SDK default
+      (`671a97d`): launch, open a song, play audio, open a PDF.
+- [ ] Run `npx expo prebuild --clean` before **every** store build so the build number is
+      current: `expo run:*` only prebuilds a missing folder, and the ignored folders keep the
+      number they were generated with.
 
 ### Runtime checks on iOS (26+ and older) and Android
 
@@ -469,7 +525,11 @@ and tooling.
 - [ ] Deep links from a cold start: `dainorelis://dainos/<id>` and `dainorelis://nustatymai` clear
       the splash and back/close lands on the list. `dainorelis://dainos/does-not-exist` and
       `/vertimas` on a song without a translation show the not-found message.
-- [ ] Toggle Bold Text / Increase Contrast (Android: high-contrast text) with the app open.
+- [ ] Reduce Motion (`59529cd`): with the app open, toggle it (iOS Settings > Accessibility >
+      Motion; Android "Remove animations") and, without relaunching, check the bottom search bar
+      (Android, iOS < 26), the header title appearing as you scroll a song, and the audio player
+      opening and closing. They should jump with it on and spring with it off. Bold Text and
+      Increase Contrast (Android: high-contrast text) should follow live too.
 - [ ] Screen readers (`5394a9f`): VoiceOver and TalkBack read every icon button; double-tap opens
       the song ⋯, media and variant menus (the label sits on our wrapper View around `@expo/ui`'s
       menu trigger); the collapsed player and hidden search buttons are skipped.
@@ -477,8 +537,10 @@ and tooling.
 ### Admin CMS (Supabase + Vercel); none of it is provisioned yet
 
 - [ ] Create a Supabase project (the Vercel Marketplace wires `NEXT_PUBLIC_SUPABASE_URL`,
-      `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`). Run the migrations in order:
-      `0001_init.sql`, `0002_editors_not_anonymous.sql`, `0003_unique_child_positions.sql`.
+      `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`).
+- [ ] Add the GitHub repository secrets `SUPABASE_PROJECT_REF`, `SUPABASE_ACCESS_TOKEN` and
+      `SUPABASE_DB_PASSWORD`. Once this branch is on `main`, run **Actions → Apply DB migrations →
+      Run workflow** once. Later migrations apply themselves when they land on `main`.
 - [ ] Supabase Auth: turn **off** sign-ups and **keep anonymous sign-ins off**. Invite editors by
       hand.
 - [ ] Supabase auth emails, exactly as `admin/README.md` step 3: Site URL
@@ -489,6 +551,8 @@ and tooling.
       fine), domain `admin.dainorelis.app`, env `EXPORT_TOKEN` and **`CRON_SECRET`** (required in
       production).
 - [ ] In a browser, try invite → Continue → set password, and forgot password, once each.
+- [ ] Sign in as an editor and confirm reads and writes work. The migrations rely on Supabase's
+      default table grants, so a project with changed grants would fail here.
 - [ ] **Export Airtable as a backup** before cut-over, then
       `cd admin && pnpm import:airtable -- --dry-run`, then run it for real with `--yes`.
 - [ ] In the editor: reorder variants, delete one (confirm prompt), save with a validation error
@@ -503,39 +567,41 @@ and tooling.
 - [ ] Check the Vercel dashboards: is the root redirect project green after `a9d3d11`, and does
       `/qr` keep its path (`d868f85`)? Is `dainorelis-site` green after `2ffb01d` / `52d148f`? If
       either still fails, its dashboard settings may override `vercel.json`.
+- [ ] `dainorelis-site` project: Node **22.22+** for Astro 7 (22.x current or 24.x). Its server
+      function is about 41 MB (sharp binaries): fine, but worth knowing.
 - [ ] Paste dainorelisapp.com into a chat app and check the link preview has an image.
 
 ## Open decisions for you
 
-None of these have been answered yet.
+**Answered (2026-10-16):**
 
-1. **Song-festival mode.** There's been no toggle for it since `23998cf`, but `update-songs` still
-   builds `song-festival.ts` and `useSongList` still computes the sections. `update-songs` fails if
-   a festival song is renamed in the admin. Bring the mode back, or delete it (script, file,
-   i18n keys).
-2. **~124 MB of unreferenced binaries** (design files and screenshots) live in the repo. Delete them or move them elsewhere?
-3. **Astro 5 → 7** for `dainorelisapp.com`.
-4. **Continuous native generation (CNG):** gitignore `ios/` and `android/` and let EAS or
-   `expo run` generate them. The custom plugins already make prebuild the source of truth. This
-   would also fix the frozen build number and expo-doctor's native-folders warning.
-5. **`minSdkVersion` 26** vs React Native's default 24: a device-support call (`137b78e` kept 26).
-6. **`@supabase/ssr` 0.7 → 0.12** in the admin (forwards cache-control headers from the proxy).
-7. **Supabase type generation** to replace the admin's hand-written row types.
-8. **Concurrent editors can still overwrite each other.** `07c7f22` narrowed it (only changed
+- **Song-festival mode: not coming back.** `song-festival.ts`, its `update-songs` step and the
+  sections in `useSongList` stay on purpose, for the playlist feature you're building. A renamed
+  festival song now only warns (`58a6c9b`).
+- **~124 MB of design files and screenshots:** keep them in the repo.
+- **Astro 7:** done (`9d905d3`).
+- **CNG:** done (`b4331b2`).
+- **`minSdkVersion`:** the SDK default, 24 (`671a97d`).
+- **Android header: keep the custom green header** (`9b03cd7`). Android `Stack.Toolbar` would
+  only swap the button styling and can't host the bottom search. Reopen this only if you want a
+  stock Material look. See `docs/plans/android-stack-toolbar.md`.
+
+**Still open:**
+
+1. **`@supabase/ssr` 0.7 → 0.12** in the admin (forwards cache-control headers from the proxy).
+2. **Supabase type generation** to replace the admin's hand-written row types.
+3. **Concurrent editors can still overwrite each other.** `07c7f22` narrowed it (only changed
    variants are written), but there's no version check, so two editors saving the same variant
    lose one edit, and a variant deleted mid-reorder comes back blank.
-9. **CI:** a GitHub Actions workflow running tsc and ESLint for the app and admin. On hold.
-10. **Master-detail / iPhone Duo:** recommended approach is a width-based layout route (5–8 days),
-    after a short Device Hub test pass. See `docs/plans/master-detail-iphone-duo.md`.
-11. **App Intents:** Spotlight search for all 619 songs is the realistic win (Siri has no
-    Lithuanian), and the library is alpha. Estimated 1–1.5 weeks. See
-    `docs/plans/app-intents-song-search.md`.
-12. **Layout migration:** when to run the at-the-keyboard session in
-    `docs/plans/interactive-layout-migration.md` (it needs the device checklist above first).
-13. **Android header: decided. Keep the custom green header** (`9b03cd7`). Android `Stack.Toolbar`
-    would only swap the button styling and can't host the bottom search. Reopen this only if you
-    want a stock Material look. The header buttons now have accessibility labels (`5394a9f`). See
-    `docs/plans/android-stack-toolbar.md`.
+4. **CI:** a GitHub Actions workflow running tsc and ESLint for the app and admin. On hold. (The
+   only workflow so far is Apply DB migrations.)
+5. **Master-detail / iPhone Duo:** recommended approach is a width-based layout route (5–8 days),
+   after a short Device Hub test pass. See `docs/plans/master-detail-iphone-duo.md`.
+6. **App Intents:** Spotlight search for all 619 songs is the realistic win (Siri has no
+   Lithuanian), and the library is alpha. Estimated 1–1.5 weeks. See
+   `docs/plans/app-intents-song-search.md`.
+7. **Layout migration:** when to run the at-the-keyboard session in
+   `docs/plans/interactive-layout-migration.md` (it needs the device checklist above first).
 
 **Not decisions, just possible later cleanups:**
 
