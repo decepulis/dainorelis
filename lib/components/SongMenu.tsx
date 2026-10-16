@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Stack, router } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 
 import Feedback from '@expo/material-symbols/feedback.xml';
 import MenuBook from '@expo/material-symbols/menu_book.xml';
@@ -23,6 +23,7 @@ type Props = {
   hasChords: boolean;
 };
 export default function SongMenu({ song, hasChords }: Props) {
+  const router = useRouter();
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
@@ -98,6 +99,7 @@ type SongDetailToolbarProps = {
   onToggleFavorite: () => void;
 };
 export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorite }: SongDetailToolbarProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');

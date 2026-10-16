@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { createMMKV } from 'react-native-mmkv';
 
 import { z } from 'zod';
@@ -77,7 +77,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     ) as StorageContextValues;
   });
 
-  const setValue: StorageContextSetValue = useCallback(async function (key, value) {
+  const setValue: StorageContextSetValue = async function (key, value) {
     try {
       // validate the value
       const { validator } = schemas[key];
@@ -99,7 +99,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
       }
       throw e;
     }
-  }, []);
+  };
 
   return <StorageContext.Provider value={{ values, setValue }}>{children}</StorageContext.Provider>;
 }

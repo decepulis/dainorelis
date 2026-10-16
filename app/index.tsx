@@ -1,4 +1,4 @@
-import React, { startTransition, useCallback, useState } from 'react';
+import React, { startTransition, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
@@ -58,12 +58,9 @@ export default function Index() {
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
-  const calculateTitleHeight = useCallback(
-    (event: LayoutChangeEvent) => {
-      titleLayout.set(event.nativeEvent.layout);
-    },
-    [titleLayout]
-  );
+  const calculateTitleHeight = (event: LayoutChangeEvent) => {
+    titleLayout.set(event.nativeEvent.layout);
+  };
 
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(width - 80, 360);

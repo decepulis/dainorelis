@@ -4,16 +4,16 @@ import Animated, {
   AnimatedRef,
   Extrapolation,
   SharedValue,
+  WithSpringConfig,
   interpolate,
   useAnimatedStyle,
   useScrollOffset,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
 
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
-import { Link, Stack, router } from 'expo-router';
+import { Link, Stack, useRouter } from 'expo-router';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
@@ -21,7 +21,7 @@ import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
 
-const springConfig: SpringConfig = {
+const springConfig: WithSpringConfig = {
   mass: 1,
   damping: 50,
   stiffness: 500,
@@ -271,6 +271,7 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
 };
 
 export function ModalToolbar() {
+  const router = useRouter();
   if (!isLiquidGlassStyleHeader()) return null;
   return (
     <Stack.Toolbar placement="left">
