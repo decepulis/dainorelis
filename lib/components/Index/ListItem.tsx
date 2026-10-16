@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
+import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
@@ -96,7 +96,8 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
   const renderRightActions = () => (
-    <RectButton
+    <Touchable
+      {...rowPressFeedback}
       style={[styles.swipeAction, { backgroundColor: primary }]}
       onPress={() => {
         toggleFavorite();
@@ -104,7 +105,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
       }}
     >
       <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
-    </RectButton>
+    </Touchable>
   );
 
   return (
@@ -120,7 +121,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
       >
         <Link href={`/dainos/${item.id}`} asChild>
           <Link.Trigger>
-            <RectButton>
+            <Touchable {...rowPressFeedback}>
               <View
                 style={[
                   styles.itemContainer,
@@ -144,7 +145,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
                   <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
                 ) : null}
               </View>
-            </RectButton>
+            </Touchable>
           </Link.Trigger>
           <Link.Preview
             style={{
@@ -212,6 +213,12 @@ export function ListHeader({ title, background, separator }: { title: string; ba
     </View>
   );
 }
+
+// Android gets a ripple, iOS a dark underlay (what RectButton used to do)
+const rowPressFeedback: Pick<TouchableProps, 'androidRipple' | 'underlayColor'> = Platform.select({
+  android: { androidRipple: {} },
+  default: { underlayColor: 'black' },
+});
 
 const iconStyle = (iconSize: number) => ({
   width: iconSize,

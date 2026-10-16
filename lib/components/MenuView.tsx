@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { MenuView as LibMenuView } from '@react-native-menu/menu';
 
-import { buttonSlop, styles as buttonStyles } from './Button';
+import { buttonSlop } from './Button';
 
 type Props = {
   /**
@@ -55,7 +55,7 @@ const MenuView = ({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMen
       }}
       {...props}
     >
-      <View style={[buttonStyles.container, hitSlopPadding, { opacity: isMenuOpen ? 0.5 : 1 }, style]}>{children}</View>
+      <View style={[hitSlopPadding, { opacity: isMenuOpen ? 0.5 : 1 }, style]}>{children}</View>
     </LibMenuView>
   );
 };
