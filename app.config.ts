@@ -38,6 +38,30 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     infoPlist: {
       UIBackgroundModes: ['audio'],
     },
+    // Required-reason API declarations. Previously a hand-carried PrivacyInfo.xcprivacy in ios/;
+    // declared here so prebuild regenerates it.
+    privacyManifests: {
+      NSPrivacyTracking: false,
+      NSPrivacyCollectedDataTypes: [],
+      NSPrivacyAccessedAPITypes: [
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults',
+          NSPrivacyAccessedAPITypeReasons: ['CA92.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp',
+          NSPrivacyAccessedAPITypeReasons: ['C617.1', '0A2A.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryDiskSpace',
+          NSPrivacyAccessedAPITypeReasons: ['85F4.1', 'E174.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime',
+          NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+        },
+      ],
+    },
   },
   android: {
     adaptiveIcon: {
@@ -80,6 +104,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           minSdkVersion: 26,
           compileSdkVersion: 36,
           targetSdkVersion: 36,
+          // SDK 58 enables R8 in release builds. react-native-pdf's pdfium binding is reached
+          // through JNI by class name, so R8 must not rename or strip it.
+          extraProguardRules: '-keep class io.legere.pdfiumandroid.** { *; }',
         },
       },
     ],
