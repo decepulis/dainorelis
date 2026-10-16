@@ -149,13 +149,13 @@ function SongPage({ song }: { song: Song }) {
               showTitle={isLyrics(activeVariant) ? undefined : true}
               titleWrapper={
                 hasMultipleVariants
-                  ? ({ children }) => (
+                  ? (title) => (
                       <VariantMenu
                         variants={variants}
                         activeVariantId={activeVariantId}
                         setActiveVariantId={setActiveVariantId}
                       >
-                        {children}
+                        {title}
                       </VariantMenu>
                     )
                   : undefined

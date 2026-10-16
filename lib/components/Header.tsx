@@ -67,7 +67,11 @@ type HeaderTitleProps = {
   titleLayout?: SharedValue<LayoutRectangle | null>;
   showTitle?: boolean;
   children?: React.ReactNode;
-  titleWrapper?: React.FC<{ children: React.ReactNode }>;
+  /**
+   * Wraps the title, e.g. in a menu. A render function, not a component: an inline component would be a
+   * new type on every render and remount whatever it wraps (the native variant menu).
+   */
+  titleWrapper?: (title: React.ReactNode) => React.ReactNode;
   title?: string;
   subtitle?: string;
   variantName?: string;
@@ -84,7 +88,6 @@ export const HeaderTitle = ({
   variantName,
   center,
 }: HeaderTitleProps) => {
-  const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
 
   // @ts-expect-error useScrollOffset doesn't know this works with flatlist
@@ -139,6 +142,106 @@ export const HeaderTitle = ({
     };
   });
 
+  const content = (
+    <>
+      <Animated.View style={[animatedTitleStyle]}>
+        {title ? (
+          <ThemedText
+            numberOfLines={1}
+            bold
+            style={[
+              {
+                fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
+                lineHeight: hasSubtitleOrVariantName
+                  ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
+                  : titleFontSize * titleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: !variantName ? 1 : 0,
+              },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
+            ]}
+          >
+            {title}
+          </ThemedText>
+        ) : typeof children === 'string' ? (
+          <ThemedText>{children}</ThemedText>
+        ) : (
+          children
+        )}
+        {showSubtitle ? (
+          <ThemedText
+            numberOfLines={1}
+            style={[
+              {
+                fontSize: subtitleFontSize,
+                lineHeight: subtitleFontSize * subtitleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: 0,
+              },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
+            ]}
+          >
+            {subtitle}
+          </ThemedText>
+        ) : null}
+      </Animated.View>
+      {variantName ? (
+        <Animated.View
+          style={[
+            animatedVariantNameStyle,
+            {
+              // width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              transformOrigin: 'left center',
+              justifyContent: 'flex-start',
+              gap: 4,
+            },
+          ]}
+        >
+          <ThemedText
+            numberOfLines={1}
+            style={[
+              {
+                fontSize: subtitleFontSize,
+                lineHeight: subtitleFontSize * subtitleLineHeight,
+                textAlign: 'left',
+                position: 'relative',
+                top: 0,
+              },
+              isLiquidGlassStyleHeader()
+                ? {
+                    color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
+                  }
+                : { color: '#fff' },
+            ]}
+          >
+            {variantName}
+          </ThemedText>
+          {hasTitleWrapper ? (
+            <FontAwesome6
+              name="circle-chevron-down"
+              iconStyle="solid"
+              size={9}
+              color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
+              style={{ marginTop: -1 }}
+            />
+          ) : null}
+        </Animated.View>
+      ) : null}
+    </>
+  );
+
   return (
     <View
       style={[
@@ -150,103 +253,7 @@ export const HeaderTitle = ({
         },
       ]}
     >
-      <TitleWrapper>
-        <Animated.View style={[animatedTitleStyle]}>
-          {title ? (
-            <ThemedText
-              numberOfLines={1}
-              bold
-              style={[
-                {
-                  fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
-                  lineHeight: hasSubtitleOrVariantName
-                    ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
-                    : titleFontSize * titleLineHeight,
-                  textAlign: 'left',
-                  position: 'relative',
-                  top: !variantName ? 1 : 0,
-                },
-                isLiquidGlassStyleHeader()
-                  ? {
-                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
-                    }
-                  : { color: '#fff' },
-              ]}
-            >
-              {title}
-            </ThemedText>
-          ) : typeof children === 'string' ? (
-            <ThemedText>{children}</ThemedText>
-          ) : (
-            children
-          )}
-          {showSubtitle ? (
-            <ThemedText
-              numberOfLines={1}
-              style={[
-                {
-                  fontSize: subtitleFontSize,
-                  lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: 'left',
-                  position: 'relative',
-                  top: 0,
-                },
-                isLiquidGlassStyleHeader()
-                  ? {
-                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
-                    }
-                  : { color: '#fff' },
-              ]}
-            >
-              {subtitle}
-            </ThemedText>
-          ) : null}
-        </Animated.View>
-        {variantName ? (
-          <Animated.View
-            style={[
-              animatedVariantNameStyle,
-              {
-                // width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                transformOrigin: 'left center',
-                justifyContent: 'flex-start',
-                gap: 4,
-              },
-            ]}
-          >
-            <ThemedText
-              numberOfLines={1}
-              style={[
-                {
-                  fontSize: subtitleFontSize,
-                  lineHeight: subtitleFontSize * subtitleLineHeight,
-                  textAlign: 'left',
-                  position: 'relative',
-                  top: 0,
-                },
-                isLiquidGlassStyleHeader()
-                  ? {
-                      color: DynamicColorIOS({ light: '#000', dark: '#fff' }),
-                    }
-                  : { color: '#fff' },
-              ]}
-            >
-              {variantName}
-            </ThemedText>
-            {hasTitleWrapper ? (
-              <FontAwesome6
-                name="circle-chevron-down"
-                iconStyle="solid"
-                size={9}
-                color={isLiquidGlassStyleHeader() ? DynamicColorIOS({ light: '#000', dark: '#fff' }) : '#fff'}
-                style={{ marginTop: -1 }}
-              />
-            ) : null}
-          </Animated.View>
-        ) : null}
-      </TitleWrapper>
+      {titleWrapper ? titleWrapper(content) : content}
     </View>
   );
 };
