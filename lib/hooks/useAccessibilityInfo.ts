@@ -3,7 +3,6 @@ import { AccessibilityInfo } from 'react-native';
 
 type State = {
   isBoldTextEnabled: boolean;
-  isReduceMotionEnabled: boolean;
   isHighTextContrastEnabled: boolean; // Android
   isDarkerSystemColorsEnabled: boolean; // iOS "Increase Contrast"
 };
@@ -12,7 +11,6 @@ type State = {
 // queries and change listeners run once, not once per component.
 let state: State = {
   isBoldTextEnabled: false,
-  isReduceMotionEnabled: false,
   isHighTextContrastEnabled: false,
   isDarkerSystemColorsEnabled: false,
 };
@@ -33,7 +31,6 @@ function start() {
 
   const sources = [
     ['isBoldTextEnabled', () => AccessibilityInfo.isBoldTextEnabled(), 'boldTextChanged'],
-    ['isReduceMotionEnabled', () => AccessibilityInfo.isReduceMotionEnabled(), 'reduceMotionChanged'],
     ['isHighTextContrastEnabled', () => AccessibilityInfo.isHighTextContrastEnabled(), 'highTextContrastChanged'],
     ['isDarkerSystemColorsEnabled', () => AccessibilityInfo.isDarkerSystemColorsEnabled(), 'darkerSystemColorsChanged'],
   ] as const;
@@ -62,12 +59,15 @@ function subscribe(listener: () => void) {
 const getSnapshot = () => state;
 
 export default function useAccessibilityInfo() {
-  const { isBoldTextEnabled, isReduceMotionEnabled, isHighTextContrastEnabled, isDarkerSystemColorsEnabled } =
-    useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+  const { isBoldTextEnabled, isHighTextContrastEnabled, isDarkerSystemColorsEnabled } = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getSnapshot
+  );
 
+  // for reduce motion, use reanimated's useReducedMotion() (its springs already follow it)
   return {
     isBoldTextEnabled,
-    isReduceMotionEnabled,
     isHighContrastEnabled: isHighTextContrastEnabled || isDarkerSystemColorsEnabled,
     isDarkerSystemColorsEnabled,
   };

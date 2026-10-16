@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, TextInput, type TextInputInstance, View } from 'react-native';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import { Platform, StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
+import { KeyboardStickyView } from 'react-native-keyboard-controller';
 import Animated, {
   AnimatedRef,
   WithSpringConfig,
   createAnimatedComponent,
   useAnimatedStyle,
+  useReducedMotion,
   withSpring,
 } from 'react-native-reanimated';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -28,7 +29,6 @@ import { isLiquidGlassStyleHeader } from '../Header';
 import MenuView from '../MenuView';
 import ThemedText from '../ThemedText';
 
-const AnimatedGlassContainer = createAnimatedComponent(GlassContainer);
 const AnimatedGlassView = createAnimatedComponent(GlassView);
 const expandedSearchHeight = 44;
 const buttonSize = 44;
@@ -69,16 +69,9 @@ export default function Search({
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const searchRef = useRef<TextInputInstance>(null);
-  const { isBoldTextEnabled, isReduceMotionEnabled } = useAccessibilityInfo();
-  const { height, progress } = useReanimatedKeyboardAnimation();
-
-  const containerAnimatedStyle = useAnimatedStyle(() => {
-    const keyboardHeight = height.get();
-    const keyboardProgress = progress.get();
-    return {
-      transform: [{ translateY: keyboardHeight * keyboardProgress }],
-    };
-  });
+  const { isBoldTextEnabled } = useAccessibilityInfo();
+  // reanimated's springs already honor the system Reduce Motion setting; only the scroll needs telling
+  const isReduceMotionEnabled = useReducedMotion();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isAppWide = width > maxWidth;
@@ -91,8 +84,8 @@ export default function Search({
     const targetScale = isSearchOpen ? 0 : 1;
     const targetLeft = isSearchOpen ? padding * 2 : padding * 1.25;
     return {
-      transform: [{ scale: isReduceMotionEnabled ? targetScale : withSpring(targetScale, springConfig) }],
-      left: isReduceMotionEnabled ? targetLeft : withSpring(targetLeft, springConfig),
+      transform: [{ scale: withSpring(targetScale, springConfig) }],
+      left: withSpring(targetLeft, springConfig),
     };
   });
 
@@ -102,9 +95,9 @@ export default function Search({
     const targetRight = isSearchOpen ? expandedSearchHeight + padding * 1.25 + padding : padding * 1.25;
 
     return {
-      width: isReduceMotionEnabled ? targetWidth : withSpring(targetWidth, springConfig),
-      height: isReduceMotionEnabled ? targetHeight : withSpring(targetHeight, springConfig),
-      right: isReduceMotionEnabled ? targetRight : withSpring(targetRight, springConfig),
+      width: withSpring(targetWidth, springConfig),
+      height: withSpring(targetHeight, springConfig),
+      right: withSpring(targetRight, springConfig),
     };
   });
 
@@ -113,8 +106,8 @@ export default function Search({
     const targetRight = isSearchOpen ? padding * 1.25 : buttonSize + padding * 1.25;
 
     return {
-      right: isReduceMotionEnabled ? targetRight : withSpring(targetRight, springConfig),
-      transform: [{ scale: isReduceMotionEnabled ? targetScale : withSpring(targetScale, springConfig) }],
+      right: withSpring(targetRight, springConfig),
+      transform: [{ scale: withSpring(targetScale, springConfig) }],
     };
   });
 
@@ -140,179 +133,179 @@ export default function Search({
   const playlistTitle = isFavorites ? t('favoriteSongs') : t('allSongs');
 
   return (
-    <AnimatedGlassContainer
-      style={[
-        {
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: inset.bottom + expandedSearchHeight,
-          flexBasis: inset.bottom + expandedSearchHeight,
-        },
-        containerAnimatedStyle,
-      ]}
+    // rides on top of the keyboard as it opens and closes
+    <KeyboardStickyView
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: inset.bottom + expandedSearchHeight,
+        flexBasis: inset.bottom + expandedSearchHeight,
+      }}
     >
-      <LinearGradient
-        colors={[`${background}00`, `${background}AA`, background]}
-        start={{ x: 0.5, y: 0.1 }}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          height: inset.bottom + padding / 2 + buttonSize,
-          left: 0,
-          right: 0,
-        }}
-      />
-      {/* Cancel Button */}
-      <AnimatedGlassView
-        // tintColor={primary}
-        isInteractive
-        // scaled to nothing while search is closed, so keep screen readers off it too
-        accessibilityElementsHidden={!isSearchOpen}
-        importantForAccessibility={isSearchOpen ? 'auto' : 'no-hide-descendants'}
-        style={[
-          {
+      <GlassContainer style={StyleSheet.absoluteFill}>
+        <LinearGradient
+          colors={[`${background}00`, `${background}AA`, background]}
+          start={{ x: 0.5, y: 0.1 }}
+          style={{
             position: 'absolute',
-            bottom: inset.bottom,
-            width: expandedSearchHeight,
-            height: expandedSearchHeight,
-            borderRadius: expandedSearchHeight / 2,
-            overflow: 'hidden',
-          },
-          cancelButtonAnimatedStyle,
-        ]}
-      >
-        <Button
-          noGlass
-          accessibilityLabel={t('clearSearch')}
-          onPress={() => {
-            clearSearchText();
-            setIsSearchOpen(false);
-            searchRef.current?.blur();
+            bottom: 0,
+            height: inset.bottom + padding / 2 + buttonSize,
+            left: 0,
+            right: 0,
           }}
-          innerStyle={{
-            width: expandedSearchHeight,
-            height: expandedSearchHeight,
-            flexBasis: expandedSearchHeight,
-            borderRadius: expandedSearchHeight / 2,
-          }}
-        >
-          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color={color} />
-        </Button>
-      </AnimatedGlassView>
-      {/* Playlist Menu */}
-      <AnimatedGlassView
-        // tintColor={primary}
-        isInteractive
-        // scaled to nothing while search is open
-        accessibilityElementsHidden={isSearchOpen}
-        importantForAccessibility={isSearchOpen ? 'no-hide-descendants' : 'auto'}
-        style={[
-          playlistMenuAnimatedStyle,
-          {
-            position: 'absolute',
-            bottom: inset.bottom,
-            height: buttonSize,
-            borderRadius: buttonSize,
-            overflow: 'hidden',
-          },
-        ]}
-      >
-        <MenuView
-          actions={[
+        />
+        {/* Cancel Button */}
+        <AnimatedGlassView
+          // tintColor={primary}
+          isInteractive
+          // scaled to nothing while search is closed, so keep screen readers off it too
+          accessibilityElementsHidden={!isSearchOpen}
+          importantForAccessibility={isSearchOpen ? 'auto' : 'no-hide-descendants'}
+          style={[
             {
-              id: 'allSongs',
-              title: t('allSongs'),
-              state: isFavorites ? 'off' : 'on',
+              position: 'absolute',
+              bottom: inset.bottom,
+              width: expandedSearchHeight,
+              height: expandedSearchHeight,
+              borderRadius: expandedSearchHeight / 2,
+              overflow: 'hidden',
             },
+            cancelButtonAnimatedStyle,
+          ]}
+        >
+          <Button
+            noGlass
+            accessibilityLabel={t('clearSearch')}
+            onPress={() => {
+              clearSearchText();
+              setIsSearchOpen(false);
+              searchRef.current?.blur();
+            }}
+            innerStyle={{
+              width: expandedSearchHeight,
+              height: expandedSearchHeight,
+              flexBasis: expandedSearchHeight,
+              borderRadius: expandedSearchHeight / 2,
+            }}
+          >
+            <FontAwesome6 name="xmark" iconStyle="solid" size={18} color={color} />
+          </Button>
+        </AnimatedGlassView>
+        {/* Playlist Menu */}
+        <AnimatedGlassView
+          // tintColor={primary}
+          isInteractive
+          // scaled to nothing while search is open
+          accessibilityElementsHidden={isSearchOpen}
+          importantForAccessibility={isSearchOpen ? 'no-hide-descendants' : 'auto'}
+          style={[
+            playlistMenuAnimatedStyle,
             {
-              id: 'favoriteSongs',
-              title: t('favoriteSongs'),
-              state: isFavorites ? 'on' : 'off',
+              position: 'absolute',
+              bottom: inset.bottom,
+              height: buttonSize,
+              borderRadius: buttonSize,
+              overflow: 'hidden',
             },
           ]}
-          onPressAction={({ nativeEvent }) => {
-            setIsFavorites(nativeEvent.event === 'favoriteSongs');
-            scrollToTop();
-          }}
         >
-          <ButtonSurface
-            style={[
-              buttonStyles.button,
+          <MenuView
+            actions={[
               {
-                width: 'auto',
-                flexBasis: '100%',
-                flexDirection: 'row',
-                gap: padding / 3,
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: buttonSize / 3,
+                id: 'allSongs',
+                title: t('allSongs'),
+                state: isFavorites ? 'off' : 'on',
+              },
+              {
+                id: 'favoriteSongs',
+                title: t('favoriteSongs'),
+                state: isFavorites ? 'on' : 'off',
               },
             ]}
-          >
-            <ThemedText bold adjustsFontSizeToFit numberOfLines={1} style={{ fontSize: 17, color }}>
-              {playlistTitle}
-            </ThemedText>
-            <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
-          </ButtonSurface>
-        </MenuView>
-      </AnimatedGlassView>
-      {/* Search Box */}
-      <AnimatedGlassView
-        // tintColor={primary}
-        isInteractive
-        style={[
-          {
-            position: 'absolute',
-            bottom: inset.bottom,
-            borderRadius: buttonSize,
-            overflow: 'hidden',
-          },
-          searchBoxAnimatedStyle,
-        ]}
-      >
-        <ButtonSurface style={{ position: 'absolute', inset: 0 }}>
-          <TextInput
-            style={[
-              isBoldTextEnabled ? fonts.bold : fonts.regular,
-              {
-                height: '100%',
-                color,
-                marginRight: !isSearchOpen ? 0 : Platform.OS === 'ios' ? 10 : buttonSize,
-                marginLeft: !isSearchOpen ? 0 : buttonSize,
-              },
-            ]}
-            accessibilityLabel={t('search')}
-            clearButtonMode="never"
-            autoCorrect={false}
-            ref={searchRef}
-            onChangeText={onChangeText}
-            onFocus={() => {
+            onPressAction={({ nativeEvent }) => {
+              setIsFavorites(nativeEvent.event === 'favoriteSongs');
               scrollToTop();
-              setIsSearchOpen(true);
-            }}
-            returnKeyType="done"
-            selectionColor={color}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: buttonSize,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              pointerEvents: 'none',
             }}
           >
-            <FontAwesome6 name="magnifying-glass" iconStyle="solid" size={14} color={color} />
-          </View>
-        </ButtonSurface>
-      </AnimatedGlassView>
-    </AnimatedGlassContainer>
+            <ButtonSurface
+              style={[
+                buttonStyles.button,
+                {
+                  width: 'auto',
+                  flexBasis: '100%',
+                  flexDirection: 'row',
+                  gap: padding / 3,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingHorizontal: buttonSize / 3,
+                },
+              ]}
+            >
+              <ThemedText bold adjustsFontSizeToFit numberOfLines={1} style={{ fontSize: 17, color }}>
+                {playlistTitle}
+              </ThemedText>
+              <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
+            </ButtonSurface>
+          </MenuView>
+        </AnimatedGlassView>
+        {/* Search Box */}
+        <AnimatedGlassView
+          // tintColor={primary}
+          isInteractive
+          style={[
+            {
+              position: 'absolute',
+              bottom: inset.bottom,
+              borderRadius: buttonSize,
+              overflow: 'hidden',
+            },
+            searchBoxAnimatedStyle,
+          ]}
+        >
+          <ButtonSurface style={{ position: 'absolute', inset: 0 }}>
+            <TextInput
+              style={[
+                isBoldTextEnabled ? fonts.bold : fonts.regular,
+                {
+                  height: '100%',
+                  color,
+                  marginRight: !isSearchOpen ? 0 : Platform.OS === 'ios' ? 10 : buttonSize,
+                  marginLeft: !isSearchOpen ? 0 : buttonSize,
+                },
+              ]}
+              accessibilityLabel={t('search')}
+              clearButtonMode="never"
+              autoCorrect={false}
+              ref={searchRef}
+              onChangeText={onChangeText}
+              onFocus={() => {
+                scrollToTop();
+                setIsSearchOpen(true);
+              }}
+              returnKeyType="done"
+              selectionColor={color}
+            />
+            <View
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: buttonSize,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                pointerEvents: 'none',
+              }}
+            >
+              <FontAwesome6 name="magnifying-glass" iconStyle="solid" size={14} color={color} />
+            </View>
+          </ButtonSurface>
+        </AnimatedGlassView>
+      </GlassContainer>
+    </KeyboardStickyView>
   );
 }
 
