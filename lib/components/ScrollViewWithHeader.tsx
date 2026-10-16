@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import Animated, { type AnimatedRef, type AnimatedScrollViewProps } from 'react-native-reanimated';
 
 import { useHeaderHeight } from 'expo-router/react-navigation';
@@ -7,7 +6,7 @@ export const useContentContainerStyle = () => {
   const headerHeight = useHeaderHeight();
   return {
     marginTop: headerHeight,
-    paddingBottom: Platform.OS === 'android' ? headerHeight : 0,
+    paddingBottom: process.env.EXPO_OS === 'android' ? headerHeight : 0,
   };
 };
 

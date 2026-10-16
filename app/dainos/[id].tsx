@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -246,7 +246,7 @@ function SongPage({ song }: { song: Song }) {
           </View>
         </ScrollViewWithHeader>
       ) : (
-        <View style={{ flex: 1, paddingTop: Platform.OS === 'android' ? headerHeight : undefined }}>
+        <View style={{ flex: 1, paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}>
           {/* TODO scroll is off on load? */}
           <Pdf
             source={{ uri: activeVariant.URL, cache: true }}

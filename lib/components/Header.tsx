@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DynamicColorIOS, LayoutRectangle, Platform, View } from 'react-native';
+import { DynamicColorIOS, LayoutRectangle, View } from 'react-native';
 import Animated, {
   AnimatedRef,
   Extrapolation,
@@ -28,8 +28,8 @@ const springConfig: WithSpringConfig = {
   stiffness: 500,
 };
 
-export const isLiquidGlassStyleHeader = () =>
-  Platform.OS === 'ios' && parseInt(Platform.Version as string, 10) >= 26 && isLiquidGlassAvailable();
+// expo-glass-effect's native constant is already false below iOS 26 (and off iOS), and it's cached
+export const isLiquidGlassStyleHeader = () => isLiquidGlassAvailable();
 
 type HeaderBackgroundProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
@@ -265,7 +265,7 @@ type HeaderLeftProps = {
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   const { t } = useTranslation();
-  const isClose = modal && Platform.OS === 'ios';
+  const isClose = modal && process.env.EXPO_OS === 'ios';
   // role overrides the 'link' role Link passes down: this is a navigation-bar button
   return (
     <Link href={href ?? (canGoBack ? '../' : '/')} asChild>

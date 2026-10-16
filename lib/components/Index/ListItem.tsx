@@ -171,7 +171,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
           </Link.Menu>
         </Link>
       </ReanimatedSwipeable>
-      {Platform.OS === 'ios' && !isLast ? (
+      {process.env.EXPO_OS === 'ios' && !isLast ? (
         <View
           style={{
             position: 'absolute',
@@ -202,7 +202,7 @@ export function ListHeader({ title, background, separator }: { title: string; ba
           styles.container,
           {
             borderBottomColor: separator,
-            borderBottomWidth: Platform.OS === 'ios' ? StyleSheet.hairlineWidth : 0,
+            borderBottomWidth: process.env.EXPO_OS === 'ios' ? StyleSheet.hairlineWidth : 0,
           },
         ]}
       >

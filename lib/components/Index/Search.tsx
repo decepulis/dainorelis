@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
+import { StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 import Animated, {
   AnimatedRef,
@@ -268,7 +268,7 @@ export default function Search({
                 {
                   height: '100%',
                   color,
-                  marginRight: !isSearchOpen ? 0 : Platform.OS === 'ios' ? 10 : buttonSize,
+                  marginRight: !isSearchOpen ? 0 : process.env.EXPO_OS === 'ios' ? 10 : buttonSize,
                   marginLeft: !isSearchOpen ? 0 : buttonSize,
                 },
               ]}

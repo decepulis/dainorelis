@@ -32,7 +32,7 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
 ]);
 
 const fontSize = 19;
-const lineHeight = Platform.OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
+const lineHeight = process.env.EXPO_OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
 const chordHeight = 15;
 
 const styles = StyleSheet.create({
