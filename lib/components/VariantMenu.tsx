@@ -50,6 +50,8 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
         actions={actions}
         onPressAction={onPressAction}
         title={t('variantsMenuTitle')}
+        // the label is the title and variant name the trigger shows
+        accessibilityHint={t('variantsMenuHint')}
       >
         {children}
       </MenuView>

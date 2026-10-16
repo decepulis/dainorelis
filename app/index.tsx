@@ -105,7 +105,7 @@ export default function Index() {
             ? () => (
                 <HeaderButtonContainer>
                   <Link href="/nustatymai" asChild>
-                    <Button>
+                    <Button role="button" accessibilityLabel={t('settingsTitle')}>
                       <FontAwesome6 name="sliders" iconStyle="solid" size={16} color="#fff" />
                     </Button>
                   </Link>

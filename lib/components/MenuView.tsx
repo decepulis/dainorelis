@@ -20,13 +20,29 @@ type Props = {
     left: number;
     right: number;
   }>;
+  /**
+   * screen reader name for the trigger; without it, the trigger's text children are read instead.
+   * @expo/ui leaves the trigger to declare its own accessibility (its Android Pressable is
+   * `accessible={false}`), so it goes on our wrapper View, the element that takes focus
+   */
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 } & Omit<MenuComponentProps, 'colorScheme'>;
 
 /**
  * Native menu (SwiftUI Menu on iOS, Compose DropdownMenu on Android) with the app's hit slop
  * and color scheme applied.
  */
-export default function MenuView({ hitSlop: argHitSlop, children, style, onOpenMenu, onCloseMenu, ...props }: Props) {
+export default function MenuView({
+  hitSlop: argHitSlop,
+  children,
+  style,
+  onOpenMenu,
+  onCloseMenu,
+  accessibilityLabel,
+  accessibilityHint,
+  ...props
+}: Props) {
   const colorScheme = useColorScheme();
   const hitSlop = {
     ...buttonSlop,
@@ -56,6 +72,10 @@ export default function MenuView({ hitSlop: argHitSlop, children, style, onOpenM
       {...props}
     >
       <View
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint={accessibilityHint}
         style={[
           {
             paddingLeft: hitSlop.left,
