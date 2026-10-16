@@ -1,4 +1,5 @@
 import LoginForm from './login-form';
+import { redirectTarget } from './redirect-target';
 
 /**
  * Server component so the `next` redirect target comes off the request rather
@@ -8,8 +9,7 @@ import LoginForm from './login-form';
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
   const { next } = await searchParams;
 
-  // Only ever redirect within this app.
-  const target = next && next.startsWith('/') ? next : '/';
+  const target = redirectTarget(next);
 
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center gap-6 p-6">

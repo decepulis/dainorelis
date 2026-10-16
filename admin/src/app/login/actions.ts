@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/supabase/server';
 
+import { redirectTarget } from './redirect-target';
+
 export type LoginState = { error?: string };
 
 /**
@@ -23,7 +25,7 @@ export async function signIn(_prev: LoginState, formData: FormData): Promise<Log
   // Deliberately vague: don't reveal whether the address has an account.
   if (error) return { error: 'That email and password combination did not work.' };
 
-  redirect(next.startsWith('/') ? next : '/');
+  redirect(redirectTarget(next));
 }
 
 export async function signOut() {
