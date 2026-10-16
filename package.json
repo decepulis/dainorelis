@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "packageManager": "pnpm@10.28.0",
   "scripts": {
-    "update-songs": "ts-node --project tsconfig.scripts.json ./scripts/update-songs.ts; pnpm run generate-indices",
+    "update-songs": "ts-node --project tsconfig.scripts.json ./scripts/update-songs.ts && pnpm run generate-indices",
     "generate-indices": "ts-node --project tsconfig.scripts.json ./scripts/generate-search-indices.ts",
     "generate-metadata": "pnpm --filter @dainorelis/admin generate-metadata",
     "generate-metadata:test": "pnpm --filter @dainorelis/admin generate-metadata -- --limit 5",
