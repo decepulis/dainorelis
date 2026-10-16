@@ -27,8 +27,8 @@ export default async function ExportPage() {
     <main className="mx-auto w-full max-w-3xl p-4 sm:p-6">
       <h1 className="text-xl font-semibold tracking-tight">Export</h1>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-        This is exactly what <code>npm run update-songs</code> pulls into the app’s <code>songs.ts</code>. Hidden songs
-        are already excluded.
+        This is exactly what <code>pnpm update-songs</code> pulls into the app’s <code>songs.ts</code>. Hidden songs are
+        already excluded.
       </p>
 
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -65,7 +65,7 @@ export default async function ExportPage() {
           Warnings <span className="ml-1 font-normal text-stone-500 dark:text-stone-400">{warnings.length}</span>
         </h2>
         <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-          These still build. Missing translations are the usual candidates for <code>npm run generate-metadata</code>.
+          These still build. Missing translations are the usual candidates for <code>pnpm generate-metadata</code>.
         </p>
         <ul className="mt-2 flex max-h-96 flex-col gap-1 overflow-y-auto text-sm">
           {warnings.map((issue, index) => (
@@ -89,7 +89,7 @@ export default async function ExportPage() {
           className="mt-2 overflow-x-auto rounded-lg border border-stone-200 p-3 text-xs
             dark:border-stone-800"
         >
-          npm run update-songs
+          pnpm update-songs
         </pre>
         <p className="mt-3 text-sm text-stone-600 dark:text-stone-300">
           That regenerates <code>songs.ts</code>, <code>song-festival.ts</code> and the search indices. Commit the
