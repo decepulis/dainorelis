@@ -1,6 +1,6 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 
-import { supabaseServiceRoleKey, supabaseUrl } from './env';
+import { supabaseSecretKey, supabaseUrl } from './env';
 import type { Database } from './types';
 
 /**
@@ -11,7 +11,7 @@ import type { Database } from './types';
  * bypass RLS instead. Keep this out of anything that reaches the browser.
  */
 export function createServiceClient() {
-  return createSupabaseClient<Database>(supabaseUrl(), supabaseServiceRoleKey(), {
+  return createSupabaseClient<Database>(supabaseUrl(), supabaseSecretKey(), {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }
