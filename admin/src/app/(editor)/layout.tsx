@@ -31,7 +31,13 @@ export default async function EditorLayout({ children }: { children: React.React
             Export
           </Link>
         </nav>
-        <form action={signOut} className="ml-auto">
+        <Link
+          href="/account/password"
+          className="ml-auto text-sm text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
+        >
+          Password
+        </Link>
+        <form action={signOut}>
           <button
             type="submit"
             className="text-sm text-stone-500 hover:text-stone-900 dark:text-stone-400
