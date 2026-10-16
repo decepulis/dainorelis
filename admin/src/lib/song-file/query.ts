@@ -6,7 +6,8 @@ import type { Database } from '@/lib/supabase/types';
 import { type SongRow, buildSongFile } from './build';
 import type { SongFile } from './types';
 
-const SELECT = `
+/** One song with every variant: the export's query, and the editor's for a single song. */
+export const SONG_SELECT = `
   id, name, tags, sources, recommended_key, music_author, text_author,
   lt_description, en_description, hide,
   lyrics       ( id, position, variant_name, en_variant_name, lyrics_and_chords, show_chords, notes ),
@@ -20,7 +21,7 @@ async function fetchSongRows(supabase: SupabaseClient<Database>): Promise<SongRo
   const { data, error } = await fetchAll((from, to) =>
     supabase
       .from('songs')
-      .select(SELECT)
+      .select(SONG_SELECT)
       .order('name', { ascending: true })
       // Names are not unique, so without a tie-breaker two songs sharing a
       // name could swap across a page boundary and be skipped or duplicated.

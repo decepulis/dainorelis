@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { isAlreadyEnglish } from './already-english';
 import { BUNDLED_FIELDS, LINK_KEYS } from './bundled-fields';
 import type { SongFields, SongFile } from './types';
 
@@ -68,13 +69,6 @@ export type Issue = {
   message: string;
 };
 
-/**
- * Songs whose titles start with these are already in English, so a missing
- * translation is expected rather than an oversight. Mirrors the check that
- * `update-songs.ts` did against Airtable.
- */
-const ALREADY_TRANSLATED = ['JAV ', 'Kanados '];
-
 export function findIssues(songs: SongFile): Issue[] {
   const issues: Issue[] = [];
 
@@ -127,9 +121,8 @@ export function findIssues(songs: SongFile): Issue[] {
       add('error', 'No lyrics variant — the app requires at least one.');
     }
 
-    if (Object.keys(song.fields.Translations).length === 0) {
-      const isAlreadyTranslated = ALREADY_TRANSLATED.some((prefix) => songName.startsWith(prefix));
-      if (!isAlreadyTranslated) add('warning', 'No translation.');
+    if (Object.keys(song.fields.Translations).length === 0 && !isAlreadyEnglish(songName)) {
+      add('warning', 'No translation.');
     }
 
     for (const [variantId, lyrics] of Object.entries(song.fields.Lyrics)) {

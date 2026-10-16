@@ -7,6 +7,7 @@
  * drift shows up as a spurious diff across hundreds of songs.
  */
 import type { AudioField, LyricsField, PDFsField, Song, SongFile, TranslationsField, VideosField } from './types';
+import { assignVariantNames, byPosition } from './variant-names';
 
 /** A child row as it comes out of Postgres, before variant names are resolved. */
 type ChildRow = {
@@ -63,39 +64,6 @@ function list(value: string[] | null): string[] | undefined {
 }
 
 /**
- * When `Variant Name` is not defined, we default to `${defaultName} ${idx + 1}`
- * When `EN Variant Name` is not defined, we default to `Variant Name`
- *
- * Two details are deliberate:
- *
- *  - The index suffix is only appended when MORE THAN ONE record is missing a
- *    name. A lone unnamed variant is just "Žodžiai", not "Žodžiai 1".
- *  - `idx` is the record's position among ALL of the song's records, not among
- *    the unnamed ones. So a song whose 1st and 3rd variants are unnamed yields
- *    "Žodžiai 1" and "Žodžiai 3". This is what Airtable produced, and the
- *    numbers are user-visible in the app, so the gap is preserved.
- */
-function assignVariantNames<T extends ChildRow>(
-  records: T[],
-  defaultLtName: string,
-  defaultEnName: string
-): (T & { ltName: string; enName: string })[] {
-  const numberOfMissingVariantNames = records.filter((record) => !record.variant_name).length;
-  const shouldAppendIndexNumber = numberOfMissingVariantNames > 1;
-
-  return records.map((record, idx) => {
-    const alreadyHasName = !!record.variant_name;
-    let ltName = alreadyHasName ? record.variant_name! : defaultLtName;
-    let enName = alreadyHasName ? (record.en_variant_name ?? record.variant_name!) : defaultEnName;
-    if (shouldAppendIndexNumber && !alreadyHasName) {
-      ltName += ` ${idx + 1}`;
-      enName += ` ${idx + 1}`;
-    }
-    return { ...record, ltName, enName };
-  });
-}
-
-/**
  * Throughout lyrics, the pattern [space](Chord) is frequently used
  * Since that's often not enough space, we do a lil magic to fix it up a bit
  * Based on the number of wide characters in the chord, we add that many em spaces (Max 3)
@@ -124,16 +92,12 @@ function keyById<T extends { id: string }, V>(records: T[], toValue: (record: T)
   return Object.fromEntries(records.map((record) => [record.id, toValue(record)]));
 }
 
-function byPosition<T extends ChildRow>(records: T[] | null | undefined): T[] {
-  return [...(records ?? [])].sort((a, b) => a.position - b.position);
-}
-
 function buildSong(row: SongRow): Song {
-  const lyrics = assignVariantNames(byPosition(row.lyrics), 'Žodžiai', 'Lyrics');
-  const videos = assignVariantNames(byPosition(row.videos), 'Įrašas', 'Recording');
-  const audio = assignVariantNames(byPosition(row.audio), 'Įrašas', 'Recording');
-  const pdfs = assignVariantNames(byPosition(row.pdfs), 'Natos', 'Score');
-  const translations = assignVariantNames(byPosition(row.translations), 'Vertimas', 'Translation');
+  const lyrics = assignVariantNames(byPosition(row.lyrics), 'lyrics');
+  const videos = assignVariantNames(byPosition(row.videos), 'videos');
+  const audio = assignVariantNames(byPosition(row.audio), 'audio');
+  const pdfs = assignVariantNames(byPosition(row.pdfs), 'pdfs');
+  const translations = assignVariantNames(byPosition(row.translations), 'translations');
 
   // Key order matters: the app's generated file is committed, and this order
   // matches the declaration order of the app's own Zod schema.

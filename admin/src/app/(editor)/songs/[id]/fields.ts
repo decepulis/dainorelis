@@ -15,8 +15,6 @@ export type FieldSpec = {
 export type SectionSpec = {
   table: ChildTable;
   title: string;
-  /** What the export calls an unnamed variant of this kind. */
-  defaultName: string;
   addLabel: string;
   fields: FieldSpec[];
 };
@@ -35,7 +33,6 @@ export const SECTIONS: SectionSpec[] = [
   {
     table: 'lyrics',
     title: 'Lyrics & chords',
-    defaultName: 'Žodžiai',
     addLabel: 'Add lyrics variant',
     fields: [
       ...VARIANT_FIELDS,
@@ -53,7 +50,6 @@ export const SECTIONS: SectionSpec[] = [
   {
     table: 'translations',
     title: 'Translations',
-    defaultName: 'Vertimas',
     addLabel: 'Add translation',
     fields: [
       { column: 'title', label: 'English title', kind: 'text' },
@@ -66,7 +62,6 @@ export const SECTIONS: SectionSpec[] = [
   {
     table: 'audio',
     title: 'Audio',
-    defaultName: 'Įrašas',
     addLabel: 'Add audio',
     fields: [
       ...VARIANT_FIELDS,
@@ -78,14 +73,12 @@ export const SECTIONS: SectionSpec[] = [
   {
     table: 'pdfs',
     title: 'Sheet music',
-    defaultName: 'Natos',
     addLabel: 'Add PDF',
     fields: [...VARIANT_FIELDS, { column: 'url', label: 'PDF URL', kind: 'url', wide: true }],
   },
   {
     table: 'videos',
     title: 'Videos',
-    defaultName: 'Įrašas',
     addLabel: 'Add video',
     fields: [
       ...VARIANT_FIELDS,
