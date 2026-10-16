@@ -158,7 +158,6 @@ export default function Search({
         />
         {/* Cancel Button */}
         <AnimatedGlassView
-          // tintColor={primary}
           isInteractive
           // scaled to nothing while search is closed, so keep screen readers off it too
           accessibilityElementsHidden={!isSearchOpen}
@@ -195,7 +194,6 @@ export default function Search({
         </AnimatedGlassView>
         {/* Playlist Menu */}
         <AnimatedGlassView
-          // tintColor={primary}
           isInteractive
           // scaled to nothing while search is open
           accessibilityElementsHidden={isSearchOpen}
@@ -252,7 +250,6 @@ export default function Search({
         </AnimatedGlassView>
         {/* Search Box */}
         <AnimatedGlassView
-          // tintColor={primary}
           isInteractive
           style={[
             {

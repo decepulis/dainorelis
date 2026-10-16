@@ -129,7 +129,6 @@ export default function Index() {
           data={displayItems}
           renderItem={renderItem}
           keyboardDismissMode="on-drag"
-          // contentContainerStyle={contentContainerStyle}
           ListHeaderComponent={
             <View
               style={{
@@ -240,13 +239,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginHorizontal: 'auto',
-  },
-  searchBackground: {
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
-    borderTopLeftRadius: padding,
-    borderTopRightRadius: padding,
   },
   listFooter: {
     paddingHorizontal: padding,
