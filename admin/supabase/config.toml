@@ -1,0 +1,16 @@
+# Supabase project configuration for the admin CMS.
+#
+# `project_id` is just a local label for this project — it is NOT your remote
+# project ref. The remote link (ref + credentials) is supplied at push time by
+# `supabase link` / CI secrets, so nothing sensitive lives in this file.
+#
+# Intentionally minimal. `supabase db push` only needs the linked project (from
+# `supabase link` / CI secrets), not local-stack settings — so we deliberately
+# omit the `[db] major_version` key. That key only configures the local
+# `supabase start` Docker stack (which CI never runs), and pinning it here just
+# invites "Invalid db.major_version" config errors when the CLI's accepted values
+# shift between versions. Run `supabase init` locally for the full config.
+#
+# This lives in `admin/`, not the repo root, so every CLI command runs from
+# there (`cd admin` first, or pass `--workdir admin`).
+project_id = "dainorelis-admin"

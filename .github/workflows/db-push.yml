@@ -1,0 +1,50 @@
+name: Apply DB migrations
+
+# Applies the admin CMS's Supabase migrations (admin/supabase/migrations/) to
+# the production project. It runs on every push to main, but only when a
+# migration, the Supabase config, or this workflow actually changes, so
+# ordinary app pushes don't touch the database. It links to the Supabase
+# project and applies any migrations not yet in the project's migration history
+# (supabase_migrations.schema_migrations), so re-running it is a no-op.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'admin/supabase/migrations/**'
+      - 'admin/supabase/config.toml'
+      - '.github/workflows/db-push.yml'
+  # Lets you re-run it by hand from the Actions tab if a push-triggered run failed.
+  workflow_dispatch:
+
+# Two quick pushes to main must not race each other into the same database.
+# Queue the second run behind the first instead of cancelling it: a cancelled
+# run could stop part-way through a list of migrations.
+concurrency:
+  group: db-push
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # The Supabase project files live under admin/, not the repo root.
+        working-directory: admin
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: supabase/setup-cli@v3
+        with:
+          version: latest
+
+      - name: Link project and push migrations
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+          PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+        run: |
+          supabase link --project-ref "$PROJECT_REF"
+          supabase db push
