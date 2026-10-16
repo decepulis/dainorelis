@@ -180,11 +180,14 @@ export default function Page() {
               variantName={variantName}
             />
           ),
-          headerLeft: !isLiquidGlassStyleHeader() ? HeaderLeft : undefined,
+          headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
           headerRight: !isLiquidGlassStyleHeader()
             ? () => (
                 <HeaderButtonContainer>
-                  <Button onPress={toggleFavorite}>
+                  <Button
+                    onPress={toggleFavorite}
+                    accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+                  >
                     <FontAwesome6 name="heart" iconStyle={isFavorite ? 'solid' : 'regular'} size={16} color="white" />
                   </Button>
                   <SongMenu song={song} hasChords={hasChords} />

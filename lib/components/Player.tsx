@@ -58,7 +58,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isAppWide = width > maxWidth;
   const primary = useThemeColor('primary');
 
@@ -109,6 +109,8 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   }, [activeMedia, title, i18n.language, player]);
 
   // Manage animations
+  // isOpen mirrors isOpenSv for what React renders (accessibility); the worklets read the shared value
+  const [isOpen, setIsOpen] = useState(false);
   const isOpenSv = useSharedValue(false);
   const containerStyles = useAnimatedStyle(() => ({
     width: withSpring(
@@ -242,8 +244,10 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           noGlass
           hitSlop={{ top: padding, bottom: padding, left: padding }}
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
+          accessibilityLabel={isOpen ? t('hidePlayerDetails') : t('showPlayerDetails')}
           onPress={() => {
-            isOpenSv.set(!isOpenSv.get());
+            setIsOpen(!isOpen);
+            isOpenSv.set(!isOpen);
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
@@ -267,6 +271,9 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
         <GestureDetector gesture={gesture}>
           <Animated.View
+            // hidden from screen readers while collapsed, like it is from touches
+            accessibilityElementsHidden={!isOpen}
+            importantForAccessibility={isOpen ? 'auto' : 'no-hide-descendants'}
             style={[
               opacityStyles,
               {
@@ -334,6 +341,8 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
         {Object.keys(media).length > 1 ? (
           <Animated.View
+            accessibilityElementsHidden={!isOpen}
+            importantForAccessibility={isOpen ? 'auto' : 'no-hide-descendants'}
             style={[
               opacityStyles,
               {
@@ -359,6 +368,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           noGlass
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
+          accessibilityLabel={playing ? t('pause') : t('play')}
           onPress={() => {
             if (playing) {
               player.pause();

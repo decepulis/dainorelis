@@ -44,8 +44,11 @@ export default function Button({ children, style, hitSlop: argHitSlop, noGlass, 
 
   return (
     // TODO iPad cursor hover styles
-    // TODO A11y label
+    // icon-only, so callers pass accessibilityLabel; `accessible` groups the glyph children
+    // into one element (RNGH's button sets no role or grouping on its own)
     <Touchable
+      accessible
+      accessibilityRole="button"
       {...pressFeedback}
       style={[
         {

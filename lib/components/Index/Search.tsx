@@ -165,6 +165,9 @@ export default function Search({
       <AnimatedGlassView
         // tintColor={primary}
         isInteractive
+        // scaled to nothing while search is closed, so keep screen readers off it too
+        accessibilityElementsHidden={!isSearchOpen}
+        importantForAccessibility={isSearchOpen ? 'auto' : 'no-hide-descendants'}
         style={[
           {
             position: 'absolute',
@@ -179,6 +182,7 @@ export default function Search({
       >
         <Button
           noGlass
+          accessibilityLabel={t('clearSearch')}
           onPress={() => {
             clearSearchText();
             setIsSearchOpen(false);
@@ -198,6 +202,9 @@ export default function Search({
       <AnimatedGlassView
         // tintColor={primary}
         isInteractive
+        // scaled to nothing while search is open
+        accessibilityElementsHidden={isSearchOpen}
+        importantForAccessibility={isSearchOpen ? 'no-hide-descendants' : 'auto'}
         style={[
           playlistMenuAnimatedStyle,
           {
@@ -284,6 +291,7 @@ export default function Search({
                 marginLeft: !isSearchOpen ? 0 : buttonSize,
               },
             ]}
+            accessibilityLabel={t('search')}
             clearButtonMode="never"
             autoCorrect={false}
             ref={searchRef}

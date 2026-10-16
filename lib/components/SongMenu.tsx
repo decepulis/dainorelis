@@ -84,7 +84,7 @@ export default function SongMenu({ song, hasChords }: Props) {
   };
 
   return (
-    <MenuView actions={filteredActions} onPressAction={onPressAction}>
+    <MenuView actions={filteredActions} onPressAction={onPressAction} accessibilityLabel={t('moreOptions')}>
       <SystemView shadow={false} style={[buttonStyles.button]}>
         <FontAwesome6 name="ellipsis" iconStyle="solid" size={18} color="white" />
       </SystemView>
@@ -111,7 +111,11 @@ export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorit
   return (
     <>
       <Stack.Toolbar placement="left">
-        <Stack.Toolbar.Button icon="chevron.left" onPress={() => router.navigate('../')} />
+        <Stack.Toolbar.Button
+          icon="chevron.left"
+          accessibilityLabel={t('back')}
+          onPress={() => router.navigate('../')}
+        />
       </Stack.Toolbar>
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
@@ -121,7 +125,7 @@ export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorit
         >
           {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
         </Stack.Toolbar.Button>
-        <Stack.Toolbar.Menu icon="ellipsis">
+        <Stack.Toolbar.Menu icon="ellipsis" accessibilityLabel={t('moreOptions')}>
           {hasDescriptions ? (
             <Stack.Toolbar.MenuAction icon="book" onPress={() => router.push(`/dainos/${song.id}/aprasymas`)}>
               {t('aboutSong')}

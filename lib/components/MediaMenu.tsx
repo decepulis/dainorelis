@@ -45,6 +45,7 @@ export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitS
       actions={actions}
       onPressAction={onPressAction}
       title={t('mediaMenuTitle')}
+      accessibilityLabel={t('chooseRecording')}
     >
       <ButtonSurface style={buttonStyles.button}>
         <FontAwesome6 name="bars" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />

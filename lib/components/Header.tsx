@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DynamicColorIOS, LayoutRectangle, Platform, View } from 'react-native';
 import Animated, {
   AnimatedRef,
@@ -257,10 +258,13 @@ type HeaderLeftProps = {
 };
 
 export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
+  const { t } = useTranslation();
+  const isClose = modal && Platform.OS === 'ios';
+  // role overrides the 'link' role Link passes down: this is a navigation-bar button
   return (
     <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
-      <Button>
-        {modal && Platform.OS === 'ios' ? (
+      <Button role="button" accessibilityLabel={isClose ? t('close') : t('back')}>
+        {isClose ? (
           <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
         ) : (
           <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
@@ -272,10 +276,11 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
 
 export function ModalToolbar() {
   const router = useRouter();
+  const { t } = useTranslation();
   if (!isLiquidGlassStyleHeader()) return null;
   return (
     <Stack.Toolbar placement="left">
-      <Stack.Toolbar.Button icon="xmark" onPress={() => router.navigate('../')} />
+      <Stack.Toolbar.Button icon="xmark" accessibilityLabel={t('close')} onPress={() => router.navigate('../')} />
     </Stack.Toolbar>
   );
 }
