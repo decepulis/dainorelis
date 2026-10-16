@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -90,8 +89,6 @@ export default function Page() {
     setTheme(event as 'auto' | 'dark' | 'light');
   };
 
-  const [isWriteToUsPressed, setIsWriteToUsPressed] = useState(false);
-
   return (
     <>
       <Stack.Screen
@@ -139,22 +136,22 @@ export default function Page() {
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <Pressable
-              onPressIn={() => setIsWriteToUsPressed(true)}
-              onPressOut={() => setIsWriteToUsPressed(false)}
               onPress={() => openFeedback()}
               hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
             >
-              <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
-                {t('settingsWriteToUsText1')}{' '}
-                <ThemedText
-                  style={[
-                    { textDecorationLine: isWriteToUsPressed ? undefined : 'underline', textDecorationColor: primary },
-                  ]}
-                >
-                  {t('settingsWriteToUsText2')}
-                </ThemedText>
-              </ThemedText>
-              <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+              {({ pressed }) => (
+                <>
+                  <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
+                    {t('settingsWriteToUsText1')}{' '}
+                    <ThemedText
+                      style={[{ textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary }]}
+                    >
+                      {t('settingsWriteToUsText2')}
+                    </ThemedText>
+                  </ThemedText>
+                  <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+                </>
+              )}
             </Pressable>
           </View>
           <View style={styles.section}>
