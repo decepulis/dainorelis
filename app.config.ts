@@ -101,9 +101,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-build-properties',
       {
         android: {
-          // compileSdk / targetSdk / buildTools come from the SDK's version catalog
-          // (react-native/gradle/libs.versions.toml). Only minSdk is raised above its default (24).
-          minSdkVersion: 26,
+          // compileSdk / targetSdk / minSdk / buildTools come from the SDK's version catalog
+          // (react-native/gradle/libs.versions.toml); none of them is overridden here.
           // SDK 58 enables R8 in release builds. react-native-pdf's pdfium binding is reached
           // through JNI by class name, so R8 must not rename or strip it.
           extraProguardRules: '-keep class io.legere.pdfiumandroid.** { *; }',
