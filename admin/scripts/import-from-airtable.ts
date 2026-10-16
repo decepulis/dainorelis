@@ -4,6 +4,7 @@
  *   cd admin
  *   AIRTABLE_TOKEN=… pnpm import:airtable          # or put it in admin/.env
  *   pnpm import:airtable -- --dry-run              # inspect without writing
+ *   pnpm import:airtable -- --force --yes          # replace a non-empty database, no prompt
  *
  * Run this once, from a machine that has the Airtable token, before the app's
  * `update-songs` is pointed at the admin API.
@@ -242,7 +243,6 @@ async function main() {
     return;
   }
 
-  console.log('✍️  Writing to Supabase (replacing existing rows)…');
   await writePayload(payload, { replace: true });
   console.log('✅ Migration complete. Check /export in the admin app, then run update-songs in the app repo.');
 }
