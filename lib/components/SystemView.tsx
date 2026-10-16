@@ -1,4 +1,4 @@
-import { Platform, StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
 
 import { BlurView } from 'expo-blur';
 
@@ -16,7 +16,7 @@ type Props = {
 export default function SystemView({ children, style, shadow = true, ...rest }: Props) {
   const primary = useThemeColor('primary');
 
-  if (Platform.OS === 'ios') {
+  if (process.env.EXPO_OS === 'ios') {
     return (
       <BlurView
         // no need to listen to reduce transparency on iOS; iOS does this for us

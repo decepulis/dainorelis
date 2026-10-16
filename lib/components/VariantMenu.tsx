@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { Platform } from 'react-native';
 
 import { GlassView } from 'expo-glass-effect';
 
@@ -46,7 +45,7 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
     <VariantMenuSurface>
       <MenuView
         // on most platforms, this menu ends up left-justified
-        hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
+        hitSlop={process.env.EXPO_OS === 'ios' ? undefined : { left: 0 }}
         actions={actions}
         onPressAction={onPressAction}
         title={t('variantsMenuTitle')}
