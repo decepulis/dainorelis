@@ -9,6 +9,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
+import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -18,6 +19,7 @@ import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song } from '@/lib/schemas/songs';
+import { Translations } from '@/lib/schemas/translations';
 import { splitTitle } from '@/lib/utils/useTitle';
 import songs from '@/songs';
 
@@ -26,21 +28,29 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const { t } = useTranslation();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const song = songs.find((song) => song.id === id);
+  if (!song) {
+    return <NotFound modal message={t('songNotFound')} />;
+  }
+  // a few songs have no translation ("Translations": {})
+  const firstTranslation = Object.values(song.fields['Translations'])[0] as Translations | undefined;
+  if (!firstTranslation) {
+    return <NotFound modal message={t('pageNotFound')} />;
+  }
+  return <TranslationPage song={song} firstTranslation={firstTranslation} />;
+}
+
+function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslation: Translations }) {
   const inset = useSafeAreaInsets();
   const maxWidthPadding = useMaxWidthPadding();
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const song = songs.find((song) => song.id === id) as Song;
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
   const [isPressed, setIsPressed] = useState(false);
-  const firstTranslation = Object.values(song.fields['Translations'])[0];
-
-  if (!song || !firstTranslation) {
-    // TODO 404 not found
-  }
 
   const [ogTitle] = splitTitle(song.fields['Name']);
   const [title, subtitle] = splitTitle(firstTranslation['Title']);

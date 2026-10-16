@@ -20,6 +20,7 @@ import {
   isLiquidGlassStyleHeader,
 } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
+import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
@@ -43,6 +44,16 @@ export async function generateStaticParams() {
 }
 
 export default function Page() {
+  const { t } = useTranslation();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const song = songs.find((song) => song.id === id);
+  if (!song) {
+    return <NotFound message={t('songNotFound')} />;
+  }
+  return <SongPage song={song} />;
+}
+
+function SongPage({ song }: { song: Song }) {
   const router = useRouter();
   const { t } = useTranslation();
   const text = useThemeColor('text');
@@ -57,9 +68,9 @@ export default function Page() {
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
   const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
-  const { id, v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ id: string; v?: string; m?: string }>();
+  const { v: activeVariantId, m: activeMediaId } = useLocalSearchParams<{ v?: string; m?: string }>();
 
-  const song = songs.find((song) => song.id === id) as Song;
+  const { id } = song;
   const isFavorite = favorites.includes(song.id);
 
   // Variants
