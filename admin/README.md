@@ -35,18 +35,23 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    there is no reason to rely on that alone.
 
 3. **Point the auth emails at the app.** The invite and password-reset links
-   land on `/auth/confirm`, which signs the editor in and sends them to
-   `/account/password` to choose a password. Supabase's default templates link
-   to its own verify endpoint instead, so change them:
+   land on `/auth/confirm`. The editor clicks **Continue** there, which signs
+   them in and sends them to `/account/password` to choose a password. (The
+   click is what spends the one-time token: mail scanners open every link in
+   a message first, and would otherwise use it up.) Supabase's default
+   templates link to its own verify endpoint instead, so change them:
 
    - Authentication → URL Configuration: set **Site URL** to
-     `https://admin.dainorelis.app` and add `https://admin.dainorelis.app/**`
-     to **Redirect URLs**. The reset form passes its own origin as
-     `redirectTo`, and Supabase ignores any URL not on that list.
+     `https://admin.dainorelis.app`.
    - Authentication → Emails → **Invite user**: make the link
      `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
    - Authentication → Emails → **Reset password**: make the link
      `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
+
+   Both parameters are required, and `type` must be `invite` or `recovery`;
+   the page turns any other link away. It needs nothing else: both types go
+   on to `/account/password`, and the reset form doesn't pass a `redirectTo`,
+   so `{{ .RedirectTo }}` would only ever hold the Site URL.
 
    The links are built from the Site URL, so they always go to production;
    to try the flow against `next dev`, temporarily point the Site URL at
