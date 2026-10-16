@@ -197,7 +197,8 @@ cherry-picked here.
 - `a9d3d11`
   - **Android Switch brand colours restored** (Compose Switch). Phase 1 dropped them and its
     follow-up never happened. The Switch also gets an accessibility label on both platforms.
-  - `packageManager: pnpm@10.28.0` pinned.
+  - `packageManager: pnpm@10.28.0` pinned. Reverted later: the `dainorelis-site` Vercel
+    deploys failed from the first push that included it.
   - The redirect-only root Vercel project skips install and build. Its deploys had failed on
     every commit since the screens patch landed. **The root cause is unconfirmed**: I couldn't
     read the Vercel logs.
@@ -267,7 +268,7 @@ cherry-picked here.
 
 ### Build and run (nothing since SDK 55 has run on a device)
 
-- [ ] `pnpm install` from a clean `node_modules` (pnpm 10.28 via corepack). Confirm the
+- [ ] `pnpm install` from a clean `node_modules` (pnpm 10; pnpm 9 rejects the lockfile's patch hash). Confirm the
       react-native-screens patch applies.
 - [ ] On a Mac: `cd ios && pod install`, then open **`ios/Dainorelis.xcworkspace`** (renamed from
       `Dainorlis`) and build. Commit the new `Podfile.lock`.
