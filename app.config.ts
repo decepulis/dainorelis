@@ -22,7 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: packageJson.version,
   orientation: 'default',
   icon: './assets/images/icon.png',
-  scheme: 'myapp',
+  scheme: 'dainorelis',
   userInterfaceStyle: 'automatic',
   experiments: {
     reactCompiler: true,
