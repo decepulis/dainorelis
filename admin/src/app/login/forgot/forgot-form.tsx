@@ -19,7 +19,15 @@ export default function ForgotForm() {
     <form action={formAction} className="flex flex-col gap-4">
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" autoComplete="username" required autoFocus />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="username"
+          defaultValue={state.email}
+          required
+          autoFocus
+        />
       </div>
 
       {state.error ? (

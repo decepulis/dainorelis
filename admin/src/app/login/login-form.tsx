@@ -15,7 +15,15 @@ export default function LoginForm({ next }: { next: string }) {
 
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" autoComplete="username" required autoFocus />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="username"
+          defaultValue={state.email}
+          required
+          autoFocus
+        />
       </div>
 
       <div>
