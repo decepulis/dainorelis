@@ -1,7 +1,10 @@
 /**
  * Seeds the database from the app's generated `songs.ts`.
  *
- *   pnpm --filter @dainorelis/admin import:song-file [-- --file ../songs.ts]
+ *   pnpm --filter @dainorelis/admin import:song-file [-- --file ../songs.ts] [--force] [--yes]
+ *
+ * Replaces every row, so it asks for confirmation and refuses a non-empty
+ * database unless --force is passed (see write-payload.ts).
  *
  * Intended for bootstrapping a dev database. For the real Airtable migration
  * use `import:airtable`, which also carries hidden songs, tags and sources.
@@ -24,7 +27,6 @@ async function main() {
   const payload = payloadFromSongFile(readSongFile(filePath));
   console.log(`   ${summarize(payload)}`);
 
-  console.log('✍️  Writing to Supabase (replacing existing rows)…');
   await writePayload(payload, { replace: true });
   console.log('✅ Done.');
   console.log('⚠️  Hide, Tags, Sources and Recommended Key are absent from songs.ts and were not restored.');

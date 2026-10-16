@@ -49,6 +49,17 @@ app repo: npm run update-songs  ──▶  songs.ts + song-festival.ts + search 
    song, or to more than one, which the relational schema cannot represent the
    way Airtable did.
 
+   Both importers **delete every row and re-insert**, with no transaction. Before
+   writing they print the target `NEXT_PUBLIC_SUPABASE_URL` and how many songs
+   it holds, then:
+
+   - refuse to run if the `songs` table is not empty, unless you pass `--force`;
+   - ask you to type `yes`, unless you pass `--yes` (required when stdin is not
+     a terminal).
+
+   Remember that `.env.local` holds the production keys after a
+   `vercel env pull`.
+
 5. **Verify.** Open `/export` in the admin app and confirm the song count and
    that there are no blocking errors. Then, in the app repo, run
    `npm run update-songs` and check `git diff songs.ts` — immediately after the
@@ -64,7 +75,8 @@ pnpm --filter @dainorelis/admin dev     # or `pnpm admin` from the repo root
 To work against a throwaway database, seed it from the app's committed data:
 
 ```bash
-pnpm import:song-file
+pnpm import:song-file                    # empty database; asks for confirmation
+pnpm import:song-file -- --force --yes   # replace a populated one without asking
 ```
 
 Note that `songs.ts` only carries the fields the app bundles, so this cannot
