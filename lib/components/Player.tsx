@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, DynamicColorIOS, StyleProp, View, ViewStyle } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   type AnimatedStyle,
   useAnimatedReaction,
@@ -173,15 +173,15 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   );
 
   // override playback state with gesture
-  const gesture = Gesture.Pan()
-    .hitSlop({ ...buttonSlop, top: padding, bottom: padding })
-    .minDistance(5)
-    .enabled(duration > 0)
-    .onStart(() => {
+  const gesture = usePanGesture({
+    hitSlop: { ...buttonSlop, top: padding, bottom: padding },
+    minDistance: 5,
+    enabled: duration > 0,
+    onActivate: () => {
       isGesturingSv.set(true);
       gestureStartProgressSv.set(progressSv.get());
-    })
-    .onUpdate((e) => {
+    },
+    onUpdate: (e) => {
       const gestureProgress = e.translationX / durationWidth;
       const newValue = Math.max(0, Math.min(1, gestureStartProgressSv.get() + gestureProgress));
       progressSv.set(newValue);
@@ -194,11 +194,12 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
         // reset state
         didBumpSv.set(false);
       }
-    })
-    .onEnd(() => {
+    },
+    onDeactivate: () => {
       const seekTime = progressSv.get() * (duration || 0);
       scheduleOnRN(seekOnGestureFinalize, seekTime);
-    });
+    },
+  });
 
   // commit gesture stuff to styles
   const durationContainerStyles = useAnimatedStyle(() => ({
