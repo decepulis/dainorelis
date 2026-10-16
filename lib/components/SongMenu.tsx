@@ -86,7 +86,13 @@ export default function SongMenu({ song, hasChords }: Props) {
   return (
     <MenuView actions={filteredActions} onPressAction={onPressAction} accessibilityLabel={t('moreOptions')}>
       <SystemView shadow={false} style={[buttonStyles.button]}>
-        <FontAwesome6 name="ellipsis" iconStyle="solid" size={18} color="white" />
+        {/* overflow menus are vertical dots on Android, horizontal on iOS */}
+        <FontAwesome6
+          name={process.env.EXPO_OS === 'android' ? 'ellipsis-vertical' : 'ellipsis'}
+          iconStyle="solid"
+          size={18}
+          color="white"
+        />
       </SystemView>
     </MenuView>
   );
