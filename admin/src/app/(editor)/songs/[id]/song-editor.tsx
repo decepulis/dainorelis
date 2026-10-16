@@ -9,6 +9,9 @@ import { type FieldSpec, SECTIONS, type SectionSpec } from './fields';
 
 type ChildRecord = { id: string; position: number } & Record<string, unknown>;
 
+/** The submitted fields after a failed save; see `EditorState.values`. */
+type Draft = Record<string, string> | undefined;
+
 type Song = {
   id: string;
   name: string;
@@ -36,7 +39,17 @@ const SUBTLE_BUTTON =
   'rounded-md border border-stone-300 px-2 py-1 text-xs text-stone-600 hover:bg-stone-100 ' +
   'disabled:opacity-40 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800';
 
-function ChildField({ table, record, field }: { table: string; record: ChildRecord; field: FieldSpec }) {
+function ChildField({
+  table,
+  record,
+  field,
+  draft,
+}: {
+  table: string;
+  record: ChildRecord;
+  field: FieldSpec;
+  draft: Draft;
+}) {
   const name = `${table}:${record.id}:${field.column}`;
   const inputId = name.replace(/:/g, '-');
   const value = record[field.column];
@@ -44,7 +57,13 @@ function ChildField({ table, record, field }: { table: string; record: ChildReco
   if (field.kind === 'checkbox') {
     return (
       <label htmlFor={inputId} className="flex items-center gap-2 normal-case">
-        <input id={inputId} name={name} type="checkbox" defaultChecked={value === true} className="size-4 w-auto" />
+        <input
+          id={inputId}
+          name={name}
+          type="checkbox"
+          defaultChecked={draft ? name in draft : value === true}
+          className="size-4 w-auto"
+        />
         <span className="text-xs font-medium tracking-wide text-stone-500 uppercase dark:text-stone-400">
           {field.label}
         </span>
@@ -56,16 +75,26 @@ function ChildField({ table, record, field }: { table: string; record: ChildReco
     <div className={field.wide ? 'sm:col-span-2' : undefined}>
       <label htmlFor={inputId}>{field.label}</label>
       {field.kind === 'textarea' ? (
-        <textarea id={inputId} name={name} rows={field.column === 'notes' ? 2 : 12} defaultValue={text(value)} />
+        <textarea
+          id={inputId}
+          name={name}
+          rows={field.column === 'notes' ? 2 : 12}
+          defaultValue={draft?.[name] ?? text(value)}
+        />
       ) : (
-        <input id={inputId} name={name} type={field.kind === 'url' ? 'url' : 'text'} defaultValue={text(value)} />
+        <input
+          id={inputId}
+          name={name}
+          type={field.kind === 'url' ? 'url' : 'text'}
+          defaultValue={draft?.[name] ?? text(value)}
+        />
       )}
       {field.hint ? <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{field.hint}</p> : null}
     </div>
   );
 }
 
-function Section({ section, records }: { section: SectionSpec; records: ChildRecord[] }) {
+function Section({ section, records, draft }: { section: SectionSpec; records: ChildRecord[]; draft: Draft }) {
   const sorted = [...records].sort((a, b) => a.position - b.position);
   const unnamed = sorted.filter((record) => !text(record.variant_name)).length;
 
@@ -90,7 +119,7 @@ function Section({ section, records }: { section: SectionSpec; records: ChildRec
 
             <div className="grid gap-4 sm:grid-cols-2">
               {section.fields.map((field) => (
-                <ChildField key={field.column} table={section.table} record={record} field={field} />
+                <ChildField key={field.column} table={section.table} record={record} field={field} draft={draft} />
               ))}
             </div>
 
@@ -131,6 +160,8 @@ function Section({ section, records }: { section: SectionSpec; records: ChildRec
 
 export default function SongEditor({ song }: { song: Song }) {
   const [state, formAction, pending] = useActionState<EditorState, FormData>(saveSong, {});
+  // After a failed save, show what was submitted rather than what is stored.
+  const draft = state.values;
 
   return (
     <main className="mx-auto w-full max-w-3xl p-4 sm:p-6">
@@ -140,7 +171,8 @@ export default function SongEditor({ song }: { song: Song }) {
 
       {/*
         `key` remounts the form after a save so every field picks up the fresh
-        server values — including ids of records that were just added.
+        server values — including ids of records that were just added. A failed
+        save keeps the key, and the fields fall back to `draft`.
       */}
       <form action={formAction} key={state.savedAt ?? 'initial'} className="mt-4 flex flex-col gap-6">
         <input type="hidden" name="songId" value={song.id} />
@@ -148,45 +180,69 @@ export default function SongEditor({ song }: { song: Song }) {
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label htmlFor="name">Title</label>
-            <input id="name" name="name" defaultValue={song.name} required />
+            <input id="name" name="name" defaultValue={draft?.name ?? song.name} required />
           </div>
 
           <div>
             <label htmlFor="music_author">Music author</label>
-            <input id="music_author" name="music_author" defaultValue={song.music_author ?? ''} />
+            <input
+              id="music_author"
+              name="music_author"
+              defaultValue={draft?.music_author ?? song.music_author ?? ''}
+            />
           </div>
           <div>
             <label htmlFor="text_author">Text author</label>
-            <input id="text_author" name="text_author" defaultValue={song.text_author ?? ''} />
+            <input id="text_author" name="text_author" defaultValue={draft?.text_author ?? song.text_author ?? ''} />
           </div>
 
           <div>
             <label htmlFor="recommended_key">Recommended key</label>
-            <input id="recommended_key" name="recommended_key" defaultValue={song.recommended_key ?? ''} />
+            <input
+              id="recommended_key"
+              name="recommended_key"
+              defaultValue={draft?.recommended_key ?? song.recommended_key ?? ''}
+            />
           </div>
           <div>
             <label htmlFor="tags">Tags</label>
-            <input id="tags" name="tags" defaultValue={(song.tags ?? []).join(', ')} />
+            <input id="tags" name="tags" defaultValue={draft?.tags ?? (song.tags ?? []).join(', ')} />
             <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Comma separated.</p>
           </div>
 
           <div className="sm:col-span-2">
             <label htmlFor="sources">Sources</label>
-            <input id="sources" name="sources" defaultValue={(song.sources ?? []).join(', ')} />
+            <input id="sources" name="sources" defaultValue={draft?.sources ?? (song.sources ?? []).join(', ')} />
             <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Comma separated.</p>
           </div>
 
           <div className="sm:col-span-2">
             <label htmlFor="lt_description">Description (LT)</label>
-            <textarea id="lt_description" name="lt_description" rows={4} defaultValue={song.lt_description ?? ''} />
+            <textarea
+              id="lt_description"
+              name="lt_description"
+              rows={4}
+              defaultValue={draft?.lt_description ?? song.lt_description ?? ''}
+            />
           </div>
           <div className="sm:col-span-2">
             <label htmlFor="en_description">Description (EN)</label>
-            <textarea id="en_description" name="en_description" rows={4} defaultValue={song.en_description ?? ''} />
+            <textarea
+              id="en_description"
+              name="en_description"
+              rows={4}
+              defaultValue={draft?.en_description ?? song.en_description ?? ''}
+            />
           </div>
 
           <label htmlFor="hide" className="flex items-center gap-2 normal-case sm:col-span-2">
-            <input id="hide" name="hide" type="checkbox" defaultChecked={song.hide} className="size-4 w-auto" />
+            <input
+              id="hide"
+              name="hide"
+              type="checkbox"
+              defaultChecked={draft ? 'hide' in draft : song.hide}
+              className="size-4 w-auto"
+            />
             <span className="text-xs font-medium tracking-wide text-stone-500 uppercase dark:text-stone-400">
               Hide from the app
             </span>
@@ -194,7 +250,7 @@ export default function SongEditor({ song }: { song: Song }) {
         </div>
 
         {SECTIONS.map((section) => (
-          <Section key={section.table} section={section} records={song[section.table]} />
+          <Section key={section.table} section={section} records={song[section.table]} draft={draft} />
         ))}
 
         {state.error ? (
