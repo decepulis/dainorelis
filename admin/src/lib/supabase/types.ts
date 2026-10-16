@@ -84,13 +84,6 @@ export type Database = {
   };
 };
 
-export type SongRecord = SongRowShape;
-export type LyricsRecord = LyricsRowShape;
-export type TranslationsRecord = TranslationsRowShape;
-export type AudioRecord = AudioRowShape;
-export type PDFsRecord = PDFsRowShape;
-export type VideosRecord = VideosRowShape;
-
 /** The child tables, as the editor UI refers to them. */
 export const CHILD_TABLES = ['lyrics', 'translations', 'audio', 'pdfs', 'videos'] as const;
 export type ChildTable = (typeof CHILD_TABLES)[number];

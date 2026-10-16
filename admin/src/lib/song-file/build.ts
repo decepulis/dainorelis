@@ -108,7 +108,7 @@ function assignVariantNames<T extends ChildRow>(
  * already-adjusted lyrics is a no-op. That matters because the importer seeds
  * rows straight from the previously generated `songs.ts`.
  */
-export function adjustChordWhitespace(lyrics: string): string {
+function adjustChordWhitespace(lyrics: string): string {
   const emSpace = ' ';
   const wideCharRegex = /[a-zA-Z0-9#]/g; // Only count alphanumeric and "#" as wide characters
 
@@ -193,7 +193,7 @@ function buildSong(row: SongRow): Song {
  * refers to. The app re-sorts its own section headers with `lt` collation at
  * runtime, so this only governs the order inside the generated file.
  */
-export function sortSongs(songs: SongFile): SongFile {
+function sortSongs(songs: SongFile): SongFile {
   return [...songs].sort((a, b) => a.fields.Name.localeCompare(b.fields.Name, 'en'));
 }
 

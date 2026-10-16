@@ -3,8 +3,6 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { tokenMatches } from '@/lib/token-matches';
 
-export const dynamic = 'force-dynamic';
-
 /**
  * Keep-alive for Supabase's free tier, which pauses a project after seven days
  * of inactivity and then requires a manual un-pause from the dashboard. A daily

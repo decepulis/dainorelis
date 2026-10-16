@@ -5,7 +5,6 @@ import { exportToken } from '@/lib/supabase/env';
 import { createServiceClient } from '@/lib/supabase/service';
 import { tokenMatches } from '@/lib/token-matches';
 
-export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 /**

@@ -4,8 +4,6 @@ import { createClient } from '@/lib/supabase/server';
 
 import SongEditor from './song-editor';
 
-export const dynamic = 'force-dynamic';
-
 const SELECT = `
   id, name, tags, sources, recommended_key, music_author, text_author,
   lt_description, en_description, hide,
