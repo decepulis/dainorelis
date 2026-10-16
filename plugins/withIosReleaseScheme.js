@@ -1,7 +1,6 @@
 const { withDangerousMod } = require('expo/config-plugins');
 const fs = require('fs');
 const path = require('path');
-const { globSync } = require('glob');
 
 /**
  * Sets the iOS scheme's LaunchAction buildConfiguration to "Release"
@@ -12,10 +11,18 @@ function withIosReleaseScheme(config) {
     'ios',
     (config) => {
       const iosDir = path.join(config.modRequest.projectRoot, 'ios');
-      const schemeFiles = globSync('*.xcodeproj/xcshareddata/xcschemes/*.xcscheme', {
-        cwd: iosDir,
-        absolute: true,
-      });
+      // ios/*.xcodeproj/xcshareddata/xcschemes/*.xcscheme, without a glob dependency.
+      const schemeFiles = fs
+        .readdirSync(iosDir)
+        .filter((name) => name.endsWith('.xcodeproj'))
+        .map((name) => path.join(iosDir, name, 'xcshareddata', 'xcschemes'))
+        .filter((dir) => fs.existsSync(dir))
+        .flatMap((dir) =>
+          fs
+            .readdirSync(dir)
+            .filter((name) => name.endsWith('.xcscheme'))
+            .map((name) => path.join(dir, name))
+        );
 
       for (const schemePath of schemeFiles) {
         let contents = fs.readFileSync(schemePath, 'utf8');
