@@ -55,6 +55,9 @@ const splashImageTimeoutMs = 1500;
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
+// before the first render, so nothing renders untranslated
+initI18n();
+
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
   duration: 400,
@@ -62,34 +65,20 @@ SplashScreen.setOptions({
 });
 
 function AppWithLoading() {
-  const [asyncWorkIsDone, setAsyncWorkIsDone] = useState(false);
   const [didAppLayout, setDidAppLayout] = useState(false);
   const [didImagesTimeOut, setDidImagesTimeOut] = useState(false);
   const { didLogoLoad, didBackgroundLoad } = useDidImagesLoad();
 
-  // do async work that needs to be done before the splash screen here
+  // only has to be in place before the first play(), not before the first frame
   useEffect(() => {
-    async function prepare() {
-      try {
-        await Promise.all([
-          initI18n(),
-          setAudioModeAsync({
-            playsInSilentMode: true,
-            shouldPlayInBackground: true,
-            interruptionMode: 'doNotMix',
-          }),
-        ]);
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAsyncWorkIsDone(true);
-      }
-    }
-
-    prepare();
+    setAudioModeAsync({
+      playsInSilentMode: true,
+      shouldPlayInBackground: true,
+      interruptionMode: 'doNotMix',
+    }).catch(console.warn);
   }, []);
 
-  const isAppReady = asyncWorkIsDone && didAppLayout;
+  const isAppReady = didAppLayout;
   const didImagesLoad = didLogoLoad && didBackgroundLoad;
 
   // stop waiting for the images a little while after the app is otherwise ready
@@ -107,10 +96,7 @@ function AppWithLoading() {
     }
   }, [shouldHideSplash]);
 
-  if (asyncWorkIsDone) {
-    return <App onLayout={() => setDidAppLayout(true)} />;
-  }
-  return null;
+  return <App onLayout={() => setDidAppLayout(true)} />;
 }
 
 // Sync the user's stored theme preference ('auto' | 'light' | 'dark') with
