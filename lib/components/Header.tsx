@@ -15,9 +15,8 @@ import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/s
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { Link, Stack, router } from 'expo-router';
 
-import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import { useThemeColor } from '../hooks/useThemeColor';
 import Button, { buttonSlop } from './Button';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
@@ -84,8 +83,6 @@ export const HeaderTitle = ({
   variantName,
   center,
 }: HeaderTitleProps) => {
-  const text = useThemeColor('text');
-
   const TitleWrapper = titleWrapper ?? React.Fragment;
   const hasTitleWrapper = !!titleWrapper;
 

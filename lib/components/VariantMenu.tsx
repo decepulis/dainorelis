@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
-
 import { GlassView } from 'expo-glass-effect';
 
 import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+
+import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { Lyrics } from '../schemas/lyrics';
 import { PDFs } from '../schemas/pdfs';
@@ -42,24 +42,8 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
     setActiveVariantId(event);
   };
 
-  const Wrapper = ({ children }: { children: React.ReactNode }) =>
-    isLiquidGlassStyleHeader() ? (
-      <GlassView
-        style={{
-          height: 44,
-          borderRadius: 22,
-          paddingHorizontal: 22,
-          justifyContent: 'center',
-        }}
-      >
-        {children}
-      </GlassView>
-    ) : (
-      children
-    );
-
   return (
-    <Wrapper>
+    <VariantMenuSurface>
       <MenuView
         // on most platforms, this menu ends up left-justified
         hitSlop={Platform.OS === 'ios' ? undefined : { left: 0 }}
@@ -69,6 +53,16 @@ export default function VariantMenu({ children, variants, activeVariantId, setAc
       >
         {children}
       </MenuView>
-    </Wrapper>
+    </VariantMenuSurface>
+  );
+}
+
+function VariantMenuSurface({ children }: { children: React.ReactNode }) {
+  return isLiquidGlassStyleHeader() ? (
+    <GlassView style={{ height: 44, borderRadius: 22, paddingHorizontal: 22, justifyContent: 'center' }}>
+      {children}
+    </GlassView>
+  ) : (
+    children
   );
 }

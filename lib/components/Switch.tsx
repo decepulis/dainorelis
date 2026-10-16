@@ -1,4 +1,4 @@
-import { Host, Switch as UISwitch, type SwitchProps } from '@expo/ui';
+import { Host, type SwitchProps, Switch as UISwitch } from '@expo/ui';
 
 export default function Switch(props: SwitchProps) {
   return (

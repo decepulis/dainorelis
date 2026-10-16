@@ -8,7 +8,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 
-import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -52,7 +52,14 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
   const icons = [
     favorites.includes(item.id) ? (
-      <FontAwesome6 name="heart" key="heart" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6
+        name="heart"
+        key="heart"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
     ) : null,
     Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
       <FontAwesome6
@@ -65,10 +72,24 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
       />
     ) : null,
     Object.keys(item.fields.PDFs).length ? (
-      <FontAwesome6 name="file" key="file" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6
+        name="file"
+        key="file"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
     ) : null,
     Object.keys(item.fields.Audio).length ? (
-      <FontAwesome6 name="play" key="play" size={iconSize} iconStyle="solid" color={primary} style={iconStyle(iconSize)} />
+      <FontAwesome6
+        name="play"
+        key="play"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
     ) : null,
   ].filter(Boolean);
 
@@ -139,11 +160,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
                 {title}
               </ThemedText>
               {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
-              {isLyrics(firstLyrics) ? (
-                <Markdown showLinksAsChords showChords={false}>
-                  {firstLyrics['Lyrics & Chords']}
-                </Markdown>
-              ) : null}
+              {isLyrics(firstLyrics) ? <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown> : null}
             </View>
           </Link.Preview>
           <Link.Menu>

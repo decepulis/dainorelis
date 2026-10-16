@@ -240,9 +240,7 @@ export default function Page() {
               </View>
             </View>
 
-            <Markdown showLinksAsChords showChords={hasChords && showChords}>
-              {activeVariant['Lyrics & Chords']}
-            </Markdown>
+            <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
             {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
             {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
             {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}

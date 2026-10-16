@@ -1,6 +1,6 @@
 import { startTransition, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, StyleProp, TextInput, type TextInputInstance, View, ViewStyle } from 'react-native';
+import { Platform, TextInput, type TextInputInstance, View } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, { AnimatedRef, createAnimatedComponent, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { SpringConfig } from 'react-native-reanimated/lib/typescript/animation/spring';
@@ -10,7 +10,7 @@ import { GlassContainer, GlassView, isLiquidGlassAvailable } from 'expo-glass-ef
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, router } from 'expo-router';
 
-import FontAwesome6 from "@react-native-vector-icons/fontawesome6/static";
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -18,10 +18,9 @@ import { fonts } from '@/lib/constants/themes';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 
 import { useThemeColor } from '../../hooks/useThemeColor';
-import Button, { styles as buttonStyles } from '../Button';
+import Button, { ButtonSurface, styles as buttonStyles } from '../Button';
 import { isLiquidGlassStyleHeader } from '../Header';
 import MenuView from '../MenuView';
-import SystemView from '../SystemView';
 import ThemedText from '../ThemedText';
 
 const AnimatedGlassContainer = createAnimatedComponent(GlassContainer);
@@ -128,15 +127,6 @@ export default function Search({
     }
   };
 
-  const ButtonWrapper = ({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) =>
-    isLiquidGlassAvailable() ? (
-      <View style={[style]}>{children}</View>
-    ) : (
-      <SystemView shadow={false} style={[style]}>
-        {children}
-      </SystemView>
-    );
-
   const playlistTitle = isFavorites ? t('favoriteSongs') : t('allSongs');
   const color = isLiquidGlassAvailable() ? text : '#ffffff';
   const accent = isLiquidGlassAvailable() ? primary : '#ffffff';
@@ -232,7 +222,7 @@ export default function Search({
             scrollToTop();
           }}
         >
-          <ButtonWrapper
+          <ButtonSurface
             style={[
               buttonStyles.button,
               {
@@ -261,7 +251,7 @@ export default function Search({
               size={isLiquidGlassAvailable() ? 16 : 12}
               style={{ marginTop: 2 }}
             />
-          </ButtonWrapper>
+          </ButtonSurface>
         </MenuView>
       </AnimatedGlassView>
       {/* Search Box */}
@@ -278,7 +268,7 @@ export default function Search({
           searchBoxAnimatedStyle,
         ]}
       >
-        <ButtonWrapper style={{ position: 'absolute', inset: 0 }}>
+        <ButtonSurface style={{ position: 'absolute', inset: 0 }}>
           <TextInput
             style={[
               isBoldTextEnabled ? fonts.bold : fonts.regular,
@@ -313,9 +303,14 @@ export default function Search({
               pointerEvents: 'none',
             }}
           >
-            <FontAwesome6 name="magnifying-glass" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+            <FontAwesome6
+              name="magnifying-glass"
+              iconStyle="solid"
+              size={isLiquidGlassAvailable() ? 18 : 14}
+              color={color}
+            />
           </View>
-        </ButtonWrapper>
+        </ButtonSurface>
       </AnimatedGlassView>
     </AnimatedGlassContainer>
   );

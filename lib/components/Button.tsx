@@ -92,6 +92,20 @@ export default function Button({
   );
 }
 
+/**
+ * A non-interactive button background: plain on Liquid Glass (the parent supplies the glass),
+ * SystemView everywhere else.
+ */
+export function ButtonSurface({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
+  return isLiquidGlassAvailable() ? (
+    <View style={style}>{children}</View>
+  ) : (
+    <SystemView shadow={false} style={style}>
+      {children}
+    </SystemView>
+  );
+}
+
 export const styles = StyleSheet.create({
   container: {},
   button: {
