@@ -141,53 +141,38 @@ function buildSong(row: SongRow): Song {
     id: row.id,
     fields: {
       Name: row.name,
-      Lyrics: keyById(
-        lyrics,
-        (record): LyricsField => ({
-          'Variant Name': record.ltName,
-          'EN Variant Name': record.enName,
-          'Lyrics & Chords': adjustChordWhitespace(record.lyrics_and_chords),
-          'Show Chords': checkbox(record.show_chords),
-          Notes: text(record.notes),
-        })
-      ),
-      Videos: keyById(
-        videos,
-        (record): VideosField => ({
-          'Variant Name': record.ltName,
-          'EN Variant Name': record.enName,
-          'YouTube Link': record.youtube_link,
-        })
-      ),
-      Audio: keyById(
-        audio,
-        (record): AudioField => ({
-          'Variant Name': record.ltName,
-          'EN Variant Name': record.enName,
-          URL: record.url,
-          Album: text(record.album),
-          Artist: text(record.artist),
-        })
-      ),
-      PDFs: keyById(
-        pdfs,
-        (record): PDFsField => ({
-          'Variant Name': record.ltName,
-          'EN Variant Name': record.enName,
-          URL: record.url,
-        })
-      ),
-      Translations: keyById(
-        translations,
-        (record): TranslationsField => ({
-          Title: record.title ?? '',
-          'Variant Name': record.ltName,
-          'EN Variant Name': record.enName,
-          Lyrics: record.lyrics,
-          'AI Generated': checkbox(record.ai_generated),
-          Notes: text(record.notes),
-        })
-      ),
+      Lyrics: keyById(lyrics, (record): LyricsField => ({
+        'Variant Name': record.ltName,
+        'EN Variant Name': record.enName,
+        'Lyrics & Chords': adjustChordWhitespace(record.lyrics_and_chords),
+        'Show Chords': checkbox(record.show_chords),
+        Notes: text(record.notes),
+      })),
+      Videos: keyById(videos, (record): VideosField => ({
+        'Variant Name': record.ltName,
+        'EN Variant Name': record.enName,
+        'YouTube Link': record.youtube_link,
+      })),
+      Audio: keyById(audio, (record): AudioField => ({
+        'Variant Name': record.ltName,
+        'EN Variant Name': record.enName,
+        URL: record.url,
+        Album: text(record.album),
+        Artist: text(record.artist),
+      })),
+      PDFs: keyById(pdfs, (record): PDFsField => ({
+        'Variant Name': record.ltName,
+        'EN Variant Name': record.enName,
+        URL: record.url,
+      })),
+      Translations: keyById(translations, (record): TranslationsField => ({
+        Title: record.title ?? '',
+        'Variant Name': record.ltName,
+        'EN Variant Name': record.enName,
+        Lyrics: record.lyrics,
+        'AI Generated': checkbox(record.ai_generated),
+        Notes: text(record.notes),
+      })),
       Tags: list(row.tags),
       Sources: list(row.sources),
       'Recommended Key': text(row.recommended_key),

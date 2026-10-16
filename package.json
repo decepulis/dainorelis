@@ -4,8 +4,8 @@
   "version": "3.0.0",
   "packageManager": "pnpm@10.28.0",
   "scripts": {
-    "update-songs": "ts-node --project tsconfig.scripts.json ./scripts/update-songs.ts && pnpm run generate-indices",
-    "generate-indices": "ts-node --project tsconfig.scripts.json ./scripts/generate-search-indices.ts",
+    "update-songs": "tsx ./scripts/update-songs.ts && pnpm run generate-indices",
+    "generate-indices": "tsx ./scripts/generate-search-indices.ts",
     "generate-metadata": "pnpm --filter @dainorelis/admin generate-metadata",
     "generate-metadata:test": "pnpm --filter @dainorelis/admin generate-metadata -- --limit 5",
     "dev": "expo start",
@@ -78,7 +78,7 @@
     "eslint-plugin-unused-imports": "^4.3.0",
     "prettier": "^3.7.4",
     "remove-markdown": "^0.6.2",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "zod": "^4.2.1"
   },

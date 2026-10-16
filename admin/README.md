@@ -106,7 +106,7 @@ EXPORT_TOKEN=fixture-token pnpm export:fixture
 
 # in the app repo
 ADMIN_EXPORT_URL=http://127.0.0.1:4100/ ADMIN_EXPORT_TOKEN=fixture-token \
-  npx ts-node --project tsconfig.scripts.json ./scripts/update-songs.ts
+  pnpm exec tsx ./scripts/update-songs.ts
 ```
 
 ## How the data model maps to Airtable
