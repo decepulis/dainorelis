@@ -7,15 +7,15 @@ This is an [Expo](https://expo.dev) project. As best as I understand it, Expo is
 ### Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Start the app
 
 ```bash
-npm run dev:web
-npm run dev:ios
-npm run dev:android
+pnpm dev:web
+pnpm dev:ios
+pnpm dev:android
 ```
 
 For Android and iOS to work, you'll probably have to do some setup. Here's some reading to get you started:

@@ -258,7 +258,7 @@ cherry-picked here.
 - **`2cb53d8` bumped more than it listed:** safe-area-context 5.7, webview 13.16.1, react-native-web `~0.21.0`.
 - **`218d091` says expo-doctor passes "aside from a pre-existing prebuild/native-folders note".** That note is real: the committed native projects are SDK 56 while the JS is SDK 57.
 - **`6f656e6` says the CMS is "deployed separately to admin.dainorelis.app" and "sign-ups are disabled in the dashboard".** Nothing in the repo provisions or confirms either one. Read both as a description of the intended setup, not of what has been done.
-- `admin/README.md` and `AGENTS.md` said `npm run update-songs` even though the repo has been pnpm since `ba9666c`. Phase 5 (`16710f1`) switched `AGENTS.md` to pnpm. `admin/README.md` (the data-flow diagram and the verify step) and the root `README.md` (`npm run dev:*`) still use npm.
+- `admin/README.md` and `AGENTS.md` said `npm run update-songs` even though the repo has been pnpm since `ba9666c`. Phase 5 switched `AGENTS.md` (`16710f1`) and both READMEs (the final docs commit) to pnpm.
 - **Several messages claimed `expo lint` passes.** Here, `expo lint` lints nothing, and real ESLint had been failing since `9fae3b6`. Phase 5 fixed it in `69b2176` (`pnpm lint` now runs `eslint .`) and `40ac348` (the actual errors).
 
 ---
