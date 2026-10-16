@@ -1,6 +1,9 @@
 # Plan: Adopt `Stack.Toolbar` on Android
 
 Saved 2026-05-08. Picks up where the SDK 56 upgrade left off.
+Updated 2026-10-16 for SDK 58: Stack.Toolbar is now **stable** on both platforms, Android toolbars
+need `@expo/ui` (already a dependency), and icons come from `@expo/material-symbols` (already a
+dependency since the menu migration), so the drawables plugin and helper below are no longer needed.
 
 ## Background
 
@@ -25,60 +28,42 @@ Is "give up the green branded Android header in favor of a Material toolbar + Ma
 
 Recommend confirming **(1)** before doing the work below.
 
-## Required icon work
+## Required icon work (SDK 58)
 
-The toolbar takes an `icon` prop. On iOS that's an SF Symbol name; on Android it's a Jetpack Compose vector or a drawable. Existing Material drawables in `assets/images/icons/` (wired through `withAndroidDrawables`):
+`Stack.Toolbar.Button`/`Menu`/`MenuAction` take an SF Symbol name on iOS and an
+`ImageSourcePropType` on Android. Use Material Symbols from `@expo/material-symbols` (Metro assets,
+tinted by the toolbar) and branch on `process.env.EXPO_OS`, which Metro inlines so the other
+platform's icon is tree-shaken. This is the pattern in the Expo docs and the one the song/variant/media
+menus already use:
 
+```tsx
+import MoreVert from '@expo/material-symbols/more_vert.xml';
+
+<Stack.Toolbar.Menu icon={process.env.EXPO_OS === 'ios' ? 'ellipsis' : MoreVert}>…</Stack.Toolbar.Menu>;
 ```
-description_20px, feedback_20px, format_quote_20px, menu_book_20px,
-share_20px, music_note_20px, translate_20px
-```
 
-Mapping needed for the existing toolbar icons:
-
-| Used by | iOS (SF Symbol) | Android — exists? | Action |
-|---|---|---|---|
-| `SongDetailToolbar` back | `chevron.left` | system back arrow | use `Stack.Toolbar.Button` w/o icon, or platform-select |
-| `SongDetailToolbar` favorite | `heart` / `heart.fill` | not in repo | add `favorite_border_24px` + `favorite_24px` drawables |
-| `SongDetailToolbar` more | `ellipsis` | not in repo | add `more_vert_24px` |
-| Song menu — about | `book` | use `menu_book_20px` | platform-select |
-| Song menu — translation | `translate` | `translate_20px` ✓ | platform-select |
-| Song menu — chords | `guitars` | use `music_note_20px` | platform-select (chords ≠ music note ideally; consider `music_note_with_underline` / fall back) |
-| Song menu — feedback | `exclamationmark.bubble` | `feedback_20px` ✓ | platform-select |
-| `ModalToolbar` close | `xmark` | system close | `close_24px` drawable |
-| `IndexToolbar` settings | `slider.horizontal.3` | not in repo | add `tune_24px` |
-| `IndexToolbar` playlist menu | `music.note.list` | not in repo | add `playlist_play_24px` or reuse |
-
-Action: extend `assets/images/icons/` with the missing drawables (Material Symbols Outlined, 24dp). Add to the `withAndroidDrawables` plugin in `app.config.ts`.
+| Used by                                            | iOS (SF Symbol)                                             | Android (`@expo/material-symbols/…`)                                                          |
+| -------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `SongDetailToolbar` back                           | `chevron.left`                                              | `arrow_back.xml` (or rely on the system back arrow)                                           |
+| `SongDetailToolbar` favorite                       | `heart` / `heart.fill`                                      | `favorite.xml` (outlined only today; filled needs `npx add-material-symbols --fill favorite`) |
+| `SongDetailToolbar` more                           | `ellipsis`                                                  | `more_vert.xml`                                                                               |
+| Song menu: about / translation / chords / feedback | `book` / `translate` / `guitars` / `exclamationmark.bubble` | `menu_book` / `translate` / `music_note` / `feedback` (already imported in `SongMenu.tsx`)    |
+| `ModalToolbar` close                               | `xmark`                                                     | `close.xml`                                                                                   |
+| `IndexToolbar` settings                            | `slider.horizontal.3`                                       | `tune.xml`                                                                                    |
+| `IndexToolbar` playlist menu                       | `music.note.list`                                           | `queue_music.xml`                                                                             |
 
 ## Code changes
 
-### 1. Toolbar icon helper
+### 1. Icons
 
-Add a small helper, e.g. `lib/components/toolbarIcon.ts`:
-
-```ts
-import { Platform } from 'react-native';
-import type { ImageSourcePropType } from 'react-native';
-
-type IconSpec = { ios: string; androidDrawable: string };
-
-export function toolbarIcon({ ios, androidDrawable }: IconSpec): string | ImageSourcePropType {
-  return Platform.select({
-    ios,
-    default: { uri: androidDrawable }, // referenced via asset:// when wired through withAndroidDrawables
-  })!;
-}
-```
-
-(Verify the exact `image` prop shape that `Stack.Toolbar.Button` accepts on Android — see `expo-router` types or `https://docs.expo.dev/versions/v56.0.0/sdk/router/` once docs catch up. If it takes `Platform.select`-able plain strings, simplify.)
+No helper needed; inline the `process.env.EXPO_OS` ternary per icon, as above.
 
 ### 2. Drop the iOS-only gate on toolbars
 
 In `lib/components/SongMenu.tsx::SongDetailToolbar`, `lib/components/Header.tsx::ModalToolbar`, `lib/components/Index/Search.tsx::IndexToolbar`:
 
 - Remove `if (!isLiquidGlassStyleHeader()) return null;`
-- Replace each hardcoded `icon="chevron.left"` etc. with `icon={toolbarIcon({ ios: '...', androidDrawable: '...' })}`
+- Replace each hardcoded `icon="chevron.left"` etc. with the `process.env.EXPO_OS === 'ios' ? '…' : MaterialIcon` ternary
 - Audit each call site for SF-Symbol-only props (e.g. `selected={isFavorite}`) and confirm Android support; fall back behavior may differ.
 
 ### 3. Remove the now-redundant `HeaderRight` / `HeaderButtonContainer` paths on Android
@@ -108,15 +93,11 @@ Recommend (b) for a coherent Material look.
 
 ## Effort estimate
 
-- Drawables: ~30 min (download from Material Symbols, verify on emulator).
 - Code changes: ~1–2 hours, mostly mechanical Platform.select on icons + condition flips.
 - Visual QA: ~1 hour, mostly Android. iOS should be a no-op.
 
 ## Files touched
 
-- `app.config.ts` — add new drawables to `withAndroidDrawables`.
-- `assets/images/icons/*.xml` — new Material drawables.
-- `lib/components/toolbarIcon.ts` — new helper.
 - `lib/components/SongMenu.tsx` — `SongDetailToolbar`.
 - `lib/components/Header.tsx` — `ModalToolbar`, `HeaderBackground`, `HeaderLeft`.
 - `lib/components/Index/Search.tsx` — `IndexToolbar`.
