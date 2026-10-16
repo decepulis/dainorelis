@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -50,7 +49,6 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
   const primary = useThemeColor('primary');
   const text = useThemeColor('text');
   const { isHighContrastEnabled } = useAccessibilityInfo();
-  const [isPressed, setIsPressed] = useState(false);
 
   const [ogTitle] = splitTitle(song.fields['Name']);
   const [title, subtitle] = splitTitle(firstTranslation['Title']);
@@ -88,24 +86,26 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
             <View style={{ marginTop: padding * 2, opacity: isHighContrastEnabled ? 1 : 0.7 }}>
               <Pressable
                 style={{ flexDirection: 'row', alignItems: 'center', gap: padding / 2 }}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
                 onPress={() => openFeedback(song.fields['Name'])}
                 hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
               >
-                <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} color={text} />
-                <View style={{ flexShrink: 1 }}>
-                  <ThemedText>
-                    {t('genAiText1')}{' '}
-                    <ThemedText
-                      style={[
-                        { textDecorationLine: isPressed ? undefined : 'underline', textDecorationColor: primary },
-                      ]}
-                    >
-                      {t('genAiText2')}
-                    </ThemedText>
-                  </ThemedText>
-                </View>
+                {({ pressed }) => (
+                  <>
+                    <FontAwesome6 name="wand-magic-sparkles" iconStyle="solid" size={12} color={text} />
+                    <View style={{ flexShrink: 1 }}>
+                      <ThemedText>
+                        {t('genAiText1')}{' '}
+                        <ThemedText
+                          style={[
+                            { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                          ]}
+                        >
+                          {t('genAiText2')}
+                        </ThemedText>
+                      </ThemedText>
+                    </View>
+                  </>
+                )}
               </Pressable>
             </View>
           ) : null}
