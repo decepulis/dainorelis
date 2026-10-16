@@ -10,7 +10,7 @@ export default async function EditorLayout({ children }: { children: React.React
     data: { user },
   } = await supabase.auth.getUser();
 
-  // The middleware already redirects, but a layout-level check means a missing
+  // The proxy already redirects, but a layout-level check means a missing
   // matcher can never expose the editor.
   if (!user) redirect('/login');
 
