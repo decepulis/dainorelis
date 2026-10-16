@@ -29,9 +29,13 @@ app repo: npm run update-songs  ──▶  songs.ts + song-festival.ts + search 
    sign in is an editor, so accounts are created by invitation only
    (Authentication → Users → Add user).
 
-3. **Set the environment variables.** See `.env.example`. `EXPORT_TOKEN` is a
-   secret you generate yourself (`openssl rand -hex 32`) and share with the app
-   repo's `.env` as `ADMIN_EXPORT_TOKEN`.
+3. **Set the environment variables.** See `.env.example`. The Supabase
+   integration provides `NEXT_PUBLIC_SUPABASE_URL`,
+   `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and `SUPABASE_SECRET_KEY`. The legacy
+   `NEXT_PUBLIC_SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` names still
+   work as a fallback, but Supabase retires those keys at the end of 2026.
+   `EXPORT_TOKEN` is a secret you generate yourself (`openssl rand -hex 32`) and
+   share with the app repo's `.env` as `ADMIN_EXPORT_TOKEN`.
 
 4. **Migrate from Airtable**, once, from a machine holding the Airtable token:
 

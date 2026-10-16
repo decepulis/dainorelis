@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { supabaseAnonKey, supabaseUrl } from './env';
+import { supabasePublishableKey, supabaseUrl } from './env';
 import type { Database } from './types';
 
 /** Routes reachable without a session. Everything else redirects to /login. */
@@ -21,7 +21,7 @@ function isPublic(pathname: string): boolean {
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
-  const supabase = createServerClient<Database>(supabaseUrl(), supabaseAnonKey(), {
+  const supabase = createServerClient<Database>(supabaseUrl(), supabasePublishableKey(), {
     cookies: {
       getAll() {
         return request.cookies.getAll();
