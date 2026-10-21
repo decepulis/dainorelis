@@ -36,9 +36,16 @@ Possible non-layout uses: maybe a "tabletop" mode for the PDF/sheet-music view o
 - Blockers for this app:
   - **Alpha.** The docs say it is "not ready for production usage yet". iOS only. On Android and web it degrades to a `Slot` with a console warning, so there is **no split on Android tablets or foldables**. **[verified]** in `split-view.js`
   - It must be the root navigator. It throws `'SplitView cannot be used inside another native navigator.'` **[verified]** So the current root `Stack` (which hosts the modals `nustatymai`, `vertimas`, `aprasymas`) would have to move _inside_ the detail column.
-  - **"The header (navigation bar) within split view columns cannot be customized."** [doc] Each column is wrapped in an `RNSSplitNavigationController` with a visible nav bar. **[verified]** in `RNSSplitHostController.mm` The app depends heavily on header customisation: the custom `HeaderTitle` with scroll-linked fade, the `VariantMenu` title wrapper, the `Stack.Toolbar` search bar slot, and the favourite/menu toolbar items. A `Stack` nested in the detail column would probably produce a **second nav bar** under the split's own bar. **[unverified]** That needs a spike to confirm.
+  - **"The header (navigation bar) within split view columns cannot be customized."** [doc] Each column is wrapped in an `RNSSplitNavigationController` with a visible nav bar. **[verified]** in `RNSSplitHostController.mm` The app depends heavily on header customisation: the custom `HeaderTitle` with scroll-linked fade, the `VariantMenu` title wrapper, the `Stack.Toolbar` search bar slot, and the favourite/menu toolbar items.
   - The list column isn't a route, so the `Stack.Toolbar.SearchBarSlot` search on iOS 26+ wouldn't be available there.
 - Verdict: wrong time to adopt it. Re-evaluate when it leaves alpha and supports column headers.
+
+**Spike result (2026-10-21, branch `spike/split-view`, about 1.5 h, iOS 27 sims).** The owner prefers this option, because it is the platform's own container, so it is parked rather than rejected. **Re-evaluate when react-native-screens' Split redesign lands:** [#4666](https://github.com/software-mansion/react-native-screens/pull/4666) (`Split.Stack` as a column's navigation stack) and [#4602](https://github.com/software-mansion/react-native-screens/pull/4602) (Stack v5 as a column). Both were idle drafts at the time.
+
+- Works **[verified]**: routes moved into an `(app)` group whose `Stack` is the detail column, and the root layout is `SplitView` on iOS (`Slot` elsewhere). On iPad, the native sidebar and its show/hide button sit beside the song stack. On iPhone it collapses to the list, and `ref.show('secondary')` on `/dainos/*` brings the song forward. `getId` on `dainos/[id]` keeps one song screen per selection (`Link` with `Link.Preview` throws on `replace`).
+- **Two navigation bars** **[verified]**: the Stack's navigation controller is nested in the column's `RNSSplitNavigationController`. That is [react-native-screens#4858](https://github.com/software-mansion/react-native-screens/issues/4858) (open; maintainers point to the redesign). The issue's workaround, hiding the column's bar while it hosts a nested navigation controller, fixed iPhone. It costs the detail column's sidebar button, and the iPad detail bar still sat about 54 pt too low (unresolved).
+- **Sidebar header** **[verified]**: the column can't host `Stack.Screen` options, `Stack.Toolbar` or `Stack.SearchBar`, and `useHeaderHeight` throws. expo-router doesn't export an independent navigation tree to nest a stack there. The home screen would need rebuilding for the sidebar. `Split.Stack` would solve this as well.
+- **Content under the sidebar** **[verified]**: on iOS 26+ the secondary column is full-window-width and runs under the floating sidebar. The sidebar arrives as a left safe-area inset, which the nav bar honours and React content doesn't. Wrapping the content in `react-native-screens/experimental`'s `SafeAreaView` (`edges={{ left: true, right: true }}`) fixed it. Every window-based measurement (`useSafeAreaFrame`, `maxWidthPadding`) is wrong inside a column, so layout must be relative to the content's own size.
 
 **Option 2: `@expo/ui` `NavigationSplitView` (SwiftUI)**
 
@@ -70,6 +77,8 @@ Possible non-layout uses: maybe a "tabletop" mode for the PDF/sheet-music view o
 
 2. **Phase 1, Option 4 master-detail** (sketch below). Effort: **5–8 dev days plus 2 days of QA** across iPhone, iPad (portrait, landscape, Stage Manager resizing), iPhone Duo (simulator), an Android tablet or foldable emulator, and web if it gets re-enabled.
 3. **Later:** re-evaluate `unstable-split-view` when it stabilises, and look at `ArrangementView` for lyrics plus translation on 27.1+.
+
+**Decision (2026-10-21, after the spike):** stay single-pane for now and wait for the react-native-screens Split redesign rather than build Option 4. Meanwhile, make layout relative to the content's own size instead of the window, and honour horizontal safe areas. The Duo needs this anyway, and it is a prerequisite for any split.
 
 ### Sketch of Option 4
 
@@ -127,8 +136,9 @@ Files likely touched:
 3. In split mode, should the detail pane be empty ("pick a song"), the last-viewed song, or the first song?
 4. List-pane search on iOS 26+: accept the custom (non-glass) search field in the pane, or invest in a SwiftUI-hosted glass search?
 5. Should audio keep playing while browsing other songs (a mini-player outside the song screen)? This becomes much more noticeable in split mode.
-6. Any appetite for a native spike of `unstable-split-view` (1–2 days) to settle the double-header question, given Apple's "use system containers" guidance?
-7. Is web coming back (`build:web:disabled`)? The same layout would serve desktop browsers.
+6. ~~Any appetite for a native spike of `unstable-split-view`?~~ Done 2026-10-21; see the spike result under Option 1.
+
+Owner answers (2026-10-21): (2) 840 is fine, but prefer the platform's own size classes where available; (3) a placeholder; (4) native-feeling but on-brand, with the current list's affordances and signifiers; (5) playback stops when switching songs. Android may stay single-pane on tablets. 7. Is web coming back (`build:web:disabled`)? The same layout would serve desktop browsers.
 
 ---
 
