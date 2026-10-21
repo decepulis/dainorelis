@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { Stack } from 'expo-router';
 
 import { BottomSheet, Button, HStack, Host, Picker, Slider, Spacer, Text, VStack } from '@expo/ui/swift-ui';
@@ -48,9 +47,6 @@ export default function SongToolbar({ title, media, activeMediaId, setActiveMedi
 
   const activeMedia = activeMediaId ? media[activeMediaId] : undefined;
   const { player, status } = audio;
-  // the classic (pre-iOS 26) toolbar would tint everything system blue; Liquid Glass uses the label color
-  const primary = useThemeColor('primary');
-  const tintColor = isLiquidGlassAvailable() ? undefined : primary;
   const togglePlaying = () => (status.playing ? player.pause() : player.play());
 
   if (!activeMedia) return null;
@@ -61,7 +57,7 @@ export default function SongToolbar({ title, media, activeMediaId, setActiveMedi
         <Stack.Toolbar.Spacer />
         {activeMedia ? (
           // the title is the accessibility label; icon items show only the icon
-          <Stack.Toolbar.Button icon="info" tintColor={tintColor} onPress={() => setIsSheetOpen(true)}>
+          <Stack.Toolbar.Button icon="info" onPress={() => setIsSheetOpen(true)}>
             {t('showPlayerDetails')}
           </Stack.Toolbar.Button>
         ) : null}
@@ -69,7 +65,7 @@ export default function SongToolbar({ title, media, activeMediaId, setActiveMedi
           // play/pause in the trailing corner, under the thumb
           <Stack.Toolbar.Button
             icon={status.playing ? 'pause.fill' : 'play.fill'}
-            tintColor={tintColor}
+
             onPress={togglePlaying}
           >
             {status.playing ? t('pause') : t('play')}

@@ -370,8 +370,8 @@ function SongPage({ song }: { song: Song }) {
           />
         </View>
       )}
-      {process.env.EXPO_OS === 'ios' ? (
-        // native toolbar items and a player sheet (a classic UIToolbar before iOS 26)
+      {isLiquidGlassStyleHeader() ? (
+        // native toolbar items and a player sheet
         <SongToolbar
           title={title}
           media={media}
