@@ -20,17 +20,11 @@ import {
 import type { SongAudio } from '../hooks/useSongAudio';
 import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
-import { Lyrics } from '../schemas/lyrics';
-import { PDFs } from '../schemas/pdfs';
-import isLyrics from '../utils/isLyrics';
 
 const skipSeconds = 10;
 
 type Props = {
   title: string;
-  variants: { [id: string]: Lyrics | PDFs };
-  activeVariantId: string;
-  setActiveVariantId: (id: string) => void;
   media: { [id: string]: Audio };
   activeMediaId: string | undefined;
   setActiveMediaId: (id: string) => void;
@@ -43,26 +37,15 @@ const formatTime = (seconds: number) => {
 };
 
 /**
- * EXPERIMENT (Liquid Glass): the song screen's bottom controls as native toolbar items, so UIKit
- * places them (corners on a phone, the trailing bar on a closed iPhone Duo): the variant pop-up,
- * play/pause, and an info button for a sheet with the full player.
+ * The song screen's player controls as native toolbar items, so UIKit
+ * places them (the trailing corner on a phone, the vertical bar on a closed iPhone Duo): play/pause
+ * and an info button for a sheet with the full player. The variant menu is in the title.
  */
-export default function SongToolbar({
-  title,
-  variants,
-  activeVariantId,
-  setActiveVariantId,
-  media,
-  activeMediaId,
-  setActiveMediaId,
-  audio,
-}: Props) {
+export default function SongToolbar({ title, media, activeMediaId, setActiveMediaId, audio }: Props) {
   const { t, i18n } = useTranslation();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const name = (item: Lyrics | PDFs | Audio) =>
-    i18n.language === 'en' ? item['EN Variant Name'] : item['Variant Name'];
+  const name = (item: Audio) => (i18n.language === 'en' ? item['EN Variant Name'] : item['Variant Name']);
 
-  const hasMultipleVariants = Object.keys(variants).length > 1;
   const activeMedia = activeMediaId ? media[activeMediaId] : undefined;
   const { player, status } = audio;
   // the classic (pre-iOS 26) toolbar would tint everything system blue; Liquid Glass uses the label color
@@ -70,34 +53,11 @@ export default function SongToolbar({
   const tintColor = isLiquidGlassAvailable() ? undefined : primary;
   const togglePlaying = () => (status.playing ? player.pause() : player.play());
 
-  if (!hasMultipleVariants && !activeMedia) return null;
+  if (!activeMedia) return null;
 
   return (
     <>
       <Stack.Toolbar placement="bottom">
-        {hasMultipleVariants ? (
-          // HIG: a symbol (so it fits the iPhone Duo's vertical bar too) that reflects the selection,
-          // plus a title, which UIKit uses for VoiceOver, overflow and the Large Content Viewer
-          <Stack.Toolbar.Menu
-            icon={isLyrics(variants[activeVariantId]) ? 'text.quote' : 'document'}
-            tintColor={tintColor}
-            title={t('variantsMenuTitle')}
-            accessibilityLabel={t('variantsMenuTitle')}
-            accessibilityHint={t('variantsMenuHint')}
-          >
-            <Stack.Toolbar.Label>{name(variants[activeVariantId])}</Stack.Toolbar.Label>
-            {Object.entries(variants).map(([id, variant]) => (
-              <Stack.Toolbar.MenuAction
-                key={id}
-                icon={isLyrics(variant) ? 'text.quote' : 'document'}
-                isOn={id === activeVariantId}
-                onPress={() => setActiveVariantId(id)}
-              >
-                {name(variant)}
-              </Stack.Toolbar.MenuAction>
-            ))}
-          </Stack.Toolbar.Menu>
-        ) : null}
         <Stack.Toolbar.Spacer />
         {activeMedia ? (
           // the title is the accessibility label; icon items show only the icon

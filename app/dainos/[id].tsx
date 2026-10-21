@@ -29,10 +29,10 @@ import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongBottomBar from '@/lib/components/SongBottomBar';
 import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
 import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
+import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
@@ -138,20 +138,6 @@ function SongPage({ song }: { song: Song }) {
   };
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const audio = useSongAudio(title, activeMedia);
-  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
-  const renderPlayer = activeMedia
-    ? (openWidth: number) => (
-        <Player
-          media={media}
-          activeMediaId={activeMediaId}
-          setActiveMediaId={setActiveMediaId}
-          audio={audio}
-          openWidth={openWidth}
-          isOpen={isPlayerOpen}
-          onOpenChange={setIsPlayerOpen}
-        />
-      )
-    : null;
   const showLyrics = isLyrics(activeVariant);
 
   // Liquid Glass: a native title with the variant as its subtitle and a title menu to switch variants
@@ -231,6 +217,21 @@ function SongPage({ song }: { song: Song }) {
                     showTitle={isLyrics(activeVariant) ? undefined : true}
                     title={title}
                     subtitle={subtitle}
+                    // the variant menu lives in the title here, as the native title menu does on Liquid Glass
+                    titleWrapper={
+                      hasMultipleVariants
+                        ? (titleElement) => (
+                            <VariantMenu
+                              variants={variants}
+                              activeVariantId={activeVariantId}
+                              setActiveVariantId={setActiveVariantId}
+                            >
+                              {titleElement}
+                            </VariantMenu>
+                          )
+                        : undefined
+                    }
+                    variantName={variantName}
                   />
                 ),
               }),
@@ -280,11 +281,10 @@ function SongPage({ song }: { song: Song }) {
                 paddingLeft: maxWidthPadding.paddingLeft,
                 paddingRight: maxWidthPadding.paddingRight,
                 paddingTop: isLargeTitle ? padding * 3 : undefined,
-                // room for SongBottomBar
-                paddingBottom:
-                  activeMedia || hasMultipleVariants
-                    ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
-                    : Math.max(inset.bottom + padding * 2, padding * 4),
+                // room for the player
+                paddingBottom: activeMedia
+                  ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
+                  : Math.max(inset.bottom + padding * 2, padding * 4),
               },
             ]}
           >
@@ -371,26 +371,17 @@ function SongPage({ song }: { song: Song }) {
         </View>
       )}
       {process.env.EXPO_OS === 'ios' ? (
-        // native toolbar items + a player sheet (a classic UIToolbar before iOS 26)
+        // native toolbar items and a player sheet (a classic UIToolbar before iOS 26)
         <SongToolbar
           title={title}
-          variants={variants}
-          activeVariantId={activeVariantId}
-          setActiveVariantId={setActiveVariantId}
           media={media}
           activeMediaId={activeMediaId}
           setActiveMediaId={setActiveMediaId}
           audio={audio}
         />
-      ) : (
-        <SongBottomBar
-          variants={variants}
-          activeVariantId={activeVariantId}
-          setActiveVariantId={setActiveVariantId}
-          renderPlayer={renderPlayer}
-          isPlayerOpen={isPlayerOpen}
-        />
-      )}
+      ) : activeMedia ? (
+        <Player media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} audio={audio} />
+      ) : null}
     </Root>
   );
 }

@@ -49,23 +49,9 @@ type Props = {
   activeMediaId: string | undefined;
   setActiveMediaId: (id: string) => void;
   audio: SongAudio;
-  /** the open width, when a parent (SongBottomBar) positions the player instead of the screen corner */
-  openWidth?: number;
-  /** owned by the screen, so SongBottomBar can make room for the open player */
-  isOpen: boolean;
-  onOpenChange: (isOpen: boolean) => void;
   style?: StyleProp<ViewStyle>;
 };
-export default function Player({
-  media,
-  activeMediaId,
-  setActiveMediaId,
-  audio,
-  openWidth,
-  isOpen,
-  onOpenChange,
-  style,
-}: Props) {
+export default function Player({ media, activeMediaId, setActiveMediaId, audio, style }: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   // live Reduce Motion: the player opens, closes and resizes without springing
@@ -75,9 +61,9 @@ export default function Player({
   const primary = useThemeColor('primary');
 
   // layout
-  const playerWidth =
-    openWidth ??
-    (isAppWide ? 360 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2));
+  const playerWidth = isAppWide
+    ? 360
+    : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2);
   // this is ludicrous, I know. but dang is that animation smooth.
   const durationWidth =
     Object.keys(media).length > 1
@@ -115,11 +101,9 @@ export default function Player({
   } = audio;
 
   // Manage animations
-  // isOpenSv mirrors isOpen for the worklets
-  const isOpenSv = useSharedValue(isOpen);
-  useEffect(() => {
-    isOpenSv.set(isOpen);
-  }, [isOpen, isOpenSv]);
+  // isOpen mirrors isOpenSv for what React renders (accessibility); the worklets read the shared value
+  const [isOpen, setIsOpen] = useState(false);
+  const isOpenSv = useSharedValue(false);
   const spring = { ...springConfig, reduceMotion };
   const collapsedWidth = padding + buttonWidth + padding + buttonWidth + padding;
   const containerStyles = useAnimatedStyle(() => ({
@@ -234,15 +218,13 @@ export default function Player({
     <PlayerSurface
       style={[
         containerStyles,
-        openWidth !== undefined
-          ? { height: playerHeight, borderRadius: playerHeight / 2 }
-          : {
-              position: 'absolute',
-              bottom: Math.max(inset.bottom, appPadding),
-              right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
-              height: playerHeight,
-              borderRadius: playerHeight / 2,
-            },
+        {
+          position: 'absolute',
+          bottom: Math.max(inset.bottom, appPadding),
+          right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
+          height: playerHeight,
+          borderRadius: playerHeight / 2,
+        },
         style,
       ]}
     >
@@ -254,7 +236,8 @@ export default function Player({
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           accessibilityLabel={isOpen ? t('hidePlayerDetails') : t('showPlayerDetails')}
           onPress={() => {
-            onOpenChange(!isOpen);
+            setIsOpen(!isOpen);
+            isOpenSv.set(!isOpen);
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
