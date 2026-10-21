@@ -209,6 +209,8 @@ export default function Search({
           ]}
         >
           <MenuView
+            // the pill already fills a 44pt target, so the 32pt-button slop would only offset it
+            hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
             actions={[
               {
                 id: 'allSongs',
@@ -231,7 +233,9 @@ export default function Search({
                 buttonStyles.button,
                 {
                   width: 'auto',
-                  flexBasis: '100%',
+                  height: buttonSize,
+                  flexBasis: buttonSize,
+                  borderRadius: buttonSize / 2,
                   flexDirection: 'row',
                   gap: padding / 3,
                   alignItems: 'center',
