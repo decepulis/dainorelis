@@ -48,7 +48,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c1d77d641a05cd1d57e9f2bfc65b10b5ea92d979 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b7029b64c00 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -46,6 +46,8 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
@@ -201,7 +201,24 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c1d77d641a05cd1d57e9f2bfc65b10b5
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -695,7 +821,85 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +629,16 @@ RNS_IGNORE_SUPER_CALL_END
+   } else if (appearance.backIndicatorImage) {
+     [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
+   }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
++  // dainorelis: the default inline subtitle (~11pt, secondary grey) is hard to read, especially over
++  // colored content; use Footnote (Dynamic Type) in the label color
++  if (@available(iOS 26.0, *)) {
++    appearance.subtitleTextAttributes = @{
++      NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote],
++      NSForegroundColorAttributeName : [UIColor labelColor],
++    };
++  }
++#endif
+   return appearance;
+ }
+ 
+@@ -695,7 +831,85 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -288,7 +305,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c1d77d641a05cd1d57e9f2bfc65b10b5
    navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
                                                  withCurrentItems:navitem.leftBarButtonItems];
    navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
-@@ -830,6 +1034,17 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1044,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -306,7 +323,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c1d77d641a05cd1d57e9f2bfc65b10b5
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1078,6 +1293,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1303,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
