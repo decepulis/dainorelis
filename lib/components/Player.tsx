@@ -119,7 +119,6 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   }));
   const opacityStyles = useAnimatedStyle(() => ({
     opacity: withSpring(isOpenSv.get() ? 1 : 0, spring),
-    pointerEvents: isOpenSv.get() ? 'auto' : 'none',
   }));
   const infoButtonStyles = useAnimatedStyle(() => ({
     opacity: withSpring(isOpenSv.get() ? 0 : 1, spring),
@@ -270,7 +269,9 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
         <GestureDetector gesture={gesture}>
           <Animated.View
-            // hidden from screen readers while collapsed, like it is from touches
+            // collapsed, this overlaps the info button: keep touches and screen readers off it
+            // (a pointerEvents prop, because an animated-style pointerEvents doesn't apply on Android)
+            pointerEvents={isOpen ? 'auto' : 'none'}
             accessibilityElementsHidden={!isOpen}
             importantForAccessibility={isOpen ? 'auto' : 'no-hide-descendants'}
             style={[
@@ -340,6 +341,8 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
 
         {Object.keys(media).length > 1 ? (
           <Animated.View
+            // collapsed, the media menu sits exactly on top of the info button
+            pointerEvents={isOpen ? 'auto' : 'none'}
             accessibilityElementsHidden={!isOpen}
             importantForAccessibility={isOpen ? 'auto' : 'no-hide-descendants'}
             style={[
