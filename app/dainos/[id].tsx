@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
-import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedReaction,
+  useAnimatedRef,
+  useScrollOffset,
+  useSharedValue,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
@@ -45,6 +51,9 @@ export async function generateStaticParams() {
   return songs.map((song) => ({ id: song.id }));
 }
 
+const truncate = (text: string, maxLength: number) =>
+  text.length > maxLength ? `${text.slice(0, maxLength - 1).trimEnd()}…` : text;
+
 export default function Page() {
   const { t } = useTranslation();
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -57,7 +66,7 @@ export default function Page() {
 
 function SongPage({ song }: { song: Song }) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
   const background = useThemeColor('background');
@@ -127,7 +136,7 @@ function SongPage({ song }: { song: Song }) {
   const calculateTitleHeight = (event: LayoutChangeEvent) => {
     titleLayout.set(event.nativeEvent.layout);
   };
-  const { title, subtitle } = useTitle(song, activeVariant);
+  const { title, subtitle, variantName } = useTitle(song, activeVariant);
   const audio = useSongAudio(title, activeMedia);
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const renderPlayer = activeMedia
@@ -145,6 +154,49 @@ function SongPage({ song }: { song: Song }) {
     : null;
   const showLyrics = isLyrics(activeVariant);
 
+  // Liquid Glass: a native title with the variant as its subtitle and a title menu to switch variants
+  // (our react-native-screens patch). At rest the big title is on screen, so the nav title is the
+  // variant alone; past it (or over a PDF) it's the song, with the variant as the subtitle.
+  const scrollOffset = useScrollOffset(showLyrics ? scrollRef : null);
+  const [isPastTitle, setIsPastTitle] = useState(false);
+  useAnimatedReaction(
+    () => {
+      const layout = titleLayout.get();
+      return !!layout && scrollOffset.get() > layout.y + layout.height;
+    },
+    (isPast, wasPast) => {
+      if (isPast !== wasPast) scheduleOnRN(setIsPastTitle, isPast);
+    }
+  );
+  // EXPERIMENT: a native large title (lyrics) that UIKit collapses into the inline title on scroll,
+  // so the nav title is always the song and the variant always its subtitle
+  const isLargeTitle = isLiquidGlassStyleHeader() && showLyrics;
+  const showSongTitle = isLargeTitle || !showLyrics || isPastTitle;
+  const variantTitle = (variant: LyricsType | PDFs) =>
+    i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'];
+  const nativeHeader = {
+    title: showSongTitle ? title : (variantName ?? ''),
+    headerConfig: {
+      // UIKit would rather fold the heart and ⋯ into an overflow menu than truncate a long subtitle
+      subtitle: showSongTitle && variantName ? truncate(variantName, 28) : undefined,
+      titleMenu: hasMultipleVariants
+        ? {
+            title: t('variantsMenuTitle'),
+            singleSelection: true,
+            items: Object.entries(variants).map(([variantId, variant]) => ({
+              menuId: variantId,
+              title: variantTitle(variant),
+              state: variantId === activeVariantId ? 'on' : 'off',
+              sfSymbolName: isLyrics(variant) ? 'text.quote' : 'document',
+            })),
+          }
+        : undefined,
+      onPressTitleMenuItem: (e: { nativeEvent: { menuId: string } }) => setActiveVariantId(e.nativeEvent.menuId),
+    },
+  };
+
+  const Root = isLargeTitle ? Fragment : View;
+
   const toggleFavorite = () => {
     if (isFavorite) {
       setFavorites(favorites.filter((id) => id !== song.id));
@@ -156,19 +208,32 @@ function SongPage({ song }: { song: Song }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: background }}>
+    // a large title tracks the screen's first scroll view, so don't wrap it in a View
+    <Root {...(isLargeTitle ? {} : { style: { flex: 1, backgroundColor: background } })}>
       <Stack.Screen
         options={{
-          headerBackground: () => <HeaderBackground opaque />,
-          headerTitle: () => (
-            <HeaderTitle
-              scrollRef={showLyrics ? scrollRef : undefined}
-              titleLayout={titleLayout}
-              showTitle={isLyrics(activeVariant) ? undefined : true}
-              title={title}
-              subtitle={subtitle}
-            />
-          ),
+          headerBackground: isLargeTitle ? undefined : () => <HeaderBackground opaque />,
+          headerLargeTitle: isLargeTitle,
+          headerLargeTitleShadowVisible: false,
+          // the large title sits on the green band below, which scrolls away with the content
+          headerLargeTitleStyle: isLargeTitle ? { color: '#ffffff' } : undefined,
+          ...(isLiquidGlassStyleHeader()
+            ? {
+                headerTitle: nativeHeader.title,
+                // patched props (see patches/react-native-screens), so not in the published types
+                unstable_nativeProps: { headerConfig: nativeHeader.headerConfig as object },
+              }
+            : {
+                headerTitle: () => (
+                  <HeaderTitle
+                    scrollRef={showLyrics ? scrollRef : undefined}
+                    titleLayout={titleLayout}
+                    showTitle={isLyrics(activeVariant) ? undefined : true}
+                    title={title}
+                    subtitle={subtitle}
+                  />
+                ),
+              }),
           headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
           headerRight: !isLiquidGlassStyleHeader()
             ? () => (
@@ -187,13 +252,34 @@ function SongPage({ song }: { song: Song }) {
       />
       <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
       {showLyrics ? (
-        <ScrollViewWithHeader ref={scrollRef} style={[styles.scroll]}>
+        <ScrollViewWithHeader
+          ref={scrollRef}
+          style={[styles.scroll, isLargeTitle ? { backgroundColor: background } : null]}
+          // a large title collapses only with system-managed insets
+          contentInsetAdjustmentBehavior={isLargeTitle ? 'automatic' : undefined}
+          contentContainerStyle={isLargeTitle ? { marginTop: 0 } : undefined}
+        >
+          {isLargeTitle ? (
+            // HIG: brand color in the content layer, not the bar. It reaches up under the
+            // transparent bar and the large title, across the full width.
+            <View
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: -2000,
+                height: 2000 + padding * 1.5,
+                backgroundColor: primary,
+              }}
+            />
+          ) : null}
           <View
             style={[
               styles.container,
               {
                 paddingLeft: maxWidthPadding.paddingLeft,
                 paddingRight: maxWidthPadding.paddingRight,
+                paddingTop: isLargeTitle ? padding * 3 : undefined,
                 // room for SongBottomBar
                 paddingBottom:
                   activeMedia || hasMultipleVariants
@@ -202,30 +288,32 @@ function SongPage({ song }: { song: Song }) {
               },
             ]}
           >
-            <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
-              {isLiquidGlassStyleHeader() ? (
-                <View
-                  style={{
-                    backgroundColor: primary,
-                    position: 'absolute',
-                    left: -maxWidthPadding.paddingLeft,
-                    right: -maxWidthPadding.paddingRight,
-                    top: -headerHeight * 10,
-                    bottom: -padding,
-                  }}
-                />
-              ) : null}
-              <View style={styles.titleAndSubtitle}>
-                <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
-                  {title}
-                </ThemedText>
-                {subtitle ? (
-                  <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
-                    {subtitle}
-                  </ThemedText>
+            {isLargeTitle ? null : (
+              <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
+                {isLiquidGlassStyleHeader() ? (
+                  <View
+                    style={{
+                      backgroundColor: primary,
+                      position: 'absolute',
+                      left: -maxWidthPadding.paddingLeft,
+                      right: -maxWidthPadding.paddingRight,
+                      top: -headerHeight * 10,
+                      bottom: -padding,
+                    }}
+                  />
                 ) : null}
+                <View style={styles.titleAndSubtitle}>
+                  <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                    {title}
+                  </ThemedText>
+                  {subtitle ? (
+                    <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                      {subtitle}
+                    </ThemedText>
+                  ) : null}
+                </View>
               </View>
-            </View>
+            )}
 
             <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
             {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
@@ -303,7 +391,7 @@ function SongPage({ song }: { song: Song }) {
           isPlayerOpen={isPlayerOpen}
         />
       )}
-    </View>
+    </Root>
   );
 }
 

@@ -1,8 +1,66 @@
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
+index fa1b77317f609983ae2434764174072e51130550..7c0fcf92e6ec46de14170bebb0f29e56f00c6972 100644
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
+@@ -320,4 +320,15 @@ class ScreenStackHeaderConfigViewManager :
+         view: ScreenStackHeaderConfig?,
+         value: String?,
+     ) = Unit
++
++    // dainorelis: iOS-only title menu and subtitle
++    override fun setSubtitle(
++        view: ScreenStackHeaderConfig?,
++        value: String?,
++    ) = Unit
++
++    override fun setTitleMenu(
++        view: ScreenStackHeaderConfig?,
++        value: com.facebook.react.bridge.Dynamic,
++    ) = Unit
+ }
+diff --git a/ios/RNSBarButtonItem.h b/ios/RNSBarButtonItem.h
+index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6eefe8ce4c 100644
+--- a/ios/RNSBarButtonItem.h
++++ b/ios/RNSBarButtonItem.h
+@@ -15,6 +15,10 @@ typedef void (^RNSBarButtonMenuItemAction)(NSString *menuId);
+                         action:(RNSBarButtonItemAction)action
+                     menuAction:(RNSBarButtonMenuItemAction)menuAction
+                    imageLoader:(RCTImageLoader *)imageLoader;
++// dainorelis: exposed for the title menu (RNSScreenStackHeaderConfig)
+++ (UIMenu *)initUIMenuWithDict:(NSDictionary<NSString *, id> *)dict
++                    menuAction:(RNSBarButtonMenuItemAction)menuAction
++                   imageLoader:(RCTImageLoader *)imageLoader;
+ #endif // defined(__cplusplus)
+ 
+ @end
+diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
+index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2cb0b8197 100644
+--- a/ios/RNSScreenStackHeaderConfig.h
++++ b/ios/RNSScreenStackHeaderConfig.h
+@@ -24,6 +24,9 @@
+ NS_ASSUME_NONNULL_BEGIN
+ 
+ @property (nonatomic, retain) NSString *title;
++// dainorelis: iOS 26 subtitle and a native title menu (see titleMenu in the codegen spec)
++@property (nonatomic, copy, nullable) NSString *subtitle;
++@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *titleMenu;
+ @property (nonatomic, retain) NSString *titleFontFamily;
+ @property (nonatomic, retain) NSNumber *titleFontSize;
+ @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..24a745669e5140c109706d52a1c02f8f065c2973 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c1d77d641a05cd1d57e9f2bfc65b10b5ea92d979 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
-@@ -235,6 +235,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -46,6 +46,8 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+ @end
+ 
+ @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
++// dainorelis
++- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
+ @end
+ 
+ @implementation RNSScreenStackHeaderConfig {
+@@ -235,6 +237,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -38,7 +96,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..24a745669e5140c109706d52a1c02f8f
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +281,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +283,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -143,3 +201,147 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..24a745669e5140c109706d52a1c02f8f
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
+@@ -695,7 +821,85 @@ RNS_IGNORE_SUPER_CALL_END
+ 
+   // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
+   // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
+-  navitem.title = config.title;
++  // dainorelis: crossfade the title and subtitle when they change on a settled, visible screen (e.g. as
++  // the song title replaces the variant name on scroll); set them directly otherwise
++  NSString *dainorelisOldTitle = navitem.title;
++  void (^dainorelisApplyTitle)(void) = ^{
++    navitem.title = config.title;
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
++    if (@available(iOS 26.0, *)) {
++      navitem.subtitle = config.subtitle;
++    }
++#endif
++  };
++  BOOL dainorelisTitleChanged = dainorelisOldTitle != nil && ![dainorelisOldTitle isEqualToString:config.title ?: @""];
++  if (dainorelisTitleChanged && navctr.topViewController == vc && navctr.transitionCoordinator == nil) {
++    [UIView transitionWithView:navctr.navigationBar
++                      duration:0.25
++                       options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowUserInteraction
++                    animations:dainorelisApplyTitle
++                    completion:nil];
++  } else {
++    dainorelisApplyTitle();
++  }
++#if !TARGET_OS_TV
++  // dainorelis: a native title menu (iOS 16+) and subtitle (iOS 26+); both need a plain string title,
++  // since a custom titleView takes their place
++  if (@available(iOS 16.0, *)) {
++    if (config.titleMenu != nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      navitem.titleMenuProvider = ^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
++        RNSScreenStackHeaderConfig *strongConfig = weakConfig;
++        if (strongConfig == nil || strongConfig.titleMenu == nil) {
++          return nil;
++        }
++        return [RNSBarButtonItem initUIMenuWithDict:strongConfig.titleMenu
++                                         menuAction:^(NSString *menuId) {
++                                           [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                         }
++                                        imageLoader:nil];
++      };
++    } else {
++      navitem.titleMenuProvider = nil;
++    }
++  }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  // dainorelis: under a large title, a pop-up button (the subtitle and an up/down chevron) opens the
++  // same menu, since UIKit offers the title menu only from the inline title
++  if (@available(iOS 26.0, *)) {
++    if (config.largeTitle && config.titleMenu != nil && config.subtitle != nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      UIButtonConfiguration *buttonConfig = [UIButtonConfiguration plainButtonConfiguration];
++      buttonConfig.title = config.subtitle;
++      buttonConfig.image = [UIImage systemImageNamed:@"chevron.up.chevron.down"];
++      buttonConfig.imagePlacement = NSDirectionalRectEdgeTrailing;
++      buttonConfig.imagePadding = 4;
++      buttonConfig.preferredSymbolConfigurationForImage =
++          [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleFootnote
++                                                           scale:UIImageSymbolScaleSmall];
++      buttonConfig.contentInsets = NSDirectionalEdgeInsetsZero;
++      buttonConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(
++          NSDictionary<NSAttributedStringKey, id> *attributes) {
++        NSMutableDictionary *updated = [attributes mutableCopy];
++        updated[NSFontAttributeName] = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
++        return updated;
++      };
++      buttonConfig.baseForegroundColor = config.largeTitleColor ?: [UIColor secondaryLabelColor];
++      UIButton *button = [UIButton buttonWithConfiguration:buttonConfig primaryAction:nil];
++      button.menu = [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
++                                              menuAction:^(NSString *menuId) {
++                                                [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                              }
++                                             imageLoader:nil];
++      button.showsMenuAsPrimaryAction = YES;
++      button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeading;
++      navitem.largeSubtitleView = button;
++    } else {
++      navitem.largeSubtitleView = nil;
++    }
++  }
++#endif
++#endif
+   navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
+                                                 withCurrentItems:navitem.leftBarButtonItems];
+   navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
+@@ -830,6 +1034,17 @@ RNS_IGNORE_SUPER_CALL_END
+   }
+ }
+ 
++// dainorelis: title menu selection
++- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId
++{
++  auto eventEmitter =
++      std::static_pointer_cast<const facebook::react::RNSScreenStackHeaderConfigEventEmitter>(_eventEmitter);
++  if (eventEmitter && menuId) {
++    eventEmitter->onPressTitleMenuItem(facebook::react::RNSScreenStackHeaderConfigEventEmitter::OnPressTitleMenuItem{
++        .menuId = std::string([menuId UTF8String])});
++  }
++}
++
+ - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
+                                          withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
+ {
+@@ -1078,6 +1293,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+   }
+ 
+   _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
++  // dainorelis
++  _subtitle = RCTNSStringFromStringNilIfEmpty(newScreenProps.subtitle);
++  if (newScreenProps.titleMenu != oldScreenProps.titleMenu) {
++    id titleMenu = [RNSConvert idFromFollyDynamic:newScreenProps.titleMenu];
++    _titleMenu = [titleMenu isKindOfClass:[NSDictionary class]] ? titleMenu : nil;
++  }
+   if (newScreenProps.titleFontFamily != oldScreenProps.titleFontFamily) {
+     _titleFontFamily = RCTNSStringFromStringNilIfEmpty(newScreenProps.titleFontFamily);
+   }
+diff --git a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
+index da28c51c6ffd29b996c876742a11cfdf322db969..81d93aa3184b446086d2e9eeb48cae3250e633bf 100644
+--- a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
++++ b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
+@@ -17,6 +17,8 @@ type OnDetachedEvent = Readonly<{}>;
+ 
+ type OnPressHeaderBarButtonItemEvent = Readonly<{ buttonId: string }>;
+ type OnPressHeaderBarButtonMenuItemEvent = Readonly<{ menuId: string }>;
++// dainorelis: title menu
++type OnPressTitleMenuItemEvent = Readonly<{ menuId: string }>;
+ 
+ type BackButtonDisplayMode = 'minimal' | 'default' | 'generic';
+ 
+@@ -86,6 +88,12 @@ export interface NativeProps extends ViewProps {
+     | CT.DirectEventHandler<OnPressHeaderBarButtonMenuItemEvent>
+     | undefined;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
++  // dainorelis: iOS 26 navigation bar subtitle, and a native title menu (iOS 16+). titleMenu has the
++  // shape RNSBarButtonItem's initUIMenuWithDict reads: { title?, singleSelection?, items: [{ menuId,
++  // title, state?, sfSymbolName? }] }
++  subtitle?: string | undefined;
++  titleMenu?: CT.UnsafeMixed | undefined;
++  onPressTitleMenuItem?: CT.DirectEventHandler<OnPressTitleMenuItemEvent> | undefined;
+ 
+   // Experimental
+   userInterfaceStyle?: CT.WithDefault<UserInterfaceStyle, 'unspecified'>;

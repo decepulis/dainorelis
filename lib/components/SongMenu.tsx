@@ -108,14 +108,6 @@ export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorit
 
   return (
     <>
-      <Stack.Toolbar placement="left">
-        <Stack.Toolbar.Button
-          icon="chevron.left"
-          accessibilityLabel={t('back')}
-          // the root layout's anchor keeps index under a deep-linked song; fall back to it anyway
-          onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
-        />
-      </Stack.Toolbar>
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           icon={isFavorite ? 'heart.fill' : 'heart'}
