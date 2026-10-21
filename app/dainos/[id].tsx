@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
@@ -22,12 +23,14 @@ import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
+import SongBottomBar from '@/lib/components/SongBottomBar';
 import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
+import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
-import VariantMenu from '@/lib/components/VariantMenu';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useSongAudio from '@/lib/hooks/useSongAudio';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Audio } from '@/lib/schemas/audio';
@@ -124,7 +127,22 @@ function SongPage({ song }: { song: Song }) {
   const calculateTitleHeight = (event: LayoutChangeEvent) => {
     titleLayout.set(event.nativeEvent.layout);
   };
-  const { title, subtitle, variantName } = useTitle(song, activeVariant);
+  const { title, subtitle } = useTitle(song, activeVariant);
+  const audio = useSongAudio(title, activeMedia);
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+  const renderPlayer = activeMedia
+    ? (openWidth: number) => (
+        <Player
+          media={media}
+          activeMediaId={activeMediaId}
+          setActiveMediaId={setActiveMediaId}
+          audio={audio}
+          openWidth={openWidth}
+          isOpen={isPlayerOpen}
+          onOpenChange={setIsPlayerOpen}
+        />
+      )
+    : null;
   const showLyrics = isLyrics(activeVariant);
 
   const toggleFavorite = () => {
@@ -147,22 +165,8 @@ function SongPage({ song }: { song: Song }) {
               scrollRef={showLyrics ? scrollRef : undefined}
               titleLayout={titleLayout}
               showTitle={isLyrics(activeVariant) ? undefined : true}
-              titleWrapper={
-                hasMultipleVariants
-                  ? (title) => (
-                      <VariantMenu
-                        variants={variants}
-                        activeVariantId={activeVariantId}
-                        setActiveVariantId={setActiveVariantId}
-                      >
-                        {title}
-                      </VariantMenu>
-                    )
-                  : undefined
-              }
               title={title}
               subtitle={subtitle}
-              variantName={variantName}
             />
           ),
           headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
@@ -190,9 +194,11 @@ function SongPage({ song }: { song: Song }) {
               {
                 paddingLeft: maxWidthPadding.paddingLeft,
                 paddingRight: maxWidthPadding.paddingRight,
-                paddingBottom: activeMedia
-                  ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
-                  : Math.max(inset.bottom + padding * 2, padding * 4),
+                // room for SongBottomBar
+                paddingBottom:
+                  activeMedia || hasMultipleVariants
+                    ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
+                    : Math.max(inset.bottom + padding * 2, padding * 4),
               },
             ]}
           >
@@ -276,7 +282,27 @@ function SongPage({ song }: { song: Song }) {
           />
         </View>
       )}
-      <Player title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
+      {process.env.EXPO_OS === 'ios' ? (
+        // native toolbar items + a player sheet (a classic UIToolbar before iOS 26)
+        <SongToolbar
+          title={title}
+          variants={variants}
+          activeVariantId={activeVariantId}
+          setActiveVariantId={setActiveVariantId}
+          media={media}
+          activeMediaId={activeMediaId}
+          setActiveMediaId={setActiveMediaId}
+          audio={audio}
+        />
+      ) : (
+        <SongBottomBar
+          variants={variants}
+          activeVariantId={activeVariantId}
+          setActiveVariantId={setActiveVariantId}
+          renderPlayer={renderPlayer}
+          isPlayerOpen={isPlayerOpen}
+        />
+      )}
     </View>
   );
 }

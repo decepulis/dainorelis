@@ -13,8 +13,6 @@ import Animated, {
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import { Asset } from 'expo-asset';
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 import * as Haptics from 'expo-haptics';
 
@@ -24,14 +22,13 @@ import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
+import type { SongAudio } from '../hooks/useSongAudio';
 import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
 import ThemedText from './ThemedText';
-
-const artworkUrl = Asset.fromModule(require('@/assets/images/icon.png')).uri;
 
 const padding = isLiquidGlassAvailable() ? 6 : buttonSlop.left + buttonSlop.right;
 const extraDurationPadding = padding / 2;
@@ -48,13 +45,27 @@ const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 
 // TODO figure out a way to fling this around to get it out of the way of PDFs
 type Props = {
-  title: string;
   media: { [id: string]: Audio };
   activeMediaId: string | undefined;
   setActiveMediaId: (id: string) => void;
+  audio: SongAudio;
+  /** the open width, when a parent (SongBottomBar) positions the player instead of the screen corner */
+  openWidth?: number;
+  /** owned by the screen, so SongBottomBar can make room for the open player */
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
   style?: StyleProp<ViewStyle>;
 };
-export default function Player({ title, media, activeMediaId, setActiveMediaId, style }: Props) {
+export default function Player({
+  media,
+  activeMediaId,
+  setActiveMediaId,
+  audio,
+  openWidth,
+  isOpen,
+  onOpenChange,
+  style,
+}: Props) {
   const inset = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
   // live Reduce Motion: the player opens, closes and resizes without springing
@@ -64,9 +75,9 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const primary = useThemeColor('primary');
 
   // layout
-  const playerWidth = isAppWide
-    ? 360
-    : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2);
+  const playerWidth =
+    openWidth ??
+    (isAppWide ? 360 : width - Math.max(inset.left, appPadding / 2) - Math.max(inset.right, appPadding / 2));
   // this is ludicrous, I know. but dang is that animation smooth.
   const durationWidth =
     Object.keys(media).length > 1
@@ -97,25 +108,22 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
   const activeMedia =
     Object.values(media).length === 0 ? null : activeMediaId ? media[activeMediaId] : Object.values(media)[0];
 
-  // expo-audio state
-  const player = useAudioPlayer(activeMedia?.URL ?? null);
-  const { playing, isBuffering: loading, currentTime, duration } = useAudioPlayerStatus(player);
-
-  // Lock screen controls
-  useEffect(() => {
-    if (activeMedia) {
-      const variantName = i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'];
-      player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl });
-    }
-  }, [activeMedia, title, i18n.language, player]);
+  // expo-audio state, owned by the screen (useSongAudio)
+  const {
+    player,
+    status: { playing, isBuffering: loading, currentTime, duration },
+  } = audio;
 
   // Manage animations
-  // isOpen mirrors isOpenSv for what React renders (accessibility); the worklets read the shared value
-  const [isOpen, setIsOpen] = useState(false);
-  const isOpenSv = useSharedValue(false);
+  // isOpenSv mirrors isOpen for the worklets
+  const isOpenSv = useSharedValue(isOpen);
+  useEffect(() => {
+    isOpenSv.set(isOpen);
+  }, [isOpen, isOpenSv]);
   const spring = { ...springConfig, reduceMotion };
+  const collapsedWidth = padding + buttonWidth + padding + buttonWidth + padding;
   const containerStyles = useAnimatedStyle(() => ({
-    width: withSpring(isOpenSv.get() ? playerWidth : padding + buttonWidth + padding + buttonWidth + padding, spring),
+    width: withSpring(isOpenSv.get() ? playerWidth : collapsedWidth, spring),
   }));
   const opacityStyles = useAnimatedStyle(() => ({
     opacity: withSpring(isOpenSv.get() ? 1 : 0, spring),
@@ -226,13 +234,15 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
     <PlayerSurface
       style={[
         containerStyles,
-        {
-          position: 'absolute',
-          bottom: Math.max(inset.bottom, appPadding),
-          right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
-          height: playerHeight,
-          borderRadius: playerHeight / 2,
-        },
+        openWidth !== undefined
+          ? { height: playerHeight, borderRadius: playerHeight / 2 }
+          : {
+              position: 'absolute',
+              bottom: Math.max(inset.bottom, appPadding),
+              right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
+              height: playerHeight,
+              borderRadius: playerHeight / 2,
+            },
         style,
       ]}
     >
@@ -244,8 +254,7 @@ export default function Player({ title, media, activeMediaId, setActiveMediaId, 
           style={{ position: 'absolute', left: padding, top: padding, bottom: padding }}
           accessibilityLabel={isOpen ? t('hidePlayerDetails') : t('showPlayerDetails')}
           onPress={() => {
-            setIsOpen(!isOpen);
-            isOpenSv.set(!isOpen);
+            onOpenChange(!isOpen);
           }}
         >
           <Animated.View style={[infoButtonStyles]}>
