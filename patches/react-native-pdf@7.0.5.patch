@@ -34,3 +34,18 @@ index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..f99e2fe85a06b4e4c06e30ff1f304eef
              this._onError(error);
          }
  
+diff --git a/ios/RNPDFPdf/RNPDFPdfView.mm b/ios/RNPDFPdf/RNPDFPdfView.mm
+index 1bc263bb95c584c950583d42485059b8bf34168b..9184a7a17d0ca5c7e0977b84e224e4a8f4a48c86 100644
+--- a/ios/RNPDFPdf/RNPDFPdfView.mm
++++ b/ios/RNPDFPdf/RNPDFPdfView.mm
+@@ -544,7 +544,9 @@
+                     for (UIView *subview in self->_pdfView.subviews) {
+                         if ([subview isKindOfClass:[UIScrollView class]]) {
+                             UIScrollView *scrollView = (UIScrollView *)subview;
+-                            [scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
++                            // dainorelis: rest at the top of the content insets (e.g. below a transparent
++                            // navigation bar), not at offset 0, which hides the first page's top under the bar
++                            [scrollView setContentOffset:CGPointMake(-scrollView.adjustedContentInset.left, -scrollView.adjustedContentInset.top) animated:NO];
+                             break;
+                         }
+                     }
