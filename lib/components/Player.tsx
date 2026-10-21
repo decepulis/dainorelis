@@ -97,7 +97,9 @@ export default function Player({ media, activeMediaId, setActiveMediaId, audio, 
   // expo-audio state, owned by the screen (useSongAudio)
   const {
     player,
-    status: { playing, isBuffering: loading, currentTime, duration },
+    status: { playing, currentTime, duration },
+    loading,
+    togglePlaying,
   } = audio;
 
   // Manage animations
@@ -363,13 +365,8 @@ export default function Player({ media, activeMediaId, setActiveMediaId, audio, 
           hitSlop={{ top: padding, bottom: padding, right: padding }}
           style={{ position: 'absolute', right: padding, top: padding, bottom: padding }}
           accessibilityLabel={playing ? t('pause') : t('play')}
-          onPress={() => {
-            if (playing) {
-              player.pause();
-            } else {
-              player.play();
-            }
-          }}
+          accessibilityHint={audio.failed ? t('playbackFailed') : undefined}
+          onPress={togglePlaying}
         >
           {loading ? (
             <ActivityIndicator color={color} />

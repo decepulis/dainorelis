@@ -25,7 +25,21 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
     }
   }, [activeMedia, title, i18n.language, player]);
 
-  return { player, status };
+  // A failed load (e.g. no network) leaves the player stuck: expo-audio reports it as `status.error`,
+  // but on Android an error raised before this hook subscribes never reaches `status`, and ExoPlayer
+  // simply sits idle (it is otherwise only idle with no source). Play then does nothing, so reload
+  // the source first.
+  const failed = status.error != null || (process.env.EXPO_OS === 'android' && status.playbackState === 'idle');
+  const togglePlaying = () => {
+    if (status.playing) {
+      player.pause();
+      return;
+    }
+    if (failed && activeMedia) player.replace(activeMedia.URL);
+    player.play();
+  };
+
+  return { player, status, failed, loading: status.isBuffering && !failed, togglePlaying };
 }
 
 export type SongAudio = ReturnType<typeof useSongAudio>;
