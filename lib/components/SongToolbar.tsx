@@ -46,8 +46,7 @@ export default function SongToolbar({ title, media, activeMediaId, setActiveMedi
   const name = (item: Audio) => (i18n.language === 'en' ? item['EN Variant Name'] : item['Variant Name']);
 
   const activeMedia = activeMediaId ? media[activeMediaId] : undefined;
-  const { player, status } = audio;
-  const togglePlaying = () => (status.playing ? player.pause() : player.play());
+  const { status, togglePlaying } = audio;
 
   if (!activeMedia) return null;
 
