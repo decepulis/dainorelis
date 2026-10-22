@@ -291,7 +291,7 @@ export default function Index() {
         >
           {playlist ? <EmptyPlaylist isSearch={searchText.length > 0} /> : <NoHits />}
         </View>
-      ) : isReorderable && !isSearching ? (
+      ) : isReorderable && !isSearching && reorderableItems.length > 1 ? (
         // no drag handles, so a word on how; clear of the bottom bar's buttons
         <ThemedText style={[styles.reorderHint, { paddingBottom: inset.bottom + padding + bottomBarHeight }]}>
           {t('reorderHint')}
