@@ -35,6 +35,9 @@ export default async function EditorLayout({ children }: { children: React.React
           <Link href="/export" className="underline-offset-4 hover:underline">
             Export
           </Link>
+          <Link href="/editors" className="underline-offset-4 hover:underline">
+            Editors
+          </Link>
         </nav>
         <Link href="/account/password" className="ml-auto text-sm underline-offset-4 hover:underline">
           Password
