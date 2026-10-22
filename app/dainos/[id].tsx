@@ -370,7 +370,6 @@ function SongPage({ song }: { song: Song }) {
               </Button>
             </View>
           ) : (
-            // TODO scroll is off on load?
             <Pdf
               key={`${activeVariant.URL}#${pdfAttempt}`}
               source={{ uri: activeVariant.URL, cache: true }}
