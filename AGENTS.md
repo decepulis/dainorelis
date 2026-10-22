@@ -81,9 +81,18 @@ belong in `~/.gradle/gradle.properties`, never in the generated `android/gradle.
 without them the release APK/AAB is unsigned. `withIosReleaseScheme` makes the Xcode scheme's
 Run action build Release.
 
-`patches/` holds pnpm patches (`pnpm.patchedDependencies`). The react-native-screens patch sizes
-the iOS 26+ header title around Stack.Toolbar buttons; it is pinned to an exact version, so port it
-(`pnpm patch react-native-screens@<new>`) whenever SDK upgrades bump react-native-screens.
+`patches/` holds pnpm patches (`pnpm.patchedDependencies`), each pinned to an exact version, so port
+it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are marked
+`dainorelis` / `PATCH(dainorelis)` in the patched source.
+
+- **react-native-screens** (iOS 26+ header; Android only gets no-op setters for the new props): sizes the
+  title around Stack.Toolbar buttons (header edge insets); adds the `titleMenu` (native title menu
+  and subtitle) and `overflowMenu` (song actions in UIKit's overflow menu) header props; holds the
+  variant pop-up button under the large title (`largeSubtitleView`, with hit testing); keeps a large
+  title with a subtitle expanded while its screen is pushed; makes the inline subtitle readable;
+  and makes large title colors follow the bar's scroll state.
+- **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
+  switch, Fast Refresh) don't delete each other's file.
 
 ### AI Metadata Generation
 
@@ -113,10 +122,14 @@ pnpm generate-metadata:test     # Test on first 5 songs only
   - `dainos/[id]/vertimas.tsx` - Translation modal
   - `dainos/[id]/aprasymas.tsx` - Description modal
   - `nustatymai.tsx` - Settings modal
+  - `grojarasciai/[id]/redaguoti.tsx` - Playlist edit modal (reorder / remove; SwiftUI `List` in
+    edit mode on iOS, react-native-reorderable-list elsewhere)
+  - `grojarasciai/[id]/bendrinti.tsx` - Share sheet (form sheet): QR code and share link
+  - `p.tsx` - Landing modal for shared playlist links: preview and add to playlists
 
 - **`/lib`** - Reusable components, hooks, utilities
   - `/components` - React components (ThemedText, Markdown, SongMenu, MenuView, Player, etc.)
-  - `/hooks` - Custom hooks (useStorage, useThemeColor, useSongList, etc.)
+  - `/hooks` - Custom hooks (useStorage, useThemeColor, useSongList, usePlaylists, usePlaylistActions, useContentColumnStyle, etc.)
   - `/schemas` - Zod schemas for type-safe data validation
   - `/constants` - Theme definitions, i18n config, layout constants
   - `/utils` - Utility functions
@@ -140,7 +153,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **Generated Files** (do not edit manually)
   - `songs.ts` - Complete song database exported from the admin app
-  - `song-festival.ts` - Curated lists for song festival repertoire
+  - `song-festival.ts` - The song festival programme (indices into `songs.ts`), shipped as a curated playlist
   - `title-index.json` - Search index for song titles
   - `lyric-index.json` - Search index for song lyrics
 
@@ -171,11 +184,15 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Theme System**: The app uses React Navigation's theming with custom light/dark themes defined in `lib/constants/themes.ts`. The user's theme preference is stored in MMKV and applied via `Appearance.setColorScheme()`.
 
-**I18n**: Uses i18next with Lithuanian (lt) and English (en) translations. Language files are in `lib/constants/i18n.ts`. The language is the user's stored preference (MMKV), defaulting to Lithuanian; the device language is not consulted.
+**I18n**: Uses i18next with Lithuanian (lt) and English (en) translations. Language files are in `lib/constants/i18n.ts`. The language is the user's stored preference (MMKV), defaulting to Lithuanian; the device language is not consulted. On iOS, `lib/utils/systemLanguage.ts` mirrors it into the app's `AppleLanguages` default, so system UI (List edit mode, share sheets) follows it from the next launch; `CFBundleLocalizations` in `app.config.ts` declares both languages. Android's share sheet runs in another process and always follows the device language.
 
 **Audio Playback**: Configured for background playback with lock screen controls. Uses `expo-audio` configured in `app/_layout.tsx`.
 
-**Storage**: MMKV via `useStorage` hook for fast, synchronous persistent storage of user preferences (theme, language, etc.).
+**Storage**: MMKV via `useStorage` hook for fast, synchronous persistent storage of user preferences (theme, language, etc.). Every key and its Zod schema is declared in `lib/hooks/useStorage.tsx`.
+
+**Playlists**: `usePlaylists` (data) and `usePlaylistActions` (menu actions: edit, rename, share, duplicate, delete) combine three kinds: Favorites (storage key `favorites`, the pre-playlists key; editable, not renamable or deletable), curated playlists built from `song-festival.ts` (read-only, in programme sections; the old song festival mode is retired) and user playlists (`playlists`). `selectedPlaylistId` is the playlist the home screen shows (`'all'`, `'favorites'` or a playlist id). Shared playlists travel as `https://www.dainorelisapp.com/p?n=<name>&s=<ids>` (`lib/utils/playlistLink.ts`): song ids drop their shared `rec` prefix to keep the QR code small. The link opens `app/p.tsx` as a universal link / Android App Link (`associatedDomains` and `intentFilters` in `app.config.ts`, verified by `dainorelisapp.com/public/.well-known/apple-app-site-association` and `assetlinks.json`); without the app it lands on the site's `/p` page, which links to the stores.
+
+**Layout**: Reading content sits in a centred column from `useContentColumnStyle` (max width, padding clear of the horizontal safe area; plain flex, no window maths).
 
 **Platform-Specific Code**: Platform variants use `.web.ts` / `.android.tsx` extensions (e.g., `useColorScheme.web.ts`, `Switch.android.tsx`). For small branches inside a file prefer `process.env.EXPO_OS`, which Metro inlines and tree-shakes.
 
