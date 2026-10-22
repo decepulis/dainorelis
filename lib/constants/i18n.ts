@@ -32,7 +32,7 @@ const en = {
   addToFavorites: 'Add to favorites',
   removeFromFavorites: 'Remove from favorites',
   noHits: 'No search results. Check the spelling or try a new search.',
-  emptyPlaylist: 'No songs here yet. To add one, open a song and tap Add to Playlist.',
+  emptyPlaylist: 'No songs here yet. In All Songs, swipe a song to the left, or open it, and tap Add to Playlist.',
   noHitsInPlaylist: 'No search results in this playlist.',
   playlist: 'Playlist',
   playlistActions: 'Playlist actions',
@@ -138,7 +138,8 @@ const lt = {
   addToFavorites: 'Pridėti prie mėgstamų',
   removeFromFavorites: 'Pašalinti iš mėgstamų',
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
-  emptyPlaylist: 'Čia dar nėra dainų. Atidarykite dainą ir bakstelėkite „Įtraukti į grojaraštį“.',
+  emptyPlaylist:
+    'Čia dar nėra dainų. Skiltyje „Visos dainos“ perbraukite dainą kairėn arba ją atidarykite ir bakstelėkite „Įtraukti į grojaraštį“.',
   noHitsInPlaylist: 'Šiame grojaraštyje paieškos rezultatų nėra.',
   playlist: 'Grojaraštis',
   playlistActions: 'Grojaraščio veiksmai',
