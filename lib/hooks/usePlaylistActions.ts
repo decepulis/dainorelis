@@ -15,7 +15,7 @@ import useNamePrompt from './useNamePrompt';
 import usePlaylists, { Playlist, allSongsId } from './usePlaylists';
 import useStorage from './useStorage';
 
-export type PlaylistActionId = 'edit' | 'rename' | 'share' | 'duplicate' | 'delete';
+export type PlaylistActionId = 'reorder' | 'rename' | 'share' | 'duplicate' | 'delete';
 export type PlaylistAction = {
   id: PlaylistActionId;
   title: string;
@@ -30,11 +30,16 @@ export const createPlaylistIcon = {
   material: Add,
 };
 
+type Options = {
+  /** Reorder: the home screen puts the shown playlist's list in reorder mode */
+  onReorder: (playlistId: string) => void;
+};
+
 /**
- * The home screen's playlist state and what can be done with the shown playlist: Favorites can be edited
+ * The home screen's playlist state and what can be done with the shown playlist: Favorites can be reordered
  * and shared, a curated playlist shared and duplicated, a user playlist all of it. Render `namePrompt`.
  */
-export default function usePlaylistActions() {
+export default function usePlaylistActions({ onReorder }: Options) {
   const router = useRouter();
   const { t } = useTranslation();
   const { promptName, namePrompt } = useNamePrompt();
@@ -46,7 +51,7 @@ export default function usePlaylistActions() {
   const kind = playlist?.kind;
   const actions: PlaylistAction[] = [
     kind === 'favorites' || kind === 'user'
-      ? { id: 'edit' as const, title: t('editPlaylist'), sfSymbol: 'arrow.up.arrow.down' as const, material: Reorder }
+      ? { id: 'reorder' as const, title: t('reorder'), sfSymbol: 'arrow.up.arrow.down' as const, material: Reorder }
       : null,
     kind === 'user'
       ? {
@@ -80,8 +85,8 @@ export default function usePlaylistActions() {
 
   const onAction = (id: PlaylistActionId) => {
     if (!playlist) return;
-    if (id === 'edit') {
-      router.push(`/grojarasciai/${playlist.id}/redaguoti`);
+    if (id === 'reorder') {
+      onReorder(playlist.id);
     } else if (id === 'share') {
       router.push(`/grojarasciai/${playlist.id}/bendrinti`);
     } else if (id === 'rename') {
