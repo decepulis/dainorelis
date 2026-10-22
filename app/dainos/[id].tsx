@@ -145,6 +145,9 @@ function SongPage({ song }: { song: Song }) {
   // variant alone; past it (or over a PDF) it's the song, with the variant as the subtitle.
   const scrollOffset = useScrollOffset(showLyrics ? scrollRef : null);
   const [isPastTitle, setIsPastTitle] = useState(false);
+  // the PDF that failed to load (so switching variants clears the error), and a key that remounts <Pdf> to retry
+  const [failedPdfUrl, setFailedPdfUrl] = useState<string | null>(null);
+  const [pdfAttempt, setPdfAttempt] = useState(0);
   useAnimatedReaction(
     () => {
       const layout = titleLayout.get();
@@ -262,9 +265,11 @@ function SongPage({ song }: { song: Song }) {
         >
           {isLargeTitle ? (
             // HIG: brand color in the content layer, not the bar. It reaches up under the
-            // transparent bar and the large title, across the full width.
+            // transparent bar and the large title, across the full width. UIKit puts the large title
+            // inside the scroll view, under this content, so let touches through to its variant menu.
             <View
               style={{
+                pointerEvents: 'none',
                 position: 'absolute',
                 left: 0,
                 right: 0,
@@ -341,33 +346,78 @@ function SongPage({ song }: { song: Song }) {
         </ScrollViewWithHeader>
       ) : (
         <View style={{ flex: 1, paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}>
-          {/* TODO scroll is off on load? */}
-          <Pdf
-            source={{ uri: activeVariant.URL, cache: true }}
-            style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
-            // the default (true) skips TLS certificate validation on every platform;
-            // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
-            trustAllCerts={false}
-            fitPolicy={0}
-            minScale={0.5}
-            maxScale={4}
-            spacing={padding}
-            onError={(error) => {
-              console.error(error);
-            }}
-            // TODO a better offline experience?
-            renderActivityIndicator={(_progress) => (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
+          {failedPdfUrl === activeVariant.URL ? (
+            <View
+              style={[
+                styles.pdfError,
+                {
+                  // iOS draws the PDF under the transparent header and lets PDFKit inset it; this view has to clear it
+                  paddingTop: process.env.EXPO_OS === 'ios' ? headerHeight + padding : padding,
+                  // clear the floating player, or the native toolbar on Liquid Glass
+                  paddingBottom:
+                    inset.bottom +
+                    padding +
+                    (activeMedia ? playerHeight : isLiquidGlassStyleHeader() ? 44 + padding : 0),
+                },
+              ]}
+            >
+              <FontAwesome6
+                name="file-circle-exclamation"
+                iconStyle="solid"
+                size={44}
+                color={text}
+                style={styles.pdfErrorIcon}
+              />
+              <ThemedText bold style={styles.pdfErrorTitle}>
+                {t('pdfErrorTitle')}
+              </ThemedText>
+              <ThemedText style={styles.pdfErrorHint} lineBreakStrategyIOS="push-out">
+                {t('pdfErrorHint')}
+              </ThemedText>
+              <Button
+                noGlass
+                hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+                style={styles.pdfErrorButton}
+                innerStyle={[styles.pdfErrorButtonInner, { backgroundColor: primary }]}
+                accessibilityLabel={t('tryAgain')}
+                onPress={() => {
+                  setFailedPdfUrl(null);
+                  setPdfAttempt(pdfAttempt + 1);
                 }}
               >
-                <ActivityIndicator size="large" color={primary} />
-              </View>
-            )}
-          />
+                <ThemedText bold style={styles.pdfErrorButtonText}>
+                  {t('tryAgain')}
+                </ThemedText>
+              </Button>
+            </View>
+          ) : (
+            // TODO scroll is off on load?
+            <Pdf
+              key={`${activeVariant.URL}#${pdfAttempt}`}
+              source={{ uri: activeVariant.URL, cache: true }}
+              style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
+              // the default (true) skips TLS certificate validation on every platform;
+              // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
+              trustAllCerts={false}
+              fitPolicy={0}
+              minScale={0.5}
+              maxScale={4}
+              spacing={padding}
+              onError={(error) => {
+                console.warn(error);
+                setFailedPdfUrl(activeVariant.URL);
+              }}
+              renderActivityIndicator={(progress) => (
+                <View style={styles.pdfLoading}>
+                  <ActivityIndicator size="large" color={primary} />
+                  {/* 0..1 while downloading; nothing to show before the first bytes or for a cached file */}
+                  {progress > 0 && progress < 1 ? (
+                    <ThemedText style={styles.pdfProgress}>{Math.round(progress * 100)}%</ThemedText>
+                  ) : null}
+                </View>
+              )}
+            />
+          )}
         </View>
       )}
       {isLiquidGlassStyleHeader() ? (
@@ -411,6 +461,53 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 19,
+  },
+  pdfLoading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: padding / 2,
+  },
+  pdfProgress: {
+    fontVariant: ['tabular-nums'],
+    opacity: 0.8,
+  },
+  // the look of the list's empty states (lib/components/Index/Errors.tsx)
+  pdfError: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: padding * 2,
+  },
+  pdfErrorIcon: {
+    opacity: 0.5,
+    marginBottom: padding,
+  },
+  pdfErrorTitle: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: padding / 2,
+  },
+  pdfErrorHint: {
+    fontSize: 18,
+    lineHeight: 18 * 1.33,
+    opacity: 0.8,
+    textAlign: 'center',
+    maxWidth: 400,
+  },
+  pdfErrorButton: {
+    marginTop: padding * 1.5,
+  },
+  pdfErrorButtonInner: {
+    width: 'auto',
+    height: 44,
+    flexBasis: 'auto',
+    borderRadius: 22,
+    paddingHorizontal: padding,
+  },
+  pdfErrorButtonText: {
+    color: 'white',
+    fontSize: 17,
   },
   hr: {
     height: StyleSheet.hairlineWidth,

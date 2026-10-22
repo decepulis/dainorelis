@@ -34,6 +34,9 @@ const en = {
   noFavorites1: 'No favorites. When viewing a song, press',
   noFavorites1Alt: 'No search results in your favorites. When viewing a song, press',
   noFavorites2: 'to set a favorite',
+  pdfErrorTitle: "Couldn't load the sheet music",
+  pdfErrorHint: 'Check your internet connection and try again.',
+  tryAgain: 'Try again',
   settingsTitle: 'Settings',
   settingsSpecialThanksTitle: 'Special thanks',
   settingsSpecialThanksSimtmecioDainorelis:
@@ -106,6 +109,9 @@ const lt = {
   noFavorites1: 'Žiūrėdami dainą, spauskite',
   noFavorites1Alt: 'Paieškos rezultatų mėgstamiausiuose nėra. Žiūrėdami dainą, spauskite',
   noFavorites2: 'mygtuką pažymėti kaip „mėgstamą“',
+  pdfErrorTitle: 'Nepavyko įkelti natų',
+  pdfErrorHint: 'Patikrinkite interneto ryšį ir bandykite dar kartą.',
+  tryAgain: 'Bandyti dar kartą',
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
