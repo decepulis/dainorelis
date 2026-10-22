@@ -44,25 +44,26 @@ index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6e
  
  @end
 diff --git a/ios/RNSScreen.h b/ios/RNSScreen.h
-index fd9ecffa71b97230f62c6cde961d21c50076f960..506d54860499c7b1ce8632d27d383168554591b9 100644
+index fd9ecffa71b97230f62c6cde961d21c50076f960..f9280a9050c4357075eb2916e7f13f5df79e41e1 100644
 --- a/ios/RNSScreen.h
 +++ b/ios/RNSScreen.h
-@@ -54,6 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
+@@ -54,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
  - (CGFloat)calculateHeaderHeightIsModal:(BOOL)isModal;
  - (BOOL)isRemovedFromParent;
  - (void)notifyPresentedControllerDismissed;
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
 +// dainorelis: see RNSScreen.mm
 +- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange;
++- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font;
 +#endif
  
  @end
  
 diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
-index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5a922d1ca 100644
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfdff84e9ae 100644
 --- a/ios/RNSScreen.mm
 +++ b/ios/RNSScreen.mm
-@@ -1465,6 +1465,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1465,6 +1465,14 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    BOOL _shouldNotify;
    BOOL _isRemovedFromParent;
    BOOL _hasNotifiedDismissed;
@@ -70,10 +71,14 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
 +  BOOL _dainorelisKeepsLargeTitleExpanded;
 +  BOOL _dainorelisPullsOnce;
 +  CGFloat _dainorelisPulledBarHeight;
++  // dainorelis: see -dainorelis_fitLargeTitleWithFont:
++  UIFont *_dainorelisLargeTitleFont;
++  NSString *_dainorelisFittedLargeTitle;
++  CGFloat _dainorelisFittedLargeTitleWidth;
  }
  
  #pragma mark - Common
-@@ -1485,6 +1489,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1485,6 +1493,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewWillAppear:(BOOL)animated
  {
    [super viewWillAppear:animated];
@@ -84,7 +89,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
    if (!_isSwiping) {
      [self.screenView notifyWillAppear];
      if (self.transitionCoordinator.isInteractive) {
-@@ -1549,6 +1557,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1549,6 +1561,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidAppear:(BOOL)animated
  {
    [super viewDidAppear:animated];
@@ -94,7 +99,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
    if (!_isSwiping || _shouldNotify) {
      // we are going forward or dismissing without swipe
      // or successfully swiped back
-@@ -1565,6 +1576,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1565,6 +1580,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidDisappear:(BOOL)animated
  {
    [super viewDidDisappear:animated];
@@ -105,22 +110,25 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
    if (self.parentViewController == nil && self.presentingViewController == nil) {
      if (self.screenView.preventNativeDismiss) {
        // if we want to prevent the native dismiss, we do not send dismissal event,
-@@ -1586,9 +1601,91 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1586,9 +1605,149 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    _shouldNotify = YES;
  }
  
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
-+// PATCH(dainorelis): keep a large title with a subtitle expanded while its screen is pushed (iOS 26+).
++// PATCH(dainorelis): keep a large title expanded while its screen is pushed (iOS 26+).
 +//
-+// During a push UIKit first lays the bar out with an estimated large title height that leaves out the
-+// subtitle under the large title (`navigationItem.subtitle`, or the `largeSubtitleView` the header config
-+// patch sets). The scroll view is put at the top for that estimate. When the real, taller title is
-+// measured, the content's offset no longer matches the top; UIKit reads it as the content having been
-+// scrolled and collapses the title for the whole transition, and the screen arrives with an inline title.
++// During a push UIKit first lays the bar out with an estimated large title height. It leaves out the subtitle
++// under the large title (`navigationItem.subtitle`, or the `largeSubtitleView` the header config patch sets), and
++// the marks that reach above the font's line height (the caron of Lithuanian š and ž). The scroll view is put at
++// the top for that estimate. When the real, taller title is measured, the content's offset no longer matches the
++// top; UIKit reads it as the content having been scrolled and collapses the title for the whole transition, and
++// the screen arrives with an inline title. Some titles whose height UIKit estimates right still arrive collapsed
++// on iOS 26.
 +//
-+// So once the estimate is applied, pull the content down past the top, as a pull-down gesture would:
-+// UIKit then measures the full large title, and we put the content back at the top it measured. Both
-+// happen in layout passes before the transition draws its first frame.
++// So once the estimate is applied, pull the content down past the top, as a pull-down gesture would: UIKit then
++// measures the full large title, and we put the content back at the top it measured. Both happen in layout passes
++// before the transition draws its first frame. Where the bar keeps its height, nothing comes to let go, so let go
++// on the next turn of the main queue too, after the current layout passes are done.
 +- (void)dainorelis_keepLargeTitleExpandedDuringPush
 +{
 +#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
@@ -128,10 +136,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
 +    if (!_dainorelisKeepsLargeTitleExpanded) {
 +      return;
 +    }
-+    UINavigationItem *navigationItem = self.navigationItem;
-+    if (navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways ||
-+        (navigationItem.subtitle.length == 0 && navigationItem.largeSubtitle.length == 0 &&
-+         navigationItem.largeSubtitleView == nil)) {
++    if (self.navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways) {
 +      return;
 +    }
 +    UIScrollView *scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self.view];
@@ -145,6 +150,10 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
 +      if (scrollView.adjustedContentInset.top > 0 && fabs(scrollView.contentOffset.y - top) < 0.5) {
 +        _dainorelisPulledBarHeight = barHeight;
 +        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top - self.view.bounds.size.height / 2);
++        __weak RNSScreen *weakSelf = self;
++        dispatch_async(dispatch_get_main_queue(), ^{
++          [weakSelf dainorelis_releasePulledContent];
++        });
 +      }
 +    } else if (fabs(barHeight - _dainorelisPulledBarHeight) > 0.5) {
 +      // the bar has its measured height
@@ -179,12 +188,66 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5
 +    scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top);
 +  }
 +}
++
++// PATCH(dainorelis): UIKit has no multi-line large title and truncates one wider than the bar. Step its font down a
++// point at a time, to Title 1's 28pt at the least, until the title fits between the bar's layout margins. The header
++// config passes the font it set (nil for none); the fit runs again whenever the title or the bar's width changes.
++- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font
++{
++  _dainorelisLargeTitleFont = font;
++  _dainorelisFittedLargeTitle = nil;
++  _dainorelisFittedLargeTitleWidth = 0;
++  [self dainorelis_fitLargeTitle];
++}
++
++- (void)dainorelis_fitLargeTitle
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    UIFont *font = _dainorelisLargeTitleFont;
++    UINavigationItem *navigationItem = self.navigationItem;
++    UINavigationBar *navigationBar = self.navigationController.navigationBar;
++    if (font == nil || navigationBar == nil ||
++        navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways) {
++      return;
++    }
++    NSString *title = navigationItem.largeTitle ?: navigationItem.title ?: @"";
++    const NSDirectionalEdgeInsets margins = navigationBar.directionalLayoutMargins;
++    const CGFloat width = navigationBar.bounds.size.width - margins.leading - margins.trailing;
++    if (width <= 0 || (fabs(width - _dainorelisFittedLargeTitleWidth) < 0.5 &&
++                       [title isEqualToString:_dainorelisFittedLargeTitle])) {
++      return;
++    }
++    _dainorelisFittedLargeTitle = title;
++    _dainorelisFittedLargeTitleWidth = width;
++    const CGFloat smallestSize = MIN(font.pointSize, 28);
++    while (font.pointSize > smallestSize && [title sizeWithAttributes:@{NSFontAttributeName : font}].width > width) {
++      font = [font fontWithSize:MAX(font.pointSize - 1, smallestSize)];
++    }
++    UINavigationBarAppearance * (^fitted)(UINavigationBarAppearance *) = ^(UINavigationBarAppearance *appearance) {
++      UIFont *currentFont = appearance.largeTitleTextAttributes[NSFontAttributeName];
++      if (appearance == nil || currentFont == nil || [currentFont isEqual:font]) {
++        return appearance;
++      }
++      UINavigationBarAppearance *copy = [appearance copy];
++      NSMutableDictionary *attributes = [copy.largeTitleTextAttributes mutableCopy];
++      attributes[NSFontAttributeName] = font;
++      copy.largeTitleTextAttributes = attributes;
++      return copy;
++    };
++    navigationItem.standardAppearance = fitted(navigationItem.standardAppearance);
++    navigationItem.compactAppearance = fitted(navigationItem.compactAppearance);
++    navigationItem.scrollEdgeAppearance = fitted(navigationItem.scrollEdgeAppearance);
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
 +#endif // !TARGET_OS_TV && !TARGET_OS_VISION
 +
  - (void)viewDidLayoutSubviews
  {
    [super viewDidLayoutSubviews];
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_fitLargeTitle];
 +  [self dainorelis_keepLargeTitleExpandedDuringPush];
 +  if (_dainorelisPullsOnce) {
 +    _dainorelisPullsOnce = NO;
@@ -265,7 +328,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb654
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f41641a16d81 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274c84c7526 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -276,7 +339,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,155 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,156 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -286,8 +349,9 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
 +//   (-dainorelis_computeEdgeInsetsOfNavigationBar:fallbackInsets:).
 +// - Subtitle and title menu: navigationItem.subtitle (iOS 26+) and a native title menu (iOS 16+), opened under a
 +//   large title by a pop-up button (RNSDainorelisLargeSubtitleView, below). The title and subtitle crossfade.
-+// - Large title on push (RNSScreen.mm): a large title with a subtitle stays expanded while its screen is pushed,
-+//   and when a settled screen switches to a large title (a song's PDF back to its lyrics).
++// - Large title on push (RNSScreen.mm): a large title stays expanded while its screen is pushed, and when a
++//   settled screen switches to a large title (a song's PDF back to its lyrics).
++// - Large title fit (RNSScreen.mm): a large title too wide for the bar steps its font down (to 28pt) to fit.
 +// - Large subtitle hit test (RNSScreenStack.mm): touches reach the subtitle view UIKit puts in the scroll view.
 +// - Appearance per scroll state: the large title color applies at the scroll edge only, and the subtitle's font
 +//   and color are readable.
@@ -432,7 +496,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -62,6 +211,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -62,6 +212,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
    /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
    bool _needsViewControllerUpdateInCurrentTransaction;
    RCTImageLoader *_imageLoader;
@@ -442,7 +506,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  }
  
  - (instancetype)initWithFrame:(CGRect)frame
-@@ -235,6 +387,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +388,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -478,7 +542,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +433,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +434,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -583,7 +647,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +779,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +780,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -600,7 +664,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
    return appearance;
  }
  
-@@ -559,8 +845,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +846,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -619,7 +683,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +899,17 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +900,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -637,7 +701,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1002,136 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1003,144 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -663,6 +727,14 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
 +  } else {
 +    dainorelisApplyTitle();
 +  }
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: shrink a large title that doesn't fit (see RNSScreen.mm)
++  if ([vc isKindOfClass:[RNSScreen class]]) {
++    [(RNSScreen *)vc dainorelis_fitLargeTitleWithFont:config.largeTitle
++                         ? navitem.standardAppearance.largeTitleTextAttributes[NSFontAttributeName]
++                         : nil];
++  }
++#endif
 +#if !TARGET_OS_TV
 +  // dainorelis: a native title menu (iOS 16+) and subtitle (iOS 26+); both need a plain string title,
 +  // since a custom titleView takes their place
@@ -777,7 +849,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1262,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1271,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -838,7 +910,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1526,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1535,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -849,7 +921,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f416
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1568,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1577,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
