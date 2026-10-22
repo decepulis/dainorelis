@@ -41,6 +41,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     infoPlist: {
       UIBackgroundModes: ['audio'],
+      // The app is localized in Lithuanian and English, so system UI (edit mode, share sheets,
+      // alerts' system buttons) follows the app's language rather than staying English.
+      // lib/utils/systemLanguage.ts keeps it in step with the in-app language setting.
+      CFBundleDevelopmentRegion: 'lt',
+      CFBundleLocalizations: ['lt', 'en'],
     },
     // Required-reason API declarations. Previously a hand-carried PrivacyInfo.xcprivacy in ios/;
     // declared here so prebuild regenerates it.
