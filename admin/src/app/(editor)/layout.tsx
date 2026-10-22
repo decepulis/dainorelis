@@ -25,8 +25,7 @@ export default async function EditorLayout({ children }: { children: React.React
             centres on the wordmark's capitals. */}
         <Link href="/" className="flex items-baseline gap-2">
           <BrandMark className="relative top-[3px] size-5" />
-          <Wordmark className="text-xl leading-none" />
-          <span className="text-sm font-medium">admin</span>
+          <Wordmark className="text-xl leading-none">Admin</Wordmark>
         </Link>
         <nav className="flex items-baseline gap-3 text-sm">
           <Link href="/" className="underline-offset-4 hover:underline">

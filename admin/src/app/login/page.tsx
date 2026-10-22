@@ -20,9 +20,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           <BrandMark className="size-7" />
         </div>
         <h1>
-          <Wordmark className="text-3xl text-link" />
+          <Wordmark className="text-3xl text-link">Admin</Wordmark>
         </h1>
-        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Sign in to edit the song database.</p>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Sign in to edit the Dainorėlis songs.</p>
       </div>
 
       <LoginForm next={target} />
