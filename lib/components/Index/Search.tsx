@@ -367,6 +367,63 @@ export default function Search({
   );
 }
 
+/**
+ * The bottom bar in reorder mode, for headers without Liquid Glass: Done, where the playlist pill, its settings
+ * and search were.
+ */
+export function ReorderDoneBar({ onDone }: { onDone: () => void }) {
+  const { t } = useTranslation();
+  const background = useThemeColor('background');
+  const inset = useSafeAreaInsets();
+
+  return (
+    <View
+      pointerEvents="box-none"
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: inset.bottom + expandedSearchHeight,
+        alignItems: 'center',
+      }}
+    >
+      <LinearGradient
+        colors={[`${background}00`, `${background}AA`, background]}
+        start={{ x: 0.5, y: 0.1 }}
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          height: inset.bottom + padding / 2 + buttonSize,
+          left: 0,
+          right: 0,
+        }}
+      />
+      <Button
+        onPress={onDone}
+        accessibilityLabel={t('done')}
+        hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+        style={{ position: 'absolute', bottom: inset.bottom }}
+        innerStyle={{
+          width: 'auto',
+          height: buttonSize,
+          flexBasis: buttonSize,
+          borderRadius: buttonSize / 2,
+          flexDirection: 'row',
+          gap: padding / 3,
+          paddingHorizontal: buttonSize / 2,
+        }}
+      >
+        <FontAwesome6 name="check" iconStyle="solid" size={15} color={color} />
+        <ThemedText bold style={{ fontSize: 17, color }}>
+          {t('done')}
+        </ThemedText>
+      </Button>
+    </View>
+  );
+}
+
 // the setters arrive already wrapped in startTransition by app/index.tsx
 type IndexToolbarProps = {
   listRef: AnimatedRef<Animated.FlatList<any>>;
@@ -377,6 +434,9 @@ type IndexToolbarProps = {
   playlistActions: PlaylistAction[];
   onPlaylistAction: (id: PlaylistActionId) => void;
   setSearchText: (text: string) => void;
+  /** in reorder mode the toolbar only offers Done */
+  isReordering: boolean;
+  onDoneReordering: () => void;
 };
 export function IndexToolbar({
   listRef,
@@ -387,6 +447,8 @@ export function IndexToolbar({
   playlistActions,
   onPlaylistAction,
   setSearchText,
+  isReordering,
+  onDoneReordering,
 }: IndexToolbarProps) {
   const router = useRouter();
   const { t } = useTranslation();
@@ -395,6 +457,23 @@ export function IndexToolbar({
   const { favorites, curated, user } = usePlaylists();
 
   if (!isLiquidGlassStyleHeader()) return null;
+
+  // reordering, like the system's edit modes: the prominent checkmark takes the top-right place, and the bottom
+  // toolbar (playlist picker, settings, search) steps aside so nothing else competes with the list
+  if (isReordering) {
+    return (
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button
+          icon="checkmark"
+          variant="done"
+          // the app's green, as the playlist button is when a playlist is shown
+          tintColor={primary}
+          accessibilityLabel={t('done')}
+          onPress={onDoneReordering}
+        />
+      </Stack.Toolbar>
+    );
+  }
 
   const playlistAction = (playlist: Playlist) => (
     <Stack.Toolbar.MenuAction

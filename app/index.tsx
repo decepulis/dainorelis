@@ -1,9 +1,12 @@
 import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
+import { BackHandler, FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import Animated, { useAnimatedRef, useScrollOffset, useSharedValue } from 'react-native-reanimated';
+import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
@@ -20,8 +23,15 @@ import {
 } from '@/lib/components/Header';
 import { EmptyPlaylist, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
-import { ListHeader, ListItem, RowPlaylist, listItemHeight } from '@/lib/components/Index/ListItem';
-import Search, { IndexToolbar } from '@/lib/components/Index/Search';
+import {
+  ListHeader,
+  ListItem,
+  ReorderableListItem,
+  RowPlaylist,
+  listItemHeight,
+} from '@/lib/components/Index/ListItem';
+import Search, { IndexToolbar, ReorderDoneBar } from '@/lib/components/Index/Search';
+import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
@@ -31,6 +41,13 @@ import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
+
+// reorder mode: a lifted row stays opaque (the default fades it) and keeps the default slight grow
+const liftedRowAnimations = { opacity: 1 };
+// the Done button's height, which the hint below the songs stays clear of
+const doneBarHeight = 44;
+// defined before the component: the drag worklets capture it, and React Compiler may hoist them out of it
+const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
 export default function Index() {
   // just a bunch of global state
@@ -44,6 +61,23 @@ export default function Index() {
   const separator = useThemeColor('separator');
   const { t } = useTranslation();
 
+  const listRef = useAnimatedRef<Animated.FlatList<any>>();
+  const scrollOffset = useScrollOffset(listRef);
+  // the list is swapped for a reorderable one in reorder mode; the new one opens where the old one was
+  const [swapScrollOffset, setSwapScrollOffset] = useState(0);
+  const [searchText, setSearchText] = useState('');
+  // the playlist in reorder mode: it ends by itself if another playlist is shown
+  const [reorderingPlaylistId, setReorderingPlaylistId] = useState<string | null>(null);
+  const startReordering = (playlistId: string) => {
+    setSearchText('');
+    setSwapScrollOffset(scrollOffset.get());
+    setReorderingPlaylistId(playlistId);
+  };
+  const endReordering = () => {
+    setSwapScrollOffset(scrollOffset.get());
+    setReorderingPlaylistId(null);
+  };
+
   // list state: the selected playlist is remembered across launches
   const {
     playlist,
@@ -53,12 +87,13 @@ export default function Index() {
     onAction: onPlaylistAction,
     promptCreatePlaylist,
     namePrompt,
-  } = usePlaylistActions();
+  } = usePlaylistActions({ onReorder: startReordering });
   const setSelectedPlaylistId = (id: string) => startTransition(() => storeSelectedPlaylistId(id));
-  const [searchText, setSearchText] = useState('');
-  const listItems = useSongList({ playlist, searchText });
+  // Favorites and user playlists can be reordered; curated ones can't
+  const isReordering = !!playlist && playlist.kind !== 'curated' && reorderingPlaylistId === playlist.id;
+  const listItems = useSongList({ playlist, searchText: isReordering ? '' : searchText });
   // what the rows show and their long-press menu toggles, worked out here once rather than in every row
-  const { favorites, user, toggleSong } = usePlaylists();
+  const { favorites, user, toggleSong, setSongIds } = usePlaylists();
   const favoriteIds = new Set(favorites.songIds);
   const userPlaylists: RowPlaylist[] = user.map((p) => ({ id: p.id, name: p.name, songIds: new Set(p.songIds) }));
 
@@ -74,7 +109,6 @@ export default function Index() {
   const wideLayoutMode = safeWidth > maxWidth;
   const ultraWideLayoutMode = wideLayoutMode && width / height >= 4 / 3;
 
-  const listRef = useAnimatedRef<Animated.FlatList<any>>();
   // however a playlist gets picked (the menu, a new or duplicated playlist, a deleted one's fallback), it starts
   // from the very top: the forest and the logo above its name
   const { isReduceMotionEnabled } = useAccessibilityInfo();
@@ -82,6 +116,9 @@ export default function Index() {
   useEffect(() => {
     if (shownPlaylistId.current === selectedPlaylistId) return;
     shownPlaylistId.current = selectedPlaylistId;
+    // another playlist ends reorder mode, and the list that replaces the reorderable one starts at the top too
+    setReorderingPlaylistId(null);
+    setSwapScrollOffset(0);
     listRef.current?.scrollToOffset({ offset: 0, animated: !isReduceMotionEnabled });
   }, [selectedPlaylistId, listRef, isReduceMotionEnabled]);
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
@@ -128,9 +165,156 @@ export default function Index() {
       />
     );
 
+  // reorder mode: the playlist's songs only (no search, no section headers), saved as they move. Songs since removed
+  // from the songbook stay in the playlist, out of sight, at the end
+  const reorderableItems = listItems.filter((item) => item.type === 'song');
+  const moveSong = (from: number, to: number) => {
+    if (!playlist || to < 0 || to >= reorderableItems.length || from === to) return;
+    const shownIds = reorderableItems.map((item) => item.id);
+    const shown = new Set(shownIds);
+    const hiddenIds = playlist.songIds.filter((id) => !shown.has(id));
+    setSongIds(playlist.id, [...reorderItems(shownIds, from, to), ...hiddenIds]);
+  };
+  const renderReorderableItem = ({ item, index }: { item: SongListItem; index: number }) =>
+    item.type === 'song' ? (
+      <ReorderableListItem
+        item={item.item}
+        primary={primary}
+        background={background}
+        separator={separator}
+        isLast={index === reorderableItems.length - 1}
+        isFavorite={favoriteIds.has(item.item.id)}
+        onMoveBy={(delta) => moveSong(index, index + delta)}
+      />
+    ) : null;
+
+  // Android's back button ends reorder mode before it leaves the app
+  useEffect(() => {
+    if (!isReordering) return;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      setSwapScrollOffset(scrollOffset.get());
+      setReorderingPlaylistId(null);
+      return true;
+    });
+    return () => subscription.remove();
+  }, [isReordering, scrollOffset]);
+
   // the bar's background appears as the list reaches it, past the forest and the logo
   const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop);
+
+  const contentContainerStyle = {
+    paddingLeft: inset.left,
+    paddingRight: inset.right,
+    // narrow, the rows fill the width, so the gutters beside them match
+    backgroundColor: wideLayoutMode ? undefined : background,
+  };
+  const listHeader = (
+    <View
+      style={{
+        position: 'relative',
+        height: logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom,
+        paddingTop: logoContainerPaddingTop,
+        paddingBottom: logoContainerPaddingBottom,
+        // full bleed, with the logo centred in the safe area
+        marginLeft: -inset.left,
+        marginRight: -inset.right,
+        paddingLeft: inset.left,
+        paddingRight: inset.right,
+        // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
+        overflow: wideLayoutMode ? undefined : 'hidden',
+      }}
+    >
+      {/* the background itself */}
+      <Image
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: ultraWideLayoutMode
+            ? height
+            : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
+        }}
+        source={require('@/assets/images/miskas_fade_10.webp')}
+        onLoadEnd={() => setDidBackgroundLoad(true)}
+        contentFit="cover"
+        contentPosition="bottom"
+      ></Image>
+      {/* feather the top for overscroll */}
+      <LinearGradient
+        colors={[`${background}`, `${background}00`]}
+        style={{
+          position: 'absolute',
+          top: 0,
+          height: 50,
+          left: 0,
+          right: 0,
+        }}
+      />
+      {/* the logo is separate so we can measure its extents */}
+      <View
+        onLayout={calculateTitleHeight}
+        style={[
+          styles.logoContainer,
+          {
+            width: logoContainerWidth,
+            height: logoContainerHeight,
+          },
+        ]}
+      >
+        <Image
+          style={StyleSheet.absoluteFill}
+          source={require('@/assets/images/logo_white_v3.png')}
+          contentFit="contain"
+          onLoadEnd={() => setDidLogoLoad(true)}
+        />
+      </View>
+      {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
+      {wideLayoutMode ? (
+        <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
+          <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
+        </View>
+      ) : null}
+    </View>
+  );
+  const listFooter = (
+    <View
+      style={{
+        width: '100%',
+        maxWidth,
+        marginHorizontal: 'auto',
+        minHeight: footerHeight,
+        marginBottom: wideLayoutMode ? Math.max(inset.bottom, padding * 2) : undefined,
+        backgroundColor: background,
+        borderBottomLeftRadius: padding,
+        borderBottomRightRadius: padding,
+      }}
+    >
+      {listItems.length === 0 ? (
+        <View
+          style={[
+            styles.listFooter,
+            {
+              minHeight: height - headerHeight,
+            },
+          ]}
+        >
+          {playlist ? <EmptyPlaylist isSearch={searchText.length > 0} /> : <NoHits />}
+        </View>
+      ) : isReordering ? (
+        // no drag handles, so a word on how; clear of the Done button below it
+        <ThemedText
+          style={[
+            styles.reorderHint,
+            { paddingBottom: isLiquidGlassStyleHeader() ? padding : padding + doneBarHeight },
+          ]}
+        >
+          {t('reorderHint')}
+        </ThemedText>
+      ) : null}
+    </View>
+  );
 
   return (
     <>
@@ -158,117 +342,60 @@ export default function Index() {
         }}
       />
       <View style={[styles.container, { backgroundColor: wideLayoutMode ? card0 : undefined }]}>
-        <Animated.FlatList
-          // todo reduce jank by telling it about height
-          // todo add jump-to-letter bar
-          ref={listRef}
-          data={displayItems}
-          renderItem={renderItem}
-          keyboardDismissMode="on-drag"
-          contentContainerStyle={{
-            paddingLeft: inset.left,
-            paddingRight: inset.right,
-            // narrow, the rows fill the width, so the gutters beside them match
-            backgroundColor: wideLayoutMode ? undefined : background,
-          }}
-          ListHeaderComponent={
-            <View
-              style={{
-                position: 'relative',
-                height: logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom,
-                paddingTop: logoContainerPaddingTop,
-                paddingBottom: logoContainerPaddingBottom,
-                // full bleed, with the logo centred in the safe area
-                marginLeft: -inset.left,
-                marginRight: -inset.right,
-                paddingLeft: inset.left,
-                paddingRight: inset.right,
-                // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
-                overflow: wideLayoutMode ? undefined : 'hidden',
-              }}
-            >
-              {/* the background itself */}
-              <Image
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: ultraWideLayoutMode
-                    ? height
-                    : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
-                }}
-                source={require('@/assets/images/miskas_fade_10.webp')}
-                onLoadEnd={() => setDidBackgroundLoad(true)}
-                contentFit="cover"
-                contentPosition="bottom"
-              ></Image>
-              {/* feather the top for overscroll */}
-              <LinearGradient
-                colors={[`${background}`, `${background}00`]}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  height: 50,
-                  left: 0,
-                  right: 0,
-                }}
-              />
-              {/* the logo is separate so we can measure its extents */}
-              <View
-                onLayout={calculateTitleHeight}
-                style={[
-                  styles.logoContainer,
-                  {
-                    width: logoContainerWidth,
-                    height: logoContainerHeight,
-                  },
-                ]}
-              >
-                <Image
-                  style={StyleSheet.absoluteFill}
-                  source={require('@/assets/images/logo_white_v3.png')}
-                  contentFit="contain"
-                  onLoadEnd={() => setDidLogoLoad(true)}
-                />
-              </View>
-              {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
-              {wideLayoutMode ? (
-                <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
-                  <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
-                </View>
-              ) : null}
-            </View>
-          }
-          ListFooterComponent={
-            <View
-              style={{
-                width: '100%',
-                maxWidth,
-                marginHorizontal: 'auto',
-                minHeight: footerHeight,
-                marginBottom: wideLayoutMode ? Math.max(inset.bottom, padding * 2) : undefined,
-                backgroundColor: background,
-                borderBottomLeftRadius: padding,
-                borderBottomRightRadius: padding,
-              }}
-            >
-              {listItems.length === 0 ? (
-                <View
-                  style={[
-                    styles.listFooter,
-                    {
-                      minHeight: height - headerHeight,
-                    },
-                  ]}
-                >
-                  {playlist ? <EmptyPlaylist isSearch={searchText.length > 0} /> : <NoHits />}
-                </View>
-              ) : null}
-            </View>
-          }
-        />
-        {!isLiquidGlassStyleHeader() && (
+        {isReordering ? (
+          <ReorderableList
+            // the reorderable list registers itself with listRef (a callback ref), so the header's scroll effects
+            // follow it
+            ref={listRef as unknown as React.Ref<FlatList<SongListItem>>}
+            data={reorderableItems}
+            keyExtractor={(item) => item.id}
+            renderItem={renderReorderableItem}
+            // every row laid out, so a dragged row can travel the whole playlist
+            initialNumToRender={reorderableItems.length}
+            contentOffset={{ x: 0, y: swapScrollOffset }}
+            contentContainerStyle={contentContainerStyle}
+            ListHeaderComponent={
+              <>
+                {listHeader}
+                {showPlaylistHeader ? (
+                  <ListHeader title={playlist.name} background={background} separator={separator} large />
+                ) : null}
+              </>
+            }
+            ListFooterComponent={listFooter}
+            onReorder={({ from, to }) => moveSong(from, to)}
+            onDragStart={() => {
+              'worklet';
+              scheduleOnRN(lightHaptic);
+            }}
+            onIndexChange={() => {
+              'worklet';
+              scheduleOnRN(lightHaptic);
+            }}
+            cellAnimations={liftedRowAnimations}
+            // autoscroll starts below the navigation bar and above the bottom bar
+            autoscrollThresholdOffset={{ start: headerHeight, end: inset.bottom + listItemHeight }}
+          />
+        ) : (
+          <Animated.FlatList
+            // todo reduce jank by telling it about height
+            // todo add jump-to-letter bar
+            ref={listRef}
+            data={displayItems}
+            renderItem={renderItem}
+            keyboardDismissMode="on-drag"
+            contentOffset={{ x: 0, y: swapScrollOffset }}
+            // back from reorder mode, enough rows to reach that offset, or the scroll view clamps it
+            initialNumToRender={Math.max(10, Math.ceil((swapScrollOffset + height) / listItemHeight))}
+            contentContainerStyle={contentContainerStyle}
+            ListHeaderComponent={listHeader}
+            ListFooterComponent={listFooter}
+          />
+        )}
+        {/* Liquid Glass gets IndexToolbar instead, with Done in reorder mode */}
+        {isLiquidGlassStyleHeader() ? null : isReordering ? (
+          <ReorderDoneBar onDone={endReordering} />
+        ) : (
           <Search
             scrollRef={listRef}
             top={listTop}
@@ -292,6 +419,8 @@ export default function Index() {
         playlistActions={playlistActions}
         onPlaylistAction={onPlaylistAction}
         setSearchText={(text) => startTransition(() => setSearchText(text))}
+        isReordering={isReordering}
+        onDoneReordering={endReordering}
       />
       {namePrompt}
     </>
@@ -316,6 +445,14 @@ const styles = StyleSheet.create({
     height: padding,
     borderTopLeftRadius: padding,
     borderTopRightRadius: padding,
+  },
+  reorderHint: {
+    paddingTop: padding,
+    paddingHorizontal: padding,
+    textAlign: 'center',
+    fontSize: 13,
+    lineHeight: 13 * 1.4,
+    opacity: 0.6,
   },
   listFooter: {
     paddingHorizontal: padding,

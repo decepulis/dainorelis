@@ -41,7 +41,6 @@ const en = {
   newPlaylist: 'New Playlist',
   newPlaylistMessage: 'Enter a name for this playlist.',
   playlistName: 'Name',
-  editPlaylist: 'Reorder',
   renamePlaylist: 'Rename',
   sharePlaylist: 'Share',
   duplicatePlaylist: 'Duplicate',
@@ -129,6 +128,7 @@ const en = {
   songFestivalRepertoire2: 'Part II: The place of my dreams',
   songFestivalRepertoire3: 'Part III: And the sun rose, again awakening the world',
   songFestivalRepertoire4: "Part IV: Let's open the hope chest of song & dance",
+  reorderHint: 'Touch and hold a song, then drag to reorder.',
 };
 const lt = {
   search: 'Ieškoti',
@@ -148,7 +148,6 @@ const lt = {
   newPlaylist: 'Naujas grojaraštis',
   newPlaylistMessage: 'Įveskite grojaraščio pavadinimą.',
   playlistName: 'Pavadinimas',
-  editPlaylist: 'Pertvarkyti',
   renamePlaylist: 'Pervardyti',
   sharePlaylist: 'Bendrinti',
   duplicatePlaylist: 'Sukurti kopiją',
@@ -238,6 +237,7 @@ const lt = {
   songFestivalRepertoire2: 'Antra dalis: Ten mano svajos…',
   songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
+  reorderHint: 'Palieskite ir palaikykite dainą, tada vilkite, kad pertvarkytumėte.',
 };
 
 /**

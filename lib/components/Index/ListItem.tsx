@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PixelRatio, StyleSheet, View } from 'react-native';
+import { PixelRatio, Pressable, StyleSheet, View } from 'react-native';
 import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import { useReorderableDrag } from 'react-native-reorderable-list';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';
@@ -58,61 +59,13 @@ export function ListItem({
   onNewPlaylistWithSong,
 }: Props) {
   const { t } = useTranslation();
-  const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
-  const { width } = useSafeAreaFrame();
   const firstLyrics = Object.values(item.fields.Lyrics)[0];
 
   const toggleFavorite = () => {
     const isIn = toggleSong(favoritesId, item.id);
     Haptics.impactAsync(isIn ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Soft);
   };
-
-  // from 375px to 450px, gently scale the icon size up
-  const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
-  const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
-  const icons = [
-    isFavorite ? (
-      <FontAwesome6
-        name="heart"
-        key="heart"
-        size={iconSize}
-        iconStyle="solid"
-        color={primary}
-        style={iconStyle(iconSize)}
-      />
-    ) : null,
-    Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
-      <FontAwesome6
-        name="guitar"
-        key="guitar"
-        size={iconSize * 1.1}
-        iconStyle="solid"
-        color={primary}
-        style={iconStyle(iconSize * 1.1)}
-      />
-    ) : null,
-    Object.keys(item.fields.PDFs).length ? (
-      <FontAwesome6
-        name="file"
-        key="file"
-        size={iconSize}
-        iconStyle="solid"
-        color={primary}
-        style={iconStyle(iconSize)}
-      />
-    ) : null,
-    Object.keys(item.fields.Audio).length ? (
-      <FontAwesome6
-        name="play"
-        key="play"
-        size={iconSize}
-        iconStyle="solid"
-        color={primary}
-        style={iconStyle(iconSize)}
-      />
-    ) : null,
-  ].filter(Boolean);
 
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
@@ -185,29 +138,7 @@ export function ListItem({
         <Link href={`/dainos/${item.id}`} asChild>
           <Link.Trigger>
             <Touchable {...rowPressFeedback}>
-              <View
-                style={[
-                  styles.itemContainer,
-                  {
-                    backgroundColor: background,
-                    paddingVertical: PixelRatio.roundToNearestPixel(paddingVertical),
-                    paddingLeft: padding,
-                    paddingRight: padding,
-                  },
-                ]}
-              >
-                <View style={styles.itemText}>
-                  <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
-                    {title}
-                  </ThemedText>
-                  {subtitle ? (
-                    <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText>
-                  ) : null}
-                </View>
-                {icons.length > 0 ? (
-                  <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
-                ) : null}
-              </View>
+              <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
             </Touchable>
           </Link.Trigger>
           <Link.Preview
@@ -247,18 +178,150 @@ export function ListItem({
           </Link.Menu>
         </Link>
       </ReanimatedSwipeable>
-      {process.env.EXPO_OS === 'ios' && !isLast ? (
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: padding,
-            right: 0,
-            height: StyleSheet.hairlineWidth,
-            backgroundColor: separator,
-          }}
-        />
+      {!isLast ? <RowSeparator separator={separator} /> : null}
+    </View>
+  );
+}
+
+type ListItemContentProps = { item: Song; primary: string; background: string; isFavorite: boolean };
+/** a row's title, subtitle and icons, shared by the linked row and the reorderable one */
+function ListItemContent({ item, primary, background, isFavorite }: ListItemContentProps) {
+  const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
+  const { title, subtitle } = useTitle(item);
+  const { width } = useSafeAreaFrame();
+
+  // from 375px to 450px, gently scale the icon size up
+  const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
+  const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
+  const icons = [
+    isFavorite ? (
+      <FontAwesome6
+        name="heart"
+        key="heart"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
+    ) : null,
+    Object.values(item.fields.Lyrics).some((l) => l['Show Chords']) ? (
+      <FontAwesome6
+        name="guitar"
+        key="guitar"
+        size={iconSize * 1.1}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize * 1.1)}
+      />
+    ) : null,
+    Object.keys(item.fields.PDFs).length ? (
+      <FontAwesome6
+        name="file"
+        key="file"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
+    ) : null,
+    Object.keys(item.fields.Audio).length ? (
+      <FontAwesome6
+        name="play"
+        key="play"
+        size={iconSize}
+        iconStyle="solid"
+        color={primary}
+        style={iconStyle(iconSize)}
+      />
+    ) : null,
+  ].filter(Boolean);
+
+  return (
+    <View
+      style={[
+        styles.itemContainer,
+        {
+          backgroundColor: background,
+          paddingVertical: PixelRatio.roundToNearestPixel(paddingVertical),
+          paddingLeft: padding,
+          paddingRight: padding,
+        },
+      ]}
+    >
+      <View style={styles.itemText}>
+        <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>{title}</ThemedText>
+        {subtitle ? <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText> : null}
+      </View>
+      {icons.length > 0 ? (
+        <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
       ) : null}
+    </View>
+  );
+}
+
+/** iOS draws a hairline between rows, inset from the leading edge */
+function RowSeparator({ separator }: { separator: string }) {
+  if (process.env.EXPO_OS !== 'ios') return null;
+  return (
+    <View
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: padding,
+        right: 0,
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: separator,
+      }}
+    />
+  );
+}
+
+/** how long a row is held before it lifts to be dragged */
+export const reorderLongPressMs = 250;
+
+type ReorderableListItemProps = {
+  item: Song;
+  primary: string;
+  background: string;
+  separator: string;
+  isLast?: boolean;
+  isFavorite: boolean;
+  /** moves the song a row up (-1) or down (1), for screen readers */
+  onMoveBy: (delta: number) => void;
+};
+/**
+ * A row in reorder mode: no link, preview, menu or swipe actions. Holding it lifts it to be dragged; screen
+ * readers get Move up / Move down actions instead.
+ */
+export function ReorderableListItem({
+  item,
+  primary,
+  background,
+  separator,
+  isLast,
+  isFavorite,
+  onMoveBy,
+}: ReorderableListItemProps) {
+  const { t } = useTranslation();
+  const drag = useReorderableDrag();
+  const { title, subtitle } = useTitle(item);
+
+  return (
+    <View style={[styles.outerContainer, { backgroundColor: background }]}>
+      <Pressable
+        onLongPress={drag}
+        delayLongPress={reorderLongPressMs}
+        accessible
+        accessibilityLabel={subtitle ? `${title}, ${subtitle}` : title}
+        accessibilityActions={[
+          { name: 'moveUp', label: t('moveUp') },
+          { name: 'moveDown', label: t('moveDown') },
+        ]}
+        onAccessibilityAction={({ nativeEvent }) => onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1)}
+      >
+        <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
+      </Pressable>
+      {!isLast ? <RowSeparator separator={separator} /> : null}
     </View>
   );
 }
