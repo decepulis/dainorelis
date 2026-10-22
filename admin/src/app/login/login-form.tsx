@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 
 import Link from 'next/link';
 
-import { PRIMARY_BUTTON } from '@/lib/styles';
+import { PRIMARY_BUTTON, TEXT_LINK } from '@/lib/styles';
 
 import { type LoginState, signIn } from './actions';
 
@@ -31,10 +31,7 @@ export default function LoginForm({ next }: { next: string }) {
       <div>
         <label htmlFor="password">Password</label>
         <input id="password" name="password" type="password" autoComplete="current-password" required />
-        <Link
-          href="/login/forgot"
-          className="mt-1 inline-block text-xs text-stone-500 hover:underline dark:text-stone-400"
-        >
+        <Link href="/login/forgot" className={`mt-1 inline-block text-xs ${TEXT_LINK}`}>
           Forgot your password?
         </Link>
       </div>

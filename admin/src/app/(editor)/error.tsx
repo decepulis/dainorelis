@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import Link from 'next/link';
 
-import { PRIMARY_BUTTON } from '@/lib/styles';
+import { PRIMARY_BUTTON, TEXT_LINK } from '@/lib/styles';
 
 /**
  * Catches what the editor pages and the create/delete actions throw on a
@@ -31,7 +31,7 @@ export default function EditorError({ error, retry }: { error: unknown; retry: (
         <button type="button" onClick={() => retry()} className={PRIMARY_BUTTON}>
           Try again
         </button>
-        <Link href="/" className="text-sm text-stone-500 hover:underline dark:text-stone-400">
+        <Link href="/" className={`text-sm ${TEXT_LINK}`}>
           ← All songs
         </Link>
       </div>

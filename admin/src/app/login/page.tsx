@@ -1,3 +1,5 @@
+import { BrandMark, Wordmark } from '@/app/brand';
+
 import LoginForm from './login-form';
 import { redirectTarget } from './redirect-target';
 
@@ -14,7 +16,12 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center gap-6 p-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Dainorėlis</h1>
+        <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-brand text-white">
+          <BrandMark className="size-7" />
+        </div>
+        <h1>
+          <Wordmark className="text-3xl text-link" />
+        </h1>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Sign in to edit the song database.</p>
       </div>
 
