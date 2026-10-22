@@ -210,6 +210,8 @@ export default function Search({
               position: 'absolute',
               bottom: inset.bottom,
               height: buttonSize,
+              // a long playlist name stops short of the search button and truncates
+              maxWidth: width - inset.left - inset.right - padding * 1.25 * 2 - buttonSize - padding / 2,
               borderRadius: buttonSize,
               overflow: 'hidden',
             },
@@ -264,7 +266,7 @@ export default function Search({
                 },
               ]}
             >
-              <ThemedText bold adjustsFontSizeToFit numberOfLines={1} style={{ fontSize: 17, color }}>
+              <ThemedText bold numberOfLines={1} style={{ flexShrink: 1, fontSize: 17, color }}>
                 {playlistTitle}
               </ThemedText>
               <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
