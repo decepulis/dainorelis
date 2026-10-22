@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import Animated, { useAnimatedRef } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
@@ -10,6 +11,7 @@ import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import padding from '@/lib/constants/padding';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
+import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 import { Song } from '@/lib/schemas/songs';
 import { splitTitle } from '@/lib/utils/useTitle';
 import songs from '@/songs';
@@ -35,6 +37,8 @@ export default function Page() {
 function DescriptionPage({ song }: { song: Song }) {
   const inset = useSafeAreaInsets();
   const contentColumn = useContentColumnStyle();
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
+  const topScrollEdgeEffect = useTopScrollEdgeEffect(scrollRef);
   const { t, i18n } = useTranslation();
 
   const [title] = splitTitle(song.fields['Name']);
@@ -45,11 +49,12 @@ function DescriptionPage({ song }: { song: Song }) {
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
+          scrollEdgeEffects: topScrollEdgeEffect,
           headerTitle: () => <HeaderTitle showTitle title={t('aboutSongTitle')} subtitle={title} />,
         }}
       />
       <ModalToolbar />
-      <ScrollViewWithHeader>
+      <ScrollViewWithHeader ref={scrollRef}>
         <View
           style={[
             contentColumn,
