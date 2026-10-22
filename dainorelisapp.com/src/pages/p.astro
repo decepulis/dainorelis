@@ -1,0 +1,146 @@
+---
+// A shared playlist (/p?n=<name>&s=<song ids>, see lib/utils/playlistLink.ts in the app). With the app installed the
+// link opens it instead (.well-known/apple-app-site-association, assetlinks.json); this page is for everyone else.
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/logo_white_v3.png';
+import googlePlayBadge from '@/images/play_store_en.svg';
+import appStoreBadge from '@/images/app_store_en.svg';
+import { appStoreUrl, playStoreUrl } from '@/utils/urls';
+import songs from '~/songs';
+
+// song titles by id, without the "rec" every id starts with (the link leaves it out too)
+const titles = Object.fromEntries(songs.map((song) => [song.id.replace(/^rec/, ''), song.fields.Name]));
+---
+
+<Layout>
+  <div class="container">
+    <main>
+      <a href="/"><Image src={logo} alt="Dainorėlis" class="logo" /></a>
+      <section>
+        <p class="eyebrow">A Dainorėlis playlist</p>
+        <h1 id="name">Shared playlist</h1>
+        <ol id="songs"></ol>
+      </section>
+      <p>Get the Dainorėlis app to sing along: lyrics, chords, sheet music, and recordings of over 600 Lithuanian songs.</p>
+      <div class="badges">
+        <a href={appStoreUrl} rel="noopener noreferrer" aria-label="Download on the App Store">
+          <Image src={appStoreBadge} alt="Download on the App Store" />
+        </a>
+        <a href={playStoreUrl} rel="noopener noreferrer" aria-label="Join the beta on Google Play">
+          <Image src={googlePlayBadge} alt="Join the beta on Google Play" />
+        </a>
+      </div>
+      <a id="open" class="open" href="dainorelis://p">Already have the app? Open the playlist</a>
+    </main>
+  </div>
+  <script is:inline define:vars={{ titles }}>
+    const params = new URLSearchParams(location.search);
+    const name = params.get('n')?.trim();
+    if (name) {
+      document.getElementById('name').textContent = name;
+      document.title = `${name} · Dainorėlis`;
+    }
+    const list = document.getElementById('songs');
+    for (const id of (params.get('s') ?? '').split(',')) {
+      const title = titles[id.trim().replace(/^rec/, '')];
+      if (!title) continue;
+      const item = document.createElement('li');
+      item.textContent = title;
+      list.append(item);
+    }
+    // the app's own scheme, for when the universal link didn't open it (a link typed or pasted into the browser)
+    document.getElementById('open').href = `dainorelis://p${location.search}`;
+  </script>
+  <style>
+    .container {
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding-left: calc(2 * var(--spacing));
+      padding-right: calc(2 * var(--spacing));
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: calc(2 * var(--spacing));
+      padding-bottom: calc(2 * var(--spacing));
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      align-items: center;
+    }
+    .logo {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+    }
+    section {
+      box-sizing: border-box;
+      width: 100%;
+      background: rgb(255 255 255 / 0.12);
+      border-radius: var(--spacing);
+      padding: var(--spacing) calc(1.25 * var(--spacing));
+    }
+    .eyebrow {
+      text-align: left;
+      margin: 0;
+      font-size: var(--text--1);
+      opacity: 0.85;
+    }
+    h1 {
+      margin: 0.15em 0 0.5em;
+      font-size: var(--text-3);
+      overflow-wrap: anywhere;
+    }
+    ol {
+      margin: 0;
+      padding-left: 1.5em;
+    }
+    ol:empty {
+      display: none;
+    }
+    li {
+      padding: 0.2em 0;
+    }
+    p {
+      text-align: center;
+      text-wrap: balance;
+      margin: 0;
+    }
+    .badges {
+      display: flex;
+      flex-direction: column;
+      gap: calc(1 * var(--spacing));
+    }
+    .badges img {
+      height: auto;
+      width: 100%;
+      max-width: calc(8 * var(--spacing));
+    }
+    @media (min-width: 400px) {
+      .badges {
+        flex-direction: row;
+        gap: calc(1.5 * var(--spacing));
+      }
+      .badges img {
+        height: calc(2.5 * var(--spacing));
+        width: auto;
+        max-width: none;
+      }
+    }
+    .badges a {
+      transition: opacity 0.1s ease-in-out;
+    }
+    .badges a:hover,
+    .badges a:focus-visible {
+      opacity: 0.75;
+    }
+    .open {
+      font-size: var(--text--1);
+    }
+  </style>
+</Layout>
