@@ -1,4 +1,4 @@
-import React, { startTransition, useState } from 'react';
+import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
@@ -26,6 +26,7 @@ import MenuView from '@/lib/components/MenuView';
 import SystemView from '@/lib/components/SystemView';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
+import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import usePlaylistActions, { PlaylistActionId } from '@/lib/hooks/usePlaylistActions';
 import usePlaylists from '@/lib/hooks/usePlaylists';
@@ -76,6 +77,15 @@ export default function Index() {
   const ultraWideLayoutMode = wideLayoutMode && width / height >= 4 / 3;
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
+  // however a playlist gets picked (the menu, a new or duplicated playlist, a deleted one's fallback), it starts
+  // from the very top: the forest and the logo above its name
+  const { isReduceMotionEnabled } = useAccessibilityInfo();
+  const shownPlaylistId = useRef(selectedPlaylistId);
+  useEffect(() => {
+    if (shownPlaylistId.current === selectedPlaylistId) return;
+    shownPlaylistId.current = selectedPlaylistId;
+    listRef.current?.scrollToOffset({ offset: 0, animated: !isReduceMotionEnabled });
+  }, [selectedPlaylistId, listRef, isReduceMotionEnabled]);
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = (event: LayoutChangeEvent) => {
     titleLayout.set(event.nativeEvent.layout);

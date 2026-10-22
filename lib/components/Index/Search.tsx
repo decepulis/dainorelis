@@ -244,7 +244,6 @@ export default function Search({
                 onCreatePlaylist();
               } else {
                 setSelectedPlaylistId(nativeEvent.event);
-                scrollToTop();
               }
             }}
           >
@@ -361,15 +360,11 @@ export function IndexToolbar({
 
   if (!isLiquidGlassStyleHeader()) return null;
 
-  const select = (id: string) => {
-    setSelectedPlaylistId(id);
-    listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
-  };
   const playlistAction = (playlist: Playlist) => (
     <Stack.Toolbar.MenuAction
       key={playlist.id}
       isOn={playlist.id === selectedPlaylistId}
-      onPress={() => select(playlist.id)}
+      onPress={() => setSelectedPlaylistId(playlist.id)}
     >
       {playlist.name}
     </Stack.Toolbar.MenuAction>
@@ -403,7 +398,10 @@ export function IndexToolbar({
           icon="music.note.list"
           tintColor={selectedPlaylistId !== allSongsId ? primary : undefined}
         >
-          <Stack.Toolbar.MenuAction isOn={selectedPlaylistId === allSongsId} onPress={() => select(allSongsId)}>
+          <Stack.Toolbar.MenuAction
+            isOn={selectedPlaylistId === allSongsId}
+            onPress={() => setSelectedPlaylistId(allSongsId)}
+          >
             {t('allSongs')}
           </Stack.Toolbar.MenuAction>
           {playlistAction(favorites)}
