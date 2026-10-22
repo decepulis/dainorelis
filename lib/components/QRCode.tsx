@@ -8,9 +8,18 @@ import { toQR } from 'toqr';
 const errorCorrectionL = 1 as Parameters<typeof toQR>[1];
 const quietZone = 4;
 
-/** an SVG of the code: one path of horizontal runs, on a white square with the standard quiet zone */
+/**
+ * an SVG of the code: one path of horizontal runs, on a white square with the standard quiet zone. Null when the
+ * content doesn't fit in a QR code (toqr throws past version 40's capacity, ~2,950 bytes at level L)
+ */
 export function qrSvg(content: string) {
-  const modules = toQR(content, errorCorrectionL);
+  let modules: ReturnType<typeof toQR>;
+  try {
+    modules = toQR(content, errorCorrectionL);
+  } catch (error) {
+    if (error instanceof RangeError) return null;
+    throw error;
+  }
   const size = Math.sqrt(modules.length);
   let path = '';
   for (let y = 0; y < size; y++) {
@@ -26,14 +35,14 @@ export function qrSvg(content: string) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${box} ${box}" shape-rendering="crispEdges"><rect width="${box}" height="${box}" fill="#fff"/><path d="${path}" fill="#000"/></svg>`;
 }
 
-type Props = { value: string; size: number; accessibilityLabel?: string; style?: StyleProp<ImageStyle> };
+type Props = { svg: string; size: number; accessibilityLabel?: string; style?: StyleProp<ImageStyle> };
 
-/** A QR code, drawn as an SVG by expo-image (no SVG library needed) */
-export default function QRCode({ value, size, accessibilityLabel, style }: Props) {
+/** A QR code from qrSvg(), drawn by expo-image (no SVG library needed) */
+export default function QRCode({ svg, size, accessibilityLabel, style }: Props) {
   return (
     <Image
       // base64: Android's decoder doesn't read a percent-encoded data URI (the SVG is ASCII, so btoa is enough)
-      source={{ uri: `data:image/svg+xml;base64,${btoa(qrSvg(value))}` }}
+      source={{ uri: `data:image/svg+xml;base64,${btoa(svg)}` }}
       style={[{ width: size, height: size }, style]}
       contentFit="contain"
       accessible

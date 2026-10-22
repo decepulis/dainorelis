@@ -8,7 +8,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
 import NotFound from '@/lib/components/NotFound';
-import QRCode from '@/lib/components/QRCode';
+import QRCode, { qrSvg } from '@/lib/components/QRCode';
 import ThemedText from '@/lib/components/ThemedText';
 import { pluralKey } from '@/lib/constants/i18n';
 import padding from '@/lib/constants/padding';
@@ -31,6 +31,8 @@ export default function Page() {
   }
 
   const url = playlistUrl(playlist.name, playlist.songIds);
+  // a QR code holds a link to ~190 songs; past that, the link alone
+  const svg = qrSvg(url);
   const shareLink = () =>
     Share.share(
       // iOS shares the URL as a link; Android only takes text
@@ -57,10 +59,16 @@ export default function Page() {
           {t(pluralKey('songCount', playlist.songIds.length, i18n.language), { n: playlist.songIds.length })}
         </ThemedText>
       </View>
-      <View style={styles.qrCard}>
-        <QRCode value={url} size={qrSize} accessibilityLabel={t('qrCode', { name: playlist.name })} />
-      </View>
-      <ThemedText style={styles.hint}>{t('sharePlaylistHint')}</ThemedText>
+      {svg ? (
+        <>
+          <View style={styles.qrCard}>
+            <QRCode svg={svg} size={qrSize} accessibilityLabel={t('qrCode', { name: playlist.name })} />
+          </View>
+          <ThemedText style={styles.hint}>{t('sharePlaylistHint')}</ThemedText>
+        </>
+      ) : (
+        <ThemedText style={[styles.hint, styles.tooLongHint]}>{t('playlistTooLongForQRCode')}</ThemedText>
+      )}
       <Button
         noGlass
         hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
@@ -111,6 +119,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     opacity: 0.8,
     maxWidth: 340,
+  },
+  tooLongHint: {
+    marginVertical: padding,
   },
   shareButton: {
     width: 'auto',
