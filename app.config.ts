@@ -34,8 +34,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     appleTeamId: '5BPU37MJR9',
     buildNumber: buildNumber,
     // shared playlist links (https://www.dainorelisapp.com/p?…) open the app; the site serves
-    // .well-known/apple-app-site-association. The apex domain redirects to www, so only www can verify.
-    associatedDomains: ['applinks:www.dainorelisapp.com', 'applinks:dainorelisapp.com'],
+    // .well-known/apple-app-site-association. Only www: the apex domain redirects there, and Apple doesn't
+    // follow redirects to the file, so the apex could never verify.
+    associatedDomains: ['applinks:www.dainorelisapp.com'],
     config: {
       usesNonExemptEncryption: false,
     },
@@ -85,7 +86,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       {
         action: 'VIEW',
         autoVerify: true,
-        data: [{ scheme: 'https', host: 'www.dainorelisapp.com', pathPrefix: '/p' }],
+        // exactly /p (the query is ignored): a prefix would also take /privacy, /pdf…
+        data: [{ scheme: 'https', host: 'www.dainorelisapp.com', path: '/p' }],
         category: ['BROWSABLE', 'DEFAULT'],
       },
     ],
