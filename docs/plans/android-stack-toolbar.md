@@ -36,14 +36,14 @@ not a fix.
 - A third header code path (iOS 26 / older iOS / Android) in `SongMenu.tsx`, `Header.tsx`,
   `Search.tsx` and the five routes. The old plan's "1–2 h, mostly mechanical" ignored the index
   search problem, the tint and menu colours, and accessibility.
-- Android QA on a device. Nobody has run the app on Android since SDK 56, so the existing header
-  has not been verified there yet. Changing it first would leave two unknowns at once.
+- Android QA on a device for a third header path. (When this was decided, nobody had run the app on
+  Android since SDK 56; the current header has since been checked on a Pixel and a Fold emulator.)
 
 ## Recommendation
 
-Keep the status quo. First do a real Android device pass of the current header. Separately, the
-custom header buttons have no accessibility labels (`Button.tsx` has a `TODO A11y label`), which
-is a real gap worth fixing on any platform. Revisit only if the owner explicitly wants a stock
+Keep the status quo. (The custom header buttons have since been given accessibility labels.) The
+variant menu now lives in the navigation bar on every platform (6e75932): `VariantMenu` in
+`HeaderTitle` on Android, so nothing here depends on a bottom bar. Revisit only if the owner explicitly wants a stock
 Material look on Android. If so, switch only the song-detail and modal header buttons
 (`placement="left"/"right"`, `tintColor="#fff"`, explicit `backgroundColor` and
 `accessibilityLabel`). Keep the green background, `HeaderTitle`, `VariantMenu` and the custom
