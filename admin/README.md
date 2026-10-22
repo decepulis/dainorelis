@@ -61,7 +61,8 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 
    - **Sign-ups and anonymous sign-ins off.** There are no roles in this app:
      anyone who can sign in is an editor, so accounts are created by
-     invitation only (Authentication → Users → Add user → Send invitation).
+     invitation only, from the admin's **Editors** page (or Authentication →
+     Users → Add user → Send invitation in Supabase).
      Anonymous users also get the `authenticated` role; the
      `editors_not_anonymous` migration keeps them out of the policies, but
      there is no reason to rely on that alone.
