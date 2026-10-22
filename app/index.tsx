@@ -123,6 +123,8 @@ export default function Index() {
         isFavorite={favoriteIds.has(item.item.id)}
         userPlaylists={userPlaylists}
         toggleSong={toggleSong}
+        shownUserPlaylistId={userPlaylists.some((p) => p.id === selectedPlaylistId) ? selectedPlaylistId : undefined}
+        onNewPlaylistWithSong={(songId) => promptCreatePlaylist([songId])}
       />
     );
 
@@ -272,7 +274,7 @@ export default function Index() {
             top={listTop}
             selectedPlaylistId={selectedPlaylistId}
             setSelectedPlaylistId={setSelectedPlaylistId}
-            onCreatePlaylist={promptCreatePlaylist}
+            onCreatePlaylist={() => promptCreatePlaylist()}
             playlistActions={playlistActions}
             onPlaylistAction={onPlaylistAction}
             setSearchText={(text) => startTransition(() => setSearchText(text))}
@@ -286,7 +288,7 @@ export default function Index() {
         scrollToSearchOffset={listTop}
         selectedPlaylistId={selectedPlaylistId}
         setSelectedPlaylistId={setSelectedPlaylistId}
-        onCreatePlaylist={promptCreatePlaylist}
+        onCreatePlaylist={() => promptCreatePlaylist()}
         playlistActions={playlistActions}
         onPlaylistAction={onPlaylistAction}
         setSearchText={(text) => startTransition(() => setSearchText(text))}
