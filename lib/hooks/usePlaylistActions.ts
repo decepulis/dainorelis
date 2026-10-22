@@ -56,7 +56,9 @@ export default function usePlaylistActions() {
           material: Title,
         }
       : null,
-    playlist ? { id: 'share' as const, title: t('sharePlaylist'), sfSymbol: 'qrcode' as const, material: Share } : null,
+    playlist
+      ? { id: 'share' as const, title: t('sharePlaylist'), sfSymbol: 'square.and.arrow.up' as const, material: Share }
+      : null,
     kind === 'curated'
       ? {
           id: 'duplicate' as const,

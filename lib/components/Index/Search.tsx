@@ -433,7 +433,7 @@ export function IndexToolbar({
             </Stack.Toolbar.MenuAction>
           ))}
         </Stack.Toolbar.Menu>
-        <Stack.Toolbar.Button icon="slider.horizontal.3" onPress={() => router.navigate('/nustatymai')}>
+        <Stack.Toolbar.Button icon="info.circle" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}
         </Stack.Toolbar.Button>
       </Stack.Toolbar>
