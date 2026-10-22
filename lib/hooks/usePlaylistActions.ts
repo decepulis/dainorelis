@@ -6,8 +6,8 @@ import { useRouter } from 'expo-router';
 import Add from '@expo/material-symbols/add.xml';
 import ContentCopy from '@expo/material-symbols/content_copy.xml';
 import Delete from '@expo/material-symbols/delete.xml';
-import Edit from '@expo/material-symbols/edit.xml';
 import Share from '@expo/material-symbols/share.xml';
+import Reorder from '@expo/material-symbols/swap_vert.xml';
 import Title from '@expo/material-symbols/title.xml';
 import type { SFSymbol } from 'sf-symbols-typescript';
 
@@ -46,7 +46,7 @@ export default function usePlaylistActions() {
   const kind = playlist?.kind;
   const actions: PlaylistAction[] = [
     kind === 'favorites' || kind === 'user'
-      ? { id: 'edit' as const, title: t('editPlaylist'), sfSymbol: 'pencil' as const, material: Edit }
+      ? { id: 'edit' as const, title: t('editPlaylist'), sfSymbol: 'arrow.up.arrow.down' as const, material: Reorder }
       : null,
     kind === 'user'
       ? {
