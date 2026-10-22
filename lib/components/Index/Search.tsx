@@ -394,7 +394,6 @@ export function IndexToolbar({
       <Stack.Toolbar>
         <Stack.Toolbar.Menu
           title={t('playlists')}
-          separateBackground
           icon="music.note.list"
           tintColor={selectedPlaylistId !== allSongsId ? primary : undefined}
         >
@@ -413,26 +412,26 @@ export function IndexToolbar({
             </Stack.Toolbar.MenuAction>
           </Stack.Toolbar.Menu>
         </Stack.Toolbar.Menu>
+        {playlistActions.length ? (
+          // the shown playlist's settings, next to the button that picks it
+          <Stack.Toolbar.Menu icon="gearshape" title="" accessibilityLabel={t('playlistActions')}>
+            {playlistActions.map((action) => (
+              <Stack.Toolbar.MenuAction
+                key={action.id}
+                icon={action.sfSymbol}
+                destructive={action.destructive}
+                onPress={() => onPlaylistAction(action.id)}
+              >
+                {action.title}
+              </Stack.Toolbar.MenuAction>
+            ))}
+          </Stack.Toolbar.Menu>
+        ) : null}
+        {/* a fixed gap: the playlist button and its settings are one group, search another */}
+        <Stack.Toolbar.Spacer width={8} />
         <Stack.Toolbar.SearchBarSlot />
       </Stack.Toolbar>
       <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Menu
-          icon="ellipsis"
-          hidden={playlistActions.length === 0}
-          title=""
-          accessibilityLabel={t('playlistActions')}
-        >
-          {playlistActions.map((action) => (
-            <Stack.Toolbar.MenuAction
-              key={action.id}
-              icon={action.sfSymbol}
-              destructive={action.destructive}
-              onPress={() => onPlaylistAction(action.id)}
-            >
-              {action.title}
-            </Stack.Toolbar.MenuAction>
-          ))}
-        </Stack.Toolbar.Menu>
         <Stack.Toolbar.Button icon="info.circle" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}
         </Stack.Toolbar.Button>
