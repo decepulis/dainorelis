@@ -96,6 +96,13 @@ export function ListItem({
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
   const close = () => swipeableRef.current?.close();
+  // the swipe actions render with every row, and the add-to-playlist menu is a native host (on Android a
+  // Compose view each, tens of megabytes across the songbook), so it mounts once the row is first swiped; until
+  // then its icon stands alone
+  const [hasSwiped, setHasSwiped] = useState(false);
+  // the actions sit behind the row until it's swiped open, hidden from screen readers too: the row offers
+  // them as accessibility actions instead
+  const [isRevealed, setIsRevealed] = useState(false);
   // the menu's native host sizes to its content, so its action gets the row's height explicitly
   const [rowSize, setRowSize] = useState<{ width: number; height: number }>();
   const rowHeight = rowSize?.height;
@@ -118,12 +125,18 @@ export function ListItem({
     },
   });
 
+  const addToPlaylistIcon = (
+    <View style={[styles.swipeAction, { backgroundColor: addColor, height: rowHeight }]}>
+      <FontAwesome6 name="list-ul" size={20} iconStyle="solid" color="#fff" />
+    </View>
+  );
   // swiping a row reveals two actions: the heart at the edge, and beside it Add to playlist (a menu of the
   // user's playlists) or, inside one of them, Remove
   const renderRightActions = (_progress: SharedValue<number>, translation: SharedValue<number>) => (
     <SwipeActions
       translation={translation}
       threshold={fullSwipeThreshold}
+      isRevealed={isRevealed}
       secondaryColor={shownUserPlaylistId ? removeColor : addColor}
       primaryColor={primary}
       primary={
@@ -152,6 +165,8 @@ export function ListItem({
           >
             <FontAwesome6 name="circle-minus" size={20} iconStyle="solid" color="#fff" />
           </Touchable>
+        ) : !hasSwiped ? (
+          addToPlaylistIcon
         ) : (
           <MenuView
             hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
@@ -174,14 +189,47 @@ export function ListItem({
               close();
             }}
           >
-            <View style={[styles.swipeAction, { backgroundColor: addColor, height: rowHeight }]}>
-              <FontAwesome6 name="list-ul" size={20} iconStyle="solid" color="#fff" />
-            </View>
+            {addToPlaylistIcon}
           </MenuView>
         )
       }
     />
   );
+
+  // what the swipe actions (and on iOS the long-press menu) do, for screen readers. Android has no long-press
+  // menu, and neither does a reorderable row on iOS, so they also get a playlist's worth of Add to actions.
+  const playlistActionPrefix = 'playlist:';
+  const offersPlaylistActions = !shownUserPlaylistId && (process.env.EXPO_OS !== 'ios' || !!reorder);
+  const accessibilityActions = [
+    { name: 'favorite', label: isFavorite ? t('removeFromFavorites') : t('addToFavorites') },
+    ...(shownUserPlaylistId ? [{ name: 'removeFromPlaylist', label: t('removeFromPlaylist') }] : []),
+    ...(offersPlaylistActions
+      ? [
+          ...userPlaylists.map((playlist) => ({
+            name: `${playlistActionPrefix}${playlist.id}`,
+            label: playlist.songIds.has(item.id)
+              ? t('removeFromNamedPlaylist', { name: playlist.name })
+              : t('addToNamedPlaylist', { name: playlist.name }),
+          })),
+          { name: newPlaylistActionId, label: t('createPlaylist') },
+        ]
+      : []),
+    ...(reorder
+      ? [
+          { name: 'moveUp', label: t('moveUp') },
+          { name: 'moveDown', label: t('moveDown') },
+        ]
+      : []),
+  ];
+  const onAccessibilityAction = ({ nativeEvent: { actionName } }: AccessibilityActionEvent) => {
+    if (actionName === 'favorite') toggleFavorite();
+    else if (actionName === 'removeFromPlaylist' && shownUserPlaylistId) toggleSong(shownUserPlaylistId, item.id);
+    else if (actionName.startsWith(playlistActionPrefix))
+      toggleSong(actionName.slice(playlistActionPrefix.length), item.id);
+    else if (actionName === newPlaylistActionId) onNewPlaylistWithSong(item.id);
+    else if (actionName === 'moveUp') reorder?.onMoveBy(-1);
+    else if (actionName === 'moveDown') reorder?.onMoveBy(1);
+  };
 
   return (
     <GestureDetector gesture={fullSwipeGesture}>
@@ -195,23 +243,17 @@ export function ListItem({
           // dragging on past the actions stretches them, toward the full swipe
           overshootRight
           simultaneousWith={fullSwipeGesture}
+          onSwipeableOpenStartDrag={() => setHasSwiped(true)}
+          onSwipeableWillOpen={() => setIsRevealed(true)}
+          onSwipeableClose={() => setIsRevealed(false)}
         >
           <Link href={`/dainos/${item.id}`} asChild>
             <Link.Trigger>
               <Touchable
                 {...rowPressFeedback}
-                {...(reorder
-                  ? {
-                      onLongPress: reorder.onDrag,
-                      delayLongPress: reorderLongPressMs,
-                      accessibilityActions: [
-                        { name: 'moveUp', label: t('moveUp') },
-                        { name: 'moveDown', label: t('moveDown') },
-                      ],
-                      onAccessibilityAction: ({ nativeEvent }: AccessibilityActionEvent) =>
-                        reorder.onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1),
-                    }
-                  : null)}
+                {...(reorder ? { onLongPress: reorder.onDrag, delayLongPress: reorderLongPressMs } : null)}
+                accessibilityActions={accessibilityActions}
+                onAccessibilityAction={onAccessibilityAction}
               >
                 <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
               </Touchable>
@@ -269,6 +311,8 @@ type SwipeActionsProps = {
   /** the row's translation, from the swipeable: negative as it reveals the actions */
   translation: SharedValue<number>;
   threshold: number;
+  /** swiped open: until then screen readers skip the actions */
+  isRevealed: boolean;
   /** Add to playlist or Remove, beside the edge */
   secondary: React.ReactNode;
   secondaryColor: string;
@@ -280,7 +324,15 @@ type SwipeActionsProps = {
  * the two swipe actions. Dragged past them they stretch, each over half the revealed width; past the
  * threshold the edge action arms and grows over the other, its icon following the row's edge.
  */
-function SwipeActions({ translation, threshold, secondary, secondaryColor, primary, primaryColor }: SwipeActionsProps) {
+function SwipeActions({
+  translation,
+  threshold,
+  isRevealed,
+  secondary,
+  secondaryColor,
+  primary,
+  primaryColor,
+}: SwipeActionsProps) {
   // 0 → 1 as the edge action covers the other (Reduce Motion: a jump)
   const armProgress = useSharedValue(0);
   useAnimatedReaction(
@@ -313,7 +365,11 @@ function SwipeActions({ translation, threshold, secondary, secondaryColor, prima
   });
 
   return (
-    <View style={styles.swipeActions}>
+    <View
+      style={styles.swipeActions}
+      importantForAccessibility={isRevealed ? 'auto' : 'no-hide-descendants'}
+      accessibilityElementsHidden={!isRevealed}
+    >
       <Animated.View style={[styles.swipeActionsFill, { backgroundColor: secondaryColor }, secondaryFillStyle]} />
       <Animated.View style={secondaryStyle}>{secondary}</Animated.View>
       <Animated.View style={[styles.swipeActionsFill, { backgroundColor: primaryColor }, primaryStyle]}>
