@@ -91,12 +91,30 @@ export default function SongMenu({ song, hasChords }: Props) {
 }
 
 type SongDetailToolbarProps = {
-  song: Song;
-  hasChords: boolean;
   isFavorite: boolean;
   onToggleFavorite: () => void;
 };
-export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorite }: SongDetailToolbarProps) {
+// Liquid Glass: the heart is a bar button; the rest of the menu is UIKit's own overflow menu (useSongOverflowMenu)
+export function SongDetailToolbar({ isFavorite, onToggleFavorite }: SongDetailToolbarProps) {
+  const { t } = useTranslation();
+
+  if (!isLiquidGlassStyleHeader()) return null;
+
+  return (
+    <Stack.Toolbar placement="right">
+      <Stack.Toolbar.Button icon={isFavorite ? 'heart.fill' : 'heart'} selected={isFavorite} onPress={onToggleFavorite}>
+        {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+      </Stack.Toolbar.Button>
+    </Stack.Toolbar>
+  );
+}
+
+type OverflowMenuItem = { menuId: string; title: string; sfSymbolName: string; state?: 'on' | 'off' };
+
+// Liquid Glass: the song's actions for UIKit's overflow menu, passed as the header config's overflowMenu (our
+// react-native-screens patch), rather than a ⋯ menu of ours that UIKit would fold, with the heart, into a nested
+// overflow menu when a long title leaves no room. The song screen pins the heart past UIKit's ⋯ (pinsTrailingItems)
+export function useSongOverflowMenu(song: Song, hasChords: boolean) {
   const router = useRouter();
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
@@ -104,39 +122,27 @@ export function SongDetailToolbar({ song, hasChords, isFavorite, onToggleFavorit
   const hasDescriptions = !!song.fields['LT Description'] || !!song.fields['EN Description'];
   const hasTranslation = Object.values(song.fields['Translations']).length > 0;
 
-  if (!isLiquidGlassStyleHeader()) return null;
+  const items: (OverflowMenuItem | null)[] = [
+    hasDescriptions ? { menuId: 'info', title: t('aboutSong'), sfSymbolName: 'book' } : null,
+    hasTranslation ? { menuId: 'translation', title: t('translateSong'), sfSymbolName: 'translate' } : null,
+    hasChords
+      ? { menuId: 'toggleChords', title: t('chords'), sfSymbolName: 'guitars', state: showChords ? 'on' : 'off' }
+      : null,
+    { menuId: 'feedback', title: t('feedback'), sfSymbolName: 'exclamationmark.bubble' },
+  ];
 
-  return (
-    <>
-      <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Button
-          icon={isFavorite ? 'heart.fill' : 'heart'}
-          selected={isFavorite}
-          onPress={onToggleFavorite}
-        >
-          {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-        </Stack.Toolbar.Button>
-        <Stack.Toolbar.Menu icon="ellipsis" accessibilityLabel={t('moreOptions')}>
-          {hasDescriptions ? (
-            <Stack.Toolbar.MenuAction icon="book" onPress={() => router.push(`/dainos/${song.id}/aprasymas`)}>
-              {t('aboutSong')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {hasTranslation ? (
-            <Stack.Toolbar.MenuAction icon="translate" onPress={() => router.push(`/dainos/${song.id}/vertimas`)}>
-              {t('translateSong')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          {hasChords ? (
-            <Stack.Toolbar.MenuAction icon="guitars" isOn={showChords} onPress={() => setShowChords(!showChords)}>
-              {t('chords')}
-            </Stack.Toolbar.MenuAction>
-          ) : null}
-          <Stack.Toolbar.MenuAction icon="exclamationmark.bubble" onPress={() => openFeedback(song.fields.Name)}>
-            {t('feedback')}
-          </Stack.Toolbar.MenuAction>
-        </Stack.Toolbar.Menu>
-      </Stack.Toolbar>
-    </>
-  );
+  const onPressOverflowMenuItem = (e: { nativeEvent: { menuId: string } }) => {
+    const { menuId } = e.nativeEvent;
+    if (menuId === 'info') {
+      router.push(`/dainos/${song.id}/aprasymas`);
+    } else if (menuId === 'translation') {
+      router.push(`/dainos/${song.id}/vertimas`);
+    } else if (menuId === 'toggleChords') {
+      setShowChords(!showChords);
+    } else if (menuId === 'feedback') {
+      openFeedback(song.fields.Name);
+    }
+  };
+
+  return { overflowMenu: { items: items.filter(Boolean) }, onPressOverflowMenuItem };
 }
