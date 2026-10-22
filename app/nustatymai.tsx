@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
+import Animated, { useAnimatedRef } from 'react-native-reanimated';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
@@ -18,6 +19,7 @@ import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 
 const team = [
   {
@@ -54,6 +56,8 @@ export default function Page() {
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const maxWidthPadding = useMaxWidthPadding();
   const openFeedback = useOpenFeedback();
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
+  const topScrollEdgeEffect = useTopScrollEdgeEffect(scrollRef);
 
   const primary = useThemeColor('primary');
   const card = useThemeColor('card');
@@ -95,10 +99,11 @@ export default function Page() {
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground />,
+          scrollEdgeEffects: topScrollEdgeEffect,
         }}
       />
       <ModalToolbar />
-      <ScrollViewWithHeader>
+      <ScrollViewWithHeader ref={scrollRef}>
         <View style={[styles.container, maxWidthPadding]}>
           <View style={[styles.section]}>
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
