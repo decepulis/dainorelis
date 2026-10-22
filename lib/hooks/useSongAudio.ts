@@ -36,7 +36,11 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
     const variantName = i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'];
     let current = true;
     artworkUrl.then((url) => {
-      if (current) player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl: url });
+      // Without isLiveStream, expo-audio decides once, on activation, from the item's duration, which
+      // is indefinite while the source is still loading, so the lock screen showed a live stream
+      // with no duration or scrubber.
+      if (current)
+        player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl: url }, { isLiveStream: false });
     });
     return () => {
       current = false;
