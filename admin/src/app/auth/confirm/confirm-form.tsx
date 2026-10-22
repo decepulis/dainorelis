@@ -20,11 +20,11 @@ export function LinkError({ message }: { message: string }) {
       <p className="text-red-600 dark:text-red-400">{message}</p>
       <p className="text-stone-600 dark:text-stone-300">
         Ask for a new invitation, or{' '}
-        <Link href="/login/forgot" className="underline">
+        <Link href="/login/forgot" className="text-link underline underline-offset-2">
           request a new reset link
         </Link>
         . Already have a password?{' '}
-        <Link href="/login" className="underline">
+        <Link href="/login" className="text-link underline underline-offset-2">
           Sign in
         </Link>
         .

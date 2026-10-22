@@ -1,28 +1,71 @@
 @import 'tailwindcss';
 
+/* Dainorėlis brand greens, taken from the app's themes (lib/constants/themes.ts).
+   The app's primary #70997f only reaches 3.2:1 against white, so text-bearing
+   surfaces use its high-contrast variants; the base green is for focus rings,
+   icons and other non-text accents. */
 @theme {
-  --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --color-ink: oklch(0.22 0.02 260);
   --color-parchment: oklch(0.98 0.008 90);
+
+  --color-brand: #70997f; /* app LightTheme.primary; marketing site --primary-light */
+  --color-brand-strong: #508062; /* app LightHighContrastTheme.primary; white text 4.6:1 */
+  --color-brand-dark: #53745e; /* app DarkTheme.primary; marketing site --primary-dark */
+  --color-brand-deep: #375943; /* app DarkHighContrastTheme.primary */
+}
+
+/* Semantic roles that swap with the colour scheme, exposed to Tailwind as
+   bg-header, bg-accent, text-link, ring-focus and so on. */
+:root {
+  --header: var(--color-brand-strong);
+  --accent: var(--color-brand-strong);
+  --accent-hover: var(--color-brand-deep);
+  --link: var(--color-brand-deep);
+  --focus: var(--color-brand);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --header: var(--color-brand-dark);
+    --accent: var(--color-brand-dark);
+    --accent-hover: var(--color-brand-deep);
+    --link: var(--color-brand);
+  }
+}
+
+@theme inline {
+  --color-header: var(--header);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-link: var(--link);
+  --color-focus: var(--focus);
+  /* Set on <html> by next/font in src/app/fonts.ts. */
+  --font-brand: var(--brand-typeface), var(--font-sans);
 }
 
 /* The editor is a text-heavy tool; keep long lyric fields legible and let the
    browser follow the operator's own light/dark preference. */
 :root {
   color-scheme: light dark;
+  accent-color: var(--accent);
 }
 
 body {
   @apply bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100;
 }
 
+/* Keyboard focus for links and buttons; the green header overrides it to white. */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-focus;
+}
+
 textarea,
 input,
 select {
   @apply w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm
-    outline-none focus:border-stone-500 focus:ring-2 focus:ring-stone-300
-    dark:border-stone-700 dark:bg-stone-900 dark:focus:ring-stone-700;
+    outline-none focus:border-brand focus:ring-2 focus:ring-focus/40
+    dark:border-stone-700 dark:bg-stone-900 dark:focus:ring-focus/50;
 }
 
 textarea {

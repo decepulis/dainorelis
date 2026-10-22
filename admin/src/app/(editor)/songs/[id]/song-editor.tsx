@@ -5,7 +5,7 @@ import { useActionState, useRef } from 'react';
 import Link from 'next/link';
 
 import { assignVariantNames, byPosition } from '@/lib/song-file/variant-names';
-import { PRIMARY_BUTTON } from '@/lib/styles';
+import { PRIMARY_BUTTON, TEXT_LINK } from '@/lib/styles';
 
 import { type EditorState, deleteSong, saveSong } from '../../actions';
 import SubmitButton from '../../submit-button';
@@ -262,7 +262,7 @@ export default function SongEditor({ song }: { song: Song }) {
 
   return (
     <main className="mx-auto w-full max-w-3xl p-4 sm:p-6">
-      <Link href="/" className="text-sm text-stone-500 hover:underline dark:text-stone-400">
+      <Link href="/" className={`text-sm ${TEXT_LINK}`}>
         ← All songs
       </Link>
 

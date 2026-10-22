@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { TEXT_LINK } from '@/lib/styles';
+
 import ForgotForm from './forgot-form';
 
 export default function ForgotPasswordPage() {
@@ -14,7 +16,7 @@ export default function ForgotPasswordPage() {
 
       <ForgotForm />
 
-      <Link href="/login" className="text-sm text-stone-500 hover:underline dark:text-stone-400">
+      <Link href="/login" className={`text-sm ${TEXT_LINK}`}>
         ← Back to sign in
       </Link>
     </main>
