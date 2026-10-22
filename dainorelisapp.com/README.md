@@ -1,7 +1,9 @@
 # dainorelisapp.com
 
 The Astro marketing site for Dainorėlis: App Store / Google Play links, and `/qr`, which sends
-phones to the right store by user agent (`src/pages/qr.ts`, a Vercel function).
+phones to the right store by user agent (`src/pages/qr.ts`, a Vercel function). `/p` shows a shared
+playlist (`src/pages/p.astro`) to phones without the app; `public/.well-known/` lets the app open those
+links instead (iOS universal links, Android App Links).
 
 It is a pnpm workspace package (`marketing-site`), so install from the repo root and run:
 
