@@ -7,7 +7,17 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 
 import { Audio } from '../schemas/audio';
 
-const artworkUrl = Asset.fromModule(require('@/assets/images/icon.png')).uri;
+const icon = Asset.fromModule(require('@/assets/images/icon.png'));
+// The lock screen loads its artwork from a URL. In an Android release build the bundled icon's
+// `uri` is a bare drawable name, which expo-audio can't cast to a URL (the throw crashed the song
+// screen), and expo-asset marks it downloaded as is, so copy it to a cache file through a fresh
+// Asset. Elsewhere `uri` is already a file:// or http URL.
+const artworkUrl: Promise<string | undefined> = icon.uri.includes(':')
+  ? Promise.resolve(icon.uri)
+  : new Asset({ name: icon.name, type: icon.type, hash: icon.hash, uri: icon.uri })
+      .downloadAsync()
+      .then((asset) => asset.localUri ?? undefined)
+      .catch(() => undefined);
 // how long an iOS source may sit unloaded before play treats it as failed and reloads it (see below)
 const iosStalledLoadMs = 4000;
 
@@ -22,10 +32,15 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
   const status = useAudioPlayerStatus(player);
 
   useEffect(() => {
-    if (activeMedia) {
-      const variantName = i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'];
-      player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl });
-    }
+    if (!activeMedia) return;
+    const variantName = i18n.language === 'en' ? activeMedia['EN Variant Name'] : activeMedia['Variant Name'];
+    let current = true;
+    artworkUrl.then((url) => {
+      if (current) player.setActiveForLockScreen(true, { title, artist: variantName, artworkUrl: url });
+    });
+    return () => {
+      current = false;
+    };
   }, [activeMedia, title, i18n.language, player]);
 
   // A failed load (e.g. no network) leaves the player stuck: expo-audio reports it as `status.error`,
