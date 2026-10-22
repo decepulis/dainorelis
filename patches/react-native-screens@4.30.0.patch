@@ -43,31 +43,48 @@ index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6e
  #endif // defined(__cplusplus)
  
  @end
+diff --git a/ios/RNSScreen.h b/ios/RNSScreen.h
+index fd9ecffa71b97230f62c6cde961d21c50076f960..506d54860499c7b1ce8632d27d383168554591b9 100644
+--- a/ios/RNSScreen.h
++++ b/ios/RNSScreen.h
+@@ -54,6 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
+ - (CGFloat)calculateHeaderHeightIsModal:(BOOL)isModal;
+ - (BOOL)isRemovedFromParent;
+ - (void)notifyPresentedControllerDismissed;
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++// dainorelis: see RNSScreen.mm
++- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange;
++#endif
+ 
+ @end
+ 
 diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
-index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9908ebde5 100644
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e9204fa58a0a2c7312e9f8dc3dc91da5a922d1ca 100644
 --- a/ios/RNSScreen.mm
 +++ b/ios/RNSScreen.mm
-@@ -1465,6 +1465,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1465,6 +1465,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    BOOL _shouldNotify;
    BOOL _isRemovedFromParent;
    BOOL _hasNotifiedDismissed;
-+  // dainorelis: see -dainorelis_keepLargeTitleExpandedDuringPush
-+  BOOL _dainorelisIsBeingPushed;
++  // dainorelis: see -dainorelis_keepLargeTitleExpandedDuringPush (set during a push or after a display mode change)
++  BOOL _dainorelisKeepsLargeTitleExpanded;
++  BOOL _dainorelisPullsOnce;
 +  CGFloat _dainorelisPulledBarHeight;
  }
  
  #pragma mark - Common
-@@ -1485,6 +1488,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1485,6 +1489,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewWillAppear:(BOOL)animated
  {
    [super viewWillAppear:animated];
 +  // dainorelis
-+  _dainorelisIsBeingPushed = self.isMovingToParentViewController && self.transitionCoordinator != nil;
++  _dainorelisKeepsLargeTitleExpanded = self.isMovingToParentViewController && self.transitionCoordinator != nil;
++  _dainorelisPullsOnce = NO;
 +  _dainorelisPulledBarHeight = 0;
    if (!_isSwiping) {
      [self.screenView notifyWillAppear];
      if (self.transitionCoordinator.isInteractive) {
-@@ -1549,6 +1555,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1549,6 +1557,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidAppear:(BOOL)animated
  {
    [super viewDidAppear:animated];
@@ -77,7 +94,18 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9
    if (!_isSwiping || _shouldNotify) {
      // we are going forward or dismissing without swipe
      // or successfully swiped back
-@@ -1586,9 +1595,72 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1565,6 +1576,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewDidDisappear:(BOOL)animated
+ {
+   [super viewDidDisappear:animated];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: a push cancelled (or popped) before viewDidAppear leaves the content pulled down
++  [self dainorelis_releasePulledContent];
++#endif
+   if (self.parentViewController == nil && self.presentingViewController == nil) {
+     if (self.screenView.preventNativeDismiss) {
+       // if we want to prevent the native dismiss, we do not send dismissal event,
+@@ -1586,9 +1601,91 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    _shouldNotify = YES;
  }
  
@@ -97,7 +125,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9
 +{
 +#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
 +  if (@available(iOS 26.0, *)) {
-+    if (!_dainorelisIsBeingPushed) {
++    if (!_dainorelisKeepsLargeTitleExpanded) {
 +      return;
 +    }
 +    UINavigationItem *navigationItem = self.navigationItem;
@@ -126,9 +154,21 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9
 +#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
 +}
 +
++// A settled screen whose large title display mode changes to always (e.g. as a song switches from its PDF to its
++// lyrics) shows the title collapsed although its content is at the top, until the content is pulled down. So pull it
++// in the next layout pass, the same way, and put it back right after: the bar already has its full height here, so
++// no change in it will come to let go.
++- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange
++{
++  _dainorelisKeepsLargeTitleExpanded = YES;
++  _dainorelisPullsOnce = YES;
++  _dainorelisPulledBarHeight = 0;
++  [self.view setNeedsLayout];
++}
++
 +- (void)dainorelis_releasePulledContent
 +{
-+  _dainorelisIsBeingPushed = NO;
++  _dainorelisKeepsLargeTitleExpanded = NO;
 +  if (_dainorelisPulledBarHeight == 0) {
 +    return;
 +  }
@@ -146,6 +186,13 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9
    [super viewDidLayoutSubviews];
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
 +  [self dainorelis_keepLargeTitleExpandedDuringPush];
++  if (_dainorelisPullsOnce) {
++    _dainorelisPullsOnce = NO;
++    __weak RNSScreen *weakSelf = self;
++    dispatch_async(dispatch_get_main_queue(), ^{
++      [weakSelf dainorelis_releasePulledContent];
++    });
++  }
 +#endif
  
    // The below code makes the screen view adapt dimensions provided by the system. We take these
@@ -218,7 +265,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb654
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081ac407422 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c05c63f4ff0e66fbc0d909d74146f41641a16d81 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -229,10 +276,24 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,138 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,155 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
++// PATCH(dainorelis): what the app's patch (patches/react-native-screens@4.30.0.patch) adds. Its additions are marked
++// "dainorelis"; the props are declared in src/fabric/ScreenStackHeaderConfigNativeComponent.ts (Android ignores them).
++// - Title sizing (iOS 26+): a custom title view gets the room between the bar button groups
++//   (-dainorelis_computeEdgeInsetsOfNavigationBar:fallbackInsets:).
++// - Subtitle and title menu: navigationItem.subtitle (iOS 26+) and a native title menu (iOS 16+), opened under a
++//   large title by a pop-up button (RNSDainorelisLargeSubtitleView, below). The title and subtitle crossfade.
++// - Large title on push (RNSScreen.mm): a large title with a subtitle stays expanded while its screen is pushed,
++//   and when a settled screen switches to a large title (a song's PDF back to its lyrics).
++// - Large subtitle hit test (RNSScreenStack.mm): touches reach the subtitle view UIKit puts in the scroll view.
++// - Appearance per scroll state: the large title color applies at the scroll edge only, and the subtitle's font
++//   and color are readable.
++// - Overflow menu and pinned items (iOS 16+): the screen's actions in UIKit's overflow menu
++//   (additionalOverflowItems), and the right items pinned past it (pinnedTrailingGroup).
++
 +#if !TARGET_OS_TV
 +// dainorelis: holds the pop-up button under a large title (iOS 26+). UIKit stretches the subtitle view
 +// across the bar; this keeps the button, its tap target and the menu's anchor at its content size
@@ -364,11 +425,24 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
  @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
 +// dainorelis
 +- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
++#if !TARGET_OS_TV
++- (void)dainorelis_updateTrailingItemsOfNavigationItem:(UINavigationItem *)navitem API_AVAILABLE(ios(16.0));
++#endif
 +- (void)dainorelis_emitOverflowMenuPress:(NSString *)menuId;
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -235,6 +367,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -62,6 +211,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+   /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
+   bool _needsViewControllerUpdateInCurrentTransaction;
+   RCTImageLoader *_imageLoader;
++  // dainorelis: see -dainorelis_updateTrailingItemsOfNavigationItem:
++  NSArray<NSDictionary<NSString *, id> *> *_dainorelisPinnedItemConfigs;
++  __weak UINavigationItem *_dainorelisPinnedNavigationItem;
+ }
+ 
+ - (instancetype)initWithFrame:(CGRect)frame
+@@ -235,6 +387,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -404,7 +478,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +413,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +433,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -509,7 +583,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +759,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +779,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -526,7 +600,26 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
    return appearance;
  }
  
-@@ -603,6 +869,17 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +845,18 @@ RNS_IGNORE_SUPER_CALL_END
+   if (config.largeTitle) {
+     navctr.navigationBar.prefersLargeTitles = YES;
+   }
++  // dainorelis
++  const UINavigationItemLargeTitleDisplayMode dainorelisPreviousLargeTitleDisplayMode = navitem.largeTitleDisplayMode;
+   navitem.largeTitleDisplayMode =
+       config.largeTitle ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
++#if !TARGET_OS_VISION
++  // dainorelis: a settled screen switching to a large title (e.g. from a PDF to lyrics) has to keep it expanded
++  if (dainorelisPreviousLargeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways &&
++      navitem.largeTitleDisplayMode == UINavigationItemLargeTitleDisplayModeAlways &&
++      [vc isKindOfClass:[RNSScreen class]] && navctr.topViewController == vc && navctr.transitionCoordinator == nil) {
++    [(RNSScreen *)vc dainorelis_keepLargeTitleExpandedAfterDisplayModeChange];
++  }
++#endif
+ 
+ #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
+   if (@available(iOS 27.0, *)) {
+@@ -603,6 +899,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -544,7 +637,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +972,141 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1002,136 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -669,28 +762,56 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
 +#endif
    navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
                                                  withCurrentItems:navitem.leftBarButtonItems];
-   navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
-                                                  withCurrentItems:navitem.rightBarButtonItems];
+-  navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
+-                                                 withCurrentItems:navitem.rightBarButtonItems];
 +#if !TARGET_OS_TV
-+  // dainorelis: pin the right items past UIKit's overflow button (iOS 16+), where they never move into the
-+  // overflow menu; UIKit truncates the title instead
++  // dainorelis: the right items, pinned past UIKit's overflow button with pinsTrailingItems (iOS 16+)
 +  if (@available(iOS 16.0, *)) {
-+    if (config.pinsTrailingItems && navitem.rightBarButtonItems.count > 0) {
-+      navitem.pinnedTrailingGroup = [UIBarButtonItemGroup fixedGroupWithRepresentativeItem:nil
-+                                                                                     items:navitem.rightBarButtonItems];
-+      navitem.rightBarButtonItems = nil;
-+    } else {
-+      navitem.pinnedTrailingGroup = nil;
-+    }
-+  }
++    [config dainorelis_updateTrailingItemsOfNavigationItem:navitem];
++  } else
 +#endif
++  {
++    navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
++                                                   withCurrentItems:navitem.rightBarButtonItems];
++  }
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1237,29 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1262,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
++#if !TARGET_OS_TV
++// dainorelis: the right items (after the custom header views' items, which navitem.rightBarButtonItems holds on
++// entry). With pinsTrailingItems they go in navitem.pinnedTrailingGroup, past UIKit's overflow button, where they
++// never move into the overflow menu; UIKit truncates the title instead.
++// Every header update (e.g. a title change as the content scrolls) rebuilds the bar button items, and replacing the
++// pinned group dismisses a menu open on one of them (e.g. "Add to playlist"). So the group is kept while its items'
++// configs are unchanged.
++- (void)dainorelis_updateTrailingItemsOfNavigationItem:(UINavigationItem *)navitem API_AVAILABLE(ios(16.0))
++{
++  NSArray<UIBarButtonItem *> *subviewItems = navitem.rightBarButtonItems;
++  NSArray<NSDictionary<NSString *, id> *> *configs = self.headerRightBarButtonItems;
++  if (!self.pinsTrailingItems) {
++    navitem.pinnedTrailingGroup = nil;
++    _dainorelisPinnedItemConfigs = nil;
++    navitem.rightBarButtonItems = [self barButtonItemsFromConfigs:configs withCurrentItems:subviewItems];
++    return;
++  }
++  const BOOL isUnchanged = subviewItems.count == 0 && navitem.pinnedTrailingGroup != nil &&
++      _dainorelisPinnedNavigationItem == navitem && [configs isEqual:_dainorelisPinnedItemConfigs];
++  if (!isUnchanged) {
++    NSArray<UIBarButtonItem *> *items = [self barButtonItemsFromConfigs:configs withCurrentItems:subviewItems];
++    navitem.pinnedTrailingGroup =
++        items.count > 0 ? [UIBarButtonItemGroup fixedGroupWithRepresentativeItem:nil items:items] : nil;
++    // custom header views can change without their configs, so only config-built groups are kept
++    _dainorelisPinnedItemConfigs = subviewItems.count == 0 && items.count > 0 ? [configs copy] : nil;
++    _dainorelisPinnedNavigationItem = navitem;
++  }
++  navitem.rightBarButtonItems = nil;
++}
++#endif
++
 +// dainorelis: title menu selection
 +- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId
 +{
@@ -717,7 +838,18 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1078,6 +1508,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1526,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+ {
+   [super prepareForRecycle];
+   _initialPropsSet = NO;
++  // dainorelis: the menu and subtitle props need no reset here: like the stock props, updateProps compares the next
++  // screen's props with _props, which recycling keeps, so they always match them
++  _dainorelisPinnedItemConfigs = nil;
++  _dainorelisPinnedNavigationItem = nil;
+ 
+   _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
+ }
+@@ -1078,6 +1568,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
