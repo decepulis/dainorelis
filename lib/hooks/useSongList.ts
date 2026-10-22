@@ -95,8 +95,12 @@ export default function useSongList({ playlist, searchText }: Options) {
   let searchResults: Set<string> | null = null;
   if (searchText.length > 0) {
     const { titleFuse, lyricFuse } = getFuses();
-    const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
-    const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
+    // all songs shows the best 20 matches of each kind. A playlist shows every song of its own that matches, in
+    // its own order: the best 20 across the songbook could leave out most of them. Fuse scores every song
+    // either way (the limit only cuts the sorted results), so this costs no more.
+    const options = playlist ? undefined : { limit: 20 };
+    const titleSearchResults = titleFuse.search(searchText, options);
+    const lyricSearchResults = lyricFuse.search(searchText, options);
     searchResults = new Set([...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id));
   }
 
