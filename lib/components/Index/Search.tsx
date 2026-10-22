@@ -42,6 +42,8 @@ type Props = {
   selectedPlaylistId: string;
   setSelectedPlaylistId: (id: string) => void;
   onCreatePlaylist: () => void;
+  playlistActions: PlaylistAction[];
+  onPlaylistAction: (id: PlaylistActionId) => void;
   setSearchText: (text: string) => void;
 };
 const springConfig: WithSpringConfig = {
@@ -62,6 +64,8 @@ export default function Search({
   selectedPlaylistId,
   setSelectedPlaylistId,
   onCreatePlaylist,
+  playlistActions,
+  onPlaylistAction,
   setSearchText,
 }: Props) {
   const { t } = useTranslation();
@@ -212,6 +216,9 @@ export default function Search({
               height: buttonSize,
               borderRadius: buttonSize,
               overflow: 'hidden',
+              // the shown playlist's settings sit right beside the pill
+              flexDirection: 'row',
+              gap: padding / 4,
             },
           ]}
         >
@@ -262,7 +269,14 @@ export default function Search({
                   paddingHorizontal: buttonSize / 3,
                   // a long playlist name stops short of the search button and truncates, keeping the chevron.
                   // Here, not on the glass around it: the menu sizes to this view, so only here can the text shrink
-                  maxWidth: width - inset.left - inset.right - padding * 1.25 * 2 - buttonSize - padding / 2,
+                  maxWidth:
+                    width -
+                    inset.left -
+                    inset.right -
+                    padding * 1.25 * 2 -
+                    buttonSize -
+                    padding / 2 -
+                    (playlistActions.length ? buttonSize + padding / 4 : 0),
                 },
               ]}
             >
@@ -272,6 +286,28 @@ export default function Search({
               <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
             </ButtonSurface>
           </MenuView>
+          {playlistActions.length ? (
+            <MenuView
+              hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+              accessibilityLabel={t('playlistActions')}
+              actions={playlistActions.map((action) => ({
+                id: action.id,
+                title: action.title,
+                image: process.env.EXPO_OS === 'ios' ? action.sfSymbol : action.material,
+                attributes: { destructive: action.destructive },
+              }))}
+              onPressAction={({ nativeEvent }) => onPlaylistAction(nativeEvent.event as PlaylistActionId)}
+            >
+              <ButtonSurface
+                style={[
+                  buttonStyles.button,
+                  { width: buttonSize, height: buttonSize, flexBasis: buttonSize, borderRadius: buttonSize / 2 },
+                ]}
+              >
+                <FontAwesome6 name="gear" iconStyle="solid" size={17} color={color} />
+              </ButtonSurface>
+            </MenuView>
+          ) : null}
         </AnimatedGlassView>
         {/* Search Box */}
         <AnimatedGlassView
