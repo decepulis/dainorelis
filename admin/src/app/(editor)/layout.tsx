@@ -18,15 +18,17 @@ export default async function EditorLayout({ children }: { children: React.React
   return (
     <div className="min-h-dvh">
       <header
-        className="sticky top-0 z-10 flex items-center gap-4 bg-header px-4 py-3 text-white shadow-sm
+        className="sticky top-0 z-10 flex items-baseline gap-4 bg-header px-4 py-3 text-white shadow-sm
           [&_:focus-visible]:outline-white"
       >
-        <Link href="/" className="flex items-center gap-2">
-          <BrandMark className="size-6" />
+        {/* Everything shares the text baseline; the mark sits 3px below it so it
+            centres on the wordmark's capitals. */}
+        <Link href="/" className="flex items-baseline gap-2">
+          <BrandMark className="relative top-[3px] size-5" />
           <Wordmark className="text-xl leading-none" />
           <span className="text-sm font-medium">admin</span>
         </Link>
-        <nav className="flex items-center gap-3 text-sm">
+        <nav className="flex items-baseline gap-3 text-sm">
           <Link href="/" className="underline-offset-4 hover:underline">
             Songs
           </Link>
