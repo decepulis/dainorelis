@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import i18n, { LanguageDetectorModule } from 'i18next';
 
 import { storage } from '../hooks/useStorage';
+import { setSystemLanguage } from '../utils/systemLanguage';
 
 const getLanguageFromStorage: LanguageDetectorModule = {
   type: 'languageDetector',
@@ -136,11 +137,11 @@ const lt = {
   addToFavorites: 'Pridėti prie mėgstamų',
   removeFromFavorites: 'Pašalinti iš mėgstamų',
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
-  emptyPlaylist: 'Čia dar nėra dainų. Atsidarykite dainą ir bakstelėkite „Pridėti į grojaraštį“.',
+  emptyPlaylist: 'Čia dar nėra dainų. Atidarykite dainą ir bakstelėkite „Įtraukti į grojaraštį“.',
   noHitsInPlaylist: 'Šiame grojaraštyje paieškos rezultatų nėra.',
   playlist: 'Grojaraštis',
   playlistActions: 'Grojaraščio veiksmai',
-  addToPlaylist: 'Pridėti į grojaraštį',
+  addToPlaylist: 'Įtraukti į grojaraštį',
   createPlaylist: 'Naujas grojaraštis…',
   newPlaylist: 'Naujas grojaraštis',
   newPlaylistMessage: 'Įveskite grojaraščio pavadinimą.',
@@ -154,7 +155,7 @@ const lt = {
   deletePlaylistMessage: 'Šio veiksmo atšaukti negalėsite.',
   shareLink: 'Bendrinti nuorodą',
   qrCode: 'Grojaraščio „{{name}}“ QR kodas',
-  sharePlaylistHint: 'Nuskenuokite kodą telefono kamera, kad atidarytumėte šį grojaraštį Dainorėlyje.',
+  sharePlaylistHint: 'Nuskaitykite kodą telefono kamera, kad atidarytumėte šį grojaraštį Dainorėlyje.',
   songCount_one: '{{n}} daina',
   songCount_few: '{{n}} dainos',
   songCount_other: '{{n}} dainų',
@@ -178,7 +179,7 @@ const lt = {
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
     'Benitai Mincevičiūtei ir Ievai Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
-  settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
+  settingsSpecialThanksXIDainuSvente: 'XI dainų šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
   settingsWriteToUsText2: 'Susisiekite su mumis čia!',
@@ -228,7 +229,7 @@ const lt = {
   translationTitle: 'Vertimas',
   genAiText1: 'Ši medžiaga buvo sukurta dirbtiniu intelektu. Jei norite padėti ją patobulinti,',
   genAiText2: 'susisiekite su mumis!',
-  songFestival: 'XI-toji Šiaurės Amerikos Dainų Šventė',
+  songFestival: 'XI Šiaurės Amerikos lietuvių dainų šventė',
   songFestivalRepertoire0: 'Himnai ir malda',
   songFestivalRepertoire1: 'Pirma dalis: Lietuviais esame mes gimę',
   songFestivalRepertoire2: 'Antra dalis: Ten mano svajos...',
@@ -255,6 +256,8 @@ export function pluralKey(key: string, n: number, language: string) {
 // initAsync: false i18next is initialized (language set) by the time this returns.
 export function initI18n() {
   if (i18n.isInitialized) return; // e.g. the root layout re-evaluated by Fast Refresh
+  // fires on init and on every change from Settings
+  i18n.on('languageChanged', setSystemLanguage);
   // i18next's documented chaining API, not the named `use` export
   // eslint-disable-next-line import/no-named-as-default-member
   i18n
