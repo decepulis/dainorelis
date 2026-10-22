@@ -31,7 +31,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     icon: './assets/images/icon.icon',
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
+    appleTeamId: '5BPU37MJR9',
     buildNumber: buildNumber,
+    // shared playlist links (https://www.dainorelisapp.com/p?…) open the app; the site serves
+    // .well-known/apple-app-site-association. The apex domain redirects to www, so only www can verify.
+    associatedDomains: ['applinks:www.dainorelisapp.com', 'applinks:dainorelisapp.com'],
     config: {
       usesNonExemptEncryption: false,
     },
@@ -70,6 +74,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
+    // shared playlist links open the app (Android App Links); the site serves .well-known/assetlinks.json.
+    // Only www: the apex domain redirects there, and a host that fails verification fails them all below Android 12.
+    intentFilters: [
+      {
+        action: 'VIEW',
+        autoVerify: true,
+        data: [{ scheme: 'https', host: 'www.dainorelisapp.com', pathPrefix: '/p' }],
+        category: ['BROWSABLE', 'DEFAULT'],
+      },
+    ],
   },
   web: {
     bundler: 'metro',
