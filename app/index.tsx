@@ -53,8 +53,10 @@ export default function Index() {
     ? [{ type: 'header' as const, item: t('favoriteSongs'), id: 'playlistHeader' }, ...listItems]
     : listItems;
 
-  // some heights and stuff we need to know for layout and animation
-  const wideLayoutMode = width > maxWidth;
+  // some heights and stuff we need to know for layout and animation. The list sits inside the
+  // horizontal safe area (landscape notches, the closed iPhone Duo's toolbar strip); the forest doesn't.
+  const safeWidth = width - inset.left - inset.right;
+  const wideLayoutMode = safeWidth > maxWidth;
   const ultraWideLayoutMode = wideLayoutMode && width / height >= 4 / 3;
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
@@ -64,7 +66,7 @@ export default function Index() {
   };
 
   const logoContainerAspectRatio = 747 / 177;
-  const logoContainerWidth = Math.min(width - 80, 360);
+  const logoContainerWidth = Math.min(safeWidth - 80, 360);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
   const logoContainerPaddingTop = 100 + inset.top + 5; // idk why 5 it looks good
   const logoContainerPaddingBottom = 100 + padding;
@@ -128,6 +130,12 @@ export default function Index() {
           data={displayItems}
           renderItem={renderItem}
           keyboardDismissMode="on-drag"
+          contentContainerStyle={{
+            paddingLeft: inset.left,
+            paddingRight: inset.right,
+            // narrow, the rows fill the width, so the gutters beside them match
+            backgroundColor: wideLayoutMode ? undefined : background,
+          }}
           ListHeaderComponent={
             <View
               style={{
@@ -135,6 +143,13 @@ export default function Index() {
                 height: logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom,
                 paddingTop: logoContainerPaddingTop,
                 paddingBottom: logoContainerPaddingBottom,
+                // full bleed, with the logo centred in the safe area
+                marginLeft: -inset.left,
+                marginRight: -inset.right,
+                paddingLeft: inset.left,
+                paddingRight: inset.right,
+                // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
+                overflow: wideLayoutMode ? undefined : 'hidden',
               }}
             >
               {/* the background itself */}
@@ -182,6 +197,12 @@ export default function Index() {
                   onLoadEnd={() => setDidLogoLoad(true)}
                 />
               </View>
+              {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
+              {wideLayoutMode ? (
+                <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
+                  <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
+                </View>
+              ) : null}
             </View>
           }
           ListFooterComponent={
@@ -247,6 +268,18 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginHorizontal: 'auto',
+  },
+  cardTop: {
+    position: 'absolute',
+    bottom: 0,
+    alignItems: 'center',
+  },
+  cardTopEdge: {
+    width: '100%',
+    maxWidth,
+    height: padding,
+    borderTopLeftRadius: padding,
+    borderTopRightRadius: padding,
   },
   listFooter: {
     paddingHorizontal: padding,
