@@ -61,13 +61,21 @@ export type SongListItem = SongItem | HeaderItem;
 
 /**
  * Flattens sections into the header and song rows the home screen's FlatList renders. Untitled
- * sections (a playlist without parts) get no header row.
+ * sections (a playlist without parts) get no header row. Rows are keyed by song id, so a song
+ * listed twice is shown once, where it first appears.
  */
 const unrollSectionList = (sections: { title?: string; data: Song[] }[]) => {
   const items: (SongItem | HeaderItem)[] = [];
+  const seen = new Set<string>();
   sections.forEach((section, index) => {
+    const songs = section.data.filter((song) => {
+      if (seen.has(song.id)) return false;
+      seen.add(song.id);
+      return true;
+    });
+    if (songs.length === 0) return;
     if (section.title) items.push({ type: 'header', item: section.title, id: `${index}:${section.title}` });
-    section.data.forEach((song) => {
+    songs.forEach((song) => {
       items.push({ type: 'song', item: song, id: song.id });
     });
   });

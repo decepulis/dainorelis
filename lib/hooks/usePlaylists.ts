@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { clampPlaylistName, playlistNameMaxLength } from '@/lib/constants/playlistName';
 import songFestival from '@/song-festival';
 import songs from '@/songs';
 
@@ -30,13 +31,20 @@ const songFestivalSections = songFestival.map((part) => ({
 }));
 
 const newId = () => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+// a song is in a playlist once (the list's rows are keyed by song id)
+const unique = (songIds: string[]) => [...new Set(songIds)];
 
 export default function usePlaylists() {
   const { t } = useTranslation();
   const { value: favoriteIds, setValue: setFavoriteIds } = useStorage('favorites');
   const { value: userPlaylists, setValue: setUserPlaylists } = useStorage('playlists');
 
-  const favorites: Playlist = { id: favoritesId, kind: 'favorites', name: t('favoriteSongs'), songIds: favoriteIds };
+  const favorites: Playlist = {
+    id: favoritesId,
+    kind: 'favorites',
+    name: t('favoriteSongs'),
+    songIds: unique(favoriteIds),
+  };
   const curated: Playlist[] = [
     {
       id: 'songFestival',
@@ -46,54 +54,74 @@ export default function usePlaylists() {
       sections: songFestivalSections.map((section) => ({ title: t(section.titleKey), songIds: section.songIds })),
     },
   ];
-  const user: Playlist[] = userPlaylists.map((playlist) => ({ ...playlist, kind: 'user' }));
+  const user: Playlist[] = userPlaylists.map((playlist) => ({
+    ...playlist,
+    kind: 'user',
+    songIds: unique(playlist.songIds),
+  }));
   const playlists = [favorites, ...curated, ...user];
 
   const getPlaylist = (id: string) => playlists.find((playlist) => playlist.id === id);
 
-  /** trimmed, and made unique among the playlists' names with a " (2)" suffix */
+  /**
+   * trimmed, cut to the longest name, and made unique among the playlists' names with a " (2)" suffix (cutting the
+   * name further to make room)
+   */
   const uniqueName = (name: string, exceptId?: string) => {
-    const base = name.trim();
+    const base = clampPlaylistName(name.trim());
     const taken = new Set(playlists.filter((p) => p.id !== exceptId).map((p) => p.name.toLocaleLowerCase()));
     let candidate = base;
     for (let n = 2; taken.has(candidate.toLocaleLowerCase()); n++) {
-      candidate = `${base} (${n})`;
+      const suffix = ` (${n})`;
+      candidate = `${clampPlaylistName(base, playlistNameMaxLength - suffix.length).trimEnd()}${suffix}`;
     }
     return candidate;
   };
+
+  // the updates below apply to the stored lists as they are when they run, so two in a row (e.g. quick toggles,
+  // before React re-renders) both land
 
   /** returns the new playlist's id, or null for a blank name */
   const createPlaylist = (name: string, songIds: string[] = []) => {
     if (!name.trim()) return null;
     const id = newId();
-    setUserPlaylists([...userPlaylists, { id, name: uniqueName(name), songIds: [...new Set(songIds)] }]);
+    const playlist = { id, name: uniqueName(name), songIds: unique(songIds) };
+    setUserPlaylists((current) => [...current, playlist]);
     return id;
   };
 
   const renamePlaylist = (id: string, name: string) => {
     if (!name.trim()) return;
-    setUserPlaylists(userPlaylists.map((p) => (p.id === id ? { ...p, name: uniqueName(name, id) } : p)));
+    const newName = uniqueName(name, id);
+    setUserPlaylists((current) => current.map((p) => (p.id === id ? { ...p, name: newName } : p)));
   };
 
   const deletePlaylist = (id: string) => {
-    setUserPlaylists(userPlaylists.filter((p) => p.id !== id));
+    setUserPlaylists((current) => current.filter((p) => p.id !== id));
   };
 
-  /** replaces a favorites or user playlist's songs (curated playlists are read-only) */
-  const setSongIds = (id: string, songIds: string[]) => {
+  /** changes a favorites or user playlist's songs (curated playlists are read-only) */
+  const updateSongIds = (id: string, update: (songIds: string[]) => string[]) => {
     if (id === favoritesId) {
-      setFavoriteIds(songIds);
+      setFavoriteIds((current) => unique(update(unique(current))));
     } else {
-      setUserPlaylists(userPlaylists.map((p) => (p.id === id ? { ...p, songIds } : p)));
+      setUserPlaylists((current) =>
+        current.map((p) => (p.id === id ? { ...p, songIds: unique(update(unique(p.songIds))) } : p))
+      );
     }
   };
 
+  /** replaces a favorites or user playlist's songs */
+  const setSongIds = (id: string, songIds: string[]) => updateSongIds(id, () => songIds);
+
   /** adds the song at the end, or removes it; returns whether it's now in the playlist */
   const toggleSong = (id: string, songId: string) => {
-    const playlist = getPlaylist(id);
-    if (!playlist || playlist.kind === 'curated') return false;
-    const isIn = playlist.songIds.includes(songId);
-    setSongIds(id, isIn ? playlist.songIds.filter((s) => s !== songId) : [...playlist.songIds, songId]);
+    if (id !== favoritesId && !userPlaylists.some((p) => p.id === id)) return false;
+    let isIn = false;
+    updateSongIds(id, (songIds) => {
+      isIn = songIds.includes(songId);
+      return isIn ? songIds.filter((s) => s !== songId) : [...songIds, songId];
+    });
     return !isIn;
   };
 
