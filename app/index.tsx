@@ -11,7 +11,7 @@ import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import Button, { styles as buttonStyles } from '@/lib/components/Button';
+import Button from '@/lib/components/Button';
 import {
   HeaderBackground,
   HeaderButtonContainer,
@@ -22,13 +22,11 @@ import { EmptyPlaylist, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import { ListHeader, ListItem, RowPlaylist, listItemHeight } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
-import MenuView from '@/lib/components/MenuView';
-import SystemView from '@/lib/components/SystemView';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
-import usePlaylistActions, { PlaylistActionId } from '@/lib/hooks/usePlaylistActions';
+import usePlaylistActions from '@/lib/hooks/usePlaylistActions';
 import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -147,27 +145,6 @@ export default function Index() {
           headerRight: !isLiquidGlassStyleHeader()
             ? () => (
                 <HeaderButtonContainer>
-                  {playlistActions.length ? (
-                    <MenuView
-                      accessibilityLabel={t('playlistActions')}
-                      actions={playlistActions.map((action) => ({
-                        id: action.id,
-                        title: action.title,
-                        image: process.env.EXPO_OS === 'ios' ? action.sfSymbol : action.material,
-                        attributes: { destructive: action.destructive },
-                      }))}
-                      onPressAction={({ nativeEvent }) => onPlaylistAction(nativeEvent.event as PlaylistActionId)}
-                    >
-                      <SystemView shadow={false} style={buttonStyles.button}>
-                        <FontAwesome6
-                          name={process.env.EXPO_OS === 'android' ? 'ellipsis-vertical' : 'ellipsis'}
-                          iconStyle="solid"
-                          size={18}
-                          color="#fff"
-                        />
-                      </SystemView>
-                    </MenuView>
-                  ) : null}
                   <Link href="/nustatymai" asChild>
                     <Button role="button" accessibilityLabel={t('settingsTitle')}>
                       <FontAwesome6 name="circle-info" iconStyle="solid" size={17} color="#fff" />
@@ -296,6 +273,8 @@ export default function Index() {
             selectedPlaylistId={selectedPlaylistId}
             setSelectedPlaylistId={setSelectedPlaylistId}
             onCreatePlaylist={promptCreatePlaylist}
+            playlistActions={playlistActions}
+            onPlaylistAction={onPlaylistAction}
             setSearchText={(text) => startTransition(() => setSearchText(text))}
           />
         )}
