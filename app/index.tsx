@@ -28,6 +28,7 @@ import {
   ListItem,
   ReorderableListItem,
   RowPlaylist,
+  closeOpenRow,
   listItemHeight,
 } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
@@ -339,6 +340,8 @@ export default function Index() {
             // search results are a filtered view, so they stay put
             dragEnabled={!isSearching}
             keyboardDismissMode="on-drag"
+            // scrolling closes a row's open swipe actions
+            onScrollBeginDrag={closeOpenRow}
             contentContainerStyle={contentContainerStyle}
             ListHeaderComponent={
               <>
@@ -370,6 +373,8 @@ export default function Index() {
             data={displayItems}
             renderItem={renderItem}
             keyboardDismissMode="on-drag"
+            // scrolling closes a row's open swipe actions
+            onScrollBeginDrag={closeOpenRow}
             contentContainerStyle={contentContainerStyle}
             ListHeaderComponent={listHeader}
             ListFooterComponent={listFooter}

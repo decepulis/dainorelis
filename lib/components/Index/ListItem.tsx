@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type AccessibilityActionEvent, PixelRatio, StyleSheet, View } from 'react-native';
 import { GestureDetector, Touchable, type TouchableProps, usePanGesture } from 'react-native-gesture-handler';
@@ -44,6 +44,16 @@ const swipeActionWidth = 70;
 const swipeActionsWidth = swipeActionWidth * 2;
 // defined before the component: the swipe worklets capture it, and React Compiler may hoist them out of it
 const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+// the row whose swipe actions are open: one at a time, as in iOS lists. Swiping another row or scrolling the
+// list (closeOpenRow) closes it.
+type OpenRow = { close: () => void };
+let openRow: OpenRow | null = null;
+/** closes the row whose swipe actions are open, if any: for the list's onScrollBeginDrag */
+export const closeOpenRow = () => {
+  openRow?.close();
+  openRow = null;
+};
 
 /** a user playlist, for the long-press menu: the list builds these once, not every row */
 export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
@@ -96,6 +106,14 @@ export function ListItem({
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
   const close = () => swipeableRef.current?.close();
+  // this row in the one-open-row registry
+  const [rowHandle] = useState<OpenRow>(() => ({ close: () => swipeableRef.current?.close() }));
+  useEffect(
+    () => () => {
+      if (openRow === rowHandle) openRow = null;
+    },
+    [rowHandle]
+  );
   // the swipe actions render with every row, and the add-to-playlist menu is a native host (on Android a
   // Compose view each, tens of megabytes across the songbook), so it mounts once the row is first swiped; until
   // then its icon stands alone
@@ -103,6 +121,19 @@ export function ListItem({
   // the actions sit behind the row until it's swiped open, hidden from screen readers too: the row offers
   // them as accessibility actions instead
   const [isRevealed, setIsRevealed] = useState(false);
+  const onOpenStartDrag = () => {
+    setHasSwiped(true);
+    if (openRow !== rowHandle) closeOpenRow();
+  };
+  const onWillOpen = () => {
+    setIsRevealed(true);
+    if (openRow !== rowHandle) closeOpenRow();
+    openRow = rowHandle;
+  };
+  const onClose = () => {
+    setIsRevealed(false);
+    if (openRow === rowHandle) openRow = null;
+  };
   // the menu's native host sizes to its content, so its action gets the row's height explicitly
   const [rowSize, setRowSize] = useState<{ width: number; height: number }>();
   const rowHeight = rowSize?.height;
@@ -243,9 +274,9 @@ export function ListItem({
           // dragging on past the actions stretches them, toward the full swipe
           overshootRight
           simultaneousWith={fullSwipeGesture}
-          onSwipeableOpenStartDrag={() => setHasSwiped(true)}
-          onSwipeableWillOpen={() => setIsRevealed(true)}
-          onSwipeableClose={() => setIsRevealed(false)}
+          onSwipeableOpenStartDrag={onOpenStartDrag}
+          onSwipeableWillOpen={onWillOpen}
+          onSwipeableClose={onClose}
         >
           <Link href={`/dainos/${item.id}`} asChild>
             <Link.Trigger>
