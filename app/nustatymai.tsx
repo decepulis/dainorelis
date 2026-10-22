@@ -12,9 +12,8 @@ import MenuView from '@/lib/components/MenuView';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import Switch from '@/lib/components/Switch';
 import ThemedText from '@/lib/components/ThemedText';
-import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -52,7 +51,7 @@ export default function Page() {
   const { value: language, setValue: setLanguage } = useStorage('language');
   const { value: theme, setValue: setTheme } = useStorage('theme');
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
-  const maxWidthPadding = useMaxWidthPadding();
+  const contentColumn = useContentColumnStyle();
   const openFeedback = useOpenFeedback();
 
   const primary = useThemeColor('primary');
@@ -99,7 +98,7 @@ export default function Page() {
       />
       <ModalToolbar />
       <ScrollViewWithHeader>
-        <View style={[styles.container, maxWidthPadding]}>
+        <View style={[styles.container, contentColumn]}>
           <View style={[styles.section]}>
             <ThemedText bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsTitle')}
@@ -196,9 +195,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: padding * 2,
     position: 'relative',
-    width: '100%',
-    maxWidth: maxWidth,
-    marginHorizontal: 'auto',
   },
   section: {
     marginBottom: padding * 1.5,

@@ -9,6 +9,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-screens/experimental';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
@@ -33,9 +34,8 @@ import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
 import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
-import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useSongAudio from '@/lib/hooks/useSongAudio';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -72,7 +72,7 @@ function SongPage({ song }: { song: Song }) {
   const background = useThemeColor('background');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
-  const maxWidthPadding = useMaxWidthPadding();
+  const contentColumn = useContentColumnStyle();
   const { value: showChords } = useStorage('showChords');
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
@@ -279,10 +279,8 @@ function SongPage({ song }: { song: Song }) {
           ) : null}
           <View
             style={[
-              styles.container,
+              contentColumn,
               {
-                paddingLeft: maxWidthPadding.paddingLeft,
-                paddingRight: maxWidthPadding.paddingRight,
                 paddingTop: isLargeTitle ? padding * 3 : undefined,
                 // room for the player
                 paddingBottom: activeMedia
@@ -292,28 +290,13 @@ function SongPage({ song }: { song: Song }) {
             ]}
           >
             {isLargeTitle ? null : (
+              // the custom header (Android, iOS 18): the bar stays green and the title is plain text
               <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
-                {isLiquidGlassStyleHeader() ? (
-                  <View
-                    style={{
-                      backgroundColor: primary,
-                      position: 'absolute',
-                      left: -maxWidthPadding.paddingLeft,
-                      right: -maxWidthPadding.paddingRight,
-                      top: -headerHeight * 10,
-                      bottom: -padding,
-                    }}
-                  />
-                ) : null}
                 <View style={styles.titleAndSubtitle}>
-                  <ThemedText bold style={[styles.mainTitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
+                  <ThemedText bold style={styles.mainTitle}>
                     {title}
                   </ThemedText>
-                  {subtitle ? (
-                    <ThemedText style={[styles.subtitle, isLiquidGlassStyleHeader() ? { color: 'white' } : null]}>
-                      {subtitle}
-                    </ThemedText>
-                  ) : null}
+                  {subtitle ? <ThemedText style={styles.subtitle}>{subtitle}</ThemedText> : null}
                 </View>
               </View>
             )}
@@ -343,7 +326,12 @@ function SongPage({ song }: { song: Song }) {
           </View>
         </ScrollViewWithHeader>
       ) : (
-        <View style={{ flex: 1, paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}>
+        // the sheet music runs edge to edge vertically but stays clear of the horizontal safe area
+        // (landscape notches, the closed iPhone Duo's toolbar strip), measured natively for this screen
+        <SafeAreaView
+          edges={{ left: true, right: true }}
+          style={{ paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}
+        >
           {failedPdfUrl === activeVariant.URL ? (
             <View
               style={[
@@ -416,7 +404,7 @@ function SongPage({ song }: { song: Song }) {
               )}
             />
           )}
-        </View>
+        </SafeAreaView>
       )}
       {isLiquidGlassStyleHeader() ? (
         // native toolbar items and a player sheet
@@ -438,15 +426,10 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
   },
-  container: {
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
-  },
   titleContainer: {
     position: 'relative',
     marginTop: padding * 2,
-    marginBottom: isLiquidGlassStyleHeader() ? padding * 2 : padding,
+    marginBottom: padding,
     flexDirection: 'row',
     gap: padding,
     alignItems: 'center',

@@ -11,10 +11,9 @@ import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import ThemedText from '@/lib/components/ThemedText';
-import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
-import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import { Song } from '@/lib/schemas/songs';
@@ -43,7 +42,7 @@ export default function Page() {
 
 function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslation: Translations }) {
   const inset = useSafeAreaInsets();
-  const maxWidthPadding = useMaxWidthPadding();
+  const contentColumn = useContentColumnStyle();
   const { t } = useTranslation();
   const openFeedback = useOpenFeedback();
   const primary = useThemeColor('primary');
@@ -66,10 +65,8 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
       <ScrollViewWithHeader>
         <View
           style={[
-            styles.container,
+            contentColumn,
             {
-              paddingLeft: maxWidthPadding.paddingLeft,
-              paddingRight: maxWidthPadding.paddingRight,
               paddingTop: padding * 2,
               paddingBottom: Math.max(inset.bottom + padding * 2, padding * 4),
             },
@@ -116,11 +113,6 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
-  },
   titleAndSubtitle: {
     flexShrink: 1,
   },
