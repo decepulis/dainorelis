@@ -27,10 +27,11 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    Then create the schema (via migrations — no dashboard SQL editor needed).
    It lives as versioned migrations in `supabase/migrations/` and is applied
    by the **Apply DB migrations** GitHub Action
-   (`.github/workflows/db-push.yml` at the repo root). Add three repository
-   secrets under **GitHub → Settings → Secrets and variables → Actions**:
-   - `SUPABASE_PROJECT_REF` — your project ref (Supabase **Project Settings →
-     General**, or the `<ref>` in the dashboard URL).
+   (`.github/workflows/db-push.yml` at the repo root). The workflow names the
+   project by its ref (Supabase **Project Settings → General**, or the `<ref>`
+   in the dashboard URL), so change it there if the project ever moves. Add two
+   repository secrets under **GitHub → Settings → Secrets and variables →
+   Actions**:
    - `SUPABASE_ACCESS_TOKEN` — a personal access token from
      [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens).
    - `SUPABASE_DB_PASSWORD` — the database password (Supabase **Project
