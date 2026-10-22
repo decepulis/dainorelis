@@ -10,7 +10,7 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
-/** "DAINORĖLIS" in the brand face, uppercased like the app's header logo. */
-export function Wordmark({ className = '' }: { className?: string }) {
-  return <span className={`font-brand tracking-wide uppercase ${className}`}>Dainorėlis</span>;
+/** Text in the brand face, uppercased like the app's "DAINORĖLIS" header logo. */
+export function Wordmark({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <span className={`font-brand tracking-wide uppercase ${className}`}>{children}</span>;
 }
