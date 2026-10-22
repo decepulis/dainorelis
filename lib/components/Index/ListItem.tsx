@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PixelRatio, Platform, StyleSheet, View } from 'react-native';
+import { PixelRatio, StyleSheet, View } from 'react-native';
 import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
@@ -13,7 +13,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
-import usePlaylists, { favoritesId } from '@/lib/hooks/usePlaylists';
+import { favoritesId } from '@/lib/hooks/usePlaylists';
 import { Song } from '@/lib/schemas/songs';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
@@ -21,21 +21,34 @@ import useTitle from '@/lib/utils/useTitle';
 import Markdown from '../Markdown';
 import ThemedText from '../ThemedText';
 
+/** a user playlist, for the long-press menu: the list builds these once, not every row */
+export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
+
 type Props = {
   item: Song;
   primary: string;
   background: string;
   separator: string;
   isLast?: boolean;
+  isFavorite: boolean;
+  userPlaylists: RowPlaylist[];
+  /** usePlaylists' toggleSong */
+  toggleSong: (playlistId: string, songId: string) => boolean;
 };
-export function ListItem({ item, background, primary, separator, isLast }: Props) {
+export function ListItem({
+  item,
+  background,
+  primary,
+  separator,
+  isLast,
+  isFavorite,
+  userPlaylists,
+  toggleSong,
+}: Props) {
   const { t } = useTranslation();
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
   const { width } = useSafeAreaFrame();
-  const { favorites: favoritesPlaylist, user: userPlaylists, toggleSong } = usePlaylists();
-  const favorites = favoritesPlaylist.songIds;
-  const isFavorite = favorites.includes(item.id);
   const firstLyrics = Object.values(item.fields.Lyrics)[0];
 
   const toggleFavorite = () => {
@@ -47,7 +60,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
   const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
   const icons = [
-    favorites.includes(item.id) ? (
+    isFavorite ? (
       <FontAwesome6
         name="heart"
         key="heart"
@@ -169,7 +182,7 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
                 {userPlaylists.map((playlist) => (
                   <Link.MenuAction
                     key={playlist.id}
-                    isOn={playlist.songIds.includes(item.id)}
+                    isOn={playlist.songIds.has(item.id)}
                     onPress={() => toggleSong(playlist.id, item.id)}
                   >
                     {playlist.name}
@@ -231,10 +244,8 @@ export function ListHeader({ title, background, separator, large }: ListHeaderPr
 }
 
 // Android gets a ripple, iOS a dark underlay (what RectButton used to do)
-const rowPressFeedback: Pick<TouchableProps, 'androidRipple' | 'underlayColor'> = Platform.select({
-  android: { androidRipple: {} },
-  default: { underlayColor: 'black' },
-});
+const rowPressFeedback: Pick<TouchableProps, 'androidRipple' | 'underlayColor'> =
+  process.env.EXPO_OS === 'android' ? { androidRipple: {} } : { underlayColor: 'black' };
 
 const iconStyle = (iconSize: number) => ({
   width: iconSize,

@@ -20,7 +20,7 @@ import {
 } from '@/lib/components/Header';
 import { EmptyPlaylist, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
-import { ListHeader, ListItem, listItemHeight } from '@/lib/components/Index/ListItem';
+import { ListHeader, ListItem, RowPlaylist, listItemHeight } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
 import MenuView from '@/lib/components/MenuView';
 import SystemView from '@/lib/components/SystemView';
@@ -28,6 +28,7 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import usePlaylistActions, { PlaylistActionId } from '@/lib/hooks/usePlaylistActions';
+import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
@@ -57,6 +58,10 @@ export default function Index() {
   const setSelectedPlaylistId = (id: string) => startTransition(() => storeSelectedPlaylistId(id));
   const [searchText, setSearchText] = useState('');
   const listItems = useSongList({ playlist, searchText });
+  // what the rows show and their long-press menu toggles, worked out here once rather than in every row
+  const { favorites, user, toggleSong } = usePlaylists();
+  const favoriteIds = new Set(favorites.songIds);
+  const userPlaylists: RowPlaylist[] = user.map((p) => ({ id: p.id, name: p.name, songIds: new Set(p.songIds) }));
 
   // Liquid Glass has no pill to name the playlist, so the list does
   const showPlaylistHeader = isLiquidGlassStyleHeader() && !!playlist;
@@ -83,7 +88,8 @@ export default function Index() {
   const logoContainerPaddingBottom = 100 + padding;
 
   const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
-  const visibleListItems = listItems.filter((item) => listItems.length > 10 || item.type !== 'header');
+  const isHeaderVisible = (item: SongListItem) => listItems.length > 10 || item.id === 'playlistHeader';
+  const visibleListItems = displayItems.filter((item) => item.type !== 'header' || isHeaderVisible(item));
   const footerTargetHeight =
     height - visibleListItems.length * listItemHeight - headerHeight + padding + padding - padding / 4;
   const footerHeight = Math.max(footerMinHeight, footerTargetHeight);
@@ -91,7 +97,7 @@ export default function Index() {
   // rendering
   const renderItem = ({ item, index }: { item: SongListItem; index: number }) =>
     item.type === 'header' ? (
-      listItems.length > 10 || item.id === 'playlistHeader' ? (
+      isHeaderVisible(item) ? (
         <ListHeader
           title={item.item}
           background={background}
@@ -106,6 +112,9 @@ export default function Index() {
         background={background}
         separator={separator}
         isLast={index === displayItems.length - 1}
+        isFavorite={favoriteIds.has(item.item.id)}
+        userPlaylists={userPlaylists}
+        toggleSong={toggleSong}
       />
     );
 
