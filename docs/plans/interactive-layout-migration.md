@@ -60,7 +60,7 @@ records bugs in the baseline.
 **Screens × states** (light and dark each):
 
 1. Index at top; index scrolled (header faded in); search focused with keyboard; search with
-   results; favourites playlist (and empty favourites).
+   results; the playlist menu, Favorites, a curated and a user playlist (and an empty one).
 2. Song FULL: top, scrolled (title in header), variant menu open, PDF variant, player visible and
    playing, media menu open. CHORD: switch variant. LONG: header title. PLAIN: no player.
 3. Modals: `vertimas`, `aprasymas`, `nustatymai` (top and scrolled).
@@ -158,7 +158,7 @@ Format: **Change** / **Look at** / **Accept** / **Rollback** / **Decide**.
 - **Look at:** the whole baseline matrix below the breakpoint. The agent diffs everything it can
   capture alone.
 - **Accept:** screenshot diffs ≈ 0 against baseline; cold-start deep link shows the song with back
-  to index; peek-and-pop preview and its "favourite" action work; modals present over the song;
+  to index; peek-and-pop preview and its Favorites and "Add to playlist" actions work; modals present over the song;
   Android back button/gesture unchanged.
 - **Rollback:** revert the single move commit (`git mv` keeps history).
 - **Decide:** none if it is identical. If it isn't, stop and fix before step 5.
@@ -167,8 +167,8 @@ Format: **Change** / **Look at** / **Accept** / **Rollback** / **Decide**.
 
 - **5a. Panes.** `(dainos)/_layout.tsx`: when `useIsSplit()`, render
   `[<SafeAreaProvider>ListPane</SafeAreaProvider> | <SafeAreaProvider><Stack/></SafeAreaProvider>]`
-  so every `useSafeAreaFrame()` caller (Player, Search, ListItem, `useMaxWidthPadding`) becomes
-  pane-relative without changes. Extract the list body from `(dainos)/index.tsx` into
+  so every `useSafeAreaFrame()` caller (Player, Search, ListItem) becomes pane-relative without
+  changes (`useContentColumnStyle` uses no window size, so it already fits a pane). Extract the list body from `(dainos)/index.tsx` into
   `lib/components/Index/SongList.tsx` (shared by the pane and the narrow route). In split mode,
   `(dainos)/index.tsx` renders the empty-detail state (Q5). The list pane has no native header,
   so it uses the custom `Search` (it already renders `GlassView` when glass is available) plus a
