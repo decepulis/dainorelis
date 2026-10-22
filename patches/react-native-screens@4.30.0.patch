@@ -1,13 +1,13 @@
 diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
-index fa1b77317f609983ae2434764174072e51130550..7c0fcf92e6ec46de14170bebb0f29e56f00c6972 100644
+index fa1b77317f609983ae2434764174072e51130550..58d99e1c83c380abf19089d428aa794a8f24c17e 100644
 --- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
 +++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
-@@ -320,4 +320,15 @@ class ScreenStackHeaderConfigViewManager :
+@@ -320,4 +320,25 @@ class ScreenStackHeaderConfigViewManager :
          view: ScreenStackHeaderConfig?,
          value: String?,
      ) = Unit
 +
-+    // dainorelis: iOS-only title menu and subtitle
++    // dainorelis: iOS-only title menu, subtitle and overflow menu
 +    override fun setSubtitle(
 +        view: ScreenStackHeaderConfig?,
 +        value: String?,
@@ -16,6 +16,16 @@ index fa1b77317f609983ae2434764174072e51130550..7c0fcf92e6ec46de14170bebb0f29e56
 +    override fun setTitleMenu(
 +        view: ScreenStackHeaderConfig?,
 +        value: com.facebook.react.bridge.Dynamic,
++    ) = Unit
++
++    override fun setOverflowMenu(
++        view: ScreenStackHeaderConfig?,
++        value: com.facebook.react.bridge.Dynamic,
++    ) = Unit
++
++    override fun setPinsTrailingItems(
++        view: ScreenStackHeaderConfig?,
++        value: Boolean,
 +    ) = Unit
  }
 diff --git a/ios/RNSBarButtonItem.h b/ios/RNSBarButtonItem.h
@@ -191,24 +201,35 @@ index 5da11964f5932cb44e1131c44a2480803c0a62b5..595e25d231dc9b24a414545872eec7f3
  
  - (BOOL)isScrollViewPanGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
-index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2cb0b8197 100644
+index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb65434c0201d 100644
 --- a/ios/RNSScreenStackHeaderConfig.h
 +++ b/ios/RNSScreenStackHeaderConfig.h
-@@ -24,6 +24,9 @@
+@@ -24,6 +24,12 @@
  NS_ASSUME_NONNULL_BEGIN
  
  @property (nonatomic, retain) NSString *title;
 +// dainorelis: iOS 26 subtitle and a native title menu (see titleMenu in the codegen spec)
 +@property (nonatomic, copy, nullable) NSString *subtitle;
 +@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *titleMenu;
++// dainorelis: the screen's actions in UIKit's overflow menu (see overflowMenu in the codegen spec)
++@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *overflowMenu;
++@property (nonatomic) BOOL pinsTrailingItems;
  @property (nonatomic, retain) NSString *titleFontFamily;
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c9603576a5d3df9 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..f5432586bdea771b3a0bc65cb4840081ac407422 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
-@@ -45,7 +45,65 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -21,6 +21,7 @@
+ #import "RNSConvert.h"
+ #import "RNSDefines.h"
+ #import "RNSScreen.h"
++#import "RNSScrollViewFinder.h"
+ #import "RNSSearchBar.h"
+ #import "UINavigationBar+RNSUtility.h"
+ 
+@@ -45,7 +46,138 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -217,9 +238,21 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
 +// across the bar; this keeps the button, its tap target and the menu's anchor at its content size
 +@interface RNSDainorelisLargeSubtitleView : UIView
 +@property (nonatomic, readonly) UIButton *button;
++// the button's color at the scroll edge and once content scrolls under the bar, like the large title's color
++// in the navigation item's scroll edge and standard appearances. UIKit applies largeSubtitleTextAttributes
++// only to a text subtitle, never to a custom view, so this follows the scroll view the bar tracks itself
++@property (nonatomic, strong, nullable) UIColor *scrollEdgeColor;
++@property (nonatomic, strong, nullable) UIColor *standardColor;
++@property (nonatomic, weak, nullable) UIViewController *viewController;
++- (void)updateButtonColor;
 +@end
 +
-+@implementation RNSDainorelisLargeSubtitleView
++static void *RNSDainorelisContentOffsetContext = &RNSDainorelisContentOffsetContext;
++
++@implementation RNSDainorelisLargeSubtitleView {
++  // observed while the view is in a window, and let go when it leaves
++  UIScrollView *_observedScrollView;
++}
 +
 +- (instancetype)initWithButton:(UIButton *)button
 +{
@@ -235,6 +268,66 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
 +    ]];
 +  }
 +  return self;
++}
++
++- (void)dealloc
++{
++  [_observedScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++}
++
++- (void)didMoveToWindow
++{
++  [super didMoveToWindow];
++  [self updateButtonColor];
++}
++
++- (void)setObservedScrollView:(UIScrollView *)scrollView
++{
++  if (scrollView == _observedScrollView) {
++    return;
++  }
++  [_observedScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++  _observedScrollView = scrollView;
++  [scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:RNSDainorelisContentOffsetContext];
++}
++
++- (void)observeValueForKeyPath:(NSString *)keyPath
++                      ofObject:(id)object
++                        change:(NSDictionary<NSKeyValueChangeKey, id> *)change
++                       context:(void *)context
++{
++  if (context == RNSDainorelisContentOffsetContext) {
++    [self updateButtonColorForScrollView:object];
++  } else {
++    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
++  }
++}
++
++- (void)updateButtonColor
++{
++  UIViewController *viewController = self.viewController;
++  UIScrollView *scrollView = nil;
++  if (self.window != nil && viewController != nil) {
++    scrollView = [viewController contentScrollViewForEdge:NSDirectionalRectEdgeTop]
++        ?: [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:viewController.view];
++  }
++  [self setObservedScrollView:scrollView];
++  [self updateButtonColorForScrollView:scrollView];
++}
++
++// UIKit moves the bar from its scroll edge appearance to its standard one once the content scrolls under it
++- (void)updateButtonColorForScrollView:(nullable UIScrollView *)scrollView
++{
++  // where UIKit hosts the large title in the scroll view (iOS 27 on iPhone), it scrolls away with its background,
++  // and UIKit keeps the scroll edge color on it
++  const BOOL isAtScrollEdge = scrollView == nil || [self isDescendantOfView:scrollView] ||
++      scrollView.contentOffset.y + scrollView.adjustedContentInset.top <= 0;
++  UIColor *color = isAtScrollEdge ? _scrollEdgeColor : _standardColor;
++  UIButtonConfiguration *configuration = _button.configuration;
++  if (color != nil && configuration != nil && ![configuration.baseForegroundColor isEqual:color]) {
++    configuration.baseForegroundColor = color;
++    _button.configuration = configuration;
++  }
 +}
 +
 +// the space beside the button isn't a target
@@ -271,10 +364,11 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
  @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
 +// dainorelis
 +- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
++- (void)dainorelis_emitOverflowMenuPress:(NSString *)menuId;
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -235,6 +293,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +367,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -310,7 +404,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +339,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +413,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -415,7 +509,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +685,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +759,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -432,7 +526,25 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
    return appearance;
  }
  
-@@ -695,7 +887,93 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +869,17 @@ RNS_IGNORE_SUPER_CALL_END
+   }
+   navitem.scrollEdgeAppearance = scrollEdgeAppearance;
+ #if !TARGET_OS_TV
++  // dainorelis: a large title color is for the large title's own background, at the scroll edge. Where the
++  // large title stays on screen as content scrolls under the bar (iOS 27's side bars, e.g. on a closed
++  // iPhone Duo), use the title color, else the label color, there, as UIKit does for the inline title
++  if (config.largeTitle && config.largeTitleColor != nil) {
++    UINavigationBarAppearance *standardAppearance = [appearance copy];
++    NSMutableDictionary *largeAttrs = [standardAppearance.largeTitleTextAttributes mutableCopy];
++    largeAttrs[NSForegroundColorAttributeName] = config.titleColor ?: [UIColor labelColor];
++    standardAppearance.largeTitleTextAttributes = largeAttrs;
++    navitem.standardAppearance = standardAppearance;
++    navitem.compactAppearance = standardAppearance;
++  }
+   navitem.hidesBackButton = config.hideBackButton;
+   navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
+ #endif
+@@ -695,11 +972,141 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -518,16 +630,64 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
 +        button.configuration = buttonConfig;
 +      }
 +      button.menu = menu;
++      // white over the large title's background at the scroll edge, the secondary label color under the bar
++      RNSDainorelisLargeSubtitleView *subtitleView = (RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView;
++      subtitleView.scrollEdgeColor = buttonConfig.baseForegroundColor;
++      subtitleView.standardColor = [UIColor secondaryLabelColor];
++      subtitleView.viewController = vc;
++      [subtitleView updateButtonColor];
 +    } else {
 +      navitem.largeSubtitleView = nil;
 +    }
 +  }
 +#endif
++  // dainorelis: the screen's actions in UIKit's overflow menu (iOS 16+), rather than a ⋯ menu of our own as a bar
++  // button item. UIKit shows its ⋯ button for them and, when the bar runs out of room, moves the other trailing
++  // items into the same menu, instead of folding our ⋯ menu into a nested one. The menu is built as it opens, so it
++  // always reflects the latest props
++  if (@available(iOS 16.0, *)) {
++    if (config.overflowMenu == nil) {
++      navitem.additionalOverflowItems = nil;
++    } else if (navitem.additionalOverflowItems == nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      navitem.additionalOverflowItems = [UIDeferredMenuElement
++          elementWithUncachedProvider:^(void (^completion)(NSArray<UIMenuElement *> *elements)) {
++            NSDictionary<NSString *, id> *overflowMenu = weakConfig.overflowMenu;
++            if (overflowMenu == nil) {
++              completion(@[]);
++              return;
++            }
++            UIMenu *menu = [RNSBarButtonItem initUIMenuWithDict:overflowMenu
++                                                     menuAction:^(NSString *menuId) {
++                                                       [weakConfig dainorelis_emitOverflowMenuPress:menuId];
++                                                     }
++                                                    imageLoader:nil];
++            completion(menu.children);
++          }];
++    }
++  }
 +#endif
    navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
                                                  withCurrentItems:navitem.leftBarButtonItems];
    navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
-@@ -830,6 +1108,17 @@ RNS_IGNORE_SUPER_CALL_END
+                                                  withCurrentItems:navitem.rightBarButtonItems];
++#if !TARGET_OS_TV
++  // dainorelis: pin the right items past UIKit's overflow button (iOS 16+), where they never move into the
++  // overflow menu; UIKit truncates the title instead
++  if (@available(iOS 16.0, *)) {
++    if (config.pinsTrailingItems && navitem.rightBarButtonItems.count > 0) {
++      navitem.pinnedTrailingGroup = [UIBarButtonItemGroup fixedGroupWithRepresentativeItem:nil
++                                                                                     items:navitem.rightBarButtonItems];
++      navitem.rightBarButtonItems = nil;
++    } else {
++      navitem.pinnedTrailingGroup = nil;
++    }
++  }
++#endif
+ 
+   // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
+   // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
+@@ -830,6 +1237,29 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -542,10 +702,22 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
 +  }
 +}
 +
++// dainorelis: overflow menu selection
++- (void)dainorelis_emitOverflowMenuPress:(NSString *)menuId
++{
++  auto eventEmitter =
++      std::static_pointer_cast<const facebook::react::RNSScreenStackHeaderConfigEventEmitter>(_eventEmitter);
++  if (eventEmitter && menuId) {
++    eventEmitter->onPressOverflowMenuItem(
++        facebook::react::RNSScreenStackHeaderConfigEventEmitter::OnPressOverflowMenuItem{
++            .menuId = std::string([menuId UTF8String])});
++  }
++}
++
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1078,6 +1367,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1508,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
@@ -555,23 +727,30 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c960357
 +    id titleMenu = [RNSConvert idFromFollyDynamic:newScreenProps.titleMenu];
 +    _titleMenu = [titleMenu isKindOfClass:[NSDictionary class]] ? titleMenu : nil;
 +  }
++  if (newScreenProps.overflowMenu != oldScreenProps.overflowMenu) {
++    id overflowMenu = [RNSConvert idFromFollyDynamic:newScreenProps.overflowMenu];
++    _overflowMenu = [overflowMenu isKindOfClass:[NSDictionary class]] ? overflowMenu : nil;
++  }
++  _pinsTrailingItems = newScreenProps.pinsTrailingItems;
    if (newScreenProps.titleFontFamily != oldScreenProps.titleFontFamily) {
      _titleFontFamily = RCTNSStringFromStringNilIfEmpty(newScreenProps.titleFontFamily);
    }
 diff --git a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
-index da28c51c6ffd29b996c876742a11cfdf322db969..81d93aa3184b446086d2e9eeb48cae3250e633bf 100644
+index da28c51c6ffd29b996c876742a11cfdf322db969..98a6a3f8c039337c4fd159093ccfade1908309f1 100644
 --- a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
 +++ b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
-@@ -17,6 +17,8 @@ type OnDetachedEvent = Readonly<{}>;
+@@ -17,6 +17,10 @@ type OnDetachedEvent = Readonly<{}>;
  
  type OnPressHeaderBarButtonItemEvent = Readonly<{ buttonId: string }>;
  type OnPressHeaderBarButtonMenuItemEvent = Readonly<{ menuId: string }>;
 +// dainorelis: title menu
 +type OnPressTitleMenuItemEvent = Readonly<{ menuId: string }>;
++// dainorelis: overflow menu
++type OnPressOverflowMenuItemEvent = Readonly<{ menuId: string }>;
  
  type BackButtonDisplayMode = 'minimal' | 'default' | 'generic';
  
-@@ -86,6 +88,12 @@ export interface NativeProps extends ViewProps {
+@@ -86,6 +90,19 @@ export interface NativeProps extends ViewProps {
      | CT.DirectEventHandler<OnPressHeaderBarButtonMenuItemEvent>
      | undefined;
    synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
@@ -581,6 +760,13 @@ index da28c51c6ffd29b996c876742a11cfdf322db969..81d93aa3184b446086d2e9eeb48cae32
 +  subtitle?: string | undefined;
 +  titleMenu?: CT.UnsafeMixed | undefined;
 +  onPressTitleMenuItem?: CT.DirectEventHandler<OnPressTitleMenuItemEvent> | undefined;
++  // dainorelis: iOS 16+ actions for UIKit's overflow menu (navigationItem.additionalOverflowItems), the same shape
++  // as titleMenu; its title is ignored, the items are shown directly in the menu
++  overflowMenu?: CT.UnsafeMixed | undefined;
++  onPressOverflowMenuItem?: CT.DirectEventHandler<OnPressOverflowMenuItemEvent> | undefined;
++  // dainorelis: iOS 16+, the right items go in navigationItem.pinnedTrailingGroup, past the overflow button, so
++  // UIKit never moves them into the overflow menu
++  pinsTrailingItems?: CT.WithDefault<boolean, false>;
  
    // Experimental
    userInterfaceStyle?: CT.WithDefault<UserInterfaceStyle, 'unspecified'>;
