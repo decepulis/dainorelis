@@ -54,7 +54,7 @@ export default function usePlaylistActions() {
     playlist
       ? { id: 'share' as const, title: t('sharePlaylist'), sfSymbol: 'square.and.arrow.up' as const, material: Share }
       : null,
-    kind === 'curated'
+    kind === 'curated' || kind === 'user'
       ? {
           id: 'duplicate' as const,
           title: t('duplicatePlaylist'),
