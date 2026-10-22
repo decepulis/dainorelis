@@ -112,14 +112,16 @@ export default function usePlaylistActions() {
     }
   };
 
-  const promptCreatePlaylist = () =>
+  // with songIds (adding a song from a list row) the new playlist gets them and the list stays put;
+  // without, it's empty and shown
+  const promptCreatePlaylist = (songIds?: string[]) =>
     promptName({
       title: t('newPlaylist'),
       message: t('newPlaylistMessage'),
       confirmLabel: t('create'),
       onSubmit: (name) => {
-        const newId = createPlaylist(name);
-        if (newId) setSelectedPlaylistId(newId);
+        const newId = createPlaylist(name, songIds);
+        if (newId && !songIds) setSelectedPlaylistId(newId);
       },
     });
 

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PixelRatio, StyleSheet, View } from 'react-native';
 import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
@@ -13,13 +13,20 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import { createPlaylistIcon } from '@/lib/hooks/usePlaylistActions';
 import { favoritesId } from '@/lib/hooks/usePlaylists';
 import { Song } from '@/lib/schemas/songs';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 
 import Markdown from '../Markdown';
+import MenuView from '../MenuView';
 import ThemedText from '../ThemedText';
+
+const newPlaylistActionId = 'newPlaylist';
+// the system's grey and red for swipe actions, beside the brand-green heart
+const addColor = '#8e8e93';
+const removeColor = '#ff3b30';
 
 /** a user playlist, for the long-press menu: the list builds these once, not every row */
 export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
@@ -34,6 +41,9 @@ type Props = {
   userPlaylists: RowPlaylist[];
   /** usePlaylists' toggleSong */
   toggleSong: (playlistId: string, songId: string) => boolean;
+  /** the user playlist the list shows, if any: its rows offer Remove instead of Add to playlist */
+  shownUserPlaylistId?: string;
+  onNewPlaylistWithSong: (songId: string) => void;
 };
 export function ListItem({
   item,
@@ -44,6 +54,8 @@ export function ListItem({
   isFavorite,
   userPlaylists,
   toggleSong,
+  shownUserPlaylistId,
+  onNewPlaylistWithSong,
 }: Props) {
   const { t } = useTranslation();
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
@@ -104,30 +116,72 @@ export function ListItem({
 
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
+  const close = () => swipeableRef.current?.close();
+  // the menu's native host sizes to its content, so its action gets the row's height explicitly
+  const [rowHeight, setRowHeight] = useState<number>();
+  // swiping a row reveals two actions: the heart at the edge, and beside it Add to playlist (a menu of the
+  // user's playlists) or, inside one of them, Remove
   const renderRightActions = () => (
-    <Touchable
-      {...rowPressFeedback}
-      style={[styles.swipeAction, { backgroundColor: primary }]}
-      onPress={() => {
-        toggleFavorite();
-        swipeableRef.current?.close();
-      }}
-    >
-      <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
-    </Touchable>
+    <View style={styles.swipeActions}>
+      {shownUserPlaylistId ? (
+        <Touchable
+          {...rowPressFeedback}
+          accessibilityLabel={t('removeFromPlaylist')}
+          style={[styles.swipeAction, { backgroundColor: removeColor }]}
+          onPress={() => {
+            toggleSong(shownUserPlaylistId, item.id);
+            close();
+          }}
+        >
+          <FontAwesome6 name="circle-minus" size={20} iconStyle="solid" color="#fff" />
+        </Touchable>
+      ) : (
+        <MenuView
+          hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+          accessibilityLabel={t('addToPlaylist')}
+          actions={[
+            ...userPlaylists.map((playlist) => ({
+              id: playlist.id,
+              title: playlist.name,
+              state: playlist.songIds.has(item.id) ? ('on' as const) : ('off' as const),
+            })),
+            {
+              id: newPlaylistActionId,
+              title: t('createPlaylist'),
+              image: process.env.EXPO_OS === 'ios' ? createPlaylistIcon.sfSymbol : createPlaylistIcon.material,
+            },
+          ]}
+          onPressAction={({ nativeEvent }) => {
+            if (nativeEvent.event === newPlaylistActionId) onNewPlaylistWithSong(item.id);
+            else toggleSong(nativeEvent.event, item.id);
+            close();
+          }}
+        >
+          <View style={[styles.swipeAction, { backgroundColor: addColor, height: rowHeight }]}>
+            <FontAwesome6 name="list-ul" size={20} iconStyle="solid" color="#fff" />
+          </View>
+        </MenuView>
+      )}
+      <Touchable
+        {...rowPressFeedback}
+        accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+        style={[styles.swipeAction, { backgroundColor: primary }]}
+        onPress={() => {
+          toggleFavorite();
+          close();
+        }}
+      >
+        <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
+      </Touchable>
+    </View>
   );
 
   return (
-    <View style={[styles.outerContainer, { backgroundColor: background }]}>
-      <ReanimatedSwipeable
-        ref={swipeableRef}
-        renderRightActions={renderRightActions}
-        overshootRight={false}
-        onSwipeableWillOpen={() => {
-          toggleFavorite();
-          swipeableRef.current?.close();
-        }}
-      >
+    <View
+      style={[styles.outerContainer, { backgroundColor: background }]}
+      onLayout={(e) => setRowHeight(e.nativeEvent.layout.height)}
+    >
+      <ReanimatedSwipeable ref={swipeableRef} renderRightActions={renderRightActions} overshootRight={false}>
         <Link href={`/dainos/${item.id}`} asChild>
           <Link.Trigger>
             <Touchable {...rowPressFeedback}>
@@ -296,7 +350,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginLeft: padding,
   },
+  swipeActions: {
+    flexDirection: 'row',
+  },
   swipeAction: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: 70,
