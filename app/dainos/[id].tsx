@@ -142,9 +142,16 @@ function SongPage({ song }: { song: Song }) {
   // variant alone; past it (or over a PDF) it's the song, with the variant as the subtitle.
   const scrollOffset = useScrollOffset(showLyrics ? scrollRef : null);
   const [isPastTitle, setIsPastTitle] = useState(false);
-  // the PDF that failed to load (so switching variants clears the error), and a key that remounts <Pdf> to retry
-  const [failedPdfUrl, setFailedPdfUrl] = useState<string | null>(null);
+  // whether the PDF failed to load, and a key that remounts <Pdf> to retry. Switching variants clears the error
+  // (adjusted during render, so the new variant's first render already has it cleared), and coming back to the
+  // PDF mounts a new <Pdf>, which tries again
+  const [pdfFailed, setPdfFailed] = useState(false);
   const [pdfAttempt, setPdfAttempt] = useState(0);
+  const [pdfVariantId, setPdfVariantId] = useState(activeVariantId);
+  if (pdfVariantId !== activeVariantId) {
+    setPdfVariantId(activeVariantId);
+    setPdfFailed(false);
+  }
   useAnimatedReaction(
     () => {
       const layout = titleLayout.get();
@@ -318,7 +325,7 @@ function SongPage({ song }: { song: Song }) {
           edges={{ left: true, right: true }}
           style={{ paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}
         >
-          {failedPdfUrl === activeVariant.URL ? (
+          {pdfFailed ? (
             <View
               style={[
                 styles.pdfError,
@@ -353,7 +360,7 @@ function SongPage({ song }: { song: Song }) {
                 innerStyle={[styles.pdfErrorButtonInner, { backgroundColor: primary }]}
                 accessibilityLabel={t('tryAgain')}
                 onPress={() => {
-                  setFailedPdfUrl(null);
+                  setPdfFailed(false);
                   setPdfAttempt(pdfAttempt + 1);
                 }}
               >
@@ -377,7 +384,7 @@ function SongPage({ song }: { song: Song }) {
               spacing={padding}
               onError={(error) => {
                 console.warn(error);
-                setFailedPdfUrl(activeVariant.URL);
+                setPdfFailed(true);
               }}
               renderActivityIndicator={(progress) => (
                 <View style={styles.pdfLoading}>
