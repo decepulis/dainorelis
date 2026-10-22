@@ -186,14 +186,14 @@ const lt = {
   settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
   settingsWriteToUsText2: 'Susisiekite su mumis čia!',
   settingsWriteToUsText3:
-    'Ypač laukiame Jūsų pagalbos kuriant Dainorėlį. Siųskite mums savo stovyklos dainorėlius, akordus, natas ir dainų įrašus.',
+    'Ypač laukiame jūsų pagalbos kuriant Dainorėlį. Siųskite mums savo stovyklos dainorėlius, akordus, natas ir dainų įrašus.',
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:
-    'Mes sukūrėme „Dainorėlis App“, kad lietuviai visame pasaulyje galėtų lengvai rasti savo mylimų liaudies dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
+    'Mes sukūrėme „Dainorėlis App“, kad lietuviai visame pasaulyje galėtų lengvai rasti savo mylimų liaudies dainų tekstus. Tikimės, kad šis rinkinys jus įkvėps uždainuoti bet kur ir bet kada!',
   settingsOurTeamTitle: 'Mūsų komanda',
   language: 'Kalba',
-  theme: 'Režimas',
+  theme: 'Išvaizda',
   autoTheme: 'Auto',
   darkTheme: 'Tamsus',
   lightTheme: 'Šviesus',
@@ -234,7 +234,7 @@ const lt = {
   songFestival: 'XI Šiaurės Amerikos lietuvių dainų šventė',
   songFestivalRepertoire0: 'Himnai ir malda',
   songFestivalRepertoire1: 'Pirma dalis: Lietuviais esame mes gimę',
-  songFestivalRepertoire2: 'Antra dalis: Ten mano svajos...',
+  songFestivalRepertoire2: 'Antra dalis: Ten mano svajos…',
   songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
 };
