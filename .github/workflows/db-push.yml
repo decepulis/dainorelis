@@ -3,9 +3,14 @@ name: Apply DB migrations
 # Applies the admin CMS's Supabase migrations (admin/supabase/migrations/) to
 # the production project. It runs on every push to main, but only when a
 # migration, the Supabase config, or this workflow actually changes, so
-# ordinary app pushes don't touch the database. It links to the Supabase
-# project and applies any migrations not yet in the project's migration history
+# ordinary app pushes don't touch the database. It connects straight to the
+# database and applies any migrations not yet in the project's migration history
 # (supabase_migrations.schema_migrations), so re-running it is a no-op.
+#
+# It needs one repository secret, SUPABASE_DB_URL: the POSTGRES_URL_NON_POOLING
+# value the Supabase integration sets on the dainorelis-admin Vercel project.
+# Connecting with the database URL rather than `supabase link` means no
+# personal access token, which would reach every project on the account.
 on:
   push:
     branches: [main]
@@ -40,12 +45,7 @@ jobs:
         with:
           version: latest
 
-      - name: Link project and push migrations
+      - name: Push migrations
         env:
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-          # The production project's ref. Not a secret: it's in the project's API URL.
-          PROJECT_REF: wxyvwfvwvbmgojgwgkvr
-        run: |
-          supabase link --project-ref "$PROJECT_REF"
-          supabase db push
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: supabase db push --db-url "$SUPABASE_DB_URL"
