@@ -148,10 +148,20 @@ supabase migration new add_whatever   # creates a timestamped .sql file
 git add supabase/migrations && git commit   # CI applies it once it reaches main
 ```
 
-Keep `src/lib/supabase/types.ts` in step with it. You never have to open the SQL
-editor. If you'd rather apply a migration from your machine instead of via CI,
-`supabase link --project-ref <ref>` once (from `admin/`), then
-`supabase db push`.
+The TypeScript types for the tables (`src/lib/supabase/database.types.ts`) are
+generated from the live schema with `pnpm gen:types` (after a one-time
+`supabase login`), so they can only pick up a migration once it's applied.
+To change a column and the code that uses it in one commit, apply the
+migration from your machine first, with the connection string from
+`vercel env pull .env.local`:
+
+```bash
+supabase db push --db-url "$POSTGRES_URL_NON_POOLING"
+pnpm gen:types
+```
+
+CI then finds the migration recorded and does nothing. You never have to open
+the SQL editor.
 
 ## Local development
 
