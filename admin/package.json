@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "gen:types": "pnpm dlx supabase gen types typescript --project-id wxyvwfvwvbmgojgwgkvr --schema public > src/lib/supabase/database.types.ts && prettier --write src/lib/supabase/database.types.ts",
     "import:airtable": "tsx scripts/import-from-airtable.ts",
     "import:song-file": "tsx scripts/import-from-song-file.ts",
     "verify": "tsx scripts/verify-round-trip.ts",
