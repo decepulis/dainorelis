@@ -1,10 +1,19 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type AccessibilityActionEvent, PixelRatio, StyleSheet, View } from 'react-native';
-import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
+import { GestureDetector, Touchable, type TouchableProps, usePanGesture } from 'react-native-gesture-handler';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import Animated, {
+  ReduceMotion,
+  type SharedValue,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { useReorderableDrag } from 'react-native-reorderable-list';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
@@ -30,6 +39,11 @@ const addColor = '#8e8e93';
 const removeColor = '#ff3b30';
 // how long a reorderable row is held before it lifts to be dragged
 const reorderLongPressMs = 250;
+// each swipe action's width
+const swipeActionWidth = 70;
+const swipeActionsWidth = swipeActionWidth * 2;
+// defined before the component: the swipe worklets capture it, and React Compiler may hoist them out of it
+const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
 /** a user playlist, for the long-press menu: the list builds these once, not every row */
 export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
@@ -83,134 +97,228 @@ export function ListItem({
 
   const close = () => swipeableRef.current?.close();
   // the menu's native host sizes to its content, so its action gets the row's height explicitly
-  const [rowHeight, setRowHeight] = useState<number>();
+  const [rowSize, setRowSize] = useState<{ width: number; height: number }>();
+  const rowHeight = rowSize?.height;
+
+  // a full swipe (iOS Mail's): past the threshold the heart stretches over the row and arms, and letting go
+  // toggles the favourite and closes the row. The swipeable only reports where the row settles, so the
+  // release is caught by a pan running alongside its own; it moves with the swipeable's, which starts from
+  // the open position when the row is open.
+  const fullSwipeThreshold = Math.max(swipeActionsWidth + 60, (rowSize?.width ?? 0) / 2);
+  const isOpen = useSharedValue(false);
+  const onFullSwipe = () => {
+    toggleFavorite();
+    close();
+  };
+  const fullSwipeGesture = usePanGesture({
+    activeOffsetX: [-10, 10],
+    onDeactivate: (e) => {
+      const revealed = -e.translationX + (isOpen.get() ? swipeActionsWidth : 0);
+      if (!e.canceled && revealed > fullSwipeThreshold) scheduleOnRN(onFullSwipe);
+    },
+  });
+
   // swiping a row reveals two actions: the heart at the edge, and beside it Add to playlist (a menu of the
   // user's playlists) or, inside one of them, Remove
-  const renderRightActions = () => (
-    <View style={styles.swipeActions}>
-      {shownUserPlaylistId ? (
+  const renderRightActions = (_progress: SharedValue<number>, translation: SharedValue<number>) => (
+    <SwipeActions
+      translation={translation}
+      threshold={fullSwipeThreshold}
+      secondaryColor={shownUserPlaylistId ? removeColor : addColor}
+      primaryColor={primary}
+      primary={
         <Touchable
           {...rowPressFeedback}
-          accessibilityLabel={t('removeFromPlaylist')}
-          style={[styles.swipeAction, { backgroundColor: removeColor }]}
+          accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+          style={styles.swipeActionFill}
           onPress={() => {
-            toggleSong(shownUserPlaylistId, item.id);
+            toggleFavorite();
             close();
           }}
         >
-          <FontAwesome6 name="circle-minus" size={20} iconStyle="solid" color="#fff" />
+          <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
         </Touchable>
-      ) : (
-        <MenuView
-          hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
-          accessibilityLabel={t('addToPlaylist')}
-          actions={[
-            ...userPlaylists.map((playlist) => ({
-              id: playlist.id,
-              title: playlist.name,
-              state: playlist.songIds.has(item.id) ? ('on' as const) : ('off' as const),
-            })),
-            {
-              id: newPlaylistActionId,
-              title: t('createPlaylist'),
-              image: process.env.EXPO_OS === 'ios' ? createPlaylistIcon.sfSymbol : createPlaylistIcon.material,
-            },
-          ]}
-          onPressAction={({ nativeEvent }) => {
-            if (nativeEvent.event === newPlaylistActionId) onNewPlaylistWithSong(item.id);
-            else toggleSong(nativeEvent.event, item.id);
-            close();
-          }}
-        >
-          <View style={[styles.swipeAction, { backgroundColor: addColor, height: rowHeight }]}>
-            <FontAwesome6 name="list-ul" size={20} iconStyle="solid" color="#fff" />
-          </View>
-        </MenuView>
-      )}
-      <Touchable
-        {...rowPressFeedback}
-        accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-        style={[styles.swipeAction, { backgroundColor: primary }]}
-        onPress={() => {
-          toggleFavorite();
-          close();
-        }}
-      >
-        <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
-      </Touchable>
-    </View>
+      }
+      secondary={
+        shownUserPlaylistId ? (
+          <Touchable
+            {...rowPressFeedback}
+            accessibilityLabel={t('removeFromPlaylist')}
+            style={[styles.swipeAction, { backgroundColor: removeColor, height: rowHeight }]}
+            onPress={() => {
+              toggleSong(shownUserPlaylistId, item.id);
+              close();
+            }}
+          >
+            <FontAwesome6 name="circle-minus" size={20} iconStyle="solid" color="#fff" />
+          </Touchable>
+        ) : (
+          <MenuView
+            hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+            accessibilityLabel={t('addToPlaylist')}
+            actions={[
+              ...userPlaylists.map((playlist) => ({
+                id: playlist.id,
+                title: playlist.name,
+                state: playlist.songIds.has(item.id) ? ('on' as const) : ('off' as const),
+              })),
+              {
+                id: newPlaylistActionId,
+                title: t('createPlaylist'),
+                image: process.env.EXPO_OS === 'ios' ? createPlaylistIcon.sfSymbol : createPlaylistIcon.material,
+              },
+            ]}
+            onPressAction={({ nativeEvent }) => {
+              if (nativeEvent.event === newPlaylistActionId) onNewPlaylistWithSong(item.id);
+              else toggleSong(nativeEvent.event, item.id);
+              close();
+            }}
+          >
+            <View style={[styles.swipeAction, { backgroundColor: addColor, height: rowHeight }]}>
+              <FontAwesome6 name="list-ul" size={20} iconStyle="solid" color="#fff" />
+            </View>
+          </MenuView>
+        )
+      }
+    />
   );
 
   return (
-    <View
-      style={[styles.outerContainer, { backgroundColor: background }]}
-      onLayout={(e) => setRowHeight(e.nativeEvent.layout.height)}
-    >
-      <ReanimatedSwipeable ref={swipeableRef} renderRightActions={renderRightActions} overshootRight={false}>
-        <Link href={`/dainos/${item.id}`} asChild>
-          <Link.Trigger>
-            <Touchable
-              {...rowPressFeedback}
-              {...(reorder
-                ? {
-                    onLongPress: reorder.onDrag,
-                    delayLongPress: reorderLongPressMs,
-                    accessibilityActions: [
-                      { name: 'moveUp', label: t('moveUp') },
-                      { name: 'moveDown', label: t('moveDown') },
-                    ],
-                    onAccessibilityAction: ({ nativeEvent }: AccessibilityActionEvent) =>
-                      reorder.onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1),
-                  }
-                : null)}
-            >
-              <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
-            </Touchable>
-          </Link.Trigger>
-          {reorder ? null : (
-            <Link.Preview
-              style={{
-                backgroundColor: background,
-                paddingHorizontal: padding,
-                paddingVertical: padding * 1.5,
-                width: 340,
-                height: 440,
-              }}
-            >
-              <View style={{ marginBottom: 20, gap: 4 }}>
-                <ThemedText bold style={{ fontSize: 22 }}>
-                  {title}
-                </ThemedText>
-                {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
-                {isLyrics(firstLyrics) ? (
-                  <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown>
+    <GestureDetector gesture={fullSwipeGesture}>
+      <View
+        style={[styles.outerContainer, { backgroundColor: background }]}
+        onLayout={(e) => setRowSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height })}
+      >
+        <ReanimatedSwipeable
+          ref={swipeableRef}
+          renderRightActions={renderRightActions}
+          // dragging on past the actions stretches them, toward the full swipe
+          overshootRight
+          simultaneousWith={fullSwipeGesture}
+        >
+          <Link href={`/dainos/${item.id}`} asChild>
+            <Link.Trigger>
+              <Touchable
+                {...rowPressFeedback}
+                {...(reorder
+                  ? {
+                      onLongPress: reorder.onDrag,
+                      delayLongPress: reorderLongPressMs,
+                      accessibilityActions: [
+                        { name: 'moveUp', label: t('moveUp') },
+                        { name: 'moveDown', label: t('moveDown') },
+                      ],
+                      onAccessibilityAction: ({ nativeEvent }: AccessibilityActionEvent) =>
+                        reorder.onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1),
+                    }
+                  : null)}
+              >
+                <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
+              </Touchable>
+            </Link.Trigger>
+            {reorder ? null : (
+              <Link.Preview
+                style={{
+                  backgroundColor: background,
+                  paddingHorizontal: padding,
+                  paddingVertical: padding * 1.5,
+                  width: 340,
+                  height: 440,
+                }}
+              >
+                <View style={{ marginBottom: 20, gap: 4 }}>
+                  <ThemedText bold style={{ fontSize: 22 }}>
+                    {title}
+                  </ThemedText>
+                  {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
+                  {isLyrics(firstLyrics) ? (
+                    <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown>
+                  ) : null}
+                </View>
+              </Link.Preview>
+            )}
+            {reorder ? null : (
+              <Link.Menu>
+                <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
+                  {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+                </Link.MenuAction>
+                {userPlaylists.length ? (
+                  <Link.Menu title={t('addToPlaylist')} icon="text.badge.plus">
+                    {userPlaylists.map((playlist) => (
+                      <Link.MenuAction
+                        key={playlist.id}
+                        isOn={playlist.songIds.has(item.id)}
+                        onPress={() => toggleSong(playlist.id, item.id)}
+                      >
+                        {playlist.name}
+                      </Link.MenuAction>
+                    ))}
+                  </Link.Menu>
                 ) : null}
-              </View>
-            </Link.Preview>
-          )}
-          {reorder ? null : (
-            <Link.Menu>
-              <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
-                {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-              </Link.MenuAction>
-              {userPlaylists.length ? (
-                <Link.Menu title={t('addToPlaylist')} icon="text.badge.plus">
-                  {userPlaylists.map((playlist) => (
-                    <Link.MenuAction
-                      key={playlist.id}
-                      isOn={playlist.songIds.has(item.id)}
-                      onPress={() => toggleSong(playlist.id, item.id)}
-                    >
-                      {playlist.name}
-                    </Link.MenuAction>
-                  ))}
-                </Link.Menu>
-              ) : null}
-            </Link.Menu>
-          )}
-        </Link>
-      </ReanimatedSwipeable>
-      {!isLast ? <RowSeparator separator={separator} /> : null}
+              </Link.Menu>
+            )}
+          </Link>
+        </ReanimatedSwipeable>
+        {!isLast ? <RowSeparator separator={separator} /> : null}
+      </View>
+    </GestureDetector>
+  );
+}
+
+type SwipeActionsProps = {
+  /** the row's translation, from the swipeable: negative as it reveals the actions */
+  translation: SharedValue<number>;
+  threshold: number;
+  /** Add to playlist or Remove, beside the edge */
+  secondary: React.ReactNode;
+  secondaryColor: string;
+  /** the heart at the edge, which a full swipe triggers */
+  primary: React.ReactNode;
+  primaryColor: string;
+};
+/**
+ * the two swipe actions. Dragged past them they stretch, each over half the revealed width; past the
+ * threshold the edge action arms and grows over the other, its icon following the row's edge.
+ */
+function SwipeActions({ translation, threshold, secondary, secondaryColor, primary, primaryColor }: SwipeActionsProps) {
+  // 0 → 1 as the edge action covers the other (Reduce Motion: a jump)
+  const armProgress = useSharedValue(0);
+  useAnimatedReaction(
+    () => -translation.get() > threshold,
+    (armed, wasArmed) => {
+      if (armed === (wasArmed ?? false)) return;
+      armProgress.set(withTiming(armed ? 1 : 0, { duration: 150, reduceMotion: ReduceMotion.System }));
+      if (armed) scheduleOnRN(lightHaptic);
+    }
+  );
+
+  // the actions sit in a fixed width at the trailing edge (the swipeable measures it to know where the row
+  // opens to); the overshoot is drawn leftward, past that box
+  const revealedWidth = () => {
+    'worklet';
+    return Math.max(swipeActionsWidth, -translation.get());
+  };
+  const secondaryFillStyle = useAnimatedStyle(() => ({ width: revealedWidth() }));
+  const secondaryStyle = useAnimatedStyle(() => ({
+    // centred in the revealed width's leading half
+    transform: [{ translateX: -(revealedWidth() - swipeActionsWidth) * 0.75 }],
+  }));
+  const primaryStyle = useAnimatedStyle(() => ({
+    width: (revealedWidth() / 2) * (1 + armProgress.get()),
+  }));
+  const primaryIconStyle = useAnimatedStyle(() => {
+    const width = (revealedWidth() / 2) * (1 + armProgress.get());
+    // centred, until armed: then at the leading edge, beside the row
+    return { transform: [{ translateX: ((width - swipeActionWidth) / 2) * (1 - armProgress.get()) }] };
+  });
+
+  return (
+    <View style={styles.swipeActions}>
+      <Animated.View style={[styles.swipeActionsFill, { backgroundColor: secondaryColor }, secondaryFillStyle]} />
+      <Animated.View style={secondaryStyle}>{secondary}</Animated.View>
+      <Animated.View style={[styles.swipeActionsFill, { backgroundColor: primaryColor }, primaryStyle]}>
+        <Animated.View style={[styles.swipeActionIcon, primaryIconStyle]}>{primary}</Animated.View>
+      </Animated.View>
     </View>
   );
 }
@@ -406,11 +514,26 @@ const styles = StyleSheet.create({
   },
   swipeActions: {
     flexDirection: 'row',
+    width: swipeActionsWidth,
+  },
+  swipeActionsFill: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
   },
   swipeAction: {
-    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 70,
+    width: swipeActionWidth,
+  },
+  swipeActionIcon: {
+    flex: 1,
+    width: swipeActionWidth,
+  },
+  swipeActionFill: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
