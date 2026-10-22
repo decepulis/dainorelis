@@ -24,16 +24,20 @@ function isPublic(pathname: string): boolean {
  */
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+  let noStoreHeaders: Record<string, string> = {};
 
   const supabase = createServerClient<Database>(supabaseUrl(), supabasePublishableKey(), {
     cookies: {
       getAll() {
         return request.cookies.getAll();
       },
-      setAll(cookiesToSet) {
+      setAll(cookiesToSet, headers) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
         cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+        // No-store headers, so a CDN never serves one editor's session cookie to another.
+        noStoreHeaders = headers;
+        Object.entries(headers).forEach(([key, value]) => response.headers.set(key, value));
       },
     },
   });
@@ -49,15 +53,26 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     url.searchParams.set('next', pathname);
-    return NextResponse.redirect(url);
+    return redirectKeepingSession(url, response, noStoreHeaders);
   }
 
   if (user && pathname === '/login') {
     const url = request.nextUrl.clone();
     url.pathname = '/';
     url.search = '';
-    return NextResponse.redirect(url);
+    return redirectKeepingSession(url, response, noStoreHeaders);
   }
 
   return response;
+}
+
+/**
+ * A redirect is a fresh response, so it would drop a session cookie that
+ * getUser() just refreshed (or cleared), and the headers that keep it uncached.
+ */
+function redirectKeepingSession(url: URL, from: NextResponse, headers: Record<string, string>) {
+  const redirect = NextResponse.redirect(url);
+  from.cookies.getAll().forEach((cookie) => redirect.cookies.set(cookie));
+  Object.entries(headers).forEach(([key, value]) => redirect.headers.set(key, value));
+  return redirect;
 }
