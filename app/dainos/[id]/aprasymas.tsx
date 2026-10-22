@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams } from 'expo-router';
@@ -8,9 +8,8 @@ import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/c
 import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import { Song } from '@/lib/schemas/songs';
 import { splitTitle } from '@/lib/utils/useTitle';
 import songs from '@/songs';
@@ -35,7 +34,7 @@ export default function Page() {
 
 function DescriptionPage({ song }: { song: Song }) {
   const inset = useSafeAreaInsets();
-  const maxWidthPadding = useMaxWidthPadding();
+  const contentColumn = useContentColumnStyle();
   const { t, i18n } = useTranslation();
 
   const [title] = splitTitle(song.fields['Name']);
@@ -53,10 +52,8 @@ function DescriptionPage({ song }: { song: Song }) {
       <ScrollViewWithHeader>
         <View
           style={[
-            styles.container,
+            contentColumn,
             {
-              paddingLeft: maxWidthPadding.paddingLeft,
-              paddingRight: maxWidthPadding.paddingRight,
               paddingTop: padding,
               paddingBottom: Math.max(inset.bottom + padding * 2, padding * 4),
             },
@@ -72,11 +69,3 @@ function DescriptionPage({ song }: { song: Song }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    maxWidth,
-    marginHorizontal: 'auto',
-  },
-});
