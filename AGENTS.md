@@ -116,14 +116,12 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 ### Project Structure
 
 - **`/app`** - File-based routing (expo-router)
-  - `index.tsx` - Home screen with song list and search
+  - `index.tsx` - Home screen with song list and search; also the playlist reorder mode
   - `_layout.tsx` - Root layout, theme provider, splash screen, audio config
   - `dainos/[id].tsx` - Song detail view (lyrics + chords)
   - `dainos/[id]/vertimas.tsx` - Translation modal
   - `dainos/[id]/aprasymas.tsx` - Description modal
   - `nustatymai.tsx` - Settings modal
-  - `grojarasciai/[id]/redaguoti.tsx` - Playlist edit modal (reorder / remove; SwiftUI `List` in
-    edit mode on iOS, react-native-reorderable-list elsewhere)
   - `grojarasciai/[id]/bendrinti.tsx` - Share sheet (form sheet): QR code and share link
   - `p.tsx` - Landing modal for shared playlist links: preview and add to playlists
 
@@ -190,7 +188,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Storage**: MMKV via `useStorage` hook for fast, synchronous persistent storage of user preferences (theme, language, etc.). Every key and its Zod schema is declared in `lib/hooks/useStorage.tsx`.
 
-**Playlists**: `usePlaylists` (data) and `usePlaylistActions` (menu actions: edit, rename, share, duplicate, delete) combine three kinds: Favorites (storage key `favorites`, the pre-playlists key; editable, not renamable or deletable), curated playlists built from `song-festival.ts` (read-only, in programme sections; the old song festival mode is retired) and user playlists (`playlists`). `selectedPlaylistId` is the playlist the home screen shows (`'all'`, `'favorites'` or a playlist id). Shared playlists travel as `https://www.dainorelisapp.com/p?n=<name>&s=<ids>` (`lib/utils/playlistLink.ts`): song ids drop their shared `rec` prefix to keep the QR code small. The link opens `app/p.tsx` as a universal link / Android App Link (`associatedDomains` and `intentFilters` in `app.config.ts`, verified by `dainorelisapp.com/public/.well-known/apple-app-site-association` and `assetlinks.json`); without the app it lands on the site's `/p` page, which links to the stores.
+**Playlists**: `usePlaylists` (data) and `usePlaylistActions` (menu actions: reorder, rename, share, duplicate, delete) combine three kinds: Favorites (storage key `favorites`, the pre-playlists key; editable, not renamable or deletable), curated playlists built from `song-festival.ts` (read-only, in programme sections; the old song festival mode is retired) and user playlists (`playlists`). `selectedPlaylistId` is the playlist the home screen shows (`'all'`, `'favorites'` or a playlist id). Reorder puts the home list itself in a reorder mode (Favorites and user playlists only), held as the playlist's id so it ends if another playlist is shown: the FlatList is swapped for react-native-reorderable-list's at the same scroll offset, rows lose their link, preview, menu and swipe actions, and a song is held (250 ms) then dragged, with Move up / Move down screen reader actions. The order saves as it changes; Done (a toolbar checkmark on Liquid Glass, a bottom button elsewhere) or Android's back button ends it. Shared playlists travel as `https://www.dainorelisapp.com/p?n=<name>&s=<ids>` (`lib/utils/playlistLink.ts`): song ids drop their shared `rec` prefix to keep the QR code small. The link opens `app/p.tsx` as a universal link / Android App Link (`associatedDomains` and `intentFilters` in `app.config.ts`, verified by `dainorelisapp.com/public/.well-known/apple-app-site-association` and `assetlinks.json`); without the app it lands on the site's `/p` page, which links to the stores.
 
 **Layout**: Reading content sits in a centred column from `useContentColumnStyle` (max width, padding clear of the horizontal safe area; plain flex, no window maths).
 
