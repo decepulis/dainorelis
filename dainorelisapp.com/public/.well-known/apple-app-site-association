@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["5BPU37MJR9.com.dainorelis.dainorelis"],
+        "components": [
+          { "/": "/p", "comment": "a shared playlist: /p?n=<name>&s=<song ids>" },
+          { "/": "/p/*" }
+        ]
+      }
+    ]
+  }
+}

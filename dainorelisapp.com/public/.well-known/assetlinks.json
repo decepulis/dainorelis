@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dainorelis.dainorelis",
+      "sha256_cert_fingerprints": [
+        "8C:CA:93:58:9B:A0:EB:93:DE:16:6E:DE:91:FC:97:34:01:1C:68:7C:99:F1:1A:11:4F:BA:2F:53:95:AE:98:16",
+        "TODO:PLAY_APP_SIGNING_KEY_SHA256_FROM_PLAY_CONSOLE_APP_INTEGRITY"
+      ]
+    }
+  }
+]
