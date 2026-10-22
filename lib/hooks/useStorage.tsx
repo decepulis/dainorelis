@@ -8,9 +8,20 @@ export const storage = createMMKV();
 
 // if you wanna store anything in async storage, define it here
 const schemas = {
+  // the Favorites playlist's song ids, in the order they were added (the key predates playlists)
   favorites: {
     validator: z.array(z.string()),
     defaultValue: [] as string[],
+  },
+  // the user's own playlists, in the order they were created
+  playlists: {
+    validator: z.array(z.object({ id: z.string(), name: z.string(), songIds: z.array(z.string()) })),
+    defaultValue: [] as { id: string; name: string; songIds: string[] }[],
+  },
+  // the playlist the home screen shows: 'all', 'favorites', a curated or a user playlist's id
+  selectedPlaylistId: {
+    validator: z.string(),
+    defaultValue: 'all',
   },
   activeVariantIdBySongId: {
     validator: z.record(z.string(), z.string().optional()),

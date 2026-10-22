@@ -22,24 +22,26 @@ import padding from '@/lib/constants/padding';
 import { fonts } from '@/lib/constants/themes';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 
+import { PlaylistAction, PlaylistActionId, createPlaylistIcon } from '../../hooks/usePlaylistActions';
+import usePlaylists, { Playlist, allSongsId } from '../../hooks/usePlaylists';
 import { useThemeColor } from '../../hooks/useThemeColor';
 import Button, { ButtonSurface, styles as buttonStyles } from '../Button';
 import { isLiquidGlassStyleHeader } from '../Header';
-import MenuView from '../MenuView';
+import MenuView, { type MenuAction } from '../MenuView';
 import ThemedText from '../ThemedText';
 
 const AnimatedGlassView = createAnimatedComponent(GlassView);
 const expandedSearchHeight = 44;
 const buttonSize = 44;
 const color = '#ffffff';
+const createPlaylistId = 'createPlaylist';
 
 type Props = {
   scrollRef: AnimatedRef<Animated.FlatList<any>>;
   top: number;
-  isFavorites: boolean;
-  setIsFavorites: (value: boolean) => void;
-  isSongFestivalMode: boolean;
-  setIsSongFestivalMode: (value: boolean) => void;
+  selectedPlaylistId: string;
+  setSelectedPlaylistId: (id: string) => void;
+  onCreatePlaylist: () => void;
   setSearchText: (text: string) => void;
 };
 const springConfig: WithSpringConfig = {
@@ -57,10 +59,9 @@ const springConfig: WithSpringConfig = {
 export default function Search({
   scrollRef,
   top,
-  isFavorites,
-  setIsFavorites,
-  isSongFestivalMode: _isSongFestivalMode,
-  setIsSongFestivalMode: _setIsSongFestivalMode,
+  selectedPlaylistId,
+  setSelectedPlaylistId,
+  onCreatePlaylist,
   setSearchText,
 }: Props) {
   const { t } = useTranslation();
@@ -129,7 +130,13 @@ export default function Search({
     }
   };
 
-  const playlistTitle = isFavorites ? t('favoriteSongs') : t('allSongs');
+  const { playlists, favorites, curated, user } = usePlaylists();
+  const playlistTitle = playlists.find((p) => p.id === selectedPlaylistId)?.name ?? t('allSongs');
+  const playlistAction = (playlist: Playlist): MenuAction => ({
+    id: playlist.id,
+    title: playlist.name,
+    state: playlist.id === selectedPlaylistId ? 'on' : 'off',
+  });
 
   return (
     // rides on top of the keyboard as it opens and closes
@@ -211,21 +218,34 @@ export default function Search({
           <MenuView
             // the pill already fills a 44pt target, so the 32pt-button slop would only offset it
             hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+            accessibilityLabel={`${t('playlists')}: ${playlistTitle}`}
             actions={[
               {
-                id: 'allSongs',
+                id: allSongsId,
                 title: t('allSongs'),
-                state: isFavorites ? 'off' : 'on',
+                state: selectedPlaylistId === allSongsId ? 'on' : 'off',
+              },
+              playlistAction(favorites),
+              // one section: Android draws a divider on each side of every section, doubling up between two
+              {
+                id: 'playlistsSection',
+                title: '',
+                displayInline: true,
+                subactions: [...curated, ...user].map(playlistAction),
               },
               {
-                id: 'favoriteSongs',
-                title: t('favoriteSongs'),
-                state: isFavorites ? 'on' : 'off',
+                id: createPlaylistId,
+                title: t('createPlaylist'),
+                image: process.env.EXPO_OS === 'ios' ? createPlaylistIcon.sfSymbol : createPlaylistIcon.material,
               },
             ]}
             onPressAction={({ nativeEvent }) => {
-              setIsFavorites(nativeEvent.event === 'favoriteSongs');
-              scrollToTop();
+              if (nativeEvent.event === createPlaylistId) {
+                onCreatePlaylist();
+              } else {
+                setSelectedPlaylistId(nativeEvent.event);
+                scrollToTop();
+              }
             }}
           >
             <ButtonSurface
@@ -313,23 +333,44 @@ export default function Search({
 type IndexToolbarProps = {
   listRef: AnimatedRef<Animated.FlatList<any>>;
   scrollToSearchOffset: number;
-  isFavorites: boolean;
-  setIsFavorites: (value: boolean) => void;
+  selectedPlaylistId: string;
+  setSelectedPlaylistId: (id: string) => void;
+  onCreatePlaylist: () => void;
+  playlistActions: PlaylistAction[];
+  onPlaylistAction: (id: PlaylistActionId) => void;
   setSearchText: (text: string) => void;
 };
 export function IndexToolbar({
   listRef,
   scrollToSearchOffset,
-  isFavorites,
-  setIsFavorites,
+  selectedPlaylistId,
+  setSelectedPlaylistId,
+  onCreatePlaylist,
+  playlistActions,
+  onPlaylistAction,
   setSearchText,
 }: IndexToolbarProps) {
   const router = useRouter();
   const { t } = useTranslation();
   const primary = useThemeColor('primary');
   const { isReduceMotionEnabled } = useAccessibilityInfo();
+  const { favorites, curated, user } = usePlaylists();
 
   if (!isLiquidGlassStyleHeader()) return null;
+
+  const select = (id: string) => {
+    setSelectedPlaylistId(id);
+    listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
+  };
+  const playlistAction = (playlist: Playlist) => (
+    <Stack.Toolbar.MenuAction
+      key={playlist.id}
+      isOn={playlist.id === selectedPlaylistId}
+      onPress={() => select(playlist.id)}
+    >
+      {playlist.name}
+    </Stack.Toolbar.MenuAction>
+  );
 
   return (
     <>
@@ -357,30 +398,40 @@ export function IndexToolbar({
           title={t('playlists')}
           separateBackground
           icon="music.note.list"
-          tintColor={isFavorites ? primary : undefined}
+          tintColor={selectedPlaylistId !== allSongsId ? primary : undefined}
         >
-          <Stack.Toolbar.MenuAction
-            isOn={!isFavorites}
-            onPress={() => {
-              setIsFavorites(false);
-              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
-            }}
-          >
+          <Stack.Toolbar.MenuAction isOn={selectedPlaylistId === allSongsId} onPress={() => select(allSongsId)}>
             {t('allSongs')}
           </Stack.Toolbar.MenuAction>
-          <Stack.Toolbar.MenuAction
-            isOn={isFavorites}
-            onPress={() => {
-              setIsFavorites(true);
-              listRef.current?.scrollToOffset({ offset: scrollToSearchOffset, animated: !isReduceMotionEnabled });
-            }}
-          >
-            {t('favoriteSongs')}
-          </Stack.Toolbar.MenuAction>
+          {playlistAction(favorites)}
+          <Stack.Toolbar.Menu inline>{curated.map(playlistAction)}</Stack.Toolbar.Menu>
+          {user.length ? <Stack.Toolbar.Menu inline>{user.map(playlistAction)}</Stack.Toolbar.Menu> : null}
+          <Stack.Toolbar.Menu inline>
+            <Stack.Toolbar.MenuAction icon={createPlaylistIcon.sfSymbol} onPress={onCreatePlaylist}>
+              {t('createPlaylist')}
+            </Stack.Toolbar.MenuAction>
+          </Stack.Toolbar.Menu>
         </Stack.Toolbar.Menu>
         <Stack.Toolbar.SearchBarSlot />
       </Stack.Toolbar>
       <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Menu
+          icon="ellipsis"
+          hidden={playlistActions.length === 0}
+          title=""
+          accessibilityLabel={t('playlistActions')}
+        >
+          {playlistActions.map((action) => (
+            <Stack.Toolbar.MenuAction
+              key={action.id}
+              icon={action.sfSymbol}
+              destructive={action.destructive}
+              onPress={() => onPlaylistAction(action.id)}
+            >
+              {action.title}
+            </Stack.Toolbar.MenuAction>
+          ))}
+        </Stack.Toolbar.Menu>
         <Stack.Toolbar.Button icon="slider.horizontal.3" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}
         </Stack.Toolbar.Button>

@@ -31,9 +31,39 @@ const en = {
   addToFavorites: 'Add to favorites',
   removeFromFavorites: 'Remove from favorites',
   noHits: 'No search results. Check the spelling or try a new search.',
-  noFavorites1: 'No favorites. When viewing a song, press',
-  noFavorites1Alt: 'No search results in your favorites. When viewing a song, press',
-  noFavorites2: 'to set a favorite',
+  emptyPlaylist: 'No songs here yet. To add one, open a song and tap Add to Playlist.',
+  noHitsInPlaylist: 'No search results in this playlist.',
+  playlist: 'Playlist',
+  playlistActions: 'Playlist actions',
+  addToPlaylist: 'Add to Playlist',
+  createPlaylist: 'New Playlist…',
+  newPlaylist: 'New Playlist',
+  newPlaylistMessage: 'Enter a name for this playlist.',
+  playlistName: 'Name',
+  editPlaylist: 'Edit',
+  renamePlaylist: 'Rename',
+  sharePlaylist: 'Share',
+  duplicatePlaylist: 'Duplicate',
+  deletePlaylist: 'Delete Playlist',
+  deletePlaylistTitle: 'Delete “{{name}}”?',
+  deletePlaylistMessage: 'This can’t be undone.',
+  shareLink: 'Share Link',
+  qrCode: 'QR code for “{{name}}”',
+  sharePlaylistHint: 'Scan the code with a phone’s camera to open this playlist in Dainorėlis.',
+  songCount_one: '{{n}} song',
+  songCount_other: '{{n}} songs',
+  addPlaylist: 'Add Playlist',
+  missingSongs_one: '{{n}} song wasn’t found. Update the app to get it.',
+  missingSongs_other: '{{n}} songs weren’t found. Update the app to get them.',
+  invalidPlaylistLink: 'This playlist link is incomplete.',
+  removeFromPlaylist: 'Remove from playlist',
+  reorder: 'Reorder',
+  moveUp: 'Move up',
+  moveDown: 'Move down',
+  cancel: 'Cancel',
+  create: 'Create',
+  save: 'Save',
+  done: 'Done',
   pdfErrorTitle: "Couldn't load the sheet music",
   pdfErrorHint: 'Check your internet connection and try again.',
   tryAgain: 'Try again',
@@ -106,9 +136,41 @@ const lt = {
   addToFavorites: 'Pridėti prie mėgstamų',
   removeFromFavorites: 'Pašalinti iš mėgstamų',
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
-  noFavorites1: 'Žiūrėdami dainą, spauskite',
-  noFavorites1Alt: 'Paieškos rezultatų mėgstamiausiuose nėra. Žiūrėdami dainą, spauskite',
-  noFavorites2: 'mygtuką pažymėti kaip „mėgstamą“',
+  emptyPlaylist: 'Čia dar nėra dainų. Atsidarykite dainą ir bakstelėkite „Pridėti į grojaraštį“.',
+  noHitsInPlaylist: 'Šiame grojaraštyje paieškos rezultatų nėra.',
+  playlist: 'Grojaraštis',
+  playlistActions: 'Grojaraščio veiksmai',
+  addToPlaylist: 'Pridėti į grojaraštį',
+  createPlaylist: 'Naujas grojaraštis…',
+  newPlaylist: 'Naujas grojaraštis',
+  newPlaylistMessage: 'Įveskite grojaraščio pavadinimą.',
+  playlistName: 'Pavadinimas',
+  editPlaylist: 'Redaguoti',
+  renamePlaylist: 'Pervardyti',
+  sharePlaylist: 'Bendrinti',
+  duplicatePlaylist: 'Sukurti kopiją',
+  deletePlaylist: 'Ištrinti grojaraštį',
+  deletePlaylistTitle: 'Ištrinti „{{name}}“?',
+  deletePlaylistMessage: 'Šio veiksmo atšaukti negalėsite.',
+  shareLink: 'Bendrinti nuorodą',
+  qrCode: 'Grojaraščio „{{name}}“ QR kodas',
+  sharePlaylistHint: 'Nuskenuokite kodą telefono kamera, kad atidarytumėte šį grojaraštį Dainorėlyje.',
+  songCount_one: '{{n}} daina',
+  songCount_few: '{{n}} dainos',
+  songCount_other: '{{n}} dainų',
+  addPlaylist: 'Pridėti grojaraštį',
+  missingSongs_one: 'Nerasta {{n}} daina. Atnaujinkite programėlę, kad ją gautumėte.',
+  missingSongs_few: 'Nerastos {{n}} dainos. Atnaujinkite programėlę, kad jas gautumėte.',
+  missingSongs_other: 'Nerasta {{n}} dainų. Atnaujinkite programėlę, kad jas gautumėte.',
+  invalidPlaylistLink: 'Ši grojaraščio nuoroda neišsami.',
+  removeFromPlaylist: 'Pašalinti iš grojaraščio',
+  reorder: 'Pertvarkyti',
+  moveUp: 'Perkelti aukštyn',
+  moveDown: 'Perkelti žemyn',
+  cancel: 'Atšaukti',
+  create: 'Sukurti',
+  save: 'Išsaugoti',
+  done: 'Atlikta',
   pdfErrorTitle: 'Nepavyko atsisiųsti natų',
   pdfErrorHint: 'Patikrinkite interneto ryšį ir bandykite dar kartą.',
   tryAgain: 'Bandyti dar kartą',
@@ -173,6 +235,21 @@ const lt = {
   songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
 };
+
+/**
+ * The key for a count's plural form: `${key}_one`, `_few` (Lithuanian) or `_other`, with the count as {{n}}. Not
+ * i18next's own plurals: they need Intl.PluralRules, which Hermes doesn't have on iOS.
+ */
+export function pluralKey(key: string, n: number, language: string) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (language === 'lt') {
+    if (mod10 === 1 && mod100 !== 11) return `${key}_one`;
+    if (mod10 >= 2 && (mod100 < 12 || mod100 > 19)) return `${key}_few`;
+    return `${key}_other`;
+  }
+  return n === 1 ? `${key}_one` : `${key}_other`;
+}
 
 // Synchronous: the resources are inline and the language detector is a sync MMKV read, so with
 // initAsync: false i18next is initialized (language set) by the time this returns.

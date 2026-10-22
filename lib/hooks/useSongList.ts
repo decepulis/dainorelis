@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next';
-
 import Fuse, { IFuseOptions } from 'fuse.js/basic';
 
 import { Song, SongFile } from '@/lib/schemas/songs';
-import songFestival from '@/song-festival';
 import songs from '@/songs';
 
-import useStorage from './useStorage';
+import { type Playlist } from './usePlaylists';
 
 // set up fuse
 const fuseSettings: IFuseOptions<Song> = {
@@ -58,30 +55,18 @@ const groupSongsByLetter = (songs: SongFile) => {
 // songs is static, so this only needs computing once
 const songsByLetter = groupSongsByLetter(songs);
 
-/**
- * the song festival list is stored in a format without translations or full songs.
- * here, we unzip that format into a format compatible with sectionlist
- */
-export const useSongFestivalList = () => {
-  const { t } = useTranslation();
-  const songsByPart: { title: string; data: Song[] }[] = songFestival.map((part) => ({
-    title: t(part.title),
-    data: part.data.map((songIndex) => songs[songIndex]),
-  }));
-  return songsByPart;
-};
-
 type SongItem = { type: 'song'; item: Song; id: string };
 type HeaderItem = { type: 'header'; item: string; id: string };
 export type SongListItem = SongItem | HeaderItem;
 
 /**
- * Flattens sections into the header and song rows the home screen's FlatList renders
+ * Flattens sections into the header and song rows the home screen's FlatList renders. Untitled
+ * sections (a playlist without parts) get no header row.
  */
-const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
+const unrollSectionList = (sections: { title?: string; data: Song[] }[]) => {
   const items: (SongItem | HeaderItem)[] = [];
-  sections.forEach((section) => {
-    items.push({ type: 'header', item: section.title, id: section.title });
+  sections.forEach((section, index) => {
+    if (section.title) items.push({ type: 'header', item: section.title, id: `${index}:${section.title}` });
     section.data.forEach((song) => {
       items.push({ type: 'song', item: song, id: song.id });
     });
@@ -89,60 +74,38 @@ const unrollSectionList = (sections: { title: string; data: Song[] }[]) => {
   return items;
 };
 
-export const useManualItems = ({ isSongFestivalMode }: { isSongFestivalMode?: boolean }) => {
-  const { t } = useTranslation();
-
-  let manualItems: SongListItem[] = [];
-  if (isSongFestivalMode) {
-    manualItems.push({
-      type: 'header',
-      item: t('songFestival'),
-      id: 'songFestival',
-    });
-  }
-  return manualItems;
-};
+const songsById = new Map(songs.map((song) => [song.id, song]));
 
 // TODO blocker? add filter-by-mp3/pdf/chords
 type Options = {
-  isFavorites: boolean;
-  isSongFestivalMode: boolean;
+  /** null for all songs, alphabetically by letter; a playlist keeps its own order */
+  playlist: Playlist | null;
   searchText: string;
 };
-export default function useSongList({ isFavorites, isSongFestivalMode, searchText }: Options) {
-  const { value: favorites } = useStorage('favorites');
-
-  // make those lists
-  const songsBySongFestivalSection = useSongFestivalList();
-  const songList = isSongFestivalMode ? songsBySongFestivalSection : songsByLetter;
-
+export default function useSongList({ playlist, searchText }: Options) {
   // search results
-  let searchResults: string[] | null = null;
+  let searchResults: Set<string> | null = null;
   if (searchText.length > 0) {
     const { titleFuse, lyricFuse } = getFuses();
     const titleSearchResults = titleFuse.search(searchText, { limit: 20 });
     const lyricSearchResults = lyricFuse.search(searchText, { limit: 20 });
-    const allSearchResults = [...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id);
-    searchResults = Array.from(new Set(allSearchResults));
+    searchResults = new Set([...titleSearchResults, ...lyricSearchResults].map((result) => result.item.id));
   }
 
-  const filteredSongList = songList
+  const sections: { title?: string; data: Song[] }[] = playlist
+    ? (playlist.sections ?? [{ songIds: playlist.songIds }]).map((section) => ({
+        title: 'title' in section ? section.title : undefined,
+        // a song removed from the songbook since it was added is skipped
+        data: section.songIds.map((id) => songsById.get(id)).filter((song): song is Song => !!song),
+      }))
+    : songsByLetter;
+
+  const filteredSections = sections
     .map((section) => ({
       ...section,
-      data: section.data.filter((song) => {
-        let keepSong = true;
-        if (searchResults && !searchResults.includes(song.id)) {
-          keepSong = false;
-        }
-        if (isFavorites && !favorites.includes(song.id)) {
-          keepSong = false;
-        }
-        return keepSong;
-      }),
+      data: searchResults ? section.data.filter((song) => searchResults.has(song.id)) : section.data,
     }))
     .filter((section) => section.data.length > 0);
 
-  const manualItems = useManualItems({ isSongFestivalMode });
-  const unrolledSongList = [...manualItems, ...unrollSectionList(filteredSongList)];
-  return unrolledSongList;
+  return unrollSectionList(filteredSections);
 }
