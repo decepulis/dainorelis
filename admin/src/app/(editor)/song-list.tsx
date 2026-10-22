@@ -53,7 +53,7 @@ export default function SongList({ songs }: { songs: SongSummary[] }) {
           <li key={song.id}>
             <Link
               href={`/songs/${song.id}`}
-              className="flex items-baseline gap-3 py-2.5 hover:bg-stone-100 dark:hover:bg-stone-900"
+              className="-mx-3 flex items-baseline gap-3 rounded-md px-3 py-2.5 hover:bg-stone-100 dark:hover:bg-stone-900"
             >
               <span className="font-medium">{song.name}</span>
               {song.hide ? (
