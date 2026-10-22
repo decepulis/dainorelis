@@ -27,6 +27,7 @@ import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useSongList, { SongListItem, useManualItems } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 
 export default function Index() {
   // just a bunch of global state
@@ -90,12 +91,17 @@ export default function Index() {
       />
     );
 
+  // the bar's background appears as the list reaches it, past the forest and the logo
+  const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
+  const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop);
+
   return (
     <>
       <Stack.Screen
         options={{
           headerBackground: () => <HeaderBackground scrollRef={listRef} />,
           headerTitleAlign: 'center',
+          scrollEdgeEffects: topScrollEdgeEffect,
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} titleLayout={titleLayout} center>
               <HeaderLogo headerHeight={headerHeight} />
@@ -113,13 +119,6 @@ export default function Index() {
               )
             : undefined,
         }}
-      />
-      <IndexToolbar
-        listRef={listRef}
-        scrollToSearchOffset={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
-        isFavorites={isFavorites}
-        setIsFavorites={(v) => startTransition(() => setIsFavorites(v))}
-        setSearchText={(text) => startTransition(() => setSearchText(text))}
       />
       <View style={[styles.container, { backgroundColor: wideLayoutMode ? card0 : undefined }]}>
         <Animated.FlatList
@@ -216,7 +215,7 @@ export default function Index() {
         {!isLiquidGlassStyleHeader() && (
           <Search
             scrollRef={listRef}
-            top={logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight}
+            top={listTop}
             isFavorites={isFavorites}
             setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
             isSongFestivalMode={isSongFestivalMode}
@@ -229,6 +228,15 @@ export default function Index() {
           />
         )}
       </View>
+      {/* after the list: UIKit tracks the scroll view at the start of the screen's view hierarchy (for the
+          navigation bar's scroll edge background), and the toolbar's host view would come first */}
+      <IndexToolbar
+        listRef={listRef}
+        scrollToSearchOffset={listTop}
+        isFavorites={isFavorites}
+        setIsFavorites={(v) => startTransition(() => setIsFavorites(v))}
+        setSearchText={(text) => startTransition(() => setSearchText(text))}
+      />
     </>
   );
 }
