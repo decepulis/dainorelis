@@ -7,7 +7,6 @@ import Add from '@expo/material-symbols/add.xml';
 import ContentCopy from '@expo/material-symbols/content_copy.xml';
 import Delete from '@expo/material-symbols/delete.xml';
 import Share from '@expo/material-symbols/share.xml';
-import Reorder from '@expo/material-symbols/swap_vert.xml';
 import Title from '@expo/material-symbols/title.xml';
 import type { SFSymbol } from 'sf-symbols-typescript';
 
@@ -15,7 +14,7 @@ import useNamePrompt from './useNamePrompt';
 import usePlaylists, { Playlist, allSongsId } from './usePlaylists';
 import useStorage from './useStorage';
 
-export type PlaylistActionId = 'reorder' | 'rename' | 'share' | 'duplicate' | 'delete';
+export type PlaylistActionId = 'rename' | 'share' | 'duplicate' | 'delete';
 export type PlaylistAction = {
   id: PlaylistActionId;
   title: string;
@@ -30,16 +29,10 @@ export const createPlaylistIcon = {
   material: Add,
 };
 
-type Options = {
-  /** Reorder: the home screen puts the shown playlist's list in reorder mode */
-  onReorder: (playlistId: string) => void;
-};
-
 /**
- * The home screen's playlist state and what can be done with the shown playlist: Favorites can be reordered
- * and shared, a curated playlist shared and duplicated, a user playlist all of it. Render `namePrompt`.
+ * The home screen's playlist state and what can be done with the shown playlist: Favorites can be shared, a curated playlist shared and duplicated, a user playlist all of it. Render `namePrompt`.
  */
-export default function usePlaylistActions({ onReorder }: Options) {
+export default function usePlaylistActions() {
   const router = useRouter();
   const { t } = useTranslation();
   const { promptName, namePrompt } = useNamePrompt();
@@ -50,9 +43,6 @@ export default function usePlaylistActions({ onReorder }: Options) {
 
   const kind = playlist?.kind;
   const actions: PlaylistAction[] = [
-    kind === 'favorites' || kind === 'user'
-      ? { id: 'reorder' as const, title: t('reorder'), sfSymbol: 'arrow.up.arrow.down' as const, material: Reorder }
-      : null,
     kind === 'user'
       ? {
           id: 'rename' as const,
@@ -85,9 +75,7 @@ export default function usePlaylistActions({ onReorder }: Options) {
 
   const onAction = (id: PlaylistActionId) => {
     if (!playlist) return;
-    if (id === 'reorder') {
-      onReorder(playlist.id);
-    } else if (id === 'share') {
+    if (id === 'share') {
       router.push(`/grojarasciai/${playlist.id}/bendrinti`);
     } else if (id === 'rename') {
       promptName({
