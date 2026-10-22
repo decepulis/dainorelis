@@ -92,7 +92,12 @@ export default function Index() {
   const renderItem = ({ item, index }: { item: SongListItem; index: number }) =>
     item.type === 'header' ? (
       listItems.length > 10 || item.id === 'playlistHeader' ? (
-        <ListHeader title={item.item} background={background} separator={separator} />
+        <ListHeader
+          title={item.item}
+          background={background}
+          separator={separator}
+          large={item.id === 'playlistHeader'}
+        />
       ) : null
     ) : (
       <ListItem

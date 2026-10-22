@@ -39,7 +39,16 @@ export default function Page() {
     ).catch(console.warn);
 
   return (
-    <View style={[styles.container, { paddingBottom: Math.max(inset.bottom, padding * 1.5) }]}>
+    <View
+      style={[
+        styles.container,
+        {
+          paddingBottom:
+            // the iOS sheet already stays clear of the home indicator; Android's runs under the gesture bar
+            process.env.EXPO_OS === 'ios' ? padding * 1.5 : inset.bottom + padding * 1.5,
+        },
+      ]}
+    >
       <View style={styles.titles}>
         <ThemedText bold style={styles.title} numberOfLines={2}>
           {playlist.name}

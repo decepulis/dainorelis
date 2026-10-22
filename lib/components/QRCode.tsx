@@ -32,7 +32,8 @@ type Props = { value: string; size: number; accessibilityLabel?: string; style?:
 export default function QRCode({ value, size, accessibilityLabel, style }: Props) {
   return (
     <Image
-      source={{ uri: `data:image/svg+xml;utf8,${encodeURIComponent(qrSvg(value))}` }}
+      // base64: Android's decoder doesn't read a percent-encoded data URI (the SVG is ASCII, so btoa is enough)
+      source={{ uri: `data:image/svg+xml;base64,${btoa(qrSvg(value))}` }}
       style={[{ width: size, height: size }, style]}
       contentFit="contain"
       accessible
