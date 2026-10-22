@@ -140,6 +140,56 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9
  
    // The below code makes the screen view adapt dimensions provided by the system. We take these
    // into account only when the view is mounted under RNSNavigationController, in which case the
+diff --git a/ios/RNSScreenStack.mm b/ios/RNSScreenStack.mm
+index 5da11964f5932cb44e1131c44a2480803c0a62b5..595e25d231dc9b24a414545872eec7f32488ec65 100644
+--- a/ios/RNSScreenStack.mm
++++ b/ios/RNSScreenStack.mm
+@@ -1137,9 +1137,45 @@ RNS_IGNORE_SUPER_CALL_END
+       }
+     }
+   }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: UIKit (iOS 26+) puts the large title, and so the `largeSubtitleView` the header config
++  // patch sets, inside the screen's scroll view, outside RN's content container. RN's scroll view hit
++  // testing only visits that container's subviews and falls back to the scroll view itself, so a touch
++  // never reaches the subtitle view; hit test it here first.
++  if (@available(iOS 26.0, *)) {
++    UIView *largeSubtitleHitTestResult = [self dainorelis_hitTestLargeSubtitleView:point withEvent:event];
++    if (largeSubtitleHitTestResult != nil) {
++      return largeSubtitleHitTestResult;
++    }
++  }
++#endif
+   return [super hitTest:point withEvent:event];
+ }
+ 
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV && !TARGET_OS_VISION
++- (nullable UIView *)dainorelis_hitTestLargeSubtitleView:(CGPoint)point
++                                               withEvent:(UIEvent *)event API_AVAILABLE(ios(26.0))
++{
++  UIView *subtitleView = _controller.topViewController.navigationItem.largeSubtitleView;
++  if (subtitleView == nil || subtitleView.window != self.window || _controller.transitionCoordinator != nil) {
++    return nil;
++  }
++  // only while it's on screen: not in a hidden or faded-out ancestor (e.g. a collapsed large title)
++  for (UIView *view = subtitleView; view != nil && view != self; view = view.superview) {
++    if (view.hidden || view.alpha < 0.01 || !view.userInteractionEnabled) {
++      return nil;
++    }
++  }
++  // and the navigation bar's own controls (inline title, bar buttons) win where they overlap it
++  UINavigationBar *navigationBar = _controller.navigationBar;
++  if (!navigationBar.hidden &&
++      [navigationBar hitTest:[self convertPoint:point toView:navigationBar] withEvent:event] != nil) {
++    return nil;
++  }
++  return [subtitleView hitTest:[self convertPoint:point toView:subtitleView] withEvent:event];
++}
++#endif
++
+ #if !TARGET_OS_TV && !TARGET_OS_VISION
+ 
+ - (BOOL)isScrollViewPanGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
 index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2cb0b8197 100644
 --- a/ios/RNSScreenStackHeaderConfig.h
@@ -155,19 +205,76 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b7029b64c00 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d55532e394aea48c7eb19be6c9603576a5d3df9 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
-@@ -46,6 +46,8 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +45,65 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+ 
  @end
  
++#if !TARGET_OS_TV
++// dainorelis: holds the pop-up button under a large title (iOS 26+). UIKit stretches the subtitle view
++// across the bar; this keeps the button, its tap target and the menu's anchor at its content size
++@interface RNSDainorelisLargeSubtitleView : UIView
++@property (nonatomic, readonly) UIButton *button;
++@end
++
++@implementation RNSDainorelisLargeSubtitleView
++
++- (instancetype)initWithButton:(UIButton *)button
++{
++  if (self = [super initWithFrame:CGRectZero]) {
++    _button = button;
++    button.translatesAutoresizingMaskIntoConstraints = NO;
++    [self addSubview:button];
++    [NSLayoutConstraint activateConstraints:@[
++      [button.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
++      [button.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor],
++      [button.topAnchor constraintEqualToAnchor:self.topAnchor],
++      [button.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
++    ]];
++  }
++  return self;
++}
++
++// the space beside the button isn't a target
++- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
++{
++  UIView *hitTestResult = [super hitTest:point withEvent:event];
++  return hitTestResult == self ? nil : hitTestResult;
++}
++
++// UIKit labels the subtitle view as a heading with the title; expose just the button instead
++- (BOOL)isAccessibilityElement
++{
++  return NO;
++}
++
++- (NSString *)accessibilityLabel
++{
++  return nil;
++}
++
++- (UIAccessibilityTraits)accessibilityTraits
++{
++  return UIAccessibilityTraitNone;
++}
++
++- (NSArray *)accessibilityElements
++{
++  return @[ _button ];
++}
++
++@end
++#endif
++
  @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
 +// dainorelis
 +- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -235,6 +237,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +293,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -203,7 +310,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +283,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +339,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -308,7 +415,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +629,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +685,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -325,7 +432,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
    return appearance;
  }
  
-@@ -695,7 +831,85 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,7 +887,93 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -394,15 +501,23 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
 +        return updated;
 +      };
 +      buttonConfig.baseForegroundColor = config.largeTitleColor ?: [UIColor secondaryLabelColor];
-+      UIButton *button = [UIButton buttonWithConfiguration:buttonConfig primaryAction:nil];
-+      button.menu = [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
-+                                              menuAction:^(NSString *menuId) {
-+                                                [weakConfig dainorelis_emitTitleMenuPress:menuId];
-+                                              }
-+                                             imageLoader:nil];
-+      button.showsMenuAsPrimaryAction = YES;
-+      button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeading;
-+      navitem.largeSubtitleView = button;
++      UIMenu *menu = [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
++                                               menuAction:^(NSString *menuId) {
++                                                 [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                               }
++                                              imageLoader:nil];
++      // update the button in place, so an open menu stays open (and anchored) across header updates
++      UIButton *button = [navitem.largeSubtitleView isKindOfClass:[RNSDainorelisLargeSubtitleView class]]
++          ? ((RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView).button
++          : nil;
++      if (button == nil) {
++        button = [UIButton buttonWithConfiguration:buttonConfig primaryAction:nil];
++        button.showsMenuAsPrimaryAction = YES;
++        navitem.largeSubtitleView = [[RNSDainorelisLargeSubtitleView alloc] initWithButton:button];
++      } else {
++        button.configuration = buttonConfig;
++      }
++      button.menu = menu;
 +    } else {
 +      navitem.largeSubtitleView = nil;
 +    }
@@ -412,7 +527,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
    navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
                                                  withCurrentItems:navitem.leftBarButtonItems];
    navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
-@@ -830,6 +1044,17 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1108,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -430,7 +545,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..aa1e29bd8845d71994ca833be7448b70
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1078,6 +1303,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1367,12 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);

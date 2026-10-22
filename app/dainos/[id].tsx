@@ -265,11 +265,9 @@ function SongPage({ song }: { song: Song }) {
         >
           {isLargeTitle ? (
             // HIG: brand color in the content layer, not the bar. It reaches up under the
-            // transparent bar and the large title, across the full width. UIKit puts the large title
-            // inside the scroll view, under this content, so let touches through to its variant menu.
+            // transparent bar and the large title, across the full width.
             <View
               style={{
-                pointerEvents: 'none',
                 position: 'absolute',
                 left: 0,
                 right: 0,
