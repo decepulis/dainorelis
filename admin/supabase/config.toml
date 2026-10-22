@@ -14,3 +14,35 @@
 # This lives in `admin/`, not the repo root, so every CLI command runs from
 # there (`cd admin` first, or pass `--workdir admin`).
 project_id = "dainorelis-admin"
+
+# Auth settings for the hosted project. `supabase config push` applies them;
+# properties not declared here are left as they are on the project.
+[auth]
+site_url = "https://admin.dainorelis.app"
+# Editors are invited by hand (see README step 2); nobody signs themselves up.
+enable_signup = false
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = false
+
+# Resend delivers the auth emails. Supabase's built-in mailer only sends to
+# organization members and won't let the templates below be edited.
+[auth.email.smtp]
+enabled = true
+host = "smtp.resend.com"
+port = 465
+user = "resend"
+pass = "env(RESEND_SMTP_KEY)"
+admin_email = "noreply@dainorelis.app"
+sender_name = "Dainorėlis"
+
+# Both links land on /auth/confirm, which spends the one-time token only when
+# the editor clicks Continue, so mail scanners can't use it up (README step 3).
+[auth.email.template.invite]
+subject = "You're invited to edit Dainorėlis"
+content_path = "./supabase/templates/invite.html"
+
+[auth.email.template.recovery]
+subject = "Reset your Dainorėlis password"
+content_path = "./supabase/templates/recovery.html"

@@ -41,27 +41,49 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    workflow has to be on `main` before either works.) It applies every
    migration the project hasn't recorded yet, so a second run is a no-op.
 
-2. **Turn off sign-ups.** Authentication → Sign In / Providers → disable
-   "Allow new users to sign up". There are no roles in this app: anyone who can
-   sign in is an editor, so accounts are created by invitation only
-   (Authentication → Users → Add user → Send invitation). Leave "Allow
-   anonymous sign-ins" off too. Anonymous users also get the `authenticated`
-   role; the `editors_not_anonymous` migration keeps them out of the
-   policies, but there is no reason to rely on that alone.
+   To apply them before the workflow is on `main`, push from your machine with
+   the connection string the Supabase integration puts in the Vercel project:
+   `vercel env pull .env.local`, then from `admin/`,
+   `supabase db push --db-url "$POSTGRES_URL_NON_POOLING"`. The workflow
+   then finds them recorded and does nothing.
 
-3. **Point the auth emails at the app.** The invite and password-reset links
-   land on `/auth/confirm`. The editor clicks **Continue** there, which signs
-   them in and sends them to `/account/password` to choose a password. (The
-   click is what spends the one-time token: mail scanners open every link in
-   a message first, and would otherwise use it up.) Supabase's default
-   templates link to its own verify endpoint instead, so change them:
+2. **Apply the auth settings.** They live in `supabase/config.toml` (the
+   `[auth]` sections) and `supabase/templates/`, and are applied with the
+   Supabase CLI rather than set in the dashboard. From `admin/`, after a
+   one-time `supabase login` in an interactive terminal:
 
-   - Authentication → URL Configuration: set **Site URL** to
-     `https://admin.dainorelis.app`.
-   - Authentication → Emails → **Invite user**: make the link
-     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
-   - Authentication → Emails → **Reset password**: make the link
-     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
+   ```bash
+   export RESEND_SMTP_KEY=re_...   # a Resend "Sending access" key
+   supabase config diff --project-ref <ref>   # preview
+   supabase config push --project-ref <ref>
+   ```
+
+   Properties the file doesn't declare are left as they are on the project.
+   What it sets:
+
+   - **Sign-ups and anonymous sign-ins off.** There are no roles in this app:
+     anyone who can sign in is an editor, so accounts are created by
+     invitation only (Authentication → Users → Add user → Send invitation).
+     Anonymous users also get the `authenticated` role; the
+     `editors_not_anonymous` migration keeps them out of the policies, but
+     there is no reason to rely on that alone.
+   - **Resend as the mailer** (`noreply@dainorelis.app`, domain verified in
+     Resend with its records in Cloudflare). Supabase's built-in mailer only
+     delivers to members of the Supabase organization, sends a few emails an
+     hour, and won't let the templates be edited. `RESEND_SMTP_KEY` is read at
+     push time, so set it for every push (the key isn't committed anywhere).
+   - **Site URL** `https://admin.dainorelis.app`, and the **Invite** and
+     **Reset password** templates.
+
+3. **How the auth emails work.** The invite and password-reset links land on
+   `/auth/confirm`. The editor clicks **Continue** there, which signs them in
+   and sends them to `/account/password` to choose a password. (The click is
+   what spends the one-time token: mail scanners open every link in a message
+   first, and would otherwise use it up.) Supabase's default templates link to
+   its own verify endpoint instead, which is why the templates in
+   `supabase/templates/` link to
+   `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite` (or
+   `type=recovery`).
 
    Both parameters are required, and `type` must be `invite` or `recovery`;
    the page turns any other link away. It needs nothing else: both types go
@@ -70,10 +92,8 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
 
    The links are built from the Site URL, so they always go to production;
    to try the flow against `next dev`, temporarily point the Site URL at
-   `http://localhost:3100`. Supabase's built-in mailer only sends a few emails
-   an hour; configure custom SMTP (Authentication → Emails → SMTP) if that
-   gets in the way. Signed-in editors can change their password from the
-   "Password" link in the header.
+   `http://localhost:3100`. Signed-in editors can change their password from
+   the "Password" link in the header.
 
 4. **Set the environment variables.** See `.env.example`. The Supabase
    integration provides `NEXT_PUBLIC_SUPABASE_URL`,
