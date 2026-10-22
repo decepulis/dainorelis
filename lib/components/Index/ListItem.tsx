@@ -358,6 +358,8 @@ function SwipeActions({
   const primaryStyle = useAnimatedStyle(() => ({
     width: (revealedWidth() / 2) * (1 + armProgress.get()),
   }));
+  // a closed row's actions aren't drawn: their edges would show around a row lifted to be dragged
+  const containerStyle = useAnimatedStyle(() => ({ opacity: Math.abs(translation.get()) < 0.5 ? 0 : 1 }));
   const primaryIconStyle = useAnimatedStyle(() => {
     const width = (revealedWidth() / 2) * (1 + armProgress.get());
     // centred, until armed: then at the leading edge, beside the row
@@ -365,8 +367,8 @@ function SwipeActions({
   });
 
   return (
-    <View
-      style={styles.swipeActions}
+    <Animated.View
+      style={[styles.swipeActions, containerStyle]}
       importantForAccessibility={isRevealed ? 'auto' : 'no-hide-descendants'}
       accessibilityElementsHidden={!isRevealed}
     >
@@ -375,7 +377,7 @@ function SwipeActions({
       <Animated.View style={[styles.swipeActionsFill, { backgroundColor: primaryColor }, primaryStyle]}>
         <Animated.View style={[styles.swipeActionIcon, primaryIconStyle]}>{primary}</Animated.View>
       </Animated.View>
-    </View>
+    </Animated.View>
   );
 }
 
