@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
+import { clampPlaylistName } from '@/lib/constants/playlistName';
+
 export type NamePromptOptions = {
   title: string;
   message?: string;
   defaultValue?: string;
   confirmLabel: string;
-  /** called with the trimmed name; never with a blank one */
+  /** called with the trimmed name, cut to playlistNameMaxLength; never with a blank one */
   onSubmit: (name: string) => void;
 };
 
@@ -18,8 +20,9 @@ export default function useNamePrompt() {
   const { t } = useTranslation();
 
   const promptName = ({ title, message, defaultValue, confirmLabel, onSubmit }: NamePromptOptions) => {
+    // neither UIKit's alert nor the browser's prompt can limit the field's length
     const submit = (value?: string | null) => {
-      const name = value?.trim();
+      const name = value ? clampPlaylistName(value.trim()).trim() : '';
       if (name) onSubmit(name);
     };
     if (process.env.EXPO_OS === 'ios') {

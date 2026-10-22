@@ -1,3 +1,4 @@
+import { clampPlaylistName } from '@/lib/constants/playlistName';
 import songs from '@/songs';
 
 /**
@@ -13,6 +14,8 @@ export const playlistLinkBase = 'https://www.dainorelisapp.com/p';
 
 const idPrefix = 'rec';
 const songIds = new Set(songs.map((song) => song.id));
+// a link from elsewhere can say anything: no playlist needs more songs than the songbook has
+const maxTokens = 1000;
 
 export function playlistUrl(name: string, ids: string[]) {
   const compact = ids.map((id) => (id.startsWith(idPrefix) ? id.slice(idPrefix.length) : id));
@@ -22,9 +25,9 @@ export function playlistUrl(name: string, ids: string[]) {
 /** the playlist a link's `n` and `s` params describe, split into songs this version of the app has and doesn't */
 export function parsePlaylistParams(params: { n?: string | string[]; s?: string | string[] }) {
   const first = (value?: string | string[]) => (Array.isArray(value) ? value[0] : value) ?? '';
-  const name = first(params.n).trim();
+  const name = clampPlaylistName(first(params.n).trim()).trim();
   const tokens = first(params.s)
-    .split(',')
+    .split(',', maxTokens)
     .map((token) => token.trim())
     .filter(Boolean);
   const ids = [...new Set(tokens.map((token) => (songIds.has(token) ? token : `${idPrefix}${token}`)))];

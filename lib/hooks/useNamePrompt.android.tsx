@@ -11,6 +11,8 @@ import {
   useNativeState,
 } from '@expo/ui/jetpack-compose';
 
+import { playlistNameMaxLength } from '@/lib/constants/playlistName';
+
 import { useColorScheme } from './useColorScheme';
 import type { NamePromptOptions } from './useNamePrompt';
 import { useThemeColor } from './useThemeColor';
@@ -74,6 +76,7 @@ function NameDialog({
             onValueChange={setText}
             autoFocus
             singleLine
+            maxLength={playlistNameMaxLength}
             keyboardOptions={{ capitalization: 'sentences', imeAction: 'done' }}
             keyboardActions={{ onDone: submit }}
             colors={{ focusedIndicatorColor: primary, focusedLabelColor: primary, cursorColor: primary }}
