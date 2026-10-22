@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
@@ -8,6 +8,8 @@ import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { Audio } from '../schemas/audio';
 
 const artworkUrl = Asset.fromModule(require('@/assets/images/icon.png')).uri;
+// how long an iOS source may sit unloaded before play treats it as failed and reloads it (see below)
+const iosStalledLoadMs = 4000;
 
 /**
  * The song screen's audio player and lock screen controls. Kept in the screen rather than in
@@ -30,9 +32,14 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
   // but on Android an error raised before this hook subscribes never reaches `status`, and ExoPlayer
   // simply sits idle (it is otherwise only idle with no source). Play then does nothing, so reload
   // the source first.
+  // (expo-audio prepares the source as it creates the player, so a player that hasn't failed is
+  // buffering, ready or ended by the time its status reaches JS, never idle.)
   // On iOS the item's failure arrives as a single status event (often before this hook subscribes)
   // and the next update resets `error` to null, while AVPlayer keeps reporting buffering. So latch
-  // the error, and treat a source that never loaded as possibly failed when play is pressed.
+  // the error, and treat a source still unloaded after a few seconds as possibly failed when play is
+  // pressed. A slow first load is left alone, so pressing play again doesn't restart its download.
+  // The setState calls during render below are deliberate: React's pattern for state derived from
+  // the previous render's (https://react.dev/reference/react/useState#storing-information-from-previous-renders).
   const [iosError, setIosError] = useState(false);
   if (process.env.EXPO_OS === 'ios' && status.error != null && !iosError) setIosError(true);
   if (iosError && status.isLoaded) setIosError(false);
@@ -40,6 +47,11 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
     process.env.EXPO_OS === 'ios'
       ? iosError
       : status.error != null || (process.env.EXPO_OS === 'android' && status.playbackState === 'idle');
+  // when the current source started loading: the player's creation, or the last reload
+  const loadStartedAt = useRef(0);
+  useEffect(() => {
+    loadStartedAt.current = Date.now();
+  }, [player]);
   // Set when the user presses play and cleared once playback starts, so a failure can be explained
   // to them. A screen that merely mounted offline never sets it, so it never alerts.
   const [playRequested, setPlayRequested] = useState(false);
@@ -49,8 +61,11 @@ export default function useSongAudio(title: string, activeMedia: Audio | null) {
       player.pause();
       return;
     }
-    if ((failed || (process.env.EXPO_OS === 'ios' && !status.isLoaded)) && activeMedia) {
+    const iosStalled =
+      process.env.EXPO_OS === 'ios' && !status.isLoaded && Date.now() - loadStartedAt.current > iosStalledLoadMs;
+    if ((failed || iosStalled) && activeMedia) {
       setIosError(false);
+      loadStartedAt.current = Date.now();
       player.replace(activeMedia.URL);
     }
     player.play();
