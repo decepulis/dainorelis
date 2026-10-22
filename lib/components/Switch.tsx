@@ -10,7 +10,9 @@ type Props = {
 
 export default function Switch({ value, onValueChange, accessibilityLabel }: Props) {
   return (
-    <Host matchContents>
+    // the hosting view keeps its SwiftUI content out of the safe area, so as the switch scrolls under a bar it
+    // would hold the switch below the bar instead of letting it scroll on with its row
+    <Host matchContents ignoreSafeArea="all">
       <UISwitch
         value={value}
         onValueChange={onValueChange}
