@@ -196,7 +196,14 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   );
 }
 
-export function ListHeader({ title, background, separator }: { title: string; background: string; separator: string }) {
+type ListHeaderProps = {
+  title: string;
+  background: string;
+  separator: string;
+  /** the playlist's name, above its parts */
+  large?: boolean;
+};
+export function ListHeader({ title, background, separator, large }: ListHeaderProps) {
   return (
     <View
       style={[
@@ -215,7 +222,7 @@ export function ListHeader({ title, background, separator }: { title: string; ba
           },
         ]}
       >
-        <ThemedText bold style={[styles.sectionHeader, styles.text]}>
+        <ThemedText bold style={[styles.sectionHeader, styles.text, large ? styles.largeHeader : null]}>
           {title}
         </ThemedText>
       </View>
@@ -259,6 +266,10 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     fontSize,
+  },
+  largeHeader: {
+    fontSize: 24,
+    lineHeight: 24 * 1.25,
   },
   itemContainer: {
     flexDirection: 'row',

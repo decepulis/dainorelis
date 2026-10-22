@@ -43,6 +43,8 @@ function App({ onLayout }: AppProps) {
               presentation: 'formSheet',
               sheetAllowedDetents: 'fitToContents',
               sheetGrabberVisible: true,
+              // Material's bottom sheet corners; iOS keeps the system's
+              sheetCornerRadius: process.env.EXPO_OS === 'android' ? 28 : undefined,
               headerShown: false,
             }}
           />
