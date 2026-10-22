@@ -75,7 +75,7 @@ export default function Index() {
     actions: playlistActions,
     onAction: onPlaylistAction,
     promptCreatePlaylist,
-    namePrompt,
+    dialogs,
   } = usePlaylistActions();
   const setSelectedPlaylistId = (id: string) => startTransition(() => storeSelectedPlaylistId(id));
   // Favorites and user playlists are always reorderable by dragging (but not their search results); all songs and
@@ -400,7 +400,7 @@ export default function Index() {
         onPlaylistAction={onPlaylistAction}
         setSearchText={(text) => startTransition(() => setSearchText(text))}
       />
-      {namePrompt}
+      {dialogs}
     </>
   );
 }

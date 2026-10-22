@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   AlertDialog,
+  Column,
   Host,
   Text,
   TextButton,
@@ -35,6 +36,7 @@ export default function useNamePrompt() {
 
 function NameDialog({
   title,
+  message,
   defaultValue = '',
   confirmLabel,
   onSubmit,
@@ -69,22 +71,25 @@ function NameDialog({
           <Text style={{ typography: 'headlineSmall' }}>{title}</Text>
         </AlertDialog.Title>
         <AlertDialog.Text>
-          <TextField
-            ref={fieldRef}
-            value={value}
-            selection={selection}
-            onValueChange={setText}
-            autoFocus
-            singleLine
-            maxLength={playlistNameMaxLength}
-            keyboardOptions={{ capitalization: 'sentences', imeAction: 'done' }}
-            keyboardActions={{ onDone: submit }}
-            colors={{ focusedIndicatorColor: primary, focusedLabelColor: primary, cursorColor: primary }}
-          >
-            <TextField.Label>
-              <Text>{t('playlistName')}</Text>
-            </TextField.Label>
-          </TextField>
+          <Column verticalArrangement={{ spacedBy: 16 }}>
+            {message ? <Text>{message}</Text> : null}
+            <TextField
+              ref={fieldRef}
+              value={value}
+              selection={selection}
+              onValueChange={setText}
+              autoFocus
+              singleLine
+              maxLength={playlistNameMaxLength}
+              keyboardOptions={{ capitalization: 'sentences', imeAction: 'done' }}
+              keyboardActions={{ onDone: submit }}
+              colors={{ focusedIndicatorColor: primary, focusedLabelColor: primary, cursorColor: primary }}
+            >
+              <TextField.Label>
+                <Text>{t('playlistName')}</Text>
+              </TextField.Label>
+            </TextField>
+          </Column>
         </AlertDialog.Text>
         <AlertDialog.ConfirmButton>
           <TextButton enabled={!!name} onClick={submit} colors={{ contentColor: primary }}>

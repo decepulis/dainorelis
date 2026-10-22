@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { Alert } from 'react-native';
 
 import { useRouter } from 'expo-router';
 
@@ -10,6 +9,7 @@ import Share from '@expo/material-symbols/share.xml';
 import Title from '@expo/material-symbols/title.xml';
 import type { SFSymbol } from 'sf-symbols-typescript';
 
+import useConfirm from './useConfirm';
 import useNamePrompt from './useNamePrompt';
 import usePlaylists, { Playlist, allSongsId } from './usePlaylists';
 import useStorage from './useStorage';
@@ -30,12 +30,13 @@ export const createPlaylistIcon = {
 };
 
 /**
- * The home screen's playlist state and what can be done with the shown playlist: Favorites can be shared, a curated playlist shared and duplicated, a user playlist all of it. Render `namePrompt`.
+ * The home screen's playlist state and what can be done with the shown playlist: Favorites can be shared, a curated playlist shared and duplicated, a user playlist all of it. Render `dialogs`.
  */
 export default function usePlaylistActions() {
   const router = useRouter();
   const { t } = useTranslation();
   const { promptName, namePrompt } = useNamePrompt();
+  const { confirm, confirmDialog } = useConfirm();
   const { getPlaylist, createPlaylist, renamePlaylist, deletePlaylist } = usePlaylists();
   const { value: selectedPlaylistId, setValue: setSelectedPlaylistId } = useStorage('selectedPlaylistId');
   // a deleted playlist (or a curated one a release retired) falls back to all songs
@@ -88,20 +89,16 @@ export default function usePlaylistActions() {
       const newId = createPlaylist(playlist.name, playlist.songIds);
       if (newId) setSelectedPlaylistId(newId);
     } else if (id === 'delete') {
-      const title = t('deletePlaylistTitle', { name: playlist.name });
-      const remove = () => {
-        setSelectedPlaylistId(allSongsId);
-        deletePlaylist(playlist.id);
-      };
-      // react-native-web's Alert does nothing
-      if (process.env.EXPO_OS === 'web') {
-        if (window.confirm(`${title}\n${t('deletePlaylistMessage')}`)) remove();
-        return;
-      }
-      Alert.alert(title, t('deletePlaylistMessage'), [
-        { text: t('cancel'), style: 'cancel' },
-        { text: t('deletePlaylist'), style: 'destructive', onPress: remove },
-      ]);
+      confirm({
+        title: t('deletePlaylistTitle', { name: playlist.name }),
+        message: t('deletePlaylistMessage'),
+        confirmLabel: t('deletePlaylist'),
+        destructive: true,
+        onConfirm: () => {
+          setSelectedPlaylistId(allSongsId);
+          deletePlaylist(playlist.id);
+        },
+      });
     }
   };
 
@@ -125,6 +122,12 @@ export default function usePlaylistActions() {
     actions,
     onAction,
     promptCreatePlaylist,
-    namePrompt,
+    /** the name prompt's and the delete confirmation's dialogs, where a platform renders them */
+    dialogs: (
+      <>
+        {namePrompt}
+        {confirmDialog}
+      </>
+    ),
   };
 }
