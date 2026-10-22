@@ -30,7 +30,7 @@ import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu, { SongDetailToolbar } from '@/lib/components/SongMenu';
+import SongMenu, { SongDetailToolbar, useSongOverflowMenu } from '@/lib/components/SongMenu';
 import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
@@ -161,12 +161,13 @@ function SongPage({ song }: { song: Song }) {
   // so the nav title is always the song and the variant always its subtitle
   const isLargeTitle = isLiquidGlassStyleHeader() && showLyrics;
   const showSongTitle = isLargeTitle || !showLyrics || isPastTitle;
+  const overflowMenu = useSongOverflowMenu(song, hasChords);
   const variantTitle = (variant: LyricsType | PDFs) =>
     i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'];
   const nativeHeader = {
     title: showSongTitle ? title : (variantName ?? ''),
     headerConfig: {
-      // UIKit would rather fold the heart and ⋯ into an overflow menu than truncate a long subtitle
+      // keep a long variant name from crowding the title and the bar buttons
       subtitle: showSongTitle && variantName ? truncate(variantName, 28) : undefined,
       titleMenu: hasMultipleVariants
         ? {
@@ -181,6 +182,9 @@ function SongPage({ song }: { song: Song }) {
           }
         : undefined,
       onPressTitleMenuItem: (e: { nativeEvent: { menuId: string } }) => setActiveVariantId(e.nativeEvent.menuId),
+      // the song's other actions are in UIKit's overflow menu; pinned past its ⋯ button, the heart never joins them
+      ...overflowMenu,
+      pinsTrailingItems: true,
     },
   };
 
@@ -254,7 +258,7 @@ function SongPage({ song }: { song: Song }) {
             : undefined,
         }}
       />
-      <SongDetailToolbar song={song} hasChords={hasChords} isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
+      <SongDetailToolbar isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
       {showLyrics ? (
         <ScrollViewWithHeader
           ref={scrollRef}
