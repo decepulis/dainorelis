@@ -34,12 +34,14 @@ export const isLiquidGlassStyleHeader = () => isLiquidGlassAvailable();
 
 type HeaderBackgroundProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
+  /** the screen's own scroll offset, kept up to date here too (see useScrollOffset's providedOffset) */
+  scrollOffset?: SharedValue<number>;
   opaque?: boolean;
 };
 
-export function HeaderBackground({ scrollRef, opaque }: HeaderBackgroundProps) {
+export function HeaderBackground({ scrollRef, scrollOffset: providedScrollOffset, opaque }: HeaderBackgroundProps) {
   // @ts-expect-error useScrollOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollOffset(scrollRef ?? null);
+  const scrollOffset = useScrollOffset(scrollRef ?? null, providedScrollOffset);
 
   const headerStyle = useAnimatedStyle(() => ({
     opacity: opaque ? 1 : interpolate(scrollOffset.get(), [0, 40], [0, 1], Extrapolation.CLAMP),
@@ -65,6 +67,8 @@ const subtitleLineHeight = 1.25;
 
 type HeaderTitleProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
+  /** the screen's own scroll offset, kept up to date here too (see useScrollOffset's providedOffset) */
+  scrollOffset?: SharedValue<number>;
   titleLayout?: SharedValue<LayoutRectangle | null>;
   showTitle?: boolean;
   children?: React.ReactNode;
@@ -80,6 +84,7 @@ type HeaderTitleProps = {
 };
 export const HeaderTitle = ({
   scrollRef,
+  scrollOffset: providedScrollOffset,
   titleLayout,
   showTitle,
   children,
@@ -95,7 +100,7 @@ export const HeaderTitle = ({
   const spring = { ...springConfig, reduceMotion };
 
   // @ts-expect-error useScrollOffset doesn't know this works with flatlist
-  const scrollOffset = useScrollOffset(scrollRef ?? null);
+  const scrollOffset = useScrollOffset(scrollRef ?? null, providedScrollOffset);
 
   const hasSubtitleOrVariantName = !!subtitle || !!variantName;
   const showSubtitle = !!subtitle && !variantName;

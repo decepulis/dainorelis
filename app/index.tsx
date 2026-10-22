@@ -1,7 +1,7 @@
 import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
-import Animated, { useAnimatedRef, useScrollOffset, useSharedValue } from 'react-native-reanimated';
+import { FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -30,7 +30,7 @@ import {
   RowPlaylist,
   listItemHeight,
 } from '@/lib/components/Index/ListItem';
-import Search, { IndexToolbar, ReorderDoneBar } from '@/lib/components/Index/Search';
+import Search, { IndexToolbar } from '@/lib/components/Index/Search';
 import ThemedText from '@/lib/components/ThemedText';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
@@ -42,10 +42,10 @@ import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 
-// reorder mode: a lifted row stays opaque (the default fades it) and keeps the default slight grow
+// a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
-// the Done button's height, which the hint below the songs stays clear of
-const doneBarHeight = 44;
+// the bottom bar's buttons, which the hint below a reorderable playlist stays clear of
+const bottomBarHeight = 44;
 // defined before the component: the drag worklets capture it, and React Compiler may hoist them out of it
 const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
@@ -62,21 +62,10 @@ export default function Index() {
   const { t } = useTranslation();
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
-  const scrollOffset = useScrollOffset(listRef);
-  // the list is swapped for a reorderable one in reorder mode; the new one opens where the old one was
-  const [swapScrollOffset, setSwapScrollOffset] = useState(0);
+  // the list's scroll offset, shared by the header's scroll effects: a list that replaces another (a reorderable
+  // playlist's, all songs') starts at the top without a scroll event, so it's reset here
+  const scrollOffset = useSharedValue(0);
   const [searchText, setSearchText] = useState('');
-  // the playlist in reorder mode: it ends by itself if another playlist is shown
-  const [reorderingPlaylistId, setReorderingPlaylistId] = useState<string | null>(null);
-  const startReordering = (playlistId: string) => {
-    setSearchText('');
-    setSwapScrollOffset(scrollOffset.get());
-    setReorderingPlaylistId(playlistId);
-  };
-  const endReordering = () => {
-    setSwapScrollOffset(scrollOffset.get());
-    setReorderingPlaylistId(null);
-  };
 
   // list state: the selected playlist is remembered across launches
   const {
@@ -87,11 +76,13 @@ export default function Index() {
     onAction: onPlaylistAction,
     promptCreatePlaylist,
     namePrompt,
-  } = usePlaylistActions({ onReorder: startReordering });
+  } = usePlaylistActions();
   const setSelectedPlaylistId = (id: string) => startTransition(() => storeSelectedPlaylistId(id));
-  // Favorites and user playlists can be reordered; curated ones can't
-  const isReordering = !!playlist && playlist.kind !== 'curated' && reorderingPlaylistId === playlist.id;
-  const listItems = useSongList({ playlist, searchText: isReordering ? '' : searchText });
+  // Favorites and user playlists are always reorderable by dragging (but not their search results); all songs and
+  // curated playlists aren't
+  const isReorderable = playlist?.kind === 'favorites' || playlist?.kind === 'user';
+  const isSearching = searchText.length > 0;
+  const listItems = useSongList({ playlist, searchText });
   // what the rows show and their long-press menu toggles, worked out here once rather than in every row
   const { favorites, user, toggleSong, setSongIds } = usePlaylists();
   const favoriteIds = new Set(favorites.songIds);
@@ -116,11 +107,16 @@ export default function Index() {
   useEffect(() => {
     if (shownPlaylistId.current === selectedPlaylistId) return;
     shownPlaylistId.current = selectedPlaylistId;
-    // another playlist ends reorder mode, and the list that replaces the reorderable one starts at the top too
-    setReorderingPlaylistId(null);
-    setSwapScrollOffset(0);
     listRef.current?.scrollToOffset({ offset: 0, animated: !isReduceMotionEnabled });
   }, [selectedPlaylistId, listRef, isReduceMotionEnabled]);
+  // each reorderable playlist gets a fresh list (keyed below), and the FlatList comes back fresh after one
+  const listKey = isReorderable ? playlist.id : 'flatList';
+  const shownListKey = useRef(listKey);
+  useEffect(() => {
+    if (shownListKey.current === listKey) return;
+    shownListKey.current = listKey;
+    scrollOffset.set(0);
+  }, [listKey, scrollOffset]);
   const titleLayout = useSharedValue<LayoutRectangle | null>(null);
   const calculateTitleHeight = (event: LayoutChangeEvent) => {
     titleLayout.set(event.nativeEvent.layout);
@@ -165,11 +161,11 @@ export default function Index() {
       />
     );
 
-  // reorder mode: the playlist's songs only (no search, no section headers), saved as they move. Songs since removed
-  // from the songbook stay in the playlist, out of sight, at the end
+  // a reorderable playlist: its songs (no section headers), saved as they move. Songs since removed from the
+  // songbook stay in the playlist, out of sight, at the end
   const reorderableItems = listItems.filter((item) => item.type === 'song');
   const moveSong = (from: number, to: number) => {
-    if (!playlist || to < 0 || to >= reorderableItems.length || from === to) return;
+    if (!playlist || isSearching || to < 0 || to >= reorderableItems.length || from === to) return;
     const shownIds = reorderableItems.map((item) => item.id);
     const shown = new Set(shownIds);
     const hiddenIds = playlist.songIds.filter((id) => !shown.has(id));
@@ -184,24 +180,17 @@ export default function Index() {
         separator={separator}
         isLast={index === reorderableItems.length - 1}
         isFavorite={favoriteIds.has(item.item.id)}
+        userPlaylists={userPlaylists}
+        toggleSong={toggleSong}
+        shownUserPlaylistId={userPlaylists.some((p) => p.id === selectedPlaylistId) ? selectedPlaylistId : undefined}
+        onNewPlaylistWithSong={(songId) => promptCreatePlaylist([songId])}
         onMoveBy={(delta) => moveSong(index, index + delta)}
       />
     ) : null;
 
-  // Android's back button ends reorder mode before it leaves the app
-  useEffect(() => {
-    if (!isReordering) return;
-    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-      setSwapScrollOffset(scrollOffset.get());
-      setReorderingPlaylistId(null);
-      return true;
-    });
-    return () => subscription.remove();
-  }, [isReordering, scrollOffset]);
-
   // the bar's background appears as the list reaches it, past the forest and the logo
   const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
-  const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop);
+  const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop, scrollOffset);
 
   const contentContainerStyle = {
     paddingLeft: inset.left,
@@ -302,14 +291,9 @@ export default function Index() {
         >
           {playlist ? <EmptyPlaylist isSearch={searchText.length > 0} /> : <NoHits />}
         </View>
-      ) : isReordering ? (
-        // no drag handles, so a word on how; clear of the Done button below it
-        <ThemedText
-          style={[
-            styles.reorderHint,
-            { paddingBottom: isLiquidGlassStyleHeader() ? padding : padding + doneBarHeight },
-          ]}
-        >
+      ) : isReorderable && !isSearching ? (
+        // no drag handles, so a word on how; clear of the bottom bar's buttons
+        <ThemedText style={[styles.reorderHint, { paddingBottom: inset.bottom + padding + bottomBarHeight }]}>
           {t('reorderHint')}
         </ThemedText>
       ) : null}
@@ -320,11 +304,11 @@ export default function Index() {
     <>
       <Stack.Screen
         options={{
-          headerBackground: () => <HeaderBackground scrollRef={listRef} />,
+          headerBackground: () => <HeaderBackground scrollRef={listRef} scrollOffset={scrollOffset} />,
           headerTitleAlign: 'center',
           scrollEdgeEffects: topScrollEdgeEffect,
           headerTitle: () => (
-            <HeaderTitle scrollRef={listRef} titleLayout={titleLayout} center>
+            <HeaderTitle scrollRef={listRef} scrollOffset={scrollOffset} titleLayout={titleLayout} center>
               <HeaderLogo headerHeight={headerHeight} />
             </HeaderTitle>
           ),
@@ -342,17 +326,19 @@ export default function Index() {
         }}
       />
       <View style={[styles.container, { backgroundColor: wideLayoutMode ? card0 : undefined }]}>
-        {isReordering ? (
+        {isReorderable ? (
           <ReorderableList
+            // a fresh list for each playlist, starting from the top
+            key={listKey}
             // the reorderable list registers itself with listRef (a callback ref), so the header's scroll effects
-            // follow it
+            // and search's scrolling follow it
             ref={listRef as unknown as React.Ref<FlatList<SongListItem>>}
             data={reorderableItems}
             keyExtractor={(item) => item.id}
             renderItem={renderReorderableItem}
-            // every row laid out, so a dragged row can travel the whole playlist
-            initialNumToRender={reorderableItems.length}
-            contentOffset={{ x: 0, y: swapScrollOffset }}
+            // search results are a filtered view, so they stay put
+            dragEnabled={!isSearching}
+            keyboardDismissMode="on-drag"
             contentContainerStyle={contentContainerStyle}
             ListHeaderComponent={
               <>
@@ -384,18 +370,12 @@ export default function Index() {
             data={displayItems}
             renderItem={renderItem}
             keyboardDismissMode="on-drag"
-            contentOffset={{ x: 0, y: swapScrollOffset }}
-            // back from reorder mode, enough rows to reach that offset, or the scroll view clamps it
-            initialNumToRender={Math.max(10, Math.ceil((swapScrollOffset + height) / listItemHeight))}
             contentContainerStyle={contentContainerStyle}
             ListHeaderComponent={listHeader}
             ListFooterComponent={listFooter}
           />
         )}
-        {/* Liquid Glass gets IndexToolbar instead, with Done in reorder mode */}
-        {isLiquidGlassStyleHeader() ? null : isReordering ? (
-          <ReorderDoneBar onDone={endReordering} />
-        ) : (
+        {!isLiquidGlassStyleHeader() && (
           <Search
             scrollRef={listRef}
             top={listTop}
@@ -419,8 +399,6 @@ export default function Index() {
         playlistActions={playlistActions}
         onPlaylistAction={onPlaylistAction}
         setSearchText={(text) => startTransition(() => setSearchText(text))}
-        isReordering={isReordering}
-        onDoneReordering={endReordering}
       />
       {namePrompt}
     </>

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PixelRatio, Pressable, StyleSheet, View } from 'react-native';
+import { type AccessibilityActionEvent, PixelRatio, StyleSheet, View } from 'react-native';
 import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
 import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { useReorderableDrag } from 'react-native-reorderable-list';
@@ -28,6 +28,8 @@ const newPlaylistActionId = 'newPlaylist';
 // the system's grey and red for swipe actions, beside the brand-green heart
 const addColor = '#8e8e93';
 const removeColor = '#ff3b30';
+// how long a reorderable row is held before it lifts to be dragged
+const reorderLongPressMs = 250;
 
 /** a user playlist, for the long-press menu: the list builds these once, not every row */
 export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
@@ -45,6 +47,15 @@ type Props = {
   /** the user playlist the list shows, if any: its rows offer Remove instead of Add to playlist */
   shownUserPlaylistId?: string;
   onNewPlaylistWithSong: (songId: string) => void;
+  /**
+   * in a reorderable list: holding the row lifts it to be dragged (instead of the preview and its menu), and
+   * screen readers get Move up / Move down
+   */
+  reorder?: {
+    onDrag: () => void;
+    /** moves the song a row up (-1) or down (1) */
+    onMoveBy: (delta: number) => void;
+  };
 };
 export function ListItem({
   item,
@@ -57,6 +68,7 @@ export function ListItem({
   toggleSong,
   shownUserPlaylistId,
   onNewPlaylistWithSong,
+  reorder,
 }: Props) {
   const { t } = useTranslation();
   const { title, subtitle } = useTitle(item);
@@ -137,45 +149,65 @@ export function ListItem({
       <ReanimatedSwipeable ref={swipeableRef} renderRightActions={renderRightActions} overshootRight={false}>
         <Link href={`/dainos/${item.id}`} asChild>
           <Link.Trigger>
-            <Touchable {...rowPressFeedback}>
+            <Touchable
+              {...rowPressFeedback}
+              {...(reorder
+                ? {
+                    onLongPress: reorder.onDrag,
+                    delayLongPress: reorderLongPressMs,
+                    accessibilityActions: [
+                      { name: 'moveUp', label: t('moveUp') },
+                      { name: 'moveDown', label: t('moveDown') },
+                    ],
+                    onAccessibilityAction: ({ nativeEvent }: AccessibilityActionEvent) =>
+                      reorder.onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1),
+                  }
+                : null)}
+            >
               <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
             </Touchable>
           </Link.Trigger>
-          <Link.Preview
-            style={{
-              backgroundColor: background,
-              paddingHorizontal: padding,
-              paddingVertical: padding * 1.5,
-              width: 340,
-              height: 440,
-            }}
-          >
-            <View style={{ marginBottom: 20, gap: 4 }}>
-              <ThemedText bold style={{ fontSize: 22 }}>
-                {title}
-              </ThemedText>
-              {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
-              {isLyrics(firstLyrics) ? <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown> : null}
-            </View>
-          </Link.Preview>
-          <Link.Menu>
-            <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
-              {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-            </Link.MenuAction>
-            {userPlaylists.length ? (
-              <Link.Menu title={t('addToPlaylist')} icon="text.badge.plus">
-                {userPlaylists.map((playlist) => (
-                  <Link.MenuAction
-                    key={playlist.id}
-                    isOn={playlist.songIds.has(item.id)}
-                    onPress={() => toggleSong(playlist.id, item.id)}
-                  >
-                    {playlist.name}
-                  </Link.MenuAction>
-                ))}
-              </Link.Menu>
-            ) : null}
-          </Link.Menu>
+          {reorder ? null : (
+            <Link.Preview
+              style={{
+                backgroundColor: background,
+                paddingHorizontal: padding,
+                paddingVertical: padding * 1.5,
+                width: 340,
+                height: 440,
+              }}
+            >
+              <View style={{ marginBottom: 20, gap: 4 }}>
+                <ThemedText bold style={{ fontSize: 22 }}>
+                  {title}
+                </ThemedText>
+                {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
+                {isLyrics(firstLyrics) ? (
+                  <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown>
+                ) : null}
+              </View>
+            </Link.Preview>
+          )}
+          {reorder ? null : (
+            <Link.Menu>
+              <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
+                {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
+              </Link.MenuAction>
+              {userPlaylists.length ? (
+                <Link.Menu title={t('addToPlaylist')} icon="text.badge.plus">
+                  {userPlaylists.map((playlist) => (
+                    <Link.MenuAction
+                      key={playlist.id}
+                      isOn={playlist.songIds.has(item.id)}
+                      onPress={() => toggleSong(playlist.id, item.id)}
+                    >
+                      {playlist.name}
+                    </Link.MenuAction>
+                  ))}
+                </Link.Menu>
+              ) : null}
+            </Link.Menu>
+          )}
         </Link>
       </ReanimatedSwipeable>
       {!isLast ? <RowSeparator separator={separator} /> : null}
@@ -276,54 +308,13 @@ function RowSeparator({ separator }: { separator: string }) {
   );
 }
 
-/** how long a row is held before it lifts to be dragged */
-export const reorderLongPressMs = 250;
-
-type ReorderableListItemProps = {
-  item: Song;
-  primary: string;
-  background: string;
-  separator: string;
-  isLast?: boolean;
-  isFavorite: boolean;
-  /** moves the song a row up (-1) or down (1), for screen readers */
-  onMoveBy: (delta: number) => void;
-};
-/**
- * A row in reorder mode: no link, preview, menu or swipe actions. Holding it lifts it to be dragged; screen
- * readers get Move up / Move down actions instead.
- */
+/** a ListItem in a react-native-reorderable-list: holding it starts the drag */
 export function ReorderableListItem({
-  item,
-  primary,
-  background,
-  separator,
-  isLast,
-  isFavorite,
   onMoveBy,
-}: ReorderableListItemProps) {
-  const { t } = useTranslation();
+  ...props
+}: Omit<Props, 'reorder'> & { onMoveBy: (delta: number) => void }) {
   const drag = useReorderableDrag();
-  const { title, subtitle } = useTitle(item);
-
-  return (
-    <View style={[styles.outerContainer, { backgroundColor: background }]}>
-      <Pressable
-        onLongPress={drag}
-        delayLongPress={reorderLongPressMs}
-        accessible
-        accessibilityLabel={subtitle ? `${title}, ${subtitle}` : title}
-        accessibilityActions={[
-          { name: 'moveUp', label: t('moveUp') },
-          { name: 'moveDown', label: t('moveDown') },
-        ]}
-        onAccessibilityAction={({ nativeEvent }) => onMoveBy(nativeEvent.actionName === 'moveUp' ? -1 : 1)}
-      >
-        <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
-      </Pressable>
-      {!isLast ? <RowSeparator separator={separator} /> : null}
-    </View>
-  );
+  return <ListItem {...props} reorder={{ onDrag: drag, onMoveBy }} />;
 }
 
 type ListHeaderProps = {
