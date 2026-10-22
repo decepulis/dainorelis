@@ -317,7 +317,7 @@ export default function Index() {
                 <HeaderButtonContainer>
                   <Link href="/nustatymai" asChild>
                     <Button role="button" accessibilityLabel={t('settingsTitle')}>
-                      <FontAwesome6 name="circle-info" iconStyle="solid" size={17} color="#fff" />
+                      <FontAwesome6 name="info" iconStyle="solid" size={16} color="#fff" />
                     </Button>
                   </Link>
                 </HeaderButtonContainer>

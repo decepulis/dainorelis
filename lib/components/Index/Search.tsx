@@ -468,7 +468,7 @@ export function IndexToolbar({
         <Stack.Toolbar.SearchBarSlot />
       </Stack.Toolbar>
       <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Button icon="info.circle" onPress={() => router.navigate('/nustatymai')}>
+        <Stack.Toolbar.Button icon="info" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}
         </Stack.Toolbar.Button>
       </Stack.Toolbar>
