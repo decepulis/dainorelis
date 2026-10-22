@@ -89,7 +89,9 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   title around Stack.Toolbar buttons (header edge insets); adds the `titleMenu` (native title menu
   and subtitle) and `overflowMenu` (song actions in UIKit's overflow menu) header props; holds the
   variant pop-up button under the large title (`largeSubtitleView`, with hit testing); keeps a large
-  title with a subtitle expanded while its screen is pushed; makes the inline subtitle readable;
+  title expanded while its screen is pushed (UIKit underestimates its height, from a subtitle or the
+  caron of š/ž); shrinks a large title too wide for the bar (to 28pt at the least) instead of
+  truncating it; makes the inline subtitle readable;
   and makes large title colors follow the bar's scroll state.
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
   switch, Fast Refresh) don't delete each other's file.
