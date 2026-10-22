@@ -33,6 +33,113 @@ index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6e
  #endif // defined(__cplusplus)
  
  @end
+diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..e1faa73749504d8f0bcb62a4c4fdffa9908ebde5 100644
+--- a/ios/RNSScreen.mm
++++ b/ios/RNSScreen.mm
+@@ -1465,6 +1465,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+   BOOL _shouldNotify;
+   BOOL _isRemovedFromParent;
+   BOOL _hasNotifiedDismissed;
++  // dainorelis: see -dainorelis_keepLargeTitleExpandedDuringPush
++  BOOL _dainorelisIsBeingPushed;
++  CGFloat _dainorelisPulledBarHeight;
+ }
+ 
+ #pragma mark - Common
+@@ -1485,6 +1488,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewWillAppear:(BOOL)animated
+ {
+   [super viewWillAppear:animated];
++  // dainorelis
++  _dainorelisIsBeingPushed = self.isMovingToParentViewController && self.transitionCoordinator != nil;
++  _dainorelisPulledBarHeight = 0;
+   if (!_isSwiping) {
+     [self.screenView notifyWillAppear];
+     if (self.transitionCoordinator.isInteractive) {
+@@ -1549,6 +1555,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewDidAppear:(BOOL)animated
+ {
+   [super viewDidAppear:animated];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_releasePulledContent]; // dainorelis
++#endif
+   if (!_isSwiping || _shouldNotify) {
+     // we are going forward or dismissing without swipe
+     // or successfully swiped back
+@@ -1586,9 +1595,72 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+   _shouldNotify = YES;
+ }
+ 
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++// PATCH(dainorelis): keep a large title with a subtitle expanded while its screen is pushed (iOS 26+).
++//
++// During a push UIKit first lays the bar out with an estimated large title height that leaves out the
++// subtitle under the large title (`navigationItem.subtitle`, or the `largeSubtitleView` the header config
++// patch sets). The scroll view is put at the top for that estimate. When the real, taller title is
++// measured, the content's offset no longer matches the top; UIKit reads it as the content having been
++// scrolled and collapses the title for the whole transition, and the screen arrives with an inline title.
++//
++// So once the estimate is applied, pull the content down past the top, as a pull-down gesture would:
++// UIKit then measures the full large title, and we put the content back at the top it measured. Both
++// happen in layout passes before the transition draws its first frame.
++- (void)dainorelis_keepLargeTitleExpandedDuringPush
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    if (!_dainorelisIsBeingPushed) {
++      return;
++    }
++    UINavigationItem *navigationItem = self.navigationItem;
++    if (navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways ||
++        (navigationItem.subtitle.length == 0 && navigationItem.largeSubtitle.length == 0 &&
++         navigationItem.largeSubtitleView == nil)) {
++      return;
++    }
++    UIScrollView *scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self.view];
++    if (scrollView == nil) {
++      return;
++    }
++    const CGFloat barHeight = self.navigationController.navigationBar.frame.size.height;
++    const CGFloat top = -scrollView.adjustedContentInset.top;
++    if (_dainorelisPulledBarHeight == 0) {
++      // the scroll view sits at the top of the estimated bar
++      if (scrollView.adjustedContentInset.top > 0 && fabs(scrollView.contentOffset.y - top) < 0.5) {
++        _dainorelisPulledBarHeight = barHeight;
++        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top - self.view.bounds.size.height / 2);
++      }
++    } else if (fabs(barHeight - _dainorelisPulledBarHeight) > 0.5) {
++      // the bar has its measured height
++      [self dainorelis_releasePulledContent];
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
++
++- (void)dainorelis_releasePulledContent
++{
++  _dainorelisIsBeingPushed = NO;
++  if (_dainorelisPulledBarHeight == 0) {
++    return;
++  }
++  _dainorelisPulledBarHeight = 0;
++  UIScrollView *scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self.view];
++  const CGFloat top = -scrollView.adjustedContentInset.top;
++  if (scrollView != nil && scrollView.contentOffset.y < top) {
++    scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top);
++  }
++}
++#endif // !TARGET_OS_TV && !TARGET_OS_VISION
++
+ - (void)viewDidLayoutSubviews
+ {
+   [super viewDidLayoutSubviews];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_keepLargeTitleExpandedDuringPush];
++#endif
+ 
+   // The below code makes the screen view adapt dimensions provided by the system. We take these
+   // into account only when the view is mounted under RNSNavigationController, in which case the
 diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
 index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..72e895bf6ca62347fa3f95ae030b5cd2cb0b8197 100644
 --- a/ios/RNSScreenStackHeaderConfig.h
