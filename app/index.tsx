@@ -11,21 +11,24 @@ import { useHeaderHeight } from 'expo-router/react-navigation';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
-import Button from '@/lib/components/Button';
+import Button, { styles as buttonStyles } from '@/lib/components/Button';
 import {
   HeaderBackground,
   HeaderButtonContainer,
   HeaderTitle,
   isLiquidGlassStyleHeader,
 } from '@/lib/components/Header';
-import { NoFavorites, NoHits } from '@/lib/components/Index/Errors';
+import { EmptyPlaylist, NoHits } from '@/lib/components/Index/Errors';
 import HeaderLogo from '@/lib/components/Index/HeaderLogo';
 import { ListHeader, ListItem, listItemHeight } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
+import MenuView from '@/lib/components/MenuView';
+import SystemView from '@/lib/components/SystemView';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
-import useSongList, { SongListItem, useManualItems } from '@/lib/hooks/useSongList';
+import usePlaylistActions, { PlaylistActionId } from '@/lib/hooks/usePlaylistActions';
+import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 
@@ -41,16 +44,24 @@ export default function Index() {
   const separator = useThemeColor('separator');
   const { t } = useTranslation();
 
-  // list state
-  const [isFavorites, setIsFavorites] = useState(false);
-  const [isSongFestivalMode, setIsSongFestivalMode] = useState(false);
+  // list state: the selected playlist is remembered across launches
+  const {
+    playlist,
+    selectedPlaylistId,
+    setSelectedPlaylistId: storeSelectedPlaylistId,
+    actions: playlistActions,
+    onAction: onPlaylistAction,
+    promptCreatePlaylist,
+    namePrompt,
+  } = usePlaylistActions();
+  const setSelectedPlaylistId = (id: string) => startTransition(() => storeSelectedPlaylistId(id));
   const [searchText, setSearchText] = useState('');
-  const listItems = useSongList({ isFavorites, isSongFestivalMode, searchText });
-  const manualListItems = useManualItems({ isSongFestivalMode });
+  const listItems = useSongList({ playlist, searchText });
 
-  const showPlaylistHeader = isLiquidGlassStyleHeader() && isFavorites;
+  // Liquid Glass has no pill to name the playlist, so the list does
+  const showPlaylistHeader = isLiquidGlassStyleHeader() && !!playlist;
   const displayItems = showPlaylistHeader
-    ? [{ type: 'header' as const, item: t('favoriteSongs'), id: 'playlistHeader' }, ...listItems]
+    ? [{ type: 'header' as const, item: playlist.name, id: 'playlistHeader' }, ...listItems]
     : listItems;
 
   // some heights and stuff we need to know for layout and animation. The list sits inside the
@@ -112,6 +123,27 @@ export default function Index() {
           headerRight: !isLiquidGlassStyleHeader()
             ? () => (
                 <HeaderButtonContainer>
+                  {playlistActions.length ? (
+                    <MenuView
+                      accessibilityLabel={t('playlistActions')}
+                      actions={playlistActions.map((action) => ({
+                        id: action.id,
+                        title: action.title,
+                        image: process.env.EXPO_OS === 'ios' ? action.sfSymbol : action.material,
+                        attributes: { destructive: action.destructive },
+                      }))}
+                      onPressAction={({ nativeEvent }) => onPlaylistAction(nativeEvent.event as PlaylistActionId)}
+                    >
+                      <SystemView shadow={false} style={buttonStyles.button}>
+                        <FontAwesome6
+                          name={process.env.EXPO_OS === 'android' ? 'ellipsis-vertical' : 'ellipsis'}
+                          iconStyle="solid"
+                          size={18}
+                          color="#fff"
+                        />
+                      </SystemView>
+                    </MenuView>
+                  ) : null}
                   <Link href="/nustatymai" asChild>
                     <Button role="button" accessibilityLabel={t('settingsTitle')}>
                       <FontAwesome6 name="sliders" iconStyle="solid" size={16} color="#fff" />
@@ -218,7 +250,7 @@ export default function Index() {
                 borderBottomRightRadius: padding,
               }}
             >
-              {listItems.length === manualListItems.length ? (
+              {listItems.length === 0 ? (
                 <View
                   style={[
                     styles.listFooter,
@@ -227,7 +259,7 @@ export default function Index() {
                     },
                   ]}
                 >
-                  {isFavorites ? <NoFavorites isSearch={searchText.length > 0} /> : <NoHits />}
+                  {playlist ? <EmptyPlaylist isSearch={searchText.length > 0} /> : <NoHits />}
                 </View>
               ) : null}
             </View>
@@ -237,14 +269,9 @@ export default function Index() {
           <Search
             scrollRef={listRef}
             top={listTop}
-            isFavorites={isFavorites}
-            setIsFavorites={(isFavorites) => startTransition(() => setIsFavorites(isFavorites))}
-            isSongFestivalMode={isSongFestivalMode}
-            setIsSongFestivalMode={(isSongFestivalMode) =>
-              startTransition(() => {
-                setIsSongFestivalMode(isSongFestivalMode);
-              })
-            }
+            selectedPlaylistId={selectedPlaylistId}
+            setSelectedPlaylistId={setSelectedPlaylistId}
+            onCreatePlaylist={promptCreatePlaylist}
             setSearchText={(text) => startTransition(() => setSearchText(text))}
           />
         )}
@@ -254,10 +281,14 @@ export default function Index() {
       <IndexToolbar
         listRef={listRef}
         scrollToSearchOffset={listTop}
-        isFavorites={isFavorites}
-        setIsFavorites={(v) => startTransition(() => setIsFavorites(v))}
+        selectedPlaylistId={selectedPlaylistId}
+        setSelectedPlaylistId={setSelectedPlaylistId}
+        onCreatePlaylist={promptCreatePlaylist}
+        playlistActions={playlistActions}
+        onPlaylistAction={onPlaylistAction}
         setSearchText={(text) => startTransition(() => setSearchText(text))}
       />
+      {namePrompt}
     </>
   );
 }

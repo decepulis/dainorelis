@@ -12,7 +12,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-screens/experimental';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
@@ -30,7 +29,7 @@ import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SongMenu, { SongDetailToolbar, useSongOverflowMenu } from '@/lib/components/SongMenu';
+import SongMenu, { AddToPlaylistMenu, SongDetailToolbar, useSongOverflowMenu } from '@/lib/components/SongMenu';
 import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
@@ -77,13 +76,11 @@ function SongPage({ song }: { song: Song }) {
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
-  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
 
   // ?v= / ?m= only exist once the user picks from a menu (or a link carries them)
   const { v: variantIdParam, m: mediaIdParam } = useLocalSearchParams<{ v?: string; m?: string }>();
 
   const { id } = song;
-  const isFavorite = favorites.includes(song.id);
 
   // Variants: the URL's choice, else the one remembered for this song, else the first. Either may
   // name a variant that no longer exists (deleted in the admin, or a bad link), so only valid ids
@@ -182,23 +179,13 @@ function SongPage({ song }: { song: Song }) {
           }
         : undefined,
       onPressTitleMenuItem: (e: { nativeEvent: { menuId: string } }) => setActiveVariantId(e.nativeEvent.menuId),
-      // the song's other actions are in UIKit's overflow menu; pinned past its ⋯ button, the heart never joins them
+      // the song's other actions are in UIKit's overflow menu; pinned past its ⋯ button, Add to Playlist never joins them
       ...overflowMenu,
       pinsTrailingItems: true,
     },
   };
 
   const Root = isLargeTitle ? Fragment : View;
-
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      setFavorites(favorites.filter((id) => id !== song.id));
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-    } else {
-      setFavorites([...favorites, song.id]);
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    }
-  };
 
   return (
     // a large title tracks the screen's first scroll view, so don't wrap it in a View
@@ -246,19 +233,14 @@ function SongPage({ song }: { song: Song }) {
           headerRight: !isLiquidGlassStyleHeader()
             ? () => (
                 <HeaderButtonContainer>
-                  <Button
-                    onPress={toggleFavorite}
-                    accessibilityLabel={isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
-                  >
-                    <FontAwesome6 name="heart" iconStyle={isFavorite ? 'solid' : 'regular'} size={16} color="white" />
-                  </Button>
+                  <AddToPlaylistMenu song={song} />
                   <SongMenu song={song} hasChords={hasChords} />
                 </HeaderButtonContainer>
               )
             : undefined,
         }}
       />
-      <SongDetailToolbar isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
+      <SongDetailToolbar song={song} />
       {showLyrics ? (
         <ScrollViewWithHeader
           ref={scrollRef}

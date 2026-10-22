@@ -13,7 +13,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
-import useStorage from '@/lib/hooks/useStorage';
+import usePlaylists, { favoritesId } from '@/lib/hooks/usePlaylists';
 import { Song } from '@/lib/schemas/songs';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
@@ -33,18 +33,14 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
   const { width } = useSafeAreaFrame();
-  const { value: favorites, setValue: setFavorites } = useStorage('favorites');
+  const { favorites: favoritesPlaylist, user: userPlaylists, toggleSong } = usePlaylists();
+  const favorites = favoritesPlaylist.songIds;
   const isFavorite = favorites.includes(item.id);
   const firstLyrics = Object.values(item.fields.Lyrics)[0];
 
   const toggleFavorite = () => {
-    if (isFavorite) {
-      setFavorites(favorites.filter((id) => id !== item.id));
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft);
-    } else {
-      setFavorites([...favorites, item.id]);
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    }
+    const isIn = toggleSong(favoritesId, item.id);
+    Haptics.impactAsync(isIn ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Soft);
   };
 
   // from 375px to 450px, gently scale the icon size up
@@ -168,6 +164,19 @@ export function ListItem({ item, background, primary, separator, isLast }: Props
             <Link.MenuAction icon={isFavorite ? 'heart.fill' : 'heart'} onPress={toggleFavorite}>
               {isFavorite ? t('removeFromFavorites') : t('addToFavorites')}
             </Link.MenuAction>
+            {userPlaylists.length ? (
+              <Link.Menu title={t('addToPlaylist')} icon="text.badge.plus">
+                {userPlaylists.map((playlist) => (
+                  <Link.MenuAction
+                    key={playlist.id}
+                    isOn={playlist.songIds.includes(item.id)}
+                    onPress={() => toggleSong(playlist.id, item.id)}
+                  >
+                    {playlist.name}
+                  </Link.MenuAction>
+                ))}
+              </Link.Menu>
+            ) : null}
           </Link.Menu>
         </Link>
       </ReanimatedSwipeable>
