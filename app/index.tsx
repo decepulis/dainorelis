@@ -33,6 +33,7 @@ import {
 } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
 import ThemedText from '@/lib/components/ThemedText';
+import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
@@ -294,7 +295,9 @@ export default function Index() {
         </View>
       ) : isReorderable && !isSearching && reorderableItems.length > 1 ? (
         // no drag handles, so a word on how; clear of the bottom bar's buttons
-        <ThemedText style={[styles.reorderHint, { paddingBottom: inset.bottom + padding + bottomBarHeight }]}>
+        <ThemedText
+          style={[styles.reorderHint, { paddingBottom: inset.bottom + floatingBottomGap + padding + bottomBarHeight }]}
+        >
           {t('reorderHint')}
         </ThemedText>
       ) : null}
@@ -363,7 +366,7 @@ export default function Index() {
             }}
             cellAnimations={liftedRowAnimations}
             // autoscroll starts below the navigation bar and above the bottom bar
-            autoscrollThresholdOffset={{ start: headerHeight, end: inset.bottom + listItemHeight }}
+            autoscrollThresholdOffset={{ start: headerHeight, end: inset.bottom + floatingBottomGap + listItemHeight }}
           />
         ) : (
           <Animated.FlatList

@@ -17,6 +17,7 @@ import { Stack, useRouter } from 'expo-router';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
+import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { fonts } from '@/lib/constants/themes';
@@ -142,16 +143,21 @@ export default function Search({
     state: playlist.id === selectedPlaylistId ? 'on' : 'off',
   });
 
+  // the bar's buttons sit this far above the bottom of the container
+  const bottom = inset.bottom + floatingBottomGap;
+
   return (
-    // rides on top of the keyboard as it opens and closes
+    // rides on top of the keyboard as it opens and closes. Android's keyboard height includes the
+    // navigation bar, so drop the inset there and keep the same gap above the keyboard as above the bar
     <KeyboardStickyView
+      offset={{ opened: process.env.EXPO_OS === 'android' ? inset.bottom : 0 }}
       style={{
         position: 'absolute',
         left: 0,
         right: 0,
         bottom: 0,
-        height: inset.bottom + expandedSearchHeight,
-        flexBasis: inset.bottom + expandedSearchHeight,
+        height: bottom + expandedSearchHeight,
+        flexBasis: bottom + expandedSearchHeight,
       }}
     >
       <GlassContainer style={StyleSheet.absoluteFill}>
@@ -161,7 +167,7 @@ export default function Search({
           style={{
             position: 'absolute',
             bottom: 0,
-            height: inset.bottom + padding / 2 + buttonSize,
+            height: bottom + padding / 2 + buttonSize,
             left: 0,
             right: 0,
           }}
@@ -175,7 +181,7 @@ export default function Search({
           style={[
             {
               position: 'absolute',
-              bottom: inset.bottom,
+              bottom,
               width: expandedSearchHeight,
               height: expandedSearchHeight,
               borderRadius: expandedSearchHeight / 2,
@@ -212,7 +218,7 @@ export default function Search({
             playlistMenuAnimatedStyle,
             {
               position: 'absolute',
-              bottom: inset.bottom,
+              bottom,
               height: buttonSize,
               borderRadius: buttonSize,
               overflow: 'hidden',
@@ -315,7 +321,7 @@ export default function Search({
           style={[
             {
               position: 'absolute',
-              bottom: inset.bottom,
+              bottom,
               borderRadius: buttonSize,
               overflow: 'hidden',
             },
