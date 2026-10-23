@@ -24,6 +24,7 @@ export default function Page() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const inset = useSafeAreaInsets();
   const primary = useThemeColor('primary');
+  const onPrimary = useThemeColor('onPrimary');
   const { getPlaylist } = usePlaylists();
   const playlist = getPlaylist(id);
   if (!playlist) {
@@ -52,7 +53,7 @@ export default function Page() {
       ]}
     >
       <View style={styles.titles}>
-        <ThemedText bold style={styles.title} numberOfLines={2}>
+        <ThemedText title bold style={styles.title} numberOfLines={2}>
           {playlist.name}
         </ThemedText>
         <ThemedText style={styles.subtitle}>
@@ -80,9 +81,9 @@ export default function Page() {
           name={process.env.EXPO_OS === 'ios' ? 'arrow-up-from-bracket' : 'share-nodes'}
           iconStyle="solid"
           size={16}
-          color="#fff"
+          color={onPrimary}
         />
-        <ThemedText bold style={styles.shareButtonText}>
+        <ThemedText bold style={[styles.shareButtonText, { color: onPrimary }]}>
           {t('shareLink')}
         </ThemedText>
       </Button>
@@ -133,7 +134,6 @@ const styles = StyleSheet.create({
     gap: padding / 2,
   },
   shareButtonText: {
-    color: '#fff',
     fontSize: 17,
   },
 });
