@@ -194,9 +194,11 @@ export default function Index() {
   const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop, scrollOffset);
 
-  // wide, the list's card sits on a darker backdrop. It's the scroll view's own background: a background on a view
-  // around it would keep that view from being flattened away, and react-native-screens and UIKit only find a scroll
-  // view at the start of the screen's view hierarchy (for the navigation bar's scroll edge background)
+  // wide, the list's card sits on a darker backdrop, which also shows above the forest when overscrolled. It's the
+  // scroll view's own background: a background on a view around it would keep that view from being flattened away,
+  // and react-native-screens and UIKit only find a scroll view at the start of the screen's view hierarchy (for the
+  // navigation bar's scroll edge background)
+  const backdrop = wideLayoutMode ? card0 : background;
   const listStyle = { backgroundColor: wideLayoutMode ? card0 : undefined };
   const contentContainerStyle = {
     paddingLeft: inset.left,
@@ -236,9 +238,9 @@ export default function Index() {
         contentFit="cover"
         contentPosition="bottom"
       ></Image>
-      {/* feather the top for overscroll */}
+      {/* feather the top into the backdrop that shows above it when overscrolled */}
       <LinearGradient
-        colors={[`${background}`, `${background}00`]}
+        colors={[backdrop, `${backdrop}00`]}
         style={{
           position: 'absolute',
           top: 0,
