@@ -199,6 +199,8 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Layout**: Reading content sits in a centred column from `useContentColumnStyle` (max width, padding clear of the horizontal safe area; plain flex, no window maths).
 
+**Jump-to-letter index**: All songs (not a playlist, not a search) gets a Contacts-style letter index at the trailing edge (`lib/components/Index/SectionIndex.tsx`), shown once the list reaches the bar. Rows have no fixed height (titles wrap with the width and text size), so `RowMeasurer` lays every row out unseen and the FlatList gets an exact `getItemLayout`; row keys carry the width and text size, because the list prefers its cached (stale) measurements of rows scrolled away.
+
 **Platform-Specific Code**: Platform variants use `.web.ts` / `.android.tsx` extensions (e.g., `useColorScheme.web.ts`, `Switch.android.tsx`). For small branches inside a file prefer `process.env.EXPO_OS`, which Metro inlines and tree-shakes.
 
 **Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. On Liquid Glass the home screen's playlist and playlist settings menus sit in the bottom toolbar beside search on iPhone, and at the top bar's leading edge on iPad (every window size; search is in the bar there). Android deliberately keeps the custom header; see `docs/plans/android-stack-toolbar.md` for why.

@@ -82,6 +82,9 @@ const unrollSectionList = (sections: { title?: string; data: Song[] }[]) => {
   return items;
 };
 
+/** every song under its letter: the rows all songs shows without a search */
+export const allSongItems = unrollSectionList(songsByLetter);
+
 const songsById = new Map(songs.map((song) => [song.id, song]));
 
 // TODO blocker? add filter-by-mp3/pdf/chords
@@ -91,6 +94,8 @@ type Options = {
   searchText: string;
 };
 export default function useSongList({ playlist, searchText }: Options) {
+  if (!playlist && !searchText) return allSongItems;
+
   // search results
   let searchResults: Set<string> | null = null;
   if (searchText.length > 0) {

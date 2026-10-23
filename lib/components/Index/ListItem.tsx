@@ -416,8 +416,11 @@ function SwipeActions({
 }
 
 type ListItemContentProps = { item: Song; primary: string; background: string; isFavorite: boolean };
-/** a row's title, subtitle and icons, shared by the linked row and the reorderable one */
-function ListItemContent({ item, primary, background, isFavorite }: ListItemContentProps) {
+/**
+ * a row's title, subtitle and icons, shared by the linked row, the reorderable one and the jump-to-letter index's
+ * measuring
+ */
+export function ListItemContent({ item, primary, background, isFavorite }: ListItemContentProps) {
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
   const { width } = useSafeAreaFrame();
