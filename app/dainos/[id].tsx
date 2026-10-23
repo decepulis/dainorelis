@@ -34,6 +34,7 @@ import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
+import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useSongAudio from '@/lib/hooks/useSongAudio';
@@ -196,6 +197,8 @@ function SongPage({ song }: { song: Song }) {
       // the song's other actions are in UIKit's overflow menu; pinned past its ⋯ button, Add to Playlist never joins them
       ...overflowMenu,
       pinsTrailingItems: true,
+      // the large title lines up with the lyrics' centred column (useContentColumnStyle) where the bar is wider
+      largeTitleMaxWidth: maxWidth,
     },
   };
 

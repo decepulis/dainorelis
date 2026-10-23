@@ -1,8 +1,8 @@
 diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
-index fa1b77317f609983ae2434764174072e51130550..58d99e1c83c380abf19089d428aa794a8f24c17e 100644
+index fa1b77317f609983ae2434764174072e51130550..fa6338d1298b1933b37868702a41cd5e60bdc9f6 100644
 --- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
 +++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
-@@ -320,4 +320,25 @@ class ScreenStackHeaderConfigViewManager :
+@@ -320,4 +320,30 @@ class ScreenStackHeaderConfigViewManager :
          view: ScreenStackHeaderConfig?,
          value: String?,
      ) = Unit
@@ -27,6 +27,11 @@ index fa1b77317f609983ae2434764174072e51130550..58d99e1c83c380abf19089d428aa794a
 +        view: ScreenStackHeaderConfig?,
 +        value: Boolean,
 +    ) = Unit
++
++    override fun setLargeTitleMaxWidth(
++        view: ScreenStackHeaderConfig?,
++        value: Float,
++    ) = Unit
  }
 diff --git a/ios/RNSBarButtonItem.h b/ios/RNSBarButtonItem.h
 index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6eefe8ce4c 100644
@@ -44,10 +49,10 @@ index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6e
  
  @end
 diff --git a/ios/RNSScreen.h b/ios/RNSScreen.h
-index fd9ecffa71b97230f62c6cde961d21c50076f960..f9280a9050c4357075eb2916e7f13f5df79e41e1 100644
+index fd9ecffa71b97230f62c6cde961d21c50076f960..496c7554d762ccf3ee91b8935158031e3f2ee678 100644
 --- a/ios/RNSScreen.h
 +++ b/ios/RNSScreen.h
-@@ -54,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
+@@ -54,6 +54,12 @@ NS_ASSUME_NONNULL_BEGIN
  - (CGFloat)calculateHeaderHeightIsModal:(BOOL)isModal;
  - (BOOL)isRemovedFromParent;
  - (void)notifyPresentedControllerDismissed;
@@ -55,15 +60,22 @@ index fd9ecffa71b97230f62c6cde961d21c50076f960..f9280a9050c4357075eb2916e7f13f5d
 +// dainorelis: see RNSScreen.mm
 +- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange;
 +- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font;
++- (void)dainorelis_setLargeTitleMaxWidth:(CGFloat)maxWidth;
 +#endif
  
  @end
  
 diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
-index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfdff84e9ae 100644
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa5421b4d3 100644
 --- a/ios/RNSScreen.mm
 +++ b/ios/RNSScreen.mm
-@@ -1465,6 +1465,14 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1,4 +1,5 @@
+ #import <UIKit/UIKit.h>
++#import <objc/runtime.h> // dainorelis
+ 
+ #import "RNSModalScreen.h"
+ #import "RNSScreen.h"
+@@ -1465,6 +1466,16 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    BOOL _shouldNotify;
    BOOL _isRemovedFromParent;
    BOOL _hasNotifiedDismissed;
@@ -75,10 +87,12 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfd
 +  UIFont *_dainorelisLargeTitleFont;
 +  NSString *_dainorelisFittedLargeTitle;
 +  CGFloat _dainorelisFittedLargeTitleWidth;
++  // dainorelis: see -dainorelis_alignLargeTitleRestoring:
++  CGFloat _dainorelisLargeTitleMaxWidth;
  }
  
  #pragma mark - Common
-@@ -1485,6 +1493,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1485,6 +1496,13 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewWillAppear:(BOOL)animated
  {
    [super viewWillAppear:animated];
@@ -86,20 +100,24 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfd
 +  _dainorelisKeepsLargeTitleExpanded = self.isMovingToParentViewController && self.transitionCoordinator != nil;
 +  _dainorelisPullsOnce = NO;
 +  _dainorelisPulledBarHeight = 0;
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_alignLargeTitleRestoring:NO];
++#endif
    if (!_isSwiping) {
      [self.screenView notifyWillAppear];
      if (self.transitionCoordinator.isInteractive) {
-@@ -1549,6 +1561,9 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1549,6 +1567,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidAppear:(BOOL)animated
  {
    [super viewDidAppear:animated];
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
 +  [self dainorelis_releasePulledContent]; // dainorelis
++  [self dainorelis_alignLargeTitleRestoring:YES]; // dainorelis
 +#endif
    if (!_isSwiping || _shouldNotify) {
      // we are going forward or dismissing without swipe
      // or successfully swiped back
-@@ -1565,6 +1580,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1565,6 +1587,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidDisappear:(BOOL)animated
  {
    [super viewDidDisappear:animated];
@@ -110,7 +128,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfd
    if (self.parentViewController == nil && self.presentingViewController == nil) {
      if (self.screenView.preventNativeDismiss) {
        // if we want to prevent the native dismiss, we do not send dismissal event,
-@@ -1586,9 +1605,149 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1586,9 +1612,196 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    _shouldNotify = YES;
  }
  
@@ -192,6 +210,52 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfd
 +// PATCH(dainorelis): UIKit has no multi-line large title and truncates one wider than the bar. Step its font down a
 +// point at a time, to Title 1's 28pt at the least, until the title fits between the bar's layout margins. The header
 +// config passes the font it set (nil for none); the fit runs again whenever the title or the bar's width changes.
++// PATCH(dainorelis): line a large title up with a centred content column (iOS 26+). UIKit lays the large title, and the
++// subtitle view under it, out between the navigation bar's layout margins, and its bar buttons without them, so wider
++// margins move just the title. The bar is shared by the whole stack: the screen on top widens them to centre a line of
++// at most `largeTitleMaxWidth` (from its header config), never narrower than the system's, and a screen without one
++// puts the system's back once it has appeared (not as it appears, which would move a large title still on screen
++// during a pop). The width is the bar's; like the stock edge insets, this maps left and right onto leading and
++// trailing, which is only right for left-to-right layouts.
++static const void *RNSDainorelisWidensMarginsKey = &RNSDainorelisWidensMarginsKey;
++
++- (void)dainorelis_setLargeTitleMaxWidth:(CGFloat)maxWidth
++{
++  _dainorelisLargeTitleMaxWidth = maxWidth;
++  [self dainorelis_alignLargeTitleRestoring:NO];
++}
++
++- (void)dainorelis_alignLargeTitleRestoring:(BOOL)restores
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    UINavigationBar *navigationBar = self.navigationController.navigationBar;
++    if (navigationBar == nil || self.navigationController.topViewController != self) {
++      return;
++    }
++    const BOOL widens = _dainorelisLargeTitleMaxWidth > 0 &&
++        self.navigationItem.largeTitleDisplayMode == UINavigationItemLargeTitleDisplayModeAlways;
++    if (!widens && (!restores || objc_getAssociatedObject(navigationBar, RNSDainorelisWidensMarginsKey) == nil)) {
++      return;
++    }
++    NSDirectionalEdgeInsets margins = navigationBar.directionalLayoutMargins;
++    margins.leading = self.systemMinimumLayoutMargins.leading;
++    margins.trailing = self.systemMinimumLayoutMargins.trailing;
++    if (widens) {
++      // the margins are inset from the bar's safe area
++      const CGFloat inset = (navigationBar.bounds.size.width - _dainorelisLargeTitleMaxWidth) / 2;
++      margins.leading = MAX(margins.leading, inset - navigationBar.safeAreaInsets.left);
++      margins.trailing = MAX(margins.trailing, inset - navigationBar.safeAreaInsets.right);
++    }
++    objc_setAssociatedObject(
++        navigationBar, RNSDainorelisWidensMarginsKey, widens ? @YES : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    if (!NSDirectionalEdgeInsetsEqualToDirectionalEdgeInsets(margins, navigationBar.directionalLayoutMargins)) {
++      navigationBar.directionalLayoutMargins = margins;
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
++
 +- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font
 +{
 +  _dainorelisLargeTitleFont = font;
@@ -247,6 +311,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..dc18fbe6ffed70558263fa8ee2cbfbfd
  {
    [super viewDidLayoutSubviews];
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_alignLargeTitleRestoring:self.transitionCoordinator == nil];
 +  [self dainorelis_fitLargeTitle];
 +  [self dainorelis_keepLargeTitleExpandedDuringPush];
 +  if (_dainorelisPullsOnce) {
@@ -311,10 +376,10 @@ index 5da11964f5932cb44e1131c44a2480803c0a62b5..595e25d231dc9b24a414545872eec7f3
  
  - (BOOL)isScrollViewPanGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
-index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb65434c0201d 100644
+index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f4794a29d593 100644
 --- a/ios/RNSScreenStackHeaderConfig.h
 +++ b/ios/RNSScreenStackHeaderConfig.h
-@@ -24,6 +24,12 @@
+@@ -24,6 +24,14 @@
  NS_ASSUME_NONNULL_BEGIN
  
  @property (nonatomic, retain) NSString *title;
@@ -324,11 +389,13 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb654
 +// dainorelis: the screen's actions in UIKit's overflow menu (see overflowMenu in the codegen spec)
 +@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *overflowMenu;
 +@property (nonatomic) BOOL pinsTrailingItems;
++// dainorelis: see largeTitleMaxWidth in the codegen spec
++@property (nonatomic) CGFloat largeTitleMaxWidth;
  @property (nonatomic, retain) NSString *titleFontFamily;
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2f4f8a38b 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb98505515cc5229b 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -339,7 +406,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,156 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,157 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -352,6 +419,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
 +// - Large title on push (RNSScreen.mm): a large title stays expanded while its screen is pushed, and when a
 +//   settled screen switches to a large title (a song's PDF back to its lyrics).
 +// - Large title fit (RNSScreen.mm): a large title too wide for the bar steps its font down (to 28pt) to fit.
++// - Large title column (RNSScreen.mm, largeTitleMaxWidth): a large title lines up with a centred content column.
 +// - Large subtitle hit test (RNSScreenStack.mm): touches reach the subtitle view UIKit puts in the scroll view.
 +// - Appearance per scroll state: the large title color applies at the scroll edge only (to a text subtitle under it
 +//   too), and the subtitle's font and color are readable.
@@ -496,7 +564,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -62,6 +212,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -62,6 +213,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
    /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
    bool _needsViewControllerUpdateInCurrentTransaction;
    RCTImageLoader *_imageLoader;
@@ -506,7 +574,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  }
  
  - (instancetype)initWithFrame:(CGRect)frame
-@@ -235,6 +388,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +389,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -542,7 +610,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +434,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +435,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -647,7 +715,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +780,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +781,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -664,7 +732,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
    return appearance;
  }
  
-@@ -559,8 +846,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +847,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -683,7 +751,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +900,33 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +901,33 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -717,7 +785,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1019,150 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1020,151 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -744,8 +812,9 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
 +    dainorelisApplyTitle();
 +  }
 +#if !TARGET_OS_TV && !TARGET_OS_VISION
-+  // dainorelis: shrink a large title that doesn't fit (see RNSScreen.mm)
++  // dainorelis: line a large title up with a content column, and shrink one that doesn't fit (see RNSScreen.mm)
 +  if ([vc isKindOfClass:[RNSScreen class]]) {
++    [(RNSScreen *)vc dainorelis_setLargeTitleMaxWidth:config.largeTitle ? config.largeTitleMaxWidth : 0];
 +    [(RNSScreen *)vc dainorelis_fitLargeTitleWithFont:config.largeTitle
 +                         ? navitem.standardAppearance.largeTitleTextAttributes[NSFontAttributeName]
 +                         : nil];
@@ -871,7 +940,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1293,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1295,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -932,7 +1001,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1557,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1559,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -943,7 +1012,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1599,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1601,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
@@ -958,11 +1027,12 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..284dc126f10631ccad710d2712a776b2
 +    _overflowMenu = [overflowMenu isKindOfClass:[NSDictionary class]] ? overflowMenu : nil;
 +  }
 +  _pinsTrailingItems = newScreenProps.pinsTrailingItems;
++  _largeTitleMaxWidth = newScreenProps.largeTitleMaxWidth;
    if (newScreenProps.titleFontFamily != oldScreenProps.titleFontFamily) {
      _titleFontFamily = RCTNSStringFromStringNilIfEmpty(newScreenProps.titleFontFamily);
    }
 diff --git a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
-index da28c51c6ffd29b996c876742a11cfdf322db969..98a6a3f8c039337c4fd159093ccfade1908309f1 100644
+index da28c51c6ffd29b996c876742a11cfdf322db969..a9b43d569a2d96e1123d4a2fd86aef5606d32544 100644
 --- a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
 +++ b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
 @@ -17,6 +17,10 @@ type OnDetachedEvent = Readonly<{}>;
@@ -976,7 +1046,7 @@ index da28c51c6ffd29b996c876742a11cfdf322db969..98a6a3f8c039337c4fd159093ccfade1
  
  type BackButtonDisplayMode = 'minimal' | 'default' | 'generic';
  
-@@ -86,6 +90,19 @@ export interface NativeProps extends ViewProps {
+@@ -86,6 +90,22 @@ export interface NativeProps extends ViewProps {
      | CT.DirectEventHandler<OnPressHeaderBarButtonMenuItemEvent>
      | undefined;
    synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
@@ -993,6 +1063,9 @@ index da28c51c6ffd29b996c876742a11cfdf322db969..98a6a3f8c039337c4fd159093ccfade1
 +  // dainorelis: iOS 16+, the right items go in navigationItem.pinnedTrailingGroup, past the overflow button, so
 +  // UIKit never moves them into the overflow menu
 +  pinsTrailingItems?: CT.WithDefault<boolean, false>;
++  // dainorelis: iOS 26+, the widest a large title's line gets, centred in the bar like a centred content column, so
++  // the title lines up with it (0, the default, leaves the bar's margins alone)
++  largeTitleMaxWidth?: CT.WithDefault<CT.Float, 0>;
  
    // Experimental
    userInterfaceStyle?: CT.WithDefault<UserInterfaceStyle, 'unspecified'>;
