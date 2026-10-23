@@ -76,4 +76,4 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 ## 8. Contact Us
 
-If you have any questions about this Privacy Policy, please contact us at[info@dainorelisapp.com](mailto:info@dainorelisapp.com)
+If you have any questions about this Privacy Policy, please contact us at [info@dainorelisapp.com](mailto:info@dainorelisapp.com)
