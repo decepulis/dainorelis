@@ -50,6 +50,7 @@ import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useFrame from '@/lib/hooks/useFrame';
+import useHasHydrated from '@/lib/hooks/useHasHydrated';
 import usePlaylistActions from '@/lib/hooks/usePlaylistActions';
 import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem, allSongItems } from '@/lib/hooks/useSongList';
@@ -157,6 +158,7 @@ export default function Index() {
   // all songs, by letter, gets a jump-to-letter index. Rows wrap differently with the width and the text size, so
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
   const isAllSongs = !playlist;
+  const hasHydrated = useHasHydrated();
   const [measuredLayouts, setMeasuredLayouts] = useState<RowLayout[] | null>(null);
   const rowLayouts =
     isAllSongs && !isSearching && measuredLayouts?.length === displayItems.length ? measuredLayouts : null;
@@ -451,7 +453,8 @@ export default function Index() {
             />
           </GestureDetector>
         )}
-        {isAllSongs ? (
+        {/* only once hydrated: a static web page renders it into every route's HTML otherwise */}
+        {isAllSongs && hasHydrated ? (
           <RowMeasurer
             items={allSongItems}
             favoriteIds={favoriteIds}
