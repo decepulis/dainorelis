@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import * as Haptics from 'expo-haptics';
 import { Stack, useRouter } from 'expo-router';
 
 import Feedback from '@expo/material-symbols/feedback.xml';
@@ -18,6 +17,7 @@ import { createPlaylistIcon } from '../hooks/usePlaylistActions';
 import usePlaylists, { Playlist } from '../hooks/usePlaylists';
 import useStorage from '../hooks/useStorage';
 import { useThemeColor } from '../hooks/useThemeColor';
+import haptic from '../utils/haptic';
 import { styles as buttonStyles } from './Button';
 import { isLiquidGlassStyleHeader } from './Header';
 import MenuView, { type MenuAction as MenuViewAction } from './MenuView';
@@ -107,7 +107,7 @@ function useAddToPlaylist(song: Song) {
   const isInAny = editable.some((playlist) => playlist.songIds.includes(song.id));
   const toggle = (playlistId: string) => {
     const isIn = toggleSong(playlistId, song.id);
-    Haptics.impactAsync(isIn ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Soft);
+    haptic(isIn ? 'on' : 'off');
   };
   const promptNewPlaylist = () =>
     promptName({
@@ -115,8 +115,7 @@ function useAddToPlaylist(song: Song) {
       message: t('newPlaylistMessage'),
       confirmLabel: t('create'),
       onSubmit: (name) => {
-        createPlaylist(name, [song.id]);
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        if (createPlaylist(name, [song.id])) haptic('confirm');
       },
     });
 

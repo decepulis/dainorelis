@@ -16,7 +16,6 @@ import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
@@ -56,6 +55,7 @@ import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem, allSongItems } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
+import haptic from '@/lib/utils/haptic';
 import { siteMetadata } from '@/lib/utils/pageMetadata';
 import withAlpha from '@/lib/utils/withAlpha';
 
@@ -63,8 +63,6 @@ import withAlpha from '@/lib/utils/withAlpha';
 const liftedRowAnimations = { opacity: 1 };
 // the bottom bar's buttons, which the hint below a reorderable playlist stays clear of
 const bottomBarHeight = 44;
-// defined before the component: the drag worklets capture it, and React Compiler may hoist them out of it
-const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
 // web: the static HTML's title and description
 export const generateMetadata = () => siteMetadata;
@@ -425,11 +423,11 @@ export default function Index() {
             onReorder={({ from, to }) => moveSong(from, to)}
             onDragStart={() => {
               'worklet';
-              scheduleOnRN(lightHaptic);
+              scheduleOnRN(haptic, 'lift');
             }}
             onIndexChange={() => {
               'worklet';
-              scheduleOnRN(lightHaptic);
+              scheduleOnRN(haptic, 'tick');
             }}
             cellAnimations={liftedRowAnimations}
             // autoscroll starts below the navigation bar and above the bottom bar
