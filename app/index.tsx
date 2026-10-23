@@ -41,7 +41,12 @@ import {
   listItemHeight,
 } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
-import SectionIndex, { RowLayout, RowMeasurer, sectionIndexWidth } from '@/lib/components/Index/SectionIndex';
+import SectionIndex, {
+  RowLayout,
+  RowMeasurer,
+  sectionIndexRowPadding,
+  sectionIndexWidth,
+} from '@/lib/components/Index/SectionIndex';
 import { GetTheAppButton } from '@/lib/components/StoreLinks';
 import ThemedText from '@/lib/components/ThemedText';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
@@ -174,10 +179,13 @@ export default function Index() {
         item.type === 'header' ? [{ letter: item.item, offset: listHeaderHeight + rowLayouts[index].y }] : []
       )
     : [];
+  // the index shows with all songs; over the rows (not beside a wide layout's card), their icons keep clear of it
+  const rowTrailingPadding =
+    isAllSongs && (safeWidth - maxWidth) / 2 < sectionIndexWidth ? sectionIndexRowPadding : padding;
   const listContentHeight = useSharedValue(0);
   // the list keeps every row's measured layout, even once the row has scrolled away, and prefers it to
   // getItemLayout's; a new width or text size makes those stale, so the rows get new keys
-  const rowKeySuffix = `${Math.round(safeWidth)}:${fontScale}:${isBoldTextEnabled}`;
+  const rowKeySuffix = `${Math.round(safeWidth)}:${fontScale}:${isBoldTextEnabled}:${rowTrailingPadding}`;
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
   // clear of the bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar), which iPad doesn't have
@@ -220,6 +228,7 @@ export default function Index() {
         toggleSong={toggleSong}
         shownUserPlaylistId={userPlaylists.some((p) => p.id === selectedPlaylistId) ? selectedPlaylistId : undefined}
         onNewPlaylistWithSong={(songId) => promptCreatePlaylist([songId])}
+        trailingPadding={rowTrailingPadding}
       />
     );
 
@@ -465,6 +474,7 @@ export default function Index() {
             separator={separator}
             left={inset.left}
             right={inset.right}
+            trailingPadding={rowTrailingPadding}
             onMeasure={setMeasuredLayouts}
           />
         ) : null}
@@ -487,7 +497,6 @@ export default function Index() {
             topInset={headerHeight}
             contentHeight={listContentHeight}
             listHeight={height}
-            color={primary}
             style={sectionIndexStyle}
           />
         ) : null}
