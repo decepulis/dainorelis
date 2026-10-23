@@ -328,7 +328,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..e303dfce92e5564f0c5018e681fbb654
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274c84c7526 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..1d46633af79d172256fa41b90b83ea01aa05448b 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -701,7 +701,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1003,144 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1003,150 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -771,6 +771,12 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274
 +          [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleFootnote
 +                                                           scale:UIImageSymbolScaleSmall];
 +      buttonConfig.contentInsets = NSDirectionalEdgeInsetsZero;
++      // square corners: the background's rounded ones (it has none to show) clip the label's corners with it, and
++      // with them a mark above a capital at its start, e.g. the caron of Ž in Žodžiai
++      buttonConfig.cornerStyle = UIButtonConfigurationCornerStyleFixed;
++      UIBackgroundConfiguration *buttonBackground = buttonConfig.background;
++      buttonBackground.cornerRadius = 0;
++      buttonConfig.background = buttonBackground;
 +      buttonConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(
 +          NSDictionary<NSAttributedStringKey, id> *attributes) {
 +        NSMutableDictionary *updated = [attributes mutableCopy];
@@ -849,7 +855,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1271,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1277,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -910,7 +916,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1535,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1541,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -921,7 +927,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eed3f25b8e096363ccf6865b77d03274
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1577,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1583,17 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
