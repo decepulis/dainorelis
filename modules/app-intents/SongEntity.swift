@@ -12,10 +12,8 @@ struct SongEntity: AppEntity, AppIntentEntityRecordConvertible {
 
   var id: String
   @Property(title: "Title") var title: String
-  /// the first two lines of the lyrics
+  /// the first two lines of the lyrics, shown but not searched
   var snippet: String?
-  /// the first variant's lyrics, chords and markdown stripped, for Spotlight's full-text search
-  var lyrics: String?
 
   var displayRepresentation: DisplayRepresentation {
     DisplayRepresentation(title: "\(title)", subtitle: snippet.map { "\($0)" })
@@ -25,7 +23,6 @@ struct SongEntity: AppEntity, AppIntentEntityRecordConvertible {
     id = record.id
     title = record.title
     snippet = record.subtitle
-    lyrics = record.metadata["lyrics"]
   }
 }
 
@@ -43,17 +40,14 @@ struct SongQuery: EntityStringQuery, EnumerableEntityQuery {
     try await allEntities()
   }
 
-  // Siri and Shortcuts search here, without JS: title then lyrics, ignoring case and diacritics,
-  // so "zalia" finds "Žalia"
+  // Siri and Shortcuts search here, without JS: the Lithuanian title, ignoring case and
+  // diacritics, so "zalia" finds "Žalia"
   func entities(matching string: String) async throws -> [SongEntity] {
     let search = string.trimmingCharacters(in: .whitespacesAndNewlines)
     guard !search.isEmpty else { return [] }
-    let matches = { (text: String?) in
-      text?.range(of: search, options: [.caseInsensitive, .diacriticInsensitive]) != nil
+    return try await allEntities().filter {
+      $0.title.range(of: search, options: [.caseInsensitive, .diacriticInsensitive]) != nil
     }
-    let songs = try await allEntities()
-    let byTitle = songs.filter { matches($0.title) }
-    return byTitle + songs.filter { !matches($0.title) && matches($0.lyrics) }
   }
 }
 
@@ -63,8 +57,7 @@ extension SongEntity: IndexedEntity {
     let attributes = defaultAttributeSet
     attributes.title = title
     attributes.displayName = title
-    // searched but not shown; the snippet is what shows under the title
-    attributes.textContent = lyrics
+    // the snippet under the title
     attributes.contentDescription = snippet
     return attributes
   }

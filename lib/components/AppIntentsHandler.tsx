@@ -24,10 +24,8 @@ export default function AppIntentsHandler() {
         return {
           id: song.id,
           title: song.fields.Name,
-          // Spotlight's snippet under the title
+          // the first two lines, shown under the title but not searched (82 KB in all; 35 KB without)
           subtitle: lines.slice(0, 2).join(' / ') || undefined,
-          // the first variant's lyrics, so Spotlight finds a song by a remembered line (~450 KB in all)
-          metadata: lines.length ? { lyrics: lines.join('\n') } : undefined,
         };
       })
     ).catch(console.warn);
