@@ -2,7 +2,6 @@
 # a flat node_modules.
 nodeLinker: hoisted
 packages:
-  - dainorelisapp.com
   - admin
 
 # pnpm 10 blocks dependency build scripts by default. None of these need theirs: each ships its
@@ -10,6 +9,6 @@ packages:
 # @unrs/resolver-binding-*), and the scripts only verify that binary or fall back to a source
 # build. Listing them here silences the "Ignored build scripts" warning on every install.
 ignoredBuiltDependencies:
-  - esbuild # tsx, Astro/Vite
-  - sharp # Astro image optimisation
+  - esbuild # tsx
+  - sharp # Next.js image optimisation
   - unrs-resolver # eslint-import-resolver-typescript

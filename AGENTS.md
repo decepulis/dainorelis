@@ -195,7 +195,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Storage**: MMKV via `useStorage` hook for fast, synchronous persistent storage of user preferences (theme, language, etc.). Every key and its Zod schema is declared in `lib/hooks/useStorage.tsx`.
 
-**Playlists**: `usePlaylists` (data) and `usePlaylistActions` (menu actions: rename, share, duplicate, delete) combine three kinds: Favorites (storage key `favorites`, the pre-playlists key; editable, not renamable or deletable), curated playlists built from `song-festival.ts` (read-only, in programme sections; the old song festival mode is retired) and user playlists (`playlists`). `selectedPlaylistId` is the playlist the home screen shows (`'all'`, `'favorites'` or a playlist id). Favorites and user playlists are always reorderable on the home screen: their list is react-native-reorderable-list's instead of the FlatList (it shares `listRef`, so the header's scroll effects and search's scrolling follow it), and a song held for 250 ms lifts to be dragged; tapping still opens it and the swipe actions stay, but those rows drop the link preview and its menu. Rows offer Move up / Move down screen reader actions (every row also offers its swipe actions that way; the actions themselves are hidden from screen readers, and the add-to-playlist menu isn't mounted, until the row is first swiped), the order saves as it changes (songs missing from `songs.ts` stay at the end), search results don't drag, and a footnote under the songs says how. Shared playlists travel as `https://www.dainorelisapp.com/p?n=<name>&s=<ids>` (`lib/utils/playlistLink.ts`): song ids drop their shared `rec` prefix to keep the QR code small. The link opens `app/p.tsx` as a universal link / Android App Link (`associatedDomains` and `intentFilters` in `app.config.ts`, verified by `dainorelisapp.com/public/.well-known/apple-app-site-association` and `assetlinks.json`); without the app it lands on the site's `/p` page, which links to the stores.
+**Playlists**: `usePlaylists` (data) and `usePlaylistActions` (menu actions: rename, share, duplicate, delete) combine three kinds: Favorites (storage key `favorites`, the pre-playlists key; editable, not renamable or deletable), curated playlists built from `song-festival.ts` (read-only, in programme sections; the old song festival mode is retired) and user playlists (`playlists`). `selectedPlaylistId` is the playlist the home screen shows (`'all'`, `'favorites'` or a playlist id). Favorites and user playlists are always reorderable on the home screen: their list is react-native-reorderable-list's instead of the FlatList (it shares `listRef`, so the header's scroll effects and search's scrolling follow it), and a song held for 250 ms lifts to be dragged; tapping still opens it and the swipe actions stay, but those rows drop the link preview and its menu. Rows offer Move up / Move down screen reader actions (every row also offers its swipe actions that way; the actions themselves are hidden from screen readers, and the add-to-playlist menu isn't mounted, until the row is first swiped), the order saves as it changes (songs missing from `songs.ts` stay at the end), search results don't drag, and a footnote under the songs says how. Shared playlists travel as `https://dainorelis.app/p?n=<name>&s=<ids>` (`lib/utils/playlistLink.ts`): song ids drop their shared `rec` prefix to keep the QR code small. The link opens `app/p.tsx` as a universal link / Android App Link, and so does a song's `https://dainorelis.app/dainos/<id>?v=…` (`associatedDomains` and `intentFilters` in `app.config.ts`, verified by `public/.well-known/apple-app-site-association` and `assetlinks.json`); without the app it opens the same page on the website, where `/p` adds the store badges (`StoreLinks.web.tsx`).
 
 **Layout**: Reading content sits in a centred column from `useContentColumnStyle` (max width, padding clear of the horizontal safe area; plain flex, no window maths).
 
@@ -237,7 +237,7 @@ and reads the version from `package.json` whenever prebuild generates the native
 
 ## TypeScript Configuration
 
-- `tsconfig.json` - Main app TypeScript config (React Native with path aliases). Excludes `admin/` and `dainorelisapp.com`, which have their own configs.
+- `tsconfig.json` - Main app TypeScript config (React Native with path aliases). Excludes `admin/`, which has its own.
 - Scripts in `/scripts` run with `tsx` (no separate tsconfig; `tsc --noEmit` typechecks them with the app)
 
 ## Linting and Formatting
@@ -248,9 +248,17 @@ ESLint uses Expo's flat config (which includes eslint-plugin-react-hooks 7 and i
 - Unused imports are automatically flagged and removed
 - Global ignores (`globalIgnores` in `eslint.config.js`): build artifacts, ios/android, `admin/`, `dainorelisapp.com/`, generated `songs.ts` / `song-festival.ts`, `.claude/worktrees/`
 
-## Astro Website
+## Website
 
-The `dainorelisapp.com/` directory is the Astro marketing site (App Store / Play Store links and the `/qr` redirect), deployed on Vercel as its own pnpm workspace package. The repo-root Vercel project only redirects to it (`vercel.json` + `public/`); the Expo web build below isn't deployed yet.
+The Expo web build is the website, https://dainorelis.app: the repo-root Vercel project builds it (`vercel.json`:
+`pnpm build:web`, `dist/`, clean URLs). `public/` is Expo's public folder, copied into `dist/`: `.well-known/` verifies
+the app links (vercel.json serves the AASA as JSON). vercel.json also sends `/qr`, the link printed on QR codes, to
+the phone's store by user agent (else `/`; the store URLs are also in `lib/constants/storeUrls.ts`). On the web,
+Safari shows its Smart App Banner (`app/+html.tsx`) and everyone else gets the home screen's Get the app button.
+
+`dainorelisapp.com/` is the old domain's Vercel project (Root Directory `dainorelisapp.com`), now redirect-only and
+not a workspace package: it 308s every path to the same one on dainorelis.app, except `/.well-known/`, which it
+keeps serving so app versions that only know www.dainorelisapp.com still open its playlist links.
 
 ## Web
 
@@ -265,4 +273,5 @@ one HTML page per song (`generateStaticParams`), with its title and description 
 - **Web stand-ins**: `MenuView.web.tsx` (a popover; @expo/ui's menu doesn't open on web), `Pdf.web.tsx` (an iframe
   and an open-in-a-tab link), `Switch.web.tsx`, `SongToolbar.web.tsx` (null), `useWebFonts.web.ts` (the fonts the
   native apps embed). Theme switching is `useColorScheme.web.ts` (react-native-web has no `Appearance.setColorScheme`).
-- Dynamic routes without static params (`/grojarasciai/[id]/bendrinti`) need a host rewrite to their `[id]` page.
+- Dynamic routes without static params (`/grojarasciai/[id]/bendrinti`) need a host rewrite to their `[id]` page
+  (vercel.json). `build:web` copies `+not-found.html` to `404.html`, the page hosts serve for a missing path.

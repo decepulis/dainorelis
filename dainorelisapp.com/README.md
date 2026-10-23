@@ -1,21 +1,13 @@
 # dainorelisapp.com
 
-The Astro marketing site for Dainorėlis: App Store / Google Play links, and `/qr`, which sends
-phones to the right store by user agent (`src/pages/qr.ts`, a Vercel function). `/p` shows a shared
-playlist (`src/pages/p.astro`) to phones without the app; `public/.well-known/` lets the app open those
-links instead (iOS universal links, Android App Links).
+The old domain. The site moved to https://dainorelis.app (the Expo web build, deployed from the repo root), and this
+Vercel project (Root Directory `dainorelisapp.com`) now only redirects: `vercel.json` 308s every path, query
+included, to the same path on dainorelis.app, so `/qr` on printed QR codes and shared `/p?…` playlist links keep
+working.
 
-It is a pnpm workspace package (`marketing-site`), so install from the repo root and run:
+The exception is `public/.well-known/`, which it keeps serving: app versions that only list
+`www.dainorelisapp.com` in their associated domains and intent filters verify against these files (the app
+links don't follow redirects), and open its `/p` links directly. Keep them, and the domain, for as long as such
+versions are in use.
 
-```sh
-pnpm --filter marketing-site dev     # http://localhost:4321
-pnpm --filter marketing-site build   # static pages + the /qr function, via @astrojs/vercel
-```
-
-Astro 7 (Vite 8) needs Node 22.22 or later. Images are imported from the app's `assets/images/`
-through the `~` alias in `astro.config.mjs`, which also pins Vite to this directory's
-`tsconfig.json` so the build never reads the Expo app's.
-
-Deployed on Vercel as its own project, with Root Directory `dainorelisapp.com` (see
-`vercel.json`). The canonical host is `https://www.dainorelisapp.com`; the repo-root Vercel
-project only redirects there.
+Nothing to install or build; it is not a pnpm workspace package.

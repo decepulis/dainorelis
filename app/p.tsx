@@ -7,6 +7,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import Button from '@/lib/components/Button';
 import { HeaderBackground, HeaderLeft, HeaderTitle, ModalToolbar } from '@/lib/components/Header';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
+import { StoreBadges } from '@/lib/components/StoreLinks';
 import ThemedText from '@/lib/components/ThemedText';
 import { pluralKey } from '@/lib/constants/i18n';
 import padding from '@/lib/constants/padding';
@@ -22,7 +23,7 @@ import songs from '@/songs';
 const songsById = new Map(songs.map((song) => [song.id, song]));
 
 /**
- * A shared playlist's link (https://www.dainorelisapp.com/p?n=…&s=…, or dainorelis://p?…) lands here: the playlist's
+ * A shared playlist's link (https://dainorelis.app/p?n=…&s=…, or dainorelis://p?…) lands here: the playlist's
  * name and songs, and a button to add it to the user's playlists. See lib/utils/playlistLink.ts.
  */
 export default function Page() {
@@ -117,6 +118,8 @@ export default function Page() {
                     : t('invalidPlaylistLink')}
                 </ThemedText>
               )}
+              {/* web: for phones without the app, which is what the link is for */}
+              <StoreBadges openPlaylistInApp />
             </>
           )}
         </View>

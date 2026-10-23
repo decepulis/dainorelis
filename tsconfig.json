@@ -9,5 +9,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dainorelisapp.com", "admin", ".claude/worktrees"]
+  "exclude": ["node_modules", "admin", ".claude/worktrees"]
 }
