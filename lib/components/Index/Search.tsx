@@ -9,7 +9,7 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
-import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GlassContainer, GlassView } from 'expo-glass-effect';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -22,6 +22,7 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { fonts } from '@/lib/constants/themes';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import useFrame from '@/lib/hooks/useFrame';
 
 import { PlaylistAction, PlaylistActionId, createPlaylistIcon } from '../../hooks/usePlaylistActions';
 import usePlaylists, { Playlist, allSongsId } from '../../hooks/usePlaylists';
@@ -72,7 +73,7 @@ export default function Search({
   const { t } = useTranslation();
   const background = useThemeColor('background');
   const inset = useSafeAreaInsets();
-  const { width } = useSafeAreaFrame();
+  const { width } = useFrame();
   const searchRef = useRef<TextInputInstance>(null);
   // live Reduce Motion: the springs jump to their targets and the list scrolls without animating
   const { isBoldTextEnabled, isReduceMotionEnabled, reduceMotion } = useAccessibilityInfo();

@@ -250,4 +250,19 @@ ESLint uses Expo's flat config (which includes eslint-plugin-react-hooks 7 and i
 
 ## Astro Website
 
-The `dainorelisapp.com/` directory is the Astro marketing site (App Store / Play Store links and the `/qr` redirect), deployed on Vercel as its own pnpm workspace package. The repo-root Vercel project only redirects to it (`vercel.json` + `public/`) until the Expo web build is enabled.
+The `dainorelisapp.com/` directory is the Astro marketing site (App Store / Play Store links and the `/qr` redirect), deployed on Vercel as its own pnpm workspace package. The repo-root Vercel project only redirects to it (`vercel.json` + `public/`); the Expo web build below isn't deployed yet.
+
+## Web
+
+`pnpm build:web` (`expo export --platform web`) statically renders every route into `dist/` (`web.output: 'static'`):
+one HTML page per song (`generateStaticParams`), with its title and description from `generateMetadata`
+(`lib/utils/pageMetadata.ts`; `expo-router/head` keeps `document.title` in step as the app navigates) and
+`app/+html.tsx` as the document. Serve it with `npx serve dist`. Static rendering shapes the web code:
+
+- **Hydration must match the HTML**, which knows no browser: storage (`StorageProvider` reads localStorage, through
+  react-native-mmkv's web build, only after hydrating), the color scheme, the window (`useFrame`; expo-router's web
+  SafeAreaProvider reports a zero frame), query params (`?v=`, `p.tsx`) and audio all wait for `useHasHydrated()`.
+- **Web stand-ins**: `MenuView.web.tsx` (a popover; @expo/ui's menu doesn't open on web), `Pdf.web.tsx` (an iframe
+  and an open-in-a-tab link), `Switch.web.tsx`, `SongToolbar.web.tsx` (null), `useWebFonts.web.ts` (the fonts the
+  native apps embed). Theme switching is `useColorScheme.web.ts` (react-native-web has no `Appearance.setColorScheme`).
+- Dynamic routes without static params (`/grojarasciai/[id]/bendrinti`) need a host rewrite to their `[id]` page.

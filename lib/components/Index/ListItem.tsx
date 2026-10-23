@@ -12,7 +12,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useReorderableDrag } from 'react-native-reorderable-list';
-import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
@@ -23,6 +22,7 @@ import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import useFrame from '@/lib/hooks/useFrame';
 import { createPlaylistIcon } from '@/lib/hooks/usePlaylistActions';
 import { favoritesId } from '@/lib/hooks/usePlaylists';
 import { Song } from '@/lib/schemas/songs';
@@ -423,7 +423,7 @@ type ListItemContentProps = { item: Song; primary: string; background: string; i
 export function ListItemContent({ item, primary, background, isFavorite }: ListItemContentProps) {
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
-  const { width } = useSafeAreaFrame();
+  const { width } = useFrame();
 
   // from 375px to 450px, gently scale the icon size up
   const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));

@@ -1,10 +1,12 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Appearance, LayoutChangeEvent, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { setAudioModeAsync } from 'expo-audio';
 import { Stack } from 'expo-router';
+import Head from 'expo-router/head';
 import { ThemeProvider } from 'expo-router/react-navigation';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -15,6 +17,8 @@ import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import useWebFonts from '@/lib/hooks/useWebFonts';
+import { siteMetadata } from '@/lib/utils/pageMetadata';
 
 type AppProps = {
   onLayout: (e: LayoutChangeEvent) => void;
@@ -24,6 +28,12 @@ function App({ onLayout }: AppProps) {
 
   return (
     <>
+      {process.env.EXPO_OS === 'web' ? (
+        // the title as the app navigates (song pages set their own); generateMetadata sets the static HTML's
+        <Head>
+          <title>{siteMetadata.title}</title>
+        </Head>
+      ) : null}
       <View style={{ flex: 1, backgroundColor: background }} onLayout={onLayout}>
         <Stack
           screenOptions={{
@@ -119,16 +129,28 @@ function AppWithLoading() {
 // https://reactnavigation.org/docs/themes/#using-the-current-theme-in-your-own-components
 function ThemedRoot({ children }: { children: React.ReactNode }) {
   const { value: storedTheme } = useStorage('theme');
+  const { value: language } = useStorage('language');
+  const { i18n } = useTranslation();
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
+    // web has no Appearance.setColorScheme; useColorScheme.web.ts applies the setting itself
+    if (process.env.EXPO_OS === 'web') return;
     Appearance.setColorScheme(storedTheme === 'auto' ? 'unspecified' : storedTheme);
   }, [storedTheme]);
+
+  // web reads storage only after hydration (see useStorage), so the stored language arrives here
+  useEffect(() => {
+    if (process.env.EXPO_OS !== 'web') return;
+    i18n.changeLanguage(language);
+    document.documentElement.lang = language;
+  }, [language, i18n]);
 
   return <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>{children}</ThemeProvider>;
 }
 
 export default function RootLayout() {
+  useWebFonts();
   return (
     <GestureHandlerRootView>
       <KeyboardProvider>

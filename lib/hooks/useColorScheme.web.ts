@@ -1,19 +1,17 @@
-import { useSyncExternalStore } from 'react';
 import { useColorScheme as useRNColorScheme } from 'react-native';
 
-const subscribe = () => () => {};
+import useHasHydrated from './useHasHydrated';
+import useStorage from './useStorage';
 
 /**
- * To support static rendering, this value needs to be re-calculated on the client side for web.
- * useSyncExternalStore reports `false` while hydrating static HTML and `true` afterwards.
+ * Light while hydrating, like the statically rendered HTML; then the theme setting, which react-native-web's
+ * Appearance can't take, or the browser's color scheme.
  */
 export function useColorScheme(): 'light' | 'dark' {
-  const hasHydrated = useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  );
+  const hasHydrated = useHasHydrated();
   const colorScheme = useRNColorScheme();
+  const { value: theme } = useStorage('theme');
 
-  return hasHydrated && colorScheme === 'dark' ? 'dark' : 'light';
+  if (!hasHydrated) return 'light';
+  return theme === 'auto' ? (colorScheme === 'dark' ? 'dark' : 'light') : theme;
 }

@@ -16,7 +16,7 @@
   width-based `app/(dainos)/_layout.tsx` route (Option 4 of the master-detail plan).
 - Below the breakpoint the app must look **pixel-identical** to today.
 
-**Not in scope:** Android `Stack.Toolbar` (decided against), web (`build:web:disabled`),
+**Not in scope:** Android `Stack.Toolbar` (decided against), web (`pnpm build:web`, not deployed),
 `expo-hinge`, `ArrangementView` lyrics+translation, a global mini-player, App Intents.
 
 ## 2. Prerequisites (gate: do not start Session 0 until all pass)

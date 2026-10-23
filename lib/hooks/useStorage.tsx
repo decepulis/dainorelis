@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { createMMKV } from 'react-native-mmkv';
 
 import { z } from 'zod';
@@ -97,9 +97,16 @@ const readStoredValues = () =>
   ) as StorageContextValues;
 
 export function StorageProvider({ children }: { children: React.ReactNode }) {
-  const [values, setValues] = useState(readStoredValues);
+  // web: statically rendered pages have no localStorage on the server, and hydration has to match their HTML, so
+  // the stored values come in right after it
+  const [values, setValues] = useState(process.env.EXPO_OS === 'web' ? defaultContextValues : readStoredValues);
   // what was last written, for updates made before React re-renders with it (two quick toggles)
   const latest = useRef(values);
+  useEffect(() => {
+    if (process.env.EXPO_OS !== 'web') return;
+    latest.current = readStoredValues();
+    setValues(latest.current);
+  }, []);
 
   const setValue: StorageContextSetValue = (key, update) => {
     const current = latest.current[key].value;
