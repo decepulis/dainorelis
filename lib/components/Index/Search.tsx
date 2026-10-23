@@ -416,6 +416,9 @@ export function IndexToolbar({
     <>
       <Stack.SearchBar
         placeholder={t('search')}
+        // in the bar, not stacked under it: on iPad (where search never joins the toolbar) a narrow window shows a
+        // search button at the bar's trailing edge instead of a field over the forest. iPhone keeps it in the toolbar
+        placement="integrated"
         onChangeText={(e) => {
           const text = e.nativeEvent.text;
           setSearchText(text);
