@@ -14,7 +14,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
-import * as Haptics from 'expo-haptics';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
@@ -27,6 +26,7 @@ import useFrame from '../hooks/useFrame';
 import type { SongAudio } from '../hooks/useSongAudio';
 import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
+import haptic from '../utils/haptic';
 import Button, { buttonSlop, styles as buttonStyles } from './Button';
 import MediaMenu from './MediaMenu';
 import SystemView from './SystemView';
@@ -175,7 +175,7 @@ export default function Player({ media, activeMediaId, setActiveMediaId, audio, 
 
       // side-effect: bump!
       if (!didBumpSv.get() && (newValue === 0 || newValue === 1)) {
-        scheduleOnRN(Haptics.impactAsync, Haptics.ImpactFeedbackStyle.Medium);
+        scheduleOnRN(haptic, 'edge');
         didBumpSv.set(true);
       } else if (didBumpSv.get() && newValue !== 0 && newValue !== 1) {
         // reset state

@@ -14,7 +14,6 @@ import Animated, {
 import { useReorderableDrag } from 'react-native-reorderable-list';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
@@ -26,6 +25,7 @@ import useFrame from '@/lib/hooks/useFrame';
 import { createPlaylistIcon } from '@/lib/hooks/usePlaylistActions';
 import { favoritesId } from '@/lib/hooks/usePlaylists';
 import { Song } from '@/lib/schemas/songs';
+import haptic from '@/lib/utils/haptic';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 
@@ -42,8 +42,6 @@ const reorderLongPressMs = 250;
 // each swipe action's width
 const swipeActionWidth = 70;
 const swipeActionsWidth = swipeActionWidth * 2;
-// defined before the component: the swipe worklets capture it, and React Compiler may hoist them out of it
-const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
 // the row whose swipe actions are open: one at a time, as in iOS lists. Swiping another row or scrolling the
 // list (closeOpenRow) closes it.
@@ -101,10 +99,9 @@ export function ListItem({
   const { title, subtitle } = useTitle(item);
   const firstLyrics = Object.values(item.fields.Lyrics)[0];
 
-  const toggleFavorite = () => {
-    const isIn = toggleSong(favoritesId, item.id);
-    Haptics.impactAsync(isIn ? Haptics.ImpactFeedbackStyle.Medium : Haptics.ImpactFeedbackStyle.Soft);
-  };
+  // felt, as the song screen's Add to Playlist menu is: the row shows only Favorites, and a menu closes as it acts
+  const togglePlaylist = (playlistId: string) => haptic(toggleSong(playlistId, item.id) ? 'on' : 'off');
+  const toggleFavorite = () => togglePlaylist(favoritesId);
 
   const swipeableRef = useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
@@ -193,7 +190,7 @@ export function ListItem({
             accessibilityLabel={t('removeFromPlaylist')}
             style={[styles.swipeAction, { backgroundColor: removeColor, height: rowHeight }]}
             onPress={() => {
-              toggleSong(shownUserPlaylistId, item.id);
+              togglePlaylist(shownUserPlaylistId);
               close();
             }}
           >
@@ -219,7 +216,7 @@ export function ListItem({
             ]}
             onPressAction={({ nativeEvent }) => {
               if (nativeEvent.event === newPlaylistActionId) onNewPlaylistWithSong(item.id);
-              else toggleSong(nativeEvent.event, item.id);
+              else togglePlaylist(nativeEvent.event);
               close();
             }}
           >
@@ -257,9 +254,8 @@ export function ListItem({
   ];
   const onAccessibilityAction = ({ nativeEvent: { actionName } }: AccessibilityActionEvent) => {
     if (actionName === 'favorite') toggleFavorite();
-    else if (actionName === 'removeFromPlaylist' && shownUserPlaylistId) toggleSong(shownUserPlaylistId, item.id);
-    else if (actionName.startsWith(playlistActionPrefix))
-      toggleSong(actionName.slice(playlistActionPrefix.length), item.id);
+    else if (actionName === 'removeFromPlaylist' && shownUserPlaylistId) togglePlaylist(shownUserPlaylistId);
+    else if (actionName.startsWith(playlistActionPrefix)) togglePlaylist(actionName.slice(playlistActionPrefix.length));
     else if (actionName === newPlaylistActionId) onNewPlaylistWithSong(item.id);
     else if (actionName === 'moveUp') reorder?.onMoveBy(-1);
     else if (actionName === 'moveDown') reorder?.onMoveBy(1);
@@ -324,7 +320,7 @@ export function ListItem({
                       <Link.MenuAction
                         key={playlist.id}
                         isOn={playlist.songIds.has(item.id)}
-                        onPress={() => toggleSong(playlist.id, item.id)}
+                        onPress={() => togglePlaylist(playlist.id)}
                       >
                         {playlist.name}
                       </Link.MenuAction>
@@ -374,7 +370,7 @@ function SwipeActions({
     (armed, wasArmed) => {
       if (armed === (wasArmed ?? false)) return;
       armProgress.set(withTiming(armed ? 1 : 0, { duration: 150, reduceMotion: ReduceMotion.System }));
-      if (armed) scheduleOnRN(lightHaptic);
+      if (armed) scheduleOnRN(haptic, 'threshold');
     }
   );
 

@@ -9,6 +9,7 @@ import Share from '@expo/material-symbols/share.xml';
 import Title from '@expo/material-symbols/title.xml';
 import type { SFSymbol } from 'sf-symbols-typescript';
 
+import haptic from '../utils/haptic';
 import useConfirm from './useConfirm';
 import useNamePrompt from './useNamePrompt';
 import usePlaylists, { Playlist, allSongsId } from './usePlaylists';
@@ -112,6 +113,8 @@ export default function usePlaylistActions() {
       onSubmit: (name) => {
         const newId = createPlaylist(name, songIds);
         if (newId && !songIds) setSelectedPlaylistId(newId);
+        // the list stays put, so it's felt (as on the song screen)
+        else if (newId) haptic('confirm');
       },
     });
 
