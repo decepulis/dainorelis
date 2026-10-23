@@ -200,7 +200,7 @@ export default function Index() {
 
   // the bar's background appears as the list reaches it, past the forest and the logo
   const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
-  const topScrollEdgeEffect = useTopScrollEdgeEffect(listRef, listTop, scrollOffset);
+  const topScrollEdgeEffect = useTopScrollEdgeEffect(listTop);
 
   // wide, the list's card sits on a darker backdrop, which also shows above the forest when overscrolled. It's the
   // scroll view's own background: a background on a view around it would keep that view from being flattened away,
@@ -324,7 +324,7 @@ export default function Index() {
         options={{
           headerBackground: () => <HeaderBackground scrollRef={listRef} scrollOffset={scrollOffset} />,
           headerTitleAlign: 'center',
-          scrollEdgeEffects: topScrollEdgeEffect,
+          ...topScrollEdgeEffect,
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} scrollOffset={scrollOffset} titleLayout={titleLayout} center>
               <HeaderLogo headerHeight={headerHeight} />
