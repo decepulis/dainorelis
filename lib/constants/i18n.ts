@@ -10,6 +10,8 @@ const getLanguageFromStorage: LanguageDetectorModule = {
   init: () => {},
   detect: function () {
     let language = 'lt'; // default to lithuanian
+    // web: Lithuanian until hydrated, like the statically rendered HTML; the root layout then applies the stored one
+    if (process.env.EXPO_OS === 'web') return language;
     const languageJSON = storage.getString('language');
     if (languageJSON) {
       try {
@@ -48,6 +50,7 @@ const en = {
   deletePlaylistTitle: 'Delete “{{name}}”?',
   deletePlaylistMessage: 'This can’t be undone.',
   shareLink: 'Share Link',
+  linkCopied: 'Link Copied',
   qrCode: 'QR code for “{{name}}”',
   sharePlaylistHint: 'Scan the code with a phone’s camera to open this playlist in Dainorėlis.',
   playlistTooLongForQRCode: 'This playlist is too long for a QR code. Share the link instead.',
@@ -68,6 +71,7 @@ const en = {
   pdfErrorTitle: "Couldn't load the sheet music",
   pdfErrorHint: 'Check your internet connection and try again.',
   tryAgain: 'Try again',
+  openSheetMusic: 'Open Sheet Music',
   settingsTitle: 'Settings',
   settingsSpecialThanksTitle: 'Special thanks',
   settingsSpecialThanksSimtmecioDainorelis:
@@ -156,6 +160,8 @@ const lt = {
   deletePlaylistTitle: 'Ištrinti „{{name}}“?',
   deletePlaylistMessage: 'Šio veiksmo atšaukti negalėsite.',
   shareLink: 'Bendrinti nuorodą',
+  linkCopied: 'Nuoroda nukopijuota',
+  openSheetMusic: 'Atidaryti natas',
   qrCode: 'Grojaraščio „{{name}}“ QR kodas',
   sharePlaylistHint: 'Nuskaitykite kodą telefono kamera, kad atidarytumėte šį grojaraštį Dainorėlyje.',
   playlistTooLongForQRCode: 'Grojaraštis per ilgas QR kodui. Bendrinkite nuorodą.',

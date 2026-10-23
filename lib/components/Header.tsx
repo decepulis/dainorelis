@@ -262,6 +262,8 @@ export const HeaderTitle = ({
           // on iOS 26, patches/react-native-screens@4.30.0.patch sizes this view to the space
           // actually left over by the toolbar buttons, so no width hacks are needed here
           paddingHorizontal: isLiquidGlassStyleHeader() ? undefined : buttonSlop.left,
+          // web's JS header stretches the title to the bar's height
+          justifyContent: process.env.EXPO_OS === 'web' ? 'center' : undefined,
         },
       ]}
     >
@@ -269,6 +271,9 @@ export const HeaderTitle = ({
     </View>
   );
 };
+
+// web's JS header puts the bar buttons at its very edges; Android's toolbar insets them
+const webBarEdge = process.env.EXPO_OS === 'web' ? 16 : 0;
 
 type HeaderLeftProps = {
   modal?: boolean;
@@ -281,15 +286,17 @@ export const HeaderLeft = ({ modal, href, canGoBack }: HeaderLeftProps) => {
   const isClose = modal && process.env.EXPO_OS === 'ios';
   // role overrides the 'link' role Link passes down: this is a navigation-bar button
   return (
-    <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
-      <Button role="button" accessibilityLabel={isClose ? t('close') : t('back')}>
-        {isClose ? (
-          <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
-        ) : (
-          <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
-        )}
-      </Button>
-    </Link>
+    <View style={{ marginLeft: webBarEdge }}>
+      <Link href={href ?? (canGoBack ? '../' : '/')} asChild>
+        <Button role="button" accessibilityLabel={isClose ? t('close') : t('back')}>
+          {isClose ? (
+            <FontAwesome6 name="xmark" iconStyle="solid" size={18} color="white" />
+          ) : (
+            <FontAwesome6 name="chevron-left" iconStyle="solid" size={17} color="white" />
+          )}
+        </Button>
+      </Link>
+    </View>
   );
 };
 
@@ -321,6 +328,7 @@ export const HeaderButtonContainer = ({ children }: HeaderButtonContainerProps) 
       style={{
         flexDirection: 'row',
         gap,
+        marginRight: webBarEdge,
       }}
     >
       {children}

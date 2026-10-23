@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
-import Pdf from 'react-native-pdf';
 import Animated, {
   useAnimatedReaction,
   useAnimatedRef,
@@ -13,7 +12,9 @@ import { SafeAreaView } from 'react-native-screens/experimental';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import Head from 'expo-router/head';
 import { useHeaderHeight } from 'expo-router/react-navigation';
+import type { GenerateMetadataFunction } from 'expo-router/server';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
@@ -27,6 +28,7 @@ import {
 } from '@/lib/components/Header';
 import Markdown from '@/lib/components/Markdown';
 import NotFound from '@/lib/components/NotFound';
+import Pdf from '@/lib/components/Pdf';
 import Player, { playerHeight } from '@/lib/components/Player';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import SongMenu, { AddToPlaylistMenu, SongDetailToolbar, useSongOverflowMenu } from '@/lib/components/SongMenu';
@@ -38,6 +40,7 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import { fonts } from '@/lib/constants/themes';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
+import useHasHydrated from '@/lib/hooks/useHasHydrated';
 import useSongAudio from '@/lib/hooks/useSongAudio';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -46,12 +49,18 @@ import { Lyrics as LyricsType } from '@/lib/schemas/lyrics';
 import { PDFs } from '@/lib/schemas/pdfs';
 import { Song } from '@/lib/schemas/songs';
 import isLyrics from '@/lib/utils/isLyrics';
+import { siteMetadata, songMetadata, songPageTitle } from '@/lib/utils/pageMetadata';
 import useTitle from '@/lib/utils/useTitle';
 import songs from '@/songs';
 
 export async function generateStaticParams() {
   return songs.map((song) => ({ id: song.id }));
 }
+
+export const generateMetadata: GenerateMetadataFunction = (_request, params) => {
+  const song = songs.find((song) => song.id === params.id);
+  return song ? songMetadata(song) : siteMetadata;
+};
 
 // Liquid Glass's player: false puts info and play/pause in the native bottom toolbar, with the full player in a
 // sheet (UIKit places the items, e.g. in the closed iPhone Duo's trailing bar); true uses the floating player that
@@ -82,13 +91,16 @@ function SongPage({ song }: { song: Song }) {
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
   const contentColumn = useContentColumnStyle();
+  const hasHydrated = useHasHydrated();
   const { value: showChords } = useStorage('showChords');
   const { value: activeVariantIdBySongId, setValue: setActiveVariantIdBySongId } =
     useStorage('activeVariantIdBySongId');
   const { value: activeMediaIdBySongId, setValue: setActiveMediaIdBySongId } = useStorage('activeMediaIdBySongId');
 
   // ?v= / ?m= only exist once the user picks from a menu (or a link carries them)
-  const { v: variantIdParam, m: mediaIdParam } = useLocalSearchParams<{ v?: string; m?: string }>();
+  // (web: not before hydration, since the statically rendered page has no query)
+  const searchParams = useLocalSearchParams<{ v?: string; m?: string }>();
+  const { v: variantIdParam, m: mediaIdParam } = hasHydrated ? searchParams : {};
 
   const { id } = song;
 
@@ -144,7 +156,6 @@ function SongPage({ song }: { song: Song }) {
     titleLayout.set(event.nativeEvent.layout);
   };
   const { title, subtitle, variantName } = useTitle(song, activeVariant);
-  const audio = useSongAudio(title, activeMedia);
   const showLyrics = isLyrics(activeVariant);
 
   // Liquid Glass: a native title with the variant as its subtitle and a title menu to switch variants
@@ -210,6 +221,11 @@ function SongPage({ song }: { song: Song }) {
   return (
     // a large title tracks the screen's first scroll view, so don't wrap it in a View
     <Root {...(isLargeTitle ? {} : { style: { flex: 1, backgroundColor: background } })}>
+      {process.env.EXPO_OS === 'web' ? (
+        <Head>
+          <title>{songPageTitle(song)}</title>
+        </Head>
+      ) : null}
       <Stack.Screen
         options={{
           headerBackground: isLargeTitle ? undefined : () => <HeaderBackground opaque />,
@@ -346,7 +362,11 @@ function SongPage({ song }: { song: Song }) {
         // (landscape notches, the closed iPhone Duo's toolbar strip), measured natively for this screen
         <SafeAreaView
           edges={{ left: true, right: true }}
-          style={{ paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }}
+          style={
+            process.env.EXPO_OS === 'web'
+              ? { flex: 1, paddingTop: headerHeight }
+              : { paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }
+          }
         >
           {pdfFailed ? (
             <View
@@ -421,20 +441,40 @@ function SongPage({ song }: { song: Song }) {
           )}
         </SafeAreaView>
       )}
-      {isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass ? (
-        // native toolbar items and a player sheet
-        <SongToolbar
-          title={title}
-          media={media}
-          activeMediaId={activeMediaId}
-          setActiveMediaId={setActiveMediaId}
-          audio={audio}
-        />
-      ) : activeMedia ? (
-        <Player media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} audio={audio} />
+      {/* web: the server has no audio element to render a player with */}
+      {hasHydrated ? (
+        <SongAudio title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
       ) : null}
     </Root>
   );
+}
+
+type SongAudioProps = {
+  title: string;
+  media: { [id: string]: Audio };
+  activeMediaId: string | undefined;
+  setActiveMediaId: (id: string) => void;
+};
+
+/**
+ * Owns the audio player and renders its controls. The player lives here rather than in Player, so the controls can
+ * move (into the native bottom toolbar on Liquid Glass) or remount without restarting playback.
+ */
+function SongAudio({ title, media, activeMediaId, setActiveMediaId }: SongAudioProps) {
+  const activeMedia = activeMediaId ? media[activeMediaId] : null;
+  const audio = useSongAudio(title, activeMedia);
+  return isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass ? (
+    // native toolbar items and a player sheet
+    <SongToolbar
+      title={title}
+      media={media}
+      activeMediaId={activeMediaId}
+      setActiveMediaId={setActiveMediaId}
+      audio={audio}
+    />
+  ) : activeMedia ? (
+    <Player media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} audio={audio} />
+  ) : null;
 }
 
 const styles = StyleSheet.create({

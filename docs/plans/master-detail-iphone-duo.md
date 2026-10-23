@@ -75,7 +75,7 @@ Possible non-layout uses: maybe a "tabletop" mode for the PDF/sheet-music view o
 
    Effort: **1–3 days**.
 
-2. **Phase 1, Option 4 master-detail** (sketch below). Effort: **5–8 dev days plus 2 days of QA** across iPhone, iPad (portrait, landscape, Stage Manager resizing), iPhone Duo (simulator), an Android tablet or foldable emulator, and web if it gets re-enabled.
+2. **Phase 1, Option 4 master-detail** (sketch below). Effort: **5–8 dev days plus 2 days of QA** across iPhone, iPad (portrait, landscape, Stage Manager resizing), iPhone Duo (simulator), an Android tablet or foldable emulator, and web (`pnpm build:web`).
 3. **Later:** re-evaluate `unstable-split-view` when it stabilises, and look at `ArrangementView` for lyrics plus translation on 27.1+.
 
 **Decision (2026-10-21, after the spike):** stay single-pane for now and wait for the react-native-screens Split redesign rather than build Option 4. Meanwhile, make layout relative to the content's own size instead of the window, and honour horizontal safe areas. The Duo needs this anyway, and it is a prerequisite for any split.
@@ -138,7 +138,7 @@ Files likely touched:
 5. Should audio keep playing while browsing other songs (a mini-player outside the song screen)? This becomes much more noticeable in split mode.
 6. ~~Any appetite for a native spike of `unstable-split-view`?~~ Done 2026-10-21; see the spike result under Option 1.
 
-Owner answers (2026-10-21): (2) 840 is fine, but prefer the platform's own size classes where available; (3) a placeholder; (4) native-feeling but on-brand, with the current list's affordances and signifiers; (5) playback stops when switching songs. Android may stay single-pane on tablets. 7. Is web coming back (`build:web:disabled`)? The same layout would serve desktop browsers.
+Owner answers (2026-10-21): (2) 840 is fine, but prefer the platform's own size classes where available; (3) a placeholder; (4) native-feeling but on-brand, with the current list's affordances and signifiers; (5) playback stops when switching songs. Android may stay single-pane on tablets. 7. Is web coming back? It builds now (`pnpm build:web`), not yet deployed; the same layout would serve desktop browsers.
 
 ---
 

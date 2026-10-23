@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Share, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -26,6 +27,7 @@ export default function Page() {
   const primary = useThemeColor('primary');
   const onPrimary = useThemeColor('onPrimary');
   const { getPlaylist } = usePlaylists();
+  const [didCopyLink, setDidCopyLink] = useState(false);
   const playlist = getPlaylist(id);
   if (!playlist) {
     return <NotFound modal message={t('pageNotFound')} />;
@@ -34,12 +36,25 @@ export default function Page() {
   const url = playlistUrl(playlist.name, playlist.songIds);
   // a QR code holds a link to ~190 songs; past that, the link alone
   const svg = qrSvg(url);
-  const shareLink = () =>
+  const shareLink = () => {
+    // browsers without the Web Share API (most desktop ones) copy the link instead
+    if (process.env.EXPO_OS === 'web' && !navigator.share) {
+      navigator.clipboard.writeText(url).then(() => setDidCopyLink(true), console.warn);
+      return;
+    }
     Share.share(
-      // iOS shares the URL as a link; Android only takes text
-      process.env.EXPO_OS === 'ios' ? { url } : { message: `${playlist.name}\n${url}`, title: playlist.name },
+      // iOS and web share the URL as a link; Android only takes text
+      process.env.EXPO_OS === 'ios'
+        ? { url }
+        : process.env.EXPO_OS === 'web'
+          ? { url, title: playlist.name }
+          : { message: `${playlist.name}\n${url}`, title: playlist.name },
       { subject: playlist.name, dialogTitle: playlist.name }
-    ).catch(console.warn);
+    ).catch((e) => {
+      // web: the share sheet was dismissed
+      if (e?.name !== 'AbortError') console.warn(e);
+    });
+  };
 
   return (
     <View
@@ -74,7 +89,7 @@ export default function Page() {
         noGlass
         hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
         innerStyle={[styles.shareButton, { backgroundColor: primary }]}
-        accessibilityLabel={t('shareLink')}
+        accessibilityLabel={didCopyLink ? t('linkCopied') : t('shareLink')}
         onPress={shareLink}
       >
         <FontAwesome6
@@ -84,7 +99,7 @@ export default function Page() {
           color={onPrimary}
         />
         <ThemedText bold style={[styles.shareButtonText, { color: onPrimary }]}>
-          {t('shareLink')}
+          {didCopyLink ? t('linkCopied') : t('shareLink')}
         </ThemedText>
       </Button>
     </View>

@@ -22,7 +22,7 @@ const artworkUrl: Promise<string | undefined> = icon.uri.includes(':')
 const iosStalledLoadMs = 4000;
 
 /**
- * The song screen's audio player and lock screen controls. Kept in the screen rather than in
+ * The song screen's audio player and lock screen controls. Kept in the screen's SongAudio rather than in
  * Player, so the controls can move (into the native bottom toolbar on Liquid Glass) or remount
  * without restarting playback.
  */

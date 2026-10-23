@@ -11,6 +11,7 @@ import ThemedText from '@/lib/components/ThemedText';
 import { pluralKey } from '@/lib/constants/i18n';
 import padding from '@/lib/constants/padding';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
+import useHasHydrated from '@/lib/hooks/useHasHydrated';
 import usePlaylists from '@/lib/hooks/usePlaylists';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
@@ -33,6 +34,8 @@ export default function Page() {
   const onPrimary = useThemeColor('onPrimary');
   const separator = useThemeColor('separator');
   const params = useLocalSearchParams<{ n?: string; s?: string }>();
+  // web: the statically rendered page has no query, so the playlist only renders once hydrated
+  const hasHydrated = useHasHydrated();
   const { createPlaylist } = usePlaylists();
   const { setValue: setSelectedPlaylistId } = useStorage('selectedPlaylistId');
 
@@ -63,54 +66,58 @@ export default function Page() {
             { paddingTop: padding * 2, paddingBottom: Math.max(inset.bottom + padding * 2, padding * 4) },
           ]}
         >
-          <ThemedText title bold style={styles.title}>
-            {name}
-          </ThemedText>
-          {isValid ? (
+          {!hasHydrated ? null : (
             <>
-              <ThemedText style={styles.subtitle}>
-                {t(pluralKey('songCount', songIds.length, i18n.language), { n: songIds.length })}
+              <ThemedText title bold style={styles.title}>
+                {name}
               </ThemedText>
-              {missingCount > 0 ? (
+              {isValid ? (
+                <>
+                  <ThemedText style={styles.subtitle}>
+                    {t(pluralKey('songCount', songIds.length, i18n.language), { n: songIds.length })}
+                  </ThemedText>
+                  {missingCount > 0 ? (
+                    <ThemedText style={styles.note}>
+                      {t(pluralKey('missingSongs', missingCount, i18n.language), { n: missingCount })}
+                    </ThemedText>
+                  ) : null}
+                  <Button
+                    noGlass
+                    hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+                    style={styles.addButton}
+                    innerStyle={[styles.addButtonInner, { backgroundColor: primary }]}
+                    accessibilityLabel={t('addPlaylist')}
+                    onPress={addPlaylist}
+                  >
+                    <ThemedText bold style={[styles.addButtonText, { color: onPrimary }]}>
+                      {t('addPlaylist')}
+                    </ThemedText>
+                  </Button>
+                  <View style={[styles.songs, { borderTopColor: separator }]}>
+                    {songIds.map((id, index) => {
+                      const [title, subtitle] = splitTitle(songsById.get(id)!.fields.Name);
+                      return (
+                        <View key={id} style={[styles.song, { borderBottomColor: separator }]}>
+                          <ThemedText style={styles.songNumber}>{index + 1}</ThemedText>
+                          <View style={styles.songTitles}>
+                            <ThemedText title style={styles.songTitle}>
+                              {title}
+                            </ThemedText>
+                            {subtitle ? <ThemedText style={styles.songSubtitle}>{subtitle}</ThemedText> : null}
+                          </View>
+                        </View>
+                      );
+                    })}
+                  </View>
+                </>
+              ) : (
                 <ThemedText style={styles.note}>
-                  {t(pluralKey('missingSongs', missingCount, i18n.language), { n: missingCount })}
+                  {missingCount > 0
+                    ? t(pluralKey('missingSongs', missingCount, i18n.language), { n: missingCount })
+                    : t('invalidPlaylistLink')}
                 </ThemedText>
-              ) : null}
-              <Button
-                noGlass
-                hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                style={styles.addButton}
-                innerStyle={[styles.addButtonInner, { backgroundColor: primary }]}
-                accessibilityLabel={t('addPlaylist')}
-                onPress={addPlaylist}
-              >
-                <ThemedText bold style={[styles.addButtonText, { color: onPrimary }]}>
-                  {t('addPlaylist')}
-                </ThemedText>
-              </Button>
-              <View style={[styles.songs, { borderTopColor: separator }]}>
-                {songIds.map((id, index) => {
-                  const [title, subtitle] = splitTitle(songsById.get(id)!.fields.Name);
-                  return (
-                    <View key={id} style={[styles.song, { borderBottomColor: separator }]}>
-                      <ThemedText style={styles.songNumber}>{index + 1}</ThemedText>
-                      <View style={styles.songTitles}>
-                        <ThemedText title style={styles.songTitle}>
-                          {title}
-                        </ThemedText>
-                        {subtitle ? <ThemedText style={styles.songSubtitle}>{subtitle}</ThemedText> : null}
-                      </View>
-                    </View>
-                  );
-                })}
-              </View>
+              )}
             </>
-          ) : (
-            <ThemedText style={styles.note}>
-              {missingCount > 0
-                ? t(pluralKey('missingSongs', missingCount, i18n.language), { n: missingCount })
-                : t('invalidPlaylistLink')}
-            </ThemedText>
           )}
         </View>
       </ScrollViewWithHeader>

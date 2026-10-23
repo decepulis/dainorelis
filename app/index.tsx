@@ -13,7 +13,7 @@ import { GestureDetector, useNativeGesture } from 'react-native-gesture-handler'
 import { useKeyboardState } from 'react-native-keyboard-controller';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
-import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import * as Haptics from 'expo-haptics';
@@ -49,11 +49,13 @@ import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
+import useFrame from '@/lib/hooks/useFrame';
 import usePlaylistActions from '@/lib/hooks/usePlaylistActions';
 import usePlaylists from '@/lib/hooks/usePlaylists';
 import useSongList, { SongListItem, allSongItems } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
+import { siteMetadata } from '@/lib/utils/pageMetadata';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
@@ -62,10 +64,13 @@ const bottomBarHeight = 44;
 // defined before the component: the drag worklets capture it, and React Compiler may hoist them out of it
 const lightHaptic = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
+// web: the static HTML's title and description
+export const generateMetadata = () => siteMetadata;
+
 export default function Index() {
   // just a bunch of global state
   const inset = useSafeAreaInsets();
-  const { width, height } = useSafeAreaFrame();
+  const { width, height } = useFrame();
   const { fontScale } = useWindowDimensions();
   const headerHeight = useHeaderHeight();
   const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();

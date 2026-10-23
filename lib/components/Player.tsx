@@ -10,7 +10,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
@@ -23,6 +23,7 @@ import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
 import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
+import useFrame from '../hooks/useFrame';
 import type { SongAudio } from '../hooks/useSongAudio';
 import { useThemeColor } from '../hooks/useThemeColor';
 import { Audio } from '../schemas/audio';
@@ -54,7 +55,7 @@ type Props = {
 };
 export default function Player({ media, activeMediaId, setActiveMediaId, audio, style }: Props) {
   const inset = useSafeAreaInsets();
-  const { width } = useSafeAreaFrame();
+  const { width } = useFrame();
   // live Reduce Motion: the player opens, closes and resizes without springing
   const { isHighContrastEnabled, reduceMotion } = useAccessibilityInfo();
   const { t, i18n } = useTranslation();
