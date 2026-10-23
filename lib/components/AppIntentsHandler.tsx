@@ -19,14 +19,17 @@ export default function AppIntentsHandler() {
     if (!AppIntents.isAvailable()) return;
     AppIntents.setEntityCatalogAsync(
       'song',
-      songs.map((song) => ({
-        id: song.id,
-        title: song.fields.Name,
-        // the English title, so English Siri and searches find it too
-        synonyms: Object.values(song.fields.Translations)
-          .map((translation) => translation.Title)
-          .filter(Boolean),
-      }))
+      songs.map((song) => {
+        const lines = lyricLines(Object.values(song.fields.Lyrics)[0]?.['Lyrics & Chords'] ?? '');
+        return {
+          id: song.id,
+          title: song.fields.Name,
+          // Spotlight's snippet under the title
+          subtitle: lines.slice(0, 2).join(' / ') || undefined,
+          // the first variant's lyrics, so Spotlight finds a song by a remembered line (~450 KB in all)
+          metadata: lines.length ? { lyrics: lines.join('\n') } : undefined,
+        };
+      })
     ).catch(console.warn);
   }, []);
 
@@ -46,3 +49,12 @@ export default function AppIntentsHandler() {
 
   return null;
 }
+
+/** lyrics as plain lines: no chords, markdown, indentation or blank lines */
+const lyricLines = (lyrics: string) =>
+  lyrics
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // [text](Chord)
+    .replace(/[*_#>`]|^\s*- /gm, '')
+    .split('\n')
+    .map((line) => line.replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
