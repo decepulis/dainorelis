@@ -144,6 +144,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     '@react-native-vector-icons/fontawesome6',
     ['expo-app-intents', { directory: 'modules/app-intents' }],
     './plugins/withAndroidReleaseSigning',
+    './plugins/withAndroidFontScaleConfigChange',
     './plugins/withIosReleaseScheme',
   ],
 });

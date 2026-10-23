@@ -64,7 +64,7 @@ generated from `app.config.ts` and `/plugins` by `npx expo prebuild --clean` (or
 `pod install` (on a Mac; `--no-install` skips it), and `ios/Podfile.lock` isn't committed. Never
 edit the generated folders: the next `--clean` prebuild wipes them. Native config goes in
 `app.config.ts` or a config plugin in `/plugins` (`withAndroidReleaseSigning`,
-`withIosReleaseScheme`). Release builds on Android run R8; keep rules go in
+`withIosReleaseScheme`, `withAndroidFontScaleConfigChange`: a text size change doesn't recreate the activity). Release builds on Android run R8; keep rules go in
 `expo-build-properties` `android.extraProguardRules` in `app.config.ts`. compileSdk, targetSdk and
 minSdk are the SDK defaults.
 
