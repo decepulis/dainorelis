@@ -1,6 +1,7 @@
 import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import { GestureDetector, useNativeGesture } from 'react-native-gesture-handler';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -64,6 +65,10 @@ export default function Index() {
   const { t } = useTranslation();
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
+  // The list's scrolling takes part in gesture handling, like the reorderable list's, so it and a row's swipe
+  // settle who gets a touch. Otherwise, on Android, a row's swipe could take a scroll's touch partway in and
+  // stop the list after a few pixels.
+  const listScrollGesture = useNativeGesture({});
   // the list's scroll offset, shared by the header's scroll effects: a list that replaces another (a reorderable
   // playlist's, all songs') starts at the top without a scroll event, so it's reset here
   const scrollOffset = useSharedValue(0);
@@ -376,20 +381,22 @@ export default function Index() {
             autoscrollThresholdOffset={{ start: headerHeight, end: inset.bottom + floatingBottomGap + listItemHeight }}
           />
         ) : (
-          <Animated.FlatList
-            // todo reduce jank by telling it about height
-            // todo add jump-to-letter bar
-            ref={listRef}
-            data={displayItems}
-            renderItem={renderItem}
-            keyboardDismissMode="on-drag"
-            // scrolling closes a row's open swipe actions
-            onScrollBeginDrag={closeOpenRow}
-            style={listStyle}
-            contentContainerStyle={contentContainerStyle}
-            ListHeaderComponent={listHeader}
-            ListFooterComponent={listFooter}
-          />
+          <GestureDetector gesture={listScrollGesture}>
+            <Animated.FlatList
+              // todo reduce jank by telling it about height
+              // todo add jump-to-letter bar
+              ref={listRef}
+              data={displayItems}
+              renderItem={renderItem}
+              keyboardDismissMode="on-drag"
+              // scrolling closes a row's open swipe actions
+              onScrollBeginDrag={closeOpenRow}
+              style={listStyle}
+              contentContainerStyle={contentContainerStyle}
+              ListHeaderComponent={listHeader}
+              ListFooterComponent={listFooter}
+            />
+          </GestureDetector>
         )}
         {!isLiquidGlassStyleHeader() && (
           <Search
