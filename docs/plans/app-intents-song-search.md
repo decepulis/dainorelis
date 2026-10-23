@@ -15,13 +15,14 @@
   default `app-intents/`), watched by `experiments.inlineModules` and passed to the plugin as
   `directory`. Inline modules add the folder to the app target as a synchronized group, so its
   `.xcstrings` files compile in too.
-- `SongEntity` + `SongQuery` (`EntityStringQuery`, `EnumerableEntityQuery`): title plus the English
-  title as a synonym, matched case- and diacritic-insensitively. `IndexedEntity` on iOS 18+
+- `SongEntity` + `SongQuery` (`EntityStringQuery`, `EnumerableEntityQuery`): title, then lyrics
+  (originally title plus English title; see "Lyrics in the catalog"), matched case- and
+  diacritic-insensitively. `IndexedEntity` on iOS 18+
   (registered with `registerIndexed("song")`), `IndexedEntityQuery` behind `#if compiler(>=6.4)`.
 - `OpenSongIntent` (`OpenIntent`, `openAppWhenRun`) dispatches `openSong`; Spotlight taps go through
   it too. Routing is the primary option above: `lib/components/AppIntentsHandler.tsx`, mounted next
   to the root `Stack`, `router.push`es `/dainos/<id>` and dequeues; it also publishes the catalog
-  (titles only, all songs) on every launch. `update-songs` needs no change: the catalog comes from
+  (all songs) on every launch. `update-songs` needs no change: the catalog comes from
   `songs.ts` at runtime, so a new `songs.ts` (build or OTA) republishes it on its first launch.
 - One App Shortcut (`AppShortcuts`) with four phrases ("Open <song> in Dainorėlis", "Show …",
   "Open a song …", "Find a song …"). English is the source in Swift; Lithuanian is in
@@ -29,7 +30,7 @@
   `AppShortcuts.xcstrings` needs iOS 17). Siri has no Lithuanian, so the LT phrases only matter if
   it ever does.
 - Answers to the open questions, as built: Spotlight and Shortcuts first, voice best-effort (1);
-  ids assumed stable (2, still to confirm); titles only, no lyrics (3); everything in `songs.ts` (4);
+  ids assumed stable (2, still to confirm); first-variant lyrics, see below (3); everything in `songs.ts` (4);
   scheme unchanged, not needed (5); alpha dependency accepted (6); localized (7).
 
 Remaining:
@@ -43,10 +44,40 @@ Remaining:
   from Shortcuts. On the simulator linkd rejects the ad-hoc-signed app ("Rejecting invalid client
   due to requiresValidBundle", no team id), so the picked song arrives as nil and the App Shortcut
   tile says "Couldn't find AppShortcutsProvider"; a team-signed device build should not hit this.
-  Also unverified: Siri voice (no Siri on the simulator), Spotlight matching the English title
-  (it shows as the result's subtitle, but "little poppy" didn't surface it), and index persistence.
-- Not done (optional): `SearchSongsIntent` (needs `?q=` on `app/index.tsx`), first-verse snippets in
-  Spotlight, donations, `AppEntityView` on the song screen.
+  Also unverified: Siri voice (no Siri on the simulator) and index persistence. (English titles,
+  since dropped, didn't match in Spotlight either: "little poppy" didn't surface Aguonėlė.)
+- Not done (optional): `SearchSongsIntent` (needs `?q=` on `app/index.tsx`), donations,
+  `AppEntityView` on the song screen.
+
+### Lyrics in the catalog (2026-10-23)
+
+- English titles are gone from the catalog, `SongQuery` and Spotlight (the owner: nobody knows these
+  songs by them). The rest of the app's English titles are unchanged.
+- Each record carries the first lyrics variant as plain lines (chords, markdown, indentation and
+  blank lines stripped in `AppIntentsHandler`; repeat markers such as "(2k.)" stay) in
+  `metadata.lyrics`, and its first two lines, joined with " / ", as `subtitle`. `SongEntity` shows
+  the snippet as its display subtitle (the Shortcuts picker) and indexes `textContent` (lyrics) and
+  `contentDescription` (snippet) on top of `defaultAttributeSet`. `SongQuery` matches the title
+  first, then the lyrics, so the Shortcuts picker finds "dalgele papustysiu" → Žalia pieva.
+- Size and cost: the catalog is ~440 KB of JSON (57 KB with titles only), stored in UserDefaults.
+  Measured on the iOS 26.5 simulator, Debug build: building it takes ~24 ms on the JS thread; the
+  native publish runs async off the JS thread, ~0.65–0.9 s for an unchanged catalog (decode, encode,
+  compare; no reindex) and ~3.2 s for a changed one (includes the Spotlight reindex). No extra cache:
+  the library already skips unchanged catalogs, and skipping the call from JS would bypass its
+  stale-index retry.
+- Caveat: the library reindexes only when the catalog changes (or the last index failed), so a
+  Swift-only change to `attributeSet` doesn't reach existing installs until the next changed catalog.
+  This release changes the catalog (titles → lyrics), so upgrades reindex.
+- Verified on the simulator: Spotlight shows the snippet under the title ("Aguonėlė — Klausė žvirblis
+  čiulbonėlis / Pas tą pilką karvelėlį:"), and tapping it opens the song. An in-app `CSSearchQuery`
+  confirms the index holds the lyrics and matches them case- and diacritic-insensitively
+  (`textContent == "*zvirblis*"cd` finds Aguonėlė). **Not verified: home-screen Spotlight finding a
+  song by a lyric line.** On the iOS 26.5 simulator it surfaces app results only by title: a lyric
+  query found nothing, and neither did words put in `keywords` or `contentDescription`, or a plain
+  non-entity `CSSearchableItem`'s body text (its title matched). That matches the earlier English
+  title result ("little poppy" in `keywords` didn't match). Check on a device; if it also ignores
+  `textContent` there, fall back to the lyrics' distinct words as `keywords` (tried, ~20–30 per
+  song; no better on the simulator).
 
 ### What `expo-app-intents` requires
 
