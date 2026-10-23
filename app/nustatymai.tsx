@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 
 import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
@@ -184,6 +185,28 @@ export default function Page() {
               ))}
             </View>
           </View>
+          <Pressable
+            onPress={() =>
+              WebBrowser.openBrowserAsync('https://dainorelis.app/privacy', {
+                controlsColor: primary,
+                presentationStyle: WebBrowser.WebBrowserPresentationStyle.PAGE_SHEET,
+                dismissButtonStyle: 'close',
+              })
+            }
+            accessibilityRole="link"
+            hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+          >
+            {({ pressed }) => (
+              <ThemedText
+                style={[
+                  styles.paragraph,
+                  { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                ]}
+              >
+                {t('privacyPolicy')}
+              </ThemedText>
+            )}
+          </Pressable>
         </View>
       </ScrollViewWithHeader>
     </>
