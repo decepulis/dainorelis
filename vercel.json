@@ -1,18 +1,30 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "echo 'Redirect-only deployment; nothing to install'",
-  "buildCommand": "echo 'Redirect-only deployment; nothing to build'",
-  "outputDirectory": "public",
+  "framework": null,
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build:web",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
   "redirects": [
     {
-      "source": "/",
-      "destination": "https://www.dainorelisapp.com/",
+      "source": "/qr",
+      "has": [{ "type": "header", "key": "user-agent", "value": ".*Android.*" }],
+      "destination": "https://play.google.com/store/apps/details?id=com.dainorelis.dainorelis",
       "permanent": false
     },
     {
-      "source": "/:path*",
-      "destination": "https://www.dainorelisapp.com/:path*",
+      "source": "/qr",
+      "has": [{ "type": "header", "key": "user-agent", "value": ".*(iPhone|iPad|iPod).*" }],
+      "destination": "https://apps.apple.com/app/id1116436510",
       "permanent": false
+    },
+    { "source": "/qr", "destination": "/", "permanent": false }
+  ],
+  "rewrites": [{ "source": "/grojarasciai/:id/bendrinti", "destination": "/grojarasciai/[id]/bendrinti" }],
+  "headers": [
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }]
     }
   ]
 }

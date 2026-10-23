@@ -1,8 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "astro",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm run build",
+  "framework": null,
+  "installCommand": "echo 'Redirect-only deployment; nothing to install'",
+  "buildCommand": "echo 'Redirect-only deployment; nothing to build'",
+  "outputDirectory": "public",
+  "redirects": [
+    { "source": "/:path((?!\\.well-known/).*)", "destination": "https://dainorelis.app/:path", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",

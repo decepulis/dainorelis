@@ -18,8 +18,8 @@ This is an [Expo](https://expo.dev) project. As best as I understand it, Expo is
 pnpm install
 ```
 
-This is a pnpm workspace: the root is the Expo app, `admin/` is the CMS (see `admin/README.md`)
-and `dainorelisapp.com/` is the marketing site. To refresh the bundled song data, copy
+This is a pnpm workspace: the root is the Expo app (and, built for the web, https://dainorelis.app) and
+`admin/` is the CMS (see `admin/README.md`); `dainorelisapp.com/` only redirects the old domain. To refresh the bundled song data, copy
 `.env.example` to `.env`, fill in `ADMIN_EXPORT_TOKEN`, and run `pnpm update-songs`.
 
 ### Start the app

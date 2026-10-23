@@ -42,6 +42,7 @@ import {
 } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
 import SectionIndex, { RowLayout, RowMeasurer, sectionIndexWidth } from '@/lib/components/Index/SectionIndex';
+import { GetTheAppButton } from '@/lib/components/StoreLinks';
 import ThemedText from '@/lib/components/ThemedText';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -374,6 +375,8 @@ export default function Index() {
         options={{
           headerBackground: () => <HeaderBackground scrollRef={listRef} scrollOffset={scrollOffset} />,
           headerTitleAlign: 'center',
+          // web: a link to the app stores
+          headerLeft: process.env.EXPO_OS === 'web' ? () => <GetTheAppButton /> : undefined,
           ...topScrollEdgeEffect,
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} scrollOffset={scrollOffset} titleLayout={titleLayout} center>

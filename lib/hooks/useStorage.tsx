@@ -52,6 +52,11 @@ const schemas = {
     validator: z.boolean(),
     defaultValue: false,
   },
+  // web: the reader hid the home screen's link to the app stores
+  hideGetTheApp: {
+    validator: z.boolean(),
+    defaultValue: false,
+  },
 };
 
 // after that, this gets a bit complicated.
