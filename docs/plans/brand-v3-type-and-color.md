@@ -45,7 +45,7 @@ these exact values.
 | `text` | `#18201B` (14.1 on linas) | `#ECEAE3` (15.2 on naktis) | Ink with a green bias, never pure black. |
 | secondary text | `#56615A` (5.5) | `#9AA59E` (7.2) | |
 | `primary` / tint | `#2F5240` eglė (fir): 7.4 on linas, 8.7 behind white text | `#8FBA9C` eglė, lifted: 8.4 on naktis | **Dark-mode primary is a light color.** Anything filled with it needs dark text (`#0E1B13`, 8.2), not white. Check every place `primary` is used as a background. |
-| `chrome` (green bars) | `#2F5240` eglė | `#2F5240` eglė, same as light | Header bar, round header buttons, bottom pill, floating player, the iOS 26 title band. White content (8.7). Added during implementation: the bars stay deep evergreen at night instead of turning mint. HC `#234033`. |
+| `chrome` (green bars) | `#597D66` samanos, tuned (white 4.6) | `#2F5240` eglė (white 8.7) | Header bar, round header buttons, bottom pill, floating player, the iOS 26 title band. White content only. Added during implementation. Light is samanos a step deeper than v1's sage so the bars sit with the misty forest photo (deep eglė fought it); don't use `#70997F` itself for bars (white is 3.2). Dark stays deep evergreen at night instead of turning mint. HC `#4C6B58` light (white 5.9), `#234033` dark. **In light mode, content on `chrome` is full white, never dimmed**: white at 0.75 is 3.4 and fails. |
 | high-contrast `primary` | `#234033` (9.6) | `#A9CDB4` (10.5) | For `LightHighContrastTheme` / `DarkHighContrastTheme`. |
 
 ### Supporting colors
@@ -62,6 +62,8 @@ these exact values.
   sash.
 - Dark mode is a first-class mode, not an afterthought. The app gets used at night by a campfire.
 - iOS separators can stay `PlatformColor('separator')`.
+- The header photo stays the current misty forest (`assets/images/miskas*`). Its pale greens are why the light-mode
+  bars are samanos rather than eglė.
 
 ## Typography
 

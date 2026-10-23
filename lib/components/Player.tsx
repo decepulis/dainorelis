@@ -293,7 +293,8 @@ export default function Player({ media, activeMediaId, setActiveMediaId, audio, 
                 style={{
                   color,
                   marginLeft: 'auto',
-                  opacity: !duration ? 0 : isHighContrastEnabled ? 1 : 0.75,
+                  // dimmed only on glass: white on the chrome bar is full strength (dimmed, it fails contrast)
+                  opacity: !duration ? 0 : isHighContrastEnabled || !isLiquidGlassAvailable() ? 1 : 0.75,
                 }}
                 numberOfLines={1}
               >
