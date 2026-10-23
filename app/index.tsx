@@ -1,7 +1,16 @@
 import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  LayoutChangeEvent,
+  LayoutRectangle,
+  Platform,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { GestureDetector, useNativeGesture } from 'react-native-gesture-handler';
+import { useKeyboardState } from 'react-native-keyboard-controller';
 import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -33,6 +42,7 @@ import {
   listItemHeight,
 } from '@/lib/components/Index/ListItem';
 import Search, { IndexToolbar } from '@/lib/components/Index/Search';
+import SectionIndex, { RowLayout, RowMeasurer, sectionIndexWidth } from '@/lib/components/Index/SectionIndex';
 import ThemedText from '@/lib/components/ThemedText';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
@@ -41,7 +51,7 @@ import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import usePlaylistActions from '@/lib/hooks/usePlaylistActions';
 import usePlaylists from '@/lib/hooks/usePlaylists';
-import useSongList, { SongListItem } from '@/lib/hooks/useSongList';
+import useSongList, { SongListItem, allSongItems } from '@/lib/hooks/useSongList';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 
@@ -56,6 +66,7 @@ export default function Index() {
   // just a bunch of global state
   const inset = useSafeAreaInsets();
   const { width, height } = useSafeAreaFrame();
+  const { fontScale } = useWindowDimensions();
   const headerHeight = useHeaderHeight();
   const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');
@@ -110,7 +121,7 @@ export default function Index() {
 
   // however a playlist gets picked (the menu, a new or duplicated playlist, a deleted one's fallback), it starts
   // from the very top: the forest and the logo above its name
-  const { isReduceMotionEnabled } = useAccessibilityInfo();
+  const { isReduceMotionEnabled, isBoldTextEnabled } = useAccessibilityInfo();
   const shownPlaylistId = useRef(selectedPlaylistId);
   useEffect(() => {
     if (shownPlaylistId.current === selectedPlaylistId) return;
@@ -135,6 +146,41 @@ export default function Index() {
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
   const logoContainerPaddingTop = 100 + inset.top + 5; // idk why 5 it looks good
   const logoContainerPaddingBottom = 100 + padding;
+
+  const listHeaderHeight = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom;
+
+  // all songs, by letter, gets a jump-to-letter index. Rows wrap differently with the width and the text size, so
+  // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
+  const isAllSongs = !playlist;
+  const [measuredLayouts, setMeasuredLayouts] = useState<RowLayout[] | null>(null);
+  const rowLayouts =
+    isAllSongs && !isSearching && measuredLayouts?.length === displayItems.length ? measuredLayouts : null;
+  const getItemLayout = rowLayouts
+    ? (_: unknown, index: number) => ({
+        index,
+        length: rowLayouts[index].height,
+        offset: listHeaderHeight + rowLayouts[index].y,
+      })
+    : undefined;
+  const indexSections = rowLayouts
+    ? displayItems.flatMap((item, index) =>
+        item.type === 'header' ? [{ letter: item.item, offset: listHeaderHeight + rowLayouts[index].y }] : []
+      )
+    : [];
+  const listContentHeight = useSharedValue(0);
+  // the list keeps every row's measured layout, even once the row has scrolled away, and prefers it to
+  // getItemLayout's; a new width or text size makes those stale, so the rows get new keys
+  const rowKeySuffix = `${Math.round(safeWidth)}:${fontScale}:${isBoldTextEnabled}`;
+  // the keyboard would cover it
+  const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
+  // clear of the bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar), which iPad doesn't have
+  const isPadToolbar = isLiquidGlassStyleHeader() && Platform.OS === 'ios' && Platform.isPad;
+  const sectionIndexStyle = {
+    top: headerHeight + padding / 2,
+    bottom: inset.bottom + (isPadToolbar ? 0 : floatingBottomGap + bottomBarHeight) + padding / 2,
+    // wide, beside the list's card
+    right: inset.right + Math.max(0, (safeWidth - maxWidth) / 2 - sectionIndexWidth),
+  };
 
   const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
   const isHeaderVisible = (item: SongListItem) => listItems.length > 10 || item.id === 'playlistHeader';
@@ -199,7 +245,7 @@ export default function Index() {
     ) : null;
 
   // the bar's background appears as the list reaches it, past the forest and the logo
-  const listTop = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom - headerHeight;
+  const listTop = listHeaderHeight - headerHeight;
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listTop);
 
   // wide, the list's card sits on a darker backdrop, which also shows above the forest when overscrolled. It's the
@@ -218,7 +264,7 @@ export default function Index() {
     <View
       style={{
         position: 'relative',
-        height: logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom,
+        height: listHeaderHeight,
         paddingTop: logoContainerPaddingTop,
         paddingBottom: logoContainerPaddingBottom,
         // full bleed, with the logo centred in the safe area
@@ -237,9 +283,7 @@ export default function Index() {
           top: 0,
           left: 0,
           right: 0,
-          height: ultraWideLayoutMode
-            ? height
-            : (logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom) * 2,
+          height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
         }}
         source={require('@/assets/images/miskas_fade_10.webp')}
         onLoadEnd={() => setDidBackgroundLoad(true)}
@@ -386,11 +430,12 @@ export default function Index() {
         ) : (
           <GestureDetector gesture={listScrollGesture}>
             <Animated.FlatList
-              // todo reduce jank by telling it about height
-              // todo add jump-to-letter bar
               ref={listRef}
               data={displayItems}
               renderItem={renderItem}
+              keyExtractor={(item) => `${item.id}:${rowKeySuffix}`}
+              getItemLayout={getItemLayout}
+              onContentSizeChange={(_, contentHeight) => listContentHeight.set(contentHeight)}
               keyboardDismissMode="on-drag"
               // scrolling closes a row's open swipe actions
               onScrollBeginDrag={closeOpenRow}
@@ -401,6 +446,18 @@ export default function Index() {
             />
           </GestureDetector>
         )}
+        {isAllSongs ? (
+          <RowMeasurer
+            items={allSongItems}
+            favoriteIds={favoriteIds}
+            primary={primary}
+            background={background}
+            separator={separator}
+            left={inset.left}
+            right={inset.right}
+            onMeasure={setMeasuredLayouts}
+          />
+        ) : null}
         {!isLiquidGlassStyleHeader() && (
           <Search
             scrollRef={listRef}
@@ -413,6 +470,17 @@ export default function Index() {
             setSearchText={(text) => startTransition(() => setSearchText(text))}
           />
         )}
+        {indexSections.length > 1 && !isKeyboardVisible ? (
+          <SectionIndex
+            sections={indexSections}
+            listRef={listRef}
+            topInset={headerHeight}
+            contentHeight={listContentHeight}
+            listHeight={height}
+            color={primary}
+            style={sectionIndexStyle}
+          />
+        ) : null}
       </View>
       {/* after the list: UIKit tracks the scroll view at the start of the screen's view hierarchy (for the
           navigation bar's scroll edge background), and the toolbar's host view would come first */}

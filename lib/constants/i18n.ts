@@ -129,6 +129,7 @@ const en = {
   songFestivalRepertoire3: 'Part III: And the sun rose, again awakening the world',
   songFestivalRepertoire4: "Part IV: Let's open the hope chest of song & dance",
   reorderHint: 'Touch and hold a song, then drag to reorder.',
+  sectionIndex: 'Jump to letter',
 };
 const lt = {
   search: 'Ieškoti',
@@ -238,6 +239,7 @@ const lt = {
   songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
   reorderHint: 'Palieskite ir palaikykite dainą, tada vilkite, kad pertvarkytumėte.',
+  sectionIndex: 'Pereiti prie raidės',
 };
 
 /**
