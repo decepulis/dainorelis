@@ -47,6 +47,12 @@ Possible non-layout uses: maybe a "tabletop" mode for the PDF/sheet-music view o
 - **Sidebar header** **[verified]**: the column can't host `Stack.Screen` options, `Stack.Toolbar` or `Stack.SearchBar`, and `useHeaderHeight` throws. expo-router doesn't export an independent navigation tree to nest a stack there. The home screen would need rebuilding for the sidebar. `Split.Stack` would solve this as well.
 - **Content under the sidebar** **[verified]**: on iOS 26+ the secondary column is full-window-width and runs under the floating sidebar. The sidebar arrives as a left safe-area inset, which the nav bar honours and React content doesn't. Wrapping the content in `react-native-screens/experimental`'s `SafeAreaView` (`edges={{ left: true, right: true }}`) fixed it. Every window-based measurement (`useSafeAreaFrame`, `maxWidthPadding`) is wrong inside a column, so layout must be relative to the content's own size.
 
+**Expo's post [Supporting iPhone Duo](https://expo.dev/blog/supporting-iphone-duo) doesn't unblock this.** **[doc]** It recommends `<SplitView>` (still experimental in SDK 58: one column folded, side by side open, clear of the fold) but says nothing about nested stacks or column headers, so the blockers above stand. Still waiting on `Split.Stack` ([#4666](https://github.com/software-mansion/react-native-screens/pull/4666), [#4602](https://github.com/software-mansion/react-native-screens/pull/4602)), likely SDK 59. Facts from the post to design for:
+
+- In Split View on the open display the **left window is 469 pt** wide.
+- The 84 pt vertical bar ("rail") sits on the right edge when folded and on **each window's outer edge** in Split View, so the left window gets an 84 pt _left_ inset. In open portrait the bars return to the top and bottom.
+- The post's test checklist: folded, open, partially open (nothing to read or tap in the fold; sheets and popovers on one side), Split View, folding with a screen open (same screen, scroll position and state), and a regular iPhone (nothing changes).
+
 **Option 2: `@expo/ui` `NavigationSplitView` (SwiftUI)**
 
 - iOS/tvOS 16+. Two or three columns. Selection lives in JS state (`useState`), and `preferredCompactColumn` is needed to show the detail on iPhone. **[verified]** source; [doc] https://docs.expo.dev/versions/v58.0.0/sdk/ui/swift-ui/navigationsplitview/
@@ -74,6 +80,8 @@ Possible non-layout uses: maybe a "tabletop" mode for the PDF/sheet-music view o
    - menu and popover anchoring.
 
    Effort: **1–3 days**.
+
+   Findings so far (2026-10-23, iPhone Duo sim, iOS 27.1) **[verified]**: Device Hub's poses can't be scripted (it sends the hinge as an IOHID event, and GUI scripting needs Accessibility access), but `xcrun devicectl device appResize start|set --device <udid> --preferred-size WxH` runs the app in a resizable window, which stands in for open (669×951), landscape (951×669) and Split View (469 pt) widths; a 466×678 window even gets the rail. In it, after a resize React Native's window dimensions, `useSafeAreaFrame` and the safe-area insets report the _previous_ size until the next change, so the home screen keeps the old layout (the wide card, the jump index over the logo, rows under the rail, or an 84 pt gutter once it's gone). Check whether a real fold does the same.
 
 2. **Phase 1, Option 4 master-detail** (sketch below). Effort: **5–8 dev days plus 2 days of QA** across iPhone, iPad (portrait, landscape, Stage Manager resizing), iPhone Duo (simulator), an Android tablet or foldable emulator, and web (`pnpm build:web`).
 3. **Later:** re-evaluate `unstable-split-view` when it stabilises, and look at `ArrangementView` for lyrics plus translation on 27.1+.
@@ -145,6 +153,7 @@ Owner answers (2026-10-21): (2) 840 is fine, but prefer the platform's own size 
 ## Sources
 
 - SDK 58 changelog (iPhone Duo support, App Intents, scene lifecycle): https://expo.dev/changelog/sdk-58
+- Expo blog, Supporting iPhone Duo (safe areas, the rail, Split View, test checklist): https://expo.dev/blog/supporting-iphone-duo
 - Scene lifecycle migration: https://expo.fyi/ios-scene-lifecycle
 - expo-hinge: https://docs.expo.dev/versions/v58.0.0/sdk/hinge/
 - ArrangementView: https://docs.expo.dev/versions/v58.0.0/sdk/ui/swift-ui/arrangementview/
