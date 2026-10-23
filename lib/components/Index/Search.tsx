@@ -288,7 +288,14 @@ export default function Search({
                 },
               ]}
             >
-              <ThemedText title bold numberOfLines={1} style={{ flexShrink: 1, fontSize: 17, color }}>
+              {/* a bar control: the label grows with the text size only as far as the 44pt pill holds it */}
+              <ThemedText
+                title
+                bold
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.5}
+                style={{ flexShrink: 1, fontSize: 17, color }}
+              >
                 {playlistTitle}
               </ThemedText>
               <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />
