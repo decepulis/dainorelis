@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   type AccessibilityActionEvent,
+  DynamicColorIOS,
   type LayoutChangeEvent,
   StyleSheet,
   View,
@@ -13,19 +14,19 @@ import Animated, {
   type AnimatedRef,
   type SharedValue,
   useAnimatedReaction,
-  useAnimatedStyle,
   useScrollOffset,
   useSharedValue,
-  withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import * as Haptics from 'expo-haptics';
+import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 
 import maxWidth from '@/lib/constants/maxWidth';
-import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import padding from '@/lib/constants/padding';
 import { type SongListItem } from '@/lib/hooks/useSongList';
+import haptic from '@/lib/utils/haptic';
 
+import SystemView from '../SystemView';
 import ThemedText from '../ThemedText';
 import { ListHeader, ListItemContent } from './ListItem';
 
@@ -34,8 +35,13 @@ import { ListHeader, ListItemContent } from './ListItem';
 const letterHeight = 16;
 const maxScale = 1.4;
 export const sectionIndexWidth = 24;
-// defined before the component: the gesture worklets capture it, and React Compiler may hoist them out of it
-const selectionHaptic = () => Haptics.selectionAsync();
+// the capsule behind the letters, inset from the index's edges, and its padding above and below them
+const capsuleInset = 2;
+const capsulePadding = 5;
+/** the trailing padding rows need beside the index, to keep their icons clear of its capsule */
+export const sectionIndexRowPadding = sectionIndexWidth + Math.round(padding / 3);
+// on Liquid Glass the letters take the label color, as the player's controls do; on the app's green surface, white
+const letterColor = isLiquidGlassAvailable() ? DynamicColorIOS({ light: '#000000', dark: '#ffffff' }) : '#ffffff';
 
 /** a row's place in the list's content, below the list header */
 export type RowLayout = { y: number; height: number };
@@ -49,6 +55,8 @@ type RowMeasurerProps = {
   /** the list's horizontal safe area */
   left: number;
   right: number;
+  /** the rows' trailing padding, as the list's */
+  trailingPadding?: number;
   /** every row's layout, once all are measured, and again whenever one changes (width, text size, a favourite) */
   onMeasure: (layouts: RowLayout[]) => void;
 };
@@ -65,6 +73,7 @@ export function RowMeasurer({
   separator,
   left,
   right,
+  trailingPadding,
   onMeasure,
 }: RowMeasurerProps) {
   const layouts = useRef<RowLayout[]>([]);
@@ -96,6 +105,7 @@ export function RowMeasurer({
               primary={primary}
               background={background}
               isFavorite={favoriteIds.has(item.item.id)}
+              trailingPadding={trailingPadding}
             />
           )}
         </View>
@@ -115,13 +125,14 @@ type SectionIndexProps = {
   /** the list's content height and its own, so a jump near the end stops at the end */
   contentHeight: SharedValue<number>;
   listHeight: number;
-  color: string;
   /** where the index sits over the list: top, bottom and right */
   style: ViewStyle;
 };
 /**
  * The jump-to-letter index at the list's trailing edge, as in Contacts: touching or dragging along it jumps to
- * that letter's section. Screen readers get one adjustable element, swiped up and down a letter at a time.
+ * that letter's section. Its letters sit on a capsule (Liquid Glass, or the app's other floating controls'
+ * surface), so it shows over the forest as over the rows. Screen readers get one adjustable element, swiped up and
+ * down a letter at a time.
  */
 export default function SectionIndex({
   sections,
@@ -129,12 +140,10 @@ export default function SectionIndex({
   topInset,
   contentHeight,
   listHeight,
-  color,
   style,
 }: SectionIndexProps) {
   const { t } = useTranslation();
   const { fontScale } = useWindowDimensions();
-  const { reduceMotion } = useAccessibilityInfo();
   const rowHeight = Math.round(letterHeight * Math.min(fontScale, maxScale));
   const [availableHeight, setAvailableHeight] = useState(0);
 
@@ -144,7 +153,7 @@ export default function SectionIndex({
 
   // short of room (landscape, the largest text sizes), every other row is a dot, standing for the letters
   // between its neighbours, as in iOS's own index
-  const maxRows = Math.max(3, Math.floor(availableHeight / rowHeight));
+  const maxRows = Math.max(3, Math.floor((availableHeight - capsulePadding * 2) / rowHeight));
   let rows = sections.map((section) => section.letter);
   if (count > maxRows) {
     const shown = Math.floor((maxRows + 1) / 2);
@@ -167,18 +176,6 @@ export default function SectionIndex({
       if (section !== previous) scheduleOnRN(setCurrent, section);
     }
   );
-  // it shows once the list reaches the navigation bar: over the forest above it, it would be lost. Screen readers
-  // find it either way
-  const [isShown, setIsShown] = useState(false);
-  useAnimatedReaction(
-    () => scrollOffset.get() >= offsets[0] - 1,
-    (shown, wasShown) => {
-      if (shown !== wasShown) scheduleOnRN(setIsShown, shown);
-    }
-  );
-  const fadeStyle = useAnimatedStyle(() => ({
-    opacity: withTiming(scrollOffset.get() >= offsets[0] - 1 ? 1 : 0, { duration: 150, reduceMotion }),
-  }));
 
   // scrolled from JS, where the list follows its scroll events to render the rows there
   const jumpTo = (section: number) => {
@@ -196,14 +193,16 @@ export default function SectionIndex({
   const jumpToTarget = (section: number) => {
     if (section === target.get()) jumpTo(section);
   };
+  // y is from the capsule's top, above its padding
   const select = (y: number) => {
     'worklet';
+    y -= capsulePadding;
     const section = Math.min(count - 1, Math.max(0, Math.floor((y / columnHeight) * count)));
     if (section === selected.get()) return;
     selected.set(section);
     target.set(section);
     scheduleOnRN(jumpToTarget, section);
-    if (process.env.EXPO_OS === 'ios') scheduleOnRN(selectionHaptic);
+    scheduleOnRN(haptic, 'tick');
   };
   const gesture = usePanGesture({
     minDistance: 0,
@@ -217,22 +216,25 @@ export default function SectionIndex({
     else if (actionName === 'decrement') jumpTo(current - 1);
   };
 
+  const Capsule = isLiquidGlassAvailable() ? GlassView : SystemView;
+
   return (
-    <Animated.View
-      style={[styles.container, style, fadeStyle]}
-      pointerEvents={isShown ? 'box-none' : 'none'}
+    <View
+      style={[styles.container, style]}
+      pointerEvents="box-none"
       onLayout={(e) => setAvailableHeight(e.nativeEvent.layout.height)}
     >
       {availableHeight > 0 ? (
         <GestureDetector gesture={gesture}>
-          <View
+          <Capsule
+            shadow={false}
             accessible
             accessibilityRole="adjustable"
             accessibilityLabel={t('sectionIndex')}
             accessibilityValue={{ text: sections[current]?.letter }}
             accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
             onAccessibilityAction={onAccessibilityAction}
-            style={{ height: columnHeight }}
+            style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
           >
             {rows.map((letter, i) => (
               <ThemedText
@@ -241,15 +243,15 @@ export default function SectionIndex({
                 bold
                 maxFontSizeMultiplier={maxScale}
                 // the line height scales with the text, as rowHeight does
-                style={[styles.letter, { color, height: rowHeight, lineHeight: letterHeight }]}
+                style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
               >
                 {letter}
               </ThemedText>
             ))}
-          </View>
+          </Capsule>
         </GestureDetector>
       ) : null}
-    </Animated.View>
+    </View>
   );
 }
 
@@ -268,6 +270,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: sectionIndexWidth,
     justifyContent: 'center',
+  },
+  capsule: {
+    marginHorizontal: capsuleInset,
+    paddingVertical: capsulePadding,
+    borderRadius: (sectionIndexWidth - capsuleInset * 2) / 2,
+    overflow: 'hidden',
   },
   letter: {
     fontSize: 11,

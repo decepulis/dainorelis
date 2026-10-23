@@ -71,6 +71,8 @@ type Props = {
   /** the user playlist the list shows, if any: its rows offer Remove instead of Add to playlist */
   shownUserPlaylistId?: string;
   onNewPlaylistWithSong: (songId: string) => void;
+  /** ListItemContent's */
+  trailingPadding?: number;
   /**
    * in a reorderable list: holding the row lifts it to be dragged (instead of the preview and its menu), and
    * screen readers get Move up / Move down
@@ -93,6 +95,7 @@ export function ListItem({
   toggleSong,
   shownUserPlaylistId,
   onNewPlaylistWithSong,
+  trailingPadding,
   reorder,
 }: Props) {
   const { t } = useTranslation();
@@ -285,7 +288,13 @@ export function ListItem({
                 accessibilityActions={accessibilityActions}
                 onAccessibilityAction={onAccessibilityAction}
               >
-                <ListItemContent item={item} primary={primary} background={background} isFavorite={isFavorite} />
+                <ListItemContent
+                  item={item}
+                  primary={primary}
+                  background={background}
+                  isFavorite={isFavorite}
+                  trailingPadding={trailingPadding}
+                />
               </Touchable>
             </Link.Trigger>
             {reorder ? null : (
@@ -411,12 +420,25 @@ function SwipeActions({
   );
 }
 
-type ListItemContentProps = { item: Song; primary: string; background: string; isFavorite: boolean };
+type ListItemContentProps = {
+  item: Song;
+  primary: string;
+  background: string;
+  isFavorite: boolean;
+  /** wider beside the jump-to-letter index, to keep the icons clear of it */
+  trailingPadding?: number;
+};
 /**
  * a row's title, subtitle and icons, shared by the linked row, the reorderable one and the jump-to-letter index's
  * measuring
  */
-export function ListItemContent({ item, primary, background, isFavorite }: ListItemContentProps) {
+export function ListItemContent({
+  item,
+  primary,
+  background,
+  isFavorite,
+  trailingPadding = padding,
+}: ListItemContentProps) {
   const { isBoldTextEnabled, isHighContrastEnabled } = useAccessibilityInfo();
   const { title, subtitle } = useTitle(item);
   const { width } = useFrame();
@@ -475,7 +497,7 @@ export function ListItemContent({ item, primary, background, isFavorite }: ListI
           backgroundColor: background,
           paddingVertical: PixelRatio.roundToNearestPixel(paddingVertical),
           paddingLeft: padding,
-          paddingRight: padding,
+          paddingRight: trailingPadding,
         },
       ]}
     >
