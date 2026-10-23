@@ -6,8 +6,8 @@
  * Replaces every row, so it asks for confirmation and refuses a non-empty
  * database unless --force is passed (see write-payload.ts).
  *
- * Intended for bootstrapping a dev database. For the real Airtable migration
- * use `import:airtable`, which also carries hidden songs, tags and sources.
+ * Intended for bootstrapping a dev database: it cannot carry hidden songs,
+ * tags or sources, so never use it to restore production.
  */
 import dotenv from 'dotenv';
 import path from 'node:path';

@@ -149,7 +149,6 @@ pnpm generate-metadata:test     # Test on first 5 songs only
   - Owns the schema, the editor UI, and every content transform
   - `supabase/migrations/` - timestamped migrations (`supabase migration new`), applied to production by `.github/workflows/db-push.yml` when they reach `main`; never edit one that has shipped
   - `src/proxy.ts` - Next 16's renamed middleware: refreshes the Supabase session, gates every non-public route
-  - `scripts/import-from-airtable.ts` - the one-time migration
   - `scripts/generate-metadata.ts` - OpenAI translations (was `generate-song-metadata.ts`)
 
 - **Generated Files** (do not edit manually)

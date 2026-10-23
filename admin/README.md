@@ -1,7 +1,7 @@
 # Dainorėlis admin
 
-The CMS for the Dainorėlis app. Replaces the Airtable base the song database
-used to live in.
+The CMS for the Dainorėlis app. It replaced the Airtable base the song
+database used to live in; that migration is done.
 
 The mobile app never talks to this service at runtime. It reads `songs.ts`,
 which is generated at build time from the export endpoint here and committed to
@@ -102,36 +102,10 @@ app repo: pnpm update-songs      ──▶  songs.ts + song-festival.ts + search
    `EXPORT_TOKEN` is a secret you generate yourself (`openssl rand -hex 32`) and
    share with the app repo's `.env` as `ADMIN_EXPORT_TOKEN`.
 
-5. **Migrate from Airtable**, once, from a machine holding the Airtable token:
-
-   ```bash
-   cd admin
-   pnpm import:airtable -- --dry-run   # read Airtable, report, write nothing
-   pnpm import:airtable                # for real
-   ```
-
-   The dry run is worth doing first: it reports records that are linked to no
-   song, or to more than one, which the relational schema cannot represent the
-   way Airtable did.
-
-   Both importers **delete every row and re-insert**, with no transaction. Before
-   writing they print the target `NEXT_PUBLIC_SUPABASE_URL` and how many songs
-   it holds, then:
-
-   - refuse to run if the `songs` table is not empty, unless you pass `--force`;
-   - ask you to type `yes`, unless you pass `--yes` (required when stdin is not
-     a terminal).
-
-   Remember that `.env.local` holds the production keys after a
-   `vercel env pull`.
-
-6. **Verify.** Open `/export` in the admin app and confirm the song count and
+5. **Verify.** Open `/export` in the admin app and confirm the song count and
    that there are no blocking errors. Then, in the app repo, run
-   `pnpm update-songs` and check `git diff songs.ts`. Immediately after the
-   migration, expect exactly one changed line: the importer trims song names,
-   and one Airtable title (`"Mes broliukai du du du\n"`) carries a trailing
-   newline. Anything beyond that means the new pipeline does not reproduce
-   Airtable's output, and is worth chasing before going further.
+   `pnpm update-songs` and check that `git diff songs.ts` shows only the edits
+   you expect.
 
 ## Changing the database schema
 
@@ -188,7 +162,15 @@ pnpm import:song-file -- --force --yes   # replace a populated one without askin
 
 Note that `songs.ts` only carries the fields the app bundles, so this cannot
 restore `Hide`, `Tags`, `Sources`, `Recommended Key` or videos — every song
-comes back visible and untagged. It is for dev convenience, not for migration.
+comes back visible and untagged. It is for dev convenience, not for restoring
+production.
+
+The importer **deletes every row and re-inserts**, with no transaction. Before
+writing it prints the target `NEXT_PUBLIC_SUPABASE_URL` and how many songs it
+holds, then refuses a non-empty `songs` table unless you pass `--force`, and
+asks you to type `yes` unless you pass `--yes` (required when stdin is not a
+terminal). Remember that `.env.local` holds the production keys after a
+`vercel env pull`.
 
 ## Verifying the export without a database
 
@@ -216,29 +198,31 @@ ADMIN_EXPORT_URL=http://127.0.0.1:4100/ ADMIN_EXPORT_TOKEN=fixture-token \
   pnpm exec tsx ./scripts/update-songs.ts
 ```
 
-## How the data model maps to Airtable
+## The data model
 
-| Airtable        | Table          |
-| --------------- | -------------- |
-| Songs           | `songs`        |
-| Lyrics & Chords | `lyrics`       |
-| Translations    | `translations` |
-| Audio           | `audio`        |
-| PDFs            | `pdfs`         |
-| Videos          | `videos`       |
+| Table          | Holds                                      |
+| -------------- | ------------------------------------------ |
+| `songs`        | one row per song                           |
+| `lyrics`       | lyric and chord variants of a song         |
+| `translations` | English translations of the lyrics         |
+| `audio`        | Spotify / YouTube links                    |
+| `pdfs`         | sheet music                                |
+| `videos`       | performance recordings                     |
 
 Three things about the schema are deliberate and easy to "tidy up" by mistake:
 
-- **Record ids are text and keep their Airtable `rec…` values.** The app routes
-  on them (`/dainos/[id]`), so renumbering breaks every deep link.
+- **Record ids are text, shaped `rec…`.** Existing songs kept the ids they had
+  in Airtable, and new records get ids of the same shape. The app routes on
+  them (`/dainos/[id]`) and stores favourites and playlists by them, so
+  renumbering breaks every deep link and saved playlist.
 - **Variant names are nullable.** A blank variant name is not missing data — it
   is the signal for the export to generate one ("Žodžiai 2"). The number comes
   from the record's position within its song, which is why child rows carry an
   explicit `position`, unique per song (the `unique_child_positions`
   migration).
-- **Checkboxes distinguish false from absent.** Airtable omits an unchecked
-  field entirely, so the export drops falsy booleans rather than emitting
-  `false`. Emitting it would add a key to hundreds of songs.
+- **Checkboxes distinguish false from absent.** The export drops falsy
+  booleans rather than emitting `false` (the song file has never carried
+  them). Emitting it would add a key to hundreds of songs.
 
 ## Where the transforms live
 
