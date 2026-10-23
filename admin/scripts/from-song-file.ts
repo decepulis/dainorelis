@@ -24,8 +24,8 @@ export function readSongFile(filePath: string): SongFile {
  * Caveat worth knowing: `songs.ts` only contains the fields the app bundles.
  * `Hide`, `Tags`, `Sources`, `Recommended Key` and `Videos` were never written
  * to it, so seeding from this source cannot recover them — every song comes
- * back visible and untagged. Use the Airtable importer for the real migration;
- * this path is for bootstrapping a dev database and for round-trip testing.
+ * back visible and untagged. This path is for bootstrapping a dev database and
+ * for round-trip testing.
  */
 export function payloadFromSongFile(songs: SongFile): ImportPayload {
   const payload = emptyPayload();
