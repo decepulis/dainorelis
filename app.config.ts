@@ -26,6 +26,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   userInterfaceStyle: 'automatic',
   experiments: {
     reactCompiler: true,
+    // compiles modules/app-intents (Siri, Shortcuts, Spotlight) into the iOS app target, where
+    // Apple's App Intents metadata extraction can see it
+    inlineModules: { watchedDirectories: ['modules/app-intents'] },
   },
   ios: {
     icon: './assets/images/icon.icon',
@@ -136,6 +139,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
     '@react-native-vector-icons/fontawesome6',
+    ['expo-app-intents', { directory: 'modules/app-intents' }],
     './plugins/withAndroidReleaseSigning',
     './plugins/withIosReleaseScheme',
   ],

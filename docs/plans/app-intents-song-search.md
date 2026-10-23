@@ -1,12 +1,52 @@
 # Plan: App Intents for song search (Siri, Shortcuts, Spotlight)
 
-> Status: scoping only, not started. Written 2026-10-16 against Expo SDK 58 (expo-router 58, @expo/ui 58, RN 0.88).
+> Status: **core done 2026-10-23** (iOS; see "What shipped" below). The rest of this file is the
+> original scoping, written 2026-10-16 against Expo SDK 58 (expo-router 58, @expo/ui 58, RN 0.88).
 > Confidence labels: **[verified]** = read in code/node_modules, **[doc]** = Expo/Apple docs, **[unverified]** = inference.
 >
 > Prerequisite (done): the native projects were regenerated for SDK 58 in 08ef613, so the iOS
 > scene lifecycle (SceneDelegate + UIApplicationSceneManifest) required by the iOS 27 SDK is in place.
 > The URL scheme is now `dainorelis` (was the template's `myapp`), so deep links are
 > `dainorelis://dainos/<id>`.
+
+### What shipped (2026-10-23)
+
+- `expo-app-intents@0.5.11`, pinned exactly. The Swift is in `modules/app-intents/` (not the
+  default `app-intents/`), watched by `experiments.inlineModules` and passed to the plugin as
+  `directory`. Inline modules add the folder to the app target as a synchronized group, so its
+  `.xcstrings` files compile in too.
+- `SongEntity` + `SongQuery` (`EntityStringQuery`, `EnumerableEntityQuery`): title plus the English
+  title as a synonym, matched case- and diacritic-insensitively. `IndexedEntity` on iOS 18+
+  (registered with `registerIndexed("song")`), `IndexedEntityQuery` behind `#if compiler(>=6.4)`.
+- `OpenSongIntent` (`OpenIntent`, `openAppWhenRun`) dispatches `openSong`; Spotlight taps go through
+  it too. Routing is the primary option above: `lib/components/AppIntentsHandler.tsx`, mounted next
+  to the root `Stack`, `router.push`es `/dainos/<id>` and dequeues; it also publishes the catalog
+  (titles only, all songs) on every launch. `update-songs` needs no change: the catalog comes from
+  `songs.ts` at runtime, so a new `songs.ts` (build or OTA) republishes it on its first launch.
+- One App Shortcut (`AppShortcuts`) with four phrases ("Open <song> in Dainorėlis", "Show …",
+  "Open a song …", "Find a song …"). English is the source in Swift; Lithuanian is in
+  `Localizable.xcstrings` (titles, descriptions) and `lt.lproj/AppShortcuts.strings` (phrases;
+  `AppShortcuts.xcstrings` needs iOS 17). Siri has no Lithuanian, so the LT phrases only matter if
+  it ever does.
+- Answers to the open questions, as built: Spotlight and Shortcuts first, voice best-effort (1);
+  ids assumed stable (2, still to confirm); titles only, no lyrics (3); everything in `songs.ts` (4);
+  scheme unchanged, not needed (5); alpha dependency accepted (6); localized (7).
+
+Remaining:
+
+- Owner: confirm the admin export keeps `rec…` ids forever (saved Shortcuts and Spotlight entries
+  hold them).
+- Test on a device. Verified on the iOS 26.5 simulator: the catalog publishes (57 KB), Shortcuts
+  lists the action and the App Shortcut tile, its song picker lists and searches the songs, and
+  Spotlight finds songs by Lithuanian title without diacritics ("Aguonele") and opens the right song
+  screen, from a cold start and with the app in the background. Not verified: running the action
+  from Shortcuts. On the simulator linkd rejects the ad-hoc-signed app ("Rejecting invalid client
+  due to requiresValidBundle", no team id), so the picked song arrives as nil and the App Shortcut
+  tile says "Couldn't find AppShortcutsProvider"; a team-signed device build should not hit this.
+  Also unverified: Siri voice (no Siri on the simulator), Spotlight matching the English title
+  (it shows as the result's subtitle, but "little poppy" didn't surface it), and index persistence.
+- Not done (optional): `SearchSongsIntent` (needs `?q=` on `app/index.tsx`), first-verse snippets in
+  Spotlight, donations, `AppEntityView` on the song screen.
 
 ### What `expo-app-intents` requires
 
