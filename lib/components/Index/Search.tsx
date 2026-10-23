@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
+import { Platform, StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 import Animated, {
   AnimatedRef,
@@ -401,6 +401,7 @@ export function IndexToolbar({
   const { favorites, curated, user } = usePlaylists();
 
   if (!isLiquidGlassStyleHeader()) return null;
+  const isPad = Platform.OS === 'ios' && Platform.isPad;
 
   const playlistAction = (playlist: Playlist) => (
     <Stack.Toolbar.MenuAction
@@ -411,6 +412,47 @@ export function IndexToolbar({
       {playlist.name}
     </Stack.Toolbar.MenuAction>
   );
+
+  // the playlist picker and the shown playlist's settings: the bottom toolbar's leading group on iPhone,
+  // the navigation bar's leading items on iPad
+  const playlistMenus = [
+    <Stack.Toolbar.Menu
+      key="playlists"
+      title={t('playlists')}
+      icon="music.note.list"
+      tintColor={selectedPlaylistId !== allSongsId ? primary : undefined}
+    >
+      <Stack.Toolbar.MenuAction
+        isOn={selectedPlaylistId === allSongsId}
+        onPress={() => setSelectedPlaylistId(allSongsId)}
+      >
+        {t('allSongs')}
+      </Stack.Toolbar.MenuAction>
+      {playlistAction(favorites)}
+      <Stack.Toolbar.Menu inline>{curated.map(playlistAction)}</Stack.Toolbar.Menu>
+      {user.length ? <Stack.Toolbar.Menu inline>{user.map(playlistAction)}</Stack.Toolbar.Menu> : null}
+      <Stack.Toolbar.Menu inline>
+        <Stack.Toolbar.MenuAction icon={createPlaylistIcon.sfSymbol} onPress={onCreatePlaylist}>
+          {t('createPlaylist')}
+        </Stack.Toolbar.MenuAction>
+      </Stack.Toolbar.Menu>
+    </Stack.Toolbar.Menu>,
+    playlistActions.length ? (
+      // the shown playlist's settings, next to the button that picks it
+      <Stack.Toolbar.Menu key="playlistActions" icon="gearshape" title="" accessibilityLabel={t('playlistActions')}>
+        {playlistActions.map((action) => (
+          <Stack.Toolbar.MenuAction
+            key={action.id}
+            icon={action.sfSymbol}
+            destructive={action.destructive}
+            onPress={() => onPlaylistAction(action.id)}
+          >
+            {action.title}
+          </Stack.Toolbar.MenuAction>
+        ))}
+      </Stack.Toolbar.Menu>
+    ) : null,
+  ];
 
   return (
     <>
@@ -436,46 +478,17 @@ export function IndexToolbar({
           });
         }}
       />
-      <Stack.Toolbar>
-        <Stack.Toolbar.Menu
-          title={t('playlists')}
-          icon="music.note.list"
-          tintColor={selectedPlaylistId !== allSongsId ? primary : undefined}
-        >
-          <Stack.Toolbar.MenuAction
-            isOn={selectedPlaylistId === allSongsId}
-            onPress={() => setSelectedPlaylistId(allSongsId)}
-          >
-            {t('allSongs')}
-          </Stack.Toolbar.MenuAction>
-          {playlistAction(favorites)}
-          <Stack.Toolbar.Menu inline>{curated.map(playlistAction)}</Stack.Toolbar.Menu>
-          {user.length ? <Stack.Toolbar.Menu inline>{user.map(playlistAction)}</Stack.Toolbar.Menu> : null}
-          <Stack.Toolbar.Menu inline>
-            <Stack.Toolbar.MenuAction icon={createPlaylistIcon.sfSymbol} onPress={onCreatePlaylist}>
-              {t('createPlaylist')}
-            </Stack.Toolbar.MenuAction>
-          </Stack.Toolbar.Menu>
-        </Stack.Toolbar.Menu>
-        {playlistActions.length ? (
-          // the shown playlist's settings, next to the button that picks it
-          <Stack.Toolbar.Menu icon="gearshape" title="" accessibilityLabel={t('playlistActions')}>
-            {playlistActions.map((action) => (
-              <Stack.Toolbar.MenuAction
-                key={action.id}
-                icon={action.sfSymbol}
-                destructive={action.destructive}
-                onPress={() => onPlaylistAction(action.id)}
-              >
-                {action.title}
-              </Stack.Toolbar.MenuAction>
-            ))}
-          </Stack.Toolbar.Menu>
-        ) : null}
-        {/* a fixed gap: the playlist button and its settings are one group, search another */}
-        <Stack.Toolbar.Spacer width={8} />
-        <Stack.Toolbar.SearchBarSlot />
-      </Stack.Toolbar>
+      {isPad ? (
+        // iPad keeps every control in the navigation bar, like Files and Notes: the playlist menus lead it
+        <Stack.Toolbar placement="left">{playlistMenus}</Stack.Toolbar>
+      ) : (
+        <Stack.Toolbar>
+          {playlistMenus}
+          {/* a fixed gap: the playlist button and its settings are one group, search another */}
+          <Stack.Toolbar.Spacer width={8} />
+          <Stack.Toolbar.SearchBarSlot />
+        </Stack.Toolbar>
+      )}
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button icon="info" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}
