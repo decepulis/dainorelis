@@ -33,6 +33,7 @@ import SongMenu, { AddToPlaylistMenu, SongDetailToolbar, useSongOverflowMenu } f
 import SongToolbar from '@/lib/components/SongToolbar';
 import ThemedText from '@/lib/components/ThemedText';
 import VariantMenu from '@/lib/components/VariantMenu';
+import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import padding from '@/lib/constants/padding';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useSongAudio from '@/lib/hooks/useSongAudio';
@@ -49,6 +50,11 @@ import songs from '@/songs';
 export async function generateStaticParams() {
   return songs.map((song) => ({ id: song.id }));
 }
+
+// Liquid Glass's player: false puts info and play/pause in the native bottom toolbar, with the full player in a
+// sheet (UIKit places the items, e.g. in the closed iPhone Duo's trailing bar); true uses the floating player that
+// springs open in place, as before iOS 26 and on Android. A switch for comparing the two
+const floatingPlayerOnLiquidGlass = true;
 
 const truncate = (text: string, maxLength: number) =>
   text.length > maxLength ? `${text.slice(0, maxLength - 1).trimEnd()}…` : text;
@@ -278,7 +284,7 @@ function SongPage({ song }: { song: Song }) {
                 paddingTop: isLargeTitle ? padding * 3 : undefined,
                 // room for the player
                 paddingBottom: activeMedia
-                  ? Math.max(inset.bottom + padding * 2 + playerHeight, padding * 4 + playerHeight)
+                  ? Math.max(inset.bottom + floatingBottomGap + padding * 2 + playerHeight, padding * 4 + playerHeight)
                   : Math.max(inset.bottom + padding * 2, padding * 4),
               },
             ]}
@@ -342,7 +348,7 @@ function SongPage({ song }: { song: Song }) {
                   paddingBottom:
                     inset.bottom +
                     padding +
-                    (activeMedia ? playerHeight : isLiquidGlassStyleHeader() ? 44 + padding : 0),
+                    (activeMedia ? floatingBottomGap + playerHeight : isLiquidGlassStyleHeader() ? 44 + padding : 0),
                 },
               ]}
             >
@@ -404,7 +410,7 @@ function SongPage({ song }: { song: Song }) {
           )}
         </SafeAreaView>
       )}
-      {isLiquidGlassStyleHeader() ? (
+      {isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass ? (
         // native toolbar items and a player sheet
         <SongToolbar
           title={title}

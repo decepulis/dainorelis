@@ -18,6 +18,7 @@ import * as Haptics from 'expo-haptics';
 
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
+import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import appPadding from '@/lib/constants/padding';
 
 import maxWidth from '../constants/maxWidth';
@@ -222,7 +223,7 @@ export default function Player({ media, activeMediaId, setActiveMediaId, audio, 
         containerStyles,
         {
           position: 'absolute',
-          bottom: Math.max(inset.bottom, appPadding),
+          bottom: Math.max(inset.bottom + floatingBottomGap, appPadding),
           right: Math.max(inset.right, isAppWide ? appPadding : appPadding / 2),
           height: playerHeight,
           borderRadius: playerHeight / 2,
