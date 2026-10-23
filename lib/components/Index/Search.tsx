@@ -23,6 +23,7 @@ import padding from '@/lib/constants/padding';
 import { fonts } from '@/lib/constants/themes';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import useFrame from '@/lib/hooks/useFrame';
+import withAlpha from '@/lib/utils/withAlpha';
 
 import { PlaylistAction, PlaylistActionId, createPlaylistIcon } from '../../hooks/usePlaylistActions';
 import usePlaylists, { Playlist, allSongsId } from '../../hooks/usePlaylists';
@@ -163,7 +164,7 @@ export default function Search({
     >
       <GlassContainer style={StyleSheet.absoluteFill}>
         <LinearGradient
-          colors={[`${background}00`, `${background}AA`, background]}
+          colors={[withAlpha(background, '00'), withAlpha(background, 'AA'), background]}
           start={{ x: 0.5, y: 0.1 }}
           style={{
             position: 'absolute',

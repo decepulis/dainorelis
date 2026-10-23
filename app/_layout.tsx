@@ -12,9 +12,8 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import AppIntentsHandler from '@/lib/components/AppIntentsHandler';
 import { initI18n } from '@/lib/constants/i18n';
-import { DarkTheme, LightTheme } from '@/lib/constants/themes';
-import { useColorScheme } from '@/lib/hooks/useColorScheme';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
+import useNavigationTheme from '@/lib/hooks/useNavigationTheme';
 import useStorage, { StorageProvider } from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useWebFonts from '@/lib/hooks/useWebFonts';
@@ -131,10 +130,10 @@ function ThemedRoot({ children }: { children: React.ReactNode }) {
   const { value: storedTheme } = useStorage('theme');
   const { value: language } = useStorage('language');
   const { i18n } = useTranslation();
-  const colorScheme = useColorScheme();
+  const theme = useNavigationTheme();
 
   useLayoutEffect(() => {
-    // web has no Appearance.setColorScheme; useColorScheme.web.ts applies the setting itself
+    // web has no Appearance.setColorScheme; useColorScheme.web.ts and useNavigationTheme.web.ts apply the setting
     if (process.env.EXPO_OS === 'web') return;
     Appearance.setColorScheme(storedTheme === 'auto' ? 'unspecified' : storedTheme);
   }, [storedTheme]);
@@ -146,7 +145,7 @@ function ThemedRoot({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = language;
   }, [language, i18n]);
 
-  return <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : LightTheme}>{children}</ThemeProvider>;
+  return <ThemeProvider value={theme}>{children}</ThemeProvider>;
 }
 
 export default function RootLayout() {

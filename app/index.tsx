@@ -57,6 +57,7 @@ import useSongList, { SongListItem, allSongItems } from '@/lib/hooks/useSongList
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 import { siteMetadata } from '@/lib/utils/pageMetadata';
+import withAlpha from '@/lib/utils/withAlpha';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
@@ -299,7 +300,7 @@ export default function Index() {
       ></Image>
       {/* feather the top into the backdrop that shows above it when overscrolled */}
       <LinearGradient
-        colors={[backdrop, `${backdrop}00`]}
+        colors={[backdrop, withAlpha(backdrop, '00')]}
         style={{
           position: 'absolute',
           top: 0,
