@@ -54,7 +54,7 @@ export async function generateStaticParams() {
 // Liquid Glass's player: false puts info and play/pause in the native bottom toolbar, with the full player in a
 // sheet (UIKit places the items, e.g. in the closed iPhone Duo's trailing bar); true uses the floating player that
 // springs open in place, as before iOS 26 and on Android. A switch for comparing the two
-const floatingPlayerOnLiquidGlass = true;
+const floatingPlayerOnLiquidGlass = false;
 
 const truncate = (text: string, maxLength: number) =>
   text.length > maxLength ? `${text.slice(0, maxLength - 1).trimEnd()}…` : text;
