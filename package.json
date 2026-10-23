@@ -77,6 +77,7 @@
     "eslint-plugin-unused-imports": "^4.3.0",
     "prettier": "^3.7.4",
     "remove-markdown": "^0.6.2",
+    "sf-symbols-typescript": "2.2.0",
     "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   },

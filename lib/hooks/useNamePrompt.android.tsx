@@ -18,8 +18,6 @@ import { useColorScheme } from './useColorScheme';
 import type { NamePromptOptions } from './useNamePrompt';
 import { useThemeColor } from './useThemeColor';
 
-export type { NamePromptOptions } from './useNamePrompt';
-
 /**
  * Asks for a playlist name in a Material dialog with a text field (Android has no Alert.prompt). Render
  * `namePrompt` anywhere on the screen; the dialog presents in its own window.

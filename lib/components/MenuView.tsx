@@ -7,7 +7,7 @@ import { useColorScheme } from '@/lib/hooks/useColorScheme';
 
 import { buttonSlop } from './Button';
 
-export type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+export type { MenuAction } from '@expo/ui/community/menu';
 
 type Props = {
   /**

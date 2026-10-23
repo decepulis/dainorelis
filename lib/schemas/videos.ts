@@ -11,4 +11,3 @@ export const VideosSchema = z.object({
     error: 'Must be a valid YouTube URL',
   }),
 });
-export type Videos = z.infer<typeof VideosSchema>;

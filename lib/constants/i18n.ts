@@ -281,4 +281,3 @@ export function initI18n() {
       },
     });
 }
-export default i18n;

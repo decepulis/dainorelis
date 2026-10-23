@@ -10,7 +10,7 @@ import songs from '@/songs';
  * see admin/supabase/migrations) and are joined with commas: a 40-song playlist is a ~660-character link, a
  * version 18 QR code (89×89 modules) at the lowest error correction, which phones read off a screen easily.
  */
-export const playlistLinkBase = 'https://www.dainorelisapp.com/p';
+const playlistLinkBase = 'https://www.dainorelisapp.com/p';
 
 const idPrefix = 'rec';
 const songIds = new Set(songs.map((song) => song.id));

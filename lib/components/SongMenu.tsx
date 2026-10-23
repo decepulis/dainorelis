@@ -99,7 +99,7 @@ export default function SongMenu({ song, hasChords }: Props) {
  * Membership of a song in the playlists it can be added to (Favorites and the user's), for the song screen's
  * Add to Playlist menu. Render `namePrompt`.
  */
-export function useAddToPlaylist(song: Song) {
+function useAddToPlaylist(song: Song) {
   const { t } = useTranslation();
   const { editable, toggleSong, createPlaylist } = usePlaylists();
   const { promptName, namePrompt } = useNamePrompt();
