@@ -257,8 +257,9 @@ the phone's store by user agent (else `/`; the store URLs are also in `lib/const
 Safari shows its Smart App Banner (`app/+html.tsx`) and everyone else gets the home screen's Get the app button.
 
 `dainorelisapp.com/` is the old domain's Vercel project (Root Directory `dainorelisapp.com`), now redirect-only and
-not a workspace package: it 308s every path to the same one on dainorelis.app, except `/.well-known/`, which it
-keeps serving so app versions that only know www.dainorelisapp.com still open its playlist links.
+not a workspace package: it 308s every path, query included, to the same one on dainorelis.app. The apps don't
+list it in their app links. `/privacy` (`app/privacy.tsx`) renders `PRIVACY.md`, bundled as `privacy.json` by
+`pnpm generate-privacy`, which `build:web` runs; run it after editing the policy.
 
 ## Web
 

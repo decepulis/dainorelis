@@ -38,8 +38,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     buildNumber: buildNumber,
     // song and shared playlist links (https://dainorelis.app/dainos/…, /p?…) open the app; the site serves
     // .well-known/apple-app-site-association (public/). Only the apex: www redirects there, and Apple doesn't follow
-    // redirects to the file. www.dainorelisapp.com, the old site, still serves its file for links already shared.
-    associatedDomains: ['applinks:dainorelis.app', 'applinks:www.dainorelisapp.com'],
+    // redirects to the file.
+    associatedDomains: ['applinks:dainorelis.app'],
     config: {
       usesNonExemptEncryption: false,
     },
@@ -94,13 +94,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           { scheme: 'https', host: 'dainorelis.app', path: '/p' },
           { scheme: 'https', host: 'dainorelis.app', pathPrefix: '/dainos/' },
         ],
-        category: ['BROWSABLE', 'DEFAULT'],
-      },
-      {
-        // the old site, which redirects to dainorelis.app: for playlist links already shared
-        action: 'VIEW',
-        autoVerify: true,
-        data: [{ scheme: 'https', host: 'www.dainorelisapp.com', path: '/p' }],
         category: ['BROWSABLE', 'DEFAULT'],
       },
     ],
