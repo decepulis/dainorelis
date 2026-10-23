@@ -8,6 +8,7 @@ import { Stack } from 'expo-router';
 import { ThemeProvider } from 'expo-router/react-navigation';
 import * as SplashScreen from 'expo-splash-screen';
 
+import AppIntentsHandler from '@/lib/components/AppIntentsHandler';
 import { initI18n } from '@/lib/constants/i18n';
 import { DarkTheme, LightTheme } from '@/lib/constants/themes';
 import { useColorScheme } from '@/lib/hooks/useColorScheme';
@@ -48,6 +49,7 @@ function App({ onLayout }: AppProps) {
             }}
           />
         </Stack>
+        <AppIntentsHandler />
       </View>
     </>
   );

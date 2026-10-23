@@ -140,9 +140,11 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 - **`/plugins`** - Local Expo config plugins (release signing, iOS release scheme)
 
+- **`/modules/app-intents`** - iOS App Intents (Siri, Shortcuts, Spotlight), app-target Swift compiled in by Expo inline modules (see App Intents below)
+
 - **`/patches`** - pnpm patches for dependencies (see Building)
 
-- **`/docs/plans`** - Scoped-but-not-started work (master-detail, App Intents, the at-the-keyboard layout-migration runbook) and one decision memo (Android stays on the custom header)
+- **`/docs/plans`** - Scoped-but-not-started work (master-detail, the rest of App Intents, the at-the-keyboard layout-migration runbook) and one decision memo (Android stays on the custom header)
 
 - **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
@@ -202,6 +204,8 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 **Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. On Liquid Glass the home screen's playlist and playlist settings menus sit in the bottom toolbar beside search on iPhone, and at the top bar's leading edge on iPad (every window size; search is in the bar there). Android deliberately keeps the custom header; see `docs/plans/android-stack-toolbar.md` for why.
 
 **Icons**: In-app glyphs use `@react-native-vector-icons/fontawesome6`. Native menus and toolbars use SF Symbol names on iOS and Material Symbols on Android (`import X from '@expo/material-symbols/<name>.xml'`), chosen with `process.env.EXPO_OS === 'ios' ? 'sf.name' : X`.
+
+**App Intents (iOS)**: `expo-app-intents` (alpha, pinned) with the Swift in `modules/app-intents/`, which `experiments.inlineModules` compiles into the app target (Apple's metadata extractor can't see intents in a pod). `SongEntity` is searchable in Shortcuts and Siri (`SongQuery`, title and English title, ignoring case and diacritics) and indexed in Spotlight on iOS 18+; `OpenSongIntent` opens one, also for a tapped Spotlight result, and `AppShortcuts` gives it phrases. `lib/components/AppIntentsHandler.tsx` publishes the catalog from `songs.ts` on every launch (an unchanged one is a no-op) and pushes `/dainos/<id>` for each queued `openSong`. English strings are in the Swift; Lithuanian in the folder's `Localizable.xcstrings` and `lt.lproj/AppShortcuts.strings` (phrases; the `.xcstrings` form needs iOS 17). Swift or phrase changes need a native build, not an OTA. Android has none.
 
 **Menus**: Use `lib/components/MenuView` (wraps `@expo/ui/community/menu`: SwiftUI `Menu` on iOS, Compose `DropdownMenu` on Android).
 
