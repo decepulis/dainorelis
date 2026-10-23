@@ -33,6 +33,23 @@ index fa1b77317f609983ae2434764174072e51130550..fa6338d1298b1933b37868702a41cd5e
 +        value: Float,
 +    ) = Unit
  }
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
+index df9e242f3ab0c62618cf593c34835a6c2e9105e2..d839b10ac977c2295e3a00b259be2f6cfc550522 100644
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
+@@ -318,6 +318,12 @@ open class ScreenViewManager :
+         value: String?,
+     ) = Unit
+ 
++    // dainorelis: iOS-only top scroll edge effect threshold
++    override fun setTopScrollEdgeEffectThreshold(
++        view: Screen?,
++        value: Float,
++    ) = Unit
++
+     override fun setSynchronousShadowStateUpdatesEnabled(
+         view: Screen?,
+         value: Boolean,
 diff --git a/ios/RNSBarButtonItem.h b/ios/RNSBarButtonItem.h
 index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6eefe8ce4c 100644
 --- a/ios/RNSBarButtonItem.h
@@ -66,7 +83,7 @@ index fd9ecffa71b97230f62c6cde961d21c50076f960..496c7554d762ccf3ee91b8935158031e
  @end
  
 diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
-index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa5421b4d3 100644
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..9ae17bb8e3392f85e20b737c420069c0bb92b9ff 100644
 --- a/ios/RNSScreen.mm
 +++ b/ios/RNSScreen.mm
 @@ -1,4 +1,5 @@
@@ -75,7 +92,165 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa
  
  #import "RNSModalScreen.h"
  #import "RNSScreen.h"
-@@ -1465,6 +1466,16 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -8,6 +9,7 @@
+ 
+ #import <React/RCTConversions.h>
+ #import <React/RCTFabricComponentsPlugins.h>
++#import <React/RCTMountingTransactionObserving.h> // dainorelis
+ #import <React/RCTRootComponentView.h>
+ #import <React/RCTScrollViewComponentView.h>
+ #import <React/RCTSurfaceTouchHandler.h>
+@@ -48,9 +50,13 @@ struct ContentWrapperBox {
+                              UISheetPresentationControllerDelegate,
+ #endif
+                              RCTRNSScreenViewProtocol,
++                             RCTMountingTransactionObserving, // dainorelis
+                              CAAnimationDelegate>
+ @end
+ 
++// dainorelis: tells the top scroll edge effect's contentOffset observation apart from the sheet's bounds one
++static void *RNSDainorelisContentOffsetContext = &RNSDainorelisContentOffsetContext;
++
+ @implementation RNSScreenView {
+   __weak RCTScrollViewComponentView *_sheetsScrollView;
+   /// Tag of `_sheetsScrollView` at the time we started observing it. Fabric changes the tag when it recycles
+@@ -66,6 +72,10 @@ struct ContentWrapperBox {
+   RCTSurfaceTouchHandler *_touchHandler;
+   react::RNSScreenShadowNode::ConcreteState::Shared _state;
+   NSMutableArray<UIView *> *_reactSubviews;
++  // dainorelis: see -dainorelis_trackTopScrollEdgeEffect
++  CGFloat _dainorelisTopScrollEdgeEffectThreshold;
++  __weak UIScrollView *_dainorelisTrackedScrollView;
++  BOOL _dainorelisTrackedScrollViewIsScrolledUnder;
+ }
+ 
+ - (instancetype)initWithFrame:(CGRect)frame
+@@ -98,6 +108,7 @@ struct ContentWrapperBox {
+   _fullScreenSwipeEnabled = RNSOptionalBooleanUndefined;
+   _fullScreenSwipeShadowEnabled = YES;
+   _shouldUpdateScrollEdgeEffects = NO;
++  _dainorelisTopScrollEdgeEffectThreshold = -1; // dainorelis
+ #if !TARGET_OS_TV
+   _sheetExpandsWhenScrolledToEdge = YES;
+ #endif // !TARGET_OS_TV
+@@ -241,6 +252,12 @@ RNS_IGNORE_SUPER_CALL_END
+                         change:(NSDictionary<NSKeyValueChangeKey, id> *)change
+                        context:(void *)context
+ {
++  // dainorelis
++  if (context == RNSDainorelisContentOffsetContext) {
++    [self dainorelis_updateTopScrollEdgeEffect];
++    return;
++  }
++
+   UIView *scrollView = (UIView *)object;
+ 
+   if (![scrollView isKindOfClass:RCTScrollViewComponentView.class]) {
+@@ -813,6 +830,7 @@ RNS_IGNORE_SUPER_CALL_END
+ - (void)invalidateImpl
+ {
+   _invalidated = YES;
++  [self dainorelis_trackScrollView:nil]; // dainorelis
+ 
+   // Since the scroll view might get immediately recycled we remove ourselves
+   // immediately.
+@@ -1155,6 +1173,82 @@ RNS_IGNORE_SUPER_CALL_END
+ {
+   [RNSScrollEdgeEffectApplicator applyToScrollView:[RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self]
+                                       withProvider:self];
++  // dainorelis: the applicator just reset the top edge effect
++  _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++  [self dainorelis_trackTopScrollEdgeEffect];
++}
++
++// PATCH(dainorelis): `topScrollEdgeEffectThreshold` (negative for none) switches the top edge effect of the screen's
++// scroll view (the first in its view hierarchy, as for the other edge effects) to its hard style while the content is
++// scrolled past the threshold under the top of the scroll view, and back to `topScrollEdgeEffect` at the top. iOS 27
++// gives the navigation bar a background only behind a native title, so a screen with a custom title sets it. It
++// follows the scroll view's contentOffset on the main thread: a round trip through JS lags behind fast flicks.
++// Fabric can swap the scroll view for another without touching the screen, so look for it after every mount.
++- (void)mountingTransactionDidMount:(const facebook::react::MountingTransaction &)transaction
++                withSurfaceTelemetry:(const facebook::react::SurfaceTelemetry &)surfaceTelemetry
++{
++  if (_dainorelisTopScrollEdgeEffectThreshold >= 0 || _dainorelisTrackedScrollView != nil) {
++    [self dainorelis_trackTopScrollEdgeEffect];
++  }
++}
++
++- (void)dainorelis_trackTopScrollEdgeEffect
++{
++  UIScrollView *scrollView = nil;
++  if (_dainorelisTopScrollEdgeEffectThreshold >= 0 && !_invalidated) {
++    scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self];
++  }
++  [self dainorelis_trackScrollView:scrollView];
++}
++
++- (void)dainorelis_trackScrollView:(nullable UIScrollView *)scrollView
++{
++  if (scrollView == _dainorelisTrackedScrollView) {
++    [self dainorelis_updateTopScrollEdgeEffect];
++    return;
++  }
++  UIScrollView *previousScrollView = _dainorelisTrackedScrollView;
++  if (previousScrollView != nil) {
++    [previousScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++    if (_dainorelisTrackedScrollViewIsScrolledUnder) {
++      _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++      [self dainorelis_applyTopScrollEdgeEffectTo:previousScrollView scrolledUnder:NO];
++    }
++  }
++  _dainorelisTrackedScrollView = scrollView;
++  _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++  if (scrollView != nil) {
++    [scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:RNSDainorelisContentOffsetContext];
++    [self dainorelis_updateTopScrollEdgeEffect];
++  }
++}
++
++- (void)dainorelis_updateTopScrollEdgeEffect
++{
++  UIScrollView *scrollView = _dainorelisTrackedScrollView;
++  if (scrollView == nil) {
++    return;
++  }
++  const BOOL isScrolledUnder =
++      scrollView.contentOffset.y + scrollView.adjustedContentInset.top > _dainorelisTopScrollEdgeEffectThreshold;
++  if (isScrolledUnder != _dainorelisTrackedScrollViewIsScrolledUnder) {
++    _dainorelisTrackedScrollViewIsScrolledUnder = isScrolledUnder;
++    [self dainorelis_applyTopScrollEdgeEffectTo:scrollView scrolledUnder:isScrolledUnder];
++  }
++}
++
++- (void)dainorelis_applyTopScrollEdgeEffectTo:(UIScrollView *)scrollView scrolledUnder:(BOOL)isScrolledUnder
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    if (isScrolledUnder) {
++      scrollView.topEdgeEffect.hidden = NO;
++      scrollView.topEdgeEffect.style = UIScrollEdgeEffectStyle.hardStyle;
++    } else {
++      [RNSScrollEdgeEffectApplicator applyToScrollView:scrollView withProvider:self];
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
+ }
+ 
+ #pragma mark - RNSSafeAreaProviding
+@@ -1385,6 +1479,12 @@ RNS_IGNORE_SUPER_CALL_END
+                                                  newScreenProps.topScrollEdgeEffect]];
+   }
+ 
++  // dainorelis: applied with the other edge effects, in -finalizeUpdates:
++  if (newScreenProps.topScrollEdgeEffectThreshold != oldScreenProps.topScrollEdgeEffectThreshold) {
++    _dainorelisTopScrollEdgeEffectThreshold = newScreenProps.topScrollEdgeEffectThreshold;
++    _shouldUpdateScrollEdgeEffects = YES;
++  }
++
+   [super updateProps:props oldProps:oldProps];
+ }
+ 
+@@ -1465,6 +1565,16 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    BOOL _shouldNotify;
    BOOL _isRemovedFromParent;
    BOOL _hasNotifiedDismissed;
@@ -92,7 +267,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa
  }
  
  #pragma mark - Common
-@@ -1485,6 +1496,13 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1485,6 +1595,13 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewWillAppear:(BOOL)animated
  {
    [super viewWillAppear:animated];
@@ -106,7 +281,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa
    if (!_isSwiping) {
      [self.screenView notifyWillAppear];
      if (self.transitionCoordinator.isInteractive) {
-@@ -1549,6 +1567,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1549,6 +1666,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidAppear:(BOOL)animated
  {
    [super viewDidAppear:animated];
@@ -117,7 +292,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa
    if (!_isSwiping || _shouldNotify) {
      // we are going forward or dismissing without swipe
      // or successfully swiped back
-@@ -1565,6 +1587,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1565,6 +1686,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
  - (void)viewDidDisappear:(BOOL)animated
  {
    [super viewDidDisappear:animated];
@@ -128,7 +303,7 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..4a21e9e39f89b60a9fdb5e3cb67bf9aa
    if (self.parentViewController == nil && self.presentingViewController == nil) {
      if (self.screenView.preventNativeDismiss) {
        // if we want to prevent the native dismiss, we do not send dismissal event,
-@@ -1586,9 +1612,196 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+@@ -1586,9 +1711,196 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
    _shouldNotify = YES;
  }
  
@@ -1045,6 +1220,32 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
    if (newScreenProps.titleFontFamily != oldScreenProps.titleFontFamily) {
      _titleFontFamily = RCTNSStringFromStringNilIfEmpty(newScreenProps.titleFontFamily);
    }
+diff --git a/src/fabric/ModalScreenNativeComponent.ts b/src/fabric/ModalScreenNativeComponent.ts
+index 1633ff0f123543e159d3eee451c73e978f6dbd77..52820e86deaa1c8aff2b5bf51b322dbe34089990 100644
+--- a/src/fabric/ModalScreenNativeComponent.ts
++++ b/src/fabric/ModalScreenNativeComponent.ts
+@@ -126,6 +126,8 @@ export interface NativeProps extends ViewProps {
+   leftScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   rightScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   topScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
++  // dainorelis: as in ScreenNativeComponent (RNSScreen.mm reads these props as the screen's)
++  topScrollEdgeEffectThreshold?: CT.WithDefault<CT.Float, -1.0>;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
+   iosOrientationInheritanceFixEnabled?: CT.WithDefault<boolean, true>;
+ }
+diff --git a/src/fabric/ScreenNativeComponent.ts b/src/fabric/ScreenNativeComponent.ts
+index 0d0085c7faa6d53c8b5cc8ab868f7f58419d84a4..211057ecec8d5aee9e1d7612f4264d48e0431a68 100644
+--- a/src/fabric/ScreenNativeComponent.ts
++++ b/src/fabric/ScreenNativeComponent.ts
+@@ -126,6 +126,8 @@ export interface NativeProps extends ViewProps {
+   leftScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   rightScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   topScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
++  // dainorelis: iOS only, negative for none (see RNSScreen.mm)
++  topScrollEdgeEffectThreshold?: CT.WithDefault<CT.Float, -1.0>;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
+   androidResetScreenShadowStateOnOrientationChangeEnabled?: CT.WithDefault<
+     boolean,
 diff --git a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
 index da28c51c6ffd29b996c876742a11cfdf322db969..a9b43d569a2d96e1123d4a2fd86aef5606d32544 100644
 --- a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts

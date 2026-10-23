@@ -93,7 +93,10 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   caron of š/ž); shrinks a large title too wide for the bar (to 28pt at the least) instead of
   truncating it; lines a large title up with a centred content column (`largeTitleMaxWidth`, through
   the bar's layout margins); makes the inline subtitle readable;
-  and makes large title (and subtitle) colors follow the bar's scroll state.
+  makes large title (and subtitle) colors follow the bar's scroll state; and adds the screen prop
+  `topScrollEdgeEffectThreshold` (iOS 27's bar background for screens without a native title, see
+  `useTopScrollEdgeEffect`), which switches the top scroll edge effect to hard past the threshold on
+  the main thread, observing the scroll view's contentOffset.
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
   switch, Fast Refresh) don't delete each other's file.
 
