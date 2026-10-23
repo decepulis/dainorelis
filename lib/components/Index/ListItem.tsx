@@ -61,6 +61,8 @@ export type RowPlaylist = { id: string; name: string; songIds: Set<string> };
 type Props = {
   item: Song;
   primary: string;
+  /** the heart on the brand-green swipe action */
+  onPrimary: string;
   background: string;
   separator: string;
   isLast?: boolean;
@@ -85,6 +87,7 @@ export function ListItem({
   item,
   background,
   primary,
+  onPrimary,
   separator,
   isLast,
   isFavorite,
@@ -180,7 +183,7 @@ export function ListItem({
             close();
           }}
         >
-          <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color="#fff" />
+          <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color={onPrimary} />
         </Touchable>
       }
       secondary={
@@ -478,7 +481,9 @@ function ListItemContent({ item, primary, background, isFavorite }: ListItemCont
       ]}
     >
       <View style={styles.itemText}>
-        <ThemedText style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>{title}</ThemedText>
+        <ThemedText title style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+          {title}
+        </ThemedText>
         {subtitle ? <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText> : null}
       </View>
       {icons.length > 0 ? (
@@ -540,7 +545,7 @@ export function ListHeader({ title, background, separator, large }: ListHeaderPr
           },
         ]}
       >
-        <ThemedText bold style={[styles.sectionHeader, styles.text, large ? styles.largeHeader : null]}>
+        <ThemedText title bold style={[styles.sectionHeader, styles.text, large ? styles.largeHeader : null]}>
           {title}
         </ThemedText>
       </View>

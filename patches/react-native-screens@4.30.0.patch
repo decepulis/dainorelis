@@ -395,7 +395,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f479
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb98505515cc5229b 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd982632a2c2a70 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -715,7 +715,21 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -503,6 +781,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -493,6 +771,13 @@ RNS_IGNORE_SUPER_CALL_END
+     } else {
+       largeAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:[largeSize floatValue] weight:UIFontWeightBold];
+     }
++#if !TARGET_OS_TV
++    // PATCH(dainorelis): a large title with a font of our own (a custom family, a size or a color, which comes with
++    // the system font at a fixed 34pt above) follows Dynamic Type, as UIKit's own large title does
++    largeAttrs[NSFontAttributeName] =
++        [[UIFontMetrics metricsForTextStyle:UIFontTextStyleLargeTitle] scaledFontForFont:largeAttrs[NSFontAttributeName]
++                                                       compatibleWithTraitCollection:vc.traitCollection];
++#endif
+ 
+     appearance.largeTitleTextAttributes = largeAttrs;
+   }
+@@ -503,6 +788,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -732,7 +746,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
    return appearance;
  }
  
-@@ -559,8 +847,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +854,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -751,7 +765,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +901,33 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +908,33 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -785,7 +799,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1020,151 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1027,151 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -940,7 +954,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1295,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1302,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -1001,7 +1015,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1559,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1566,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -1012,7 +1026,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..c87d95804882d357735ca2beb9850551
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1601,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1608,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);

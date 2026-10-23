@@ -35,11 +35,30 @@ export const fonts = {
     fontFamily: 'Modekan',
     fontWeight: '400',
   },
+  // Saira Semi Condensed, for titles (song titles, playlist names, the list's section headers). One family name per
+  // weight, the file's (and PostScript) name: Android picks a bundled font by file name and can't switch weights
+  // through fontWeight. iOS gets the font's own weight too, so UIKit's weight matching within the family keeps it
+  titleMedium: {
+    fontFamily: 'SairaSemiCondensed-Medium',
+    fontWeight: Platform.OS === 'ios' ? '500' : undefined,
+  },
+  titleSemiBold: {
+    fontFamily: 'SairaSemiCondensed-SemiBold',
+    fontWeight: Platform.OS === 'ios' ? '600' : undefined,
+  },
 } as { [weight: string]: TextStyle };
 
 export interface Theme extends Omit<LibTheme, 'colors'> {
   colors: {
+    /** eglė (fir), the one tint: light in dark mode, so anything filled with it takes `onPrimary` on top */
     primary: string;
+    /** text and icons on a `primary` fill */
+    onPrimary: string;
+    /**
+     * the green bars that carry white content (the custom header, its buttons, the search bar, the player) and the
+     * band under the iOS 26 large title: the light theme's eglė in both modes, since dark mode's eglė is a light color
+     */
+    chrome: string;
     background: string;
     card: string;
     text: string;
@@ -49,22 +68,25 @@ export interface Theme extends Omit<LibTheme, 'colors'> {
     separator: string;
   };
 }
+// Brand v3 (Audinys): docs/plans/brand-v3-type-and-color.md
 export const LightTheme: Theme = {
   dark: false,
   colors: {
-    primary: '#70997F',
-    card0: '#e4e4dd', // darker
-    background: '#f1f1ee', // normal
-    card: '#ffffff', // brighter
-    text: '#121314',
-    border: '#121314',
+    primary: '#2F5240', // eglė
+    onPrimary: '#FFFFFF',
+    chrome: '#2F5240',
+    card0: '#E2E0D8', // sunken
+    background: '#EEECE5', // linas
+    card: '#FFFFFF', // raised
+    text: '#18201B',
+    border: '#18201B',
     notification: 'rgb(255, 69, 58)',
     ...Platform.select({
       ios: {
         separator: PlatformColor('separator') as unknown as string,
       },
       default: {
-        separator: `#12131480`,
+        separator: `#18201B80`,
       },
     }),
   },
@@ -74,25 +96,28 @@ export const LightHighContrastTheme: Theme = {
   ...LightTheme,
   colors: {
     ...LightTheme.colors,
-    primary: '#508062',
+    primary: '#234033',
+    chrome: '#234033',
   },
 };
 export const DarkTheme: Theme = {
   dark: true,
   colors: {
-    primary: '#53745e',
-    card0: '#080910', // darker
-    background: '#121314', // dark
-    card: '#343638', // brighter
-    text: '#FEF9F7',
-    border: '#FEF9F7',
+    primary: '#8FBA9C', // eglė, lifted
+    onPrimary: '#0E1B13',
+    chrome: LightTheme.colors.chrome,
+    card0: '#0B0E0C', // sunken
+    background: '#121614', // naktis
+    card: '#1C221F', // raised
+    text: '#ECEAE3',
+    border: '#ECEAE3',
     notification: 'rgb(255, 69, 58)',
     ...Platform.select({
       ios: {
         separator: PlatformColor('separator') as unknown as string,
       },
       default: {
-        separator: `#FEF9F780`,
+        separator: `#ECEAE380`,
       },
     }),
   },
@@ -102,6 +127,7 @@ export const DarkHighContrastTheme: Theme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: '#375943',
+    primary: '#A9CDB4',
+    chrome: LightHighContrastTheme.colors.chrome,
   },
 };

@@ -286,7 +286,7 @@ export default function Search({
                 },
               ]}
             >
-              <ThemedText bold numberOfLines={1} style={{ flexShrink: 1, fontSize: 17, color }}>
+              <ThemedText title bold numberOfLines={1} style={{ flexShrink: 1, fontSize: 17, color }}>
                 {playlistTitle}
               </ThemedText>
               <FontAwesome6 name="chevron-up" iconStyle="solid" color={color} size={12} style={{ marginTop: 2 }} />

@@ -30,6 +30,7 @@ export default function Page() {
   const inset = useSafeAreaInsets();
   const contentColumn = useContentColumnStyle();
   const primary = useThemeColor('primary');
+  const onPrimary = useThemeColor('onPrimary');
   const separator = useThemeColor('separator');
   const params = useLocalSearchParams<{ n?: string; s?: string }>();
   const { createPlaylist } = usePlaylists();
@@ -62,7 +63,7 @@ export default function Page() {
             { paddingTop: padding * 2, paddingBottom: Math.max(inset.bottom + padding * 2, padding * 4) },
           ]}
         >
-          <ThemedText bold style={styles.title}>
+          <ThemedText title bold style={styles.title}>
             {name}
           </ThemedText>
           {isValid ? (
@@ -83,7 +84,7 @@ export default function Page() {
                 accessibilityLabel={t('addPlaylist')}
                 onPress={addPlaylist}
               >
-                <ThemedText bold style={styles.addButtonText}>
+                <ThemedText bold style={[styles.addButtonText, { color: onPrimary }]}>
                   {t('addPlaylist')}
                 </ThemedText>
               </Button>
@@ -94,7 +95,9 @@ export default function Page() {
                     <View key={id} style={[styles.song, { borderBottomColor: separator }]}>
                       <ThemedText style={styles.songNumber}>{index + 1}</ThemedText>
                       <View style={styles.songTitles}>
-                        <ThemedText style={styles.songTitle}>{title}</ThemedText>
+                        <ThemedText title style={styles.songTitle}>
+                          {title}
+                        </ThemedText>
                         {subtitle ? <ThemedText style={styles.songSubtitle}>{subtitle}</ThemedText> : null}
                       </View>
                     </View>
@@ -142,7 +145,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding * 1.5,
   },
   addButtonText: {
-    color: '#fff',
     fontSize: 17,
   },
   songs: {

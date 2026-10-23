@@ -36,6 +36,7 @@ import VariantMenu from '@/lib/components/VariantMenu';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
+import { fonts } from '@/lib/constants/themes';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useSongAudio from '@/lib/hooks/useSongAudio';
 import useStorage from '@/lib/hooks/useStorage';
@@ -75,6 +76,8 @@ function SongPage({ song }: { song: Song }) {
   const { t, i18n } = useTranslation();
   const text = useThemeColor('text');
   const primary = useThemeColor('primary');
+  const onPrimary = useThemeColor('onPrimary');
+  const chrome = useThemeColor('chrome');
   const background = useThemeColor('background');
   const headerHeight = useHeaderHeight();
   const inset = useSafeAreaInsets();
@@ -213,7 +216,11 @@ function SongPage({ song }: { song: Song }) {
           headerLargeTitle: isLargeTitle,
           headerLargeTitleShadowVisible: false,
           // the large title sits on the green band below, which scrolls away with the content
-          headerLargeTitleStyle: isLargeTitle ? { color: '#ffffff' } : undefined,
+          headerLargeTitleStyle: isLargeTitle
+            ? { fontFamily: fonts.titleSemiBold.fontFamily, color: '#ffffff' }
+            : undefined,
+          // the song's title, collapsed into the bar
+          headerTitleStyle: isLargeTitle ? { fontFamily: fonts.titleSemiBold.fontFamily } : undefined,
           ...(isLiquidGlassStyleHeader()
             ? {
                 headerTitle: nativeHeader.title,
@@ -227,6 +234,7 @@ function SongPage({ song }: { song: Song }) {
                     titleLayout={titleLayout}
                     showTitle={isLyrics(activeVariant) ? undefined : true}
                     title={title}
+                    isSongTitle
                     subtitle={subtitle}
                     // the variant menu lives in the title here, as the native title menu does on Liquid Glass
                     titleWrapper={
@@ -276,7 +284,7 @@ function SongPage({ song }: { song: Song }) {
                 right: 0,
                 top: -2000,
                 height: 2000 + padding * 1.5,
-                backgroundColor: primary,
+                backgroundColor: chrome,
               }}
             />
           ) : null}
@@ -296,7 +304,7 @@ function SongPage({ song }: { song: Song }) {
               // the custom header (Android, iOS 18): the bar stays green and the title is plain text
               <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
                 <View style={styles.titleAndSubtitle}>
-                  <ThemedText bold style={styles.mainTitle}>
+                  <ThemedText title bold style={styles.mainTitle}>
                     {title}
                   </ThemedText>
                   {subtitle ? <ThemedText style={styles.subtitle}>{subtitle}</ThemedText> : null}
@@ -379,7 +387,7 @@ function SongPage({ song }: { song: Song }) {
                   setPdfAttempt(pdfAttempt + 1);
                 }}
               >
-                <ThemedText bold style={styles.pdfErrorButtonText}>
+                <ThemedText bold style={[styles.pdfErrorButtonText, { color: onPrimary }]}>
                   {t('tryAgain')}
                 </ThemedText>
               </Button>
@@ -499,7 +507,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding,
   },
   pdfErrorButtonText: {
-    color: 'white',
     fontSize: 17,
   },
   hr: {

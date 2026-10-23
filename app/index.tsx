@@ -59,6 +59,7 @@ export default function Index() {
   const headerHeight = useHeaderHeight();
   const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');
+  const onPrimary = useThemeColor('onPrimary');
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
   const separator = useThemeColor('separator');
@@ -157,6 +158,7 @@ export default function Index() {
       <ListItem
         item={item.item}
         primary={primary}
+        onPrimary={onPrimary}
         background={background}
         separator={separator}
         isLast={index === displayItems.length - 1}
@@ -183,6 +185,7 @@ export default function Index() {
       <ReorderableListItem
         item={item.item}
         primary={primary}
+        onPrimary={onPrimary}
         background={background}
         separator={separator}
         isLast={index === reorderableItems.length - 1}
