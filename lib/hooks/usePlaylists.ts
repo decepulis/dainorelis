@@ -133,7 +133,6 @@ export default function usePlaylists() {
     /** the playlists a song can be added to */
     editable: [favorites, ...user],
     getPlaylist,
-    uniqueName,
     createPlaylist,
     renamePlaylist,
     deletePlaylist,

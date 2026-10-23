@@ -6,7 +6,7 @@
 import type { ChildTable } from '../supabase/types';
 
 /** What an unnamed variant of each kind is called, in the app's two languages. */
-export const DEFAULT_VARIANT_NAMES: Record<ChildTable, { lt: string; en: string }> = {
+const DEFAULT_VARIANT_NAMES: Record<ChildTable, { lt: string; en: string }> = {
   lyrics: { lt: 'Žodžiai', en: 'Lyrics' },
   translations: { lt: 'Vertimas', en: 'Translation' },
   audio: { lt: 'Įrašas', en: 'Recording' },

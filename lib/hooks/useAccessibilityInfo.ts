@@ -83,6 +83,5 @@ export default function useAccessibilityInfo() {
      */
     reduceMotion: isReduceMotionEnabled ? ReduceMotion.Always : ReduceMotion.Never,
     isHighContrastEnabled: isHighTextContrastEnabled || isDarkerSystemColorsEnabled,
-    isDarkerSystemColorsEnabled,
   };
 }

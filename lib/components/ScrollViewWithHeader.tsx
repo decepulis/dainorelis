@@ -2,7 +2,7 @@ import Animated, { type AnimatedRef, type AnimatedScrollViewProps } from 'react-
 
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
-export const useContentContainerStyle = () => {
+const useContentContainerStyle = () => {
   const headerHeight = useHeaderHeight();
   return {
     marginTop: headerHeight,

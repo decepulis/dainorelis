@@ -7,8 +7,6 @@ import { useColorScheme } from './useColorScheme';
 import type { ConfirmOptions } from './useConfirm';
 import { useThemeColor } from './useThemeColor';
 
-export type { ConfirmOptions } from './useConfirm';
-
 /**
  * Asks to confirm an action in a Material dialog, like useNamePrompt's, with a destructive confirm button in the
  * error colour. Render `confirmDialog` anywhere on the screen; the dialog presents in its own window.
