@@ -235,8 +235,8 @@ function SongPage({ song }: { song: Song }) {
           headerLargeTitleStyle: isLargeTitle
             ? { fontFamily: fonts.titleSemiBold.fontFamily, color: '#ffffff' }
             : undefined,
-          // the song's title, collapsed into the bar
-          headerTitleStyle: isLargeTitle ? { fontFamily: fonts.titleSemiBold.fontFamily } : undefined,
+          // the song's title in the bar: collapsed from the large title, or over a PDF
+          headerTitleStyle: { fontFamily: fonts.titleSemiBold.fontFamily },
           ...(isLiquidGlassStyleHeader()
             ? {
                 headerTitle: nativeHeader.title,
