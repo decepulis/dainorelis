@@ -5,7 +5,7 @@ import { brandColors } from './lib/constants/brandColors.ts';
 import packageJson from './package.json' with { type: 'json' };
 
 // Generate build number in format yymmdd##
-const buildToday = '03'; // Increment this manually for multiple builds in one day
+const buildToday = '04'; // Increment this manually for multiple builds in one day
 const generateBuildNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
