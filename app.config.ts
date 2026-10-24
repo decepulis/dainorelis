@@ -78,8 +78,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
+      // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts
       foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#70997F',
+      monochromeImage: './assets/images/adaptive-icon-monochrome.png',
+      backgroundColor: '#006A44',
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
@@ -101,7 +103,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     bundler: 'metro',
     output: 'static',
-    favicon: './assets/images/favicon.png',
+    // favicons and the link preview image are in public/ (scripts/generate-brand-assets.ts)
   },
   plugins: [
     'expo-router',
@@ -111,10 +113,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-splash-screen',
       {
+        // the app icon's colors, so the launch continues from the icon
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#70997F',
+        backgroundColor: '#006A44',
+        dark: { backgroundColor: '#121614' },
       },
     ],
     [
