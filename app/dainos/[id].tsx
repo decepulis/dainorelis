@@ -186,7 +186,9 @@ function SongPage({ song }: { song: Song }) {
   // so the nav title is always the song and the variant always its subtitle
   const isLargeTitle = isLiquidGlassStyleHeader() && showLyrics;
   const showSongTitle = isLargeTitle || !showLyrics || isPastTitle;
-  const overflowMenu = useSongOverflowMenu(song, hasChords);
+  // a song with more than one variant shares the one on screen, rather than the one the recipient last chose
+  const shareVariantId = hasMultipleVariants ? activeVariantId : undefined;
+  const overflowMenu = useSongOverflowMenu(song, hasChords, shareVariantId);
   const variantTitle = (variant: LyricsType | PDFs) =>
     i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'];
   const nativeHeader = {
@@ -275,7 +277,7 @@ function SongPage({ song }: { song: Song }) {
               ? () => (
                   <HeaderButtonContainer>
                     <AddToPlaylistMenu song={song} />
-                    <SongMenu song={song} hasChords={hasChords} />
+                    <SongMenu song={song} hasChords={hasChords} variantId={shareVariantId} />
                   </HeaderButtonContainer>
                 )
               : undefined,

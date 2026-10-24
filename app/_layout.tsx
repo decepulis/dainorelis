@@ -11,6 +11,7 @@ import { ThemeProvider } from 'expo-router/react-navigation';
 import * as SplashScreen from 'expo-splash-screen';
 
 import AppIntentsHandler from '@/lib/components/AppIntentsHandler';
+import { shareSheetOptions } from '@/lib/components/ShareSheet';
 import { initI18n } from '@/lib/constants/i18n';
 import { DidImagesLoadProvider, useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
 import useNavigationTheme from '@/lib/hooks/useNavigationTheme';
@@ -45,18 +46,9 @@ function App({ onLayout }: AppProps) {
           <Stack.Screen name="dainos/[id]" />
           <Stack.Screen name="dainos/[id]/vertimas" options={{ presentation: 'modal' }} />
           <Stack.Screen name="dainos/[id]/aprasymas" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="dainos/[id]/bendrinti" options={shareSheetOptions} />
           <Stack.Screen name="p" options={{ presentation: 'modal' }} />
-          <Stack.Screen
-            name="grojarasciai/[id]/bendrinti"
-            options={{
-              presentation: 'formSheet',
-              sheetAllowedDetents: 'fitToContents',
-              sheetGrabberVisible: true,
-              // Material's bottom sheet corners; iOS keeps the system's
-              sheetCornerRadius: process.env.EXPO_OS === 'android' ? 28 : undefined,
-              headerShown: false,
-            }}
-          />
+          <Stack.Screen name="grojarasciai/[id]/bendrinti" options={shareSheetOptions} />
         </Stack>
         <AppIntentsHandler />
       </View>
