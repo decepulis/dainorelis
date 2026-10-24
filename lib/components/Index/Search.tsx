@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
+import { StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
 import Animated, {
   AnimatedRef,
@@ -427,7 +427,6 @@ export function IndexToolbar({
   const { favorites, curated, user } = usePlaylists();
 
   if (!isLiquidGlassStyleHeader()) return null;
-  const isPad = Platform.OS === 'ios' && Platform.isPad;
 
   const shownPlaylistTitle = [favorites, ...curated, ...user].find((p) => p.id === selectedPlaylistId)?.name ?? '';
   const playlistAction = (playlist: Playlist) => (
@@ -440,8 +439,7 @@ export function IndexToolbar({
     </Stack.Toolbar.MenuAction>
   );
 
-  // the playlist picker and the shown playlist's settings: the bottom toolbar's leading group on iPhone,
-  // the navigation bar's leading items on iPad
+  // the playlist picker and the shown playlist's settings: the bottom toolbar's leading group
   const playlistMenus = [
     <Stack.Toolbar.Menu
       key="playlists"
@@ -511,18 +509,14 @@ export function IndexToolbar({
           });
         }}
       />
-      {isPad ? (
-        // iPad keeps every control in the navigation bar, like Files and Notes: the playlist menus lead it
-        <Stack.Toolbar placement="left">{playlistMenus}</Stack.Toolbar>
-      ) : (
-        <Stack.Toolbar>
-          {playlistMenus}
-          {/* a zero-width spacer only splits the groups (the playlist button and its settings, then search), each
-              on its own glass, with UIKit's own gap between them; without it they'd share one */}
-          <Stack.Toolbar.Spacer width={0} />
-          <Stack.Toolbar.SearchBarSlot />
-        </Stack.Toolbar>
-      )}
+      <Stack.Toolbar>
+        {playlistMenus}
+        {/* a zero-width spacer only splits the groups (the playlist button and its settings, then search), each
+            on its own glass, with UIKit's own gap between them; without it they'd share one. iPad leaves search
+            in the navigation bar */}
+        <Stack.Toolbar.Spacer width={0} />
+        <Stack.Toolbar.SearchBarSlot />
+      </Stack.Toolbar>
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button icon="info" onPress={() => router.navigate('/nustatymai')}>
           {t('settingsTitle')}

@@ -273,7 +273,7 @@ change, retake the captures and rerun the script.
 
 **Platform-Specific Code**: Platform variants use `.web.ts` / `.android.tsx` extensions (e.g., `useColorScheme.web.ts`, `Switch.android.tsx`). For small branches inside a file prefer `process.env.EXPO_OS`, which Metro inlines and tree-shakes.
 
-**Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. On Liquid Glass the home screen's playlist and playlist settings menus sit in the bottom toolbar beside search on iPhone, and at the top bar's leading edge on iPad (every window size; search is in the bar there). Android deliberately keeps the custom header: its `Stack.Toolbar` only swaps our green pills for icon-only Material buttons, can't put search in a bottom bar, and would add a third header path to maintain and QA.
+**Headers**: Two schemes, gated on `isLiquidGlassStyleHeader()` (iOS 26+ with Liquid Glass): native `Stack.Toolbar` items there, custom green header buttons (`HeaderButtonContainer`) elsewhere. On Liquid Glass the home screen's playlist and playlist settings menus sit in the bottom toolbar, beside search on iPhone; iPad leaves search in the navigation bar. Android deliberately keeps the custom header: its `Stack.Toolbar` only swaps our green pills for icon-only Material buttons, can't put search in a bottom bar, and would add a third header path to maintain and QA.
 
 **Icons**: In-app glyphs use `@react-native-vector-icons/fontawesome6`. Native menus and toolbars use SF Symbol names on iOS and Material Symbols on Android (`import X from '@expo/material-symbols/<name>.xml'`), chosen with `process.env.EXPO_OS === 'ios' ? 'sf.name' : X`.
 
