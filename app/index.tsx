@@ -1,4 +1,4 @@
-import React, { startTransition, useEffect, useRef, useState } from 'react';
+import React, { startTransition, useEffect, useEffectEvent, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
@@ -11,7 +11,12 @@ import {
 } from 'react-native';
 import { GestureDetector, useNativeGesture } from 'react-native-gesture-handler';
 import { useKeyboardState } from 'react-native-keyboard-controller';
-import Animated, { useAnimatedRef, useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedReaction,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
 import ReorderableList, { reorderItems } from 'react-native-reorderable-list';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -168,6 +173,33 @@ export default function Index() {
   const logoContainerPaddingBottom = 100 + padding;
 
   const listHeaderHeight = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom;
+  // the bar's background appears as the list reaches it, past the forest and the logo
+  const listTop = listHeaderHeight - headerHeight;
+
+  // Past the forest, the first row in sight stays put while rows above it change height: a rotation or a fold
+  // rewraps them (and the forest's own height changes), then they're measured again. Above that, the list stays
+  // where it is, at the top, rather than following the first row. Search results are replaced as they're typed,
+  // with nothing to keep
+  const [isPastListTop, setIsPastListTop] = useState(false);
+  // the list's own offset (the header's scrollOffset only follows while the custom header's background is shown),
+  // and where it was just before the first resize since the rows were last measured
+  const listScrollOffset = useSharedValue(0);
+  const listWidth = useSharedValue(0);
+  const offsetBeforeResize = useSharedValue<number | null>(null);
+  const onListScroll = useAnimatedScrollHandler((e) => {
+    if (e.layoutMeasurement.width !== listWidth.get()) {
+      if (listWidth.get() !== 0 && offsetBeforeResize.get() === null) offsetBeforeResize.set(listScrollOffset.get());
+      listWidth.set(e.layoutMeasurement.width);
+    }
+    listScrollOffset.set(e.contentOffset.y);
+  });
+  useAnimatedReaction(
+    () => listScrollOffset.get() > listTop,
+    (isPast, wasPast) => {
+      if (isPast !== wasPast) scheduleOnRN(setIsPastListTop, isPast);
+    }
+  );
+  const maintainVisibleContentPosition = isPastListTop && !isSearching ? { minIndexForVisible: 0 } : undefined;
 
   // all songs, by letter, gets a jump-to-letter index. Rows wrap differently with the width and the text size, so
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
@@ -190,19 +222,50 @@ export default function Index() {
   const [measured, setMeasured] = useState<{ key: string; layouts: RowLayout[] } | null>(null);
   const [measuringKey, setMeasuringKey] = useState<string | null>(null);
   const layoutCache = useRef(new Map<string, RowLayout[]>());
+  // New layouts move every row, and the list renders the rows at its old offset in them. Android's
+  // maintainVisibleContentPosition keeps the row in sight through that, but iOS mounts the moved rows and their
+  // replacements in one update, which it can't follow; there (and on the web, which lacks it) the first row in sight
+  // before the resize is found in the old layouts and scrolled back to in the new ones
+  const measuredGeometry = useRef({ listHeaderHeight, headerHeight });
+  useEffect(() => {
+    if (measured?.key === measureKey) measuredGeometry.current = { listHeaderHeight, headerHeight };
+  });
+  const pendingAnchor = useRef<{ key: string; index: number; offsetInRow: number } | null>(null);
+  const applyLayouts = (key: string, layouts: RowLayout[]) => {
+    const old = measuredGeometry.current;
+    // the top of the rows' area below the bar, in the old layouts
+    const y = (offsetBeforeResize.get() ?? listScrollOffset.get()) + old.headerHeight - old.listHeaderHeight;
+    offsetBeforeResize.set(null);
+    const index =
+      process.env.EXPO_OS !== 'android' && measured && !isSearching && y > 0
+        ? measured.layouts.findIndex((l) => l.y + l.height > y)
+        : -1;
+    pendingAnchor.current = index >= 0 && measured ? { key, index, offsetInRow: y - measured.layouts[index].y } : null;
+    forgetRowLayouts(listRef.current);
+    setMeasured({ key, layouts });
+  };
+  const applyCachedLayouts = useEffectEvent(applyLayouts);
   useEffect(() => {
     if (!isAllSongs || !hasHydrated || measured?.key === measureKey) return;
     const cached = layoutCache.current.get(measureKey);
     if (cached) {
-      forgetRowLayouts(listRef.current);
-      setMeasured({ key: measureKey, layouts: cached });
+      applyCachedLayouts(measureKey, cached);
       return;
     }
     const timer = setTimeout(() => startTransition(() => setMeasuringKey(measureKey)), measureDelay);
     return () => clearTimeout(timer);
-  }, [isAllSongs, hasHydrated, measured?.key, measureKey, listRef]);
+  }, [isAllSongs, hasHydrated, measured?.key, measureKey]);
   const rowLayouts =
     isAllSongs && !isSearching && measured?.layouts.length === displayItems.length ? measured.layouts : null;
+  useLayoutEffect(() => {
+    const anchor = pendingAnchor.current;
+    if (!anchor || !rowLayouts || anchor.key !== measured?.key || anchor.index >= rowLayouts.length) return;
+    pendingAnchor.current = null;
+    listRef.current?.scrollToOffset({
+      offset: listHeaderHeight + rowLayouts[anchor.index].y + anchor.offsetInRow - headerHeight,
+      animated: false,
+    });
+  }, [measured?.key, rowLayouts, listHeaderHeight, headerHeight, listRef]);
   const getItemLayout = rowLayouts
     ? (_: unknown, index: number) => ({
         index,
@@ -284,8 +347,6 @@ export default function Index() {
       />
     ) : null;
 
-  // the bar's background appears as the list reaches it, past the forest and the logo
-  const listTop = listHeaderHeight - headerHeight;
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listTop);
 
   // wide, the list's card sits on a darker backdrop, which also shows above the forest when overscrolled. It's the
@@ -477,6 +538,8 @@ export default function Index() {
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
               getItemLayout={getItemLayout}
+              maintainVisibleContentPosition={maintainVisibleContentPosition}
+              onScroll={onListScroll}
               // half the default's rows rendered beyond the screen: fewer to lay out again after a resize
               windowSize={11}
               onContentSizeChange={(_, contentHeight) => listContentHeight.set(contentHeight)}
@@ -506,8 +569,7 @@ export default function Index() {
             onMeasure={(layouts) => {
               if (layoutCache.current.size > 8) layoutCache.current.clear();
               layoutCache.current.set(measuringKey, layouts);
-              forgetRowLayouts(listRef.current);
-              setMeasured({ key: measuringKey, layouts });
+              applyLayouts(measuringKey, layouts);
               setMeasuringKey(null);
             }}
           />
