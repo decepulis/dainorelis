@@ -264,7 +264,7 @@ ESLint uses Expo's flat config (which includes eslint-plugin-react-hooks 7 and i
 
 - Prettier formatting enforced as errors
 - Unused imports are automatically flagged and removed
-- Global ignores (`globalIgnores` in `eslint.config.js`): build artifacts, ios/android, `admin/`, `dainorelisapp.com/`, generated `songs.ts` / `song-festival.ts`, `.claude/worktrees/`
+- Global ignores (`globalIgnores` in `eslint.config.js`): build artifacts, ios/android, `admin/`, generated `songs.ts` / `song-festival.ts`, `.claude/worktrees/`
 
 ## Website
 
@@ -274,9 +274,8 @@ the app links (vercel.json serves the AASA as JSON). vercel.json also sends `/qr
 the phone's store by user agent (else `/`; the store URLs are also in `lib/constants/storeUrls.ts`). On the web,
 Safari shows its Smart App Banner (`app/+html.tsx`) and everyone else gets the home screen's Get the app button.
 
-`dainorelisapp.com/` is the old domain's Vercel project (Root Directory `dainorelisapp.com`), now redirect-only and
-not a workspace package: it 308s every path, query included, to the same one on dainorelis.app. The apps don't
-list it in their app links. `/privacy` (`app/privacy.tsx`) renders `PRIVACY.md`, bundled as `privacy.json` by
+The old domain, dainorelisapp.com (and www), is attached to the same Vercel project as a domain redirect (308) to
+dainorelis.app; nothing in the repo serves it, and the apps don't list it in their app links. `/privacy` (`app/privacy.tsx`) renders `PRIVACY.md`, bundled as `privacy.json` by
 `pnpm generate-privacy`, which `build:web` runs; run it after editing the policy.
 
 ## Web
