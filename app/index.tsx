@@ -243,6 +243,7 @@ export default function Index() {
     setMeasured({ key, layouts });
   };
   const applyCachedLayouts = useEffectEvent(applyLayouts);
+  const hasMeasured = measured !== null;
   useEffect(() => {
     if (!isAllSongs || !hasHydrated || measured?.key === measureKey) return;
     const cached = layoutCache.current.get(measureKey);
@@ -250,9 +251,10 @@ export default function Index() {
       applyCachedLayouts(measureKey, cached);
       return;
     }
-    const timer = setTimeout(() => startTransition(() => setMeasuringKey(measureKey)), measureDelay);
+    // the first measuring has no resize to wait for
+    const timer = setTimeout(() => startTransition(() => setMeasuringKey(measureKey)), hasMeasured ? measureDelay : 0);
     return () => clearTimeout(timer);
-  }, [isAllSongs, hasHydrated, measured?.key, measureKey]);
+  }, [isAllSongs, hasHydrated, hasMeasured, measured?.key, measureKey]);
   const rowLayouts =
     isAllSongs && !isSearching && measured?.layouts.length === displayItems.length ? measured.layouts : null;
   useLayoutEffect(() => {
@@ -264,19 +266,26 @@ export default function Index() {
       animated: false,
     });
   }, [measured?.key, rowLayouts, listHeaderHeight, headerHeight, listRef]);
-  const getItemLayout = rowLayouts
+  // All songs' letters are known from the songs at once, so the index shows with the list. Until the rows are
+  // measured (shortly after launch) the list and the index estimate every row a plain row's height, and a jump made
+  // meanwhile lands exactly once they are
+  const hasIndex = isAllSongs && !isSearching;
+  const rowLayoutAt = (index: number): RowLayout =>
+    rowLayouts ? rowLayouts[index] : { y: index * listItemHeight, height: listItemHeight };
+  const getItemLayout = hasIndex
     ? (_: unknown, index: number) => ({
         index,
-        length: rowLayouts[index].height,
-        offset: listHeaderHeight + rowLayouts[index].y,
+        length: rowLayoutAt(index).height,
+        offset: listHeaderHeight + rowLayoutAt(index).y,
       })
     : undefined;
-  const indexSections = rowLayouts
+  const indexSections = hasIndex
     ? displayItems.flatMap((item, index) =>
-        item.type === 'header' ? [{ letter: item.item, offset: listHeaderHeight + rowLayouts[index].y }] : []
+        item.type === 'header' ? [{ letter: item.item, offset: listHeaderHeight + rowLayoutAt(index).y }] : []
       )
     : [];
   const listContentHeight = useSharedValue(0);
+  const listDragCount = useSharedValue(0);
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
   const showsSectionIndex = indexSections.length > 1 && !isKeyboardVisible;
@@ -544,7 +553,10 @@ export default function Index() {
               onContentSizeChange={(_, contentHeight) => listContentHeight.set(contentHeight)}
               keyboardDismissMode="on-drag"
               // scrolling closes a row's open swipe actions
-              onScrollBeginDrag={closeOpenRow}
+              onScrollBeginDrag={() => {
+                closeOpenRow();
+                listDragCount.set(listDragCount.get() + 1);
+              }}
               style={listStyle}
               contentContainerStyle={contentContainerStyle}
               ListHeaderComponent={listHeader}
@@ -588,7 +600,9 @@ export default function Index() {
         {showsSectionIndex ? (
           <SectionIndex
             sections={indexSections}
+            isMeasured={!!rowLayouts}
             listRef={listRef}
+            dragCount={listDragCount}
             topInset={headerHeight}
             contentHeight={listContentHeight}
             listHeight={height}
