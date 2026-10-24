@@ -433,7 +433,7 @@ export default function Index() {
             onLoadEnd={() => setDidLogoLoad(true)}
           />
         </View>
-        {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
+        {/* wide: the top edge of the list's card, which starts over the header's green */}
         {wideLayoutMode ? (
           <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
             <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
@@ -451,8 +451,6 @@ export default function Index() {
         minHeight: footerHeight,
         marginBottom: wideLayoutMode ? listEndClearance : undefined,
         backgroundColor: background,
-        borderBottomLeftRadius: padding,
-        borderBottomRightRadius: padding,
       }}
     >
       {listItems.length === 0 ? (
@@ -643,8 +641,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth,
     height: padding,
-    borderTopLeftRadius: padding,
-    borderTopRightRadius: padding,
   },
   reorderHint: {
     paddingTop: padding,
