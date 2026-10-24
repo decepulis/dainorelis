@@ -29,7 +29,6 @@ import haptic from '@/lib/utils/haptic';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 
-import HyphenatedText from '../HyphenatedText';
 import Markdown from '../Markdown';
 import MenuView from '../MenuView';
 import ThemedText from '../ThemedText';
@@ -507,13 +506,21 @@ export function ListItemContent({
       ]}
     >
       <View style={styles.itemText}>
-        <HyphenatedText title="regular" style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+        <ThemedText
+          android_hyphenationFrequency="normal"
+          title="regular"
+          style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}
+        >
           {title}
-        </HyphenatedText>
+        </ThemedText>
         {subtitle ? (
-          <HyphenatedText title="regular" style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
+          <ThemedText
+            android_hyphenationFrequency="normal"
+            title="regular"
+            style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}
+          >
             {subtitle}
-          </HyphenatedText>
+          </ThemedText>
         ) : null}
       </View>
       {icons.length > 0 ? (
@@ -576,9 +583,9 @@ export function ListHeader({ title, background, separator, large }: ListHeaderPr
           },
         ]}
       >
-        <HyphenatedText title bold style={large ? styles.largeHeader : styles.sectionHeader}>
+        <ThemedText title bold style={large ? styles.largeHeader : styles.sectionHeader}>
           {title}
-        </HyphenatedText>
+        </ThemedText>
       </View>
     </View>
   );
