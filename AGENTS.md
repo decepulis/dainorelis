@@ -14,7 +14,8 @@ Dainorėlis is a React Native mobile and web app built with Expo for viewing and
 - **pnpm 10.x**. pnpm 9 rejects the lockfile (`ERR_PNPM_LOCKFILE_CONFIG_MISMATCH`), and npm's
   `latest` pnpm is a newer major, so install `pnpm@10` explicitly. The root `package.json`
   deliberately has no `packageManager` or `engines` field: Vercel reads both, and
-  `packageManager` broke its deployments. pnpm settings live in `pnpm-workspace.yaml`
+  `packageManager` broke its deployments. Instead the root `vercel.json` runs `npx -y pnpm@10.17.0`, since
+  Vercel picks pnpm 9 for this (older) project by default. pnpm settings live in `pnpm-workspace.yaml`
   (hoisted linker, ignored build scripts) and `package.json` `pnpm.patchedDependencies`.
 
 ### Development
