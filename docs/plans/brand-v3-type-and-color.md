@@ -39,10 +39,10 @@ these exact values.
 
 | Role | Light | Dark | Notes |
 |---|---|---|---|
-| `background` | `#EEECE5` linas (linen) | `#121614` naktis (night) | Light shifts from neutral `#f1f1ee` to a warmer linen. Dark gets a slight green bias instead of neutral `#121314`. |
-| `card` (raised) | `#FFFFFF` | `#1C221F` | |
-| `card0` (sunken) | `#E2E0D8` | `#0B0E0C` | |
-| `text` | `#18201B` (14.1 on linas) | `#ECEAE3` (15.2 on naktis) | Ink with a green bias, never pure black. |
+| `background` | `#EEECE5` linas (linen) | `#141615` naktis (night) | Light shifts from neutral `#f1f1ee` to a warmer linen. Dark keeps a hint of green instead of neutral `#121314` (first `#121614`; turned down a notch, it read too green). |
+| `card` (raised) | `#FFFFFF` | `#1F2220` | |
+| `card0` (sunken) | `#E2E0D8` | `#0C0E0D` | |
+| `text` | `#18201B` (14.1 on linas) | `#ECEAE3` (15.1 on naktis) | Ink with a green bias, never pure black. |
 | secondary text | `#56615A` (5.5) | `#9AA59E` (7.2) | |
 | `primary` / tint | `#2F5240` eglė (fir): 7.4 on linas, 8.7 behind white text | `#8FBA9C` eglė, lifted: 8.4 on naktis | **Dark-mode primary is a light color.** Anything filled with it needs dark text (`#0E1B13`, 8.2), not white. Check every place `primary` is used as a background. |
 | `chrome` (green bars) | `#2F5240` eglė (white 8.7) | `#2F5240` eglė (white 8.7) | Header bar, round header buttons, bottom pill, floating player, the iOS 26 title band. White content only. Added during implementation. Deep eglė in both modes: it sits with the dark forest photo, and dark mode stays deep evergreen at night instead of turning mint. (Light mode was briefly samanos `#597D66` to suit the old pale misty photo.) Don't use `#70997F` for bars (white is 3.2). HC `#234033` in both modes (white 11.3). Content on `chrome` is full white. |

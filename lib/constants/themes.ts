@@ -106,9 +106,9 @@ export const DarkTheme: Theme = {
     primary: '#8FBA9C', // eglė, lifted
     onPrimary: '#0E1B13',
     chrome: '#2F5240', // eglė
-    card0: '#0B0E0C', // sunken
-    background: '#121614', // naktis
-    card: '#1C221F', // raised
+    card0: '#0C0E0D', // sunken
+    background: '#141615', // naktis
+    card: '#1F2220', // raised
     text: '#ECEAE3',
     border: '#ECEAE3',
     notification: 'rgb(255, 69, 58)',
