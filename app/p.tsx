@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { PixelRatio, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
@@ -128,6 +128,8 @@ export default function Page() {
   );
 }
 
+const songLineHeight = PixelRatio.roundToNearestPixel(18 * 1.33);
+
 const styles = StyleSheet.create({
   title: {
     fontSize: 28,
@@ -161,16 +163,17 @@ const styles = StyleSheet.create({
     marginTop: padding * 1.5,
     borderTopWidth: StyleSheet.hairlineWidth,
   },
+  // each row a whole number of pixels tall, so every hairline lands on a pixel and none fades away
   song: {
     flexDirection: 'row',
     gap: padding / 2,
-    paddingVertical: padding / 2,
+    paddingVertical: PixelRatio.roundToNearestPixel(padding / 2),
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   songNumber: {
     width: 28,
     fontSize: 18,
-    lineHeight: 18 * 1.33,
+    lineHeight: songLineHeight,
     opacity: 0.5,
     fontVariant: ['tabular-nums'],
   },
@@ -179,9 +182,11 @@ const styles = StyleSheet.create({
   },
   songTitle: {
     fontSize: 18,
-    lineHeight: 18 * 1.33,
+    lineHeight: songLineHeight,
   },
   songSubtitle: {
+    // the system's own line height for its 14pt text, rounded
+    lineHeight: 17,
     opacity: 0.75,
   },
 });
