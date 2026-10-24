@@ -3,6 +3,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import MarkdownLib, { MarkdownIt } from 'react-native-markdown-display';
 
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import ThemedText from '../ThemedText';
 
@@ -14,7 +15,7 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   'code',
   'fence',
   'heading',
-  'hr',
+  // 'hr', descriptions separate their sources with ---
   'html_block',
   'lheading',
   'list',
@@ -51,6 +52,7 @@ type Props = {
  */
 export default function Markdown({ children, showChords = false }: Props) {
   const { isHighContrastEnabled } = useAccessibilityInfo();
+  const separator = useThemeColor('separator');
 
   // TODO selectable text
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
@@ -58,6 +60,12 @@ export default function Markdown({ children, showChords = false }: Props) {
       <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
         <ThemedText>{children}</ThemedText>
       </View>
+    ),
+    hr: (node) => (
+      <View
+        key={node.key}
+        style={{ height: StyleSheet.hairlineWidth, backgroundColor: separator, marginVertical: fontSize }}
+      />
     ),
     text: (node, _children, parent) => {
       const parentTypes = parent.map((p) => p.sourceType);

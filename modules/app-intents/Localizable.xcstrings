@@ -1,46 +1,50 @@
 {
-  "sourceLanguage": "en",
-  "version": "1.0",
-  "strings": {
-    "Song": {
-      "localizations": {
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daina"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Open Song" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "lt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atidaryti dainą"
           }
         }
       }
     },
-    "Title": {
-      "localizations": {
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pavadinimas"
+    "Opens a song's lyrics in Dainorėlis." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "lt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atidaro dainos žodžius Dainorėlyje."
           }
         }
       }
     },
-    "Open Song": {
-      "localizations": {
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Atidaryti dainą"
+    "Song" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "lt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daina"
           }
         }
       }
     },
-    "Opens a song's lyrics in Dainorėlis.": {
-      "localizations": {
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Atidaro dainos žodžius Dainorėlyje."
+    "Title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "lt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pavadinimas"
           }
         }
       }
     }
-  }
+  },
+  "version" : "1.0"
 }
