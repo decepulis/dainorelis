@@ -568,13 +568,14 @@ export function ListHeader({ title, background, separator, large }: ListHeaderPr
       <View
         style={[
           styles.container,
+          large ? styles.largeHeaderContainer : styles.sectionHeaderContainer,
           {
             borderBottomColor: separator,
             borderBottomWidth: process.env.EXPO_OS === 'ios' ? StyleSheet.hairlineWidth : 0,
           },
         ]}
       >
-        <ThemedText title bold style={[styles.sectionHeader, styles.text, large ? styles.largeHeader : null]}>
+        <ThemedText title bold style={large ? styles.largeHeader : styles.sectionHeader}>
           {title}
         </ThemedText>
       </View>
@@ -614,12 +615,22 @@ const styles = StyleSheet.create({
     fontSize,
     lineHeight,
   },
+  // a section (a letter, a part of the programme) stands out from the rows by size, and by more room above than
+  // below, which ties it to the rows it heads
+  sectionHeaderContainer: {
+    paddingTop: Math.round(padding * 1.5),
+    paddingBottom: Math.round(padding / 2),
+  },
   sectionHeader: {
-    fontSize,
+    fontSize: 22,
+    lineHeight: 22 * 1.25,
+  },
+  largeHeaderContainer: {
+    paddingTop: padding,
   },
   largeHeader: {
-    fontSize: 24,
-    lineHeight: 24 * 1.25,
+    fontSize: 28,
+    lineHeight: 28 * 1.25,
   },
   itemContainer: {
     flexDirection: 'row',
