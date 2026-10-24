@@ -183,7 +183,7 @@ export function ListItem({
             close();
           }}
         >
-          <FontAwesome6 name="heart" size={20} iconStyle={!isFavorite ? 'solid' : 'regular'} color={onPrimary} />
+          <FontAwesome6 name="heart" size={20} iconStyle={isFavorite ? 'solid' : 'regular'} color={onPrimary} />
         </Touchable>
       }
       secondary={
