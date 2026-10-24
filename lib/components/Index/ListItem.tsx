@@ -308,10 +308,14 @@ export function ListItem({
                 }}
               >
                 <View style={{ marginBottom: 20, gap: 4 }}>
-                  <ThemedText bold style={{ fontSize: 22 }}>
+                  <ThemedText title bold style={{ fontSize: 22 }}>
                     {title}
                   </ThemedText>
-                  {subtitle ? <ThemedText style={{ opacity: 0.75 }}>{subtitle}</ThemedText> : null}
+                  {subtitle ? (
+                    <ThemedText title style={{ opacity: 0.75 }}>
+                      {subtitle}
+                    </ThemedText>
+                  ) : null}
                   {isLyrics(firstLyrics) ? (
                     <Markdown showChords={false}>{firstLyrics['Lyrics & Chords']}</Markdown>
                   ) : null}
@@ -505,7 +509,11 @@ export function ListItemContent({
         <ThemedText title style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
           {title}
         </ThemedText>
-        {subtitle ? <ThemedText style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>{subtitle}</ThemedText> : null}
+        {subtitle ? (
+          <ThemedText title style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>
+            {subtitle}
+          </ThemedText>
+        ) : null}
       </View>
       {icons.length > 0 ? (
         <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
