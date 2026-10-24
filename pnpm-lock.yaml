@@ -82,6 +82,9 @@ importers:
       fuse.js:
         specifier: ^7.1.0
         version: 7.5.0
+      hyphen:
+        specifier: 1.14.1
+        version: 1.14.1
       i18next:
         specifier: ^25.7.3
         version: 25.10.10(typescript@6.0.3)
@@ -146,6 +149,9 @@ importers:
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^6.0.0
         version: 6.0.2(prettier@3.9.10)
+      '@types/hyphen':
+        specifier: 1.14.0
+        version: 1.14.0
       '@types/markdown-it':
         specifier: ^14.1.2
         version: 14.2.0
@@ -1862,6 +1868,9 @@ packages:
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
+  '@types/hyphen@1.14.0':
+    resolution: {integrity: sha512-Fc/WIwPD0evpA4cFqdek0nqJpJCMeSqKJwwqYGyVI6snpGmf6eISdD2RnQ7+KhEeo5D05CQtAVfV16/FZ+TzLg==}
+
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
@@ -3271,6 +3280,9 @@ packages:
   https-proxy-agent@7.0.6:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
     engines: {node: '>= 14'}
+
+  hyphen@1.14.1:
+    resolution: {integrity: sha512-kvL8xYl5QMTh+LwohVN72ciOxC0OEV79IPdJSTwEXok9y9QHebXGdFgrED4sWfiax/ODx++CAMk3hMy4XPJPOw==}
 
   hyphenate-style-name@1.1.0:
     resolution: {integrity: sha512-WDC/ui2VVRrz3jOVi+XtjqkDjiVjTtFaAGiW37k6b+ohyQ5wYDOGkvCZa8+H0nx3gyvv0+BST9xuOgIyGQ00gw==}
@@ -6557,9 +6569,7 @@ snapshots:
       metro-runtime: 0.87.1
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-color@2.1.0': {}
 
@@ -6710,6 +6720,8 @@ snapshots:
     optional: true
 
   '@types/estree@1.0.9': {}
+
+  '@types/hyphen@1.14.0': {}
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -8377,6 +8389,8 @@ snapshots:
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
+
+  hyphen@1.14.1: {}
 
   hyphenate-style-name@1.1.0: {}
 
