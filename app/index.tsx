@@ -198,8 +198,8 @@ export default function Index() {
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
   const isAllSongs = !playlist;
   const hasHydrated = useHasHydrated();
-  // the index shows with all songs, at the screen's edge; where it reaches over the rows (not a wide layout's
-  // gutter), their icons keep clear of it
+  // the index shows with all songs, at the screen's edge or in a wide layout's gutter; where the gutter is too
+  // narrow for it, it reaches over the rows, and their icons keep clear of it
   const rowTrailingPadding =
     isAllSongs && (safeWidth - maxWidth) / 2 < sectionIndexRowPadding ? sectionIndexRowPadding : padding;
   // what the rows' layout depends on (the icons scale with the window's width, and a favourite gets a heart)
