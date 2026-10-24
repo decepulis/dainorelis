@@ -408,6 +408,8 @@ export default function Index() {
             height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
           }}
           source={require('@/assets/images/miskas_v3_fade.webp')}
+          // a reorderable playlist gets its own list, which remounts this header: from memory it doesn't reload
+          cachePolicy="memory"
           onLoadEnd={() => setDidBackgroundLoad(true)}
           contentFit="cover"
           contentPosition="bottom"
@@ -426,6 +428,7 @@ export default function Index() {
           <Image
             style={StyleSheet.absoluteFill}
             source={require('@/assets/images/logo_white_v3.png')}
+            cachePolicy="memory"
             contentFit="contain"
             onLoadEnd={() => setDidLogoLoad(true)}
           />
