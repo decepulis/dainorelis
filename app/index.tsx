@@ -161,7 +161,8 @@ export default function Index() {
   const logoContainerAspectRatio = 747 / 177;
   const logoContainerWidth = Math.min(safeWidth - 80, 360);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
-  const logoContainerPaddingTop = 100 + inset.top + 5; // idk why 5 it looks good
+  // Liquid Glass's bar buttons are taller than the custom ones, so the header grows to keep the logo clear of them
+  const logoContainerPaddingTop = 100 + inset.top + 5 + (isLiquidGlassStyleHeader() ? 16 : 0); // idk why 5 it looks good
   const logoContainerPaddingBottom = 100 + padding;
 
   const listHeaderHeight = logoContainerPaddingTop + logoContainerHeight + logoContainerPaddingBottom;
