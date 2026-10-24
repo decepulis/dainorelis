@@ -235,6 +235,10 @@ export default function Index() {
     // the top of the rows' area below the bar, in the old layouts
     const y = (offsetBeforeResize.get() ?? listScrollOffset.get()) + old.headerHeight - old.listHeaderHeight;
     offsetBeforeResize.set(null);
+    // The scroll handler notices a resize at its next scroll event. A resize that scrolls nothing would be noticed
+    // only at this anchor's scroll or a later one, and its stale offset kept until the next resize, which would jump
+    // back to it; that next event's width is taken as current instead
+    listWidth.set(0);
     const index =
       process.env.EXPO_OS !== 'android' && measured && !isSearching && y > 0
         ? measured.layouts.findIndex((l) => l.y + l.height > y)
