@@ -29,6 +29,7 @@ import haptic from '@/lib/utils/haptic';
 import isLyrics from '@/lib/utils/isLyrics';
 import useTitle from '@/lib/utils/useTitle';
 
+import HyphenatedText from '../HyphenatedText';
 import Markdown from '../Markdown';
 import MenuView from '../MenuView';
 import ThemedText from '../ThemedText';
@@ -506,13 +507,13 @@ export function ListItemContent({
       ]}
     >
       <View style={styles.itemText}>
-        <ThemedText title="regular" style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+        <HyphenatedText title="regular" style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
           {title}
-        </ThemedText>
+        </HyphenatedText>
         {subtitle ? (
-          <ThemedText title="regular" style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
+          <HyphenatedText title="regular" style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
             {subtitle}
-          </ThemedText>
+          </HyphenatedText>
         ) : null}
       </View>
       {icons.length > 0 ? (
@@ -575,9 +576,9 @@ export function ListHeader({ title, background, separator, large }: ListHeaderPr
           },
         ]}
       >
-        <ThemedText title bold style={large ? styles.largeHeader : styles.sectionHeader}>
+        <HyphenatedText title bold style={large ? styles.largeHeader : styles.sectionHeader}>
           {title}
-        </ThemedText>
+        </HyphenatedText>
       </View>
     </View>
   );
