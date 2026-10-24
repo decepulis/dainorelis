@@ -635,7 +635,7 @@ const styles = StyleSheet.create({
   // a section (a letter, a part of the programme) stands out from the rows by size, and by more room above than
   // below, which ties it to the rows it heads
   sectionHeaderContainer: {
-    paddingTop: Math.round(padding * 1.5),
+    paddingTop: padding,
     paddingBottom: Math.round(padding / 2),
   },
   sectionHeader: {
