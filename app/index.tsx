@@ -62,11 +62,25 @@ import withAlpha from '@/lib/utils/withAlpha';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
+// how long a resize has to settle before the rows are measured again
+const measureDelay = 300;
 // the bottom bar's buttons, which the hint below a reorderable playlist stays clear of
 const bottomBarHeight = 44;
 
 // web: the static HTML's title and description
 export const generateMetadata = () => siteMetadata;
+
+/**
+ * The list keeps every row's measured layout, even once the row has scrolled away, and prefers it to
+ * getItemLayout's; when the rows are measured again (a new width or text size) those are stale, so it forgets them.
+ * The rows it shows report their layouts again as they move. (VirtualizedList has no public way to do this; giving
+ * the rows new keys instead would remount them all.)
+ */
+function forgetRowLayouts(list: unknown) {
+  (list as { _listRef?: { __getListMetrics?: () => { _cellMetrics?: Map<string, unknown> } } } | null)?._listRef
+    ?.__getListMetrics?.()
+    ._cellMetrics?.clear();
+}
 
 export default function Index() {
   // just a bunch of global state
@@ -159,9 +173,36 @@ export default function Index() {
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
   const isAllSongs = !playlist;
   const hasHydrated = useHasHydrated();
-  const [measuredLayouts, setMeasuredLayouts] = useState<RowLayout[] | null>(null);
+  // the index shows with all songs; over the rows (not in a wide layout's gutter), their icons keep clear of it
+  const rowTrailingPadding =
+    isAllSongs && (safeWidth - maxWidth) / 2 < sectionIndexRowPadding ? sectionIndexRowPadding : padding;
+  // what the rows' layout depends on (the icons scale with the window's width, and a favourite gets a heart)
+  const measureKey = [
+    Math.round(safeWidth),
+    Math.round(width),
+    fontScale,
+    isBoldTextEnabled,
+    rowTrailingPadding,
+    favorites.songIds.join(),
+  ].join(':');
+  // Measuring every row is slow, so it waits until a resize (a fold, a rotation) settles, and only for sizes not
+  // measured before; meanwhile the list and the index keep the last layouts, close enough
+  const [measured, setMeasured] = useState<{ key: string; layouts: RowLayout[] } | null>(null);
+  const [measuringKey, setMeasuringKey] = useState<string | null>(null);
+  const layoutCache = useRef(new Map<string, RowLayout[]>());
+  useEffect(() => {
+    if (!isAllSongs || !hasHydrated || measured?.key === measureKey) return;
+    const cached = layoutCache.current.get(measureKey);
+    if (cached) {
+      forgetRowLayouts(listRef.current);
+      setMeasured({ key: measureKey, layouts: cached });
+      return;
+    }
+    const timer = setTimeout(() => startTransition(() => setMeasuringKey(measureKey)), measureDelay);
+    return () => clearTimeout(timer);
+  }, [isAllSongs, hasHydrated, measured?.key, measureKey, listRef]);
   const rowLayouts =
-    isAllSongs && !isSearching && measuredLayouts?.length === displayItems.length ? measuredLayouts : null;
+    isAllSongs && !isSearching && measured?.layouts.length === displayItems.length ? measured.layouts : null;
   const getItemLayout = rowLayouts
     ? (_: unknown, index: number) => ({
         index,
@@ -174,13 +215,7 @@ export default function Index() {
         item.type === 'header' ? [{ letter: item.item, offset: listHeaderHeight + rowLayouts[index].y }] : []
       )
     : [];
-  // the index shows with all songs; over the rows (not in a wide layout's gutter), their icons keep clear of it
-  const rowTrailingPadding =
-    isAllSongs && (safeWidth - maxWidth) / 2 < sectionIndexRowPadding ? sectionIndexRowPadding : padding;
   const listContentHeight = useSharedValue(0);
-  // the list keeps every row's measured layout, even once the row has scrolled away, and prefers it to
-  // getItemLayout's; a new width or text size makes those stale, so the rows get new keys
-  const rowKeySuffix = `${Math.round(safeWidth)}:${fontScale}:${isBoldTextEnabled}:${rowTrailingPadding}`;
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
   // clear of the bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar), which iPad doesn't have
@@ -440,8 +475,10 @@ export default function Index() {
               ref={listRef}
               data={displayItems}
               renderItem={renderItem}
-              keyExtractor={(item) => `${item.id}:${rowKeySuffix}`}
+              keyExtractor={(item) => item.id}
               getItemLayout={getItemLayout}
+              // half the default's rows rendered beyond the screen: fewer to lay out again after a resize
+              windowSize={11}
               onContentSizeChange={(_, contentHeight) => listContentHeight.set(contentHeight)}
               keyboardDismissMode="on-drag"
               // scrolling closes a row's open swipe actions
@@ -453,9 +490,11 @@ export default function Index() {
             />
           </GestureDetector>
         )}
-        {/* only once hydrated: a static web page renders it into every route's HTML otherwise */}
-        {isAllSongs && hasHydrated ? (
+        {/* only while measuring, and only once hydrated: a static web page renders it into every route's HTML
+            otherwise */}
+        {isAllSongs && hasHydrated && measuringKey === measureKey ? (
           <RowMeasurer
+            key={measuringKey}
             items={allSongItems}
             favoriteIds={favoriteIds}
             primary={primary}
@@ -464,7 +503,13 @@ export default function Index() {
             left={inset.left}
             right={inset.right}
             trailingPadding={rowTrailingPadding}
-            onMeasure={setMeasuredLayouts}
+            onMeasure={(layouts) => {
+              if (layoutCache.current.size > 8) layoutCache.current.clear();
+              layoutCache.current.set(measuringKey, layouts);
+              forgetRowLayouts(listRef.current);
+              setMeasured({ key: measuringKey, layouts });
+              setMeasuringKey(null);
+            }}
           />
         ) : null}
         {!isLiquidGlassStyleHeader() && (
