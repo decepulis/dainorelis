@@ -421,7 +421,20 @@ function SongPage({ song }: { song: Song }) {
             <Pdf
               key={`${activeVariant.URL}#${pdfAttempt}`}
               source={{ uri: activeVariant.URL, cache: true }}
-              style={{ width: '100%', flex: 1, backgroundColor: 'transparent' }}
+              style={{
+                width: '100%',
+                flex: 1,
+                backgroundColor: 'transparent',
+                // (patched) keeps the last page clear of the floating player: on iOS a content inset the pages scroll
+                // under the player through (PDFKit already insets the bottom safe area, and Liquid Glass's native
+                // toolbar raises it), on Android, which has no inset, the pages end above it
+                paddingBottom:
+                  activeMedia && !(isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass)
+                    ? Math.max(inset.bottom + floatingBottomGap, padding) +
+                      playerHeight -
+                      (process.env.EXPO_OS === 'ios' ? inset.bottom : 0)
+                    : 0,
+              }}
               // the default (true) skips TLS certificate validation on every platform;
               // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
               trustAllCerts={false}

@@ -99,7 +99,8 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   `useTopScrollEdgeEffect`), which switches the top scroll edge effect to hard past the threshold on
   the main thread, observing the scroll view's contentOffset.
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
-  switch, Fast Refresh) don't delete each other's file.
+  switch, Fast Refresh) don't delete each other's file; on iOS, makes the view's `paddingBottom` a content inset
+  (Android's viewer has none, so its pages end above the padding), so the last page clears the floating player.
 
 ### Brand Assets
 
