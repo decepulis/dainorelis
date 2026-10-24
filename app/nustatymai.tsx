@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   header: {
-    fontSize: 23,
+    fontSize: 26,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: padding,
     paddingBottom: padding / 2,
