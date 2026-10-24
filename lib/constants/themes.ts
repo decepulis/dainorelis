@@ -31,9 +31,14 @@ export const fonts = {
     fontWeight: '900',
     fontStyle: 'italic',
   },
+  // Modeka Extended, the wordmark's face, named like the title faces below. Bold is bundled too
   brand: {
-    fontFamily: 'Modekan',
-    fontWeight: '400',
+    fontFamily: 'ModekaExtended-Regular',
+    fontWeight: Platform.OS === 'ios' ? '400' : undefined,
+  },
+  brandBold: {
+    fontFamily: 'ModekaExtended-Bold',
+    fontWeight: Platform.OS === 'ios' ? '700' : undefined,
   },
   // Saira Semi Condensed, for titles (song titles, playlist names, the list's section headers). One family name per
   // weight, the file's (and PostScript) name: Android picks a bundled font by file name and can't switch weights
