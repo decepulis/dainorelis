@@ -76,10 +76,14 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
           ]}
         >
           <View style={[styles.titleAndSubtitle, { paddingBottom: padding }]}>
-            <ThemedText bold style={[styles.mainTitle]}>
+            <ThemedText title bold style={[styles.mainTitle]}>
               {title}
             </ThemedText>
-            {subtitle ? <ThemedText style={[styles.subtitle]}>{subtitle}</ThemedText> : null}
+            {subtitle ? (
+              <ThemedText title style={[styles.subtitle]}>
+                {subtitle}
+              </ThemedText>
+            ) : null}
           </View>
           <Markdown>{firstTranslation['Lyrics']}</Markdown>
           {firstTranslation['AI Generated'] ? (

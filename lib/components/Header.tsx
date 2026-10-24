@@ -77,9 +77,8 @@ type HeaderTitleProps = {
    * new type on every render and remount whatever it wraps (the native variant menu).
    */
   titleWrapper?: (title: React.ReactNode) => React.ReactNode;
+  /** set in the title face (Saira Semi Condensed), as is the subtitle */
   title?: string;
-  /** the title is a song's, set in the title face (Saira Semi Condensed) */
-  isSongTitle?: boolean;
   subtitle?: string;
   variantName?: string;
   center?: boolean;
@@ -92,7 +91,6 @@ export const HeaderTitle = ({
   children,
   titleWrapper,
   title,
-  isSongTitle,
   subtitle,
   variantName,
   center,
@@ -161,7 +159,7 @@ export const HeaderTitle = ({
           <ThemedText
             numberOfLines={1}
             bold
-            title={isSongTitle}
+            title
             style={[
               {
                 fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
