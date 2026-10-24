@@ -43,6 +43,10 @@ export const fonts = {
   // Saira Semi Condensed, for titles (song titles, playlist names, the list's section headers). One family name per
   // weight, the file's (and PostScript) name: Android picks a bundled font by file name and can't switch weights
   // through fontWeight. iOS gets the font's own weight too, so UIKit's weight matching within the family keeps it
+  titleRegular: {
+    fontFamily: 'SairaSemiCondensed-Regular',
+    fontWeight: Platform.OS === 'ios' ? '400' : undefined,
+  },
   titleMedium: {
     fontFamily: 'SairaSemiCondensed-Medium',
     fontWeight: Platform.OS === 'ios' ? '500' : undefined,

@@ -129,6 +129,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         fonts: [
           './assets/fonts/ModekaExtended-Regular.otf',
           './assets/fonts/ModekaExtended-Bold.otf',
+          './assets/fonts/SairaSemiCondensed-Regular.ttf',
           './assets/fonts/SairaSemiCondensed-Medium.ttf',
           './assets/fonts/SairaSemiCondensed-SemiBold.ttf',
         ],
