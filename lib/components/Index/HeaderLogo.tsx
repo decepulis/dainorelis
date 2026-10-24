@@ -8,6 +8,8 @@ import { isLiquidGlassStyleHeader } from '../Header';
 // It's a fixed size, not one derived from the header's height: that went stale or came out tiny on narrow windows
 // (iPhone Duo's outer screen, some iPad widths). Only a compact bar (iPhone landscape, 32pt) takes a smaller one,
 // and it shrinks to fit only when the bar truly has no room for it.
+// In iOS 27's vertical-bar (rail) layout, e.g. the Duo's outer screen, the bar minimizes as the list scrolls down and
+// takes any inline title with it, a native one too; scrolling back up brings the bar, and the wordmark, back.
 export default function HeaderLogo() {
   const { width, height } = useWindowDimensions();
   const isCompactBar = process.env.EXPO_OS === 'ios' && width > height && Math.min(width, height) < 500;
