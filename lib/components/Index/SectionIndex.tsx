@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   type AccessibilityActionEvent,
@@ -11,10 +11,14 @@ import {
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, {
   type AnimatedRef,
+  ReduceMotion,
   type SharedValue,
   useAnimatedReaction,
+  useAnimatedStyle,
   useScrollOffset,
   useSharedValue,
+  withDelay,
+  withTiming,
 } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-screens/experimental';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -23,8 +27,11 @@ import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 
 import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
+import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { type SongListItem } from '@/lib/hooks/useSongList';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import haptic from '@/lib/utils/haptic';
+import withAlpha from '@/lib/utils/withAlpha';
 
 import SystemView from '../SystemView';
 import ThemedText from '../ThemedText';
@@ -45,6 +52,10 @@ const sectionIndexWidth = capsuleWidth + trailingGap;
 export const sectionIndexRowPadding = sectionIndexWidth + Math.round(padding / 3);
 // on Liquid Glass the letters take the label color, as the player's controls do; on the app's green surface, white
 const letterColor = isLiquidGlassAvailable() ? DynamicColorIOS({ light: '#000000', dark: '#ffffff' }) : '#ffffff';
+// the letter shown large mid-screen while the index is touched, and how long it stays once the finger lifts
+const bigLetterBoxSize = 96;
+const bigLetterHoldMs = 500;
+const bigLetterFadeMs = 200;
 
 /** a row's place in the list's content, below the list header */
 export type RowLayout = { y: number; height: number };
@@ -199,6 +210,25 @@ export default function SectionIndex({
   // behind, so it skips to the latest rather than through every section passed
   const selected = useSharedValue(-1);
   const target = useSharedValue(-1);
+  // the section the big letter shows; unlike selected, it stays as the letter fades
+  const bigLetterSection = useSharedValue(0);
+
+  // While the index is touched, its letter shows large mid-screen, before the list catches up with the rows there.
+  // The letter and its fading run on the UI thread, so they keep up with the finger however busy JS is. Liquid
+  // Glass fades by materializing (an opacity on a glass view or its ancestors breaks the effect), driven from JS
+  const isGlass = isLiquidGlassAvailable();
+  const bigLetterOpacity = useSharedValue(0);
+  const [isGlassShown, setIsGlassShown] = useState(false);
+  const glassTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const showGlass = () => {
+    clearTimeout(glassTimer.current);
+    setIsGlassShown(true);
+  };
+  const hideGlassLater = () => {
+    clearTimeout(glassTimer.current);
+    glassTimer.current = setTimeout(() => setIsGlassShown(false), bigLetterHoldMs);
+  };
+  useEffect(() => () => clearTimeout(glassTimer.current), []);
   const jumpToTarget = (section: number) => {
     if (section === target.get()) jumpTo(section);
   };
@@ -209,15 +239,26 @@ export default function SectionIndex({
     const section = Math.min(count - 1, Math.max(0, Math.floor((y / columnHeight) * count)));
     if (section === selected.get()) return;
     selected.set(section);
+    bigLetterSection.set(section);
     target.set(section);
     scheduleOnRN(jumpToTarget, section);
     scheduleOnRN(haptic, 'tick');
   };
   const gesture = usePanGesture({
     minDistance: 0,
-    onBegin: (e) => select(e.y),
+    onBegin: (e) => {
+      select(e.y);
+      bigLetterOpacity.set(withTiming(1, { duration: bigLetterFadeMs / 2, reduceMotion: ReduceMotion.Never }));
+      if (isGlass) scheduleOnRN(showGlass);
+    },
     onUpdate: (e) => select(e.y),
-    onFinalize: () => selected.set(-1),
+    onFinalize: () => {
+      selected.set(-1);
+      bigLetterOpacity.set(
+        withDelay(bigLetterHoldMs, withTiming(0, { duration: bigLetterFadeMs, reduceMotion: ReduceMotion.Never }))
+      );
+      if (isGlass) scheduleOnRN(hideGlassLater);
+    },
   });
 
   const onAccessibilityAction = ({ nativeEvent: { actionName } }: AccessibilityActionEvent) => {
@@ -225,47 +266,130 @@ export default function SectionIndex({
     else if (actionName === 'decrement') jumpTo(current - 1);
   };
 
-  const Capsule = isLiquidGlassAvailable() ? GlassView : SystemView;
+  const Capsule = isGlass ? GlassView : SystemView;
 
   return (
-    <SafeAreaView
-      edges={{ left: true, right: true }}
-      style={[styles.container, { top, bottom }]}
-      pointerEvents="box-none"
-      onLayout={(e) => setAvailableHeight(e.nativeEvent.layout.height)}
+    <>
+      <BigLetter
+        letters={sections.map((section) => section.letter)}
+        section={bigLetterSection}
+        opacity={bigLetterOpacity}
+        isGlassShown={isGlassShown}
+      />
+      <SafeAreaView
+        edges={{ left: true, right: true }}
+        style={[styles.container, { top, bottom }]}
+        pointerEvents="box-none"
+        onLayout={(e) => setAvailableHeight(e.nativeEvent.layout.height)}
+      >
+        <View style={styles.column} pointerEvents="box-none">
+          {availableHeight > 0 ? (
+            <GestureDetector gesture={gesture}>
+              <View style={styles.touchArea}>
+                <Capsule
+                  shadow={false}
+                  accessible
+                  accessibilityRole="adjustable"
+                  accessibilityLabel={t('sectionIndex')}
+                  accessibilityValue={{ text: sections[current]?.letter }}
+                  accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+                  onAccessibilityAction={onAccessibilityAction}
+                  style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
+                >
+                  {rows.map((letter, i) => (
+                    <ThemedText
+                      key={i}
+                      title
+                      bold
+                      maxFontSizeMultiplier={maxScale}
+                      // the line height scales with the text, as rowHeight does
+                      style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
+                    >
+                      {letter}
+                    </ThemedText>
+                  ))}
+                </Capsule>
+              </View>
+            </GestureDetector>
+          ) : null}
+        </View>
+      </SafeAreaView>
+    </>
+  );
+}
+
+type BigLetterProps = {
+  letters: string[];
+  section: SharedValue<number>;
+  opacity: SharedValue<number>;
+  /** Liquid Glass: whether the box is materialized */
+  isGlassShown: boolean;
+};
+/**
+ * The index's letter, large in a translucent box mid-screen. Every letter is laid out, one shown, so changing it
+ * takes no render. Screen readers skip it: the index's adjustable value already says the letter.
+ */
+function BigLetter({ letters, section, opacity, isGlassShown }: BigLetterProps) {
+  const { isReduceMotionEnabled } = useAccessibilityInfo();
+  const chrome = useThemeColor('chrome');
+  const isGlass = isLiquidGlassAvailable();
+  // a slight grow as it appears, unless Reduce Motion is on; Liquid Glass materializes in its own way
+  const boxStyle = useAnimatedStyle(() =>
+    isGlass
+      ? {}
+      : {
+          opacity: opacity.get(),
+          transform: [{ scale: isReduceMotionEnabled ? 1 : 0.9 + 0.1 * opacity.get() }],
+        }
+  );
+  const lettersStyle = useAnimatedStyle(() => (isGlass ? { opacity: opacity.get() } : {}));
+  return (
+    <View
+      style={styles.bigLetterContainer}
+      pointerEvents="none"
+      importantForAccessibility="no-hide-descendants"
+      accessibilityElementsHidden
     >
-      <View style={styles.column} pointerEvents="box-none">
-        {availableHeight > 0 ? (
-          <GestureDetector gesture={gesture}>
-            <View style={styles.touchArea}>
-              <Capsule
-                shadow={false}
-                accessible
-                accessibilityRole="adjustable"
-                accessibilityLabel={t('sectionIndex')}
-                accessibilityValue={{ text: sections[current]?.letter }}
-                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-                onAccessibilityAction={onAccessibilityAction}
-                style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
-              >
-                {rows.map((letter, i) => (
-                  <ThemedText
-                    key={i}
-                    title
-                    bold
-                    maxFontSizeMultiplier={maxScale}
-                    // the line height scales with the text, as rowHeight does
-                    style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
-                  >
-                    {letter}
-                  </ThemedText>
-                ))}
-              </Capsule>
-            </View>
-          </GestureDetector>
-        ) : null}
-      </View>
-    </SafeAreaView>
+      <Animated.View style={boxStyle}>
+        {isGlass ? (
+          <GlassView
+            glassEffectStyle={{
+              style: isGlassShown ? 'regular' : 'none',
+              animate: true,
+              animationDuration: bigLetterFadeMs / 1000,
+            }}
+            style={styles.bigLetterBox}
+          >
+            <Animated.View style={[StyleSheet.absoluteFill, lettersStyle]}>
+              {letters.map((letter, i) => (
+                <BigLetterGlyph key={i} letter={letter} index={i} section={section} />
+              ))}
+            </Animated.View>
+          </GlassView>
+        ) : (
+          <SystemView
+            shadow={false}
+            // iOS blurs behind its translucent chrome; elsewhere it's solid, so it's made see-through here
+            style={[styles.bigLetterBox, process.env.EXPO_OS !== 'ios' && { backgroundColor: withAlpha(chrome, 'CC') }]}
+          >
+            {letters.map((letter, i) => (
+              <BigLetterGlyph key={i} letter={letter} index={i} section={section} />
+            ))}
+          </SystemView>
+        )}
+      </Animated.View>
+    </View>
+  );
+}
+
+function BigLetterGlyph({ letter, index, section }: { letter: string; index: number; section: SharedValue<number> }) {
+  const style = useAnimatedStyle(() => ({ opacity: section.get() === index ? 1 : 0 }));
+  return (
+    <Animated.View style={[StyleSheet.absoluteFill, style]}>
+      <ThemedText title bold allowFontScaling={false} style={[styles.bigLetter, { color: letterColor }]}>
+        {letter}
+      </ThemedText>
+    </Animated.View>
   );
 }
 
@@ -310,6 +434,23 @@ const styles = StyleSheet.create({
   },
   letter: {
     fontSize: 11,
+    textAlign: 'center',
+  },
+  bigLetterContainer: {
+    ...StyleSheet.absoluteFill,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bigLetterBox: {
+    width: bigLetterBoxSize,
+    height: bigLetterBoxSize,
+    borderRadius: 24,
+    borderCurve: 'continuous',
+    overflow: 'hidden',
+  },
+  bigLetter: {
+    fontSize: 56,
+    lineHeight: bigLetterBoxSize,
     textAlign: 'center',
   },
 });
