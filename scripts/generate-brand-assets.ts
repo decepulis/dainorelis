@@ -1,14 +1,15 @@
 /**
- * Generates the app icons, splash, favicons and link preview image from the brand sources:
+ * Generates the app icons, splash, favicons, wordmarks, header photo and link preview images from the brand
+ * sources:
  *   assets/images/icon_v3.svg       the app icon (a background rect, the star path and its diamond)
- *   assets/images/logo_white_v3.svg the wordmark (live text: needs Modeka Extended Bold installed)
+ *   assets/images/logo_white_v3.svg the logo (frame, lettering and mark, all outlined)
+ *   assets/images/miskas_v3.jpg     the forest photo (Sebastian Unrau, Unsplash)
  *
  *   pnpm tsx scripts/generate-brand-assets.ts
  *
  * The mark is cut out of icon_v3.svg and re-centred on its measured bounds, so every output gets
  * proportions tuned for its own mask instead of one shared crop.
  */
-import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import sharp from 'sharp';
 
@@ -87,7 +88,8 @@ async function main() {
   // 40% of the canvas makes the mark 60% of the visible icon (iOS: 57%) and keeps the star's tips
   // inside the safe circle.
   await png(`${images}/adaptive-icon.png`, placed(1024, 0.4), 1024);
-  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, 0.4, star), 1024);
+  // themed icons tint every opaque pixel one colour; the diamond still reads, as an island in the star's hole
+  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, 0.4), 1024);
 
   // Splash: Android 12+ masks the splash icon to a circle 2/3 of its box, so the star's tips need the
   // mark at 55% or less. iOS draws the same image at imageWidth.
@@ -97,6 +99,16 @@ async function main() {
   const layer = (content: string) => svg(1024, placed(1024, iconFraction, content));
   writeFileSync(`${images}/icon.icon/Assets/star.svg`, layer(star));
   writeFileSync(`${images}/icon.icon/Assets/diamond.svg`, layer(diamond));
+  // and the background fill: the first "solid" in icon.json. Everything else in it (glass, specular, shadow,
+  // translucency, dark and tinted variants) is Icon Composer's, edited there and left alone here
+  const iconJson = `${images}/icon.icon/icon.json`;
+  const srgb = (hex: string) =>
+    [1, 3, 5].map((i) => (parseInt(hex.slice(i, i + 2), 16) / 255).toFixed(5)).join(',') + ',1.00000';
+  // (the document's top-level fill; layer fills, like the star's dark-mode tint, come later in the file)
+  const rootFill = /^(\{\s*"fill-specializations" : \[\s*\{\s*"value" : \{\s*"solid" : )"[^"]*"/;
+  const iconDocument = readFileSync(iconJson, 'utf8');
+  if (!rootFill.test(iconDocument)) throw new Error(`${iconJson} doesn't start with a solid background fill`);
+  writeFileSync(iconJson, iconDocument.replace(rootFill, `$1"srgb:${srgb(background)}"`));
 
   // Web. Small sizes get a tighter crop (the mark fills more of the square) and rounded corners, since
   // a browser tab doesn't round them; 16px drops the diamond's 2px sliver of yellow for a clean star.
@@ -127,46 +139,85 @@ async function main() {
   await png(`${images}/favicon.png`, favicon(48, 0.78), 48);
   // iOS rounds the home screen icon itself, so this one is full bleed at the app icon's proportions
   await png('public/apple-touch-icon.png', rect(180, background) + placed(180, 0.62), 180, { flatten: true });
+  // the admin app's tab and home screen icons
+  writeFileSync('admin/src/app/icon.svg', svg(64, favicon(64, 0.78)));
+  await png('admin/src/app/apple-icon.png', rect(512, background) + placed(512, 0.62), 512, { flatten: true });
 
-  // Link previews: the misty forest and the wordmark
-  if (hasFont('Modeka Extended')) {
-    const logo = readFileSync(`${images}/logo_white_v3.svg`, 'utf8');
-    for (const scale of [2, 3])
-      await sharp(Buffer.from(logo), { density: 72 * scale })
-        .png({ compressionLevel: 9 })
-        .toFile(`${images}/logo_white_v3@${scale}x.png`);
+  // The wordmark, sharp on 2x and 3x screens; logo_white.png is the 1x under its v1 name
+  const logo = readFileSync(`${images}/logo_white_v3.svg`, 'utf8');
+  await sharp(Buffer.from(logo)).png({ compressionLevel: 9 }).toFile(`${images}/logo_white.png`);
+  for (const scale of [2, 3])
+    await sharp(Buffer.from(logo), { density: 72 * scale })
+      .png({ compressionLevel: 9 })
+      .toFile(`${images}/logo_white_v3@${scale}x.png`);
 
-    const [w, h] = [1200, 630];
-    const logoWidth = 720;
+  // The plain wordmarks (the logo's lettering without the frame and the mark), at their v1 size
+  const textStart = logo.indexOf('/>', logo.indexOf('stroke-width:30px')) + 2;
+  const lettering = logo.slice(textStart, logo.lastIndexOf('<g>'));
+  if (!lettering.includes('<path')) throw new Error("couldn't find the lettering in logo_white_v3.svg");
+  for (const [name, color] of [
+    ['black', '#18201B'], // ink: the brand never uses pure black
+    ['primary', '#2F5240'], // eglė
+    ['white', '#FFFFFF'],
+  ]) {
+    const art = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747 177">${lettering.replaceAll('fill:#fff', `fill:${color}`)}</svg>`;
+    const trimmed = await sharp(Buffer.from(art), { density: 72 * 4 })
+      .trim()
+      .toBuffer();
+    await sharp(trimmed)
+      .resize(502, 105, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png({ compressionLevel: 9 })
+      .toFile(`${images}/wordmark_${name}.png`);
+  }
+
+  // The home screen's forest: Sebastian Unrau's photo (miskas_v3.jpg), cropped so the darker canopy sits behind
+  // the logo and the sun rays to its right (phones show the middle ~45%), fading out over its lower half into the
+  // backdrop
+  const [fw, fh] = [2200, 968];
+  const photo = `${images}/miskas_v3.jpg`;
+  const fade = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${fw}" height="${fh}"><defs><linearGradient id="f" x2="0" y2="1">` +
+      '<stop offset="0.5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
+      `<rect width="${fw}" height="${fh}" fill="url(#f)"/></svg>`
+  );
+  await sharp(photo)
+    .extract({ left: 600, top: 300, width: 5400, height: Math.round((5400 * fh) / fw) })
+    .resize(fw, fh)
+    .ensureAlpha()
+    .composite([{ input: fade, blend: 'dest-in' }])
+    .webp({ quality: 85, alphaQuality: 100 })
+    .toFile(`${images}/miskas_v3_fade.webp`);
+
+  // Link previews and the Play Store feature graphic: the forest, a light shade, the logo in the middle 60%
+  async function poster(file: string, w: number, h: number) {
+    const logoWidth = Math.round(w * 0.6);
     const logoImage = await sharp(Buffer.from(logo), { density: 72 * 4 })
       .resize(logoWidth)
       .png()
       .toBuffer();
     const logoHeight = (await sharp(logoImage).metadata()).height!;
     const shade = Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="${w}" height="${h}" fill="#121614" opacity="0.28"/></svg>`
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="${w}" height="${h}" fill="#121614" opacity="0.2"/></svg>`
     );
-    await sharp(`${images}/miskas.jpg`)
+    const composed = await sharp(photo)
       .resize(w, h, { fit: 'cover', position: 'centre' })
       .composite([
         { input: shade },
-        { input: logoImage, left: (w - logoWidth) / 2, top: Math.round((h - logoHeight) / 2) },
+        { input: logoImage, left: Math.round((w - logoWidth) / 2), top: Math.round((h - logoHeight) / 2) },
       ])
-      .jpeg({ quality: 85, mozjpeg: true })
-      .toFile('public/og.jpg');
-  } else {
-    console.warn('Modeka Extended is not installed: skipped the wordmark PNGs and public/og.jpg');
+      .toBuffer();
+    // opaque: the Play Console rejects a feature graphic with alpha
+    const image = sharp(composed).removeAlpha();
+    await (
+      file.endsWith('.jpg') ? image.jpeg({ quality: 85, mozjpeg: true }) : image.png({ compressionLevel: 9 })
+    ).toFile(file);
   }
+  await poster('public/og.jpg', 1200, 630);
+  await poster(`${images}/miskas_og.png`, 1200, 629);
+  await poster(`${images}/miskas_twitter.png`, 1200, 600);
+  await poster(`${images}/miskas_google_play.png`, 1024, 500);
 
   console.log(`Generated brand assets (background ${background})`);
-}
-
-function hasFont(family: string) {
-  try {
-    return execSync('fc-list', { encoding: 'utf8' }).includes(family);
-  } catch {
-    return false;
-  }
 }
 
 /** an .ico holding PNG images */

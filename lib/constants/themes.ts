@@ -61,9 +61,8 @@ export interface Theme extends Omit<LibTheme, 'colors'> {
     onPrimary: string;
     /**
      * the green bars that carry white content (the custom header, its buttons, the search bar, the player) and the
-     * band under the iOS 26 large title: samanos in light mode, which sits with the misty forest photo, and eglė in
-     * dark mode, since dark mode's eglė is a light color. Light mode's leaves white only 4.6:1, so content on it is
-     * full white, never dimmed
+     * band under the iOS 26 large title: deep eglė in both modes (dark mode's `primary` is a light color, so it can't
+     * be that). Content on it is full white
      */
     chrome: string;
     background: string;
@@ -81,7 +80,7 @@ export const LightTheme: Theme = {
   colors: {
     primary: '#2F5240', // eglė
     onPrimary: '#FFFFFF',
-    chrome: '#597D66', // samanos
+    chrome: '#2F5240', // eglė
     card0: '#E2E0D8', // sunken
     background: '#EEECE5', // linas
     card: '#FFFFFF', // raised
@@ -104,7 +103,7 @@ export const LightHighContrastTheme: Theme = {
   colors: {
     ...LightTheme.colors,
     primary: '#234033',
-    chrome: '#4C6B58',
+    chrome: '#234033',
   },
 };
 export const DarkTheme: Theme = {
