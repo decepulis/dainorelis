@@ -133,7 +133,11 @@ export type IndexSection = { letter: string; offset: number };
 
 type SectionIndexProps = {
   sections: IndexSection[];
+  /** whether the sections' offsets are measured, rather than estimated */
+  isMeasured: boolean;
   listRef: AnimatedRef<Animated.FlatList<any>>;
+  /** how many times the list has been dragged */
+  dragCount: SharedValue<number>;
   /** how far below the list's top a section's header lands: under the navigation bar */
   topInset: number;
   /** the list's content height and its own, so a jump near the end stops at the end */
@@ -157,7 +161,9 @@ type SectionIndexProps = {
  */
 export default function SectionIndex({
   sections,
+  isMeasured,
   listRef,
+  dragCount,
   topInset,
   contentHeight,
   listHeight,
@@ -200,14 +206,24 @@ export default function SectionIndex({
   );
 
   // scrolled from JS, where the list follows its scroll events to render the rows there
+  const offsetOf = (section: number) => Math.min(offsets[section], Math.max(0, contentHeight.get() - listHeight));
+  // a jump made before the rows were measured, to an estimated offset
+  const estimatedJump = useRef<{ section: number; dragCount: number } | null>(null);
   const jumpTo = (section: number) => {
     if (section < 0 || section >= count) return;
     setCurrent(section);
-    listRef.current?.scrollToOffset({
-      offset: Math.min(offsets[section], Math.max(0, contentHeight.get() - listHeight)),
-      animated: false,
-    });
+    estimatedJump.current = isMeasured ? null : { section, dragCount: dragCount.get() };
+    listRef.current?.scrollToOffset({ offset: offsetOf(section), animated: false });
   };
+  // once the rows are measured, it lands exactly, unless the list has been dragged since
+  useEffect(() => {
+    const jump = estimatedJump.current;
+    if (!isMeasured || !jump) return;
+    estimatedJump.current = null;
+    if (jump.dragCount === dragCount.get()) {
+      listRef.current?.scrollToOffset({ offset: offsetOf(jump.section), animated: false });
+    }
+  });
   // the finger's section, while it's down, and the latest one it asked for: dragged fast, the JS thread can fall
   // behind, so it skips to the latest rather than through every section passed
   const selected = useSharedValue(-1);
