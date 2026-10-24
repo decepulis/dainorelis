@@ -33,12 +33,12 @@ import { ListHeader, ListItemContent } from './ListItem';
 // each letter's height; larger text sizes grow them up to maxScale, then letters give way to dots
 const letterHeight = 16;
 const maxScale = 1.4;
-// the capsule behind the letters, its padding above and below them, and its gap from the trailing edge, roomier
-// than Contacts' flush index for a thumb. The touch area runs on into that gap and a little toward the rows
+// the capsule behind the letters, its padding above and below them, and its gap from the trailing edge, a little
+// off Contacts' flush index. The touch area runs on into that gap and toward the rows, roomy for a thumb
 const capsuleWidth = 20;
 const capsulePadding = 5;
-const trailingGap = 10;
-const leadingSlop = 8;
+const trailingGap = 6;
+const leadingSlop = 12;
 /** how far the index reaches in from the list's trailing edge */
 const sectionIndexWidth = capsuleWidth + trailingGap;
 /** the trailing padding rows need beside the index, to keep their icons clear of its capsule */
