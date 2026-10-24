@@ -194,49 +194,52 @@ export default function Page() {
               ))}
             </View>
           </View>
-          <Pressable
-            onPress={() => openLink('https://dainorelis.app/privacy')}
-            accessibilityRole="link"
-            hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
-          >
-            {({ pressed }) => (
+          {/* the footer, under the same hairline as the section headers */}
+          <View style={[styles.footer, { borderColor: separator }]}>
+            <Pressable
+              onPress={() => openLink('https://dainorelis.app/privacy')}
+              accessibilityRole="link"
+              hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+            >
+              {({ pressed }) => (
+                <ThemedText
+                  style={[
+                    styles.paragraph,
+                    { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                  ]}
+                >
+                  {t('privacyPolicy')}
+                </ThemedText>
+              )}
+            </Pressable>
+            {/* the home screen's forest photo */}
+            <ThemedText style={[styles.paragraph, { marginTop: padding }]}>
+              {t('photoCredit')}{' '}
               <ThemedText
-                style={[
-                  styles.paragraph,
-                  { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
-                ]}
+                style={linkStyle}
+                accessibilityRole="link"
+                onPress={() =>
+                  openLink(
+                    'https://unsplash.com/@sebastian_unrau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                  )
+                }
               >
-                {t('privacyPolicy')}
+                Sebastian Unrau
               </ThemedText>
-            )}
-          </Pressable>
-          {/* the home screen's forest photo */}
-          <ThemedText style={[styles.paragraph, { marginTop: padding }]}>
-            {t('photoCredit')}{' '}
-            <ThemedText
-              style={linkStyle}
-              accessibilityRole="link"
-              onPress={() =>
-                openLink(
-                  'https://unsplash.com/@sebastian_unrau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
-                )
-              }
-            >
-              Sebastian Unrau
+              ,{' '}
+              <ThemedText
+                style={linkStyle}
+                accessibilityRole="link"
+                onPress={() =>
+                  openLink(
+                    'https://unsplash.com/photos/trees-on-forest-with-sun-rays-sp-p7uuT0tw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                  )
+                }
+              >
+                Unsplash
+              </ThemedText>
             </ThemedText>
-            ,{' '}
-            <ThemedText
-              style={linkStyle}
-              accessibilityRole="link"
-              onPress={() =>
-                openLink(
-                  'https://unsplash.com/photos/trees-on-forest-with-sun-rays-sp-p7uuT0tw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
-                )
-              }
-            >
-              Unsplash
-            </ThemedText>
-          </ThemedText>
+          </View>
         </View>
       </ScrollViewWithHeader>
     </>
@@ -280,6 +283,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: padding,
     paddingBottom: padding / 2,
+  },
+  footer: {
+    borderTopWidth: StyleSheet.hairlineWidth,
+    paddingTop: padding,
   },
   subheader: {
     fontSize: 19,
