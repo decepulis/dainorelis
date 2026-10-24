@@ -22,7 +22,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
@@ -63,7 +62,6 @@ import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 import haptic from '@/lib/utils/haptic';
 import { siteMetadata } from '@/lib/utils/pageMetadata';
-import withAlpha from '@/lib/utils/withAlpha';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
@@ -98,6 +96,7 @@ export default function Index() {
   const onPrimary = useThemeColor('onPrimary');
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
+  const chrome = useThemeColor('chrome');
   const separator = useThemeColor('separator');
   const { t } = useTranslation();
 
@@ -356,11 +355,9 @@ export default function Index() {
 
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listTop);
 
-  // wide, the list's card sits on a darker backdrop, which also shows above the forest when overscrolled. It's the
-  // scroll view's own background: a background on a view around it would keep that view from being flattened away,
-  // and react-native-screens and UIKit only find a scroll view at the start of the screen's view hierarchy (for the
-  // navigation bar's scroll edge background)
-  const backdrop = wideLayoutMode ? card0 : background;
+  // wide, the list's card sits on a darker backdrop. It's the scroll view's own background: a background on a view
+  // around it would keep that view from being flattened away, and react-native-screens and UIKit only find a scroll
+  // view at the start of the screen's view hierarchy (for the navigation bar's scroll edge background)
   const listStyle = { backgroundColor: wideLayoutMode ? card0 : undefined };
   const contentContainerStyle = {
     paddingLeft: inset.left,
@@ -369,71 +366,74 @@ export default function Index() {
     backgroundColor: wideLayoutMode ? undefined : background,
   };
   const listHeader = (
-    <View
-      style={{
-        position: 'relative',
-        height: listHeaderHeight,
-        paddingTop: logoContainerPaddingTop,
-        paddingBottom: logoContainerPaddingBottom,
-        // full bleed, with the logo centred in the safe area
-        marginLeft: -inset.left,
-        marginRight: -inset.right,
-        paddingLeft: inset.left,
-        paddingRight: inset.right,
-        // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
-        overflow: wideLayoutMode ? undefined : 'hidden',
-      }}
-    >
-      {/* the background itself */}
-      <Image
+    <>
+      {/* above the forest, brand green reaching far up, so pulling down past the top shows green, as the song
+          screen's band does. It tucks under the photo's top edge, so no seam shows between them */}
+      <View
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
-        }}
-        source={require('@/assets/images/miskas_v3_fade.webp')}
-        onLoadEnd={() => setDidBackgroundLoad(true)}
-        contentFit="cover"
-        contentPosition="bottom"
-      ></Image>
-      {/* feather the top into the backdrop that shows above it when overscrolled, so pulling down shows no seam */}
-      <LinearGradient
-        colors={[backdrop, withAlpha(backdrop, '00')]}
-        style={{
-          position: 'absolute',
-          top: 0,
-          height: 50,
-          left: 0,
-          right: 0,
+          top: -2000,
+          height: 2000 + padding,
+          left: -inset.left,
+          right: -inset.right,
+          backgroundColor: chrome,
         }}
       />
-      {/* the logo is separate so we can measure its extents */}
       <View
-        onLayout={calculateTitleHeight}
-        style={[
-          styles.logoContainer,
-          {
-            width: logoContainerWidth,
-            height: logoContainerHeight,
-          },
-        ]}
+        style={{
+          position: 'relative',
+          height: listHeaderHeight,
+          paddingTop: logoContainerPaddingTop,
+          paddingBottom: logoContainerPaddingBottom,
+          // full bleed, with the logo centred in the safe area
+          marginLeft: -inset.left,
+          marginRight: -inset.right,
+          paddingLeft: inset.left,
+          paddingRight: inset.right,
+          // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
+          overflow: wideLayoutMode ? undefined : 'hidden',
+        }}
       >
+        {/* the background itself */}
         <Image
-          style={StyleSheet.absoluteFill}
-          source={require('@/assets/images/logo_white_v3.png')}
-          contentFit="contain"
-          onLoadEnd={() => setDidLogoLoad(true)}
-        />
-      </View>
-      {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
-      {wideLayoutMode ? (
-        <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
-          <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
+          }}
+          source={require('@/assets/images/miskas_v3_fade.webp')}
+          onLoadEnd={() => setDidBackgroundLoad(true)}
+          contentFit="cover"
+          contentPosition="bottom"
+        ></Image>
+        {/* the logo is separate so we can measure its extents */}
+        <View
+          onLayout={calculateTitleHeight}
+          style={[
+            styles.logoContainer,
+            {
+              width: logoContainerWidth,
+              height: logoContainerHeight,
+            },
+          ]}
+        >
+          <Image
+            style={StyleSheet.absoluteFill}
+            source={require('@/assets/images/logo_white_v3.png')}
+            contentFit="contain"
+            onLoadEnd={() => setDidLogoLoad(true)}
+          />
         </View>
-      ) : null}
-    </View>
+        {/* wide: the rounded top of the list's card, to match the footer's rounded bottom */}
+        {wideLayoutMode ? (
+          <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
+            <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
+          </View>
+        ) : null}
+      </View>
+    </>
   );
   const listFooter = (
     <View
