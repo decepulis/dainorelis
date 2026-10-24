@@ -19,6 +19,24 @@ an entry in `frames`; the capture's size must match its `screen`.
 | iPadOS  | iPad mini (A17 Pro) simulator (1488×2266) | 2048×2732 (12.9"/13") |
 | Android | Pixel 9a emulator (1080×2424)             | 1080×1920             |
 
+To recreate the devices (iOS 27.0 runtime, Android 36 Play Store image):
+
+```bash
+xcrun simctl create "Shots iPhone 16" com.apple.CoreSimulator.SimDeviceType.iPhone-16 com.apple.CoreSimulator.SimRuntime.iOS-27-0
+xcrun simctl create "Shots iPad mini" com.apple.CoreSimulator.SimDeviceType.iPad-mini-A17-Pro com.apple.CoreSimulator.SimRuntime.iOS-27-0
+xcrun simctl boot <udid>   # each; create prints the udid
+# Debug simulator build, then install it on each sim:
+xcodebuild -workspace ios/Dainorelis.xcworkspace -scheme Dainorelis -configuration Debug \
+  -sdk iphonesimulator -derivedDataPath ios/build/dd
+xcrun simctl install <udid> ios/build/dd/Build/Products/Debug-iphonesimulator/Dainorelis.app
+
+sdkmanager "system-images;android-36;google_apis_playstore;arm64-v8a"
+avdmanager create avd -n Shots_Pixel -d pixel_9a \
+  -k "system-images;android-36;google_apis_playstore;arm64-v8a"
+emulator -avd Shots_Pixel &       # comes up as emulator-5554 if it's the first one
+npx expo run:android --device emulator-5554   # or adb -s emulator-5554 install <debug apk>
+```
+
 Run a Debug build against Metro. `capture.sh` wraps the device commands:
 
 ```bash
