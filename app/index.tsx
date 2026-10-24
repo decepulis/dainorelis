@@ -1,14 +1,6 @@
 import React, { startTransition, useEffect, useEffectEvent, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  FlatList,
-  LayoutChangeEvent,
-  LayoutRectangle,
-  Platform,
-  StyleSheet,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import { FlatList, LayoutChangeEvent, LayoutRectangle, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { GestureDetector, useNativeGesture } from 'react-native-gesture-handler';
 import { useKeyboardState } from 'react-native-keyboard-controller';
 import Animated, {
@@ -285,13 +277,10 @@ export default function Index() {
   const listContentHeight = useSharedValue(0);
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
-  // The bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar) sit this far above the bottom safe area;
-  // iPad's Liquid Glass keeps them in the navigation bar. The list doesn't scroll under them on its own (no automatic
-  // content inset), so its end, the index and the drag hint keep clear of them
-  const isPadToolbar = isLiquidGlassStyleHeader() && Platform.OS === 'ios' && Platform.isPad;
-  const bottomBarClearance = isPadToolbar
-    ? inset.bottom
-    : Math.max(inset.bottom + floatingBottomGap, padding) + bottomBarHeight;
+  // The bottom bar's buttons (iOS 26's toolbar, or the floating bar) sit this far above the bottom safe area. The list
+  // doesn't scroll under them on its own (no automatic content inset), so its end, the index and the drag hint keep
+  // clear of them
+  const bottomBarClearance = Math.max(inset.bottom + floatingBottomGap, padding) + bottomBarHeight;
   // the list's end: the last row, or the wide card's bottom, a little above the bar
   const listEndClearance = Math.max(bottomBarClearance + padding / 2, padding * 2);
 
