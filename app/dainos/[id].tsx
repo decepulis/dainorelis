@@ -219,251 +219,257 @@ function SongPage({ song }: { song: Song }) {
   const Root = isLargeTitle ? Fragment : View;
 
   return (
-    // a large title tracks the screen's first scroll view, so don't wrap it in a View
-    <Root {...(isLargeTitle ? {} : { style: { flex: 1, backgroundColor: background } })}>
-      {process.env.EXPO_OS === 'web' ? (
-        <Head>
-          <title>{songPageTitle(song)}</title>
-        </Head>
-      ) : null}
-      <Stack.Screen
-        options={{
-          headerBackground: isLargeTitle ? undefined : () => <HeaderBackground opaque />,
-          headerLargeTitle: isLargeTitle,
-          headerLargeTitleShadowVisible: false,
-          // the large title sits on the green band below, which scrolls away with the content
-          headerLargeTitleStyle: isLargeTitle
-            ? { fontFamily: fonts.titleSemiBold.fontFamily, color: '#ffffff' }
-            : undefined,
-          // the song's title in the bar: collapsed from the large title, or over a PDF
-          headerTitleStyle: { fontFamily: fonts.titleSemiBold.fontFamily },
-          ...(isLiquidGlassStyleHeader()
-            ? {
-                headerTitle: nativeHeader.title,
-                // patched props (see patches/react-native-screens), so not in the published types
-                unstable_nativeProps: { headerConfig: nativeHeader.headerConfig as object },
-              }
-            : {
-                headerTitle: () => (
-                  <HeaderTitle
-                    scrollRef={showLyrics ? scrollRef : undefined}
-                    titleLayout={titleLayout}
-                    showTitle={isLyrics(activeVariant) ? undefined : true}
-                    title={title}
-                    subtitle={subtitle}
-                    // the variant menu lives in the title here, as the native title menu does on Liquid Glass
-                    titleWrapper={
-                      hasMultipleVariants
-                        ? (titleElement) => (
-                            <VariantMenu
-                              variants={variants}
-                              activeVariantId={activeVariantId}
-                              setActiveVariantId={setActiveVariantId}
-                            >
-                              {titleElement}
-                            </VariantMenu>
-                          )
-                        : undefined
-                    }
-                    variantName={variantName}
-                  />
-                ),
-              }),
-          headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
-          headerRight: !isLiquidGlassStyleHeader()
-            ? () => (
-                <HeaderButtonContainer>
-                  <AddToPlaylistMenu song={song} />
-                  <SongMenu song={song} hasChords={hasChords} />
-                </HeaderButtonContainer>
-              )
-            : undefined,
-        }}
-      />
-      <SongDetailToolbar song={song} />
-      {showLyrics ? (
-        <ScrollViewWithHeader
-          ref={scrollRef}
-          style={[styles.scroll, isLargeTitle ? { backgroundColor: background } : null]}
-          // a large title collapses only with system-managed insets
-          contentInsetAdjustmentBehavior={isLargeTitle ? 'automatic' : undefined}
-          contentContainerStyle={isLargeTitle ? { marginTop: 0 } : undefined}
-        >
-          {isLargeTitle ? (
-            // HIG: brand color in the content layer, not the bar. It reaches up under the
-            // transparent bar and the large title, across the full width.
-            <View
-              style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: -2000,
-                height: 2000 + padding * 1.5,
-                backgroundColor: chrome,
-              }}
-            />
-          ) : null}
-          <View
-            style={[
-              contentColumn,
-              {
-                paddingTop: isLargeTitle ? padding * 3 : undefined,
-                // room for the player
-                paddingBottom: activeMedia
-                  ? Math.max(inset.bottom + floatingBottomGap + padding * 2 + playerHeight, padding * 4 + playerHeight)
-                  : Math.max(inset.bottom + padding * 2, padding * 4),
-              },
-            ]}
+    <>
+      {/* a large title tracks the screen's first scroll view, so don't wrap it in a View */}
+      <Root {...(isLargeTitle ? {} : { style: { flex: 1, backgroundColor: background } })}>
+        {process.env.EXPO_OS === 'web' ? (
+          <Head>
+            <title>{songPageTitle(song)}</title>
+          </Head>
+        ) : null}
+        <Stack.Screen
+          options={{
+            headerBackground: isLargeTitle ? undefined : () => <HeaderBackground opaque />,
+            headerLargeTitle: isLargeTitle,
+            headerLargeTitleShadowVisible: false,
+            // the large title sits on the green band below, which scrolls away with the content
+            headerLargeTitleStyle: isLargeTitle
+              ? { fontFamily: fonts.titleSemiBold.fontFamily, color: '#ffffff' }
+              : undefined,
+            // the song's title in the bar: collapsed from the large title, or over a PDF
+            headerTitleStyle: { fontFamily: fonts.titleSemiBold.fontFamily },
+            ...(isLiquidGlassStyleHeader()
+              ? {
+                  headerTitle: nativeHeader.title,
+                  // patched props (see patches/react-native-screens), so not in the published types
+                  unstable_nativeProps: { headerConfig: nativeHeader.headerConfig as object },
+                }
+              : {
+                  headerTitle: () => (
+                    <HeaderTitle
+                      scrollRef={showLyrics ? scrollRef : undefined}
+                      titleLayout={titleLayout}
+                      showTitle={isLyrics(activeVariant) ? undefined : true}
+                      title={title}
+                      subtitle={subtitle}
+                      // the variant menu lives in the title here, as the native title menu does on Liquid Glass
+                      titleWrapper={
+                        hasMultipleVariants
+                          ? (titleElement) => (
+                              <VariantMenu
+                                variants={variants}
+                                activeVariantId={activeVariantId}
+                                setActiveVariantId={setActiveVariantId}
+                              >
+                                {titleElement}
+                              </VariantMenu>
+                            )
+                          : undefined
+                      }
+                      variantName={variantName}
+                    />
+                  ),
+                }),
+            headerLeft: !isLiquidGlassStyleHeader() ? (props) => <HeaderLeft {...props} /> : undefined,
+            headerRight: !isLiquidGlassStyleHeader()
+              ? () => (
+                  <HeaderButtonContainer>
+                    <AddToPlaylistMenu song={song} />
+                    <SongMenu song={song} hasChords={hasChords} />
+                  </HeaderButtonContainer>
+                )
+              : undefined,
+          }}
+        />
+        <SongDetailToolbar song={song} />
+        {showLyrics ? (
+          <ScrollViewWithHeader
+            ref={scrollRef}
+            style={[styles.scroll, isLargeTitle ? { backgroundColor: background } : null]}
+            // a large title collapses only with system-managed insets
+            contentInsetAdjustmentBehavior={isLargeTitle ? 'automatic' : undefined}
+            contentContainerStyle={isLargeTitle ? { marginTop: 0 } : undefined}
           >
-            {isLargeTitle ? null : (
-              // the custom header (Android, iOS 18): the bar stays green and the title is plain text
-              <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
-                <View style={styles.titleAndSubtitle}>
-                  <ThemedText title bold style={styles.mainTitle}>
-                    {title}
-                  </ThemedText>
-                  {subtitle ? (
-                    <ThemedText title style={styles.subtitle}>
-                      {subtitle}
-                    </ThemedText>
-                  ) : null}
-                </View>
-              </View>
-            )}
-
-            {isLargeTitle && variantName && subtitle ? (
-              // under a large title the variant's pop-up takes the subtitle, so the title's parenthetical
-              // (Lietuvos himnas (Tautiška giesmė)) leads the lyrics, as it does under the custom header's title
-              <ThemedText title style={styles.largeTitleParenthetical}>
-                {subtitle}
-              </ThemedText>
+            {isLargeTitle ? (
+              // HIG: brand color in the content layer, not the bar. It reaches up under the
+              // transparent bar and the large title, across the full width.
+              <View
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: -2000,
+                  height: 2000 + padding * 1.5,
+                  backgroundColor: chrome,
+                }}
+              />
             ) : null}
-            <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
-            {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
-            {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
-            {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
-            {hasSameAuthor ? (
-              <ThemedText>
-                {t('musicAndWordsBy')}
-                {song.fields['Music Author']}
-              </ThemedText>
-            ) : null}
-            {!hasSameAuthor && hasMusicAuthor ? (
-              <ThemedText>
-                {t('musicBy')}
-                {song.fields['Music Author']}
-              </ThemedText>
-            ) : null}
-            {!hasSameAuthor && hasTextAuthor ? (
-              <ThemedText>
-                {t('wordsBy')}
-                {song.fields['Text Author']}
-              </ThemedText>
-            ) : null}
-          </View>
-        </ScrollViewWithHeader>
-      ) : (
-        // the sheet music runs edge to edge vertically but stays clear of the horizontal safe area
-        // (landscape notches, the closed iPhone Duo's toolbar strip), measured natively for this screen
-        <SafeAreaView
-          edges={{ left: true, right: true }}
-          style={
-            process.env.EXPO_OS === 'web'
-              ? { flex: 1, paddingTop: headerHeight }
-              : { paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }
-          }
-        >
-          {pdfFailed ? (
             <View
               style={[
-                styles.pdfError,
+                contentColumn,
                 {
-                  // iOS draws the PDF under the transparent header and lets PDFKit inset it; this view has to clear it
-                  paddingTop: process.env.EXPO_OS === 'ios' ? headerHeight + padding : padding,
-                  // clear the floating player, or the native toolbar on Liquid Glass
-                  paddingBottom:
-                    inset.bottom +
-                    padding +
-                    (activeMedia ? floatingBottomGap + playerHeight : isLiquidGlassStyleHeader() ? 44 + padding : 0),
+                  paddingTop: isLargeTitle ? padding * 3 : undefined,
+                  // room for the player
+                  paddingBottom: activeMedia
+                    ? Math.max(
+                        inset.bottom + floatingBottomGap + padding * 2 + playerHeight,
+                        padding * 4 + playerHeight
+                      )
+                    : Math.max(inset.bottom + padding * 2, padding * 4),
                 },
               ]}
             >
-              <FontAwesome6
-                name="file-circle-exclamation"
-                iconStyle="solid"
-                size={44}
-                color={text}
-                style={styles.pdfErrorIcon}
-              />
-              <ThemedText bold style={styles.pdfErrorTitle}>
-                {t('pdfErrorTitle')}
-              </ThemedText>
-              <ThemedText style={styles.pdfErrorHint} lineBreakStrategyIOS="push-out">
-                {t('pdfErrorHint')}
-              </ThemedText>
-              <Button
-                noGlass
-                hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                style={styles.pdfErrorButton}
-                innerStyle={[styles.pdfErrorButtonInner, { backgroundColor: primary }]}
-                accessibilityLabel={t('tryAgain')}
-                onPress={() => {
-                  setPdfFailed(false);
-                  setPdfAttempt(pdfAttempt + 1);
-                }}
-              >
-                <ThemedText bold style={[styles.pdfErrorButtonText, { color: onPrimary }]}>
-                  {t('tryAgain')}
-                </ThemedText>
-              </Button>
-            </View>
-          ) : (
-            <Pdf
-              key={`${activeVariant.URL}#${pdfAttempt}`}
-              source={{ uri: activeVariant.URL, cache: true }}
-              style={{
-                width: '100%',
-                flex: 1,
-                backgroundColor: 'transparent',
-                // (patched) keeps the last page clear of the floating player: on iOS a content inset the pages scroll
-                // under the player through (PDFKit already insets the bottom safe area, and Liquid Glass's native
-                // toolbar raises it), on Android, which has no inset, the pages end above it
-                paddingBottom:
-                  activeMedia && !(isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass)
-                    ? Math.max(inset.bottom + floatingBottomGap, padding) +
-                      playerHeight -
-                      (process.env.EXPO_OS === 'ios' ? inset.bottom : 0)
-                    : 0,
-              }}
-              // the default (true) skips TLS certificate validation on every platform;
-              // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
-              trustAllCerts={false}
-              fitPolicy={0}
-              minScale={0.5}
-              maxScale={4}
-              spacing={padding}
-              onError={(error) => {
-                console.warn(error);
-                setPdfFailed(true);
-              }}
-              renderActivityIndicator={(progress) => (
-                <View style={styles.pdfLoading}>
-                  <ActivityIndicator size="large" color={primary} />
-                  {/* 0..1 while downloading; nothing to show before the first bytes or for a cached file */}
-                  {progress > 0 && progress < 1 ? (
-                    <ThemedText style={styles.pdfProgress}>{Math.round(progress * 100)}%</ThemedText>
-                  ) : null}
+              {isLargeTitle ? null : (
+                // the custom header (Android, iOS 18): the bar stays green and the title is plain text
+                <View style={[styles.titleContainer]} onLayout={calculateTitleHeight}>
+                  <View style={styles.titleAndSubtitle}>
+                    <ThemedText title bold style={styles.mainTitle}>
+                      {title}
+                    </ThemedText>
+                    {subtitle ? (
+                      <ThemedText title style={styles.subtitle}>
+                        {subtitle}
+                      </ThemedText>
+                    ) : null}
+                  </View>
                 </View>
               )}
-            />
-          )}
-        </SafeAreaView>
-      )}
-      {/* web: the server has no audio element to render a player with */}
+
+              {isLargeTitle && variantName && subtitle ? (
+                // under a large title the variant's pop-up takes the subtitle, so the title's parenthetical
+                // (Lietuvos himnas (Tautiška giesmė)) leads the lyrics, as it does under the custom header's title
+                <ThemedText title style={styles.largeTitleParenthetical}>
+                  {subtitle}
+                </ThemedText>
+              ) : null}
+              <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
+              {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+              {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
+              {hasMusicAuthor || hasTextAuthor ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
+              {hasSameAuthor ? (
+                <ThemedText>
+                  {t('musicAndWordsBy')}
+                  {song.fields['Music Author']}
+                </ThemedText>
+              ) : null}
+              {!hasSameAuthor && hasMusicAuthor ? (
+                <ThemedText>
+                  {t('musicBy')}
+                  {song.fields['Music Author']}
+                </ThemedText>
+              ) : null}
+              {!hasSameAuthor && hasTextAuthor ? (
+                <ThemedText>
+                  {t('wordsBy')}
+                  {song.fields['Text Author']}
+                </ThemedText>
+              ) : null}
+            </View>
+          </ScrollViewWithHeader>
+        ) : (
+          // the sheet music runs edge to edge vertically but stays clear of the horizontal safe area
+          // (landscape notches, the closed iPhone Duo's toolbar strip), measured natively for this screen
+          <SafeAreaView
+            edges={{ left: true, right: true }}
+            style={
+              process.env.EXPO_OS === 'web'
+                ? { flex: 1, paddingTop: headerHeight }
+                : { paddingTop: process.env.EXPO_OS === 'android' ? headerHeight : undefined }
+            }
+          >
+            {pdfFailed ? (
+              <View
+                style={[
+                  styles.pdfError,
+                  {
+                    // iOS draws the PDF under the transparent header and lets PDFKit inset it; this view has to clear it
+                    paddingTop: process.env.EXPO_OS === 'ios' ? headerHeight + padding : padding,
+                    // clear the floating player, or the native toolbar on Liquid Glass
+                    paddingBottom:
+                      inset.bottom +
+                      padding +
+                      (activeMedia ? floatingBottomGap + playerHeight : isLiquidGlassStyleHeader() ? 44 + padding : 0),
+                  },
+                ]}
+              >
+                <FontAwesome6
+                  name="file-circle-exclamation"
+                  iconStyle="solid"
+                  size={44}
+                  color={text}
+                  style={styles.pdfErrorIcon}
+                />
+                <ThemedText bold style={styles.pdfErrorTitle}>
+                  {t('pdfErrorTitle')}
+                </ThemedText>
+                <ThemedText style={styles.pdfErrorHint} lineBreakStrategyIOS="push-out">
+                  {t('pdfErrorHint')}
+                </ThemedText>
+                <Button
+                  noGlass
+                  hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
+                  style={styles.pdfErrorButton}
+                  innerStyle={[styles.pdfErrorButtonInner, { backgroundColor: primary }]}
+                  accessibilityLabel={t('tryAgain')}
+                  onPress={() => {
+                    setPdfFailed(false);
+                    setPdfAttempt(pdfAttempt + 1);
+                  }}
+                >
+                  <ThemedText bold style={[styles.pdfErrorButtonText, { color: onPrimary }]}>
+                    {t('tryAgain')}
+                  </ThemedText>
+                </Button>
+              </View>
+            ) : (
+              <Pdf
+                key={`${activeVariant.URL}#${pdfAttempt}`}
+                source={{ uri: activeVariant.URL, cache: true }}
+                style={{
+                  width: '100%',
+                  flex: 1,
+                  backgroundColor: 'transparent',
+                  // (patched) keeps the last page clear of the floating player: on iOS a content inset the pages scroll
+                  // under the player through (PDFKit already insets the bottom safe area, and Liquid Glass's native
+                  // toolbar raises it), on Android, which has no inset, the pages end above it
+                  paddingBottom:
+                    activeMedia && !(isLiquidGlassStyleHeader() && !floatingPlayerOnLiquidGlass)
+                      ? Math.max(inset.bottom + floatingBottomGap, padding) +
+                        playerHeight -
+                        (process.env.EXPO_OS === 'ios' ? inset.bottom : 0)
+                      : 0,
+                }}
+                // the default (true) skips TLS certificate validation on every platform;
+                // https://github.com/wonday/react-native-pdf/issues/837 is why it was first turned off on Android
+                trustAllCerts={false}
+                fitPolicy={0}
+                minScale={0.5}
+                maxScale={4}
+                spacing={padding}
+                onError={(error) => {
+                  console.warn(error);
+                  setPdfFailed(true);
+                }}
+                renderActivityIndicator={(progress) => (
+                  <View style={styles.pdfLoading}>
+                    <ActivityIndicator size="large" color={primary} />
+                    {/* 0..1 while downloading; nothing to show before the first bytes or for a cached file */}
+                    {progress > 0 && progress < 1 ? (
+                      <ThemedText style={styles.pdfProgress}>{Math.round(progress * 100)}%</ThemedText>
+                    ) : null}
+                  </View>
+                )}
+              />
+            )}
+          </SafeAreaView>
+        )}
+      </Root>
+      {/* outside Root: on Liquid Glass its type changes between lyrics and a PDF, which remounted the player and
+      stopped the recording. On web the server has no audio element to render a player with */}
       {hasHydrated ? (
         <SongAudio title={title} media={media} activeMediaId={activeMediaId} setActiveMediaId={setActiveMediaId} />
       ) : null}
-    </Root>
+    </>
   );
 }
 
