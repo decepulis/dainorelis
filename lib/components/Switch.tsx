@@ -1,5 +1,7 @@
 import { Host, Switch as UISwitch } from '@expo/ui';
-import { accessibilityLabel as a11yLabel } from '@expo/ui/swift-ui/modifiers';
+import { accessibilityLabel as a11yLabel, tint } from '@expo/ui/swift-ui/modifiers';
+
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 type Props = {
   value: boolean;
@@ -9,6 +11,8 @@ type Props = {
 };
 
 export default function Switch({ value, onValueChange, accessibilityLabel }: Props) {
+  // the brand green where it's on, as Android's switch track
+  const primary = useThemeColor('primary');
   return (
     // the hosting view keeps its SwiftUI content out of the safe area, so as the switch scrolls under a bar it
     // would hold the switch below the bar instead of letting it scroll on with its row
@@ -16,7 +20,7 @@ export default function Switch({ value, onValueChange, accessibilityLabel }: Pro
       <UISwitch
         value={value}
         onValueChange={onValueChange}
-        modifiers={process.env.EXPO_OS === 'ios' && accessibilityLabel ? [a11yLabel(accessibilityLabel)] : undefined}
+        modifiers={[tint(primary), ...(accessibilityLabel ? [a11yLabel(accessibilityLabel)] : [])]}
       />
     </Host>
   );
