@@ -50,7 +50,7 @@ const schemas = {
   },
   showChords: {
     validator: z.boolean(),
-    defaultValue: false,
+    defaultValue: true,
   },
   // web: the reader hid the home screen's link to the app stores
   hideGetTheApp: {
