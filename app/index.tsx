@@ -292,7 +292,7 @@ export default function Index() {
   const bottomBarClearance = isPadToolbar
     ? inset.bottom
     : Math.max(inset.bottom + floatingBottomGap, padding) + bottomBarHeight;
-  // the list's end: the last row, or the wide card's rounded bottom, a little above the bar
+  // the list's end: the last row, or the wide card's bottom, a little above the bar
   const listEndClearance = Math.max(bottomBarClearance + padding / 2, padding * 2);
 
   const footerMinHeight = wideLayoutMode ? padding : listEndClearance;
@@ -434,12 +434,6 @@ export default function Index() {
             onLoadEnd={() => setDidLogoLoad(true)}
           />
         </View>
-        {/* wide: the top edge of the list's card, which starts over the header's green */}
-        {wideLayoutMode ? (
-          <View style={[styles.cardTop, { left: inset.left, right: inset.right }]}>
-            <View style={[styles.cardTopEdge, { backgroundColor: background }]} />
-          </View>
-        ) : null}
       </View>
     </>
   );
@@ -632,16 +626,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginHorizontal: 'auto',
-  },
-  cardTop: {
-    position: 'absolute',
-    bottom: 0,
-    alignItems: 'center',
-  },
-  cardTopEdge: {
-    width: '100%',
-    maxWidth,
-    height: padding,
   },
   reorderHint: {
     paddingTop: padding,
