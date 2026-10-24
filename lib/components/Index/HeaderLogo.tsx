@@ -18,7 +18,7 @@ export default function HeaderLogo() {
       minimumFontScale={0.7}
       allowFontScaling={false}
       style={{
-        ...fonts.brand,
+        ...fonts.brandBold,
         textAlign: 'center',
         fontSize: isCompactBar ? 19 : 26,
         color: isLiquidGlassStyleHeader()

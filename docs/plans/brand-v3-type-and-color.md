@@ -27,7 +27,7 @@ mode and under Liquid Glass.
    SF Symbols and Material, rounded, tinted with the brand color. The *content* (header, song titles,
    brand glyphs) is angular and branded. Don't put an SF Symbol right next to the wordmark or a brand
    glyph.
-3. **One voice per role.** Modekan is the wordmark. Saira Semi Condensed is for titles. The system
+3. **One voice per role.** Modeka Extended is the wordmark. Saira Semi Condensed is for titles. The system
    font is for everything you read at length.
 
 ## Color
@@ -69,7 +69,7 @@ these exact values.
 
 | Role | Face | Weights | Where |
 |---|---|---|---|
-| Wordmark | Modekan (licensed, already in `assets/fonts`) | 400 | The home header wordmark only. Already wired as `fonts.brand`. |
+| Wordmark | Modeka Extended (licensed, WildOnes Design; replaced Modekan in Oct 2026) | 400, 700 | The home header wordmark only, in Bold (`fonts.brandBold`; Regular is `fonts.brand`). |
 | Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 500 list rows, 600 screen titles | Song titles (song screen title, song list rows), playlist names, section headers on the home list. |
 | Everything else | System (SF Pro / Roboto) | as now | Lyrics, chords, translations, descriptions, settings, menus, buttons, search. |
 
@@ -77,8 +77,8 @@ these exact values.
   slightly condensed). Darius rejected it for body text because it's hard to read at length. Don't
   use it for lyrics or paragraphs.
 - Bundle only the weights in use (Medium and SemiBold) through `expo-font` in `app.config.ts`, next to
-  Modekan. On Android a custom family can't switch weights through `fontWeight`, so expose one family
-  name per weight, the way `fonts.brand` pins Modekan.
+  Modeka Extended. On Android a custom family can't switch weights through `fontWeight`, so expose one family
+  name per weight, the way `fonts.brand` pins Modeka Extended.
 - Titles must honor Dynamic Type and font scaling like the system text around them.
 - The iOS large title is UIKit's. Set the font through the header's large-title style, then check it
   against the `react-native-screens` patch. The patch shrinks a large title that's too wide (down to
