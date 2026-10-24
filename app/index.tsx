@@ -197,7 +197,8 @@ export default function Index() {
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
   const isAllSongs = !playlist;
   const hasHydrated = useHasHydrated();
-  // the index shows with all songs; over the rows (not in a wide layout's gutter), their icons keep clear of it
+  // the index shows with all songs, at the screen's edge; where it reaches over the rows (not a wide layout's
+  // gutter), their icons keep clear of it
   const rowTrailingPadding =
     isAllSongs && (safeWidth - maxWidth) / 2 < sectionIndexRowPadding ? sectionIndexRowPadding : padding;
   // what the rows' layout depends on (the icons scale with the window's width, and a favourite gets a heart)
@@ -277,6 +278,7 @@ export default function Index() {
   const listContentHeight = useSharedValue(0);
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
+  const showsSectionIndex = indexSections.length > 1 && !isKeyboardVisible;
   // The bottom bar's buttons (iOS 26's toolbar, or the floating bar) sit this far above the bottom safe area. The list
   // doesn't scroll under them on its own (no automatic content inset), so its end, the index and the drag hint keep
   // clear of them
@@ -536,6 +538,8 @@ export default function Index() {
               onScroll={onListScroll}
               // half the default's rows rendered beyond the screen: fewer to lay out again after a resize
               windowSize={11}
+              // the index takes the scroll indicator's place at the trailing edge
+              showsVerticalScrollIndicator={!showsSectionIndex}
               onContentSizeChange={(_, contentHeight) => listContentHeight.set(contentHeight)}
               keyboardDismissMode="on-drag"
               // scrolling closes a row's open swipe actions
@@ -580,7 +584,7 @@ export default function Index() {
             setSearchText={(text) => startTransition(() => setSearchText(text))}
           />
         )}
-        {indexSections.length > 1 && !isKeyboardVisible ? (
+        {showsSectionIndex ? (
           <SectionIndex
             sections={indexSections}
             listRef={listRef}

@@ -40,14 +40,13 @@ import { ListHeader, ListItemContent } from './ListItem';
 // each letter's height; larger text sizes grow them up to maxScale, then letters give way to dots
 const letterHeight = 16;
 const maxScale = 1.4;
-// the capsule behind the letters, its padding above and below them, and its gap from the trailing edge, a little
-// off Contacts' flush index. The touch area runs on into that gap and toward the rows, roomy for a thumb
+// the capsule behind the letters and its padding above and below them, flush with the screen's trailing edge as
+// Contacts' index is. The touch area runs on toward the rows, 44pt wide in all
 const capsuleWidth = 20;
 const capsulePadding = 5;
-const trailingGap = 6;
-const leadingSlop = 12;
-/** how far the index reaches in from the list's trailing edge */
-const sectionIndexWidth = capsuleWidth + trailingGap;
+const leadingSlop = 44 - capsuleWidth;
+/** how far the index reaches in from the screen's trailing edge */
+const sectionIndexWidth = capsuleWidth;
 /** the trailing padding rows need beside the index, to keep their icons clear of its capsule */
 export const sectionIndexRowPadding = sectionIndexWidth + Math.round(padding / 3);
 // on Liquid Glass the letters take the label color, as the player's controls do; on the app's green surface, white
@@ -150,8 +149,8 @@ type SectionIndexProps = {
  * down a letter at a time.
  *
  * It's placed by layout alone, never from the window's size or the safe area insets (which can lag a resize, a fold
- * or a rotation by a render): at the trailing edge, inside the horizontal safe area (measured natively), or in a
- * wide layout's gutter, beside the card.
+ * or a rotation by a render): at the screen's trailing edge, inside the horizontal safe area (measured natively),
+ * outside the content column.
  */
 export default function SectionIndex({
   sections,
@@ -282,37 +281,35 @@ export default function SectionIndex({
         pointerEvents="box-none"
         onLayout={(e) => setAvailableHeight(e.nativeEvent.layout.height)}
       >
-        <View style={styles.column} pointerEvents="box-none">
-          {availableHeight > 0 ? (
-            <GestureDetector gesture={gesture}>
-              <View style={styles.touchArea}>
-                <Capsule
-                  shadow={false}
-                  accessible
-                  accessibilityRole="adjustable"
-                  accessibilityLabel={t('sectionIndex')}
-                  accessibilityValue={{ text: sections[current]?.letter }}
-                  accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-                  onAccessibilityAction={onAccessibilityAction}
-                  style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
-                >
-                  {rows.map((letter, i) => (
-                    <ThemedText
-                      key={i}
-                      title
-                      bold
-                      maxFontSizeMultiplier={maxScale}
-                      // the line height scales with the text, as rowHeight does
-                      style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
-                    >
-                      {letter}
-                    </ThemedText>
-                  ))}
-                </Capsule>
-              </View>
-            </GestureDetector>
-          ) : null}
-        </View>
+        {availableHeight > 0 ? (
+          <GestureDetector gesture={gesture}>
+            <View style={styles.touchArea}>
+              <Capsule
+                shadow={false}
+                accessible
+                accessibilityRole="adjustable"
+                accessibilityLabel={t('sectionIndex')}
+                accessibilityValue={{ text: sections[current]?.letter }}
+                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+                onAccessibilityAction={onAccessibilityAction}
+                style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
+              >
+                {rows.map((letter, i) => (
+                  <ThemedText
+                    key={i}
+                    title
+                    bold
+                    maxFontSizeMultiplier={maxScale}
+                    // the line height scales with the text, as rowHeight does
+                    style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
+                  >
+                    {letter}
+                  </ThemedText>
+                ))}
+              </Capsule>
+            </View>
+          </GestureDetector>
+        ) : null}
       </SafeAreaView>
     </>
   );
@@ -408,13 +405,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    alignItems: 'center',
-  },
-  // the list's card and a gutter on each side as wide as the index's, or all of a narrower screen
-  column: {
-    flex: 1,
-    width: '100%',
-    maxWidth: maxWidth + sectionIndexRowPadding * 2,
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
@@ -423,7 +413,6 @@ const styles = StyleSheet.create({
   touchArea: {
     maxHeight: '100%',
     paddingLeft: leadingSlop,
-    paddingRight: trailingGap,
   },
   capsule: {
     maxHeight: '100%',
