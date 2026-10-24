@@ -501,10 +501,10 @@ index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..9ae17bb8e3392f85e20b737c420069c0
    // The below code makes the screen view adapt dimensions provided by the system. We take these
    // into account only when the view is mounted under RNSNavigationController, in which case the
 diff --git a/ios/RNSScreenStack.mm b/ios/RNSScreenStack.mm
-index 5da11964f5932cb44e1131c44a2480803c0a62b5..595e25d231dc9b24a414545872eec7f32488ec65 100644
+index 5da11964f5932cb44e1131c44a2480803c0a62b5..1efdb40266396b0ec76c956204fdb8855cc3e096 100644
 --- a/ios/RNSScreenStack.mm
 +++ b/ios/RNSScreenStack.mm
-@@ -1137,9 +1137,45 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -1137,9 +1137,52 @@ RNS_IGNORE_SUPER_CALL_END
        }
      }
    }
@@ -537,13 +537,20 @@ index 5da11964f5932cb44e1131c44a2480803c0a62b5..595e25d231dc9b24a414545872eec7f3
 +      return nil;
 +    }
 +  }
-+  // and the navigation bar's own controls (inline title, bar buttons) win where they overlap it
++  UIView *hitTestResult = [subtitleView hitTest:[self convertPoint:point toView:subtitleView] withEvent:event];
++  if (hitTestResult == nil) {
++    return nil;
++  }
++  // and the navigation bar's own controls (inline title, bar buttons) win where they overlap the button, though not
++  // in the margin its tap target adds around it: the only bar content there is the large title, which takes no taps
++  const BOOL isInMargin =
++      !CGRectContainsPoint(hitTestResult.bounds, [self convertPoint:point toView:hitTestResult]);
 +  UINavigationBar *navigationBar = _controller.navigationBar;
-+  if (!navigationBar.hidden &&
++  if (!isInMargin && !navigationBar.hidden &&
 +      [navigationBar hitTest:[self convertPoint:point toView:navigationBar] withEvent:event] != nil) {
 +    return nil;
 +  }
-+  return [subtitleView hitTest:[self convertPoint:point toView:subtitleView] withEvent:event];
++  return hitTestResult;
 +}
 +#endif
 +
@@ -570,7 +577,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f479
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd982632a2c2a70 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe212b325c 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -581,7 +588,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,157 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,185 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -613,6 +620,29 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
 +@property (nonatomic, strong, nullable) UIColor *standardColor;
 +@property (nonatomic, weak, nullable) UIViewController *viewController;
 +- (void)updateButtonColor;
++@end
++
++// the pop-up button, whose tap target reaches past its glyphs: at least 44pt tall and a little wider, as UIKit's own
++// bar buttons do, without growing the button itself (or the menu's anchor). It grows mostly up, into the large title,
++// which takes no taps: below it, where UIKit hosts the title in the bar, it would take the touches that scroll
++@interface RNSDainorelisLargeSubtitleButton : UIButton
++@end
++
++@implementation RNSDainorelisLargeSubtitleButton
++
++- (CGRect)targetRect
++{
++  const CGRect bounds = self.bounds;
++  const CGFloat below = 4;
++  const CGFloat above = MAX(0, 44 - CGRectGetHeight(bounds) - below);
++  return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(-above, -12, -below, -12));
++}
++
++- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
++{
++  return CGRectContainsPoint(self.targetRect, point);
++}
++
 +@end
 +
 +static void *RNSDainorelisContentOffsetContext = &RNSDainorelisContentOffsetContext;
@@ -698,7 +728,12 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
 +  }
 +}
 +
-+// the space beside the button isn't a target
++// the space beside the button isn't a target, but the button's target reaches past this view's bounds
++- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
++{
++  return [_button pointInside:[self convertPoint:point toView:_button] withEvent:event];
++}
++
 +- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 +{
 +  UIView *hitTestResult = [super hitTest:point withEvent:event];
@@ -739,7 +774,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -62,6 +213,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -62,6 +241,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
    /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
    bool _needsViewControllerUpdateInCurrentTransaction;
    RCTImageLoader *_imageLoader;
@@ -749,7 +784,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  }
  
  - (instancetype)initWithFrame:(CGRect)frame
-@@ -235,6 +389,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +417,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -785,7 +820,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +435,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +463,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -890,7 +925,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -493,6 +771,13 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -493,6 +799,13 @@ RNS_IGNORE_SUPER_CALL_END
      } else {
        largeAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:[largeSize floatValue] weight:UIFontWeightBold];
      }
@@ -904,7 +939,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  
      appearance.largeTitleTextAttributes = largeAttrs;
    }
-@@ -503,6 +788,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +816,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
@@ -921,7 +956,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
    return appearance;
  }
  
-@@ -559,8 +854,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +882,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -940,7 +975,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +908,33 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +936,33 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -974,7 +1009,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1027,151 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1055,151 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -1068,7 +1103,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
 +          ? ((RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView).button
 +          : nil;
 +      if (button == nil) {
-+        button = [UIButton buttonWithConfiguration:buttonConfig primaryAction:nil];
++        button = [RNSDainorelisLargeSubtitleButton buttonWithConfiguration:buttonConfig primaryAction:nil];
 +        button.showsMenuAsPrimaryAction = YES;
 +        navitem.largeSubtitleView = [[RNSDainorelisLargeSubtitleView alloc] initWithButton:button];
 +      } else {
@@ -1129,7 +1164,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1302,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1330,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -1190,7 +1225,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1566,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1594,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -1201,7 +1236,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..63a62c1eae4d48d1dfd73cde4cd98263
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1608,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1636,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
