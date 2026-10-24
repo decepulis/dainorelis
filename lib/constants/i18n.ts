@@ -34,7 +34,7 @@ const en = {
   addToFavorites: 'Add to favorites',
   removeFromFavorites: 'Remove from favorites',
   noHits: 'No search results. Check the spelling or try a new search.',
-  emptyPlaylist: 'No songs here yet. In All Songs, swipe a song to the left, or open it, and tap Add to Playlist.',
+  emptyPlaylist: 'No songs here yet. In All Songs, swipe a song to the left, or open it and tap Add to Playlist.',
   noHitsInPlaylist: 'No search results in this playlist.',
   playlist: 'Playlist',
   playlistActions: 'Playlist actions',
