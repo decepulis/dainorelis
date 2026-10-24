@@ -70,13 +70,23 @@ these exact values.
 | Role | Face | Weights | Where |
 |---|---|---|---|
 | Wordmark | Modeka Extended (licensed, WildOnes Design; replaced Modekan in Oct 2026) | 400 (700 bundled, unused) | The home header wordmark only, in Regular (`fonts.brand`; Bold is `fonts.brandBold`, tried and set aside). |
-| Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 500 list rows, 600 screen titles | Song titles (song screen title, song list rows) and their parenthetical second lines, playlist names, section headers on the home list and in Settings. |
+| Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 400 list rows, 500 subtitles, 600 screen titles | Song titles (song screen title, song list rows) and their parenthetical second lines, the song screen's subtitles (variant name, parenthetical), playlist names, section headers on the home list and in Settings. |
 | Everything else | System (SF Pro / Roboto) | as now | Lyrics, chords, translations, descriptions, settings, menus, buttons, search. |
 
 - Saira was picked as the licensable stand-in for v1's Klavika (flat-sided rounds, slightly squared,
   slightly condensed). Darius rejected it for body text because it's hard to read at length. Don't
   use it for lyrics or paragraphs.
-- Bundle only the weights in use (Medium and SemiBold) through `expo-font` in `app.config.ts`, next to
+- Weights by role (Oct 2026): the home list's rows are Regular 400, title and parenthetical alike, with the
+  parenthetical at 16pt and 0.75 opacity (6.7:1 on linas, 8.9:1 on naktis), so size and opacity carry the
+  hierarchy. The song screen's subtitles (the variant pop-up under the iOS 26 large title, the inline bar
+  subtitle, the custom header's variant name and parenthetical) are Medium 500: they're small (Subheadline /
+  Footnote, 13–15pt), sit on the green band or the glass bar, and the pop-up is a control. Screen titles,
+  playlist names and section headers are SemiBold 600. Bold Text takes each up a weight (400→500, 500→600;
+  600 stays). `ThemedText`'s `title` prop picks them (`title="regular"`, `title`, `title bold`); the native
+  subtitles come from the `react-native-screens` patch, in the family of the header's title font.
+- The translation and description modals' bar title is 20pt (subtitle 15pt), scaled with Dynamic Type up to
+  1.3×, where two lines still fit the bar.
+- Bundle only the weights in use (Regular, Medium and SemiBold) through `expo-font` in `app.config.ts`, next to
   Modeka Extended. On Android a custom family can't switch weights through `fontWeight`, so expose one family
   name per weight, the way `fonts.brand` pins Modeka Extended.
 - Titles must honor Dynamic Type and font scaling like the system text around them.

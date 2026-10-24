@@ -577,7 +577,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f479
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe212b325c 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b78d665a7 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -588,7 +588,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,185 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,211 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -764,6 +764,32 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
 +@end
 +#endif
 +
++#if !TARGET_OS_TV
++// PATCH(dainorelis): a subtitle (the inline one, a text one under the large title, the pop-up button there) in the
++// title's family at Medium (SemiBold with Bold Text), at the text style's size and following Dynamic Type; in the
++// system font when the title has no family of its own
++static UIFont *RNSDainorelisSubtitleFont(RNSScreenStackHeaderConfig *config, UIFontTextStyle textStyle)
++{
++  UIFont *titleFont = config.titleFontFamily != nil ? [UIFont fontWithName:config.titleFontFamily size:17] : nil;
++  if (titleFont == nil) {
++    return [UIFont preferredFontForTextStyle:textStyle];
++  }
++  UITraitCollection *defaultSize =
++      [UITraitCollection traitCollectionWithPreferredContentSizeCategory:UIContentSizeCategoryLarge];
++  UIFontDescriptor *descriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:@{
++    UIFontDescriptorFamilyAttribute : titleFont.familyName,
++    UIFontDescriptorTraitsAttribute :
++        @{UIFontWeightTrait : @(UIAccessibilityIsBoldTextEnabled() ? UIFontWeightSemibold : UIFontWeightMedium)},
++  }];
++  UIFont *font = [UIFont
++      fontWithDescriptor:descriptor
++                    size:[UIFontDescriptor preferredFontDescriptorWithTextStyle:textStyle
++                                                  compatibleWithTraitCollection:defaultSize]
++                             .pointSize];
++  return [[UIFontMetrics metricsForTextStyle:textStyle] scaledFontForFont:font];
++}
++#endif
++
  @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
 +// dainorelis
 +- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
@@ -774,7 +800,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -62,6 +241,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -62,6 +267,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
    /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
    bool _needsViewControllerUpdateInCurrentTransaction;
    RCTImageLoader *_imageLoader;
@@ -784,7 +810,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  }
  
  - (instancetype)initWithFrame:(CGRect)frame
-@@ -235,6 +417,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +443,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -820,7 +846,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +463,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +489,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -925,7 +951,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -493,6 +799,13 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -493,6 +825,13 @@ RNS_IGNORE_SUPER_CALL_END
      } else {
        largeAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:[largeSize floatValue] weight:UIFontWeightBold];
      }
@@ -939,16 +965,16 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  
      appearance.largeTitleTextAttributes = largeAttrs;
    }
-@@ -503,6 +816,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +842,16 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
 +#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
 +  // dainorelis: the default inline subtitle (~11pt, secondary grey) is hard to read, especially over
-+  // colored content; use Footnote (Dynamic Type) in the label color
++  // colored content; use Footnote (Dynamic Type, in the title's family) in the label color
 +  if (@available(iOS 26.0, *)) {
 +    appearance.subtitleTextAttributes = @{
-+      NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote],
++      NSFontAttributeName : RNSDainorelisSubtitleFont(config, UIFontTextStyleFootnote),
 +      NSForegroundColorAttributeName : [UIColor labelColor],
 +    };
 +  }
@@ -956,7 +982,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
    return appearance;
  }
  
-@@ -559,8 +882,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +908,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -975,7 +1001,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +936,33 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +962,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -987,29 +1013,13 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
 +    NSMutableDictionary *largeAttrs = [standardAppearance.largeTitleTextAttributes mutableCopy];
 +    largeAttrs[NSForegroundColorAttributeName] = config.titleColor ?: [UIColor labelColor];
 +    standardAppearance.largeTitleTextAttributes = largeAttrs;
-+#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
-+    // and a text subtitle under the large title in its color too, at the scroll edge, in Subheadline like the pop-up
-+    // button there (RNSDainorelisLargeSubtitleView). UIKit (iOS 27) styles that subtitle with subtitleTextAttributes,
-+    // not largeSubtitleTextAttributes, so it goes in the scroll edge appearance, which doesn't show the inline title.
-+    // Not with the pop-up in its place, though: then UIKit keeps these attributes on the inline subtitle once the
-+    // title collapses
-+    if (@available(iOS 26.0, *)) {
-+      if (config.titleMenu == nil) {
-+        scrollEdgeAppearance.subtitleTextAttributes = @{
-+          NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
-+          NSForegroundColorAttributeName : config.largeTitleColor,
-+        };
-+        navitem.scrollEdgeAppearance = scrollEdgeAppearance;
-+      }
-+    }
-+#endif
 +    navitem.standardAppearance = standardAppearance;
 +    navitem.compactAppearance = standardAppearance;
 +  }
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1055,151 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1065,161 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -1067,13 +1077,16 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
 +  }
 +#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
 +  // dainorelis: under a large title, a pop-up button (the subtitle and an up/down chevron) opens the
-+  // same menu, since UIKit offers the title menu only from the inline title
++  // same menu, since UIKit offers the title menu only from the inline title. Without a menu the same button, inert,
++  // shows the subtitle: UIKit styles a text subtitle under the large title with the subtitle attributes of the scroll
++  // edge appearance (iOS 26.5, 27), and keeps them, white, on the inline subtitle once the title collapses
 +  if (@available(iOS 26.0, *)) {
-+    if (config.largeTitle && config.titleMenu != nil && config.subtitle != nil) {
++    if (config.largeTitle && config.subtitle != nil) {
 +      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      const BOOL hasMenu = config.titleMenu != nil;
 +      UIButtonConfiguration *buttonConfig = [UIButtonConfiguration plainButtonConfiguration];
 +      buttonConfig.title = config.subtitle;
-+      buttonConfig.image = [UIImage systemImageNamed:@"chevron.up.chevron.down"];
++      buttonConfig.image = hasMenu ? [UIImage systemImageNamed:@"chevron.up.chevron.down"] : nil;
 +      buttonConfig.imagePlacement = NSDirectionalRectEdgeTrailing;
 +      buttonConfig.imagePadding = 4;
 +      buttonConfig.preferredSymbolConfigurationForImage =
@@ -1086,18 +1099,20 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
 +      UIBackgroundConfiguration *buttonBackground = buttonConfig.background;
 +      buttonBackground.cornerRadius = 0;
 +      buttonConfig.background = buttonBackground;
++      UIFont *subtitleFont = RNSDainorelisSubtitleFont(config, UIFontTextStyleSubheadline);
 +      buttonConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(
 +          NSDictionary<NSAttributedStringKey, id> *attributes) {
 +        NSMutableDictionary *updated = [attributes mutableCopy];
-+        updated[NSFontAttributeName] = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
++        updated[NSFontAttributeName] = subtitleFont;
 +        return updated;
 +      };
 +      buttonConfig.baseForegroundColor = config.largeTitleColor ?: [UIColor secondaryLabelColor];
-+      UIMenu *menu = [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
-+                                               menuAction:^(NSString *menuId) {
-+                                                 [weakConfig dainorelis_emitTitleMenuPress:menuId];
-+                                               }
-+                                              imageLoader:nil];
++      UIMenu *menu = hasMenu ? [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
++                                                         menuAction:^(NSString *menuId) {
++                                                           [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                                         }
++                                                        imageLoader:nil]
++                             : nil;
 +      // update the button in place, so an open menu stays open (and anchored) across header updates
 +      UIButton *button = [navitem.largeSubtitleView isKindOfClass:[RNSDainorelisLargeSubtitleView class]]
 +          ? ((RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView).button
@@ -1105,11 +1120,16 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
 +      if (button == nil) {
 +        button = [RNSDainorelisLargeSubtitleButton buttonWithConfiguration:buttonConfig primaryAction:nil];
 +        button.showsMenuAsPrimaryAction = YES;
++        // its colors are its own, set per scroll state: with a sheet over the screen (the player), UIKit dims tint
++        // colors and would draw it in the dimmed app tint instead of white
++        button.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 +        navitem.largeSubtitleView = [[RNSDainorelisLargeSubtitleView alloc] initWithButton:button];
 +      } else {
 +        button.configuration = buttonConfig;
 +      }
 +      button.menu = menu;
++      button.userInteractionEnabled = hasMenu;
++      button.accessibilityTraits = hasMenu ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
 +      // white over the large title's background at the scroll edge, the secondary label color under the bar
 +      RNSDainorelisLargeSubtitleView *subtitleView = (RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView;
 +      subtitleView.scrollEdgeColor = buttonConfig.baseForegroundColor;
@@ -1164,7 +1184,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1330,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1350,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -1225,7 +1245,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1594,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1614,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -1236,7 +1256,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..5436c8142290cf709659d60f70cb3ffe
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1636,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1656,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
