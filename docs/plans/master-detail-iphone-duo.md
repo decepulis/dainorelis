@@ -148,6 +148,8 @@ Files likely touched:
 
 Owner answers (2026-10-21): (2) 840 is fine, but prefer the platform's own size classes where available; (3) a placeholder; (4) native-feeling but on-brand, with the current list's affordances and signifiers; (5) playback stops when switching songs. Android may stay single-pane on tablets. 7. Is web coming back? It builds now (`pnpm build:web`), not yet deployed; the same layout would serve desktop browsers.
 
+Carried over from the retired layout-migration runbook (2026-10-16; in git history): do it in shippable steps, each pixel-identical below the breakpoint: (1) native content insets instead of `marginTop: headerHeight` in `ScrollViewWithHeader`, (2) re-validate the screens title patch, (3) `Player` and bottom `Search` on resizable windows, (4) move routes into `app/(dainos)/_layout.tsx` with one pane, (5) list + detail panes behind `useIsSplit`, (6) Duo/iPad/foldable tuning, (7) accessibility and dark mode. Steps 1-2 alone are the Phase 0 readiness (about half a day); the whole migration about 4-5 days. Capture a screenshot baseline first.
+
 ---
 
 ## Sources
