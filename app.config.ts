@@ -1,5 +1,6 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
+import { brandColors } from './lib/constants/brandColors.ts';
 // Import package.json to get version number
 import packageJson from './package.json' with { type: 'json' };
 
@@ -78,10 +79,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts
+      // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts, on the icon's background
       foregroundImage: './assets/images/adaptive-icon.png',
       monochromeImage: './assets/images/adaptive-icon-monochrome.png',
-      backgroundColor: '#2F5240',
+      backgroundColor: brandColors.egle,
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
@@ -117,8 +118,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#2F5240',
-        dark: { backgroundColor: '#141615' },
+        backgroundColor: brandColors.egle,
+        dark: { backgroundColor: brandColors.naktis },
       },
     ],
     [

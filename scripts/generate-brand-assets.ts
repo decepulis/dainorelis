@@ -1,19 +1,22 @@
 /**
  * Generates the logo, app icons, splash, favicons, wordmarks, header photo and link preview images from the brand
  * sources:
- *   assets/images/icon_v3.svg              the app icon (a background rect, the star path and its diamond)
+ *   assets/images/icon_v3.svg              the mark alone: the white star <path> and the diamond <rect> in its hole
  *   assets/images/miskas_v3.jpg            the forest photo (Sebastian Unrau, Unsplash)
  *   assets/fonts/ModekaExtended-Bold.otf   the logo's lettering
+ * and the icon's background, eglė, from lib/constants/brandColors.ts.
  *
  *   pnpm tsx scripts/generate-brand-assets.ts
  *
- * The mark is cut out of icon_v3.svg and re-centred on its measured bounds, so every output gets
- * proportions tuned for its own mask instead of one shared crop. The logo (logo_white_v3.svg and the kit in
+ * The mark is re-centred on its measured bounds, so every output gets proportions tuned for its own mask instead of
+ * one shared crop, and icon_v3.svg's own placement and scale don't matter. The logo (logo_white_v3.svg and the kit in
  * assets/images/brand/) is built from the mark, the font and the `lockup` constants below.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parse } from 'opentype.js';
 import sharp from 'sharp';
+
+import { brandColors } from '../lib/constants/brandColors';
 
 /**
  * The logo: a frame around a square cell holding the mark and a wider one holding the lettering, in px at 1x
@@ -39,28 +42,68 @@ const lockup = {
   padding: [29.25, 27.75],
 };
 
-const colors = { white: '#FFFFFF', ink: '#18201B', egle: '#2F5240' };
+// the kit's colours, by file name
+const colors = { white: '#FFFFFF', ink: brandColors.ink, egle: brandColors.egle };
+// the icon's background (app.config.ts gives the adaptive icon and splash the same)
+const background = brandColors.egle;
 
 const images = 'assets/images';
-const source = readFileSync(`${images}/icon_v3.svg`, 'utf8');
+const sourceFile = `${images}/icon_v3.svg`;
+const { size: sourceSize, star, diamond } = readMark(readFileSync(sourceFile, 'utf8'));
+// diamond first, as drawn: it sits in the star's hole
+const mark = diamond + star();
 
-const background = rgbToHex(source.match(/<rect[^>]*fill:rgb\(([^)]+)\)/)![1]);
-// the mark: everything after the background group
-const mark = source.slice(source.indexOf('</g>') + 4, source.lastIndexOf('</svg>'));
-// its two parts, for single-colour and layered outputs
-const star = mark.replace(/<g[^>]*>\s*<rect[^>]*\/>\s*<\/g>/, '');
-const diamond = mark.replace(/<g[^>]*>\s*<path[^>]*\/>\s*<\/g>/, '');
-const sourceSize = Number(source.match(/viewBox="0 0 (\d+)/)![1]);
-
-function rgbToHex(rgb: string) {
-  return (
-    '#' +
-    rgb
-      .split(',')
-      .map((c) => Number(c).toString(16).padStart(2, '0'))
-      .join('')
-      .toUpperCase()
-  );
+/**
+ * icon_v3.svg's two shapes, each as its element wrapped in its ancestors' transforms: the star (the one <path>, as a
+ * function taking an optional fill for the single-colour logos) and the diamond (the one <rect>). Anything else
+ * drawable, like a background rect, is an error: the background comes from brandColors.
+ */
+function readMark(source: string) {
+  const fail = (why: string): never => {
+    throw new Error(`${sourceFile}: ${why}. It should hold only the mark: one star <path> and one diamond <rect>`);
+  };
+  type Element = { name: string; attrs: string; tag: string; transforms: string[] };
+  const shapes: Element[] = [];
+  const stack: Element[] = [];
+  let viewBox: string | undefined;
+  for (const [tag, close, name, attrs, selfClosing] of source
+    .replace(/<\?[\s\S]*?\?>|<!--[\s\S]*?-->|<!DOCTYPE[^>]*>/g, '')
+    .matchAll(/<(\/?)([\w:-]+)([^>]*?)(\/?)>/g)) {
+    if (close) {
+      if (stack.pop()?.name !== name) fail(`unbalanced </${name}>`);
+      continue;
+    }
+    const transform = attrs.match(/\stransform="([^"]*)"/)?.[1];
+    const transforms = [...(stack.at(-1)?.transforms ?? []), ...(transform ? [transform] : [])];
+    const element = { name, attrs, tag, transforms };
+    if (name === 'svg') viewBox = attrs.match(/\sviewBox="([^"]*)"/)?.[1];
+    else if (!['g', 'defs', 'title', 'desc', 'metadata'].includes(name)) shapes.push(element);
+    if (!selfClosing) stack.push(element);
+  }
+  if (stack.length) fail(`<${stack.at(-1)!.name}> isn't closed`);
+  const [x, y, w, h] = viewBox?.split(/[\s,]+/).map(Number) ?? [];
+  if (x !== 0 || y !== 0 || !(w > 0) || w !== h) fail(`expected a square viewBox="0 0 n n", found "${viewBox}"`);
+  const only = (name: string) => {
+    const found = shapes.filter((e) => e.name === name);
+    if (found.length !== 1) fail(`found ${found.length} <${name}> elements`);
+    return found[0];
+  };
+  const [path, rect] = [only('path'), only('rect')];
+  const others = shapes.filter((e) => e !== path && e !== rect);
+  if (others.length) fail(`unexpected <${others.map((e) => e.name).join('>, <')}>`);
+  const placedIn = ({ transforms }: Element, tag: string) =>
+    transforms.reduceRight((inner, t) => `<g transform="${t}">${inner}</g>`, tag);
+  return {
+    size: w,
+    star: (fill?: string) =>
+      placedIn(
+        path,
+        fill
+          ? `<path${path.attrs.replace(/\s(fill|style)="[^"]*"/g, '').replace(/\s*\/$/, '')} fill="${fill}"/>`
+          : path.tag
+      ),
+    diamond: placedIn(rect, rect.tag),
+  };
 }
 
 const svg = (size: number, body: string) =>
@@ -107,8 +150,8 @@ async function main() {
   box = await measure(mark);
   lettering = typeset();
 
-  // The mark at 68% of the icon, the way first-party icons fill the squircle (the source draws it at 57%, which read
-  // small on the home screen)
+  // The mark at 68% of the icon, the way first-party icons fill the squircle (v3's first drawing had it at 57%, which
+  // read small on the home screen)
   const iconFraction = 0.68;
 
   // iOS (pre-26), Android legacy, and the Play Store listing icon
@@ -128,7 +171,7 @@ async function main() {
 
   // iOS 26 Icon Composer layers: full-canvas SVGs, so the layers stay registered to each other
   const layer = (content: string) => svg(1024, placed(1024, iconFraction, content));
-  writeFileSync(`${images}/icon.icon/Assets/star.svg`, layer(star));
+  writeFileSync(`${images}/icon.icon/Assets/star.svg`, layer(star()));
   writeFileSync(`${images}/icon.icon/Assets/diamond.svg`, layer(diamond));
   // and the background fill: the first "solid" in icon.json. Everything else in it (glass, specular, shadow,
   // translucency, dark and tinted variants) is Icon Composer's, edited there and left alone here
@@ -147,7 +190,7 @@ async function main() {
     rect(size, background, size * 0.18) + placed(size, fraction, content);
   mkdirSync('public', { recursive: true });
   const icoSizes = [
-    [16, 0.84, star],
+    [16, 0.84, star()],
     [32, 0.8, mark],
     [48, 0.78, mark],
   ] as const;
@@ -304,7 +347,7 @@ function logoSvg(color: string, framed = true) {
   const s = markSize / box.size;
   const markArt =
     `<g transform="translate(${h / 2} ${h / 2}) scale(${s}) translate(${-box.cx} ${-box.cy})">` +
-    star.replace(/fill:[^;"]+/g, `fill:${color}`) +
+    star(color) +
     diamond +
     '</g>';
   // the frame: the outline less the two cells

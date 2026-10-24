@@ -110,9 +110,12 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 pnpm tsx scripts/generate-brand-assets.ts   # Regenerate the logo, icons, splash, favicons, wordmarks, header photo, og.jpg
 ```
 
-Inputs, the only hand-made files: `assets/images/icon_v3.svg` (the app icon: background rect, star, diamond; the
-script measures the mark, so its geometry can change), `assets/images/miskas_v3.jpg` (the forest photo by Sebastian
-Unrau on Unsplash, credited in Settings and the README) and `assets/fonts/ModekaExtended-Bold.otf` (the lettering).
+Inputs, the only hand-made files: `assets/images/icon_v3.svg` (the mark alone, no background: one star `<path>` and
+one diamond `<rect>`, in any `<g transform>`s; the script takes each with its ancestors' transforms, fails loudly on
+anything else, and measures the mark, so its geometry and placement can change), `assets/images/miskas_v3.jpg` (the
+forest photo by Sebastian Unrau on Unsplash, credited in Settings and the README) and
+`assets/fonts/ModekaExtended-Bold.otf` (the lettering). The icon's background is eglė from
+`lib/constants/brandColors.ts`, which the themes and `app.config.ts` (adaptive icon and splash backgrounds) also read.
 
 The logo is generated too: `logo_white_v3.svg` is an output (don't edit it). The `lockup` constants at the top of the
 script set it in px at 1x: the frame's line (`border`, also the divider between the mark's cell and the lettering's),
@@ -129,7 +132,7 @@ feature graphic, uploaded by hand); `public/`'s favicons, apple-touch icon and `
 `icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it writes only the layer SVGs
 (`Assets/star.svg`, `Assets/diamond.svg`) and the document's background `fill-specializations[0]` solid; layer fills
 (the star's dark-mode #8FBA9C), glass, specular, shadow and translucency are edited in Icon Composer and left
-alone. The adaptive icon and splash background colors in `app.config.ts` are set by hand.
+alone.
 
 ### AI Metadata Generation
 

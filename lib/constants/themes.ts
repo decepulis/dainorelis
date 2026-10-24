@@ -2,6 +2,8 @@ import { Platform, PlatformColor, TextStyle } from 'react-native';
 
 import type { Theme as LibTheme } from 'expo-router/react-navigation';
 
+import { brandColors } from './brandColors';
+
 export const fonts = {
   regular: {
     fontWeight: '400',
@@ -82,14 +84,14 @@ export interface Theme extends Omit<LibTheme, 'colors'> {
 export const LightTheme: Theme = {
   dark: false,
   colors: {
-    primary: '#2F5240', // eglė
+    primary: brandColors.egle,
     onPrimary: '#FFFFFF',
-    chrome: '#2F5240', // eglė
+    chrome: brandColors.egle,
     card0: '#E2E0D8', // sunken
     background: '#EEECE5', // linas
     card: '#FFFFFF', // raised
-    text: '#18201B',
-    border: '#18201B',
+    text: brandColors.ink,
+    border: brandColors.ink,
     notification: 'rgb(255, 69, 58)',
     // a ternary, not Platform.select: that builds both branches, and web has no PlatformColor
     separator: process.env.EXPO_OS === 'ios' ? (PlatformColor('separator') as unknown as string) : `#18201B80`,
@@ -109,9 +111,9 @@ export const DarkTheme: Theme = {
   colors: {
     primary: '#8FBA9C', // eglė, lifted
     onPrimary: '#0E1B13',
-    chrome: '#2F5240', // eglė
+    chrome: brandColors.egle,
     card0: '#0C0E0D', // sunken
-    background: '#141615', // naktis
+    background: brandColors.naktis,
     card: '#1F2220', // raised
     text: '#ECEAE3',
     border: '#ECEAE3',
