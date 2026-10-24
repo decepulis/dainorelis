@@ -170,10 +170,12 @@ async function main() {
       .toFile(`${images}/wordmark_${name}.png`);
   }
 
-  // The home screen's forest: Sebastian Unrau's photo (miskas_v3.jpg), cropped so the darker canopy sits behind
-  // the logo and the sun rays to its right (phones show the middle ~45%), fading out over its lower half into the
-  // backdrop
+  // The home screen's forest: Sebastian Unrau's photo (miskas_v3.jpg) in v1's miskas_fade_10.webp metrics, so
+  // app/index.tsx shows it the same way: 2200x968, opaque down to the middle, then a linear fade to transparent at
+  // the bottom, which the list covers. The full width of the frame (the photo is a close-up, so as little zoom as
+  // the shape allows), from the canopy down, so the dark treetops sit behind the logo
   const [fw, fh] = [2200, 968];
+  const forestTop = 400;
   const photo = `${images}/miskas_v3.jpg`;
   const fade = Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${fw}" height="${fh}"><defs><linearGradient id="f" x2="0" y2="1">` +
@@ -181,7 +183,7 @@ async function main() {
       `<rect width="${fw}" height="${fh}" fill="url(#f)"/></svg>`
   );
   await sharp(photo)
-    .extract({ left: 600, top: 300, width: 5400, height: Math.round((5400 * fh) / fw) })
+    .extract({ left: 0, top: forestTop, width: 6000, height: Math.round((6000 * fh) / fw) })
     .resize(fw, fh)
     .ensureAlpha()
     .composite([{ input: fade, blend: 'dest-in' }])
