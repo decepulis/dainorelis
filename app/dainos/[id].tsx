@@ -250,7 +250,6 @@ function SongPage({ song }: { song: Song }) {
                     titleLayout={titleLayout}
                     showTitle={isLyrics(activeVariant) ? undefined : true}
                     title={title}
-                    isSongTitle
                     subtitle={subtitle}
                     // the variant menu lives in the title here, as the native title menu does on Liquid Glass
                     titleWrapper={
