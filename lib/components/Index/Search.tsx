@@ -493,8 +493,9 @@ export function IndexToolbar({
       ) : (
         <Stack.Toolbar>
           {playlistMenus}
-          {/* a fixed gap: the playlist button and its settings are one group, search another */}
-          <Stack.Toolbar.Spacer width={8} />
+          {/* a zero-width spacer only splits the groups (the playlist button and its settings, then search), each
+              on its own glass, with UIKit's own gap between them; without it they'd share one */}
+          <Stack.Toolbar.Spacer width={0} />
           <Stack.Toolbar.SearchBarSlot />
         </Stack.Toolbar>
       )}
