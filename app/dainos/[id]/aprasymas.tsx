@@ -62,7 +62,7 @@ function DescriptionPage({ song }: { song: Song }) {
             },
           ]}
         >
-          <Markdown>
+          <Markdown prose>
             {i18n.language === 'en'
               ? (song.fields['EN Description'] ?? song.fields['LT Description'])
               : (song.fields['LT Description'] ?? song.fields['EN Description'])}
