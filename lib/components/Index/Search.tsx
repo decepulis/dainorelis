@@ -73,6 +73,7 @@ export default function Search({
 }: Props) {
   const { t } = useTranslation();
   const background = useThemeColor('background');
+  const text = useThemeColor('text');
   const inset = useSafeAreaInsets();
   const { width } = useFrame();
   const searchRef = useRef<TextInputInstance>(null);
@@ -309,13 +310,14 @@ export default function Search({
               // names the shown playlist so the gear doesn't read as app settings
               title={t('playlistMenuTitle', { name: playlistTitle })}
               actions={[
-                // Compose's DropdownMenu has no title slot: a disabled first item stands in
+                // Compose's DropdownMenu has no title slot: a disabled, muted first item stands in
                 ...(process.env.EXPO_OS === 'android'
                   ? [
                       {
                         id: 'title',
                         title: t('playlistMenuTitle', { name: playlistTitle }),
                         attributes: { disabled: true },
+                        titleColor: `${text}99`,
                       },
                     ]
                   : []),
