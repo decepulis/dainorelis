@@ -60,7 +60,7 @@ type RowMeasurerProps = {
   right: number;
   /** the rows' trailing padding, as the list's */
   trailingPadding?: number;
-  /** every row's layout, once all are measured, and again whenever one changes (width, text size, a favourite) */
+  /** every row's layout, once all are measured */
   onMeasure: (layouts: RowLayout[]) => void;
 };
 /**
