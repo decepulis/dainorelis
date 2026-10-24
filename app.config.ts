@@ -155,5 +155,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     './plugins/withAndroidReleaseSigning',
     './plugins/withAndroidFontScaleConfigChange',
     './plugins/withIosReleaseScheme',
+    './plugins/withSongSync',
   ],
 });

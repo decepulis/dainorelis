@@ -81,6 +81,11 @@ carries an old number and the stores reject a reused one. For a second build on 
 day, bump `buildToday` in `app.config.ts` first. Prebuilding iOS runs `pod install`, so do it on
 a Mac.
 
+Prebuild also pulls the latest songs from the admin (`plugins/withSongSync.js` runs
+`pnpm update-songs`, so `.env` needs `ADMIN_EXPORT_TOKEN`) and fails if it can't. If it says the
+song data changed, commit it. `SKIP_SONG_SYNC=1` skips the sync for throwaway native builds, never
+for a store build.
+
 ### Make changes
 
 [Routes](https://docs.expo.dev/router/introduction) live in the **app** directory. Those routes' components/hooks/utils/whatever live in the **lib** directory.
