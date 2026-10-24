@@ -77,19 +77,20 @@ async function png(file: string, body: string, size: number, opts: { flatten?: b
 async function main() {
   box = await measure(mark);
 
-  // The source draws the mark at 57% of the icon. Keep that for the iOS / legacy icon.
-  const iconFraction = 0.57;
+  // The mark at 68% of the icon, the way first-party icons fill the squircle (the source draws it at 57%, which read
+  // small on the home screen)
+  const iconFraction = 0.68;
 
   // iOS (pre-26), Android legacy, and the Play Store listing icon
   await png(`${images}/icon.png`, rect(1024, background) + placed(1024, iconFraction), 1024, { flatten: true });
   await png(`${images}/icon_512.png`, rect(512, background) + placed(512, iconFraction), 512, { flatten: true });
 
   // Android adaptive icon: a 108dp canvas, 72dp visible after the launcher's mask, a 66dp safe circle.
-  // 40% of the canvas makes the mark 60% of the visible icon (iOS: 57%) and keeps the star's tips
-  // inside the safe circle.
-  await png(`${images}/adaptive-icon.png`, placed(1024, 0.4), 1024);
+  // 46% of the canvas makes the mark 69% of the visible icon (iOS: 68%); the star's tips reach 1.17x its half
+  // width, so up to 52% stays inside the safe circle
+  await png(`${images}/adaptive-icon.png`, placed(1024, 0.46), 1024);
   // themed icons tint every opaque pixel one colour; the diamond still reads, as an island in the star's hole
-  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, 0.4), 1024);
+  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, 0.46), 1024);
 
   // Splash: Android 12+ masks the splash icon to a circle 2/3 of its box, so the star's tips need the
   // mark at 55% or less. iOS draws the same image at imageWidth.
@@ -138,10 +139,10 @@ async function main() {
   writeFileSync('public/favicon.svg', svg(64, favicon(64, 0.78)));
   await png(`${images}/favicon.png`, favicon(48, 0.78), 48);
   // iOS rounds the home screen icon itself, so this one is full bleed at the app icon's proportions
-  await png('public/apple-touch-icon.png', rect(180, background) + placed(180, 0.62), 180, { flatten: true });
+  await png('public/apple-touch-icon.png', rect(180, background) + placed(180, iconFraction), 180, { flatten: true });
   // the admin app's tab and home screen icons
   writeFileSync('admin/src/app/icon.svg', svg(64, favicon(64, 0.78)));
-  await png('admin/src/app/apple-icon.png', rect(512, background) + placed(512, 0.62), 512, { flatten: true });
+  await png('admin/src/app/apple-icon.png', rect(512, background) + placed(512, iconFraction), 512, { flatten: true });
 
   // The wordmark, sharp on 2x and 3x screens; logo_white.png is the 1x under its v1 name
   const logo = readFileSync(`${images}/logo_white_v3.svg`, 'utf8');
@@ -173,7 +174,9 @@ async function main() {
   // The home screen's forest: Sebastian Unrau's photo (miskas_v3.jpg) in v1's miskas_fade_10.webp metrics, so
   // app/index.tsx shows it the same way: 2200x968, opaque down to the middle, then a linear fade to transparent at
   // the bottom, which the list covers. The full width of the frame (the photo is a close-up, so as little zoom as
-  // the shape allows), from the canopy down, so the dark treetops sit behind the logo
+  // the shape allows), from the canopy down, so the dark treetops sit behind the logo. A soft darkening behind the
+  // logo's band (centred, about a quarter of the way down, where every layout puts it) keeps the white logo legible
+  // over the lit branches
   const [fw, fh] = [2200, 968];
   const forestTop = 400;
   const photo = `${images}/miskas_v3.jpg`;
@@ -186,11 +189,12 @@ async function main() {
     .extract({ left: 0, top: forestTop, width: 6000, height: Math.round((6000 * fh) / fw) })
     .resize(fw, fh)
     .ensureAlpha()
-    .composite([{ input: fade, blend: 'dest-in' }])
+    .composite([{ input: shadeBehind(fw, fh, fw / 2, 260, 760, 300, 0.45) }, { input: fade, blend: 'dest-in' }])
     .webp({ quality: 85, alphaQuality: 100 })
     .toFile(`${images}/miskas_v3_fade.webp`);
 
-  // Link previews and the Play Store feature graphic: the forest, a light shade, the logo in the middle 60%
+  // Link previews and the Play Store feature graphic: the forest, a light shade and a darker one behind the logo,
+  // which takes the middle 60%
   async function poster(file: string, w: number, h: number) {
     const logoWidth = Math.round(w * 0.6);
     const logoImage = await sharp(Buffer.from(logo), { density: 72 * 4 })
@@ -199,12 +203,13 @@ async function main() {
       .toBuffer();
     const logoHeight = (await sharp(logoImage).metadata()).height!;
     const shade = Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="${w}" height="${h}" fill="#121614" opacity="0.2"/></svg>`
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="${w}" height="${h}" fill="#141615" opacity="0.15"/></svg>`
     );
     const composed = await sharp(photo)
       .resize(w, h, { fit: 'cover', position: 'centre' })
       .composite([
         { input: shade },
+        { input: shadeBehind(w, h, w / 2, h / 2, w * 0.45, h * 0.4, 0.4) },
         { input: logoImage, left: Math.round((w - logoWidth) / 2), top: Math.round((h - logoHeight) / 2) },
       ])
       .toBuffer();
@@ -220,6 +225,18 @@ async function main() {
   await poster(`${images}/miskas_google_play.png`, 1024, 500);
 
   console.log(`Generated brand assets (background ${background})`);
+}
+
+/** naktis, `opacity` at (cx, cy), easing to nothing at the ellipse (rx, ry) */
+function shadeBehind(w: number, h: number, cx: number, cy: number, rx: number, ry: number, opacity: number) {
+  return Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs><radialGradient id="s" cx="0" cy="0" r="1" ` +
+      `gradientUnits="userSpaceOnUse" gradientTransform="translate(${cx} ${cy}) scale(${rx} ${ry})">` +
+      `<stop offset="0" stop-color="#141615" stop-opacity="${opacity}"/>` +
+      `<stop offset="0.6" stop-color="#141615" stop-opacity="${opacity / 2}"/>` +
+      `<stop offset="1" stop-color="#141615" stop-opacity="0"/></radialGradient></defs>` +
+      `<rect width="${w}" height="${h}" fill="url(#s)"/></svg>`
+  );
 }
 
 /** an .ico holding PNG images */
