@@ -449,7 +449,7 @@ export function ListItemContent({
 
   // from 375px to 450px, gently scale the icon size up
   const iconScale = Math.min(0.8, Math.max(0.65, width / 562.5));
-  const iconSize = PixelRatio.roundToNearestPixel(fontSize * iconScale);
+  const iconSize = PixelRatio.roundToNearestPixel(iconBaseSize * iconScale);
   const icons = [
     isFavorite ? (
       <FontAwesome6
@@ -510,13 +510,13 @@ export function ListItemContent({
           {title}
         </ThemedText>
         {subtitle ? (
-          <ThemedText title style={{ opacity: isHighContrastEnabled ? 1 : 0.75 }}>
+          <ThemedText title style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
             {subtitle}
           </ThemedText>
         ) : null}
       </View>
       {icons.length > 0 ? (
-        <View style={[styles.iconContainer, { gap: (fontSize * iconScale) / 1.75 }]}>{icons}</View>
+        <View style={[styles.iconContainer, { gap: (iconBaseSize * iconScale) / 1.75 }]}>{icons}</View>
       ) : null}
     </View>
   );
@@ -594,9 +594,14 @@ const iconStyle = (iconSize: number) => ({
   flexGrow: 0,
 });
 
-const fontSize = 18;
-const lineHeight = fontSize * 1.33;
-export const listItemHeight = fontSize * 3;
+// Saira Semi Condensed is narrow, so its titles run a size above the system's body text
+const fontSize = 20;
+const lineHeight = fontSize * 1.3;
+// the parenthetical second line, in proportion
+const subtitleFontSize = 16;
+// the icons keep their size, leaving the titles the room
+const iconBaseSize = 18;
+export const listItemHeight = 56;
 const paddingVertical = (listItemHeight - lineHeight) / 2;
 
 const styles = StyleSheet.create({
@@ -615,6 +620,10 @@ const styles = StyleSheet.create({
     fontSize,
     lineHeight,
   },
+  subtitle: {
+    fontSize: subtitleFontSize,
+    lineHeight: subtitleFontSize * 1.3,
+  },
   // a section (a letter, a part of the programme) stands out from the rows by size, and by more room above than
   // below, which ties it to the rows it heads
   sectionHeaderContainer: {
@@ -622,8 +631,8 @@ const styles = StyleSheet.create({
     paddingBottom: Math.round(padding / 2),
   },
   sectionHeader: {
-    fontSize: 22,
-    lineHeight: 22 * 1.25,
+    fontSize: 24,
+    lineHeight: 24 * 1.25,
   },
   largeHeaderContainer: {
     paddingTop: padding,
