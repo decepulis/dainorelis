@@ -4,7 +4,7 @@ import { ConfigContext, ExpoConfig } from 'expo/config';
 import packageJson from './package.json' with { type: 'json' };
 
 // Generate build number in format yymmdd##
-const buildToday = '01'; // Increment this manually for multiple builds in one day
+const buildToday = '02'; // Increment this manually for multiple builds in one day
 const generateBuildNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
