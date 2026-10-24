@@ -389,7 +389,7 @@ export default function Index() {
           ...topScrollEdgeEffect,
           headerTitle: () => (
             <HeaderTitle scrollRef={listRef} scrollOffset={scrollOffset} titleLayout={titleLayout} center>
-              <HeaderLogo headerHeight={headerHeight} />
+              <HeaderLogo />
             </HeaderTitle>
           ),
           headerRight: !isLiquidGlassStyleHeader()
