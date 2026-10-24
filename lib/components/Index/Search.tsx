@@ -305,13 +305,27 @@ export default function Search({
           {playlistActions.length ? (
             <MenuView
               hitSlop={{ top: 0, bottom: 0, left: 0, right: 0 }}
-              accessibilityLabel={t('playlistActions')}
-              actions={playlistActions.map((action) => ({
-                id: action.id,
-                title: action.title,
-                image: process.env.EXPO_OS === 'ios' ? action.sfSymbol : action.material,
-                attributes: { destructive: action.destructive },
-              }))}
+              accessibilityLabel={t('playlistSettings', { name: playlistTitle })}
+              // names the shown playlist so the gear doesn't read as app settings
+              title={t('playlistMenuTitle', { name: playlistTitle })}
+              actions={[
+                // Compose's DropdownMenu has no title slot: a disabled first item stands in
+                ...(process.env.EXPO_OS === 'android'
+                  ? [
+                      {
+                        id: 'title',
+                        title: t('playlistMenuTitle', { name: playlistTitle }),
+                        attributes: { disabled: true },
+                      },
+                    ]
+                  : []),
+                ...playlistActions.map((action) => ({
+                  id: action.id,
+                  title: action.title,
+                  image: process.env.EXPO_OS === 'ios' ? action.sfSymbol : action.material,
+                  attributes: { destructive: action.destructive },
+                })),
+              ]}
               onPressAction={({ nativeEvent }) => onPlaylistAction(nativeEvent.event as PlaylistActionId)}
             >
               <ButtonSurface
@@ -413,6 +427,7 @@ export function IndexToolbar({
   if (!isLiquidGlassStyleHeader()) return null;
   const isPad = Platform.OS === 'ios' && Platform.isPad;
 
+  const shownPlaylistTitle = [favorites, ...curated, ...user].find((p) => p.id === selectedPlaylistId)?.name ?? '';
   const playlistAction = (playlist: Playlist) => (
     <Stack.Toolbar.MenuAction
       key={playlist.id}
@@ -449,7 +464,13 @@ export function IndexToolbar({
     </Stack.Toolbar.Menu>,
     playlistActions.length ? (
       // the shown playlist's settings, next to the button that picks it
-      <Stack.Toolbar.Menu key="playlistActions" icon="gearshape" title="" accessibilityLabel={t('playlistActions')}>
+      <Stack.Toolbar.Menu
+        key="playlistActions"
+        icon="gearshape"
+        // the menu's header, naming the shown playlist so the gear doesn't read as app settings
+        title={t('playlistMenuTitle', { name: shownPlaylistTitle })}
+        accessibilityLabel={t('playlistSettings', { name: shownPlaylistTitle })}
+      >
         {playlistActions.map((action) => (
           <Stack.Toolbar.MenuAction
             key={action.id}
