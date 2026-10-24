@@ -12,7 +12,7 @@
     "dev:ios": "expo run:ios",
     "dev:web": "expo start --web",
     "generate-privacy": "tsx ./scripts/generate-privacy.ts",
-    "build:web": "pnpm generate-privacy && expo export --platform web && cp dist/+not-found.html dist/404.html",
+    "build:web": "pnpm generate-privacy && expo export --platform web --clear && cp dist/+not-found.html dist/404.html",
     "test": "echo \"No tests specified\" && exit 0",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
