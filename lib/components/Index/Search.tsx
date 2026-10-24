@@ -145,8 +145,9 @@ export default function Search({
     state: playlist.id === selectedPlaylistId ? 'on' : 'off',
   });
 
-  // the bar's buttons sit this far above the bottom of the container
-  const bottom = inset.bottom + floatingBottomGap;
+  // the bar's buttons sit this far above the bottom of the container; as the player's, never flush with a screen
+  // edge that has no inset (iPhone SE, Android's landscape 3-button navigation)
+  const bottom = Math.max(inset.bottom + floatingBottomGap, padding);
 
   return (
     // rides on top of the keyboard as it opens and closes. Android's keyboard height includes the

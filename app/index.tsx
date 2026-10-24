@@ -69,7 +69,7 @@ import withAlpha from '@/lib/utils/withAlpha';
 const liftedRowAnimations = { opacity: 1 };
 // how long a resize has to settle before the rows are measured again
 const measureDelay = 300;
-// the bottom bar's buttons, which the hint below a reorderable playlist stays clear of
+// the bottom bar's buttons' height
 const bottomBarHeight = 44;
 
 // web: the static HTML's title and description
@@ -281,10 +281,17 @@ export default function Index() {
   const listContentHeight = useSharedValue(0);
   // the keyboard would cover it
   const isKeyboardVisible = useKeyboardState((state) => state.isVisible);
-  // clear of the bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar), which iPad doesn't have
+  // The bottom bar's buttons (iOS 26 iPhone's toolbar, or the floating bar) sit this far above the bottom safe area;
+  // iPad's Liquid Glass keeps them in the navigation bar. The list doesn't scroll under them on its own (no automatic
+  // content inset), so its end, the index and the drag hint keep clear of them
   const isPadToolbar = isLiquidGlassStyleHeader() && Platform.OS === 'ios' && Platform.isPad;
+  const bottomBarClearance = isPadToolbar
+    ? inset.bottom
+    : Math.max(inset.bottom + floatingBottomGap, padding) + bottomBarHeight;
+  // the list's end: the last row, or the wide card's rounded bottom, a little above the bar
+  const listEndClearance = Math.max(bottomBarClearance + padding / 2, padding * 2);
 
-  const footerMinHeight = wideLayoutMode ? padding : Math.max(inset.bottom, padding * 2);
+  const footerMinHeight = wideLayoutMode ? padding : listEndClearance;
   const isHeaderVisible = (item: SongListItem) => listItems.length > 10 || item.id === 'playlistHeader';
   const visibleListItems = displayItems.filter((item) => item.type !== 'header' || isHeaderVisible(item));
   const footerTargetHeight =
@@ -435,7 +442,7 @@ export default function Index() {
         maxWidth,
         marginHorizontal: 'auto',
         minHeight: footerHeight,
-        marginBottom: wideLayoutMode ? Math.max(inset.bottom, padding * 2) : undefined,
+        marginBottom: wideLayoutMode ? listEndClearance : undefined,
         backgroundColor: background,
         borderBottomLeftRadius: padding,
         borderBottomRightRadius: padding,
@@ -454,9 +461,7 @@ export default function Index() {
         </View>
       ) : isReorderable && !isSearching && reorderableItems.length > 1 ? (
         // no drag handles, so a word on how; clear of the bottom bar's buttons
-        <ThemedText
-          style={[styles.reorderHint, { paddingBottom: inset.bottom + floatingBottomGap + padding + bottomBarHeight }]}
-        >
+        <ThemedText style={[styles.reorderHint, { paddingBottom: wideLayoutMode ? padding : listEndClearance }]}>
           {t('reorderHint')}
         </ThemedText>
       ) : null}
@@ -594,7 +599,7 @@ export default function Index() {
             contentHeight={listContentHeight}
             listHeight={height}
             top={headerHeight + padding / 2}
-            bottom={inset.bottom + (isPadToolbar ? 0 : floatingBottomGap + bottomBarHeight) + padding / 2}
+            bottom={bottomBarClearance + padding / 2}
           />
         ) : null}
       </View>
