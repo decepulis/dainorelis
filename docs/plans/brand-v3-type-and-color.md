@@ -2,8 +2,8 @@
 
 A handoff brief. The brand exploration (Oct 2026) settled the direction, the palette and the type.
 This document carries those decisions to whoever implements them. It covers **typography and color
-only**. The wordmark and the app icon are out of scope: Darius is finishing them by hand in Affinity,
-so leave `HeaderLogo`, `assets/images/icon*` and the splash alone.
+only**. The wordmark and the app icon were finished by hand in Affinity (`assets/images/icon_v3.svg`,
+`logo_white_v3.svg`); `scripts/generate-brand-assets.ts` derives the icons, splash and favicons from them.
 
 ## Why this exists
 
@@ -45,14 +45,14 @@ these exact values.
 | `text` | `#18201B` (14.1 on linas) | `#ECEAE3` (15.2 on naktis) | Ink with a green bias, never pure black. |
 | secondary text | `#56615A` (5.5) | `#9AA59E` (7.2) | |
 | `primary` / tint | `#2F5240` eglė (fir): 7.4 on linas, 8.7 behind white text | `#8FBA9C` eglė, lifted: 8.4 on naktis | **Dark-mode primary is a light color.** Anything filled with it needs dark text (`#0E1B13`, 8.2), not white. Check every place `primary` is used as a background. |
-| `chrome` (green bars) | `#597D66` samanos, tuned (white 4.6) | `#2F5240` eglė (white 8.7) | Header bar, round header buttons, bottom pill, floating player, the iOS 26 title band. White content only. Added during implementation. Light is samanos a step deeper than v1's sage so the bars sit with the misty forest photo (deep eglė fought it); don't use `#70997F` itself for bars (white is 3.2). Dark stays deep evergreen at night instead of turning mint. HC `#4C6B58` light (white 5.9), `#234033` dark. **In light mode, content on `chrome` is full white, never dimmed**: white at 0.75 is 3.4 and fails. |
+| `chrome` (green bars) | `#2F5240` eglė (white 8.7) | `#2F5240` eglė (white 8.7) | Header bar, round header buttons, bottom pill, floating player, the iOS 26 title band. White content only. Added during implementation. Deep eglė in both modes: it sits with the dark forest photo, and dark mode stays deep evergreen at night instead of turning mint. (Light mode was briefly samanos `#597D66` to suit the old pale misty photo.) Don't use `#70997F` for bars (white is 3.2). HC `#234033` in both modes (white 11.3). Content on `chrome` is full white. |
 | high-contrast `primary` | `#234033` (9.6) | `#A9CDB4` (10.5) | For `LightHighContrastTheme` / `DarkHighContrastTheme`. |
 
 ### Supporting colors
 
 | Name | Value | Use |
 |---|---|---|
-| samanos (moss) | `#70997F` | v1's sage. **Decorative only**: header gradients, splash, illustration. Never behind or as text (3.2:1). |
+| samanos (moss) | `#70997F` | v1's sage. **Decorative only**: header gradients, illustration (the icon and splash are eglė). Never behind or as text (3.2:1). |
 | ramunė (chamomile yellow) | `#E6BD5C` bright, `#B8862A` deep | The brand **accent**, chosen over red (red read as Christmas). Decorative only: small highlights, the heart of the star mark, a selected-playlist marker. Bright passes on eglė (4.9) and on night (10.3). Deep fails as text on linas (2.7). If it ever has to be text on light, use `#8A6414` (4.5). |
 
 ### Rules
@@ -62,14 +62,14 @@ these exact values.
   sash.
 - Dark mode is a first-class mode, not an afterthought. The app gets used at night by a campfire.
 - iOS separators can stay `PlatformColor('separator')`.
-- The header photo stays the current misty forest (`assets/images/miskas*`). Its pale greens are why the light-mode
-  bars are samanos rather than eglė.
+- The header photo is the sunlit forest by Sebastian Unrau on Unsplash (`assets/images/miskas_v3.jpg`, credited in
+  Settings and the README), replacing v1's pale misty forest. It's dark, so the bars are deep eglė in both modes.
 
 ## Typography
 
 | Role | Face | Weights | Where |
 |---|---|---|---|
-| Wordmark | Modeka Extended (licensed, WildOnes Design; replaced Modekan in Oct 2026) | 400, 700 | The home header wordmark only, in Bold (`fonts.brandBold`; Regular is `fonts.brand`). |
+| Wordmark | Modeka Extended (licensed, WildOnes Design; replaced Modekan in Oct 2026) | 400 (700 bundled, unused) | The home header wordmark only, in Regular (`fonts.brand`; Bold is `fonts.brandBold`, tried and set aside). |
 | Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 500 list rows, 600 screen titles | Song titles (song screen title, song list rows) and their parenthetical second lines, playlist names, section headers on the home list and in Settings. |
 | Everything else | System (SF Pro / Roboto) | as now | Lyrics, chords, translations, descriptions, settings, menus, buttons, search. |
 
