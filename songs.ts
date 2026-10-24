@@ -7610,6 +7610,38 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "recKurTasKugel001",
+    "fields": {
+      "Name": "Kur tas kugelis?",
+      "Lyrics": {
+        "recKurTasKugLyr1": {
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
+          "Lyrics & Chords": "[Nepamiršk ](A)[lašiniukų ](D)[(daug ](G)[spirgučių)](A)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_  \n[Nepamiršk ](A)[tą ](D)[grietinę](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_\n\n[Nepamiršk ](C)[lašiniukų](G)  \n[Nepamiršk tą ](C)[grietinę](D)  \n[Nepamiršk man ](C)[paskambint](G)  \n[Nepamiršk, ](C)[Nepamiršk!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)\n\n[Nepamiršk ](A)[tą ](D)[svogūną](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_  \n[Nepamiršk ](A)[mano ](D)[lėkštę](G)  \n_[(baba-bulve, ](A)[baba-bulve, ](D)[baba-bulve](G)[-ba)](A)_\n\n[Nepamiršk tą ](C)[svogūną](G)  \n[Nepamiršk mano ](C)[lėkštę](D)  \n[Nepamiršk man ](C)[paskambint](G)  \n[Nepamiršk, ](C)[Nepamiršk!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)\n\n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis?](E)  \n[Oi Močiute, Kur tas Kugelis? ](E)[DABAR!](D)",
+          "Show Chords": true
+        }
+      },
+      "Audio": {
+        "recKurTasKugAud1": {
+          "Variant Name": "Įrašas",
+          "EN Variant Name": "Recording",
+          "URL": "https://media.dainorelis.app/Kur%20Tas%20Kugelis.mp3"
+        }
+      },
+      "PDFs": {},
+      "Translations": {
+        "recKurTasKugTr1": {
+          "Title": "Where's the Kugelis?",
+          "Variant Name": "Vertimas",
+          "EN Variant Name": "Translation",
+          "Lyrics": "Don't forget the bacon bits (lots of cracklings)\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\nDon't forget the sour cream\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\n\nDon't forget the bacon bits\nDon't forget the sour cream\nDon't forget to call me\nDon't forget, don't forget!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!\n\nDon't forget the onion\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\nDon't forget my plate\n_(baba-bulve, baba-bulve, baba-bulve-ba)_\n\nDon't forget the onion\nDon't forget my plate\nDon't forget to call me\nDon't forget, don't forget!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!\n\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis?\nOh Granny, where's the kugelis? NOW!",
+          "AI Generated": true
+        }
+      },
+      "Text Author": "M. Adomaitis, E. Kezys"
+    }
+  },
+  {
     "id": "recNq0xuRpz8QNegp",
     "fields": {
       "Name": "Kur tas šaltinėlis?",
@@ -9175,7 +9207,7 @@ const songs: SongFile = [
   {
     "id": "recLZyetlUTUnSV9h",
     "fields": {
-      "Name": "Mes broliukai du du du\n",
+      "Name": "Mes broliukai du du du",
       "Lyrics": {
         "recpk2QDJn1KyPxU6": {
           "Variant Name": "Žodžiai",
