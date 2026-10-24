@@ -87,14 +87,8 @@ export const LightTheme: Theme = {
     text: '#18201B',
     border: '#18201B',
     notification: 'rgb(255, 69, 58)',
-    ...Platform.select({
-      ios: {
-        separator: PlatformColor('separator') as unknown as string,
-      },
-      default: {
-        separator: `#18201B80`,
-      },
-    }),
+    // a ternary, not Platform.select: that builds both branches, and web has no PlatformColor
+    separator: process.env.EXPO_OS === 'ios' ? (PlatformColor('separator') as unknown as string) : `#18201B80`,
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
@@ -118,14 +112,8 @@ export const DarkTheme: Theme = {
     text: '#ECEAE3',
     border: '#ECEAE3',
     notification: 'rgb(255, 69, 58)',
-    ...Platform.select({
-      ios: {
-        separator: PlatformColor('separator') as unknown as string,
-      },
-      default: {
-        separator: `#ECEAE380`,
-      },
-    }),
+    // a ternary, not Platform.select: that builds both branches, and web has no PlatformColor
+    separator: process.env.EXPO_OS === 'ios' ? (PlatformColor('separator') as unknown as string) : `#ECEAE380`,
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
