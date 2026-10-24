@@ -100,6 +100,19 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
   switch, Fast Refresh) don't delete each other's file.
 
+### Brand Assets
+
+```bash
+pnpm tsx scripts/generate-brand-assets.ts   # Regenerate icons, splash, favicons and og.jpg
+```
+
+Sources: `assets/images/icon_v3.svg` (the app icon) and `logo_white_v3.svg` (the wordmark; live
+text, so the wordmark PNGs and `public/og.jpg` need Modeka Extended Bold installed). Outputs: `icon.png`,
+`icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome layers, `splash-icon.png`,
+the iOS 26 Icon Composer layers in `icon.icon/Assets`, `logo_white_v3@2x/@3x.png`, and `public/`'s
+favicons, apple-touch icon and link preview image. Background colors in `app.config.ts` and
+`icon.icon/icon.json` are set by hand.
+
 ### AI Metadata Generation
 
 ```bash

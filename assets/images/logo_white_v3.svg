@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 747 177" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <path d="M177,0L177,177L0,177L0,0L177,0ZM162,15L15,15L15,162L162,162L162,15Z" style="fill:white;"/>
+    <rect x="0" y="0" width="747" height="177" style="fill:none;stroke:white;stroke-width:30px;"/>
+    <g transform="matrix(1,0,0,1,0,-4.04097)">
+        <g transform="matrix(125,0,0,125,708.561,142.911)">
+        </g>
+        <text x="198.811px" y="142.911px" style="font-family:'ModekaExtended-Bold', 'Modeka Extended';font-weight:700;font-size:125px;fill:white;">D<tspan x="257.811px 317.436px 342.311px 401.936px 461.311px 521.686px 576.436px 629.936px 654.811px " y="142.911px 142.911px 142.911px 142.911px 142.911px 142.911px 142.911px 142.911px 142.911px ">AINORĖLIS</tspan></text>
+    </g>
+    <g transform="matrix(0.32719,0,0,0.304682,-33.7053,61.5356)">
+        <g transform="matrix(0.35278,-0.378841,0.35278,0.378841,-5520.97,-2836.04)">
+            <rect x="4448.5" y="12168.2" width="91.891" height="91.891" style="fill:rgb(230,189,92);"/>
+        </g>
+        <g transform="matrix(-2.59876e-16,-1.71672,1.59863,-9.82488e-16,-19134.9,8122.57)">
+            <path d="M4582.39,12187.1L4582.39,12144.2L4620.29,12182.1L4659.01,12143.4L4621.37,12105.7L4664.24,12105.7L4680.46,12122L4696.69,12105.7L4739.58,12105.7L4701.9,12143.4L4740.54,12182L4777.4,12145.1L4777.4,12188L4761.98,12203.5L4777.4,12218.9L4777.4,12261.8L4740.56,12224.9L4701.88,12263.7L4738.95,12300.7L4696.08,12300.7L4680.46,12285.1L4664.88,12300.7L4624.43,12300.7L4623.23,12299.6L4659.03,12263.7L4620.28,12224.9L4582.39,12262.8L4582.39,12219.9L4598.84,12203.5L4582.39,12187.1ZM4680.45,12164.8L4641.72,12203.5L4680.45,12242.2L4719.12,12203.5L4680.45,12164.8Z" style="fill:white;"/>
+        </g>
+    </g>
+</svg>
