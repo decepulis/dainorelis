@@ -118,7 +118,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
         resizeMode: 'contain',
         backgroundColor: '#2F5240',
-        dark: { backgroundColor: '#121614' },
+        dark: { backgroundColor: '#141615' },
       },
     ],
     [
