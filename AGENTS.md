@@ -125,6 +125,18 @@ pnpm generate-metadata          # Generate AI descriptions/translations for all 
 pnpm generate-metadata:test     # Test on first 5 songs only
 ```
 
+### Store screenshots
+
+```bash
+pnpm store-screenshots          # Compose assets/images/screenshots/{iOS,iPadOS,Android} {1-5}.png
+```
+
+`scripts/store-screenshots/compose.ts` puts raw device captures (gitignored, in
+`scripts/store-screenshots/captures/<target>/<n>.png`) into device frames under a caption, at each store's
+size. Captions, frames, sizes and layout are in `config.json`; the devices, deep links and steps for
+each shot are in that folder's `README.md`, and `capture.sh` wraps the simctl/adb commands. After a UI
+change, retake the captures and rerun the script.
+
 ## Architecture
 
 ### Core Technology Stack
