@@ -107,15 +107,25 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 ### Brand Assets
 
 ```bash
-pnpm tsx scripts/generate-brand-assets.ts   # Regenerate icons, splash, favicons, wordmarks, header photo, og.jpg
+pnpm tsx scripts/generate-brand-assets.ts   # Regenerate the logo, icons, splash, favicons, wordmarks, header photo, og.jpg
 ```
 
-Sources: `assets/images/icon_v3.svg` (the app icon: background rect, star, diamond), `logo_white_v3.svg` (the
-logo, outlined) and `miskas_v3.jpg` (the forest photo by Sebastian Unrau on Unsplash, credited in Settings and the
-README). Outputs: `icon.png`, `icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome
-layers, `splash-icon.png`, `logo_white.png` and `logo_white_v3@2x/@3x.png`, `wordmark_{black,primary,white}.png`,
-the home header's `miskas_v3_fade.webp`, `miskas_og.png` / `miskas_twitter.png` / `miskas_google_play.png` (the
-Play feature graphic, uploaded by hand), `public/`'s favicons, apple-touch icon and `og.jpg`, and the admin app's
+Inputs, the only hand-made files: `assets/images/icon_v3.svg` (the app icon: background rect, star, diamond; the
+script measures the mark, so its geometry can change), `assets/images/miskas_v3.jpg` (the forest photo by Sebastian
+Unrau on Unsplash, credited in Settings and the README) and `assets/fonts/ModekaExtended-Bold.otf` (the lettering).
+
+The logo is generated too: `logo_white_v3.svg` is an output (don't edit it). The `lockup` constants at the top of the
+script set it in px at 1x: the frame's line (`border`, also the divider between the mark's cell and the lettering's),
+the mark's larger side (`markSize`), the lettering's `font`, `fontSize`, `baseline`, `tracking` (font units after each
+letter) and `kerning`, and the `padding` either side of the lettering, which with the lettering's width sets the
+logo's width. Keep the logo at 747x177: the home header's layout maths in `app/index.tsx` assume that aspect.
+
+Outputs: `logo_white_v3.svg`, `logo_white_v3.png` / `@2x` / `@3x` (the home header) and `logo_white.png`; the kit in
+`assets/images/brand/` (`logo_{white,ink,egle}` and `logo_unframed_{white,ink,egle}`, the mark and lettering without
+the frame, each as SVG and 3x PNG); `wordmark_{black,primary,white}.png` (the lettering alone); `icon.png`,
+`icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome layers, `splash-icon.png`; the
+home header's `miskas_v3_fade.webp`, `miskas_og.png` / `miskas_twitter.png` / `miskas_google_play.png` (the Play
+feature graphic, uploaded by hand); `public/`'s favicons, apple-touch icon and `og.jpg`; and the admin app's
 `icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it writes only the layer SVGs
 (`Assets/star.svg`, `Assets/diamond.svg`) and the document's background `fill-specializations[0]` solid; layer fills
 (the star's dark-mode #8FBA9C), glass, specular, shadow and translucency are edited in Icon Composer and left

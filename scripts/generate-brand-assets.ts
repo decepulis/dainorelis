@@ -1,17 +1,45 @@
 /**
- * Generates the app icons, splash, favicons, wordmarks, header photo and link preview images from the brand
+ * Generates the logo, app icons, splash, favicons, wordmarks, header photo and link preview images from the brand
  * sources:
- *   assets/images/icon_v3.svg       the app icon (a background rect, the star path and its diamond)
- *   assets/images/logo_white_v3.svg the logo (frame, lettering and mark, all outlined)
- *   assets/images/miskas_v3.jpg     the forest photo (Sebastian Unrau, Unsplash)
+ *   assets/images/icon_v3.svg              the app icon (a background rect, the star path and its diamond)
+ *   assets/images/miskas_v3.jpg            the forest photo (Sebastian Unrau, Unsplash)
+ *   assets/fonts/ModekaExtended-Bold.otf   the logo's lettering
  *
  *   pnpm tsx scripts/generate-brand-assets.ts
  *
  * The mark is cut out of icon_v3.svg and re-centred on its measured bounds, so every output gets
- * proportions tuned for its own mask instead of one shared crop.
+ * proportions tuned for its own mask instead of one shared crop. The logo (logo_white_v3.svg and the kit in
+ * assets/images/brand/) is built from the mark, the font and the `lockup` constants below.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { parse } from 'opentype.js';
 import sharp from 'sharp';
+
+/**
+ * The logo: a frame around a square cell holding the mark and a wider one holding the lettering, in px at 1x
+ * (747x177; the home header's layout maths assume that aspect). Measured off v3's hand-drawn logo.
+ */
+const lockup = {
+  height: 177,
+  // the frame's line, also the divider between the two cells (square corners)
+  border: 15,
+  // the mark's larger side, centred in the square cell
+  markSize: 102,
+  font: 'assets/fonts/ModekaExtended-Bold.otf',
+  text: 'DAINORĖLIS',
+  // 125 makes the caps 89 tall
+  fontSize: 125,
+  baseline: 138.875,
+  // font units after every letter (0.01 em)
+  tracking: 10,
+  // the hand-drawn logo had none; the font's only pair here would pull D and A 1.25px closer
+  kerning: false,
+  // from the divider to the first letter's ink, and from the last letter's ink to the frame; the lettering's width
+  // and these set the logo's width
+  padding: [29.25, 27.75],
+};
+
+const colors = { white: '#FFFFFF', ink: '#18201B', egle: '#2F5240' };
 
 const images = 'assets/images';
 const source = readFileSync(`${images}/icon_v3.svg`, 'utf8');
@@ -40,7 +68,7 @@ const svg = (size: number, body: string) =>
 
 /** the mark's bounding box in source units, measured from a render */
 async function measure(content: string) {
-  const scale = 4;
+  const scale = 8;
   const { data, info } = await sharp(Buffer.from(svg(sourceSize, content)), { density: 72 * scale })
     .ensureAlpha()
     .raw()
@@ -48,14 +76,15 @@ async function measure(content: string) {
   let [x0, y0, x1, y1] = [Infinity, Infinity, 0, 0];
   for (let y = 0; y < info.height; y++)
     for (let x = 0; x < info.width; x++)
-      if (data[(y * info.width + x) * 4 + 3] > 8) {
+      if (data[(y * info.width + x) * 4 + 3] > 127) {
         x0 = Math.min(x0, x);
         y0 = Math.min(y0, y);
         x1 = Math.max(x1, x + 1);
         y1 = Math.max(y1, y + 1);
       }
   const k = sourceSize / info.width;
-  return { cx: ((x0 + x1) / 2) * k, cy: ((y0 + y1) / 2) * k, size: Math.max(x1 - x0, y1 - y0) * k };
+  const [w, h] = [(x1 - x0) * k, (y1 - y0) * k];
+  return { cx: ((x0 + x1) / 2) * k, cy: ((y0 + y1) / 2) * k, w, h, size: Math.max(w, h) };
 }
 let box: Awaited<ReturnType<typeof measure>>;
 
@@ -76,6 +105,7 @@ async function png(file: string, body: string, size: number, opts: { flatten?: b
 
 async function main() {
   box = await measure(mark);
+  lettering = typeset();
 
   // The mark at 68% of the icon, the way first-party icons fill the squircle (the source draws it at 57%, which read
   // small on the home screen)
@@ -144,28 +174,37 @@ async function main() {
   writeFileSync('admin/src/app/icon.svg', svg(64, favicon(64, 0.78)));
   await png('admin/src/app/apple-icon.png', rect(512, background) + placed(512, iconFraction), 512, { flatten: true });
 
-  // The wordmark, sharp on 2x and 3x screens; logo_white.png is the 1x under its v1 name
-  const logo = readFileSync(`${images}/logo_white_v3.svg`, 'utf8');
-  await sharp(Buffer.from(logo)).png({ compressionLevel: 9 }).toFile(`${images}/logo_white.png`);
-  for (const scale of [2, 3])
-    await sharp(Buffer.from(logo), { density: 72 * scale })
+  // The logo: logo_white_v3.svg and its PNGs (logo_white.png is the 1x under its v1 name), and the kit in brand/:
+  // the logo and the unframed lockup in each brand colour, as SVG and 3x PNG
+  const logo = logoSvg(colors.white);
+  writeFileSync(`${images}/logo_white_v3.svg`, logo);
+  const toPng = (art: string, file: string, scale = 1) =>
+    sharp(Buffer.from(art), { density: 72 * scale })
       .png({ compressionLevel: 9 })
-      .toFile(`${images}/logo_white_v3@${scale}x.png`);
+      .toFile(file);
+  await toPng(logo, `${images}/logo_white.png`);
+  await toPng(logo, `${images}/logo_white_v3.png`);
+  for (const scale of [2, 3]) await toPng(logo, `${images}/logo_white_v3@${scale}x.png`, scale);
+  const kit = `${images}/brand`;
+  mkdirSync(kit, { recursive: true });
+  for (const [name, color] of Object.entries(colors))
+    for (const [file, art] of [
+      [`logo_${name}`, logoSvg(color)],
+      [`logo_unframed_${name}`, logoSvg(color, false)],
+    ]) {
+      writeFileSync(`${kit}/${file}.svg`, art);
+      await toPng(art, `${kit}/${file}.png`, 3);
+    }
 
-  // The plain wordmarks (the logo's lettering without the frame and the mark), at their v1 size
-  const textStart = logo.indexOf('/>', logo.indexOf('stroke-width:30px')) + 2;
-  const lettering = logo.slice(textStart, logo.lastIndexOf('<g>'));
-  if (!lettering.includes('<path')) throw new Error("couldn't find the lettering in logo_white_v3.svg");
+  // The plain wordmarks (the lettering alone), at their v1 size
+  const { x1, y1, x2, y2 } = lettering.box;
   for (const [name, color] of [
-    ['black', '#18201B'], // ink: the brand never uses pure black
-    ['primary', '#2F5240'], // eglė
-    ['white', '#FFFFFF'],
+    ['black', colors.ink], // the brand never uses pure black
+    ['primary', colors.egle],
+    ['white', colors.white],
   ]) {
-    const art = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 747 177">${lettering.replaceAll('fill:#fff', `fill:${color}`)}</svg>`;
-    const trimmed = await sharp(Buffer.from(art), { density: 72 * 4 })
-      .trim()
-      .toBuffer();
-    await sharp(trimmed)
+    const art = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x1} ${y1} ${x2 - x1} ${y2 - y1}"><g fill="${color}">${lettering.paths}</g></svg>`;
+    await sharp(Buffer.from(art), { density: 72 * 4 })
       .resize(502, 105, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png({ compressionLevel: 9 })
       .toFile(`${images}/wordmark_${name}.png`);
@@ -225,6 +264,70 @@ async function main() {
   await poster(`${images}/miskas_google_play.png`, 1024, 500);
 
   console.log(`Generated brand assets (background ${background})`);
+}
+
+/** the lettering's glyph outlines, one path per letter, placed in the logo's lettering cell */
+function typeset() {
+  const data = readFileSync(lockup.font);
+  const font = parse(data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
+  const scale = lockup.fontSize / font.unitsPerEm;
+  const glyphs = font.stringToGlyphs(lockup.text);
+  const layout = (x0: number) => {
+    let x = x0;
+    return glyphs.map((glyph, i) => {
+      const path = glyph.getPath(x, lockup.baseline, lockup.fontSize);
+      const next = glyphs[i + 1];
+      x +=
+        (glyph.advanceWidth! + lockup.tracking + (lockup.kerning && next ? font.getKerningValue(glyph, next) : 0)) *
+        scale;
+      return path;
+    });
+  };
+  // set once to find the ink, then again with the first letter's ink at the padding
+  const inkLeft = Math.min(...layout(0).map((path) => path.getBoundingBox().x1));
+  const paths = layout(lockup.height + lockup.padding[0] - inkLeft);
+  const boxes = paths.map((path) => path.getBoundingBox());
+  const box = {
+    x1: Math.min(...boxes.map((b) => b.x1)),
+    y1: Math.min(...boxes.map((b) => b.y1)),
+    x2: Math.max(...boxes.map((b) => b.x2)),
+    y2: Math.max(...boxes.map((b) => b.y2)),
+  };
+  return { paths: paths.map((path) => `<path d="${path.toPathData(3)}"/>`).join(''), box };
+}
+let lettering: ReturnType<typeof typeset>;
+
+/** the logo in one colour (the diamond keeps its own), framed or as the bare mark and lettering */
+function logoSvg(color: string, framed = true) {
+  const { height: h, border: b, markSize } = lockup;
+  const w = Math.round(lettering.box.x2 + lockup.padding[1] + b);
+  const s = markSize / box.size;
+  const markArt =
+    `<g transform="translate(${h / 2} ${h / 2}) scale(${s}) translate(${-box.cx} ${-box.cy})">` +
+    star.replace(/fill:[^;"]+/g, `fill:${color}`) +
+    diamond +
+    '</g>';
+  // the frame: the outline less the two cells
+  const frame =
+    `<path fill="${color}" fill-rule="evenodd" d="M0 0H${w}V${h}H0Z` +
+    `M${b} ${b}V${h - b}H${h - b}V${b}Z M${h} ${b}V${h - b}H${w - b}V${b}Z"/>`;
+  const [mw, mh] = [box.w * s, box.h * s];
+  const viewBox = framed
+    ? [0, 0, w, h]
+    : [
+        (h - mw) / 2,
+        Math.min((h - mh) / 2, lettering.box.y1),
+        lettering.box.x2 - (h - mw) / 2,
+        Math.max((h + mh) / 2, lettering.box.y2) - Math.min((h - mh) / 2, lettering.box.y1),
+      ];
+  return (
+    `<!-- Generated by scripts/generate-brand-assets.ts from icon_v3.svg and ${lockup.font.split('/').pop()}: ` +
+    'do not edit; change its lockup constants and rerun -->\n' +
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.map((n) => +n.toFixed(3)).join(' ')}">` +
+    (framed ? frame : '') +
+    markArt +
+    `<g fill="${color}">${lettering.paths}</g></svg>\n`
+  );
 }
 
 /** naktis, `opacity` at (cx, cy), easing to nothing at the ellipse (rx, ry) */
