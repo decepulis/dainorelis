@@ -61,7 +61,7 @@ function TranslationPage({ song, firstTranslation }: { song: Song; firstTranslat
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground />,
           ...topScrollEdgeEffect,
-          headerTitle: () => <HeaderTitle showTitle large title={t('translationTitle')} subtitle={ogTitle} />,
+          headerTitle: () => <HeaderTitle showTitle modal title={t('translationTitle')} subtitle={ogTitle} />,
         }}
       />
       <ModalToolbar />

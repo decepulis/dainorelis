@@ -84,8 +84,9 @@ these exact values.
   playlist names and section headers are SemiBold 600. Bold Text takes each up a weight (400→500, 500→600;
   600 stays). `ThemedText`'s `title` prop picks them (`title="regular"`, `title`, `title bold`); the native
   subtitles come from the `react-native-screens` patch, in the family of the header's title font.
-- The translation and description modals' bar title is 20pt (subtitle 15pt), scaled with Dynamic Type up to
-  1.3×, where two lines still fit the bar.
+- The translation and description modals' bar title and subtitle match the song screen's inline ones: 17pt over
+  13pt on Liquid Glass, 15pt over 13pt in the custom header (iOS 18, Android), scaled with Dynamic Type up to 1.3×,
+  where two lines still fit the bar.
 - Bundle only the weights in use (Regular, Medium and SemiBold) through `expo-font` in `app.config.ts`, next to
   Modeka Extended. On Android a custom family can't switch weights through `fontWeight`, so expose one family
   name per weight, the way `fonts.brand` pins Modeka Extended.
