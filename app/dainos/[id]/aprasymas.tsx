@@ -48,7 +48,7 @@ function DescriptionPage({ song }: { song: Song }) {
           headerLeft: (props) => <HeaderLeft {...props} modal />,
           headerBackground: () => <HeaderBackground opaque />,
           ...topScrollEdgeEffect,
-          headerTitle: () => <HeaderTitle showTitle large title={t('aboutSongTitle')} subtitle={title} />,
+          headerTitle: () => <HeaderTitle showTitle modal title={t('aboutSongTitle')} subtitle={title} />,
         }}
       />
       <ModalToolbar />
