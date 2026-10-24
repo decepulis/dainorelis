@@ -301,7 +301,7 @@ export default function Index() {
           right: 0,
           height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
         }}
-        source={require('@/assets/images/miskas_fade_10.webp')}
+        source={require('@/assets/images/miskas_v3_fade.webp')}
         onLoadEnd={() => setDidBackgroundLoad(true)}
         contentFit="cover"
         contentPosition="bottom"

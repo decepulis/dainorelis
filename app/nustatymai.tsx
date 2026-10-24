@@ -59,6 +59,15 @@ export default function Page() {
   const card = useThemeColor('card');
   const separator = useThemeColor('separator');
 
+  // the privacy policy and the photo credit open in the in-app browser
+  const openLink = (url: string) =>
+    WebBrowser.openBrowserAsync(url, {
+      controlsColor: primary,
+      presentationStyle: WebBrowser.WebBrowserPresentationStyle.PAGE_SHEET,
+      dismissButtonStyle: 'close',
+    });
+  const linkStyle = { textDecorationLine: 'underline', textDecorationColor: primary } as const;
+
   const onLanguageChange = (language: 'en' | 'lt') => {
     setLanguage(language);
     i18n.changeLanguage(language);
@@ -186,13 +195,7 @@ export default function Page() {
             </View>
           </View>
           <Pressable
-            onPress={() =>
-              WebBrowser.openBrowserAsync('https://dainorelis.app/privacy', {
-                controlsColor: primary,
-                presentationStyle: WebBrowser.WebBrowserPresentationStyle.PAGE_SHEET,
-                dismissButtonStyle: 'close',
-              })
-            }
+            onPress={() => openLink('https://dainorelis.app/privacy')}
             accessibilityRole="link"
             hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
           >
@@ -207,6 +210,33 @@ export default function Page() {
               </ThemedText>
             )}
           </Pressable>
+          {/* the home screen's forest photo */}
+          <ThemedText style={[styles.paragraph, { marginTop: padding }]}>
+            {t('photoCredit')}{' '}
+            <ThemedText
+              style={linkStyle}
+              accessibilityRole="link"
+              onPress={() =>
+                openLink(
+                  'https://unsplash.com/@sebastian_unrau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                )
+              }
+            >
+              Sebastian Unrau
+            </ThemedText>
+            ,{' '}
+            <ThemedText
+              style={linkStyle}
+              accessibilityRole="link"
+              onPress={() =>
+                openLink(
+                  'https://unsplash.com/photos/trees-on-forest-with-sun-rays-sp-p7uuT0tw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                )
+              }
+            >
+              Unsplash
+            </ThemedText>
+          </ThemedText>
         </View>
       </ScrollViewWithHeader>
     </>

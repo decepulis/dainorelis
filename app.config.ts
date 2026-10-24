@@ -81,7 +81,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts
       foregroundImage: './assets/images/adaptive-icon.png',
       monochromeImage: './assets/images/adaptive-icon-monochrome.png',
-      backgroundColor: '#006A44',
+      backgroundColor: '#2F5240',
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
@@ -117,7 +117,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#006A44',
+        backgroundColor: '#2F5240',
         dark: { backgroundColor: '#121614' },
       },
     ],

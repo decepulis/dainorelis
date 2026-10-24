@@ -103,15 +103,19 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 ### Brand Assets
 
 ```bash
-pnpm tsx scripts/generate-brand-assets.ts   # Regenerate icons, splash, favicons and og.jpg
+pnpm tsx scripts/generate-brand-assets.ts   # Regenerate icons, splash, favicons, wordmarks, header photo, og.jpg
 ```
 
-Sources: `assets/images/icon_v3.svg` (the app icon) and `logo_white_v3.svg` (the wordmark; live
-text, so the wordmark PNGs and `public/og.jpg` need Modeka Extended Bold installed). Outputs: `icon.png`,
-`icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome layers, `splash-icon.png`,
-the iOS 26 Icon Composer layers in `icon.icon/Assets`, `logo_white_v3@2x/@3x.png`, and `public/`'s
-favicons, apple-touch icon and link preview image. Background colors in `app.config.ts` and
-`icon.icon/icon.json` are set by hand.
+Sources: `assets/images/icon_v3.svg` (the app icon: background rect, star, diamond), `logo_white_v3.svg` (the
+logo, outlined) and `miskas_v3.jpg` (the forest photo by Sebastian Unrau on Unsplash, credited in Settings and the
+README). Outputs: `icon.png`, `icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome
+layers, `splash-icon.png`, `logo_white.png` and `logo_white_v3@2x/@3x.png`, `wordmark_{black,primary,white}.png`,
+the home header's `miskas_v3_fade.webp`, `miskas_og.png` / `miskas_twitter.png` / `miskas_google_play.png` (the
+Play feature graphic, uploaded by hand), `public/`'s favicons, apple-touch icon and `og.jpg`, and the admin app's
+`icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it writes only the layer SVGs
+(`Assets/star.svg`, `Assets/diamond.svg`) and the document's background `fill-specializations[0]` solid; layer fills
+(the star's dark-mode #8FBA9C), glass, specular, shadow and translucency are edited in Icon Composer and left
+alone. The adaptive icon and splash background colors in `app.config.ts` are set by hand.
 
 ### AI Metadata Generation
 
@@ -200,7 +204,7 @@ pnpm generate-metadata:test     # Test on first 5 songs only
 
 **Variant Names**: Each song can have multiple variants (different arrangements, translations, etc.). If a variant lacks a name, the export auto-generates one as `"Default Name {number}"` (e.g., "Žodžiai 1", "Lyrics 2"), numbered by the variant's position within its song. A blank variant name in the admin UI is therefore meaningful, not missing data.
 
-**Theme System**: The app uses React Navigation's theming with custom light/dark themes defined in `lib/constants/themes.ts`. The user's theme preference is stored in MMKV and applied via `Appearance.setColorScheme()`. On web the colors are CSS variables instead (`lib/constants/webTheme.ts`, `useTheme.web.ts`): a script in `app/+html.tsx`'s `<head>` sets `<html data-theme>` from the stored setting before the first paint, so static pages never flash the wrong mode; add alpha to a theme color with `withAlpha` (`lib/utils/withAlpha.ts`), not by appending hex digits. Colors and type follow `docs/plans/brand-v3-type-and-color.md`: `primary` (eglė) is the one tint and is a light color in dark mode, so anything filled with it takes `onPrimary` on top; the green bars with white content (custom header, its buttons, the bottom pill, the player, the iOS 26 title band) use `chrome` (samanos in light mode, deep eglė in dark), and content on it is full white, never dimmed. Titles (song titles, playlist names, the list's section headers) use Saira Semi Condensed via `ThemedText`'s `title` prop (Medium, SemiBold with `bold`); everything else is the system font.
+**Theme System**: The app uses React Navigation's theming with custom light/dark themes defined in `lib/constants/themes.ts`. The user's theme preference is stored in MMKV and applied via `Appearance.setColorScheme()`. On web the colors are CSS variables instead (`lib/constants/webTheme.ts`, `useTheme.web.ts`): a script in `app/+html.tsx`'s `<head>` sets `<html data-theme>` from the stored setting before the first paint, so static pages never flash the wrong mode; add alpha to a theme color with `withAlpha` (`lib/utils/withAlpha.ts`), not by appending hex digits. Colors and type follow `docs/plans/brand-v3-type-and-color.md`: `primary` (eglė) is the one tint and is a light color in dark mode, so anything filled with it takes `onPrimary` on top; the green bars with white content (custom header, its buttons, the bottom pill, the player, the iOS 26 title band) use `chrome` (deep eglė in both modes), and content on it is full white. Titles (song titles, playlist names, the list's section headers) use Saira Semi Condensed via `ThemedText`'s `title` prop (Medium, SemiBold with `bold`); everything else is the system font.
 
 **I18n**: Uses i18next with Lithuanian (lt) and English (en) translations. Language files are in `lib/constants/i18n.ts`. The language is the user's stored preference (MMKV), defaulting to Lithuanian; the device language is not consulted. On iOS, `lib/utils/systemLanguage.ts` mirrors it into the app's `AppleLanguages` default, so system UI (List edit mode, share sheets) follows it from the next launch; `CFBundleLocalizations` in `app.config.ts` declares both languages. Android's share sheet runs in another process and always follows the device language.
 
