@@ -1,0 +1,55 @@
+{
+  "background": "#2F5240",
+  "captionColor": "#FFFFFF",
+  "font": "assets/fonts/SairaSemiCondensed-SemiBold.ttf",
+  "lineHeight": 1.12,
+  "frames": {
+    "iPhone 16": { "image": "assets/images/screenshots/_iPhone 16.png", "screen": [90, 90, 1179, 2556] },
+    "iPad mini": { "image": "assets/images/screenshots/_iPad mini.png", "screen": [146, 142, 1488, 2266] },
+    "iPad 11in": { "image": "assets/images/screenshots/_iPad 11in.png", "screen": [111, 111, 1668, 2388] },
+    "Pixel 9a": {
+      "screen": [1080, 2424],
+      "bezel": 42,
+      "radius": 96,
+      "color": "#0B0C0B",
+      "rim": "#3A3D3B",
+      "camera": 20
+    }
+  },
+  "targets": {
+    "iOS": {
+      "size": [1242, 2688],
+      "frame": "iPhone 16",
+      "output": "assets/images/screenshots/iOS {n}.png",
+      "frameWidth": 980,
+      "frameBottom": 120,
+      "captionSize": 104,
+      "captionWidth": 1120
+    },
+    "iPadOS": {
+      "size": [2048, 2732],
+      "frame": "iPad mini",
+      "output": "assets/images/screenshots/iPadOS {n}.png",
+      "frameWidth": 1500,
+      "frameBottom": 100,
+      "captionSize": 136,
+      "captionWidth": 1500
+    },
+    "Android": {
+      "size": [1080, 1920],
+      "frame": "Pixel 9a",
+      "output": "assets/images/screenshots/Android {n}.png",
+      "frameWidth": 690,
+      "frameBottom": 80,
+      "captionSize": 84,
+      "captionWidth": 980
+    }
+  },
+  "shots": [
+    { "caption": "Browse the library of over 600 Lithuanian songs" },
+    { "caption": "Make playlists and share them" },
+    { "caption": "Sing and enjoy!" },
+    { "caption": "Learn with sheet music, chords, and recordings" },
+    { "caption": "Pick your language and use dark mode" }
+  ]
+}
