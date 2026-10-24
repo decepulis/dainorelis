@@ -13,6 +13,7 @@
     "dev:web": "expo start --web",
     "generate-privacy": "tsx ./scripts/generate-privacy.ts",
     "store-screenshots": "tsx ./scripts/store-screenshots/compose.ts",
+    "brand-assets": "tsx ./scripts/brand/generate-brand-assets.ts",
     "build:web": "pnpm generate-privacy && expo export --platform web --clear && cp dist/+not-found.html dist/404.html",
     "test": "echo \"No tests specified\" && exit 0",
     "lint": "eslint .",

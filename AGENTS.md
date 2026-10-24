@@ -107,32 +107,49 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 ### Brand Assets
 
 ```bash
-pnpm tsx scripts/generate-brand-assets.ts   # Regenerate the logo, icons, splash, favicons, wordmarks, header photo, og.jpg
+pnpm brand-assets   # Regenerate the logo, icons, splash, favicons, wordmarks, header photo, og.jpg
 ```
 
-Inputs, the only hand-made files: `assets/images/icon_v3.svg` (the mark alone, no background: one star `<path>` and
-one diamond `<rect>`, in any `<g transform>`s; the script takes each with its ancestors' transforms, fails loudly on
-anything else, and measures the mark, so its geometry and placement can change), `assets/images/miskas_v3.jpg` (the
+`assets/README.md` maps the folders: hand-made sources in `assets/brand/source/`, the generated reference kit and
+store images in `assets/brand/kit/` and `assets/brand/store/`, and what the app and its config load in
+`assets/images/`. The generator and the icon studio live in `scripts/brand/`.
+
+Inputs, the only hand-made files: `assets/brand/source/icon_v3.svg` (the mark alone, no background: one star
+`<path>` and one diamond `<rect>`, in any `<g transform>`s; the script takes each with its ancestors' transforms,
+ignores comments and the `<?xml?>` line, and fails loudly on anything else), `assets/brand/source/miskas_v3.jpg` (the
 forest photo by Sebastian Unrau on Unsplash, credited in Settings and the README) and
 `assets/fonts/ModekaExtended-Bold.otf` (the lettering). The icon's background is eglė from
 `lib/constants/brandColors.ts`, which the themes and `app.config.ts` (adaptive icon and splash backgrounds) also read.
 
-The logo is generated too: `logo_white_v3.svg` is an output (don't edit it). The `lockup` constants at the top of the
-script set it in px at 1x: the frame's line (`border`, also the divider between the mark's cell and the lettering's),
+`icon_v3.svg`'s 500x500 canvas is the app icon: the mark's size and position there are what the iOS-grid outputs
+draw, scaled to their size (`icon.icon`'s layers, `icon.png`, `icon_512.png`, `apple-touch-icon.png`, the admin
+app's `apple-icon.png`). The rest re-centre the mark on its measured bounds: the Android adaptive layers give it the
+same share of the visible 72dp as the iOS icon, and the splash 81% of its icon size, each clamped (with a warning)
+to stay inside its safe circle (66dp of 108; Android 12's splash circle, 2/3 of the box); the favicons (square, a
+tighter crop for tab sizes) and the logo use their own fixed sizes.
+
+`scripts/brand/icon-studio.html` (open it in a browser) is the tool for the mark's proportions: sliders for the
+bands, cuts and square, and the mark's size in the icon, which the outputs above follow. It exports the mark without
+the background in `icon_v3.svg`'s structure, with its settings in an `<!-- icon-studio {…} -->` comment; save the
+export over `assets/brand/source/icon_v3.svg` and rerun the script. Its Load icon button reads that comment back
+from `icon_v3.svg` (or any export) as the original that Reset, double-click and Hold to see the original return to.
+
+The logo is generated too (don't edit its outputs). The `lockup` constants at the top of the script set it in px at
+1x: the frame's line (`border`, also the divider between the mark's cell and the lettering's),
 the mark's larger side (`markSize`), the lettering's `font`, `fontSize`, `baseline`, `tracking` (font units after each
 letter) and `kerning`, and the `padding` either side of the lettering, which with the lettering's width sets the
 logo's width. Keep the logo at 747x177: the home header's layout maths in `app/index.tsx` assume that aspect.
 
-Outputs: `logo_white_v3.svg`, `logo_white_v3.png` / `@2x` / `@3x` (the home header) and `logo_white.png`; the kit in
-`assets/images/brand/` (`logo_{white,ink,egle}` and `logo_unframed_{white,ink,egle}`, the mark and lettering without
-the frame, each as SVG and 3x PNG); `wordmark_{black,primary,white}.png` (the lettering alone); `icon.png`,
-`icon_512.png` (Play Store listing), the Android adaptive foreground and monochrome layers, `splash-icon.png`; the
-home header's `miskas_v3_fade.webp`, `miskas_og.png` / `miskas_twitter.png` / `miskas_google_play.png` (the Play
-feature graphic, uploaded by hand); `public/`'s favicons, apple-touch icon and `og.jpg`; and the admin app's
-`icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it writes only the layer SVGs
-(`Assets/star.svg`, `Assets/diamond.svg`) and the document's background `fill-specializations[0]` solid; layer fills
-(the star's dark-mode #8FBA9C), glass, specular, shadow and translucency are edited in Icon Composer and left
-alone.
+Outputs: in `assets/images/`, `logo_white_v3.png` / `@2x` / `@3x` (the home header), `icon.png`, the Android
+adaptive foreground and monochrome layers, `splash-icon.png` and `miskas_v3_fade.webp` (the home header's forest);
+in `assets/brand/kit/`, `logo_{white,ink,egle}` and `logo_unframed_{white,ink,egle}` (the mark and lettering without
+the frame), each as SVG and 3x PNG, `wordmark_{black,primary,white}.png` (the lettering alone) and `favicon.png`; in
+`assets/brand/store/`, `icon_512.png` (Play Store listing), `miskas_og.png` / `miskas_twitter.png` /
+`miskas_google_play.png` (the Play feature graphic), uploaded by hand; `public/`'s favicons, apple-touch icon and
+`og.jpg`; and the admin app's `icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it
+writes only the layer SVGs (`Assets/star.svg`, `Assets/diamond.svg`) and the document's background
+`fill-specializations[0]` solid; layer fills (the star's dark-mode #8FBA9C), glass, specular, shadow and
+translucency are edited in Icon Composer and left alone.
 
 ### AI Metadata Generation
 
@@ -195,6 +212,7 @@ change, retake the captures and rerun the script.
 - **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
   - `generate-search-indices.ts` - Create Fuse.js search indices
+  - `brand/` - The brand asset generator and the icon studio (see Brand Assets)
 
 - **`/admin`** - The CMS (separate Vercel deployment, its own README)
   - Owns the schema, the editor UI, and every content transform

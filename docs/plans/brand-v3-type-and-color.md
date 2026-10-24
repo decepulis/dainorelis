@@ -2,8 +2,8 @@
 
 A handoff brief. The brand exploration (Oct 2026) settled the direction, the palette and the type.
 This document carries those decisions to whoever implements them. It covers **typography and color
-only**. The wordmark and the app icon were finished by hand in Affinity (`assets/images/icon_v3.svg`,
-`logo_white_v3.svg`); `scripts/generate-brand-assets.ts` derives the icons, splash and favicons from them.
+only**. The wordmark and the app icon were finished by hand in Affinity (`assets/brand/source/icon_v3.svg`,
+the logo); `scripts/brand/generate-brand-assets.ts` derives the icons, splash and favicons from them.
 
 ## Why this exists
 
@@ -62,7 +62,7 @@ these exact values.
   sash.
 - Dark mode is a first-class mode, not an afterthought. The app gets used at night by a campfire.
 - iOS separators can stay `PlatformColor('separator')`.
-- The header photo is the sunlit forest by Sebastian Unrau on Unsplash (`assets/images/miskas_v3.jpg`, credited in
+- The header photo is the sunlit forest by Sebastian Unrau on Unsplash (`assets/brand/source/miskas_v3.jpg`, credited in
   Settings and the README), replacing v1's pale misty forest. It's dark, so the bars are deep eglė in both modes.
 
 ## Typography
