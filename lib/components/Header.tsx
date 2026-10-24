@@ -189,6 +189,7 @@ export const HeaderTitle = ({
         {showSubtitle ? (
           <ThemedText
             numberOfLines={1}
+            title
             style={[
               {
                 fontSize: subtitleFontSize,

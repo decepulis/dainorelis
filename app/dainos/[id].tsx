@@ -323,7 +323,11 @@ function SongPage({ song }: { song: Song }) {
                   <ThemedText title bold style={styles.mainTitle}>
                     {title}
                   </ThemedText>
-                  {subtitle ? <ThemedText style={styles.subtitle}>{subtitle}</ThemedText> : null}
+                  {subtitle ? (
+                    <ThemedText title style={styles.subtitle}>
+                      {subtitle}
+                    </ThemedText>
+                  ) : null}
                 </View>
               </View>
             )}
@@ -331,7 +335,9 @@ function SongPage({ song }: { song: Song }) {
             {isLargeTitle && variantName && subtitle ? (
               // under a large title the variant's pop-up takes the subtitle, so the title's parenthetical
               // (Lietuvos himnas (Tautiška giesmė)) leads the lyrics, as it does under the custom header's title
-              <ThemedText style={styles.largeTitleParenthetical}>{subtitle}</ThemedText>
+              <ThemedText title style={styles.largeTitleParenthetical}>
+                {subtitle}
+              </ThemedText>
             ) : null}
             <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
             {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}

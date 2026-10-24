@@ -70,7 +70,7 @@ these exact values.
 | Role | Face | Weights | Where |
 |---|---|---|---|
 | Wordmark | Modeka Extended (licensed, WildOnes Design; replaced Modekan in Oct 2026) | 400, 700 | The home header wordmark only, in Bold (`fonts.brandBold`; Regular is `fonts.brand`). |
-| Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 500 list rows, 600 screen titles | Song titles (song screen title, song list rows), playlist names, section headers on the home list. |
+| Titles | **Saira Semi Condensed** (SIL OFL, Google Fonts) | 500 list rows, 600 screen titles | Song titles (song screen title, song list rows) and their parenthetical second lines, playlist names, section headers on the home list. |
 | Everything else | System (SF Pro / Roboto) | as now | Lyrics, chords, translations, descriptions, settings, menus, buttons, search. |
 
 - Saira was picked as the licensable stand-in for v1's Klavika (flat-sided rounds, slightly squared,
