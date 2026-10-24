@@ -64,6 +64,12 @@ const titleWithSubtitleFontSize = 15;
 const titleWithSubtitleLineHeight = 1.25;
 const subtitleFontSize = 13;
 const subtitleLineHeight = 1.25;
+// a modal's title (translation, description), with no large title under it: bigger, and scaled with Dynamic Type only
+// as far as two lines still fit the bar
+const largeTitleFontSize = 20;
+const largeSubtitleFontSize = 15;
+const largeLineHeight = 1.2;
+const largeMaxFontSizeMultiplier = 1.3;
 
 type HeaderTitleProps = {
   scrollRef?: AnimatedRef<Animated.ScrollView> | AnimatedRef<Animated.FlatList<any>>;
@@ -82,6 +88,8 @@ type HeaderTitleProps = {
   subtitle?: string;
   variantName?: string;
   center?: boolean;
+  /** the bigger title of a modal (no scroll-driven title or variant name) */
+  large?: boolean;
 };
 export const HeaderTitle = ({
   scrollRef,
@@ -94,6 +102,7 @@ export const HeaderTitle = ({
   subtitle,
   variantName,
   center,
+  large,
 }: HeaderTitleProps) => {
   const hasTitleWrapper = !!titleWrapper;
   // live Reduce Motion: the title jumps in and out instead of springing
@@ -160,12 +169,17 @@ export const HeaderTitle = ({
             numberOfLines={1}
             bold
             title
+            maxFontSizeMultiplier={large ? largeMaxFontSizeMultiplier : undefined}
             style={[
+              large
+                ? { fontSize: largeTitleFontSize, lineHeight: largeTitleFontSize * largeLineHeight }
+                : {
+                    fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
+                    lineHeight: hasSubtitleOrVariantName
+                      ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
+                      : titleFontSize * titleLineHeight,
+                  },
               {
-                fontSize: hasSubtitleOrVariantName ? titleWithSubtitleFontSize : titleFontSize,
-                lineHeight: hasSubtitleOrVariantName
-                  ? titleWithSubtitleFontSize * titleWithSubtitleLineHeight
-                  : titleFontSize * titleLineHeight,
                 textAlign: 'left',
                 position: 'relative',
                 top: !variantName ? 1 : 0,
@@ -188,10 +202,11 @@ export const HeaderTitle = ({
           <ThemedText
             numberOfLines={1}
             title
+            maxFontSizeMultiplier={large ? largeMaxFontSizeMultiplier : undefined}
             style={[
               {
-                fontSize: subtitleFontSize,
-                lineHeight: subtitleFontSize * subtitleLineHeight,
+                fontSize: large ? largeSubtitleFontSize : subtitleFontSize,
+                lineHeight: large ? largeSubtitleFontSize * largeLineHeight : subtitleFontSize * subtitleLineHeight,
                 textAlign: 'left',
                 position: 'relative',
                 top: 0,
@@ -222,6 +237,7 @@ export const HeaderTitle = ({
         >
           <ThemedText
             numberOfLines={1}
+            title
             style={[
               {
                 fontSize: subtitleFontSize,
