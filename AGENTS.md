@@ -37,7 +37,9 @@ pnpm admin                      # Run the admin app locally (see admin/README.md
 
 `update-songs` reads `ADMIN_EXPORT_URL` and `ADMIN_EXPORT_TOKEN` from `.env`. It
 never talks to the database directly — the admin app's `/api/export` endpoint
-owns the content transforms.
+owns the content transforms. `expo prebuild` runs it too (`plugins/withSongSync.js`):
+every prebuild syncs from the admin first and fails if the sync fails, so store builds
+can't ship stale data. Commit any data it changes.
 
 ### Code Quality
 
@@ -65,7 +67,10 @@ generated from `app.config.ts` and `/plugins` by `npx expo prebuild --clean` (or
 `pod install` (on a Mac; `--no-install` skips it), and `ios/Podfile.lock` isn't committed. Never
 edit the generated folders: the next `--clean` prebuild wipes them. Native config goes in
 `app.config.ts` or a config plugin in `/plugins` (`withAndroidReleaseSigning`,
-`withIosReleaseScheme`, `withAndroidFontScaleConfigChange`: a text size change doesn't recreate the activity). Release builds on Android run R8; keep rules go in
+`withIosReleaseScheme`, `withAndroidFontScaleConfigChange`: a text size change doesn't recreate the activity; `withSongSync`). `npx expo prebuild --clean` syncs songs from the
+admin first and fails without network or `ADMIN_EXPORT_TOKEN`; `SKIP_SONG_SYNC=1` skips that for
+throwaway native builds, never for store builds. `expo start` and `build:web` (Vercel, no token)
+don't sync; they use the committed `songs.ts`. Release builds on Android run R8; keep rules go in
 `expo-build-properties` `android.extraProguardRules` in `app.config.ts`. compileSdk, targetSdk and
 minSdk are the SDK defaults.
 
