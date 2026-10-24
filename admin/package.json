@@ -1,0 +1,42 @@
+{
+  "name": "@dainorelis/admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3100",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "gen:types": "pnpm dlx supabase gen types typescript --project-id wxyvwfvwvbmgojgwgkvr --schema public > src/lib/supabase/database.types.ts && prettier --write src/lib/supabase/database.types.ts",
+    "import:song-file": "tsx scripts/import-from-song-file.ts",
+    "verify": "tsx scripts/verify-round-trip.ts",
+    "export:fixture": "tsx scripts/serve-fixture-export.ts",
+    "generate-metadata": "tsx scripts/generate-metadata.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "next": "^16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.4.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "openai": "^6.15.0",
+    "prettier": "^3.7.4",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.20.6",
+    "typescript": "~6.0.3"
+  }
+}

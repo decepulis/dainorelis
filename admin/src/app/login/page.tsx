@@ -1,0 +1,31 @@
+import { BrandMark, Wordmark } from '@/app/brand';
+
+import LoginForm from './login-form';
+import { redirectTarget } from './redirect-target';
+
+/**
+ * Server component so the `next` redirect target comes off the request rather
+ * than `useSearchParams`, which would force the whole page behind a Suspense
+ * boundary for no benefit.
+ */
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+  const { next } = await searchParams;
+
+  const target = redirectTarget(next);
+
+  return (
+    <main className="mx-auto flex min-h-dvh w-full max-w-sm flex-col justify-center gap-6 p-6">
+      <div>
+        <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-brand text-white">
+          <BrandMark className="size-7" />
+        </div>
+        <h1>
+          <Wordmark className="text-3xl text-link">Admin</Wordmark>
+        </h1>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Sign in to edit the Dainorėlis songs.</p>
+      </div>
+
+      <LoginForm next={target} />
+    </main>
+  );
+}

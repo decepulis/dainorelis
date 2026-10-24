@@ -1,5 +1,4 @@
-import { forwardRef } from 'react';
-import { Platform, StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
 
 import { BlurView } from 'expo-blur';
 
@@ -14,19 +13,18 @@ type Props = {
 /**
  * A view that gets blurry on iOS but stays solid on Android
  */
-const SystemView = forwardRef<View, Props>(({ children, style, shadow = true, ...rest }, ref) => {
-  const primary = useThemeColor('primary');
+export default function SystemView({ children, style, shadow = true, ...rest }: Props) {
+  const chrome = useThemeColor('chrome');
 
-  if (Platform.OS === 'ios') {
+  if (process.env.EXPO_OS === 'ios') {
     return (
       <BlurView
-        ref={ref as any}
         // no need to listen to reduce transparency on iOS; iOS does this for us
         intensity={55}
         tint={'systemChromeMaterialDark'}
         style={[
           {
-            backgroundColor: `${primary}88`,
+            backgroundColor: `${chrome}88`,
           },
           style,
         ]}
@@ -38,10 +36,9 @@ const SystemView = forwardRef<View, Props>(({ children, style, shadow = true, ..
   }
   return (
     <View
-      ref={ref}
       style={[
         {
-          backgroundColor: primary,
+          backgroundColor: chrome,
           // TODO header overflow hidden is preventing this from drawing
           boxShadow: shadow ? '0px 0px 10px rgba(64, 64, 64, 0.1)' : undefined,
         },
@@ -52,9 +49,4 @@ const SystemView = forwardRef<View, Props>(({ children, style, shadow = true, ..
       {children}
     </View>
   );
-});
-
-// Add display name for better debugging
-SystemView.displayName = 'SystemView';
-
-export default SystemView;
+}

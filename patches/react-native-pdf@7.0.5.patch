@@ -1,0 +1,51 @@
+diff --git a/index.js b/index.js
+index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..f99e2fe85a06b4e4c06e30ff1f304eef91804801 100644
+--- a/index.js
++++ b/index.js
+@@ -161,8 +161,10 @@ export default class Pdf extends Component {
+     componentWillUnmount() {
+         this._mounted = false;
+         if (this.lastRNBFTask) {
+-            // this.lastRNBFTask.cancel(err => {
+-            // });
++            // dainorelis: cancel, so a remount (variant switch, Fast Refresh) doesn't race this download
++            try {
++                this.lastRNBFTask.cancel(() => {});
++            } catch (e) {}
+             this.lastRNBFTask = null;
+         }
+ 
+@@ -275,7 +277,8 @@ export default class Pdf extends Component {
+             this.lastRNBFTask = null;
+         }
+ 
+-        const tempCacheFile = cacheFile + '.tmp';
++        // dainorelis: one temp file per download, so two loads of the same URL can't delete each other's file
++        const tempCacheFile = cacheFile + '.' + Date.now() + Math.random().toString(36).slice(2) + '.tmp';
+         // Await the unlink: a fire-and-forget call here lets ReactNativeBlobUtil's
+         // open(path) race with the in-flight delete on Android 14 + New Architecture and
+         // surface as `ENOENT (No such file or directory)` on the temp file. See #1018.
+@@ -341,7 +344,7 @@ export default class Pdf extends Component {
+         } catch (error) {
+             this.lastRNBFTask = null;
+             await this._unlinkFile(tempCacheFile);
+-            await this._unlinkFile(cacheFile);
++            // dainorelis: keep cacheFile; it is only ever written after a verified download
+             this._onError(error);
+         }
+ 
+diff --git a/ios/RNPDFPdf/RNPDFPdfView.mm b/ios/RNPDFPdf/RNPDFPdfView.mm
+index 1bc263bb95c584c950583d42485059b8bf34168b..9184a7a17d0ca5c7e0977b84e224e4a8f4a48c86 100644
+--- a/ios/RNPDFPdf/RNPDFPdfView.mm
++++ b/ios/RNPDFPdf/RNPDFPdfView.mm
+@@ -544,7 +544,9 @@
+                     for (UIView *subview in self->_pdfView.subviews) {
+                         if ([subview isKindOfClass:[UIScrollView class]]) {
+                             UIScrollView *scrollView = (UIScrollView *)subview;
+-                            [scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
++                            // dainorelis: rest at the top of the content insets (e.g. below a transparent
++                            // navigation bar), not at offset 0, which hides the first page's top under the bar
++                            [scrollView setContentOffset:CGPointMake(-scrollView.adjustedContentInset.left, -scrollView.adjustedContentInset.top) animated:NO];
+                             break;
+                         }
+                     }

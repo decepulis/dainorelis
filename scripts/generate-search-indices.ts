@@ -43,4 +43,8 @@ try {
   console.log('✅ Search indices created and saved to title-index.json and lyric-index.json');
 } catch (e) {
   console.error('❌ Error generating search indices:', e);
+  // `update-songs` chains into this script. Exiting 0 would report success
+  // with a fresh songs.ts and stale indices, and the indices are positional,
+  // so search would quietly return the wrong songs.
+  process.exit(1);
 }

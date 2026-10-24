@@ -1,10 +1,10 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
 
 // Import package.json to get version number
-import packageJson from './package.json';
+import packageJson from './package.json' with { type: 'json' };
 
 // Generate build number in format yymmdd##
-const buildToday = '01';
+const buildToday = '02'; // Increment this manually for multiple builds in one day
 const generateBuildNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
@@ -22,65 +22,115 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: packageJson.version,
   orientation: 'default',
   icon: './assets/images/icon.png',
-  scheme: 'myapp',
+  scheme: 'dainorelis',
   userInterfaceStyle: 'automatic',
-  newArchEnabled: true,
+  experiments: {
+    reactCompiler: true,
+    // compiles modules/app-intents (Siri, Shortcuts, Spotlight) into the iOS app target, where
+    // Apple's App Intents metadata extraction can see it
+    inlineModules: { watchedDirectories: ['modules/app-intents'] },
+  },
   ios: {
+    icon: './assets/images/icon.icon',
     supportsTablet: true,
     bundleIdentifier: 'com.dainorelis.dainorelis',
+    appleTeamId: '5BPU37MJR9',
     buildNumber: buildNumber,
+    // song and shared playlist links (https://dainorelis.app/dainos/…, /p?…) open the app; the site serves
+    // .well-known/apple-app-site-association (public/). Only the apex: www redirects there, and Apple doesn't follow
+    // redirects to the file.
+    associatedDomains: ['applinks:dainorelis.app'],
     config: {
       usesNonExemptEncryption: false,
     },
     infoPlist: {
       UIBackgroundModes: ['audio'],
+      // The app is localized in Lithuanian and English, so system UI (edit mode, share sheets,
+      // alerts' system buttons) follows the app's language rather than staying English.
+      // lib/utils/systemLanguage.ts keeps it in step with the in-app language setting.
+      CFBundleDevelopmentRegion: 'lt',
+      CFBundleLocalizations: ['lt', 'en'],
+    },
+    // Required-reason API declarations. Previously a hand-carried PrivacyInfo.xcprivacy in ios/;
+    // declared here so prebuild regenerates it.
+    privacyManifests: {
+      NSPrivacyTracking: false,
+      NSPrivacyCollectedDataTypes: [],
+      NSPrivacyAccessedAPITypes: [
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults',
+          NSPrivacyAccessedAPITypeReasons: ['CA92.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp',
+          NSPrivacyAccessedAPITypeReasons: ['C617.1', '0A2A.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryDiskSpace',
+          NSPrivacyAccessedAPITypeReasons: ['85F4.1', 'E174.1'],
+        },
+        {
+          NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime',
+          NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+        },
+      ],
     },
   },
   android: {
     adaptiveIcon: {
+      // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts
       foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#70997F',
+      monochromeImage: './assets/images/adaptive-icon-monochrome.png',
+      backgroundColor: '#2F5240',
     },
     package: 'com.dainorelis.dainorelis',
     versionCode: parseInt(buildNumber, 10),
-    edgeToEdgeEnabled: true,
+    // song and shared playlist links open the app (Android App Links); the site serves .well-known/assetlinks.json
+    // (public/). Only hosts that serve it: below Android 12, one host failing verification fails them all.
+    intentFilters: [
+      {
+        action: 'VIEW',
+        autoVerify: true,
+        // exactly /p (the query is ignored): a prefix would also take /privacy, /pdf…
+        data: [
+          { scheme: 'https', host: 'dainorelis.app', path: '/p' },
+          { scheme: 'https', host: 'dainorelis.app', pathPrefix: '/dainos/' },
+        ],
+        category: ['BROWSABLE', 'DEFAULT'],
+      },
+    ],
   },
   web: {
     bundler: 'metro',
     output: 'static',
-    favicon: './assets/images/favicon.png',
+    // favicons and the link preview image are in public/ (scripts/generate-brand-assets.ts)
   },
   plugins: [
-    [
-      '@sentry/react-native/expo',
-      {
-        url: 'https://sentry.io/',
-        project: 'react-native',
-        organization: 'darius-cepulis',
-      },
-    ],
     'expo-router',
+    'expo-asset',
+    'expo-image',
+    'expo-web-browser',
     [
       'expo-splash-screen',
       {
+        // the app icon's colors, so the launch continues from the icon
         image: './assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#70997F',
+        backgroundColor: '#2F5240',
+        dark: { backgroundColor: '#141615' },
       },
     ],
     [
       'expo-font',
       {
+        // Modeka Extended (licensed from WildOnes Design) for the wordmark; Saira Semi Condensed (SIL OFL,
+        // assets/fonts/SairaSemiCondensed-OFL.txt) for titles
         fonts: [
-          'node_modules/@expo-google-fonts/nunito/500Medium/Nunito_500Medium.ttf',
-          'node_modules/@expo-google-fonts/nunito/500Medium_Italic/Nunito_500Medium_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/700Bold/Nunito_700Bold.ttf',
-          'node_modules/@expo-google-fonts/nunito/700Bold_Italic/Nunito_700Bold_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/800ExtraBold/Nunito_800ExtraBold.ttf',
-          'node_modules/@expo-google-fonts/nunito/800ExtraBold_Italic/Nunito_800ExtraBold_Italic.ttf',
-          'node_modules/@expo-google-fonts/nunito/900Black/Nunito_900Black.ttf',
-          'node_modules/@expo-google-fonts/nunito/900Black_Italic/Nunito_900Black_Italic.ttf',
+          './assets/fonts/ModekaExtended-Regular.otf',
+          './assets/fonts/ModekaExtended-Bold.otf',
+          './assets/fonts/SairaSemiCondensed-Medium.ttf',
+          './assets/fonts/SairaSemiCondensed-SemiBold.ttf',
         ],
       },
     ],
@@ -88,25 +138,19 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-build-properties',
       {
         android: {
-          minSdkVersion: 26,
-          compileSdkVersion: 35,
-          targetSdkVersion: 35,
+          // compileSdk / targetSdk / minSdk / buildTools come from the SDK's version catalog
+          // (react-native/gradle/libs.versions.toml); none of them is overridden here.
+          // SDK 58 enables R8 in release builds. react-native-pdf's pdfium binding is reached
+          // through JNI by class name, so R8 must not rename or strip it.
+          extraProguardRules: '-keep class io.legere.pdfiumandroid.** { *; }',
         },
       },
     ],
-    [
-      './plugins/withAndroidDrawables',
-      {
-        drawableFiles: [
-          './assets/images/icons/description_20px.xml',
-          './assets/images/icons/feedback_20px.xml',
-          './assets/images/icons/format_quote_20px.xml',
-          './assets/images/icons/menu_book_20px.xml',
-          './assets/images/icons/share_20px.xml',
-          './assets/images/icons/music_note_20px.xml',
-          './assets/images/icons/translate_20px.xml',
-        ],
-      },
-    ],
+    ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
+    '@react-native-vector-icons/fontawesome6',
+    ['expo-app-intents', { directory: 'modules/app-intents' }],
+    './plugins/withAndroidReleaseSigning',
+    './plugins/withAndroidFontScaleConfigChange',
+    './plugins/withIosReleaseScheme',
   ],
 });

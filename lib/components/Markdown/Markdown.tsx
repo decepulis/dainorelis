@@ -32,7 +32,7 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
 ]);
 
 const fontSize = 19;
-const lineHeight = Platform.OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
+const lineHeight = process.env.EXPO_OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
 const chordHeight = 15;
 
 const styles = StyleSheet.create({
@@ -44,13 +44,12 @@ const styles = StyleSheet.create({
 
 type Props = {
   children?: string;
-  showLinksAsChords?: boolean;
   showChords?: boolean;
 };
 /**
  * Lyrics are rendered using a controlled subset of markdown
  */
-export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
+export default function Markdown({ children, showChords = false }: Props) {
   const { isHighContrastEnabled } = useAccessibilityInfo();
 
   // TODO selectable text

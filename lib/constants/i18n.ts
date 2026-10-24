@@ -3,12 +3,15 @@ import { initReactI18next } from 'react-i18next';
 import i18n, { LanguageDetectorModule } from 'i18next';
 
 import { storage } from '../hooks/useStorage';
+import { setSystemLanguage } from '../utils/systemLanguage';
 
 const getLanguageFromStorage: LanguageDetectorModule = {
   type: 'languageDetector',
   init: () => {},
   detect: function () {
     let language = 'lt'; // default to lithuanian
+    // web: Lithuanian until hydrated, like the statically rendered HTML; the root layout then applies the stored one
+    if (process.env.EXPO_OS === 'web') return language;
     const languageJSON = storage.getString('language');
     if (languageJSON) {
       try {
@@ -24,14 +27,57 @@ const getLanguageFromStorage: LanguageDetectorModule = {
 };
 
 const en = {
-  songs: 'Songs',
+  search: 'Search',
+  playlists: 'Playlists',
   allSongs: 'All Songs',
   favoriteSongs: 'Favorites',
-  favoriteSong: 'Favorite',
+  addToFavorites: 'Add to favorites',
+  removeFromFavorites: 'Remove from favorites',
   noHits: 'No search results. Check the spelling or try a new search.',
-  noFavorites1: 'No favorites. When viewing a song, press',
-  noFavorites1Alt: 'No search results in your favorites. When viewing a song, press',
-  noFavorites2: 'to set a favorite',
+  emptyPlaylist: 'No songs here yet. In All Songs, swipe a song to the left, or open it and tap Add to Playlist.',
+  noHitsInPlaylist: 'No search results in this playlist.',
+  playlist: 'Playlist',
+  playlistActions: 'Playlist actions',
+  addToPlaylist: 'Add to Playlist',
+  createPlaylist: 'New Playlist…',
+  newPlaylist: 'New Playlist',
+  newPlaylistMessage: 'Enter a name for this playlist.',
+  playlistName: 'Name',
+  renamePlaylist: 'Rename',
+  sharePlaylist: 'Share',
+  duplicatePlaylist: 'Duplicate',
+  deletePlaylist: 'Delete Playlist',
+  deletePlaylistTitle: 'Delete “{{name}}”?',
+  deletePlaylistMessage: 'This can’t be undone.',
+  shareLink: 'Share Link',
+  linkCopied: 'Link Copied',
+  qrCode: 'QR code for “{{name}}”',
+  sharePlaylistHint: 'Scan the code with a phone’s camera to open this playlist in Dainorėlis.',
+  playlistTooLongForQRCode: 'This playlist is too long for a QR code. Share the link instead.',
+  songCount_one: '{{n}} song',
+  songCount_other: '{{n}} songs',
+  addPlaylist: 'Add Playlist',
+  missingSongs_one: '{{n}} song wasn’t found. Update the app to get it.',
+  missingSongs_other: '{{n}} songs weren’t found. Update the app to get them.',
+  invalidPlaylistLink: 'This playlist link is incomplete.',
+  getTheApp: 'Get the app',
+  hideGetTheApp: 'Don’t show again',
+  appPitch: 'With the Dainorėlis app, the songs are always at hand, even offline.',
+  openPlaylistInApp: 'Already have the app? Open the playlist in it',
+  appStoreBadge: 'Download on the App Store',
+  playStoreBadge: 'Get it on Google Play',
+  removeFromPlaylist: 'Remove from playlist',
+  addToNamedPlaylist: 'Add to “{{name}}”',
+  removeFromNamedPlaylist: 'Remove from “{{name}}”',
+  moveUp: 'Move up',
+  moveDown: 'Move down',
+  cancel: 'Cancel',
+  create: 'Create',
+  save: 'Save',
+  pdfErrorTitle: "Couldn't load the sheet music",
+  pdfErrorHint: 'Check your internet connection and try again.',
+  tryAgain: 'Try again',
+  openSheetMusic: 'Open Sheet Music',
   settingsTitle: 'Settings',
   settingsSpecialThanksTitle: 'Special thanks',
   settingsSpecialThanksSimtmecioDainorelis:
@@ -47,29 +93,44 @@ const en = {
   settingsOurGoalText:
     'We created the "Dainorėlis App" so that Lithuanians around the world could easily find the lyrics of their favorite folk songs. We hope this collection will inspire you to sing anywhere and any time!',
   settingsOurTeamTitle: 'Our team',
+  privacyPolicy: 'Privacy Policy',
+  photoCredit: 'Photo:',
   language: 'Language',
   theme: 'Theme',
   autoTheme: 'Auto',
   darkTheme: 'Dark',
   lightTheme: 'Light',
+  chords: 'Chords',
   showChords: 'Show chords',
-  hideChords: 'Hide chords',
   musicBy: 'Music by ',
   wordsBy: 'Words by ',
   musicAndWordsBy: 'Music and words by ',
   variantsMenuTitle: 'Versions',
   variant: 'Version',
-  lyrics: 'Lyrics',
-  sheetMusic: 'Sheet music',
   mediaMenuTitle: 'Recordings',
-  media: 'Recording',
+  moreOptions: 'More options',
+  back: 'Back',
+  close: 'Close',
+  play: 'Play',
+  pause: 'Pause',
+  playbackFailed: "Couldn't load the recording. Tap to try again.",
+  playbackFailedTitle: "Couldn't load the recording",
+  playbackFailedMessage: 'Check your internet connection and try again.',
+  showPlayerDetails: 'Show player details',
+  hidePlayerDetails: 'Hide player details',
+  chooseRecording: 'Choose recording',
+  skipBack: 'Back 10 seconds',
+  skipForward: 'Forward 10 seconds',
+  variantsMenuHint: 'Shows other versions of this song',
+  clearSearch: 'Clear search',
   feedback: 'Feedback',
   aboutSong: 'About this song',
   translateSong: 'Translation',
-  shareSong: 'Share',
   feedbackUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSdNf7wjGeafKFHlHOG6doyrb_sWHTDif0TXW7qxiuWTbkhfHg/viewform?usp=pp_url&entry.1630106308=',
   aboutSongTitle: 'About this song',
+  songNotFound: 'This song could not be found. It may have been removed.',
+  pageNotFound: 'There is nothing to show here.',
   translationTitle: 'Translation',
   genAiText1: "This content has been generated by AI. If you'd like to help improve it, please",
   genAiText2: 'get in touch!',
@@ -79,67 +140,154 @@ const en = {
   songFestivalRepertoire2: 'Part II: The place of my dreams',
   songFestivalRepertoire3: 'Part III: And the sun rose, again awakening the world',
   songFestivalRepertoire4: "Part IV: Let's open the hope chest of song & dance",
+  reorderHint: 'Touch and hold a song, then drag to reorder.',
+  sectionIndex: 'Jump to letter',
 };
 const lt = {
-  songs: 'Dainos',
-  allSongs: 'Visos',
+  search: 'Ieškoti',
+  playlists: 'Grojaraščiai',
+  allSongs: 'Visos dainos',
   favoriteSongs: 'Mėgstamos',
+  addToFavorites: 'Pridėti prie mėgstamų',
+  removeFromFavorites: 'Pašalinti iš mėgstamų',
   noHits: 'Paieškos rezultatų nėra. Patikrinkite rašybą arba pabandykite naują paiešką.',
-  noFavorites1: 'Žiūrėdami dainą, spauskite',
-  noFavorites1Alt: 'Paieškos rezultatų mėgstamiausiuose nėra. Žiūrėdami dainą, spauskite',
-  noFavorites2: 'mygtuką pažymėti kaip „mėgstamą“',
+  emptyPlaylist:
+    'Čia dar nėra dainų. Skiltyje „Visos dainos“ perbraukite dainą kairėn arba ją atidarykite ir bakstelėkite „Įtraukti į grojaraštį“.',
+  noHitsInPlaylist: 'Šiame grojaraštyje paieškos rezultatų nėra.',
+  playlist: 'Grojaraštis',
+  playlistActions: 'Grojaraščio veiksmai',
+  addToPlaylist: 'Įtraukti į grojaraštį',
+  createPlaylist: 'Naujas grojaraštis…',
+  newPlaylist: 'Naujas grojaraštis',
+  newPlaylistMessage: 'Įveskite grojaraščio pavadinimą.',
+  playlistName: 'Pavadinimas',
+  renamePlaylist: 'Pervardyti',
+  sharePlaylist: 'Bendrinti',
+  duplicatePlaylist: 'Sukurti kopiją',
+  deletePlaylist: 'Ištrinti grojaraštį',
+  deletePlaylistTitle: 'Ištrinti „{{name}}“?',
+  deletePlaylistMessage: 'Šio veiksmo atšaukti negalėsite.',
+  shareLink: 'Bendrinti nuorodą',
+  linkCopied: 'Nuoroda nukopijuota',
+  openSheetMusic: 'Atidaryti natas',
+  qrCode: 'Grojaraščio „{{name}}“ QR kodas',
+  sharePlaylistHint: 'Nuskaitykite kodą telefono kamera, kad atidarytumėte šį grojaraštį Dainorėlyje.',
+  playlistTooLongForQRCode: 'Grojaraštis per ilgas QR kodui. Bendrinkite nuorodą.',
+  songCount_one: '{{n}} daina',
+  songCount_few: '{{n}} dainos',
+  songCount_other: '{{n}} dainų',
+  addPlaylist: 'Pridėti grojaraštį',
+  missingSongs_one: 'Nerasta {{n}} daina. Atnaujinkite programėlę, kad ją gautumėte.',
+  missingSongs_few: 'Nerastos {{n}} dainos. Atnaujinkite programėlę, kad jas gautumėte.',
+  missingSongs_other: 'Nerasta {{n}} dainų. Atnaujinkite programėlę, kad jas gautumėte.',
+  invalidPlaylistLink: 'Ši grojaraščio nuoroda neišsami.',
+  getTheApp: 'Gauti programėlę',
+  hideGetTheApp: 'Daugiau nerodyti',
+  appPitch: 'Su Dainorėlio programėle dainos visada po ranka, net ir be interneto.',
+  openPlaylistInApp: 'Jau turite programėlę? Atidarykite grojaraštį joje',
+  appStoreBadge: 'Atsisiųskite iš „App Store“',
+  playStoreBadge: 'Gauti iš „Google Play“',
+  removeFromPlaylist: 'Pašalinti iš grojaraščio',
+  addToNamedPlaylist: 'Įtraukti į „{{name}}“',
+  removeFromNamedPlaylist: 'Pašalinti iš „{{name}}“',
+  moveUp: 'Perkelti aukštyn',
+  moveDown: 'Perkelti žemyn',
+  cancel: 'Atšaukti',
+  create: 'Sukurti',
+  save: 'Išsaugoti',
+  pdfErrorTitle: 'Nepavyko atsisiųsti natų',
+  pdfErrorHint: 'Patikrinkite interneto ryšį ir bandykite dar kartą.',
+  tryAgain: 'Bandyti dar kartą',
   settingsTitle: 'Nustatymai',
   settingsSpecialThanksTitle: 'Nuoširdi padėka',
   settingsSpecialThanksSimtmecioDainorelis:
     'Benitai Mincevičiūtei ir Ievai Brogienei bei Skautijos Šimtmečio Dainorėlio komandai',
-  settingsSpecialThanksXIDainuSvente: 'XI Dainų Šventės komandai',
+  settingsSpecialThanksXIDainuSvente: 'XI dainų šventės komandai',
   settingsWriteToUsTitle: 'Parašykite mums',
   settingsWriteToUsText1: 'Turite klausimų, pasiūlymų ar tiesiog norite pasveikinti?',
   settingsWriteToUsText2: 'Susisiekite su mumis čia!',
   settingsWriteToUsText3:
-    'Ypač laukiame Jūsų pagalbos kuriant Dainorėlį. Siųskite mums savo stovyklos dainorėlius, akordus, natas ir dainų įrašus.',
+    'Ypač laukiame jūsų pagalbos kuriant Dainorėlį. Siųskite mums savo stovyklos dainorėlius, akordus, natas ir dainų įrašus.',
   settingsAboutUsTitle: 'Apie mus',
   settingsOurGoalTitle: 'Mūsų tikslas',
   settingsOurGoalText:
-    'Mes sukūrėme „Dainorėlis App“, kad lietuviai visame pasaulyje galėtų lengvai rasti savo mylimų liaudies dainų tekstus. Tikimės, kad šis rinkinys Jus įkvėps uždainuoti bet kur ir bet kada!',
+    'Mes sukūrėme „Dainorėlis App“, kad lietuviai visame pasaulyje galėtų lengvai rasti savo mylimų liaudies dainų tekstus. Tikimės, kad šis rinkinys jus įkvėps uždainuoti bet kur ir bet kada!',
   settingsOurTeamTitle: 'Mūsų komanda',
+  privacyPolicy: 'Privatumo politika',
+  photoCredit: 'Nuotrauka:',
   language: 'Kalba',
-  theme: 'Režimas',
+  theme: 'Išvaizda',
   autoTheme: 'Auto',
   darkTheme: 'Tamsus',
   lightTheme: 'Šviesus',
+  chords: 'Akordai',
   showChords: 'Rodyti akordus',
-  hideChords: 'Nerodyti akordų',
   musicBy: 'Muzika: ',
   wordsBy: 'Žodžiai: ',
   musicAndWordsBy: 'Muzika ir žodžiai: ',
   variantsMenuTitle: 'Variantai',
   variant: 'Variantas',
-  lyrics: 'Žodžiai',
-  sheetMusic: 'Natos',
   mediaMenuTitle: 'Įrašai',
-  media: 'Įrašas',
+  moreOptions: 'Daugiau parinkčių',
+  back: 'Atgal',
+  close: 'Uždaryti',
+  play: 'Groti',
+  pause: 'Pristabdyti',
+  playbackFailed: 'Nepavyko paleisti įrašo. Bakstelėkite, kad bandytumėte dar kartą.',
+  playbackFailedTitle: 'Nepavyko paleisti įrašo',
+  playbackFailedMessage: 'Patikrinkite interneto ryšį ir bandykite dar kartą.',
+  showPlayerDetails: 'Rodyti grotuvo informaciją',
+  hidePlayerDetails: 'Slėpti grotuvo informaciją',
+  chooseRecording: 'Pasirinkti įrašą',
+  skipBack: 'Atsukti 10 sekundžių atgal',
+  skipForward: 'Persukti 10 sekundžių pirmyn',
+  variantsMenuHint: 'Rodo kitus šios dainos variantus',
+  clearSearch: 'Išvalyti paiešką',
   feedback: 'Palikti atsiliepimą',
-  favoriteSong: 'Mėgstama',
   aboutSong: 'Rodyti aprašymą',
   translateSong: 'Rodyti vertimą',
-  shareSong: 'Bendrinti dainą',
   feedbackUrl:
     'https://docs.google.com/forms/d/e/1FAIpQLSdfp7P-qYInjfLFxHQyw8uW-PHmGh43HyzXfo34rVwPft4noA/viewform?usp=pp_url&entry.1630106308=',
   aboutSongTitle: 'Apie šią dainą',
+  songNotFound: 'Šios dainos nepavyko rasti. Galbūt ji buvo pašalinta.',
+  pageNotFound: 'Čia nėra ką rodyti.',
   translationTitle: 'Vertimas',
   genAiText1: 'Ši medžiaga buvo sukurta dirbtiniu intelektu. Jei norite padėti ją patobulinti,',
   genAiText2: 'susisiekite su mumis!',
-  songFestival: 'XI-toji Šiaurės Amerikos Dainų Šventė',
+  songFestival: 'XI Šiaurės Amerikos lietuvių dainų šventė',
   songFestivalRepertoire0: 'Himnai ir malda',
   songFestivalRepertoire1: 'Pirma dalis: Lietuviais esame mes gimę',
-  songFestivalRepertoire2: 'Antra dalis: Ten mano svajos...',
+  songFestivalRepertoire2: 'Antra dalis: Ten mano svajos…',
   songFestivalRepertoire3: 'Trečia dalis: Jau saulelė vėl atkopdama budino svietą',
   songFestivalRepertoire4: 'Ketvirta dalis: Atverkime šokio ir dainos skrynelę',
+  reorderHint: 'Palieskite ir palaikykite dainą, tada vilkite, kad pertvarkytumėte.',
+  sectionIndex: 'Pereiti prie raidės',
 };
 
-export async function initI18n() {
-  await i18n
+/**
+ * The key for a count's plural form: `${key}_one`, `_few` (Lithuanian) or `_other`, with the count as {{n}}. Not
+ * i18next's own plurals: they need Intl.PluralRules, which Hermes doesn't have on iOS.
+ */
+export function pluralKey(key: string, n: number, language: string) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (language === 'lt') {
+    if (mod10 === 1 && mod100 !== 11) return `${key}_one`;
+    if (mod10 >= 2 && (mod100 < 12 || mod100 > 19)) return `${key}_few`;
+    return `${key}_other`;
+  }
+  return n === 1 ? `${key}_one` : `${key}_other`;
+}
+
+// Synchronous: the resources are inline and the language detector is a sync MMKV read, so with
+// initAsync: false i18next is initialized (language set) by the time this returns.
+export function initI18n() {
+  if (i18n.isInitialized) return; // e.g. the root layout re-evaluated by Fast Refresh
+  // fires on init and on every change from Settings
+  i18n.on('languageChanged', setSystemLanguage);
+  // i18next's documented chaining API, not the named `use` export
+  // eslint-disable-next-line import/no-named-as-default-member
+  i18n
     .use(initReactI18next)
     .use(getLanguageFromStorage)
     .init({
@@ -148,6 +296,7 @@ export async function initI18n() {
         lt: { translation: lt },
       },
       fallbackLng: 'lt',
+      initAsync: false,
       interpolation: {
         escapeValue: false, // React already escapes values
       },
@@ -156,4 +305,3 @@ export async function initI18n() {
       },
     });
 }
-export default i18n;

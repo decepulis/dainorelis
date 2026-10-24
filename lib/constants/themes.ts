@@ -1,70 +1,94 @@
 import { Platform, PlatformColor, TextStyle } from 'react-native';
 
-import type { Theme as LibTheme } from '@react-navigation/native';
+import type { Theme as LibTheme } from 'expo-router/react-navigation';
 
 export const fonts = {
   regular: {
-    fontFamily: Platform.select({ ios: 'Nunito-Medium', default: 'Nunito_500Medium' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontWeight: '400',
   },
   regularItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-MediumItalic', default: 'Nunito_500Medium_Italic' }),
-    fontWeight: Platform.select({ default: '500', android: 'normal' }),
+    fontWeight: '400',
     fontStyle: 'italic',
   },
   medium: {
-    fontFamily: Platform.select({ ios: 'Nunito-Bold', default: 'Nunito_700Bold' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontWeight: '700',
   },
   mediumItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-BoldItalic', default: 'Nunito_700Bold_Italic' }),
-    fontWeight: Platform.select({ default: '700', android: 'normal' }),
+    fontWeight: '700',
     fontStyle: 'italic',
   },
   bold: {
-    fontFamily: Platform.select({ ios: 'Nunito-ExtraBold', default: 'Nunito_800ExtraBold' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontWeight: '800',
   },
   boldItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-ExtraBoldItalic', default: 'Nunito_800ExtraBold_Italic' }),
-    fontWeight: Platform.select({ default: '800', android: 'normal' }),
+    fontWeight: '800',
     fontStyle: 'italic',
   },
   heavy: {
-    fontFamily: Platform.select({ ios: 'Nunito-Black', default: 'Nunito_900Black' }),
-    fontWeight: Platform.select({ default: '900', android: 'normal' }),
+    fontWeight: '900',
   },
   heavyItalic: {
-    fontFamily: Platform.select({ ios: 'Nunito-BlackItalic', default: 'Nunito_900Black_Italic' }),
-    fontWeight: Platform.select({ default: '900', android: 'normal' }),
+    fontWeight: '900',
     fontStyle: 'italic',
+  },
+  // Modeka Extended, the wordmark's face, named like the title faces below. Bold is bundled too
+  brand: {
+    fontFamily: 'ModekaExtended-Regular',
+    fontWeight: Platform.OS === 'ios' ? '400' : undefined,
+  },
+  brandBold: {
+    fontFamily: 'ModekaExtended-Bold',
+    fontWeight: Platform.OS === 'ios' ? '700' : undefined,
+  },
+  // Saira Semi Condensed, for titles (song titles, playlist names, the list's section headers). One family name per
+  // weight, the file's (and PostScript) name: Android picks a bundled font by file name and can't switch weights
+  // through fontWeight. iOS gets the font's own weight too, so UIKit's weight matching within the family keeps it
+  titleMedium: {
+    fontFamily: 'SairaSemiCondensed-Medium',
+    fontWeight: Platform.OS === 'ios' ? '500' : undefined,
+  },
+  titleSemiBold: {
+    fontFamily: 'SairaSemiCondensed-SemiBold',
+    fontWeight: Platform.OS === 'ios' ? '600' : undefined,
   },
 } as { [weight: string]: TextStyle };
 
-export interface Theme extends LibTheme {
-  colors: LibTheme['colors'] & {
+export interface Theme extends Omit<LibTheme, 'colors'> {
+  colors: {
+    /** eglė (fir), the one tint: light in dark mode, so anything filled with it takes `onPrimary` on top */
+    primary: string;
+    /** text and icons on a `primary` fill */
+    onPrimary: string;
+    /**
+     * the green bars that carry white content (the custom header, its buttons, the search bar, the player) and the
+     * band under the iOS 26 large title: deep eglė in both modes (dark mode's `primary` is a light color, so it can't
+     * be that). Content on it is full white
+     */
+    chrome: string;
+    background: string;
+    card: string;
+    text: string;
+    border: string;
+    notification: string;
     card0: string;
     separator: string;
   };
 }
+// Brand v3 (Audinys): docs/plans/brand-v3-type-and-color.md
 export const LightTheme: Theme = {
   dark: false,
   colors: {
-    primary: '#70997F',
-    card0: '#e4e4dd', // darker
-    background: '#f1f1ee', // normal
-    card: '#ffffff', // brighter
-    text: '#121314',
-    border: '#121314',
+    primary: '#2F5240', // eglė
+    onPrimary: '#FFFFFF',
+    chrome: '#2F5240', // eglė
+    card0: '#E2E0D8', // sunken
+    background: '#EEECE5', // linas
+    card: '#FFFFFF', // raised
+    text: '#18201B',
+    border: '#18201B',
     notification: 'rgb(255, 69, 58)',
-    ...Platform.select({
-      ios: {
-        separator: PlatformColor('separator') as unknown as string,
-      },
-      default: {
-        separator: `#12131480`,
-      },
-    }),
+    // a ternary, not Platform.select: that builds both branches, and web has no PlatformColor
+    separator: process.env.EXPO_OS === 'ios' ? (PlatformColor('separator') as unknown as string) : `#18201B80`,
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
@@ -72,27 +96,24 @@ export const LightHighContrastTheme: Theme = {
   ...LightTheme,
   colors: {
     ...LightTheme.colors,
-    primary: '#508062',
+    primary: '#234033',
+    chrome: '#234033',
   },
 };
 export const DarkTheme: Theme = {
-  dark: false,
+  dark: true,
   colors: {
-    primary: '#53745e',
-    card0: '#080910', // darker
-    background: '#121314', // dark
-    card: '#343638', // brighter
-    text: '#FEF9F7',
-    border: '#FEF9F7',
+    primary: '#8FBA9C', // eglė, lifted
+    onPrimary: '#0E1B13',
+    chrome: '#2F5240', // eglė
+    card0: '#0C0E0D', // sunken
+    background: '#141615', // naktis
+    card: '#1F2220', // raised
+    text: '#ECEAE3',
+    border: '#ECEAE3',
     notification: 'rgb(255, 69, 58)',
-    ...Platform.select({
-      ios: {
-        separator: PlatformColor('separator') as unknown as string,
-      },
-      default: {
-        separator: `#FEF9F780`,
-      },
-    }),
+    // a ternary, not Platform.select: that builds both branches, and web has no PlatformColor
+    separator: process.env.EXPO_OS === 'ios' ? (PlatformColor('separator') as unknown as string) : `#ECEAE380`,
   },
   fonts: fonts as Theme['fonts'], // shhh it's fine
 };
@@ -100,6 +121,7 @@ export const DarkHighContrastTheme: Theme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: '#375943',
+    primary: '#A9CDB4',
+    chrome: '#234033',
   },
 };
