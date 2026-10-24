@@ -270,7 +270,7 @@ change, retake the captures and rerun the script.
 
 **Layout**: Reading content sits in a centred column from `useContentColumnStyle` (max width, padding clear of the horizontal safe area; plain flex, no window maths).
 
-**Jump-to-letter index**: All songs (not a playlist, not a search) gets a Contacts-style letter index at the trailing edge (`lib/components/Index/SectionIndex.tsx`), shown once the list reaches the bar. Rows have no fixed height (titles wrap with the width and text size), so `RowMeasurer` lays every row out unseen and the FlatList gets an exact `getItemLayout`; row keys carry the width and text size, because the list prefers its cached (stale) measurements of rows scrolled away.
+**Jump-to-letter index**: All songs (not a playlist, not a search) gets a Contacts-style letter index (`lib/components/Index/SectionIndex.tsx`) at the trailing edge, inside the horizontal safe area; in the wide layout it sits just outside the card, in the gutter, and where the gutter is too narrow, at the window's edge over the card, whose rows then keep their icons clear of it (`sectionIndexRowPadding`). Rows have no fixed height (titles wrap with the width and text size), so `RowMeasurer` lays every row out unseen and the FlatList gets an exact `getItemLayout`; row keys carry the width and text size, because the list prefers its cached (stale) measurements of rows scrolled away.
 
 **Platform-Specific Code**: Platform variants use `.web.ts` / `.android.tsx` extensions (e.g., `useColorScheme.web.ts`, `Switch.android.tsx`). For small branches inside a file prefer `process.env.EXPO_OS`, which Metro inlines and tree-shakes.
 

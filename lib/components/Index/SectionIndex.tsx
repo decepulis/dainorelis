@@ -45,10 +45,11 @@ const maxScale = 1.4;
 const capsuleWidth = 20;
 const capsulePadding = 5;
 const leadingSlop = 44 - capsuleWidth;
-/** how far the index reaches in from the screen's trailing edge */
-const sectionIndexWidth = capsuleWidth;
 /** the trailing padding rows need beside the index, to keep their icons clear of its capsule */
-export const sectionIndexRowPadding = sectionIndexWidth + Math.round(padding / 3);
+export const sectionIndexRowPadding = capsuleWidth + Math.round(padding / 3);
+// beside a wide layout's card the index sits in the gutter, reaching as far out from the card as it reaches into
+// the rows it sits over: a column of the card's width plus that reach either side, centred as the card is
+const columnMaxWidth = maxWidth + sectionIndexRowPadding * 2;
 // on Liquid Glass the letters take the label color, as the player's controls do; on the app's green surface, white
 const letterColor = isLiquidGlassAvailable() ? DynamicColorIOS({ light: '#000000', dark: '#ffffff' }) : '#ffffff';
 // the letter shown large mid-screen while the index is touched, and how long it stays once the finger lifts
@@ -149,8 +150,10 @@ type SectionIndexProps = {
  * down a letter at a time.
  *
  * It's placed by layout alone, never from the window's size or the safe area insets (which can lag a resize, a fold
- * or a rotation by a render): at the screen's trailing edge, inside the horizontal safe area (measured natively),
- * outside the content column.
+ * or a rotation by a render): at the screen's trailing edge, inside the horizontal safe area (measured natively). In
+ * a wide layout it belongs to the list's card, as UIKit's index belongs to its table: just outside the card's
+ * trailing edge, or, where the gutter is too narrow for it, at the screen's edge over the card, whose rows then keep
+ * their icons clear of it.
  */
 export default function SectionIndex({
   sections,
@@ -282,33 +285,35 @@ export default function SectionIndex({
         onLayout={(e) => setAvailableHeight(e.nativeEvent.layout.height)}
       >
         {availableHeight > 0 ? (
-          <GestureDetector gesture={gesture}>
-            <View style={styles.touchArea}>
-              <Capsule
-                shadow={false}
-                accessible
-                accessibilityRole="adjustable"
-                accessibilityLabel={t('sectionIndex')}
-                accessibilityValue={{ text: sections[current]?.letter }}
-                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-                onAccessibilityAction={onAccessibilityAction}
-                style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
-              >
-                {rows.map((letter, i) => (
-                  <ThemedText
-                    key={i}
-                    title
-                    bold
-                    maxFontSizeMultiplier={maxScale}
-                    // the line height scales with the text, as rowHeight does
-                    style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
-                  >
-                    {letter}
-                  </ThemedText>
-                ))}
-              </Capsule>
-            </View>
-          </GestureDetector>
+          <View style={styles.column} pointerEvents="box-none">
+            <GestureDetector gesture={gesture}>
+              <View style={styles.touchArea}>
+                <Capsule
+                  shadow={false}
+                  accessible
+                  accessibilityRole="adjustable"
+                  accessibilityLabel={t('sectionIndex')}
+                  accessibilityValue={{ text: sections[current]?.letter }}
+                  accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+                  onAccessibilityAction={onAccessibilityAction}
+                  style={[styles.capsule, { height: columnHeight + capsulePadding * 2 }]}
+                >
+                  {rows.map((letter, i) => (
+                    <ThemedText
+                      key={i}
+                      title
+                      bold
+                      maxFontSizeMultiplier={maxScale}
+                      // the line height scales with the text, as rowHeight does
+                      style={[styles.letter, { color: letterColor, height: rowHeight, lineHeight: letterHeight }]}
+                    >
+                      {letter}
+                    </ThemedText>
+                  ))}
+                </Capsule>
+              </View>
+            </GestureDetector>
+          </View>
         ) : null}
       </SafeAreaView>
     </>
@@ -405,6 +410,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+    alignItems: 'center',
+  },
+  column: {
+    flex: 1,
+    width: '100%',
+    maxWidth: columnMaxWidth,
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
