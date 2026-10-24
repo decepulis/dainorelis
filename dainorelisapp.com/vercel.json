@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "echo 'Redirect-only deployment; nothing to install'",
-  "buildCommand": "mkdir -p public",
+  "buildCommand": "mkdir -p public && touch public/.keep",
   "outputDirectory": "public",
   "redirects": [{ "source": "/:path(.*)", "destination": "https://dainorelis.app/:path", "permanent": true }]
 }
