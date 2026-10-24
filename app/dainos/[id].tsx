@@ -191,8 +191,10 @@ function SongPage({ song }: { song: Song }) {
   const overflowMenu = useSongOverflowMenu(song, hasChords, shareVariantId);
   const variantTitle = (variant: LyricsType | PDFs) =>
     i18n.language === 'en' ? variant['EN Variant Name'] : variant['Variant Name'];
+  // the variant takes the subtitle, so a parenthetical (Lietuvos himnas (Tautiška giesmė)) stays in the title
+  const nativeTitle = variantName && subtitle ? `${title} ${subtitle}` : title;
   const nativeHeader = {
-    title: showSongTitle ? title : (variantName ?? ''),
+    title: showSongTitle ? nativeTitle : (variantName ?? ''),
     headerConfig: {
       // the variant (whose pop-up sits under the large title), else the title's parenthetical, e.g. Lietuva
       // (Kokia nuostabi); truncated, so a long one doesn't crowd the title and the bar buttons
@@ -337,13 +339,6 @@ function SongPage({ song }: { song: Song }) {
                 </View>
               )}
 
-              {isLargeTitle && variantName && subtitle ? (
-                // under a large title the variant's pop-up takes the subtitle, so the title's parenthetical
-                // (Lietuvos himnas (Tautiška giesmė)) leads the lyrics, as it does under the custom header's title
-                <ThemedText title style={styles.largeTitleParenthetical}>
-                  {subtitle}
-                </ThemedText>
-              ) : null}
               <Markdown showChords={hasChords && showChords}>{activeVariant['Lyrics & Chords']}</Markdown>
               {hasFootnote ? <View style={[styles.hr, { backgroundColor: text }]} /> : null}
               {hasFootnote ? <Markdown>{activeVariant['Notes']}</Markdown> : null}
@@ -523,11 +518,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 19,
-  },
-  largeTitleParenthetical: {
-    fontSize: 17,
-    opacity: 0.7,
-    marginBottom: padding,
   },
   pdfLoading: {
     flex: 1,
