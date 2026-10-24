@@ -62,8 +62,6 @@ import withAlpha from '@/lib/utils/withAlpha';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
-// the forest photo's top edge, feathered into under the status bar: naktis, the dark background
-const forestFeather = '#121614';
 // the bottom bar's buttons, which the hint below a reorderable playlist stays clear of
 const bottomBarHeight = 44;
 
@@ -259,6 +257,7 @@ export default function Index() {
   // scroll view's own background: a background on a view around it would keep that view from being flattened away,
   // and react-native-screens and UIKit only find a scroll view at the start of the screen's view hierarchy (for the
   // navigation bar's scroll edge background)
+  const backdrop = wideLayoutMode ? card0 : background;
   const listStyle = { backgroundColor: wideLayoutMode ? card0 : undefined };
   const contentContainerStyle = {
     paddingLeft: inset.left,
@@ -296,10 +295,9 @@ export default function Index() {
         contentFit="cover"
         contentPosition="bottom"
       ></Image>
-      {/* a dark feather under the status bar, in both modes: the photo is dark at the top, so a light one showed as a
-          pale band */}
+      {/* feather the top into the backdrop that shows above it when overscrolled, so pulling down shows no seam */}
       <LinearGradient
-        colors={[forestFeather, withAlpha(forestFeather, '00')]}
+        colors={[backdrop, withAlpha(backdrop, '00')]}
         style={{
           position: 'absolute',
           top: 0,
