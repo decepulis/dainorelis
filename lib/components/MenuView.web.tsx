@@ -204,7 +204,6 @@ const styles = StyleSheet.create({
   menu: {
     position: 'absolute',
     width: menuWidth,
-    borderRadius: padding * 0.75,
     paddingVertical: padding / 4,
     overflow: 'hidden',
     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
