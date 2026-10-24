@@ -100,7 +100,8 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   truncating it; lines a large title up with a centred content column (`largeTitleMaxWidth`, through
   the bar's layout margins); makes the inline subtitle readable, and sets the subtitles (inline, under the large
   title, the variant pop-up) in the title font's family at Medium (`headerTitleStyle.fontFamily`, scaled with
-  Dynamic Type);
+  Dynamic Type; the one under the large title at Title 3); gives the inline title and subtitle the system font's line
+  height, so Saira's tall line metrics don't space them apart;
   makes large title (and subtitle) colors follow the bar's scroll state; and adds the screen prop
   `topScrollEdgeEffectThreshold` (iOS 27's bar background for screens without a native title, see
   `useTopScrollEdgeEffect`), which switches the top scroll edge effect to hard past the threshold on

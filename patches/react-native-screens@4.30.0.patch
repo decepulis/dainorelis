@@ -577,7 +577,7 @@ index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f479
  @property (nonatomic, retain) NSNumber *titleFontSize;
  @property (nonatomic, retain) NSString *titleFontWeight;
 diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
-index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b78d665a7 100644
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..934d308cb9381ef0651204b6883a18ddb5da6d35 100644
 --- a/ios/RNSScreenStackHeaderConfig.mm
 +++ b/ios/RNSScreenStackHeaderConfig.mm
 @@ -21,6 +21,7 @@
@@ -588,7 +588,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  #import "RNSSearchBar.h"
  #import "UINavigationBar+RNSUtility.h"
  
-@@ -45,7 +46,211 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -45,7 +46,244 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
  
  @end
  
@@ -788,6 +788,39 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
 +                             .pointSize];
 +  return [[UIFontMetrics metricsForTextStyle:textStyle] scaledFontForFont:font];
 +}
++
++// PATCH(dainorelis): UIKit stacks the inline title and subtitle labels at their fonts' line heights, and a title face
++// with tall line metrics (Saira's are 1.57em, room for stacked marks) leaves a wide gap between the two. Give such a
++// font a line as tall as the system font's, its cap height plus a quarter em above (the caron of Ž) and below
++// (descenders), and move the glyphs down into it: a label clips what reaches past its line. The bar caps its text
++// at a size of its own (the largest non-accessibility one) and sets the line for that size
++static NSDictionary<NSAttributedStringKey, id> *RNSDainorelisTightLineAttributes(
++    NSDictionary<NSAttributedStringKey, id> *attributes,
++    UIFontTextStyle textStyle)
++{
++  UIFont *font = attributes[NSFontAttributeName];
++  if (textStyle != nil) {
++    const CGFloat largestPointSize = [UIFont
++        preferredFontForTextStyle:textStyle
++        compatibleWithTraitCollection:[UITraitCollection traitCollectionWithPreferredContentSizeCategory:
++                                                             UIContentSizeCategoryExtraExtraExtraLarge]]
++                                         .pointSize;
++    font = [font fontWithSize:MIN(font.pointSize, largestPointSize)];
++  }
++  const CGFloat lineHeight = ceil(font.capHeight + font.pointSize / 2);
++  if (font == nil || font.lineHeight <= lineHeight) {
++    return attributes;
++  }
++  NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
++  paragraphStyle.minimumLineHeight = lineHeight;
++  paragraphStyle.maximumLineHeight = lineHeight;
++  paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
++  NSMutableDictionary<NSAttributedStringKey, id> *tightAttributes = [attributes mutableCopy];
++  tightAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
++  // the line keeps the font's descent under the baseline and gives up the rest of its height at the top
++  tightAttributes[NSBaselineOffsetAttributeName] = @(lineHeight + font.descender - font.capHeight - font.pointSize / 4);
++  return tightAttributes;
++}
 +#endif
 +
  @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
@@ -800,7 +833,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  @end
  
  @implementation RNSScreenStackHeaderConfig {
-@@ -62,6 +267,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+@@ -62,6 +300,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
    /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
    bool _needsViewControllerUpdateInCurrentTransaction;
    RCTImageLoader *_imageLoader;
@@ -810,7 +843,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  }
  
  - (instancetype)initWithFrame:(CGRect)frame
-@@ -235,6 +443,35 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -235,6 +476,35 @@ RNS_IGNORE_SUPER_CALL_END
  }
  #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
  
@@ -846,7 +879,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
  {
    NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
-@@ -252,9 +489,104 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -252,9 +522,104 @@ RNS_IGNORE_SUPER_CALL_END
        .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
    };
  
@@ -951,7 +984,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
  {
    for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
-@@ -493,6 +825,13 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -493,6 +858,13 @@ RNS_IGNORE_SUPER_CALL_END
      } else {
        largeAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:[largeSize floatValue] weight:UIFontWeightBold];
      }
@@ -965,24 +998,26 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  
      appearance.largeTitleTextAttributes = largeAttrs;
    }
-@@ -503,6 +842,16 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -503,6 +875,18 @@ RNS_IGNORE_SUPER_CALL_END
    } else if (appearance.backIndicatorImage) {
      [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
    }
 +#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
 +  // dainorelis: the default inline subtitle (~11pt, secondary grey) is hard to read, especially over
-+  // colored content; use Footnote (Dynamic Type, in the title's family) in the label color
++  // colored content; use Footnote (Dynamic Type, in the title's family) in the label color. The title and subtitle
++  // take the system font's line height, so they stack as closely as its own do
 +  if (@available(iOS 26.0, *)) {
-+    appearance.subtitleTextAttributes = @{
++    appearance.subtitleTextAttributes = RNSDainorelisTightLineAttributes(@{
 +      NSFontAttributeName : RNSDainorelisSubtitleFont(config, UIFontTextStyleFootnote),
 +      NSForegroundColorAttributeName : [UIColor labelColor],
-+    };
++    }, UIFontTextStyleFootnote);
++    appearance.titleTextAttributes = RNSDainorelisTightLineAttributes(appearance.titleTextAttributes, nil);
 +  }
 +#endif
    return appearance;
  }
  
-@@ -559,8 +908,18 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -559,8 +943,18 @@ RNS_IGNORE_SUPER_CALL_END
    if (config.largeTitle) {
      navctr.navigationBar.prefersLargeTitles = YES;
    }
@@ -1001,7 +1036,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  
  #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
    if (@available(iOS 27.0, *)) {
-@@ -603,6 +962,17 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -603,6 +997,17 @@ RNS_IGNORE_SUPER_CALL_END
    }
    navitem.scrollEdgeAppearance = scrollEdgeAppearance;
  #if !TARGET_OS_TV
@@ -1019,7 +1054,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
    navitem.hidesBackButton = config.hideBackButton;
    navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
  #endif
-@@ -695,11 +1065,161 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -695,11 +1100,162 @@ RNS_IGNORE_SUPER_CALL_END
  
    // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
    // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
@@ -1090,7 +1125,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
 +      buttonConfig.imagePlacement = NSDirectionalRectEdgeTrailing;
 +      buttonConfig.imagePadding = 4;
 +      buttonConfig.preferredSymbolConfigurationForImage =
-+          [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleFootnote
++          [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleBody
 +                                                           scale:UIImageSymbolScaleSmall];
 +      buttonConfig.contentInsets = NSDirectionalEdgeInsetsZero;
 +      // square corners: the background's rounded ones (it has none to show) clip the label's corners with it, and
@@ -1099,7 +1134,8 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
 +      UIBackgroundConfiguration *buttonBackground = buttonConfig.background;
 +      buttonBackground.cornerRadius = 0;
 +      buttonConfig.background = buttonBackground;
-+      UIFont *subtitleFont = RNSDainorelisSubtitleFont(config, UIFontTextStyleSubheadline);
++      // Title 3 (20pt at the default size): a step under the large title, and easy to read and tap
++      UIFont *subtitleFont = RNSDainorelisSubtitleFont(config, UIFontTextStyleTitle3);
 +      buttonConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(
 +          NSDictionary<NSAttributedStringKey, id> *attributes) {
 +        NSMutableDictionary *updated = [attributes mutableCopy];
@@ -1184,7 +1220,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  
    // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
    // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
-@@ -830,6 +1350,60 @@ RNS_IGNORE_SUPER_CALL_END
+@@ -830,6 +1386,60 @@ RNS_IGNORE_SUPER_CALL_END
    }
  }
  
@@ -1245,7 +1281,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
                                           withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
  {
-@@ -1040,6 +1614,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1040,6 +1650,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
  {
    [super prepareForRecycle];
    _initialPropsSet = NO;
@@ -1256,7 +1292,7 @@ index e217b2411d20c85db3ec84bb87765c1e9407fd3b..eea720d641031c8e7457b69b9123b88b
  
    _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
  }
-@@ -1078,6 +1656,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+@@ -1078,6 +1692,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
    }
  
    _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
