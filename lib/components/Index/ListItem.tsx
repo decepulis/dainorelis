@@ -506,11 +506,11 @@ export function ListItemContent({
       ]}
     >
       <View style={styles.itemText}>
-        <ThemedText title style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
+        <ThemedText title="regular" style={[styles.text, { letterSpacing: isBoldTextEnabled ? undefined : -0.05 }]}>
           {title}
         </ThemedText>
         {subtitle ? (
-          <ThemedText title style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
+          <ThemedText title="regular" style={[styles.subtitle, { opacity: isHighContrastEnabled ? 1 : 0.75 }]}>
             {subtitle}
           </ThemedText>
         ) : null}

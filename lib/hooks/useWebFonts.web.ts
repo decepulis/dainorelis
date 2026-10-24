@@ -8,6 +8,7 @@ export default function useWebFonts() {
     'ModekaExtended-Regular': require('@/assets/fonts/ModekaExtended-Regular.woff'),
     'ModekaExtended-Bold': require('@/assets/fonts/ModekaExtended-Bold.woff'),
     /* eslint-enable @typescript-eslint/no-require-imports */
+    'SairaSemiCondensed-Regular': require('@/assets/fonts/SairaSemiCondensed-Regular.ttf'),
     'SairaSemiCondensed-Medium': require('@/assets/fonts/SairaSemiCondensed-Medium.ttf'),
     'SairaSemiCondensed-SemiBold': require('@/assets/fonts/SairaSemiCondensed-SemiBold.ttf'),
     // the families react-native-vector-icons names on web

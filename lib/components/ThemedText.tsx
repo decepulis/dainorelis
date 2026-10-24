@@ -8,8 +8,11 @@ import useAccessibilityInfo from '../hooks/useAccessibilityInfo';
 type Props = {
   bold?: boolean;
   italic?: boolean;
-  /** a title (song, playlist, section) in Saira Semi Condensed: Medium, or SemiBold with `bold` (or Bold Text) */
-  title?: boolean;
+  /**
+   * a title (song, playlist, section) in Saira Semi Condensed: Medium, or SemiBold with `bold`; `'regular'` (the
+   * song list's rows) is Regular. Bold Text takes each up a weight.
+   */
+  title?: boolean | 'regular';
   ref?: React.Ref<TextInstance>;
 } & TextProps;
 export default function ThemedText({ bold, italic, title, style, ...rest }: Props) {
@@ -24,8 +27,9 @@ export default function ThemedText({ bold, italic, title, style, ...rest }: Prop
 
   let font = regularFont;
   if (title) {
-    // only the two weights are bundled; Bold Text takes Medium up to SemiBold
-    font = bold || isBoldTextEnabled ? fonts.titleSemiBold : fonts.titleMedium;
+    // the three bundled weights; Bold Text goes one up, SemiBold being the heaviest
+    const weights = [fonts.titleRegular, fonts.titleMedium, fonts.titleSemiBold];
+    font = weights[Math.min((title === 'regular' ? 0 : bold ? 2 : 1) + (isBoldTextEnabled ? 1 : 0), 2)];
   } else if (bold && italic) {
     font = boldItalicFont;
   } else if (bold) {
