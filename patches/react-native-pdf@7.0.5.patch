@@ -1,5 +1,5 @@
 diff --git a/index.js b/index.js
-index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..f99e2fe85a06b4e4c06e30ff1f304eef91804801 100644
+index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..bb41a663c97ddbd358a78983a226db5b479b4fe5 100644
 --- a/index.js
 +++ b/index.js
 @@ -161,8 +161,10 @@ export default class Pdf extends Component {
@@ -34,11 +34,45 @@ index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..f99e2fe85a06b4e4c06e30ff1f304eef
              this._onError(error);
          }
  
+@@ -452,7 +455,9 @@ export default class Pdf extends Component {
+     render() {
+         if (Platform.OS === "android" || Platform.OS === "ios" || Platform.OS === "windows") {
+                 return (
+-                    <View style={[this.props.style,{overflow: 'hidden'}]}>
++                    // PATCH(dainorelis): iOS's native view turns paddingBottom into a content inset, so this wrapper
++                    // drops it there; Android's viewer has no inset, so its pages simply end above the padding
++                    <View style={[this.props.style,{overflow: 'hidden'},Platform.OS === "ios" ? {paddingBottom: 0} : null]}>
+                         {!this.state.isDownloaded?
+                             (<View
+                                 style={[styles.progressContainer, this.props.progressContainerStyle]}
 diff --git a/ios/RNPDFPdf/RNPDFPdfView.mm b/ios/RNPDFPdf/RNPDFPdfView.mm
-index 1bc263bb95c584c950583d42485059b8bf34168b..9184a7a17d0ca5c7e0977b84e224e4a8f4a48c86 100644
+index 1bc263bb95c584c950583d42485059b8bf34168b..85922fa978fba9254c265f8fa1dab5eed26c8528 100644
 --- a/ios/RNPDFPdf/RNPDFPdfView.mm
 +++ b/ios/RNPDFPdf/RNPDFPdfView.mm
-@@ -544,7 +544,9 @@
+@@ -214,6 +214,22 @@ using namespace facebook::react;
+     [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
+     _pdfView.frame = CGRectMake(0, 0, layoutMetrics.frame.size.width, layoutMetrics.frame.size.height);
+ 
++    // PATCH(dainorelis): paddingBottom insets the scrolling content rather than the view, so the last page
++    // can scroll clear of whatever floats over the PDF's bottom edge (the song screen's player)
++    CGFloat bottomInset = layoutMetrics.contentInsets.bottom;
++    for (UIView *subview in _pdfView.subviews) {
++        if ([subview isKindOfClass:[UIScrollView class]]) {
++            UIScrollView *scrollView = (UIScrollView *)subview;
++            UIEdgeInsets contentInset = scrollView.contentInset;
++            contentInset.bottom = bottomInset;
++            scrollView.contentInset = contentInset;
++            UIEdgeInsets indicatorInsets = scrollView.verticalScrollIndicatorInsets;
++            indicatorInsets.bottom = bottomInset;
++            scrollView.verticalScrollIndicatorInsets = indicatorInsets;
++            break;
++        }
++    }
++
+     NSMutableArray *mProps = [_changedProps mutableCopy];
+     if (_initialed) {
+         [mProps removeObject:@"path"];
+@@ -544,7 +560,9 @@ using namespace facebook::react;
                      for (UIView *subview in self->_pdfView.subviews) {
                          if ([subview isKindOfClass:[UIScrollView class]]) {
                              UIScrollView *scrollView = (UIScrollView *)subview;
