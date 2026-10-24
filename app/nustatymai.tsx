@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
@@ -14,10 +14,12 @@ import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
 import Switch from '@/lib/components/Switch';
 import ThemedText from '@/lib/components/ThemedText';
 import padding from '@/lib/constants/padding';
+import useConfirm from '@/lib/hooks/useConfirm';
 import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import { clearSheetMusicCache, formatMegabytes, sheetMusicCacheSize } from '@/lib/utils/sheetMusicCache';
 
 const team = [
   {
@@ -54,6 +56,7 @@ export default function Page() {
   const { value: showChords, setValue: setShowChords } = useStorage('showChords');
   const contentColumn = useContentColumnStyle();
   const openFeedback = useOpenFeedback();
+  const { confirm, confirmDialog } = useConfirm();
 
   const primary = useThemeColor('primary');
   const card = useThemeColor('card');
@@ -74,6 +77,19 @@ export default function Page() {
   };
 
   const text = useThemeColor('text');
+
+  // the size is read when tapped, so it counts sheet music opened since Settings appeared
+  const onClearCache = () => {
+    const size = sheetMusicCacheSize();
+    if (!size) return Alert.alert(t('cacheEmpty'));
+    confirm({
+      title: t('clearCacheTitle'),
+      message: t('clearCacheMessage', { size: formatMegabytes(size) }),
+      confirmLabel: t('clearCacheConfirm'),
+      destructive: true,
+      onConfirm: clearSheetMusicCache,
+    });
+  };
 
   // Language menu actions
   const languageActions: MenuAction[] = [
@@ -107,6 +123,7 @@ export default function Page() {
         }}
       />
       <ModalToolbar />
+      {confirmDialog}
       <ScrollViewWithHeader>
         <View style={[styles.container, contentColumn]}>
           <View style={[styles.section]}>
@@ -138,6 +155,26 @@ export default function Page() {
                 <ThemedText style={[styles.settingTitle]}>{t('showChords')}</ThemedText>
                 <Switch value={showChords} onValueChange={setShowChords} accessibilityLabel={t('showChords')} />
               </View>
+              {/* the web has no sheet music cache: the browser keeps its own */}
+              {process.env.EXPO_OS !== 'web' && (
+                <Pressable
+                  onPress={onClearCache}
+                  accessibilityRole="button"
+                  hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+                  style={styles.hSetting}
+                >
+                  {({ pressed }) => (
+                    <ThemedText
+                      style={[
+                        styles.settingTitle,
+                        { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                      ]}
+                    >
+                      {t('clearCache')}
+                    </ThemedText>
+                  )}
+                </Pressable>
+              )}
             </View>
           </View>
           <View style={styles.section}>
