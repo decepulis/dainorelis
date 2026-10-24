@@ -89,7 +89,7 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
 - **react-native-screens** (iOS 26+ header; Android only gets no-op setters for the new props): sizes the
   title around Stack.Toolbar buttons (header edge insets); adds the `titleMenu` (native title menu
   and subtitle) and `overflowMenu` (song actions in UIKit's overflow menu) header props; holds the
-  variant pop-up button under the large title (`largeSubtitleView`, with hit testing); keeps a large
+  variant pop-up button under the large title (`largeSubtitleView`, with hit testing and a 44pt tap target); keeps a large
   title expanded while its screen is pushed (UIKit underestimates its height, from a subtitle or the
   caron of š/ž); shrinks a large title too wide for the bar (to 28pt at the least) instead of
   truncating it; lines a large title up with a centred content column (`largeTitleMaxWidth`, through
