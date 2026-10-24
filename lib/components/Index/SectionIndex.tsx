@@ -285,8 +285,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
-    // for the frame after a resize, before the letters refit the new height
-    overflow: 'hidden',
   },
   // the list's card and a gutter on each side as wide as the index's, or all of a narrower screen
   column: {
@@ -296,11 +294,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
+  // no taller than the space it has: after a resize, until the letters refit the new height (a render later, or
+  // more while the list rebuilds its rows), the capsule clips them rather than running past the bars
   touchArea: {
+    maxHeight: '100%',
     paddingLeft: leadingSlop,
     paddingRight: trailingGap,
   },
   capsule: {
+    maxHeight: '100%',
     width: capsuleWidth,
     paddingVertical: capsulePadding,
     borderRadius: capsuleWidth / 2,
