@@ -69,6 +69,8 @@ const liftedRowAnimations = { opacity: 1 };
 const measureDelay = 300;
 // the bottom bar's buttons' height
 const bottomBarHeight = 44;
+// the forest photo's top edge (the average of miskas_v3_fade.webp's top row of pixels), in either mode
+const photoTopColor = '#403B44';
 
 // web: the static HTML's title and description
 export const generateMetadata = () => siteMetadata;
@@ -96,7 +98,6 @@ export default function Index() {
   const onPrimary = useThemeColor('onPrimary');
   const background = useThemeColor('background');
   const card0 = useThemeColor('card0');
-  const chrome = useThemeColor('chrome');
   const separator = useThemeColor('separator');
   const { t } = useTranslation();
 
@@ -371,8 +372,8 @@ export default function Index() {
   };
   const listHeader = (
     <>
-      {/* above the forest, brand green reaching far up, so pulling down past the top shows green, as the song
-          screen's band does. It tucks under the photo's top edge, so no seam shows between them */}
+      {/* above the forest, the photo's top edge reaching far up, so pulling down past the top carries the photo on.
+          It tucks under the photo's top edge, so no seam shows between them */}
       <View
         style={{
           position: 'absolute',
@@ -380,7 +381,7 @@ export default function Index() {
           height: 2000 + padding,
           left: -inset.left,
           right: -inset.right,
-          backgroundColor: chrome,
+          backgroundColor: photoTopColor,
         }}
       />
       <View
