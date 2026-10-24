@@ -79,7 +79,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      // generated from assets/images/icon_v3.svg by scripts/generate-brand-assets.ts, on the icon's background
+      // generated from assets/brand/source/icon_v3.svg by scripts/brand/generate-brand-assets.ts, on the icon's
+      // background
       foregroundImage: './assets/images/adaptive-icon.png',
       monochromeImage: './assets/images/adaptive-icon-monochrome.png',
       backgroundColor: brandColors.egle,
@@ -104,7 +105,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     bundler: 'metro',
     output: 'static',
-    // favicons and the link preview image are in public/ (scripts/generate-brand-assets.ts)
+    // favicons and the link preview image are in public/ (scripts/brand/generate-brand-assets.ts)
   },
   plugins: [
     'expo-router',

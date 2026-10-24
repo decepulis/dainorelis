@@ -1,5 +1,5 @@
 /**
- * The app icon's mark (assets/images/icon_v3.svg without its green square): the star in `currentColor`, so it works
+ * The app icon's mark (assets/brand/source/icon_v3.svg without its green square): the star in `currentColor`, so it works
  * on the green header and on light pages, and its diamond in the brand's yellow.
  */
 export function BrandMark({ className }: { className?: string }) {

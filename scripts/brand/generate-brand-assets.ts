@@ -1,22 +1,26 @@
 /**
  * Generates the logo, app icons, splash, favicons, wordmarks, header photo and link preview images from the brand
  * sources:
- *   assets/images/icon_v3.svg              the mark alone: the white star <path> and the diamond <rect> in its hole
- *   assets/images/miskas_v3.jpg            the forest photo (Sebastian Unrau, Unsplash)
+ *   assets/brand/source/icon_v3.svg        the mark alone: the white star <path> and the diamond <rect> in its hole
+ *   assets/brand/source/miskas_v3.jpg      the forest photo (Sebastian Unrau, Unsplash)
  *   assets/fonts/ModekaExtended-Bold.otf   the logo's lettering
  * and the icon's background, eglė, from lib/constants/brandColors.ts.
  *
- *   pnpm tsx scripts/generate-brand-assets.ts
+ *   pnpm brand-assets
  *
- * The mark is re-centred on its measured bounds, so every output gets proportions tuned for its own mask instead of
- * one shared crop, and icon_v3.svg's own placement and scale don't matter. The logo (logo_white_v3.svg and the kit in
- * assets/images/brand/) is built from the mark, the font and the `lockup` constants below.
+ * icon_v3.svg's 500x500 canvas is the app icon: the mark's size and position there (icon-studio.html's "Mark size in
+ * the icon") are what the outputs on the iOS icon grid draw, scaled to their size: icon.icon's layers, icon.png, the
+ * store's icon_512.png, apple-touch-icon.png and the admin app's apple-icon.png. The rest re-centre the mark on its
+ * measured bounds and size it for their own masks: the Android adaptive icon and the splash scale with the source's
+ * size but are clamped (with a warning) to stay inside their safe circles, and the favicons and the logo use their
+ * own fixed crops. The logo (the kit in assets/brand/kit/ and the home header's logo_white_v3 PNGs) is built from the
+ * mark, the font and the `lockup` constants below.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parse } from 'opentype.js';
 import sharp from 'sharp';
 
-import { brandColors } from '../lib/constants/brandColors';
+import { brandColors } from '../../lib/constants/brandColors';
 
 /**
  * The logo: a frame around a square cell holding the mark and a wider one holding the lettering, in px at 1x
@@ -47,8 +51,13 @@ const colors = { white: '#FFFFFF', ink: brandColors.ink, egle: brandColors.egle 
 // the icon's background (app.config.ts gives the adaptive icon and splash the same)
 const background = brandColors.egle;
 
+// what the app, its config and the web build load
 const images = 'assets/images';
-const sourceFile = `${images}/icon_v3.svg`;
+// the hand-made sources, the reference kit, and the store and link preview images uploaded by hand
+const source = 'assets/brand/source';
+const kit = 'assets/brand/kit';
+const store = 'assets/brand/store';
+const sourceFile = `${source}/icon_v3.svg`;
 const { size: sourceSize, star, diamond } = readMark(readFileSync(sourceFile, 'utf8'));
 // diamond first, as drawn: it sits in the star's hole
 const mark = diamond + star();
@@ -109,7 +118,7 @@ function readMark(source: string) {
 const svg = (size: number, body: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${body}</svg>`;
 
-/** the mark's bounding box in source units, measured from a render */
+/** the mark's bounding box in source units, and its ink's farthest reach from the box's centre, measured from a render */
 async function measure(content: string) {
   const scale = 8;
   const { data, info } = await sharp(Buffer.from(svg(sourceSize, content)), { density: 72 * scale })
@@ -127,9 +136,19 @@ async function measure(content: string) {
       }
   const k = sourceSize / info.width;
   const [w, h] = [(x1 - x0) * k, (y1 - y0) * k];
-  return { cx: ((x0 + x1) / 2) * k, cy: ((y0 + y1) / 2) * k, w, h, size: Math.max(w, h) };
+  const [cx, cy] = [(x0 + x1) / 2, (y0 + y1) / 2];
+  let reach = 0;
+  for (let y = y0; y < y1; y++)
+    for (let x = x0; x < x1; x++)
+      if (data[(y * info.width + x) * 4 + 3] > 127)
+        // the pixel's corner farthest from the centre
+        reach = Math.max(reach, Math.hypot((x < cx ? x : x + 1) - cx, (y < cy ? y : y + 1) - cy));
+  return { cx: cx * k, cy: cy * k, w, h, size: Math.max(w, h), reach: reach * k };
 }
 let box: Awaited<ReturnType<typeof measure>>;
+
+/** the mark (or one of its parts) as icon_v3.svg places it, scaled to a square canvas */
+const asDrawn = (size: number, content = mark) => `<g transform="scale(${size / sourceSize})">${content}</g>`;
 
 /** the mark (or one of its parts) centred on a square canvas, its larger side `fraction` of it */
 function placed(size: number, fraction: number, content = mark) {
@@ -149,28 +168,42 @@ async function png(file: string, body: string, size: number, opts: { flatten?: b
 async function main() {
   box = await measure(mark);
   lettering = typeset();
+  for (const dir of [kit, store, 'public']) mkdirSync(dir, { recursive: true });
 
-  // The mark at 68% of the icon, the way first-party icons fill the squircle (v3's first drawing had it at 57%, which
-  // read small on the home screen)
-  const iconFraction = 0.68;
+  // The app icon is icon_v3.svg's canvas as drawn (icon-studio.html sets the mark's size; v3 has it at 68%, the way
+  // first-party icons fill the squircle). The outputs with their own masks scale with it
+  const iconFraction = box.size / sourceSize;
+  const icon = (size: number) => rect(size, background) + asDrawn(size);
+  // the largest fraction of a canvas the mark can take with its ink inside a centred circle of `radius` (canvas units)
+  const fitting = (radius: number) => (radius * box.size) / box.reach;
+  const clamped = (output: string, fraction: number, limit: number) => {
+    if (fraction <= limit) return fraction;
+    console.warn(
+      `${output}: the mark at ${(iconFraction * 100).toFixed(1)}% of the icon would reach outside its safe circle; ` +
+        `drawn at ${(limit * 100).toFixed(1)}% of its canvas instead of ${(fraction * 100).toFixed(1)}%`
+    );
+    return limit;
+  };
 
   // iOS (pre-26), Android legacy, and the Play Store listing icon
-  await png(`${images}/icon.png`, rect(1024, background) + placed(1024, iconFraction), 1024, { flatten: true });
-  await png(`${images}/icon_512.png`, rect(512, background) + placed(512, iconFraction), 512, { flatten: true });
+  await png(`${images}/icon.png`, icon(1024), 1024, { flatten: true });
+  await png(`${store}/icon_512.png`, icon(512), 512, { flatten: true });
 
-  // Android adaptive icon: a 108dp canvas, 72dp visible after the launcher's mask, a 66dp safe circle.
-  // 46% of the canvas makes the mark 69% of the visible icon (iOS: 68%); the star's tips reach 1.17x its half
-  // width, so up to 52% stays inside the safe circle
-  await png(`${images}/adaptive-icon.png`, placed(1024, 0.46), 1024);
+  // Android adaptive icon: a 108dp canvas, 72dp visible after the launcher's mask, a 66dp safe circle. The mark takes
+  // the same share of the visible 72dp as of the iOS icon, re-centred, as far as the safe circle allows
+  const adaptiveFraction = clamped('adaptive-icon.png', (iconFraction * 72) / 108, fitting(33 / 108));
+  await png(`${images}/adaptive-icon.png`, placed(1024, adaptiveFraction), 1024);
   // themed icons tint every opaque pixel one colour; the diamond still reads, as an island in the star's hole
-  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, 0.46), 1024);
+  await png(`${images}/adaptive-icon-monochrome.png`, placed(1024, adaptiveFraction), 1024);
 
-  // Splash: Android 12+ masks the splash icon to a circle 2/3 of its box, so the star's tips need the
-  // mark at 55% or less. iOS draws the same image at imageWidth.
-  await png(`${images}/splash-icon.png`, placed(1024, 0.55), 1024);
+  // Splash: Android 12+ masks the splash icon to a circle 2/3 of its box. The mark is 81% of its icon size (v3's 55%
+  // of the box with the icon at 68%), re-centred, as far as that circle allows. iOS draws the same image at
+  // imageWidth.
+  const splashFraction = clamped('splash-icon.png', iconFraction * 0.81, fitting(1 / 3));
+  await png(`${images}/splash-icon.png`, placed(1024, splashFraction), 1024);
 
   // iOS 26 Icon Composer layers: full-canvas SVGs, so the layers stay registered to each other
-  const layer = (content: string) => svg(1024, placed(1024, iconFraction, content));
+  const layer = (content: string) => svg(1024, asDrawn(1024, content));
   writeFileSync(`${images}/icon.icon/Assets/star.svg`, layer(star()));
   writeFileSync(`${images}/icon.icon/Assets/diamond.svg`, layer(diamond));
   // and the background fill: the first "solid" in icon.json. Everything else in it (glass, specular, shadow,
@@ -184,11 +217,10 @@ async function main() {
   if (!rootFill.test(iconDocument)) throw new Error(`${iconJson} doesn't start with a solid background fill`);
   writeFileSync(iconJson, iconDocument.replace(rootFill, `$1"srgb:${srgb(background)}"`));
 
-  // Web. Small sizes get a tighter crop (the mark fills more of the square) and rounded corners, since
-  // a browser tab doesn't round them; 16px drops the diamond's 2px sliver of yellow for a clean star.
+  // Web. Square, and small sizes get their own tighter crop (the mark fills more of the square, whatever the icon's
+  // size); 16px drops the diamond's 2px sliver of yellow for a clean star.
   const favicon = (size: number, fraction: number, content = mark) =>
-    rect(size, background, size * 0.18) + placed(size, fraction, content);
-  mkdirSync('public', { recursive: true });
+    rect(size, background) + placed(size, fraction, content);
   const icoSizes = [
     [16, 0.84, star()],
     [32, 0.8, mark],
@@ -210,26 +242,22 @@ async function main() {
     )
   );
   writeFileSync('public/favicon.svg', svg(64, favicon(64, 0.78)));
-  await png(`${images}/favicon.png`, favicon(48, 0.78), 48);
-  // iOS rounds the home screen icon itself, so this one is full bleed at the app icon's proportions
-  await png('public/apple-touch-icon.png', rect(180, background) + placed(180, iconFraction), 180, { flatten: true });
-  // the admin app's tab and home screen icons
+  await png(`${kit}/favicon.png`, favicon(48, 0.78), 48);
+  // iOS rounds the home screen icon itself, so this one is the app icon
+  await png('public/apple-touch-icon.png', icon(180), 180, { flatten: true });
+  // the admin app's tab icon (a favicon) and home screen icon (the app icon)
   writeFileSync('admin/src/app/icon.svg', svg(64, favicon(64, 0.78)));
-  await png('admin/src/app/apple-icon.png', rect(512, background) + placed(512, iconFraction), 512, { flatten: true });
+  await png('admin/src/app/apple-icon.png', icon(512), 512, { flatten: true });
 
-  // The logo: logo_white_v3.svg and its PNGs (logo_white.png is the 1x under its v1 name), and the kit in brand/:
-  // the logo and the unframed lockup in each brand colour, as SVG and 3x PNG
+  // The logo: the home header's logo_white_v3 PNGs, and the kit: the logo and the unframed lockup in each brand
+  // colour, as SVG and 3x PNG
   const logo = logoSvg(colors.white);
-  writeFileSync(`${images}/logo_white_v3.svg`, logo);
   const toPng = (art: string, file: string, scale = 1) =>
     sharp(Buffer.from(art), { density: 72 * scale })
       .png({ compressionLevel: 9 })
       .toFile(file);
-  await toPng(logo, `${images}/logo_white.png`);
   await toPng(logo, `${images}/logo_white_v3.png`);
   for (const scale of [2, 3]) await toPng(logo, `${images}/logo_white_v3@${scale}x.png`, scale);
-  const kit = `${images}/brand`;
-  mkdirSync(kit, { recursive: true });
   for (const [name, color] of Object.entries(colors))
     for (const [file, art] of [
       [`logo_${name}`, logoSvg(color)],
@@ -250,7 +278,7 @@ async function main() {
     await sharp(Buffer.from(art), { density: 72 * 4 })
       .resize(502, 105, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png({ compressionLevel: 9 })
-      .toFile(`${images}/wordmark_${name}.png`);
+      .toFile(`${kit}/wordmark_${name}.png`);
   }
 
   // The home screen's forest: Sebastian Unrau's photo (miskas_v3.jpg) in v1's miskas_fade_10.webp metrics, so
@@ -261,7 +289,7 @@ async function main() {
   // over the lit branches
   const [fw, fh] = [2200, 968];
   const forestTop = 400;
-  const photo = `${images}/miskas_v3.jpg`;
+  const photo = `${source}/miskas_v3.jpg`;
   const fade = Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${fw}" height="${fh}"><defs><linearGradient id="f" x2="0" y2="1">` +
       '<stop offset="0.5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>' +
@@ -302,9 +330,9 @@ async function main() {
     ).toFile(file);
   }
   await poster('public/og.jpg', 1200, 630);
-  await poster(`${images}/miskas_og.png`, 1200, 629);
-  await poster(`${images}/miskas_twitter.png`, 1200, 600);
-  await poster(`${images}/miskas_google_play.png`, 1024, 500);
+  await poster(`${store}/miskas_og.png`, 1200, 629);
+  await poster(`${store}/miskas_twitter.png`, 1200, 600);
+  await poster(`${store}/miskas_google_play.png`, 1024, 500);
 
   console.log(`Generated brand assets (background ${background})`);
 }
@@ -364,7 +392,7 @@ function logoSvg(color: string, framed = true) {
         Math.max((h + mh) / 2, lettering.box.y2) - Math.min((h - mh) / 2, lettering.box.y1),
       ];
   return (
-    `<!-- Generated by scripts/generate-brand-assets.ts from icon_v3.svg and ${lockup.font.split('/').pop()}: ` +
+    `<!-- Generated by scripts/brand/generate-brand-assets.ts from icon_v3.svg and ${lockup.font.split('/').pop()}: ` +
     'do not edit; change its lockup constants and rerun -->\n' +
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.map((n) => +n.toFixed(3)).join(' ')}">` +
     (framed ? frame : '') +

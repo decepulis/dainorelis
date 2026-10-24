@@ -6,7 +6,7 @@ import { splitTitle } from './useTitle';
 // web: the statically rendered pages' <title> and description, for search engines and link previews
 
 /** a page's title and description, with every page's icons and preview image (public/, from
- * scripts/generate-brand-assets.ts; link previews need an absolute URL) */
+ * scripts/brand/generate-brand-assets.ts; link previews need an absolute URL) */
 const page = (title: string, description: string): Metadata => ({
   title,
   description,
