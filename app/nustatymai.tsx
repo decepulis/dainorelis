@@ -101,7 +101,7 @@ export default function Page() {
       <ScrollViewWithHeader>
         <View style={[styles.container, contentColumn]}>
           <View style={[styles.section]}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsTitle')}
             </ThemedText>
             <View style={styles.settings}>
@@ -132,7 +132,7 @@ export default function Page() {
             </View>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <Pressable
@@ -155,7 +155,7 @@ export default function Page() {
             </Pressable>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsSpecialThanksTitle')}
             </ThemedText>
             <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
@@ -164,14 +164,14 @@ export default function Page() {
             <ThemedText style={[styles.paragraph]}>{t('settingsSpecialThanksXIDainuSvente')}</ThemedText>
           </View>
           <View style={styles.section}>
-            <ThemedText style={[styles.header, { borderColor: separator }]} bold>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsAboutUsTitle')}
             </ThemedText>
-            <ThemedText style={[styles.subheader]} bold>
+            <ThemedText title bold style={[styles.subheader]}>
               {t('settingsOurGoalTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-            <ThemedText style={[styles.subheader, { marginTop: padding }]} bold>
+            <ThemedText title bold style={[styles.subheader, { marginTop: padding }]}>
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
