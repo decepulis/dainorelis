@@ -124,9 +124,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-font',
       {
-        // Modekan for the wordmark; Saira Semi Condensed (SIL OFL, assets/fonts/SairaSemiCondensed-OFL.txt) for titles
+        // Modeka Extended (licensed from WildOnes Design) for the wordmark; Saira Semi Condensed (SIL OFL,
+        // assets/fonts/SairaSemiCondensed-OFL.txt) for titles
         fonts: [
-          './assets/fonts/Modekan.ttf',
+          './assets/fonts/ModekaExtended-Regular.otf',
+          './assets/fonts/ModekaExtended-Bold.otf',
           './assets/fonts/SairaSemiCondensed-Medium.ttf',
           './assets/fonts/SairaSemiCondensed-SemiBold.ttf',
         ],

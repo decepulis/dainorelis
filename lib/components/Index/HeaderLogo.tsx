@@ -5,7 +5,7 @@ import { fonts } from '@/lib/constants/themes';
 
 import { isLiquidGlassStyleHeader } from '../Header';
 
-// The wordmark is text in the natively embedded Modekan font, so there's nothing to wait for at launch
+// The wordmark is text in the natively embedded Modeka Extended font, so there's nothing to wait for at launch
 export default function HeaderLogo({ headerHeight }: { headerHeight: number }) {
   const inset = useSafeAreaInsets();
   return (
