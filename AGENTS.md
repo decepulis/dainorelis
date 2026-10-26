@@ -151,7 +151,8 @@ adaptive foreground and monochrome layers, `splash-icon.png` and `miskas_v3_fade
 in `assets/brand/kit/`, `logo_{white,ink,egle}` and `logo_unframed_{white,ink,egle}` (the mark and lettering without
 the frame), each as SVG and 3x PNG, `wordmark_{black,primary,white}.png` (the lettering alone) and `favicon.png`; in
 `assets/brand/store/`, `icon_512.png` (Play Store listing), `miskas_og.png` / `miskas_twitter.png` /
-`miskas_google_play.png` (the Play feature graphic), uploaded by hand; `public/`'s favicons, apple-touch icon and
+`miskas_google_play.png` (the Play feature graphic), `appstore_header.png` / `appstore_search.png` (App Store
+product page header, 21:9, and search results creative, 3:2, logo inside Apple's crop), uploaded by hand; `public/`'s favicons, apple-touch icon and
 `og.jpg`; and the admin app's `icon.svg` / `apple-icon.png`. In the iOS 26 Icon Composer document (`icon.icon`) it
 writes only the layer SVGs (`Assets/star.svg`, `Assets/diamond.svg`) and the document's background
 `fill-specializations[0]` solid; layer fills (the star's dark-mode #8FBA9C), glass, specular, shadow and

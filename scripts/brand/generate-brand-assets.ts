@@ -303,10 +303,10 @@ async function main() {
     .webp({ quality: 85, alphaQuality: 100 })
     .toFile(`${images}/miskas_v3_fade.webp`);
 
-  // Link previews and the Play Store feature graphic: the forest, a light shade and a darker one behind the logo,
-  // which takes the middle 60%
-  async function poster(file: string, w: number, h: number) {
-    const logoWidth = Math.round(w * 0.6);
+  // Link previews, the Play Store feature graphic and the App Store creatives: the forest, a light shade and a darker
+  // one behind the logo, which takes the middle 60% (`logoShare`) of the width
+  async function poster(file: string, w: number, h: number, logoShare = 0.6) {
+    const logoWidth = Math.round(w * logoShare);
     const logoImage = await sharp(Buffer.from(logo), { density: 72 * 4 })
       .resize(logoWidth)
       .png()
@@ -333,6 +333,10 @@ async function main() {
   await poster(`${store}/miskas_og.png`, 1200, 629);
   await poster(`${store}/miskas_twitter.png`, 1200, 600);
   await poster(`${store}/miskas_google_play.png`, 1024, 500);
+  // App Store product page header (21:9) and search results creative (3:2). Apple crops their edges per device, so
+  // the logo takes half the width, well inside the middle 70% x 80%
+  await poster(`${store}/appstore_header.png`, 3840, 1646, 0.5);
+  await poster(`${store}/appstore_search.png`, 3840, 2560, 0.5);
 
   console.log(`Generated brand assets (background ${background})`);
 }

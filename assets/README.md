@@ -6,7 +6,8 @@
 - **`brand/kit/`** (generated): the logo and the unframed lockup in white, ink and eglė as SVG and 3x PNG, the
   wordmarks and a square favicon. A reference kit for print, slides and the press; nothing in the app loads it.
 - **`brand/store/`** (generated): images uploaded to the stores and link previews by hand: the Play Store icon and
-  feature graphic, and the Open Graph and Twitter cards.
+  feature graphic, the App Store product page header and search results creative, and the Open Graph and Twitter
+  cards.
 - **`images/`**: what the app, `app.config.ts` and the web build load. The app icons (`icon.png`, `icon.icon`,
   `adaptive-icon*.png`), `splash-icon.png`, the home header's `logo_white_v3*.png` and `miskas_v3_fade.webp` are
   generated; `profiles/` (Settings' credits), `stores/` (the web store badges) and `screenshots/` (the store
