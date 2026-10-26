@@ -15,7 +15,8 @@ import sharp from 'sharp';
 
 type Frame =
   // a device image whose screen is a transparent hole at `screen` ([x, y, width, height] in the image's pixels)
-  | { image: string; screen: [number, number, number, number] }
+  // (`clip`: also cut the capture to the hole's shape, for a frame whose screen corners reach past the device's outline)
+  | { image: string; screen: [number, number, number, number]; clip?: boolean }
   // a plain bezel drawn around a screen of `screen` pixels, for devices without an image (Android)
   | { screen: [number, number]; bezel: number; radius: number; color: string; rim: string; camera?: number };
 
@@ -77,13 +78,53 @@ function captionSvg(text: string, size: number, maxWidth: number) {
   return { svg: Buffer.from(svg), height };
 }
 
+/**
+ * the frame's screen hole as an alpha mask the size of `screen`: the see-through pixels connected to the screen's
+ * centre, so the transparent background outside the device's outline (where the screen's corners are rounder than
+ * the rectangle) hides the capture too
+ */
+async function holeMask(frame: { image: string; screen: [number, number, number, number] }) {
+  const [x, y, w, h] = frame.screen;
+  const { data } = await sharp(join(root, frame.image))
+    .ensureAlpha()
+    .extract({ left: x, top: y, width: w, height: h })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const mask = Buffer.alloc(w * h * 4);
+  const seen = new Uint8Array(w * h);
+  const stack = [(h >> 1) * w + (w >> 1)];
+  seen[stack[0]] = 1;
+  while (stack.length > 0) {
+    const p = stack.pop()!;
+    const alpha = data[p * 4 + 3];
+    mask[p * 4 + 3] = 255 - alpha;
+    if (alpha === 255) continue;
+    const px = p % w;
+    for (const q of [px > 0 ? p - 1 : -1, px < w - 1 ? p + 1 : -1, p - w, p + w]) {
+      if (q >= 0 && q < w * h && !seen[q]) {
+        seen[q] = 1;
+        stack.push(q);
+      }
+    }
+  }
+  return sharp(mask, { raw: { width: w, height: h, channels: 4 } })
+    .png()
+    .toBuffer();
+}
+
 /** the frame with the capture in its screen, as a PNG at the frame's native size */
 async function framed(frame: Frame, capture: string) {
   if ('image' in frame) {
     const [x, y, w, h] = frame.screen;
     const image = sharp(join(root, frame.image));
     const { width, height } = await image.metadata();
-    const screen = await sharp(capture).resize(w, h, { fit: 'fill' }).toBuffer();
+    let screen = await sharp(capture).resize(w, h, { fit: 'fill' }).toBuffer();
+    if (frame.clip) {
+      screen = await sharp(screen)
+        .ensureAlpha()
+        .composite([{ input: await holeMask(frame), blend: 'dest-in' }])
+        .toBuffer();
+    }
     return sharp({ create: { width, height, channels: 4, background: '#0000' } })
       .composite([{ input: screen, left: x, top: y }, { input: join(root, frame.image) }])
       .png()
@@ -148,6 +189,8 @@ async function compose(name: string, target: Target) {
           top: deviceTop,
         },
       ])
+      // the stores reject screenshots with an alpha channel, and compositing adds one
+      .removeAlpha()
       .png()
       .toFile(output);
     console.log(`wrote ${output}`);
