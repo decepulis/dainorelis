@@ -14,17 +14,18 @@
       "color": "#0B0C0B",
       "rim": "#3A3D3B",
       "camera": 20
-    }
+    },
+    "iPhone Duo": { "image": "assets/images/screenshots/_iPhone Duo.png", "screen": [88, 80, 1398, 2034], "clip": true }
   },
   "targets": {
     "iOS": {
-      "size": [1242, 2688],
+      "size": [1206, 2622],
       "frame": "iPhone 16",
       "output": "assets/images/screenshots/iOS {n}.png",
-      "frameWidth": 980,
-      "frameBottom": 120,
-      "captionSize": 104,
-      "captionWidth": 1120
+      "frameWidth": 952,
+      "frameBottom": 117,
+      "captionSize": 101,
+      "captionWidth": 1088
     },
     "iPadOS": {
       "size": [2048, 2732],
@@ -34,6 +35,15 @@
       "frameBottom": 100,
       "captionSize": 136,
       "captionWidth": 1500
+    },
+    "iPhone Duo": {
+      "size": [1398, 2034],
+      "frame": "iPhone Duo",
+      "output": "assets/images/screenshots/iPhone Duo {n}.png",
+      "frameWidth": 1070,
+      "frameBottom": 92,
+      "captionSize": 108,
+      "captionWidth": 1240
     },
     "Android": {
       "size": [1080, 1920],
