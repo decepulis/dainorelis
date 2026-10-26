@@ -50,7 +50,10 @@ windows), and Android. Say plainly what you didn't verify and why.
   (`ffmpeg -i out.mov -vf fps=10,scale=300:-1,tile=6x3 tile.png`) to see a push, a scroll edge or a header
   collapse frame by frame.
 - Compare before/after: `python3 scripts/pdiff.py a.png b.png [top]` prints the changed region's bounding box.
-- The simulator has no lock-screen Now Playing; audio/lock-screen behaviour needs a real device (ask the owner).
+- The simulator shows no lock-screen Now Playing, but the app still publishes it: watch
+  `xcrun simctl spawn <udid> log stream --predicate 'subsystem CONTAINS[c] "mediaremote"'` while opening a song
+  with a recording (nothing has to play) to see the title, duration, live-stream flag and so on. How it looks and
+  behaves on the lock screen still needs a real device (ask the owner).
 
 ## iPhone Duo (iOS 27.1)
 
