@@ -1,0 +1,71 @@
+name: Admin CI
+
+# Checks the admin CMS (admin/, the @dainorelis/admin package) on every push and
+# pull request that touches it or the workspace's install inputs: typecheck,
+# lint, the songs.ts round-trip check, and a production `next build`.
+#
+# It installs only the admin package and its dependencies. `pnpm verify` reads
+# the app's committed songs.ts at the repo root as plain text (it never imports
+# the app's code), so the Expo app's dependencies aren't needed. The build needs
+# no secrets: admin/src/lib/supabase/env.ts reads the Supabase variables lazily,
+# at request time, not at build time.
+on:
+  push:
+    paths:
+      - 'admin/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - '.github/workflows/admin-ci.yml'
+  pull_request:
+    paths:
+      - 'admin/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - '.github/workflows/admin-ci.yml'
+  workflow_dispatch:
+
+# A newer push to the same branch or PR makes the older run moot.
+concurrency:
+  group: admin-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin
+    steps:
+      - uses: actions/checkout@v7
+
+      # pnpm 10 exactly: pnpm 9 and 11 both reject this lockfile. The root
+      # package.json deliberately has no packageManager field (see AGENTS.md).
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 10
+
+      # Node 22 satisfies both Next 16 (20.9+) and the workspace root (22.13+).
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile --filter @dainorelis/admin...
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Verify songs.ts round trip
+        run: pnpm verify
+
+      - name: Build
+        run: pnpm build

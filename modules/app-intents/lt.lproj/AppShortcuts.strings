@@ -1,0 +1,5 @@
+/* Siri doesn't speak Lithuanian yet; these are ready for when it does. (AppShortcuts.xcstrings needs iOS 17.) */
+"Open ${target} in ${applicationName}" = "Atidaryk ${target} programoje ${applicationName}";
+"Show ${target} in ${applicationName}" = "Parodyk ${target} programoje ${applicationName}";
+"Open a song in ${applicationName}" = "Atidaryk dainą programoje ${applicationName}";
+"Find a song in ${applicationName}" = "Rask dainą programoje ${applicationName}";

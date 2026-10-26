@@ -9,11 +9,11 @@ export const SongSchema = z.object({
   id: z.string(),
   fields: z.object({
     Name: z.string(),
-    Lyrics: z.record(LyricsSchema),
-    Videos: z.record(VideosSchema).optional(),
-    Audio: z.record(AudioSchema),
-    PDFs: z.record(PDFsSchema),
-    Translations: z.record(TranslationsSchema),
+    Lyrics: z.record(z.string(), LyricsSchema),
+    Videos: z.record(z.string(), VideosSchema).optional(),
+    Audio: z.record(z.string(), AudioSchema),
+    PDFs: z.record(z.string(), PDFsSchema),
+    Translations: z.record(z.string(), TranslationsSchema),
     Tags: z.array(z.string()).optional(),
     Sources: z.array(z.string()).optional(),
     'Recommended Key': z.string().optional(),
@@ -21,7 +21,6 @@ export const SongSchema = z.object({
     'Text Author': z.string().optional(),
     'LT Description': z.string().optional(),
     'EN Description': z.string().optional(),
-    'AI-Generated Description': z.boolean().optional(),
   }),
 });
 export type Song = z.infer<typeof SongSchema>;

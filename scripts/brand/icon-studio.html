@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juosta Icon Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/polygon-clipping@0.15.7/dist/polygon-clipping.umd.min.js"></script>
+<style>
+/* Layout: preview stage on the left, a tall control rail on the right; stacks on phones. */
+:root {
+  --bg: #F3F5F1;
+  --panel: #FFFFFF;
+  --fg: #16231B;
+  --muted: #56615A;
+  --line: #D9DFD9;
+  --egle: #2F5240;
+  --gintaras: #E6BD5C;
+  --accent: #2F5240;
+  --on-accent: #FFFFFF;
+  --check-a: #E4E8E3;
+  --check-b: #F7F8F6;
+  --display: "Saira Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1712; --panel: #17221B; --fg: #E6ECE7; --muted: #9AA59E; --line: #2A3830;
+    --accent: #8FBA9C; --on-accent: #0E1B13; --check-a: #1F2B24; --check-b: #26332B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1712; --panel: #17221B; --fg: #E6ECE7; --muted: #9AA59E; --line: #2A3830;
+  --accent: #8FBA9C; --on-accent: #0E1B13; --check-a: #1F2B24; --check-b: #26332B;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 14px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 32px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 20px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: 28px; margin: 0; letter-spacing: 0.01em; }
+header p { margin: 0; color: var(--muted); max-width: 60ch; }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+@media (max-width: 820px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 18px; min-width: 0; }
+.hero { display: grid; place-items: center; }
+.hero .tile { width: min(100%, 440px); aspect-ratio: 1; max-width: 100%; }
+.tile { position: relative; }
+.tile svg { width: 100%; height: 100%; display: block; }
+.tile svg.grid { position: absolute; inset: 0; border-radius: 0; pointer-events: none; }
+.tile.mask-ios svg { border-radius: 22.37%; }
+.tile.mask-circle svg { border-radius: 50%; }
+.tile.transparent { background: repeating-conic-gradient(var(--check-a) 0 25%, var(--check-b) 0 50%) 0 0 / 20px 20px; }
+.sizes { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 18px; }
+.sizes figure { margin: 0; display: grid; justify-items: center; gap: 6px; }
+.sizes figcaption { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.viewbar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: transparent; color: var(--fg); font: inherit; font-size: 13px; padding: 6px 10px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+
+.rail { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 18px; }
+.group { display: grid; gap: 12px; }
+.group h2 { font-family: var(--display); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; margin: 0; color: var(--muted); }
+.ctl { display: grid; gap: 4px; }
+.ctl .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ctl label { font-weight: 500; }
+.ctl output { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ctl .hint { font-size: 12px; color: var(--muted); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.check { display: flex; gap: 8px; align-items: center; }
+.check input { accent-color: var(--accent); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+.actions { display: grid; gap: 8px; }
+.btn { font: inherit; font-weight: 600; border-radius: 9px; padding: 10px 14px; cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--fg); }
+.btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn:focus-visible, .seg button:focus-visible, input:focus-visible { outline: 2px solid var(--gintaras); outline-offset: 2px; }
+#peek { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.origin { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.origin span { color: var(--muted); min-width: 0; }
+.origin strong { color: var(--fg); font-weight: 600; }
+.btnrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.status { min-height: 1.3em; font-size: 12px; color: var(--muted); }
+
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; }
+summary { cursor: pointer; font-weight: 600; }
+pre { overflow-x: auto; font-family: var(--mono); font-size: 11.5px; line-height: 1.5; margin: 12px 0 0; white-space: pre; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Juosta Icon Studio</h1>
+    <p>Four sash bands cut flat at the ends, with the gintaras square in the middle. Load icon_v3.svg to start from it. Drag the sliders, double-click one to reset it; export saves the mark without the green.</p>
+  </header>
+
+  <div class="main">
+    <section class="stage" aria-label="Preview">
+      <div class="origin">
+        <span id="origin-text"></span>
+        <button class="btn" id="open">Load icon…</button>
+        <input type="file" id="open-file" accept=".svg,image/svg+xml" hidden>
+      </div>
+      <div class="viewbar">
+        <div class="seg" role="group" aria-label="Background">
+          <button id="bg-green" aria-pressed="true">Green</button>
+          <button id="bg-none" aria-pressed="false">Transparent</button>
+        </div>
+        <div class="seg" role="group" aria-label="Mask">
+          <button id="mask-ios" aria-pressed="true">iOS</button>
+          <button id="mask-circle" aria-pressed="false">Circle</button>
+          <button id="mask-none" aria-pressed="false">Square</button>
+        </div>
+        <div class="seg" role="group" aria-label="Overlay">
+          <button id="grid" aria-pressed="false">Apple grid</button>
+        </div>
+      </div>
+      <div class="hero"><div class="tile" id="hero"></div></div>
+      <div class="sizes" id="sizes"></div>
+    </section>
+
+    <aside class="rail" aria-label="Controls">
+      <div class="group">
+        <h2>Bands</h2>
+        <div class="ctl">
+          <div class="row"><label for="thick">Line thickness</label><output id="thick-out"></output></div>
+          <input type="range" id="thick" min="2" max="50" step="0.25">
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="gap">Space between lines</label><output id="gap-out"></output></div>
+          <input type="range" id="gap" min="0" max="100" step="0.25">
+          <span class="hint">Across the centre hole, between the two parallel bands</span>
+        </div>
+      </div>
+      <hr>
+      <div class="group">
+        <h2>Cut ends</h2>
+        <div class="ctl">
+          <div class="row"><label for="cx">Horizontal cut</label><output id="cx-out"></output></div>
+          <input type="range" id="cx" min="10" max="90" step="0.25">
+        </div>
+        <div class="ctl">
+          <div class="row"><label for="cy">Vertical cut</label><output id="cy-out"></output></div>
+          <input type="range" id="cy" min="10" max="90" step="0.25">
+        </div>
+        <label class="check"><input type="checkbox" id="lock" checked> Keep the cuts equal</label>
+      </div>
+      <hr>
+      <div class="group">
+        <h2>Square</h2>
+        <div class="ctl">
+          <div class="row"><label for="sq">Square size</label><output id="sq-out"></output></div>
+          <input type="range" id="sq" min="0" max="50" step="0.25">
+        </div>
+        <label class="check"><input type="checkbox" id="diamond" checked> Turned 45° (diamond)</label>
+      </div>
+      <hr>
+      <div class="group">
+        <h2>Placement</h2>
+        <div class="ctl">
+          <div class="row"><label for="scale">Mark size in the icon</label><output id="scale-out"></output></div>
+          <input type="range" id="scale" min="1.5" max="4.5" step="any">
+        </div>
+      </div>
+      <hr>
+      <div class="actions">
+        <button class="btn" id="peek">Hold to see the original</button>
+        <button class="btn primary" id="save">Download SVG</button>
+        <div class="btnrow">
+          <button class="btn" id="copy">Copy SVG</button>
+          <button class="btn" id="reset">Reset to original</button>
+        </div>
+        <div class="status" id="status" role="status"></div>
+      </div>
+    </aside>
+  </div>
+
+  <details>
+    <summary>Exported SVG</summary>
+    <pre id="code"></pre>
+  </details>
+</div>
+
+<script>
+// Geometry, in the units of icon_v3.svg's inner group (scaled by `scale` about the 500×500 centre).
+// A band is the strip  inner ≤ ±(x±y) ≤ inner+thick  (so `gap` = 2·inner), cut to |x| ≤ cx, |y| ≤ cy.
+// `scale` is the mark's size in the icon: generate-brand-assets.ts draws icon_v3.svg's 500×500 canvas as the app icon,
+// so it reaches icon.icon, icon.png and the other app icons as set here (Android's adaptive icon and the splash follow,
+// clamped to their safe circles).
+// The original (Reset, double-click, Hold) is the loaded icon's settings comment. Until one is loaded it's this copy of
+// icon_v3.svg's, which can go stale: load the file to be sure.
+const BUILT_IN = { thick: 22.5, gap: 40.5, cx: 53, cy: 53, sq: 15, diamond: true, scale: 3.20790968899522 };
+const BASE_KEY = 'juosta-original';
+let base = { name: null, settings: { ...BUILT_IN } };
+try { const b = JSON.parse(localStorage.getItem(BASE_KEY)); if (b?.settings) base = b; } catch {}
+const GREEN = 'rgb(47,82,64)', WHITE = 'white', YELLOW = 'rgb(230,189,92)';
+const KEY = 'juosta-params';
+let p = { ...base.settings };
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) p = { ...p, ...s }; } catch {}
+let view = { bg: 'green', mask: 'ios', grid: false };
+
+// Apple's iOS app icon grid, measured from Icon Composer's appicongrid.square (1024 units): a 128-unit grid,
+// both diagonals, and circles of radius 102, 256 and 410 about the centre
+const GRID = (() => {
+  const l = [];
+  for (let i = 128; i < 1024; i += 128) l.push(`M${i},0V1024M0,${i}H1024`);
+  l.push('M0,0L1024,1024M1024,0L0,1024');
+  const circles = [102, 256, 410].map((r) => `<circle cx="512" cy="512" r="${r}"/>`).join('');
+  return `<svg class="grid" viewBox="0 0 1024 1024" aria-hidden="true"><g fill="none" stroke="#FF2D78" stroke-opacity="0.85" stroke-width="1.25" vector-effect="non-scaling-stroke"><path d="${l.join('')}" vector-effect="non-scaling-stroke"/>${circles.replace(/\/>/g, ' vector-effect="non-scaling-stroke"/>')}</g></svg>`;
+})();
+
+const $ = (id) => document.getElementById(id);
+const r = (n) => +n.toFixed(2);
+
+function clipHalf(poly, f) {
+  // Sutherland–Hodgman against the half-plane f(pt) ≥ 0, f linear
+  const out = [];
+  for (let i = 0; i < poly.length; i++) {
+    const a = poly[i], b = poly[(i + 1) % poly.length], fa = f(a), fb = f(b);
+    if (fa >= 0) out.push(a);
+    if ((fa >= 0) !== (fb >= 0)) {
+      const t = fa / (fa - fb);
+      out.push([a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])]);
+    }
+  }
+  return out;
+}
+
+function bandsPath() {
+  const lo = p.gap / 2, hi = lo + p.thick, { cx, cy } = p;
+  const box = [[-cx, -cy], [cx, -cy], [cx, cy], [-cx, cy]];
+  const polys = [];
+  for (const [sx, sy] of [[1, 1], [-1, -1], [1, -1], [-1, 1]]) {
+    const u = (q) => sx * q[0] + sy * q[1];
+    let poly = clipHalf(box, (q) => u(q) - lo);
+    poly = clipHalf(poly, (q) => hi - u(q));
+    if (poly.length >= 3) polys.push([poly.map(([x, y]) => [r(x), r(y)])]);
+  }
+  if (!polys.length) return '';
+  const merged = polygonClipping.union(...polys);
+  return merged.map((polygon) => polygon.map((ring) =>
+    'M' + ring.slice(0, -1).map(([x, y]) => `${r(x)},${r(y)}`).join('L') + 'Z').join('')).join('');
+}
+
+// The settings, recorded in the export so Open SVG can restore them exactly
+const SETTINGS = ['thick', 'gap', 'cx', 'cy', 'sq', 'diamond', 'scale'];
+const settingsJson = () => JSON.stringify(Object.fromEntries(SETTINGS.map((k) => [k, p[k]])));
+
+function markSvg(withBg) {
+  const h = p.sq / 2;
+  const rot = p.diamond ? ' transform="matrix(0.707107,0.707107,-0.707107,0.707107,0,0)"' : '';
+  return `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- icon-studio ${settingsJson()} -->
+<svg width="100%" height="100%" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+` + (withBg ? `    <g>
+        <rect x="0" y="0" width="500" height="500" style="fill:${GREEN};"/>
+    </g>
+` : '') + `    <g transform="matrix(${p.scale},0,0,${p.scale},250,250)">
+        <g${rot}>
+            <rect x="${r(-h)}" y="${r(-h)}" width="${r(p.sq)}" height="${r(p.sq)}" style="fill:${YELLOW};"/>
+        </g>
+        <g>
+            <path d="${bandsPath()}" style="fill:${WHITE};"/>
+        </g>
+    </g>
+</svg>
+`;
+}
+
+const SIZES = [180, 120, 60, 40, 29];
+$('sizes').innerHTML = SIZES.map((s) =>
+  `<figure><div class="tile" style="width:${s}px;height:${s}px"></div><figcaption>${s}px</figcaption></figure>`).join('');
+
+function fmt(id, text) { $(id + '-out').textContent = text; }
+
+function render() {
+  for (const k of ['thick', 'gap', 'cx', 'cy', 'sq', 'scale']) $(k).value = p[k];
+  $('diamond').checked = p.diamond;
+  // the perpendicular widths, in px of the 500 px canvas (the strip is measured along x+y, hence /√2)
+  const px = (v) => r(v / Math.SQRT2 * p.scale);
+  fmt('thick', `${r(p.thick)} · ${px(p.thick)} px`);
+  fmt('gap', `${r(p.gap)} · ${px(p.gap)} px`);
+  fmt('cx', `±${r(p.cx)} · ${r(p.cx * 2 * p.scale)} px wide`);
+  fmt('cy', `±${r(p.cy)} · ${r(p.cy * 2 * p.scale)} px tall`);
+  fmt('sq', `${r(p.sq)} · ${r(p.sq * p.scale)} px side`);
+  fmt('scale', `×${r(p.scale)} · ${r(Math.max(p.cx, p.cy) * 2 * p.scale / 5)}% of icon`);
+
+  const preview = markSvg(view.bg === 'green').replace(/^<\?xml[^>]*>\n/, '');
+  const cls = 'tile mask-' + view.mask + (view.bg === 'none' ? ' transparent' : '');
+  for (const t of document.querySelectorAll('.tile')) { t.className = cls; t.innerHTML = preview + (view.grid && t.id === 'hero' ? GRID : ''); }
+  $('code').textContent = markSvg(false);
+  if (!held) try { localStorage.setItem(KEY, JSON.stringify(p)); } catch {}
+}
+
+// while the button is held, show the original proportions; restore the edit on release
+let held = null;
+function peek(on) {
+  if (on && !held) { held = p; p = { ...base.settings }; render(); $('peek').classList.add('primary'); }
+  else if (!on && held) { p = held; held = null; render(); $('peek').classList.remove('primary'); }
+}
+$('peek').addEventListener('pointerdown', (e) => { e.preventDefault(); $('peek').setPointerCapture(e.pointerId); peek(true); });
+for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) $('peek').addEventListener(ev, () => peek(false));
+$('peek').addEventListener('keydown', (e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); peek(true); } });
+$('peek').addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') peek(false); });
+$('peek').addEventListener('blur', () => peek(false));
+$('peek').addEventListener('contextmenu', (e) => e.preventDefault());
+
+for (const k of ['thick', 'gap', 'sq', 'scale']) $(k).addEventListener('input', (e) => { p[k] = +e.target.value; render(); });
+for (const k of ['cx', 'cy']) $(k).addEventListener('input', (e) => {
+  p[k] = +e.target.value;
+  if ($('lock').checked) p[k === 'cx' ? 'cy' : 'cx'] = p[k];
+  render();
+});
+// double-click a slider (or its label) to put that one value back to the current icon's
+for (const k of ['thick', 'gap', 'cx', 'cy', 'sq', 'scale']) {
+  const reset = () => {
+    p[k] = base.settings[k];
+    if ((k === 'cx' || k === 'cy') && $('lock').checked) p[k === 'cx' ? 'cy' : 'cx'] = base.settings[k];
+    render();
+  };
+  $(k).addEventListener('dblclick', reset);
+  document.querySelector(`label[for="${k}"]`).addEventListener('dblclick', reset);
+}
+$('lock').addEventListener('change', (e) => { if (e.target.checked) { p.cy = p.cx; render(); } });
+$('diamond').addEventListener('change', (e) => { p.diamond = e.target.checked; render(); });
+$('reset').addEventListener('click', () => { p = { ...base.settings }; $('lock').checked = true; render(); say('Back to the original.'); });
+
+function setSeg(ids, active) { for (const id of ids) $(id).setAttribute('aria-pressed', String(id === active)); }
+for (const [id, v] of [['bg-green', 'green'], ['bg-none', 'none']])
+  $(id).addEventListener('click', () => { view.bg = v; setSeg(['bg-green', 'bg-none'], id); render(); });
+for (const [id, v] of [['mask-ios', 'ios'], ['mask-circle', 'circle'], ['mask-none', 'none']])
+  $(id).addEventListener('click', () => { view.mask = v; setSeg(['mask-ios', 'mask-circle', 'mask-none'], id); render(); });
+
+$('grid').addEventListener('click', () => { view.grid = !view.grid; $('grid').setAttribute('aria-pressed', String(view.grid)); render(); });
+
+function say(t) { $('status').textContent = t; }
+
+$('copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(markSvg(false)); say('SVG copied.'); }
+  catch {
+    $('code').closest('details').open = true;
+    const range = document.createRange(); range.selectNodeContents($('code'));
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    say('Copying was blocked; the SVG below is selected, press ⌘C.');
+  }
+});
+
+function showOrigin() {
+  const t = $('origin-text');
+  t.replaceChildren();
+  if (base.name) {
+    t.append('Original: ');
+    const b = document.createElement('strong'); b.textContent = base.name; t.append(b);
+  } else t.textContent = 'Load assets/brand/source/icon_v3.svg to use it as the original.';
+  $('open').classList.toggle('primary', !base.name);
+}
+showOrigin();
+
+$('open').addEventListener('click', () => $('open-file').click());
+$('open-file').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  e.target.value = '';
+  if (!file) return;
+  const m = (await file.text()).match(/<!-- icon-studio (\{.*?\}) -->/);
+  let s = null;
+  try { s = m && JSON.parse(m[1]); } catch {}
+  if (!s) { say(`${file.name} has no icon-studio settings. Only SVGs exported from here do.`); return; }
+  base = { name: file.name, settings: { ...BUILT_IN, ...Object.fromEntries(SETTINGS.filter((k) => k in s).map((k) => [k, s[k]])) } };
+  try { localStorage.setItem(BASE_KEY, JSON.stringify(base)); } catch {}
+  p = { ...base.settings };
+  $('lock').checked = p.cx === p.cy;
+  showOrigin();
+  render();
+  say(`Loaded ${file.name}; it's now the original.`);
+});
+
+$('save').addEventListener('click', () => {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([markSvg(false)], { type: 'image/svg+xml' }));
+  a.download = 'icon_v3.svg';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  say('Saved icon_v3.svg to your downloads.');
+});
+
+render();
+</script>
+</body>
+</html>

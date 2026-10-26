@@ -1,11 +1,15 @@
-import { ComponentPropsWithoutRef, useCallback } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform, useColorScheme } from 'react-native';
+import { ColorValue } from 'react-native';
 
-import { FontAwesome6 } from '@expo/vector-icons';
-import { MenuAction, NativeActionEvent } from '@react-native-menu/menu';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
+
+import MusicNote from '@expo/material-symbols/music_note.xml';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import { Audio } from '../schemas/audio';
+import { ButtonSurface, styles as buttonStyles } from './Button';
 import MenuView from './MenuView';
 
 type Props = {
@@ -14,42 +18,38 @@ type Props = {
   setActiveMediaId: (id: string) => void;
   style?: ComponentPropsWithoutRef<typeof MenuView>['style'];
   hitSlop?: ComponentPropsWithoutRef<typeof MenuView>['hitSlop'];
+  color: ColorValue;
 };
-export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style }: Props) {
+export default function MediaMenu({ media, activeMediaId, setActiveMediaId, hitSlop, style, color }: Props) {
   const { t, i18n } = useTranslation();
-  const isDark = useColorScheme() === 'dark';
 
   const actions: MenuAction[] = Object.entries(media).map(([id, m]) => {
     return {
       id,
       title: i18n.language === 'en' ? m['EN Variant Name'] : m['Variant Name'],
       state: activeMediaId === id ? 'on' : 'off',
-      imageColor: isDark ? 'white' : 'black',
-      image: Platform.select({
-        ios: 'music.note',
-        default: 'music_note_20px',
-      }),
+      image: process.env.EXPO_OS === 'ios' ? 'music.note' : MusicNote,
     };
   });
 
-  const onPressAction = useCallback(
-    (e: NativeActionEvent) => {
-      const { event } = e.nativeEvent;
-      setActiveMediaId(event);
-    },
-    [setActiveMediaId]
-  );
+  const onPressAction = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setActiveMediaId(event);
+  };
 
+  // TODO prevent this from morphing the whole gosh darned player
   return (
     <MenuView
-      asButton
       style={style}
       hitSlop={hitSlop}
       actions={actions}
       onPressAction={onPressAction}
       title={t('mediaMenuTitle')}
+      accessibilityLabel={t('chooseRecording')}
     >
-      <FontAwesome6 name="bars" size={14} color="white" />
+      <ButtonSurface style={buttonStyles.button}>
+        <FontAwesome6 name="bars" iconStyle="solid" size={isLiquidGlassAvailable() ? 18 : 14} color={color} />
+      </ButtonSurface>
     </MenuView>
   );
 }

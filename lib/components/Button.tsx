@@ -1,22 +1,27 @@
-import { ComponentPropsWithoutRef, forwardRef, useCallback } from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { Touchable, type TouchableProps } from 'react-native-gesture-handler';
 
-import * as Haptics from 'expo-haptics';
-
-import BorderlessButton from '@/lib/components/BorderlessButtonOpacity';
+import { GlassView, isLiquidGlassAvailable } from 'expo-glass-effect';
 
 import SystemView from './SystemView';
 
-const width = 32;
+const glassWidth = 44;
+const basicWidth = 32;
+const width = isLiquidGlassAvailable() ? glassWidth : basicWidth;
 const slop = (44 - width) / 2;
 export const buttonSlop = { top: slop, bottom: slop, left: slop, right: slop };
 
+// Android gets a borderless ripple, iOS dims on press.
+const pressFeedback: Pick<TouchableProps, 'androidRipple' | 'activeOpacity'> = Platform.select({
+  android: { androidRipple: { borderless: true, radius: 24 } },
+  default: { activeOpacity: 0.8 },
+});
+
 type Props = {
   children: React.ReactNode;
-  haptics?: Haptics.ImpactFeedbackStyle;
   /**
-   * don't mistake this for the hitSlop prop on BorderlessButton
-   * it's implemented with negative margin and positive padding to improve performance
+   * don't mistake this for Touchable's native hitSlop prop
+   * it's implemented with negative margin and positive padding so the touch target is real layout
    * (at the cost of fiddliness)
    */
   hitSlop?: Partial<{
@@ -25,67 +30,68 @@ type Props = {
     left: number;
     right: number;
   }>;
-} & Omit<ComponentPropsWithoutRef<typeof BorderlessButton>, 'hitSlop'>;
+  noGlass?: boolean;
+  innerStyle?: StyleProp<ViewStyle>;
+} & Omit<TouchableProps, 'hitSlop'>;
 
-const Button = forwardRef<React.ElementRef<typeof BorderlessButton>, Props>(
-  ({ children, onPress: argOnPress, haptics, style, hitSlop: argHitSlop, ...rest }, ref) => {
-    const onPress = useCallback(
-      (pointerInside: boolean) => {
-        if (haptics) {
-          Haptics.impactAsync(haptics);
-        }
-        return argOnPress?.(pointerInside);
-      },
-      [argOnPress, haptics]
-    );
+export default function Button({ children, style, hitSlop: argHitSlop, noGlass, innerStyle, ...rest }: Props) {
+  const hitSlop = {
+    ...buttonSlop,
+    ...argHitSlop,
+  };
 
-    const hitSlop = {
-      ...buttonSlop,
-      ...argHitSlop,
-    };
+  const Wrapper = isLiquidGlassAvailable() ? (noGlass ? View : GlassView) : SystemView;
 
-    return (
-      // TODO iPad cursor hover styles
-      // TODO asymmetrical button ripple radius is a bit funny
-      // TODO A11y label
-      <BorderlessButton
-        ref={ref}
-        onPress={onPress}
-        rippleRadius={24}
-        style={[
-          styles.container,
-          {
-            marginLeft: -hitSlop.left,
-            marginRight: -hitSlop.right,
-            marginTop: -hitSlop.top,
-            marginBottom: -hitSlop.bottom,
-            paddingLeft: hitSlop.left,
-            paddingRight: hitSlop.right,
-            paddingTop: hitSlop.top,
-            paddingBottom: hitSlop.bottom,
-          },
-          style,
-        ]}
-        {...rest}
-      >
-        <SystemView shadow={false} style={styles.button}>
-          {children}
-        </SystemView>
-      </BorderlessButton>
-    );
-  }
-);
+  return (
+    // TODO iPad cursor hover styles
+    // icon-only, so callers pass accessibilityLabel; `accessible` groups the glyph children
+    // into one element (RNGH's button sets no role or grouping on its own)
+    <Touchable
+      accessible
+      accessibilityRole="button"
+      {...pressFeedback}
+      style={[
+        {
+          marginLeft: -hitSlop.left,
+          marginRight: -hitSlop.right,
+          marginTop: -hitSlop.top,
+          marginBottom: -hitSlop.bottom,
+          paddingLeft: hitSlop.left,
+          paddingRight: hitSlop.right,
+          paddingTop: hitSlop.top,
+          paddingBottom: hitSlop.bottom,
+        },
+        style,
+      ]}
+      {...rest}
+    >
+      <Wrapper shadow={false} style={[styles.button, innerStyle]}>
+        {children}
+      </Wrapper>
+    </Touchable>
+  );
+}
 
-Button.displayName = 'Button';
-
-export default Button;
+/**
+ * A non-interactive button background: plain on Liquid Glass (the parent supplies the glass),
+ * SystemView everywhere else.
+ */
+export function ButtonSurface({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
+  return isLiquidGlassAvailable() ? (
+    <View style={style}>{children}</View>
+  ) : (
+    <SystemView shadow={false} style={style}>
+      {children}
+    </SystemView>
+  );
+}
 
 export const styles = StyleSheet.create({
-  container: {},
   button: {
     borderRadius: width,
     width: width,
     height: width,
+    flexBasis: width,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
