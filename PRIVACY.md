@@ -1,7 +1,7 @@
 # Privacy Policy for Dainorėlis
 
 **Effective date:** April 6, 2025  
-**Last updated:** April 6, 2025
+**Last updated:** October 26, 2026
 
 Dainorėlis ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information when you use our mobile application, **Dainorėlis**.
 
@@ -58,7 +58,7 @@ If you are a resident of the **European Union** or **California**, you may have 
 - The right to correct or delete that data
 - The right to restrict or object to certain uses of data
 
-Since we do not collect personal data directly, these rights are typically not applicable. If you have concerns, feel free to contact us at **info@dainorelisapp.com**.
+Since we do not collect personal data directly, these rights are typically not applicable. If you have concerns, feel free to contact us at **info@dainorelis.app**.
 
 ---
 
@@ -76,4 +76,4 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 ## 8. Contact Us
 
-If you have any questions about this Privacy Policy, please contact us at [info@dainorelisapp.com](mailto:info@dainorelisapp.com)
+If you have any questions about this Privacy Policy, please contact us at [info@dainorelis.app](mailto:info@dainorelis.app)
