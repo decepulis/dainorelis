@@ -301,7 +301,9 @@ The admin app has its own variables; see `admin/.env.example`.
 ## Testing and Release
 
 There are currently no automated tests (`pnpm test` exits successfully). Check changes with
-`npx tsc --noEmit` and `pnpm lint`.
+`npx tsc --noEmit` and `pnpm lint`, and look at UI changes on the simulators and emulators:
+`.claude/skills/verify-on-device/SKILL.md` covers building, driving, screenshotting and the device rules (no
+audio; never the owner's devices). `.claude/skills/store-release/SKILL.md` is the release-day walkthrough.
 
 For production releases, see the Expo documentation on creating production builds, and the
 build-number and signing notes under Building: `app.config.ts` generates `yymmdd##` build numbers
