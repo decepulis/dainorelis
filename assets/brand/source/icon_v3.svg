@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- icon-studio {"thick":22.5,"gap":40,"cx":53,"cy":53,"sq":12.5,"diamond":true,"scale":3.14398923444976} -->
+<svg width="100%" height="100%" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(3.14398923444976,0,0,3.14398923444976,250,250)">
+        <g transform="matrix(0.707107,0.707107,-0.707107,0.707107,0,0)">
+            <rect x="-6.25" y="-6.25" width="12.5" height="12.5" style="fill:rgb(230,189,92);"/>
+        </g>
+        <g>
+            <path d="M-53,-33L-31.25,-11.25L-11.25,-31.25L-33,-53L-10.5,-53L0,-42.5L10.5,-53L33,-53L11.25,-31.25L31.25,-11.25L53,-33L53,-10.5L42.5,0L53,10.5L53,33L31.25,11.25L11.25,31.25L33,53L10.5,53L0,42.5L-10.5,53L-33,53L-11.25,31.25L-31.25,11.25L-53,33L-53,10.5L-42.5,0L-53,-10.5ZM-20,0L0,20L20,0L0,-20Z" style="fill:white;"/>
+        </g>
+    </g>
+</svg>

@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react';
 import { useColorScheme as useRNColorScheme } from 'react-native';
 
+import useHasHydrated from './useHasHydrated';
+import useStorage from './useStorage';
+
 /**
- * To support static rendering, this value needs to be re-calculated on the client side for web
+ * Light while hydrating, like the statically rendered HTML; then the theme setting, which react-native-web's
+ * Appearance can't take, or the browser's color scheme.
  */
-export function useColorScheme() {
-  const [hasHydrated, setHasHydrated] = useState(false);
-
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
+export function useColorScheme(): 'light' | 'dark' {
+  const hasHydrated = useHasHydrated();
   const colorScheme = useRNColorScheme();
+  const { value: theme } = useStorage('theme');
 
-  if (hasHydrated) {
-    return colorScheme;
-  }
-
-  return 'light';
+  if (!hasHydrated) return 'light';
+  return theme === 'auto' ? (colorScheme === 'dark' ? 'dark' : 'light') : theme;
 }

@@ -1,20 +1,25 @@
-import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PixelRatio, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, View } from 'react-native';
 
 import { Image } from 'expo-image';
 import { Stack } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 
-import { HeaderBackground, HeaderLeft } from '@/lib/components/Header';
+import type { MenuAction, NativeActionEvent } from '@expo/ui/community/menu';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
+
+import { HeaderBackground, HeaderLeft, ModalToolbar } from '@/lib/components/Header';
+import MenuView from '@/lib/components/MenuView';
 import ScrollViewWithHeader from '@/lib/components/ScrollViewWithHeader';
-import SegmentedControl from '@/lib/components/SegmentedControl';
+import Switch from '@/lib/components/Switch';
 import ThemedText from '@/lib/components/ThemedText';
-import maxWidth from '@/lib/constants/maxWidth';
 import padding from '@/lib/constants/padding';
-import useMaxWidthPadding from '@/lib/hooks/useMaxWidthPadding';
+import useConfirm from '@/lib/hooks/useConfirm';
+import useContentColumnStyle from '@/lib/hooks/useContentColumnStyle';
 import useOpenFeedback from '@/lib/hooks/useOpenFeedback';
 import useStorage from '@/lib/hooks/useStorage';
 import { useThemeColor } from '@/lib/hooks/useThemeColor';
+import { clearSheetMusicCache, formatMegabytes, sheetMusicCacheSize } from '@/lib/utils/sheetMusicCache';
 
 const team = [
   {
@@ -48,91 +53,155 @@ export default function Page() {
   const { t, i18n } = useTranslation();
   const { value: language, setValue: setLanguage } = useStorage('language');
   const { value: theme, setValue: setTheme } = useStorage('theme');
-  const maxWidthPadding = useMaxWidthPadding();
+  const { value: showChords, setValue: setShowChords } = useStorage('showChords');
+  const contentColumn = useContentColumnStyle();
   const openFeedback = useOpenFeedback();
+  const { confirm, confirmDialog } = useConfirm();
 
   const primary = useThemeColor('primary');
   const card = useThemeColor('card');
   const separator = useThemeColor('separator');
 
-  const onLanguageChange = useCallback(
-    (language: 'en' | 'lt') => {
-      setLanguage(language);
-      i18n.changeLanguage(language);
-    },
-    [setLanguage, i18n]
-  );
-  const [isWriteToUsPressed, setIsWriteToUsPressed] = useState(false);
+  // the privacy policy and the photo credit open in the in-app browser
+  const openLink = (url: string) =>
+    WebBrowser.openBrowserAsync(url, {
+      controlsColor: primary,
+      presentationStyle: WebBrowser.WebBrowserPresentationStyle.PAGE_SHEET,
+      dismissButtonStyle: 'close',
+    });
+  const linkStyle = { textDecorationLine: 'underline', textDecorationColor: primary } as const;
+
+  const onLanguageChange = (language: 'en' | 'lt') => {
+    setLanguage(language);
+    i18n.changeLanguage(language);
+  };
+
+  const text = useThemeColor('text');
+
+  // the size is read when tapped, so it counts sheet music opened since Settings appeared
+  const onClearCache = () => {
+    const size = sheetMusicCacheSize();
+    if (!size) return Alert.alert(t('cacheEmpty'));
+    confirm({
+      title: t('clearCacheTitle'),
+      message: t('clearCacheMessage', { size: formatMegabytes(size) }),
+      confirmLabel: t('clearCacheConfirm'),
+      destructive: true,
+      onConfirm: clearSheetMusicCache,
+    });
+  };
+
+  // Language menu actions
+  const languageActions: MenuAction[] = [
+    { id: 'lt', title: 'Lietuvių', state: language === 'lt' ? 'on' : 'off' },
+    { id: 'en', title: 'English', state: language === 'en' ? 'on' : 'off' },
+  ];
+
+  const handleLanguageChange = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    onLanguageChange(event as 'en' | 'lt');
+  };
+
+  // Theme menu actions
+  const themeActions: MenuAction[] = [
+    { id: 'auto', title: t('autoTheme'), state: theme === 'auto' ? 'on' : 'off' },
+    { id: 'dark', title: t('darkTheme'), state: theme === 'dark' ? 'on' : 'off' },
+    { id: 'light', title: t('lightTheme'), state: theme === 'light' ? 'on' : 'off' },
+  ];
+
+  const handleThemeChange = (e: NativeActionEvent) => {
+    const { event } = e.nativeEvent;
+    setTheme(event as 'auto' | 'dark' | 'light');
+  };
 
   return (
     <>
       <Stack.Screen
         options={{
           headerLeft: (props) => <HeaderLeft {...props} modal />,
-          headerBackground: () => <HeaderBackground opaque />,
+          headerBackground: () => <HeaderBackground />,
         }}
       />
+      <ModalToolbar />
+      {confirmDialog}
       <ScrollViewWithHeader>
-        <View style={[styles.container, maxWidthPadding]}>
+        <View style={[styles.container, contentColumn]}>
           <View style={[styles.section]}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsTitle')}
             </ThemedText>
             <View style={styles.settings}>
-              <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
-                  {t('language')}
-                </ThemedText>
-                <SegmentedControl
-                  options={[
-                    { label: 'Lietuvių', value: 'lt' },
-                    { label: 'English', value: 'en' },
-                  ]}
-                  value={language}
-                  onValueChange={(l: string) => onLanguageChange(l as 'en' | 'lt')}
-                />
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('language')}</ThemedText>
+                <MenuView actions={languageActions} onPressAction={handleLanguageChange}>
+                  <View style={styles.pickerTrigger}>
+                    <ThemedText style={styles.pickerValue}>{language === 'lt' ? 'Lietuvių' : 'English'}</ThemedText>
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
+                  </View>
+                </MenuView>
               </View>
-              <View style={styles.setting}>
-                <ThemedText style={[styles.settingTitle, { flexBasis: 70 * PixelRatio.getFontScale() }]}>
-                  {t('theme')}
-                </ThemedText>
-                <SegmentedControl
-                  options={[
-                    { label: t('autoTheme'), value: 'auto' },
-                    { label: t('darkTheme'), value: 'dark' },
-                    { label: t('lightTheme'), value: 'light' },
-                  ]}
-                  value={theme}
-                  onValueChange={(t: string) => setTheme(t as 'auto' | 'dark' | 'light')}
-                />
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('theme')}</ThemedText>
+                <MenuView actions={themeActions} onPressAction={handleThemeChange}>
+                  <View style={styles.pickerTrigger}>
+                    <ThemedText style={styles.pickerValue}>
+                      {theme === 'auto' ? t('autoTheme') : theme === 'dark' ? t('darkTheme') : t('lightTheme')}
+                    </ThemedText>
+                    <FontAwesome6 name="chevron-down" iconStyle="solid" size={12} color={text} />
+                  </View>
+                </MenuView>
               </View>
+              <View style={styles.hSetting}>
+                <ThemedText style={[styles.settingTitle]}>{t('showChords')}</ThemedText>
+                <Switch value={showChords} onValueChange={setShowChords} accessibilityLabel={t('showChords')} />
+              </View>
+              {/* the web has no sheet music cache: the browser keeps its own */}
+              {process.env.EXPO_OS !== 'web' && (
+                <Pressable
+                  onPress={onClearCache}
+                  accessibilityRole="button"
+                  hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+                  style={styles.hSetting}
+                >
+                  {({ pressed }) => (
+                    <ThemedText
+                      style={[
+                        styles.settingTitle,
+                        { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                      ]}
+                    >
+                      {t('clearCache')}
+                    </ThemedText>
+                  )}
+                </Pressable>
+              )}
             </View>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsWriteToUsTitle')}
             </ThemedText>
             <Pressable
-              onPressIn={() => setIsWriteToUsPressed(true)}
-              onPressOut={() => setIsWriteToUsPressed(false)}
               onPress={() => openFeedback()}
               hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
             >
-              <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
-                {t('settingsWriteToUsText1')}{' '}
-                <ThemedText
-                  style={[
-                    { textDecorationLine: isWriteToUsPressed ? undefined : 'underline', textDecorationColor: primary },
-                  ]}
-                >
-                  {t('settingsWriteToUsText2')}
-                </ThemedText>
-              </ThemedText>
-              <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+              {({ pressed }) => (
+                <>
+                  <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
+                    {t('settingsWriteToUsText1')}{' '}
+                    <ThemedText
+                      style={[{ textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary }]}
+                    >
+                      {t('settingsWriteToUsText2')}
+                    </ThemedText>
+                  </ThemedText>
+                  <ThemedText style={[styles.paragraph]}>{t('settingsWriteToUsText3')}</ThemedText>
+                </>
+              )}
             </Pressable>
           </View>
           <View style={styles.section}>
-            <ThemedText bold style={[styles.header, { borderColor: separator }]}>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsSpecialThanksTitle')}
             </ThemedText>
             <ThemedText style={[styles.paragraph, { marginBottom: padding }]}>
@@ -141,14 +210,14 @@ export default function Page() {
             <ThemedText style={[styles.paragraph]}>{t('settingsSpecialThanksXIDainuSvente')}</ThemedText>
           </View>
           <View style={styles.section}>
-            <ThemedText style={[styles.header, { borderColor: separator }]} bold>
+            <ThemedText title bold style={[styles.header, { borderColor: separator }]}>
               {t('settingsAboutUsTitle')}
             </ThemedText>
-            <ThemedText style={[styles.subheader]} italic bold>
+            <ThemedText title bold style={[styles.subheader]}>
               {t('settingsOurGoalTitle')}
             </ThemedText>
             <ThemedText style={styles.paragraph}>{t('settingsOurGoalText')}</ThemedText>
-            <ThemedText style={[styles.subheader, { marginTop: padding }]} italic bold>
+            <ThemedText title bold style={[styles.subheader, { marginTop: padding }]}>
               {t('settingsOurTeamTitle')}
             </ThemedText>
             <View style={styles.profiles}>
@@ -162,6 +231,52 @@ export default function Page() {
               ))}
             </View>
           </View>
+          {/* the footer, under the same hairline as the section headers */}
+          <View style={[styles.footer, { borderColor: separator }]}>
+            <Pressable
+              onPress={() => openLink('https://dainorelis.app/privacy')}
+              accessibilityRole="link"
+              hitSlop={{ top: padding / 2, bottom: padding / 2, left: padding, right: padding }}
+            >
+              {({ pressed }) => (
+                <ThemedText
+                  style={[
+                    styles.paragraph,
+                    { textDecorationLine: pressed ? undefined : 'underline', textDecorationColor: primary },
+                  ]}
+                >
+                  {t('privacyPolicy')}
+                </ThemedText>
+              )}
+            </Pressable>
+            {/* the home screen's forest photo */}
+            <ThemedText style={[styles.paragraph, { marginTop: padding }]}>
+              {t('photoCredit')}{' '}
+              <ThemedText
+                style={linkStyle}
+                accessibilityRole="link"
+                onPress={() =>
+                  openLink(
+                    'https://unsplash.com/@sebastian_unrau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                  )
+                }
+              >
+                Sebastian Unrau
+              </ThemedText>
+              ,{' '}
+              <ThemedText
+                style={linkStyle}
+                accessibilityRole="link"
+                onPress={() =>
+                  openLink(
+                    'https://unsplash.com/photos/trees-on-forest-with-sun-rays-sp-p7uuT0tw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+                  )
+                }
+              >
+                Unsplash
+              </ThemedText>
+            </ThemedText>
+          </View>
         </View>
       </ScrollViewWithHeader>
     </>
@@ -173,31 +288,42 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: padding * 2,
     position: 'relative',
-    width: '100%',
-    maxWidth: maxWidth,
-    marginHorizontal: 'auto',
   },
   section: {
     marginBottom: padding * 1.5,
   },
   settings: {
-    gap: padding / 2,
+    gap: padding,
   },
-  setting: {
+  hSetting: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     gap: padding,
   },
   settingTitle: {
-    fontSize: 14,
+    fontSize: 16,
     flexGrow: 0,
     flexShrink: 0,
   },
+  pickerTrigger: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: padding / 4,
+    flexShrink: 1,
+  },
+  pickerValue: {
+    fontSize: 16,
+  },
   header: {
-    fontSize: 23,
+    fontSize: 26,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: padding,
     paddingBottom: padding / 2,
+  },
+  footer: {
+    borderTopWidth: StyleSheet.hairlineWidth,
+    paddingTop: padding,
   },
   subheader: {
     fontSize: 19,

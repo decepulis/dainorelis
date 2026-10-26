@@ -3,15 +3,14 @@
   "compilerOptions": {
     "strict": true,
     "resolveJsonModule": true,
+    // app.config.ts imports lib/constants/brandColors.ts by its full name: Expo's config loader doesn't resolve
+    // extensionless TypeScript imports
+    "allowImportingTsExtensions": true,
     "rootDir": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "admin", ".claude/worktrees"]
 }

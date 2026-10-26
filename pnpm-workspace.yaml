@@ -1,0 +1,14 @@
+# Hoisted: React Native's autolinking/Metro and the admin app's Vercel file tracing both expect
+# a flat node_modules.
+nodeLinker: hoisted
+packages:
+  - admin
+
+# pnpm 10 blocks dependency build scripts by default. None of these need theirs: each ships its
+# native binary as a platform-specific optional dependency (@esbuild/*, @img/sharp-*,
+# @unrs/resolver-binding-*), and the scripts only verify that binary or fall back to a source
+# build. Listing them here silences the "Ignored build scripts" warning on every install.
+ignoredBuiltDependencies:
+  - esbuild # tsx
+  - sharp # Next.js image optimisation
+  - unrs-resolver # eslint-import-resolver-typescript

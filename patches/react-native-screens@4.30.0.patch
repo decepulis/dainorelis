@@ -1,0 +1,1377 @@
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
+index fa1b77317f609983ae2434764174072e51130550..fa6338d1298b1933b37868702a41cd5e60bdc9f6 100644
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderConfigViewManager.kt
+@@ -320,4 +320,30 @@ class ScreenStackHeaderConfigViewManager :
+         view: ScreenStackHeaderConfig?,
+         value: String?,
+     ) = Unit
++
++    // dainorelis: iOS-only title menu, subtitle and overflow menu
++    override fun setSubtitle(
++        view: ScreenStackHeaderConfig?,
++        value: String?,
++    ) = Unit
++
++    override fun setTitleMenu(
++        view: ScreenStackHeaderConfig?,
++        value: com.facebook.react.bridge.Dynamic,
++    ) = Unit
++
++    override fun setOverflowMenu(
++        view: ScreenStackHeaderConfig?,
++        value: com.facebook.react.bridge.Dynamic,
++    ) = Unit
++
++    override fun setPinsTrailingItems(
++        view: ScreenStackHeaderConfig?,
++        value: Boolean,
++    ) = Unit
++
++    override fun setLargeTitleMaxWidth(
++        view: ScreenStackHeaderConfig?,
++        value: Float,
++    ) = Unit
+ }
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
+index df9e242f3ab0c62618cf593c34835a6c2e9105e2..d839b10ac977c2295e3a00b259be2f6cfc550522 100644
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenViewManager.kt
+@@ -318,6 +318,12 @@ open class ScreenViewManager :
+         value: String?,
+     ) = Unit
+ 
++    // dainorelis: iOS-only top scroll edge effect threshold
++    override fun setTopScrollEdgeEffectThreshold(
++        view: Screen?,
++        value: Float,
++    ) = Unit
++
+     override fun setSynchronousShadowStateUpdatesEnabled(
+         view: Screen?,
+         value: Boolean,
+diff --git a/ios/RNSBarButtonItem.h b/ios/RNSBarButtonItem.h
+index a26d1254eafd89268f65d968988cf6a3b8c1e457..cd02364ddf2ae3b84c7985a997079c6eefe8ce4c 100644
+--- a/ios/RNSBarButtonItem.h
++++ b/ios/RNSBarButtonItem.h
+@@ -15,6 +15,10 @@ typedef void (^RNSBarButtonMenuItemAction)(NSString *menuId);
+                         action:(RNSBarButtonItemAction)action
+                     menuAction:(RNSBarButtonMenuItemAction)menuAction
+                    imageLoader:(RCTImageLoader *)imageLoader;
++// dainorelis: exposed for the title menu (RNSScreenStackHeaderConfig)
+++ (UIMenu *)initUIMenuWithDict:(NSDictionary<NSString *, id> *)dict
++                    menuAction:(RNSBarButtonMenuItemAction)menuAction
++                   imageLoader:(RCTImageLoader *)imageLoader;
+ #endif // defined(__cplusplus)
+ 
+ @end
+diff --git a/ios/RNSScreen.h b/ios/RNSScreen.h
+index fd9ecffa71b97230f62c6cde961d21c50076f960..496c7554d762ccf3ee91b8935158031e3f2ee678 100644
+--- a/ios/RNSScreen.h
++++ b/ios/RNSScreen.h
+@@ -54,6 +54,12 @@ NS_ASSUME_NONNULL_BEGIN
+ - (CGFloat)calculateHeaderHeightIsModal:(BOOL)isModal;
+ - (BOOL)isRemovedFromParent;
+ - (void)notifyPresentedControllerDismissed;
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++// dainorelis: see RNSScreen.mm
++- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange;
++- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font;
++- (void)dainorelis_setLargeTitleMaxWidth:(CGFloat)maxWidth;
++#endif
+ 
+ @end
+ 
+diff --git a/ios/RNSScreen.mm b/ios/RNSScreen.mm
+index 049fd22427b2bde17fd7ca59b8de65d0ee07b4b5..9ae17bb8e3392f85e20b737c420069c0bb92b9ff 100644
+--- a/ios/RNSScreen.mm
++++ b/ios/RNSScreen.mm
+@@ -1,4 +1,5 @@
+ #import <UIKit/UIKit.h>
++#import <objc/runtime.h> // dainorelis
+ 
+ #import "RNSModalScreen.h"
+ #import "RNSScreen.h"
+@@ -8,6 +9,7 @@
+ 
+ #import <React/RCTConversions.h>
+ #import <React/RCTFabricComponentsPlugins.h>
++#import <React/RCTMountingTransactionObserving.h> // dainorelis
+ #import <React/RCTRootComponentView.h>
+ #import <React/RCTScrollViewComponentView.h>
+ #import <React/RCTSurfaceTouchHandler.h>
+@@ -48,9 +50,13 @@ struct ContentWrapperBox {
+                              UISheetPresentationControllerDelegate,
+ #endif
+                              RCTRNSScreenViewProtocol,
++                             RCTMountingTransactionObserving, // dainorelis
+                              CAAnimationDelegate>
+ @end
+ 
++// dainorelis: tells the top scroll edge effect's contentOffset observation apart from the sheet's bounds one
++static void *RNSDainorelisContentOffsetContext = &RNSDainorelisContentOffsetContext;
++
+ @implementation RNSScreenView {
+   __weak RCTScrollViewComponentView *_sheetsScrollView;
+   /// Tag of `_sheetsScrollView` at the time we started observing it. Fabric changes the tag when it recycles
+@@ -66,6 +72,10 @@ struct ContentWrapperBox {
+   RCTSurfaceTouchHandler *_touchHandler;
+   react::RNSScreenShadowNode::ConcreteState::Shared _state;
+   NSMutableArray<UIView *> *_reactSubviews;
++  // dainorelis: see -dainorelis_trackTopScrollEdgeEffect
++  CGFloat _dainorelisTopScrollEdgeEffectThreshold;
++  __weak UIScrollView *_dainorelisTrackedScrollView;
++  BOOL _dainorelisTrackedScrollViewIsScrolledUnder;
+ }
+ 
+ - (instancetype)initWithFrame:(CGRect)frame
+@@ -98,6 +108,7 @@ struct ContentWrapperBox {
+   _fullScreenSwipeEnabled = RNSOptionalBooleanUndefined;
+   _fullScreenSwipeShadowEnabled = YES;
+   _shouldUpdateScrollEdgeEffects = NO;
++  _dainorelisTopScrollEdgeEffectThreshold = -1; // dainorelis
+ #if !TARGET_OS_TV
+   _sheetExpandsWhenScrolledToEdge = YES;
+ #endif // !TARGET_OS_TV
+@@ -241,6 +252,12 @@ RNS_IGNORE_SUPER_CALL_END
+                         change:(NSDictionary<NSKeyValueChangeKey, id> *)change
+                        context:(void *)context
+ {
++  // dainorelis
++  if (context == RNSDainorelisContentOffsetContext) {
++    [self dainorelis_updateTopScrollEdgeEffect];
++    return;
++  }
++
+   UIView *scrollView = (UIView *)object;
+ 
+   if (![scrollView isKindOfClass:RCTScrollViewComponentView.class]) {
+@@ -813,6 +830,7 @@ RNS_IGNORE_SUPER_CALL_END
+ - (void)invalidateImpl
+ {
+   _invalidated = YES;
++  [self dainorelis_trackScrollView:nil]; // dainorelis
+ 
+   // Since the scroll view might get immediately recycled we remove ourselves
+   // immediately.
+@@ -1155,6 +1173,82 @@ RNS_IGNORE_SUPER_CALL_END
+ {
+   [RNSScrollEdgeEffectApplicator applyToScrollView:[RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self]
+                                       withProvider:self];
++  // dainorelis: the applicator just reset the top edge effect
++  _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++  [self dainorelis_trackTopScrollEdgeEffect];
++}
++
++// PATCH(dainorelis): `topScrollEdgeEffectThreshold` (negative for none) switches the top edge effect of the screen's
++// scroll view (the first in its view hierarchy, as for the other edge effects) to its hard style while the content is
++// scrolled past the threshold under the top of the scroll view, and back to `topScrollEdgeEffect` at the top. iOS 27
++// gives the navigation bar a background only behind a native title, so a screen with a custom title sets it. It
++// follows the scroll view's contentOffset on the main thread: a round trip through JS lags behind fast flicks.
++// Fabric can swap the scroll view for another without touching the screen, so look for it after every mount.
++- (void)mountingTransactionDidMount:(const facebook::react::MountingTransaction &)transaction
++                withSurfaceTelemetry:(const facebook::react::SurfaceTelemetry &)surfaceTelemetry
++{
++  if (_dainorelisTopScrollEdgeEffectThreshold >= 0 || _dainorelisTrackedScrollView != nil) {
++    [self dainorelis_trackTopScrollEdgeEffect];
++  }
++}
++
++- (void)dainorelis_trackTopScrollEdgeEffect
++{
++  UIScrollView *scrollView = nil;
++  if (_dainorelisTopScrollEdgeEffectThreshold >= 0 && !_invalidated) {
++    scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self];
++  }
++  [self dainorelis_trackScrollView:scrollView];
++}
++
++- (void)dainorelis_trackScrollView:(nullable UIScrollView *)scrollView
++{
++  if (scrollView == _dainorelisTrackedScrollView) {
++    [self dainorelis_updateTopScrollEdgeEffect];
++    return;
++  }
++  UIScrollView *previousScrollView = _dainorelisTrackedScrollView;
++  if (previousScrollView != nil) {
++    [previousScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++    if (_dainorelisTrackedScrollViewIsScrolledUnder) {
++      _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++      [self dainorelis_applyTopScrollEdgeEffectTo:previousScrollView scrolledUnder:NO];
++    }
++  }
++  _dainorelisTrackedScrollView = scrollView;
++  _dainorelisTrackedScrollViewIsScrolledUnder = NO;
++  if (scrollView != nil) {
++    [scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:RNSDainorelisContentOffsetContext];
++    [self dainorelis_updateTopScrollEdgeEffect];
++  }
++}
++
++- (void)dainorelis_updateTopScrollEdgeEffect
++{
++  UIScrollView *scrollView = _dainorelisTrackedScrollView;
++  if (scrollView == nil) {
++    return;
++  }
++  const BOOL isScrolledUnder =
++      scrollView.contentOffset.y + scrollView.adjustedContentInset.top > _dainorelisTopScrollEdgeEffectThreshold;
++  if (isScrolledUnder != _dainorelisTrackedScrollViewIsScrolledUnder) {
++    _dainorelisTrackedScrollViewIsScrolledUnder = isScrolledUnder;
++    [self dainorelis_applyTopScrollEdgeEffectTo:scrollView scrolledUnder:isScrolledUnder];
++  }
++}
++
++- (void)dainorelis_applyTopScrollEdgeEffectTo:(UIScrollView *)scrollView scrolledUnder:(BOOL)isScrolledUnder
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    if (isScrolledUnder) {
++      scrollView.topEdgeEffect.hidden = NO;
++      scrollView.topEdgeEffect.style = UIScrollEdgeEffectStyle.hardStyle;
++    } else {
++      [RNSScrollEdgeEffectApplicator applyToScrollView:scrollView withProvider:self];
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
+ }
+ 
+ #pragma mark - RNSSafeAreaProviding
+@@ -1385,6 +1479,12 @@ RNS_IGNORE_SUPER_CALL_END
+                                                  newScreenProps.topScrollEdgeEffect]];
+   }
+ 
++  // dainorelis: applied with the other edge effects, in -finalizeUpdates:
++  if (newScreenProps.topScrollEdgeEffectThreshold != oldScreenProps.topScrollEdgeEffectThreshold) {
++    _dainorelisTopScrollEdgeEffectThreshold = newScreenProps.topScrollEdgeEffectThreshold;
++    _shouldUpdateScrollEdgeEffects = YES;
++  }
++
+   [super updateProps:props oldProps:oldProps];
+ }
+ 
+@@ -1465,6 +1565,16 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+   BOOL _shouldNotify;
+   BOOL _isRemovedFromParent;
+   BOOL _hasNotifiedDismissed;
++  // dainorelis: see -dainorelis_keepLargeTitleExpandedDuringPush (set during a push or after a display mode change)
++  BOOL _dainorelisKeepsLargeTitleExpanded;
++  BOOL _dainorelisPullsOnce;
++  CGFloat _dainorelisPulledBarHeight;
++  // dainorelis: see -dainorelis_fitLargeTitleWithFont:
++  UIFont *_dainorelisLargeTitleFont;
++  NSString *_dainorelisFittedLargeTitle;
++  CGFloat _dainorelisFittedLargeTitleWidth;
++  // dainorelis: see -dainorelis_alignLargeTitleRestoring:
++  CGFloat _dainorelisLargeTitleMaxWidth;
+ }
+ 
+ #pragma mark - Common
+@@ -1485,6 +1595,13 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewWillAppear:(BOOL)animated
+ {
+   [super viewWillAppear:animated];
++  // dainorelis
++  _dainorelisKeepsLargeTitleExpanded = self.isMovingToParentViewController && self.transitionCoordinator != nil;
++  _dainorelisPullsOnce = NO;
++  _dainorelisPulledBarHeight = 0;
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_alignLargeTitleRestoring:NO];
++#endif
+   if (!_isSwiping) {
+     [self.screenView notifyWillAppear];
+     if (self.transitionCoordinator.isInteractive) {
+@@ -1549,6 +1666,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewDidAppear:(BOOL)animated
+ {
+   [super viewDidAppear:animated];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_releasePulledContent]; // dainorelis
++  [self dainorelis_alignLargeTitleRestoring:YES]; // dainorelis
++#endif
+   if (!_isSwiping || _shouldNotify) {
+     // we are going forward or dismissing without swipe
+     // or successfully swiped back
+@@ -1565,6 +1686,10 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+ - (void)viewDidDisappear:(BOOL)animated
+ {
+   [super viewDidDisappear:animated];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: a push cancelled (or popped) before viewDidAppear leaves the content pulled down
++  [self dainorelis_releasePulledContent];
++#endif
+   if (self.parentViewController == nil && self.presentingViewController == nil) {
+     if (self.screenView.preventNativeDismiss) {
+       // if we want to prevent the native dismiss, we do not send dismissal event,
+@@ -1586,9 +1711,196 @@ Class<RCTComponentViewProtocol> RNSScreenCls(void)
+   _shouldNotify = YES;
+ }
+ 
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++// PATCH(dainorelis): keep a large title expanded while its screen is pushed (iOS 26+).
++//
++// During a push UIKit first lays the bar out with an estimated large title height. It leaves out the subtitle
++// under the large title (`navigationItem.subtitle`, or the `largeSubtitleView` the header config patch sets), and
++// the marks that reach above the font's line height (the caron of Lithuanian š and ž). The scroll view is put at
++// the top for that estimate. When the real, taller title is measured, the content's offset no longer matches the
++// top; UIKit reads it as the content having been scrolled and collapses the title for the whole transition, and
++// the screen arrives with an inline title. Some titles whose height UIKit estimates right still arrive collapsed
++// on iOS 26.
++//
++// So once the estimate is applied, pull the content down past the top, as a pull-down gesture would: UIKit then
++// measures the full large title, and we put the content back at the top it measured. Both happen in layout passes
++// before the transition draws its first frame. Where the bar keeps its height, nothing comes to let go, so let go
++// on the next turn of the main queue too, after the current layout passes are done.
++- (void)dainorelis_keepLargeTitleExpandedDuringPush
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    if (!_dainorelisKeepsLargeTitleExpanded) {
++      return;
++    }
++    if (self.navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways) {
++      return;
++    }
++    UIScrollView *scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self.view];
++    if (scrollView == nil) {
++      return;
++    }
++    const CGFloat barHeight = self.navigationController.navigationBar.frame.size.height;
++    const CGFloat top = -scrollView.adjustedContentInset.top;
++    if (_dainorelisPulledBarHeight == 0) {
++      // the scroll view sits at the top of the estimated bar
++      if (scrollView.adjustedContentInset.top > 0 && fabs(scrollView.contentOffset.y - top) < 0.5) {
++        _dainorelisPulledBarHeight = barHeight;
++        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top - self.view.bounds.size.height / 2);
++        __weak RNSScreen *weakSelf = self;
++        dispatch_async(dispatch_get_main_queue(), ^{
++          [weakSelf dainorelis_releasePulledContent];
++        });
++      }
++    } else if (fabs(barHeight - _dainorelisPulledBarHeight) > 0.5) {
++      // the bar has its measured height
++      [self dainorelis_releasePulledContent];
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
++
++// A settled screen whose large title display mode changes to always (e.g. as a song switches from its PDF to its
++// lyrics) shows the title collapsed although its content is at the top, until the content is pulled down. So pull it
++// in the next layout pass, the same way, and put it back right after: the bar already has its full height here, so
++// no change in it will come to let go.
++- (void)dainorelis_keepLargeTitleExpandedAfterDisplayModeChange
++{
++  _dainorelisKeepsLargeTitleExpanded = YES;
++  _dainorelisPullsOnce = YES;
++  _dainorelisPulledBarHeight = 0;
++  [self.view setNeedsLayout];
++}
++
++- (void)dainorelis_releasePulledContent
++{
++  _dainorelisKeepsLargeTitleExpanded = NO;
++  if (_dainorelisPulledBarHeight == 0) {
++    return;
++  }
++  _dainorelisPulledBarHeight = 0;
++  UIScrollView *scrollView = [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:self.view];
++  const CGFloat top = -scrollView.adjustedContentInset.top;
++  if (scrollView != nil && scrollView.contentOffset.y < top) {
++    scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, top);
++  }
++}
++
++// PATCH(dainorelis): UIKit has no multi-line large title and truncates one wider than the bar. Step its font down a
++// point at a time, to Title 1's 28pt at the least, until the title fits between the bar's layout margins. The header
++// config passes the font it set (nil for none); the fit runs again whenever the title or the bar's width changes.
++// PATCH(dainorelis): line a large title up with a centred content column (iOS 26+). UIKit lays the large title, and the
++// subtitle view under it, out between the navigation bar's layout margins, and its bar buttons without them, so wider
++// margins move just the title. The bar is shared by the whole stack: the screen on top widens them to centre a line of
++// at most `largeTitleMaxWidth` (from its header config), never narrower than the system's, and a screen without one
++// puts the system's back once it has appeared (not as it appears, which would move a large title still on screen
++// during a pop). The width is the bar's; like the stock edge insets, this maps left and right onto leading and
++// trailing, which is only right for left-to-right layouts.
++static const void *RNSDainorelisWidensMarginsKey = &RNSDainorelisWidensMarginsKey;
++
++- (void)dainorelis_setLargeTitleMaxWidth:(CGFloat)maxWidth
++{
++  _dainorelisLargeTitleMaxWidth = maxWidth;
++  [self dainorelis_alignLargeTitleRestoring:NO];
++}
++
++- (void)dainorelis_alignLargeTitleRestoring:(BOOL)restores
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    UINavigationBar *navigationBar = self.navigationController.navigationBar;
++    if (navigationBar == nil || self.navigationController.topViewController != self) {
++      return;
++    }
++    const BOOL widens = _dainorelisLargeTitleMaxWidth > 0 &&
++        self.navigationItem.largeTitleDisplayMode == UINavigationItemLargeTitleDisplayModeAlways;
++    if (!widens && (!restores || objc_getAssociatedObject(navigationBar, RNSDainorelisWidensMarginsKey) == nil)) {
++      return;
++    }
++    NSDirectionalEdgeInsets margins = navigationBar.directionalLayoutMargins;
++    margins.leading = self.systemMinimumLayoutMargins.leading;
++    margins.trailing = self.systemMinimumLayoutMargins.trailing;
++    if (widens) {
++      // the margins are inset from the bar's safe area
++      const CGFloat inset = (navigationBar.bounds.size.width - _dainorelisLargeTitleMaxWidth) / 2;
++      margins.leading = MAX(margins.leading, inset - navigationBar.safeAreaInsets.left);
++      margins.trailing = MAX(margins.trailing, inset - navigationBar.safeAreaInsets.right);
++    }
++    objc_setAssociatedObject(
++        navigationBar, RNSDainorelisWidensMarginsKey, widens ? @YES : nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    if (!NSDirectionalEdgeInsetsEqualToDirectionalEdgeInsets(margins, navigationBar.directionalLayoutMargins)) {
++      navigationBar.directionalLayoutMargins = margins;
++    }
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
++
++- (void)dainorelis_fitLargeTitleWithFont:(nullable UIFont *)font
++{
++  _dainorelisLargeTitleFont = font;
++  _dainorelisFittedLargeTitle = nil;
++  _dainorelisFittedLargeTitleWidth = 0;
++  [self dainorelis_fitLargeTitle];
++}
++
++- (void)dainorelis_fitLargeTitle
++{
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    UIFont *font = _dainorelisLargeTitleFont;
++    UINavigationItem *navigationItem = self.navigationItem;
++    UINavigationBar *navigationBar = self.navigationController.navigationBar;
++    if (font == nil || navigationBar == nil ||
++        navigationItem.largeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways) {
++      return;
++    }
++    NSString *title = navigationItem.largeTitle ?: navigationItem.title ?: @"";
++    const NSDirectionalEdgeInsets margins = navigationBar.directionalLayoutMargins;
++    const CGFloat width = navigationBar.bounds.size.width - margins.leading - margins.trailing;
++    if (width <= 0 || (fabs(width - _dainorelisFittedLargeTitleWidth) < 0.5 &&
++                       [title isEqualToString:_dainorelisFittedLargeTitle])) {
++      return;
++    }
++    _dainorelisFittedLargeTitle = title;
++    _dainorelisFittedLargeTitleWidth = width;
++    const CGFloat smallestSize = MIN(font.pointSize, 28);
++    while (font.pointSize > smallestSize && [title sizeWithAttributes:@{NSFontAttributeName : font}].width > width) {
++      font = [font fontWithSize:MAX(font.pointSize - 1, smallestSize)];
++    }
++    UINavigationBarAppearance * (^fitted)(UINavigationBarAppearance *) = ^(UINavigationBarAppearance *appearance) {
++      UIFont *currentFont = appearance.largeTitleTextAttributes[NSFontAttributeName];
++      if (appearance == nil || currentFont == nil || [currentFont isEqual:font]) {
++        return appearance;
++      }
++      UINavigationBarAppearance *copy = [appearance copy];
++      NSMutableDictionary *attributes = [copy.largeTitleTextAttributes mutableCopy];
++      attributes[NSFontAttributeName] = font;
++      copy.largeTitleTextAttributes = attributes;
++      return copy;
++    };
++    navigationItem.standardAppearance = fitted(navigationItem.standardAppearance);
++    navigationItem.compactAppearance = fitted(navigationItem.compactAppearance);
++    navigationItem.scrollEdgeAppearance = fitted(navigationItem.scrollEdgeAppearance);
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++}
++#endif // !TARGET_OS_TV && !TARGET_OS_VISION
++
+ - (void)viewDidLayoutSubviews
+ {
+   [super viewDidLayoutSubviews];
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  [self dainorelis_alignLargeTitleRestoring:self.transitionCoordinator == nil];
++  [self dainorelis_fitLargeTitle];
++  [self dainorelis_keepLargeTitleExpandedDuringPush];
++  if (_dainorelisPullsOnce) {
++    _dainorelisPullsOnce = NO;
++    __weak RNSScreen *weakSelf = self;
++    dispatch_async(dispatch_get_main_queue(), ^{
++      [weakSelf dainorelis_releasePulledContent];
++    });
++  }
++#endif
+ 
+   // The below code makes the screen view adapt dimensions provided by the system. We take these
+   // into account only when the view is mounted under RNSNavigationController, in which case the
+diff --git a/ios/RNSScreenStack.mm b/ios/RNSScreenStack.mm
+index 5da11964f5932cb44e1131c44a2480803c0a62b5..1efdb40266396b0ec76c956204fdb8855cc3e096 100644
+--- a/ios/RNSScreenStack.mm
++++ b/ios/RNSScreenStack.mm
+@@ -1137,9 +1137,52 @@ RNS_IGNORE_SUPER_CALL_END
+       }
+     }
+   }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: UIKit (iOS 26+) puts the large title, and so the `largeSubtitleView` the header config
++  // patch sets, inside the screen's scroll view, outside RN's content container. RN's scroll view hit
++  // testing only visits that container's subviews and falls back to the scroll view itself, so a touch
++  // never reaches the subtitle view; hit test it here first.
++  if (@available(iOS 26.0, *)) {
++    UIView *largeSubtitleHitTestResult = [self dainorelis_hitTestLargeSubtitleView:point withEvent:event];
++    if (largeSubtitleHitTestResult != nil) {
++      return largeSubtitleHitTestResult;
++    }
++  }
++#endif
+   return [super hitTest:point withEvent:event];
+ }
+ 
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV && !TARGET_OS_VISION
++- (nullable UIView *)dainorelis_hitTestLargeSubtitleView:(CGPoint)point
++                                               withEvent:(UIEvent *)event API_AVAILABLE(ios(26.0))
++{
++  UIView *subtitleView = _controller.topViewController.navigationItem.largeSubtitleView;
++  if (subtitleView == nil || subtitleView.window != self.window || _controller.transitionCoordinator != nil) {
++    return nil;
++  }
++  // only while it's on screen: not in a hidden or faded-out ancestor (e.g. a collapsed large title)
++  for (UIView *view = subtitleView; view != nil && view != self; view = view.superview) {
++    if (view.hidden || view.alpha < 0.01 || !view.userInteractionEnabled) {
++      return nil;
++    }
++  }
++  UIView *hitTestResult = [subtitleView hitTest:[self convertPoint:point toView:subtitleView] withEvent:event];
++  if (hitTestResult == nil) {
++    return nil;
++  }
++  // and the navigation bar's own controls (inline title, bar buttons) win where they overlap the button, though not
++  // in the margin its tap target adds around it: the only bar content there is the large title, which takes no taps
++  const BOOL isInMargin =
++      !CGRectContainsPoint(hitTestResult.bounds, [self convertPoint:point toView:hitTestResult]);
++  UINavigationBar *navigationBar = _controller.navigationBar;
++  if (!isInMargin && !navigationBar.hidden &&
++      [navigationBar hitTest:[self convertPoint:point toView:navigationBar] withEvent:event] != nil) {
++    return nil;
++  }
++  return hitTestResult;
++}
++#endif
++
+ #if !TARGET_OS_TV && !TARGET_OS_VISION
+ 
+ - (BOOL)isScrollViewPanGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+diff --git a/ios/RNSScreenStackHeaderConfig.h b/ios/RNSScreenStackHeaderConfig.h
+index 8f99f5b5b9d3f184f36613d51174cb9393d2cdd6..2998cdda23bef94569694ffa5c97f4794a29d593 100644
+--- a/ios/RNSScreenStackHeaderConfig.h
++++ b/ios/RNSScreenStackHeaderConfig.h
+@@ -24,6 +24,14 @@
+ NS_ASSUME_NONNULL_BEGIN
+ 
+ @property (nonatomic, retain) NSString *title;
++// dainorelis: iOS 26 subtitle and a native title menu (see titleMenu in the codegen spec)
++@property (nonatomic, copy, nullable) NSString *subtitle;
++@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *titleMenu;
++// dainorelis: the screen's actions in UIKit's overflow menu (see overflowMenu in the codegen spec)
++@property (nonatomic, copy, nullable) NSDictionary<NSString *, id> *overflowMenu;
++@property (nonatomic) BOOL pinsTrailingItems;
++// dainorelis: see largeTitleMaxWidth in the codegen spec
++@property (nonatomic) CGFloat largeTitleMaxWidth;
+ @property (nonatomic, retain) NSString *titleFontFamily;
+ @property (nonatomic, retain) NSNumber *titleFontSize;
+ @property (nonatomic, retain) NSString *titleFontWeight;
+diff --git a/ios/RNSScreenStackHeaderConfig.mm b/ios/RNSScreenStackHeaderConfig.mm
+index e217b2411d20c85db3ec84bb87765c1e9407fd3b..934d308cb9381ef0651204b6883a18ddb5da6d35 100644
+--- a/ios/RNSScreenStackHeaderConfig.mm
++++ b/ios/RNSScreenStackHeaderConfig.mm
+@@ -21,6 +21,7 @@
+ #import "RNSConvert.h"
+ #import "RNSDefines.h"
+ #import "RNSScreen.h"
++#import "RNSScrollViewFinder.h"
+ #import "RNSSearchBar.h"
+ #import "UINavigationBar+RNSUtility.h"
+ 
+@@ -45,7 +46,244 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+ 
+ @end
+ 
++// PATCH(dainorelis): what the app's patch (patches/react-native-screens@4.30.0.patch) adds. Its additions are marked
++// "dainorelis"; the props are declared in src/fabric/ScreenStackHeaderConfigNativeComponent.ts (Android ignores them).
++// - Title sizing (iOS 26+): a custom title view gets the room between the bar button groups
++//   (-dainorelis_computeEdgeInsetsOfNavigationBar:fallbackInsets:).
++// - Subtitle and title menu: navigationItem.subtitle (iOS 26+) and a native title menu (iOS 16+), opened under a
++//   large title by a pop-up button (RNSDainorelisLargeSubtitleView, below). The title and subtitle crossfade.
++// - Large title on push (RNSScreen.mm): a large title stays expanded while its screen is pushed, and when a
++//   settled screen switches to a large title (a song's PDF back to its lyrics).
++// - Large title fit (RNSScreen.mm): a large title too wide for the bar steps its font down (to 28pt) to fit.
++// - Large title column (RNSScreen.mm, largeTitleMaxWidth): a large title lines up with a centred content column.
++// - Large subtitle hit test (RNSScreenStack.mm): touches reach the subtitle view UIKit puts in the scroll view.
++// - Appearance per scroll state: the large title color applies at the scroll edge only (to a text subtitle under it
++//   too), and the subtitle's font and color are readable.
++// - Overflow menu and pinned items (iOS 16+): the screen's actions in UIKit's overflow menu
++//   (additionalOverflowItems), and the right items pinned past it (pinnedTrailingGroup).
++
++#if !TARGET_OS_TV
++// dainorelis: holds the pop-up button under a large title (iOS 26+). UIKit stretches the subtitle view
++// across the bar; this keeps the button, its tap target and the menu's anchor at its content size
++@interface RNSDainorelisLargeSubtitleView : UIView
++@property (nonatomic, readonly) UIButton *button;
++// the button's color at the scroll edge and once content scrolls under the bar, like the large title's color
++// in the navigation item's scroll edge and standard appearances. UIKit applies largeSubtitleTextAttributes
++// only to a text subtitle, never to a custom view, so this follows the scroll view the bar tracks itself
++@property (nonatomic, strong, nullable) UIColor *scrollEdgeColor;
++@property (nonatomic, strong, nullable) UIColor *standardColor;
++@property (nonatomic, weak, nullable) UIViewController *viewController;
++- (void)updateButtonColor;
++@end
++
++// the pop-up button, whose tap target reaches past its glyphs: at least 44pt tall and a little wider, as UIKit's own
++// bar buttons do, without growing the button itself (or the menu's anchor). It grows mostly up, into the large title,
++// which takes no taps: below it, where UIKit hosts the title in the bar, it would take the touches that scroll
++@interface RNSDainorelisLargeSubtitleButton : UIButton
++@end
++
++@implementation RNSDainorelisLargeSubtitleButton
++
++- (CGRect)targetRect
++{
++  const CGRect bounds = self.bounds;
++  const CGFloat below = 4;
++  const CGFloat above = MAX(0, 44 - CGRectGetHeight(bounds) - below);
++  return UIEdgeInsetsInsetRect(bounds, UIEdgeInsetsMake(-above, -12, -below, -12));
++}
++
++- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
++{
++  return CGRectContainsPoint(self.targetRect, point);
++}
++
++@end
++
++static void *RNSDainorelisContentOffsetContext = &RNSDainorelisContentOffsetContext;
++
++@implementation RNSDainorelisLargeSubtitleView {
++  // observed while the view is in a window, and let go when it leaves
++  UIScrollView *_observedScrollView;
++}
++
++- (instancetype)initWithButton:(UIButton *)button
++{
++  if (self = [super initWithFrame:CGRectZero]) {
++    _button = button;
++    button.translatesAutoresizingMaskIntoConstraints = NO;
++    [self addSubview:button];
++    [NSLayoutConstraint activateConstraints:@[
++      [button.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
++      [button.trailingAnchor constraintLessThanOrEqualToAnchor:self.trailingAnchor],
++      [button.topAnchor constraintEqualToAnchor:self.topAnchor],
++      [button.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
++    ]];
++  }
++  return self;
++}
++
++- (void)dealloc
++{
++  [_observedScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++}
++
++- (void)didMoveToWindow
++{
++  [super didMoveToWindow];
++  [self updateButtonColor];
++}
++
++- (void)setObservedScrollView:(UIScrollView *)scrollView
++{
++  if (scrollView == _observedScrollView) {
++    return;
++  }
++  [_observedScrollView removeObserver:self forKeyPath:@"contentOffset" context:RNSDainorelisContentOffsetContext];
++  _observedScrollView = scrollView;
++  [scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:RNSDainorelisContentOffsetContext];
++}
++
++- (void)observeValueForKeyPath:(NSString *)keyPath
++                      ofObject:(id)object
++                        change:(NSDictionary<NSKeyValueChangeKey, id> *)change
++                       context:(void *)context
++{
++  if (context == RNSDainorelisContentOffsetContext) {
++    [self updateButtonColorForScrollView:object];
++  } else {
++    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
++  }
++}
++
++- (void)updateButtonColor
++{
++  UIViewController *viewController = self.viewController;
++  UIScrollView *scrollView = nil;
++  if (self.window != nil && viewController != nil) {
++    scrollView = [viewController contentScrollViewForEdge:NSDirectionalRectEdgeTop]
++        ?: [RNSScrollViewFinder findScrollViewInFirstDescendantChainFrom:viewController.view];
++  }
++  [self setObservedScrollView:scrollView];
++  [self updateButtonColorForScrollView:scrollView];
++}
++
++// UIKit moves the bar from its scroll edge appearance to its standard one once the content scrolls under it
++- (void)updateButtonColorForScrollView:(nullable UIScrollView *)scrollView
++{
++  // where UIKit hosts the large title in the scroll view (iOS 27 on iPhone), it scrolls away with its background,
++  // and UIKit keeps the scroll edge color on it
++  const BOOL isAtScrollEdge = scrollView == nil || [self isDescendantOfView:scrollView] ||
++      scrollView.contentOffset.y + scrollView.adjustedContentInset.top <= 0;
++  UIColor *color = isAtScrollEdge ? _scrollEdgeColor : _standardColor;
++  UIButtonConfiguration *configuration = _button.configuration;
++  if (color != nil && configuration != nil && ![configuration.baseForegroundColor isEqual:color]) {
++    configuration.baseForegroundColor = color;
++    _button.configuration = configuration;
++  }
++}
++
++// the space beside the button isn't a target, but the button's target reaches past this view's bounds
++- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
++{
++  return [_button pointInside:[self convertPoint:point toView:_button] withEvent:event];
++}
++
++- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
++{
++  UIView *hitTestResult = [super hitTest:point withEvent:event];
++  return hitTestResult == self ? nil : hitTestResult;
++}
++
++// UIKit labels the subtitle view as a heading with the title; expose just the button instead
++- (BOOL)isAccessibilityElement
++{
++  return NO;
++}
++
++- (NSString *)accessibilityLabel
++{
++  return nil;
++}
++
++- (UIAccessibilityTraits)accessibilityTraits
++{
++  return UIAccessibilityTraitNone;
++}
++
++- (NSArray *)accessibilityElements
++{
++  return @[ _button ];
++}
++
++@end
++#endif
++
++#if !TARGET_OS_TV
++// PATCH(dainorelis): a subtitle (the inline one, a text one under the large title, the pop-up button there) in the
++// title's family at Medium (SemiBold with Bold Text), at the text style's size and following Dynamic Type; in the
++// system font when the title has no family of its own
++static UIFont *RNSDainorelisSubtitleFont(RNSScreenStackHeaderConfig *config, UIFontTextStyle textStyle)
++{
++  UIFont *titleFont = config.titleFontFamily != nil ? [UIFont fontWithName:config.titleFontFamily size:17] : nil;
++  if (titleFont == nil) {
++    return [UIFont preferredFontForTextStyle:textStyle];
++  }
++  UITraitCollection *defaultSize =
++      [UITraitCollection traitCollectionWithPreferredContentSizeCategory:UIContentSizeCategoryLarge];
++  UIFontDescriptor *descriptor = [UIFontDescriptor fontDescriptorWithFontAttributes:@{
++    UIFontDescriptorFamilyAttribute : titleFont.familyName,
++    UIFontDescriptorTraitsAttribute :
++        @{UIFontWeightTrait : @(UIAccessibilityIsBoldTextEnabled() ? UIFontWeightSemibold : UIFontWeightMedium)},
++  }];
++  UIFont *font = [UIFont
++      fontWithDescriptor:descriptor
++                    size:[UIFontDescriptor preferredFontDescriptorWithTextStyle:textStyle
++                                                  compatibleWithTraitCollection:defaultSize]
++                             .pointSize];
++  return [[UIFontMetrics metricsForTextStyle:textStyle] scaledFontForFont:font];
++}
++
++// PATCH(dainorelis): UIKit stacks the inline title and subtitle labels at their fonts' line heights, and a title face
++// with tall line metrics (Saira's are 1.57em, room for stacked marks) leaves a wide gap between the two. Give such a
++// font a line as tall as the system font's, its cap height plus a quarter em above (the caron of Ž) and below
++// (descenders), and move the glyphs down into it: a label clips what reaches past its line. The bar caps its text
++// at a size of its own (the largest non-accessibility one) and sets the line for that size
++static NSDictionary<NSAttributedStringKey, id> *RNSDainorelisTightLineAttributes(
++    NSDictionary<NSAttributedStringKey, id> *attributes,
++    UIFontTextStyle textStyle)
++{
++  UIFont *font = attributes[NSFontAttributeName];
++  if (textStyle != nil) {
++    const CGFloat largestPointSize = [UIFont
++        preferredFontForTextStyle:textStyle
++        compatibleWithTraitCollection:[UITraitCollection traitCollectionWithPreferredContentSizeCategory:
++                                                             UIContentSizeCategoryExtraExtraExtraLarge]]
++                                         .pointSize;
++    font = [font fontWithSize:MIN(font.pointSize, largestPointSize)];
++  }
++  const CGFloat lineHeight = ceil(font.capHeight + font.pointSize / 2);
++  if (font == nil || font.lineHeight <= lineHeight) {
++    return attributes;
++  }
++  NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
++  paragraphStyle.minimumLineHeight = lineHeight;
++  paragraphStyle.maximumLineHeight = lineHeight;
++  paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
++  NSMutableDictionary<NSAttributedStringKey, id> *tightAttributes = [attributes mutableCopy];
++  tightAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
++  // the line keeps the font's descent under the baseline and gives up the rest of its height at the top
++  tightAttributes[NSBaselineOffsetAttributeName] = @(lineHeight + font.descender - font.capHeight - font.pointSize / 4);
++  return tightAttributes;
++}
++#endif
++
+ @interface RNSScreenStackHeaderConfig () <RCTMountingTransactionObserving>
++// dainorelis
++- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId;
++#if !TARGET_OS_TV
++- (void)dainorelis_updateTrailingItemsOfNavigationItem:(UINavigationItem *)navitem API_AVAILABLE(ios(16.0));
++#endif
++- (void)dainorelis_emitOverflowMenuPress:(NSString *)menuId;
+ @end
+ 
+ @implementation RNSScreenStackHeaderConfig {
+@@ -62,6 +300,9 @@ static const NSNumber *const DEFAULT_TITLE_LARGE_FONT_SIZE = @34;
+   /// Consumed & reset in `mountingTransactionDidMount:withSurfaceTelemetry:`.
+   bool _needsViewControllerUpdateInCurrentTransaction;
+   RCTImageLoader *_imageLoader;
++  // dainorelis: see -dainorelis_updateTrailingItemsOfNavigationItem:
++  NSArray<NSDictionary<NSString *, id> *> *_dainorelisPinnedItemConfigs;
++  __weak UINavigationItem *_dainorelisPinnedNavigationItem;
+ }
+ 
+ - (instancetype)initWithFrame:(CGRect)frame
+@@ -235,6 +476,35 @@ RNS_IGNORE_SUPER_CALL_END
+ }
+ #endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
+ 
++// PATCH(dainorelis): collect the views that occupy horizontal space in the navigation bar's
++// content view (bar button items, custom left/right header subviews), skipping the title
++// subview itself. Recursion is needed because on iOS 26 UIKit nests buttons inside group
++// wrapper views (see -rnscreens_ios26_findDescendantBackButtonWrapper in UINavigationBar+RNSUtility).
++static void RNSDainorelisCollectOccupyingViews(UIView *view,
++                                               UIView *_Nullable titleSubview,
++                                               Class _Nullable barButtonClass,
++                                               NSMutableArray<UIView *> *result)
++{
++  if (view.hidden || view.alpha < 0.01) {
++    return;
++  }
++  if (view == titleSubview) {
++    return;
++  }
++  if ([view isKindOfClass:[RNSScreenStackHeaderSubview class]]) {
++    // A custom left/right header item; count it as occupied space, don't descend into it.
++    [result addObject:view];
++    return;
++  }
++  if ((barButtonClass != nil && [view isKindOfClass:barButtonClass]) || [view isKindOfClass:[UIControl class]]) {
++    [result addObject:view];
++    return;
++  }
++  for (UIView *subview in view.subviews) {
++    RNSDainorelisCollectOccupyingViews(subview, titleSubview, barButtonClass, result);
++  }
++}
++
+ - (NSDirectionalEdgeInsets)computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
+ {
+   NSDirectionalEdgeInsets navBarMargins = [navigationBar directionalLayoutMargins];
+@@ -252,9 +522,104 @@ RNS_IGNORE_SUPER_CALL_END
+       .trailing = navBarMargins.trailing + navBarContentMargins.trailing,
+   };
+ 
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  if (@available(iOS 26.0, *)) {
++    return [self dainorelis_computeEdgeInsetsOfNavigationBar:navigationBar fallbackInsets:edgeInsets];
++  }
++#endif // RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++
+   return edgeInsets;
+ }
+ 
++// PATCH(dainorelis): account for bar button items when computing header edge insets on iOS 26.
++//
++// The stock implementation above only reserves space for the system back button. On iOS 26
++// (liquid glass), header actions are UIBarButtonItems (e.g. expo-router's Stack.Toolbar) whose
++// widths never enter this computation, and UIKit no longer force-resizes an oversized custom
++// titleView to fit between the button groups like it did on earlier iOS versions. The result is
++// that Yoga sizes the title subview to nearly the full bar width and it renders underneath the
++// buttons. Upstream attempt: https://github.com/software-mansion/react-native-screens/pull/3210
++// (closed unmerged; the proper fix ships with the stack rewrite in react-native-screens 5.x,
++// where custom title views are sized by UIKit auto layout).
++//
++// This measures the actual horizontal space occupied by the button groups in the navigation
++// bar's content view, so the title subview is sized to the true available gap on any device.
++// Falls back to the margin-based insets whenever the measurement looks degenerate (e.g. mid
++// transition, or if a future iOS restructures the view hierarchy).
++//
++// Note: like the stock implementation, this maps geometric left/right onto leading/trailing,
++// which is only correct for LTR layouts.
++- (NSDirectionalEdgeInsets)dainorelis_computeEdgeInsetsOfNavigationBar:(nonnull UINavigationBar *)navigationBar
++                                                        fallbackInsets:(NSDirectionalEdgeInsets)fallbackInsets
++{
++  UIView *contentView = navigationBar.rnscreens_findContentView;
++  const CGFloat navBarWidth = navigationBar.bounds.size.width;
++  if (contentView == nil || navBarWidth <= 0 || contentView.bounds.size.width <= 0) {
++    return fallbackInsets;
++  }
++
++  RNSScreenStackHeaderSubview *titleSubview = nil;
++  for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
++    if (subview.type == RNSScreenStackHeaderSubviewTypeTitle ||
++        subview.type == RNSScreenStackHeaderSubviewTypeCenter) {
++      titleSubview = subview;
++      break;
++    }
++  }
++
++  static Class BarButtonViewClass = NSClassFromString(@"_UIButtonBarButton");
++  NSMutableArray<UIView *> *occupyingViews = [NSMutableArray new];
++  for (UIView *subview in contentView.subviews) {
++    RNSDainorelisCollectOccupyingViews(subview, titleSubview, BarButtonViewClass, occupyingViews);
++  }
++
++  const CGFloat contentMidX = CGRectGetMidX(contentView.bounds);
++  CGFloat leftOccupiedEdge = 0;
++  CGFloat rightOccupiedEdge = contentView.bounds.size.width;
++  BOOL foundLeftViews = NO;
++  BOOL foundRightViews = NO;
++
++  for (UIView *view in occupyingViews) {
++    const CGRect frame = [view convertRect:view.bounds toView:contentView];
++    if (CGRectIsEmpty(frame)) {
++      continue;
++    }
++    // A view spanning the center is not a button group (some decoration / hit area); ignore it.
++    if (CGRectGetMinX(frame) < contentMidX && CGRectGetMaxX(frame) > contentMidX) {
++      continue;
++    }
++    if (CGRectGetMidX(frame) <= contentMidX) {
++      leftOccupiedEdge = MAX(leftOccupiedEdge, CGRectGetMaxX(frame));
++      foundLeftViews = YES;
++    } else {
++      rightOccupiedEdge = MIN(rightOccupiedEdge, CGRectGetMinX(frame));
++      foundRightViews = YES;
++    }
++  }
++
++  // Breathing room between the title and the neighboring button group.
++  const CGFloat titleToButtonSpacing = 8.0f;
++
++  // Convert to insets relative to the navigation bar's full width — the coordinate space of the
++  // Yoga node these insets are applied to as padding.
++  const CGRect contentFrameInNavBar = [contentView convertRect:contentView.bounds toView:navigationBar];
++  CGFloat leadingInset = contentFrameInNavBar.origin.x + leftOccupiedEdge +
++      (foundLeftViews ? titleToButtonSpacing : 0);
++  CGFloat trailingInset = navBarWidth - (contentFrameInNavBar.origin.x + rightOccupiedEdge) +
++      (foundRightViews ? titleToButtonSpacing : 0);
++
++  leadingInset = MAX(leadingInset, fallbackInsets.leading);
++  trailingInset = MAX(trailingInset, fallbackInsets.trailing);
++
++  // Sanity check: if there is no reasonable space left for a title, the measurement is likely
++  // taken mid-transition or the view hierarchy changed under us — use the stock insets instead.
++  if (navBarWidth - leadingInset - trailingInset < 44.0f) {
++    return fallbackInsets;
++  }
++
++  return NSDirectionalEdgeInsets{.leading = leadingInset, .trailing = trailingInset};
++}
++
+ - (BOOL)hasSubviewOfType:(RNSScreenStackHeaderSubviewType)type
+ {
+   for (RNSScreenStackHeaderSubview *subview in _reactSubviews) {
+@@ -493,6 +858,13 @@ RNS_IGNORE_SUPER_CALL_END
+     } else {
+       largeAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:[largeSize floatValue] weight:UIFontWeightBold];
+     }
++#if !TARGET_OS_TV
++    // PATCH(dainorelis): a large title with a font of our own (a custom family, a size or a color, which comes with
++    // the system font at a fixed 34pt above) follows Dynamic Type, as UIKit's own large title does
++    largeAttrs[NSFontAttributeName] =
++        [[UIFontMetrics metricsForTextStyle:UIFontTextStyleLargeTitle] scaledFontForFont:largeAttrs[NSFontAttributeName]
++                                                       compatibleWithTraitCollection:vc.traitCollection];
++#endif
+ 
+     appearance.largeTitleTextAttributes = largeAttrs;
+   }
+@@ -503,6 +875,18 @@ RNS_IGNORE_SUPER_CALL_END
+   } else if (appearance.backIndicatorImage) {
+     [appearance setBackIndicatorImage:nil transitionMaskImage:nil];
+   }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
++  // dainorelis: the default inline subtitle (~11pt, secondary grey) is hard to read, especially over
++  // colored content; use Footnote (Dynamic Type, in the title's family) in the label color. The title and subtitle
++  // take the system font's line height, so they stack as closely as its own do
++  if (@available(iOS 26.0, *)) {
++    appearance.subtitleTextAttributes = RNSDainorelisTightLineAttributes(@{
++      NSFontAttributeName : RNSDainorelisSubtitleFont(config, UIFontTextStyleFootnote),
++      NSForegroundColorAttributeName : [UIColor labelColor],
++    }, UIFontTextStyleFootnote);
++    appearance.titleTextAttributes = RNSDainorelisTightLineAttributes(appearance.titleTextAttributes, nil);
++  }
++#endif
+   return appearance;
+ }
+ 
+@@ -559,8 +943,18 @@ RNS_IGNORE_SUPER_CALL_END
+   if (config.largeTitle) {
+     navctr.navigationBar.prefersLargeTitles = YES;
+   }
++  // dainorelis
++  const UINavigationItemLargeTitleDisplayMode dainorelisPreviousLargeTitleDisplayMode = navitem.largeTitleDisplayMode;
+   navitem.largeTitleDisplayMode =
+       config.largeTitle ? UINavigationItemLargeTitleDisplayModeAlways : UINavigationItemLargeTitleDisplayModeNever;
++#if !TARGET_OS_VISION
++  // dainorelis: a settled screen switching to a large title (e.g. from a PDF to lyrics) has to keep it expanded
++  if (dainorelisPreviousLargeTitleDisplayMode != UINavigationItemLargeTitleDisplayModeAlways &&
++      navitem.largeTitleDisplayMode == UINavigationItemLargeTitleDisplayModeAlways &&
++      [vc isKindOfClass:[RNSScreen class]] && navctr.topViewController == vc && navctr.transitionCoordinator == nil) {
++    [(RNSScreen *)vc dainorelis_keepLargeTitleExpandedAfterDisplayModeChange];
++  }
++#endif
+ 
+ #if RNS_IPHONE_OS_VERSION_AVAILABLE(27_0)
+   if (@available(iOS 27.0, *)) {
+@@ -603,6 +997,17 @@ RNS_IGNORE_SUPER_CALL_END
+   }
+   navitem.scrollEdgeAppearance = scrollEdgeAppearance;
+ #if !TARGET_OS_TV
++  // dainorelis: a large title color is for the large title's own background, at the scroll edge. Where the
++  // large title stays on screen as content scrolls under the bar (iOS 27's side bars, e.g. on a closed
++  // iPhone Duo), use the title color, else the label color, there, as UIKit does for the inline title
++  if (config.largeTitle && config.largeTitleColor != nil) {
++    UINavigationBarAppearance *standardAppearance = [appearance copy];
++    NSMutableDictionary *largeAttrs = [standardAppearance.largeTitleTextAttributes mutableCopy];
++    largeAttrs[NSForegroundColorAttributeName] = config.titleColor ?: [UIColor labelColor];
++    standardAppearance.largeTitleTextAttributes = largeAttrs;
++    navitem.standardAppearance = standardAppearance;
++    navitem.compactAppearance = standardAppearance;
++  }
+   navitem.hidesBackButton = config.hideBackButton;
+   navitem.leftItemsSupplementBackButton = config.backButtonInCustomView;
+ #endif
+@@ -695,11 +1100,162 @@ RNS_IGNORE_SUPER_CALL_END
+ 
+   // This assignment should be done after `navitem.titleView = ...` assignment (iOS 16.0 bug).
+   // See: https://github.com/software-mansion/react-native-screens/issues/1570 (comments)
+-  navitem.title = config.title;
++  // dainorelis: crossfade the title and subtitle when they change on a settled, visible screen (e.g. as
++  // the song title replaces the variant name on scroll); set them directly otherwise
++  NSString *dainorelisOldTitle = navitem.title;
++  void (^dainorelisApplyTitle)(void) = ^{
++    navitem.title = config.title;
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0) && !TARGET_OS_TV
++    if (@available(iOS 26.0, *)) {
++      navitem.subtitle = config.subtitle;
++    }
++#endif
++  };
++  BOOL dainorelisTitleChanged = dainorelisOldTitle != nil && ![dainorelisOldTitle isEqualToString:config.title ?: @""];
++  if (dainorelisTitleChanged && navctr.topViewController == vc && navctr.transitionCoordinator == nil) {
++    [UIView transitionWithView:navctr.navigationBar
++                      duration:0.25
++                       options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowUserInteraction
++                    animations:dainorelisApplyTitle
++                    completion:nil];
++  } else {
++    dainorelisApplyTitle();
++  }
++#if !TARGET_OS_TV && !TARGET_OS_VISION
++  // dainorelis: line a large title up with a content column, and shrink one that doesn't fit (see RNSScreen.mm)
++  if ([vc isKindOfClass:[RNSScreen class]]) {
++    [(RNSScreen *)vc dainorelis_setLargeTitleMaxWidth:config.largeTitle ? config.largeTitleMaxWidth : 0];
++    [(RNSScreen *)vc dainorelis_fitLargeTitleWithFont:config.largeTitle
++                         ? navitem.standardAppearance.largeTitleTextAttributes[NSFontAttributeName]
++                         : nil];
++  }
++#endif
++#if !TARGET_OS_TV
++  // dainorelis: a native title menu (iOS 16+) and subtitle (iOS 26+); both need a plain string title,
++  // since a custom titleView takes their place
++  if (@available(iOS 16.0, *)) {
++    if (config.titleMenu != nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      navitem.titleMenuProvider = ^UIMenu *(NSArray<UIMenuElement *> *suggestedActions) {
++        RNSScreenStackHeaderConfig *strongConfig = weakConfig;
++        if (strongConfig == nil || strongConfig.titleMenu == nil) {
++          return nil;
++        }
++        return [RNSBarButtonItem initUIMenuWithDict:strongConfig.titleMenu
++                                         menuAction:^(NSString *menuId) {
++                                           [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                         }
++                                        imageLoader:nil];
++      };
++    } else {
++      navitem.titleMenuProvider = nil;
++    }
++  }
++#if RNS_IPHONE_OS_VERSION_AVAILABLE(26_0)
++  // dainorelis: under a large title, a pop-up button (the subtitle and an up/down chevron) opens the
++  // same menu, since UIKit offers the title menu only from the inline title. Without a menu the same button, inert,
++  // shows the subtitle: UIKit styles a text subtitle under the large title with the subtitle attributes of the scroll
++  // edge appearance (iOS 26.5, 27), and keeps them, white, on the inline subtitle once the title collapses
++  if (@available(iOS 26.0, *)) {
++    if (config.largeTitle && config.subtitle != nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      const BOOL hasMenu = config.titleMenu != nil;
++      UIButtonConfiguration *buttonConfig = [UIButtonConfiguration plainButtonConfiguration];
++      buttonConfig.title = config.subtitle;
++      buttonConfig.image = hasMenu ? [UIImage systemImageNamed:@"chevron.up.chevron.down"] : nil;
++      buttonConfig.imagePlacement = NSDirectionalRectEdgeTrailing;
++      buttonConfig.imagePadding = 4;
++      buttonConfig.preferredSymbolConfigurationForImage =
++          [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleBody
++                                                           scale:UIImageSymbolScaleSmall];
++      buttonConfig.contentInsets = NSDirectionalEdgeInsetsZero;
++      // square corners: the background's rounded ones (it has none to show) clip the label's corners with it, and
++      // with them a mark above a capital at its start, e.g. the caron of Ž in Žodžiai
++      buttonConfig.cornerStyle = UIButtonConfigurationCornerStyleFixed;
++      UIBackgroundConfiguration *buttonBackground = buttonConfig.background;
++      buttonBackground.cornerRadius = 0;
++      buttonConfig.background = buttonBackground;
++      // Title 3 (20pt at the default size): a step under the large title, and easy to read and tap
++      UIFont *subtitleFont = RNSDainorelisSubtitleFont(config, UIFontTextStyleTitle3);
++      buttonConfig.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey, id> *(
++          NSDictionary<NSAttributedStringKey, id> *attributes) {
++        NSMutableDictionary *updated = [attributes mutableCopy];
++        updated[NSFontAttributeName] = subtitleFont;
++        return updated;
++      };
++      buttonConfig.baseForegroundColor = config.largeTitleColor ?: [UIColor secondaryLabelColor];
++      UIMenu *menu = hasMenu ? [RNSBarButtonItem initUIMenuWithDict:config.titleMenu
++                                                         menuAction:^(NSString *menuId) {
++                                                           [weakConfig dainorelis_emitTitleMenuPress:menuId];
++                                                         }
++                                                        imageLoader:nil]
++                             : nil;
++      // update the button in place, so an open menu stays open (and anchored) across header updates
++      UIButton *button = [navitem.largeSubtitleView isKindOfClass:[RNSDainorelisLargeSubtitleView class]]
++          ? ((RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView).button
++          : nil;
++      if (button == nil) {
++        button = [RNSDainorelisLargeSubtitleButton buttonWithConfiguration:buttonConfig primaryAction:nil];
++        button.showsMenuAsPrimaryAction = YES;
++        // its colors are its own, set per scroll state: with a sheet over the screen (the player), UIKit dims tint
++        // colors and would draw it in the dimmed app tint instead of white
++        button.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
++        navitem.largeSubtitleView = [[RNSDainorelisLargeSubtitleView alloc] initWithButton:button];
++      } else {
++        button.configuration = buttonConfig;
++      }
++      button.menu = menu;
++      button.userInteractionEnabled = hasMenu;
++      button.accessibilityTraits = hasMenu ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
++      // white over the large title's background at the scroll edge, the secondary label color under the bar
++      RNSDainorelisLargeSubtitleView *subtitleView = (RNSDainorelisLargeSubtitleView *)navitem.largeSubtitleView;
++      subtitleView.scrollEdgeColor = buttonConfig.baseForegroundColor;
++      subtitleView.standardColor = [UIColor secondaryLabelColor];
++      subtitleView.viewController = vc;
++      [subtitleView updateButtonColor];
++    } else {
++      navitem.largeSubtitleView = nil;
++    }
++  }
++#endif
++  // dainorelis: the screen's actions in UIKit's overflow menu (iOS 16+), rather than a ⋯ menu of our own as a bar
++  // button item. UIKit shows its ⋯ button for them and, when the bar runs out of room, moves the other trailing
++  // items into the same menu, instead of folding our ⋯ menu into a nested one. The menu is built as it opens, so it
++  // always reflects the latest props
++  if (@available(iOS 16.0, *)) {
++    if (config.overflowMenu == nil) {
++      navitem.additionalOverflowItems = nil;
++    } else if (navitem.additionalOverflowItems == nil) {
++      __weak RNSScreenStackHeaderConfig *weakConfig = config;
++      navitem.additionalOverflowItems = [UIDeferredMenuElement
++          elementWithUncachedProvider:^(void (^completion)(NSArray<UIMenuElement *> *elements)) {
++            NSDictionary<NSString *, id> *overflowMenu = weakConfig.overflowMenu;
++            if (overflowMenu == nil) {
++              completion(@[]);
++              return;
++            }
++            UIMenu *menu = [RNSBarButtonItem initUIMenuWithDict:overflowMenu
++                                                     menuAction:^(NSString *menuId) {
++                                                       [weakConfig dainorelis_emitOverflowMenuPress:menuId];
++                                                     }
++                                                    imageLoader:nil];
++            completion(menu.children);
++          }];
++    }
++  }
++#endif
+   navitem.leftBarButtonItems = [config barButtonItemsFromConfigs:config.headerLeftBarButtonItems
+                                                 withCurrentItems:navitem.leftBarButtonItems];
+-  navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
+-                                                 withCurrentItems:navitem.rightBarButtonItems];
++#if !TARGET_OS_TV
++  // dainorelis: the right items, pinned past UIKit's overflow button with pinsTrailingItems (iOS 16+)
++  if (@available(iOS 16.0, *)) {
++    [config dainorelis_updateTrailingItemsOfNavigationItem:navitem];
++  } else
++#endif
++  {
++    navitem.rightBarButtonItems = [config barButtonItemsFromConfigs:config.headerRightBarButtonItems
++                                                   withCurrentItems:navitem.rightBarButtonItems];
++  }
+ 
+   // Setting navigation bar visibility is split to mitigate iOS 26 bug with bar button items
+   // (setting nav bar visibility should be done after `navitem.*BarButtonItems`).
+@@ -830,6 +1386,60 @@ RNS_IGNORE_SUPER_CALL_END
+   }
+ }
+ 
++#if !TARGET_OS_TV
++// dainorelis: the right items (after the custom header views' items, which navitem.rightBarButtonItems holds on
++// entry). With pinsTrailingItems they go in navitem.pinnedTrailingGroup, past UIKit's overflow button, where they
++// never move into the overflow menu; UIKit truncates the title instead.
++// Every header update (e.g. a title change as the content scrolls) rebuilds the bar button items, and replacing the
++// pinned group dismisses a menu open on one of them (e.g. "Add to playlist"). So the group is kept while its items'
++// configs are unchanged.
++- (void)dainorelis_updateTrailingItemsOfNavigationItem:(UINavigationItem *)navitem API_AVAILABLE(ios(16.0))
++{
++  NSArray<UIBarButtonItem *> *subviewItems = navitem.rightBarButtonItems;
++  NSArray<NSDictionary<NSString *, id> *> *configs = self.headerRightBarButtonItems;
++  if (!self.pinsTrailingItems) {
++    navitem.pinnedTrailingGroup = nil;
++    _dainorelisPinnedItemConfigs = nil;
++    navitem.rightBarButtonItems = [self barButtonItemsFromConfigs:configs withCurrentItems:subviewItems];
++    return;
++  }
++  const BOOL isUnchanged = subviewItems.count == 0 && navitem.pinnedTrailingGroup != nil &&
++      _dainorelisPinnedNavigationItem == navitem && [configs isEqual:_dainorelisPinnedItemConfigs];
++  if (!isUnchanged) {
++    NSArray<UIBarButtonItem *> *items = [self barButtonItemsFromConfigs:configs withCurrentItems:subviewItems];
++    navitem.pinnedTrailingGroup =
++        items.count > 0 ? [UIBarButtonItemGroup fixedGroupWithRepresentativeItem:nil items:items] : nil;
++    // custom header views can change without their configs, so only config-built groups are kept
++    _dainorelisPinnedItemConfigs = subviewItems.count == 0 && items.count > 0 ? [configs copy] : nil;
++    _dainorelisPinnedNavigationItem = navitem;
++  }
++  navitem.rightBarButtonItems = nil;
++}
++#endif
++
++// dainorelis: title menu selection
++- (void)dainorelis_emitTitleMenuPress:(NSString *)menuId
++{
++  auto eventEmitter =
++      std::static_pointer_cast<const facebook::react::RNSScreenStackHeaderConfigEventEmitter>(_eventEmitter);
++  if (eventEmitter && menuId) {
++    eventEmitter->onPressTitleMenuItem(facebook::react::RNSScreenStackHeaderConfigEventEmitter::OnPressTitleMenuItem{
++        .menuId = std::string([menuId UTF8String])});
++  }
++}
++
++// dainorelis: overflow menu selection
++- (void)dainorelis_emitOverflowMenuPress:(NSString *)menuId
++{
++  auto eventEmitter =
++      std::static_pointer_cast<const facebook::react::RNSScreenStackHeaderConfigEventEmitter>(_eventEmitter);
++  if (eventEmitter && menuId) {
++    eventEmitter->onPressOverflowMenuItem(
++        facebook::react::RNSScreenStackHeaderConfigEventEmitter::OnPressOverflowMenuItem{
++            .menuId = std::string([menuId UTF8String])});
++  }
++}
++
+ - (NSArray<UIBarButtonItem *> *)barButtonItemsFromConfigs:(NSArray<NSDictionary<NSString *, id> *> *)dicts
+                                          withCurrentItems:(NSArray<UIBarButtonItem *> *)currentItems
+ {
+@@ -1040,6 +1650,10 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+ {
+   [super prepareForRecycle];
+   _initialPropsSet = NO;
++  // dainorelis: the menu and subtitle props need no reset here: like the stock props, updateProps compares the next
++  // screen's props with _props, which recycling keeps, so they always match them
++  _dainorelisPinnedItemConfigs = nil;
++  _dainorelisPinnedNavigationItem = nil;
+ 
+   _lastSendState = react::RNSScreenStackHeaderConfigState(react::Size{}, react::EdgeInsets{}, react::Point{});
+ }
+@@ -1078,6 +1692,18 @@ static RCTResizeMode resizeModeFromCppEquiv(react::ImageResizeMode resizeMode)
+   }
+ 
+   _title = RCTNSStringFromStringNilIfEmpty(newScreenProps.title);
++  // dainorelis
++  _subtitle = RCTNSStringFromStringNilIfEmpty(newScreenProps.subtitle);
++  if (newScreenProps.titleMenu != oldScreenProps.titleMenu) {
++    id titleMenu = [RNSConvert idFromFollyDynamic:newScreenProps.titleMenu];
++    _titleMenu = [titleMenu isKindOfClass:[NSDictionary class]] ? titleMenu : nil;
++  }
++  if (newScreenProps.overflowMenu != oldScreenProps.overflowMenu) {
++    id overflowMenu = [RNSConvert idFromFollyDynamic:newScreenProps.overflowMenu];
++    _overflowMenu = [overflowMenu isKindOfClass:[NSDictionary class]] ? overflowMenu : nil;
++  }
++  _pinsTrailingItems = newScreenProps.pinsTrailingItems;
++  _largeTitleMaxWidth = newScreenProps.largeTitleMaxWidth;
+   if (newScreenProps.titleFontFamily != oldScreenProps.titleFontFamily) {
+     _titleFontFamily = RCTNSStringFromStringNilIfEmpty(newScreenProps.titleFontFamily);
+   }
+diff --git a/src/fabric/ModalScreenNativeComponent.ts b/src/fabric/ModalScreenNativeComponent.ts
+index 1633ff0f123543e159d3eee451c73e978f6dbd77..52820e86deaa1c8aff2b5bf51b322dbe34089990 100644
+--- a/src/fabric/ModalScreenNativeComponent.ts
++++ b/src/fabric/ModalScreenNativeComponent.ts
+@@ -126,6 +126,8 @@ export interface NativeProps extends ViewProps {
+   leftScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   rightScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   topScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
++  // dainorelis: as in ScreenNativeComponent (RNSScreen.mm reads these props as the screen's)
++  topScrollEdgeEffectThreshold?: CT.WithDefault<CT.Float, -1.0>;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
+   iosOrientationInheritanceFixEnabled?: CT.WithDefault<boolean, true>;
+ }
+diff --git a/src/fabric/ScreenNativeComponent.ts b/src/fabric/ScreenNativeComponent.ts
+index 0d0085c7faa6d53c8b5cc8ab868f7f58419d84a4..211057ecec8d5aee9e1d7612f4264d48e0431a68 100644
+--- a/src/fabric/ScreenNativeComponent.ts
++++ b/src/fabric/ScreenNativeComponent.ts
+@@ -126,6 +126,8 @@ export interface NativeProps extends ViewProps {
+   leftScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   rightScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
+   topScrollEdgeEffect?: CT.WithDefault<ScrollEdgeEffect, 'automatic'>;
++  // dainorelis: iOS only, negative for none (see RNSScreen.mm)
++  topScrollEdgeEffectThreshold?: CT.WithDefault<CT.Float, -1.0>;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
+   androidResetScreenShadowStateOnOrientationChangeEnabled?: CT.WithDefault<
+     boolean,
+diff --git a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
+index da28c51c6ffd29b996c876742a11cfdf322db969..a9b43d569a2d96e1123d4a2fd86aef5606d32544 100644
+--- a/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
++++ b/src/fabric/ScreenStackHeaderConfigNativeComponent.ts
+@@ -17,6 +17,10 @@ type OnDetachedEvent = Readonly<{}>;
+ 
+ type OnPressHeaderBarButtonItemEvent = Readonly<{ buttonId: string }>;
+ type OnPressHeaderBarButtonMenuItemEvent = Readonly<{ menuId: string }>;
++// dainorelis: title menu
++type OnPressTitleMenuItemEvent = Readonly<{ menuId: string }>;
++// dainorelis: overflow menu
++type OnPressOverflowMenuItemEvent = Readonly<{ menuId: string }>;
+ 
+ type BackButtonDisplayMode = 'minimal' | 'default' | 'generic';
+ 
+@@ -86,6 +90,22 @@ export interface NativeProps extends ViewProps {
+     | CT.DirectEventHandler<OnPressHeaderBarButtonMenuItemEvent>
+     | undefined;
+   synchronousShadowStateUpdatesEnabled?: CT.WithDefault<boolean, true>;
++  // dainorelis: iOS 26 navigation bar subtitle, and a native title menu (iOS 16+). titleMenu has the
++  // shape RNSBarButtonItem's initUIMenuWithDict reads: { title?, singleSelection?, items: [{ menuId,
++  // title, state?, sfSymbolName? }] }
++  subtitle?: string | undefined;
++  titleMenu?: CT.UnsafeMixed | undefined;
++  onPressTitleMenuItem?: CT.DirectEventHandler<OnPressTitleMenuItemEvent> | undefined;
++  // dainorelis: iOS 16+ actions for UIKit's overflow menu (navigationItem.additionalOverflowItems), the same shape
++  // as titleMenu; its title is ignored, the items are shown directly in the menu
++  overflowMenu?: CT.UnsafeMixed | undefined;
++  onPressOverflowMenuItem?: CT.DirectEventHandler<OnPressOverflowMenuItemEvent> | undefined;
++  // dainorelis: iOS 16+, the right items go in navigationItem.pinnedTrailingGroup, past the overflow button, so
++  // UIKit never moves them into the overflow menu
++  pinsTrailingItems?: CT.WithDefault<boolean, false>;
++  // dainorelis: iOS 26+, the widest a large title's line gets, centred in the bar like a centred content column, so
++  // the title lines up with it (0, the default, leaves the bar's margins alone)
++  largeTitleMaxWidth?: CT.WithDefault<CT.Float, 0>;
+ 
+   // Experimental
+   userInterfaceStyle?: CT.WithDefault<UserInterfaceStyle, 'unspecified'>;

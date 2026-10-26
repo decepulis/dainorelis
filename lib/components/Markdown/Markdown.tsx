@@ -3,10 +3,11 @@ import { Platform, StyleSheet, View } from 'react-native';
 import MarkdownLib, { MarkdownIt } from 'react-native-markdown-display';
 
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
+import { useThemeColor } from '@/lib/hooks/useThemeColor';
 
 import ThemedText from '../ThemedText';
 
-const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disable([
+const disabledRules = [
   // to reduce dev load, I'm disabling most components
   // At first, I'm really only anticipating needing bold, italic, and links
   // see https://github.com/markdown-it/markdown-it/blob/master/lib/presets/commonmark.mjs for available rules
@@ -14,7 +15,7 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   'code',
   'fence',
   'heading',
-  'hr',
+  // 'hr', descriptions separate their sources with ---
   'html_block',
   'lheading',
   'list',
@@ -29,10 +30,15 @@ const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disabl
   // 'link',
   // 'newline',
   // 'text'
-]);
+];
+const markdownItInstance = MarkdownIt({ html: false, typographer: true }).disable(disabledRules);
+// Descriptions also get lists (their glossaries); lyrics don't, since their lines can start with "- "
+const proseMarkdownItInstance = MarkdownIt({ html: false, typographer: true }).disable(
+  disabledRules.filter((rule) => rule !== 'list')
+);
 
 const fontSize = 19;
-const lineHeight = Platform.OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
+const lineHeight = process.env.EXPO_OS === 'ios' ? fontSize * 1.45 : fontSize * 1.5;
 const chordHeight = 15;
 
 const styles = StyleSheet.create({
@@ -44,14 +50,16 @@ const styles = StyleSheet.create({
 
 type Props = {
   children?: string;
-  showLinksAsChords?: boolean;
   showChords?: boolean;
+  /** Renders lists, for prose like descriptions */
+  prose?: boolean;
 };
 /**
  * Lyrics are rendered using a controlled subset of markdown
  */
-export default function Markdown({ children, showLinksAsChords = false, showChords = false }: Props) {
+export default function Markdown({ children, showChords = false, prose = false }: Props) {
   const { isHighContrastEnabled } = useAccessibilityInfo();
+  const separator = useThemeColor('separator');
 
   // TODO selectable text
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
@@ -60,6 +68,25 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
         <ThemedText>{children}</ThemedText>
       </View>
     ),
+    hr: (node) => (
+      <View
+        key={node.key}
+        style={{ height: StyleSheet.hairlineWidth, backgroundColor: separator, marginVertical: fontSize }}
+      />
+    ),
+    bullet_list: (node, children) => <View key={node.key}>{children}</View>,
+    ordered_list: (node, children) => <View key={node.key}>{children}</View>,
+    list_item: (node, children, parent) => {
+      const list = parent.find((p) => p.type === 'bullet_list' || p.type === 'ordered_list');
+      const index = list?.children.indexOf(node) ?? 0;
+      const marker = list?.type === 'ordered_list' ? `${index + 1}.` : '•';
+      return (
+        <View key={node.key} style={{ flexDirection: 'row' }}>
+          <ThemedText style={[styles.text, { lineHeight, width: fontSize * 1.25 }]}>{marker}</ThemedText>
+          <View style={{ flex: 1 }}>{children}</View>
+        </View>
+      );
+    },
     text: (node, _children, parent) => {
       const parentTypes = parent.map((p) => p.sourceType);
       const strong = parentTypes.includes('strong');
@@ -144,7 +171,7 @@ export default function Markdown({ children, showLinksAsChords = false, showChor
   };
 
   return (
-    <MarkdownLib markdownit={markdownItInstance} rules={rules}>
+    <MarkdownLib markdownit={prose ? proseMarkdownItInstance : markdownItInstance} rules={rules}>
       {children}
     </MarkdownLib>
   );

@@ -1,0 +1,85 @@
+diff --git a/index.js b/index.js
+index 916faa503706e05ec05f5fda0ab4ce56adcd41b0..bb41a663c97ddbd358a78983a226db5b479b4fe5 100644
+--- a/index.js
++++ b/index.js
+@@ -161,8 +161,10 @@ export default class Pdf extends Component {
+     componentWillUnmount() {
+         this._mounted = false;
+         if (this.lastRNBFTask) {
+-            // this.lastRNBFTask.cancel(err => {
+-            // });
++            // dainorelis: cancel, so a remount (variant switch, Fast Refresh) doesn't race this download
++            try {
++                this.lastRNBFTask.cancel(() => {});
++            } catch (e) {}
+             this.lastRNBFTask = null;
+         }
+ 
+@@ -275,7 +277,8 @@ export default class Pdf extends Component {
+             this.lastRNBFTask = null;
+         }
+ 
+-        const tempCacheFile = cacheFile + '.tmp';
++        // dainorelis: one temp file per download, so two loads of the same URL can't delete each other's file
++        const tempCacheFile = cacheFile + '.' + Date.now() + Math.random().toString(36).slice(2) + '.tmp';
+         // Await the unlink: a fire-and-forget call here lets ReactNativeBlobUtil's
+         // open(path) race with the in-flight delete on Android 14 + New Architecture and
+         // surface as `ENOENT (No such file or directory)` on the temp file. See #1018.
+@@ -341,7 +344,7 @@ export default class Pdf extends Component {
+         } catch (error) {
+             this.lastRNBFTask = null;
+             await this._unlinkFile(tempCacheFile);
+-            await this._unlinkFile(cacheFile);
++            // dainorelis: keep cacheFile; it is only ever written after a verified download
+             this._onError(error);
+         }
+ 
+@@ -452,7 +455,9 @@ export default class Pdf extends Component {
+     render() {
+         if (Platform.OS === "android" || Platform.OS === "ios" || Platform.OS === "windows") {
+                 return (
+-                    <View style={[this.props.style,{overflow: 'hidden'}]}>
++                    // PATCH(dainorelis): iOS's native view turns paddingBottom into a content inset, so this wrapper
++                    // drops it there; Android's viewer has no inset, so its pages simply end above the padding
++                    <View style={[this.props.style,{overflow: 'hidden'},Platform.OS === "ios" ? {paddingBottom: 0} : null]}>
+                         {!this.state.isDownloaded?
+                             (<View
+                                 style={[styles.progressContainer, this.props.progressContainerStyle]}
+diff --git a/ios/RNPDFPdf/RNPDFPdfView.mm b/ios/RNPDFPdf/RNPDFPdfView.mm
+index 1bc263bb95c584c950583d42485059b8bf34168b..85922fa978fba9254c265f8fa1dab5eed26c8528 100644
+--- a/ios/RNPDFPdf/RNPDFPdfView.mm
++++ b/ios/RNPDFPdf/RNPDFPdfView.mm
+@@ -214,6 +214,22 @@ using namespace facebook::react;
+     [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
+     _pdfView.frame = CGRectMake(0, 0, layoutMetrics.frame.size.width, layoutMetrics.frame.size.height);
+ 
++    // PATCH(dainorelis): paddingBottom insets the scrolling content rather than the view, so the last page
++    // can scroll clear of whatever floats over the PDF's bottom edge (the song screen's player)
++    CGFloat bottomInset = layoutMetrics.contentInsets.bottom;
++    for (UIView *subview in _pdfView.subviews) {
++        if ([subview isKindOfClass:[UIScrollView class]]) {
++            UIScrollView *scrollView = (UIScrollView *)subview;
++            UIEdgeInsets contentInset = scrollView.contentInset;
++            contentInset.bottom = bottomInset;
++            scrollView.contentInset = contentInset;
++            UIEdgeInsets indicatorInsets = scrollView.verticalScrollIndicatorInsets;
++            indicatorInsets.bottom = bottomInset;
++            scrollView.verticalScrollIndicatorInsets = indicatorInsets;
++            break;
++        }
++    }
++
+     NSMutableArray *mProps = [_changedProps mutableCopy];
+     if (_initialed) {
+         [mProps removeObject:@"path"];
+@@ -544,7 +560,9 @@ using namespace facebook::react;
+                     for (UIView *subview in self->_pdfView.subviews) {
+                         if ([subview isKindOfClass:[UIScrollView class]]) {
+                             UIScrollView *scrollView = (UIScrollView *)subview;
+-                            [scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
++                            // dainorelis: rest at the top of the content insets (e.g. below a transparent
++                            // navigation bar), not at offset 0, which hides the first page's top under the bar
++                            [scrollView setContentOffset:CGPointMake(-scrollView.adjustedContentInset.left, -scrollView.adjustedContentInset.top) animated:NO];
+                             break;
+                         }
+                     }
