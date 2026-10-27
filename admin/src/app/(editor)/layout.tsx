@@ -31,6 +31,9 @@ export default async function EditorLayout({ children }: { children: React.React
           <Link href="/" className="underline-offset-4 hover:underline">
             Songs
           </Link>
+          <Link href="/media" className="underline-offset-4 hover:underline">
+            Media
+          </Link>
           <Link href="/export" className="underline-offset-4 hover:underline">
             Export
           </Link>
