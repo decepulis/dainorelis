@@ -265,7 +265,8 @@ export function ListItem({
   };
 
   return (
-    <GestureDetector gesture={fullSwipeGesture}>
+    // web: the browser keeps vertical drags for scrolling the list (a detector's default is touch-action: none)
+    <GestureDetector gesture={fullSwipeGesture} touchAction="pan-y">
       <View
         style={[styles.outerContainer, { backgroundColor: background }]}
         onLayout={(e) => setRowSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height })}

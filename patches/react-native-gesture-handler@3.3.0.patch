@@ -1,0 +1,45 @@
+diff --git a/lib/module/web/handlers/GestureHandler.js b/lib/module/web/handlers/GestureHandler.js
+index 36f8b9040f4c0458d583222532b4c8dbad90dc21..160a78bdc41d7fbe810a3659afeb2f4c1ab1996a 100644
+--- a/lib/module/web/handlers/GestureHandler.js
++++ b/lib/module/web/handlers/GestureHandler.js
+@@ -741,10 +741,14 @@ export default class GestureHandler {
+     this.needsPointerData = false;
+     this.forAnimated = false;
+     this.forReanimated = false;
+-    this.enableContextMenu = false;
+     this._activeCursor = undefined;
+-    this._touchAction = undefined;
+-    this._userSelect = undefined;
++
++    // PATCH(dainorelis): from 3.4.0 (see src)
++    if (!this.usesNativeOrVirtualDetector()) {
++      this.enableContextMenu = false;
++      this._touchAction = undefined;
++      this._userSelect = undefined;
++    }
+     this.needsDOMUpdate = true;
+   }
+   onDestroy() {
+diff --git a/src/web/handlers/GestureHandler.ts b/src/web/handlers/GestureHandler.ts
+index 9292b0420d2c057a127de039a44343ce4e24febc..efa191003bef1b491208840615d84a4085d65575 100644
+--- a/src/web/handlers/GestureHandler.ts
++++ b/src/web/handlers/GestureHandler.ts
+@@ -959,10 +959,15 @@ export default abstract class GestureHandler implements IGestureHandler {
+     this.needsPointerData = false;
+     this.forAnimated = false;
+     this.forReanimated = false;
+-    this.enableContextMenu = false;
+     this._activeCursor = undefined;
+-    this._touchAction = undefined;
+-    this._userSelect = undefined;
++
++    // PATCH(dainorelis): from 3.4.0. On the v3 path these belong to the detector, which sends them only in partial
++    // updates, so a config change reset a swipeable row's pan-y to touch-action: none and lists stopped scrolling
++    if (!this.usesNativeOrVirtualDetector()) {
++      this.enableContextMenu = false;
++      this._touchAction = undefined;
++      this._userSelect = undefined;
++    }
+     this.needsDOMUpdate = true;
+   }
+ 
