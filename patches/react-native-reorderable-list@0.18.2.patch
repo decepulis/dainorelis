@@ -1,0 +1,45 @@
+diff --git a/lib/commonjs/components/ReorderableListCore.js b/lib/commonjs/components/ReorderableListCore.js
+index c3c69005574f1f26ac0469a29edd731232f18225..e32ea07985891d62aba00844ccb05484de36f6d1 100644
+--- a/lib/commonjs/components/ReorderableListCore.js
++++ b/lib/commonjs/components/ReorderableListCore.js
+@@ -718,7 +718,9 @@ const ReorderableListCore = ({
+   return /*#__PURE__*/_react.default.createElement(_contexts.ReorderableListContext.Provider, {
+     value: listContextValue
+   }, /*#__PURE__*/_react.default.createElement(_reactNativeGestureHandler.GestureDetector, {
+-    gesture: combinedGesture
++    gesture: combinedGesture,
++    // PATCH(dainorelis): see src
++    touchAction: "pan-y"
+   }, /*#__PURE__*/_react.default.createElement(AnimatedFlatList, _extends({}, rest, {
+     ref: handleRef,
+     data: data,
+diff --git a/lib/module/components/ReorderableListCore.js b/lib/module/components/ReorderableListCore.js
+index a335703eb6e8074c3b6ddd17c0cdf0c8eaec3dab..38492ee7c04b595e5980b234c3d9004d88e1b761 100644
+--- a/lib/module/components/ReorderableListCore.js
++++ b/lib/module/components/ReorderableListCore.js
+@@ -710,7 +710,9 @@ const ReorderableListCore = ({
+   return /*#__PURE__*/React.createElement(ReorderableListContext.Provider, {
+     value: listContextValue
+   }, /*#__PURE__*/React.createElement(GestureDetector, {
+-    gesture: combinedGesture
++    gesture: combinedGesture,
++    // PATCH(dainorelis): see src
++    touchAction: "pan-y"
+   }, /*#__PURE__*/React.createElement(AnimatedFlatList, _extends({}, rest, {
+     ref: handleRef,
+     data: data,
+diff --git a/src/components/ReorderableListCore.tsx b/src/components/ReorderableListCore.tsx
+index 7f1ca891f1823026054ffe167dbea79d27422284..484d8e533482aa19e1aadb7c161ebc1211d5b139 100644
+--- a/src/components/ReorderableListCore.tsx
++++ b/src/components/ReorderableListCore.tsx
+@@ -1138,7 +1138,9 @@ const ReorderableListCore = <T,>(
+ 
+   return (
+     <ReorderableListContext.Provider value={listContextValue}>
+-      <GestureDetector gesture={combinedGesture}>
++      {/* PATCH(dainorelis): web only. The detector's default touch-action is none, so a finger couldn't scroll the
++          list; pan-y leaves vertical drags to the browser */}
++      <GestureDetector gesture={combinedGesture} touchAction="pan-y">
+         <AnimatedFlatList
+           {...rest}
+           ref={handleRef}
