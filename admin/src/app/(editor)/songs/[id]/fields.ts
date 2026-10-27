@@ -10,6 +10,8 @@ export type FieldSpec = {
   hint?: string;
   /** Renders full width rather than in the two-column grid. */
   wide?: boolean;
+  /** For a URL field: offers an upload to media.dainorelis.app, taking files of this `accept` type. */
+  upload?: string;
 };
 
 export type SectionSpec = {
@@ -70,7 +72,14 @@ export const SECTIONS: SectionSpec[] = [
     addLabel: 'Add audio',
     fields: [
       ...VARIANT_FIELDS,
-      { column: 'url', label: 'URL', kind: 'url', wide: true, hint: 'Spotify or YouTube link.' },
+      {
+        column: 'url',
+        label: 'URL',
+        kind: 'url',
+        wide: true,
+        upload: 'audio/*',
+        hint: 'Upload a recording, or link out to one (Spotify, YouTube). The app plays only audio files for now.',
+      },
       { column: 'album', label: 'Album', kind: 'text' },
       { column: 'artist', label: 'Artist', kind: 'text' },
     ],
@@ -79,7 +88,17 @@ export const SECTIONS: SectionSpec[] = [
     table: 'pdfs',
     title: 'Sheet music',
     addLabel: 'Add PDF',
-    fields: [...VARIANT_FIELDS, { column: 'url', label: 'PDF URL', kind: 'url', wide: true }],
+    fields: [
+      ...VARIANT_FIELDS,
+      {
+        column: 'url',
+        label: 'PDF URL',
+        kind: 'url',
+        wide: true,
+        upload: 'application/pdf',
+        hint: 'Upload a PDF, or link to one.',
+      },
+    ],
   },
   {
     table: 'videos',
@@ -89,10 +108,11 @@ export const SECTIONS: SectionSpec[] = [
       ...VARIANT_FIELDS,
       {
         column: 'youtube_link',
-        label: 'YouTube link',
+        label: 'Video URL',
         kind: 'url',
         wide: true,
-        hint: 'Stored, but currently excluded from the app bundle by fieldFlags in update-songs.ts.',
+        upload: 'video/*',
+        hint: 'Upload a video, or link out to one (YouTube). Stored, but currently excluded from the app bundle by fieldFlags in update-songs.ts.',
       },
     ],
   },
