@@ -360,6 +360,8 @@ export default function Search({
                 isBoldTextEnabled ? fonts.bold : fonts.regular,
                 {
                   height: '100%',
+                  // iOS Safari zooms the page into a field under 16px (React Native's default is 14)
+                  fontSize: process.env.EXPO_OS === 'web' ? 16 : undefined,
                   color,
                   marginRight: !isSearchOpen ? 0 : process.env.EXPO_OS === 'ios' ? 10 : buttonSize,
                   marginLeft: !isSearchOpen ? 0 : buttonSize,

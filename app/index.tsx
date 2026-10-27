@@ -159,7 +159,9 @@ export default function Index() {
   };
 
   const logoContainerAspectRatio = 747 / 177;
-  const logoContainerWidth = Math.min(safeWidth - 80, 360);
+  const logoContainerMargin = 40;
+  const logoContainerMaxWidth = 360;
+  const logoContainerWidth = Math.min(safeWidth - logoContainerMargin * 2, logoContainerMaxWidth);
   const logoContainerHeight = logoContainerWidth / logoContainerAspectRatio;
   // Liquid Glass's bar buttons are taller than the custom ones, so the header grows to keep the logo clear of them
   const logoContainerPaddingTop = 100 + inset.top + 5 + (isLiquidGlassStyleHeader() ? 16 : 0); // idk why 5 it looks good
@@ -388,14 +390,15 @@ export default function Index() {
       <View
         style={{
           position: 'relative',
-          height: listHeaderHeight,
+          // sized by its content, listHeaderHeight in all: the statically rendered page knows no window, but the
+          // logo's flex layout comes out the same, so the list doesn't move down as the page hydrates
           paddingTop: logoContainerPaddingTop,
           paddingBottom: logoContainerPaddingBottom,
-          // full bleed, with the logo centred in the safe area
+          // full bleed, with the logo centred in the safe area, 40 from its edges
           marginLeft: -inset.left,
           marginRight: -inset.right,
-          paddingLeft: inset.left,
-          paddingRight: inset.right,
+          paddingLeft: inset.left + logoContainerMargin,
+          paddingRight: inset.right + logoContainerMargin,
           // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
           overflow: wideLayoutMode ? undefined : 'hidden',
         }}
@@ -407,7 +410,7 @@ export default function Index() {
             top: 0,
             left: 0,
             right: 0,
-            height: ultraWideLayoutMode ? height : listHeaderHeight * 2,
+            height: ultraWideLayoutMode ? height : '200%',
           }}
           source={require('@/assets/images/miskas_v3_fade.webp')}
           // a reorderable playlist gets its own list, which remounts this header: from memory it doesn't reload
@@ -419,13 +422,7 @@ export default function Index() {
         {/* the logo is separate so we can measure its extents */}
         <View
           onLayout={calculateTitleHeight}
-          style={[
-            styles.logoContainer,
-            {
-              width: logoContainerWidth,
-              height: logoContainerHeight,
-            },
-          ]}
+          style={[styles.logoContainer, { maxWidth: logoContainerMaxWidth, aspectRatio: logoContainerAspectRatio }]}
         >
           <Image
             style={StyleSheet.absoluteFill}
@@ -633,6 +630,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoContainer: {
+    width: '100%',
     marginHorizontal: 'auto',
   },
   reorderHint: {
