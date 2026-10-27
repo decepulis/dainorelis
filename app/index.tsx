@@ -54,6 +54,7 @@ import { useThemeColor } from '@/lib/hooks/useThemeColor';
 import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 import haptic from '@/lib/utils/haptic';
 import { siteMetadata } from '@/lib/utils/pageMetadata';
+import preloadImage from '@/lib/utils/preloadImage';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
@@ -63,6 +64,10 @@ const measureDelay = 300;
 const bottomBarHeight = 44;
 // the forest photo's top edge (the average of miskas_v3_fade.webp's top row of pixels), in either mode
 const photoTopColor = '#403B44';
+// the photo's average, in its place until it loads
+const photoColor = '#4E5051';
+const forestImage = require('@/assets/images/miskas_v3_fade.webp');
+const logoImage = require('@/assets/images/logo_white_v3.png');
 
 // web: the static HTML's title and description
 export const generateMetadata = () => siteMetadata;
@@ -401,6 +406,7 @@ export default function Index() {
           paddingRight: inset.right + logoContainerMargin,
           // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
           overflow: wideLayoutMode ? undefined : 'hidden',
+          backgroundColor: photoColor,
         }}
       >
         {/* the background itself */}
@@ -412,7 +418,7 @@ export default function Index() {
             right: 0,
             height: ultraWideLayoutMode ? height : '200%',
           }}
-          source={require('@/assets/images/miskas_v3_fade.webp')}
+          source={forestImage}
           // a reorderable playlist gets its own list, which remounts this header: from memory it doesn't reload
           cachePolicy="memory"
           onLoadEnd={() => setDidBackgroundLoad(true)}
@@ -426,7 +432,7 @@ export default function Index() {
         >
           <Image
             style={StyleSheet.absoluteFill}
-            source={require('@/assets/images/logo_white_v3.png')}
+            source={logoImage}
             cachePolicy="memory"
             contentFit="contain"
             onLoadEnd={() => setDidLogoLoad(true)}
@@ -465,6 +471,9 @@ export default function Index() {
       ) : null}
     </View>
   );
+
+  preloadImage(forestImage);
+  preloadImage(logoImage);
 
   return (
     <>

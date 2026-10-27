@@ -90,7 +90,9 @@
   "pnpm": {
     "patchedDependencies": {
       "react-native-screens@4.30.0": "patches/react-native-screens@4.30.0.patch",
-      "react-native-pdf@7.0.5": "patches/react-native-pdf@7.0.5.patch"
+      "react-native-pdf@7.0.5": "patches/react-native-pdf@7.0.5.patch",
+      "react-native-gesture-handler@3.3.0": "patches/react-native-gesture-handler@3.3.0.patch",
+      "react-native-reorderable-list@0.18.2": "patches/react-native-reorderable-list@0.18.2.patch"
     }
   },
   "private": true
