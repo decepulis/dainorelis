@@ -39,6 +39,8 @@ export const themeStyle = [
   `:root[data-theme="light"]{${declarations(changed(LightHighContrastTheme, LightTheme))}}`,
   `:root[data-theme="dark"]{${declarations(changed(DarkHighContrastTheme, DarkTheme))}}}`,
   `html,body{background-color:var(--color-background);color:var(--color-text);}`,
+  // no grey flash on tap: every control shows its own pressed state
+  `html{-webkit-tap-highlight-color:transparent;}`,
 ].join('');
 
 /** react-native-mmkv's web build keeps each key in localStorage as `<instance id>\<key>`, JSON encoded */

@@ -93,7 +93,7 @@ export function StoreBadges({ openPlaylistInApp }: { openPlaylistInApp?: boolean
       <View style={styles.badges}>
         {show.appStore ? (
           <Link href={appStoreUrl} asChild>
-            <Pressable accessibilityLabel={t('appStoreBadge')}>
+            <Pressable accessibilityLabel={t('appStoreBadge')} style={pressedStyle}>
               <Image
                 source={
                   lt
@@ -108,7 +108,7 @@ export function StoreBadges({ openPlaylistInApp }: { openPlaylistInApp?: boolean
         ) : null}
         {show.playStore ? (
           <Link href={playStoreUrl} asChild>
-            <Pressable accessibilityLabel={t('playStoreBadge')}>
+            <Pressable accessibilityLabel={t('playStoreBadge')} style={pressedStyle}>
               <Image
                 source={
                   lt
@@ -126,7 +126,7 @@ export function StoreBadges({ openPlaylistInApp }: { openPlaylistInApp?: boolean
           browser) */}
       {openPlaylistInApp && platform !== 'other' ? (
         <Link href={`dainorelis:/${location.pathname}${location.search}` as Href} asChild>
-          <Pressable>
+          <Pressable style={pressedStyle}>
             <ThemedText style={[styles.openInApp, { color: primary }]}>{t('openPlaylistInApp')}</ThemedText>
           </Pressable>
         </Link>
@@ -134,6 +134,8 @@ export function StoreBadges({ openPlaylistInApp }: { openPlaylistInApp?: boolean
     </View>
   );
 }
+
+const pressedStyle = ({ pressed }: { pressed: boolean }) => ({ opacity: pressed ? 0.6 : 1 });
 
 const styles = StyleSheet.create({
   headerButton: {
