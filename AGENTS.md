@@ -293,8 +293,9 @@ change, retake the captures and rerun the script.
 
 ## GitHub Issues
 
-Write only what the owner said. No guessed causes, code pointers, proposed fixes or open questions they didn't
-raise: an issue that is one sentence, or empty, beats one padded with speculation.
+When the owner reports an issue, write only what they said. No guessed causes, code pointers, proposed fixes or
+open questions they didn't raise: an issue that is one sentence, or empty, beats one padded with speculation. An
+issue the agent proposed itself carries the agent's own findings and reasoning.
 
 ## Environment Variables
 
