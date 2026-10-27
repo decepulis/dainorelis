@@ -291,6 +291,11 @@ change, retake the captures and rerun the script.
 
 **React Compiler**: This project uses React Compiler for automatic optimization. Do not use manual memoization techniques like `useCallback`, `useMemo`, or `React.memo` - the compiler handles this automatically.
 
+## GitHub Issues
+
+Write only what the owner said. No guessed causes, code pointers, proposed fixes or open questions they didn't
+raise: an issue that is one sentence, or empty, beats one padded with speculation.
+
 ## Environment Variables
 
 The app requires a `.env` file (see `.env.example`):
