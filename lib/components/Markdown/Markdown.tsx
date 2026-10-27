@@ -46,6 +46,17 @@ const styles = StyleSheet.create({
     fontSize,
     // lineHeight set dynamically down below
   },
+  // the library's paragraph style, made here once: static rendering leaves the copy it makes on every render out of
+  // some pages' CSS, so their paragraphs jump apart as the page hydrates
+  paragraph: {
+    marginTop: 10,
+    marginBottom: 10,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    width: '100%',
+  },
 });
 
 type Props = {
@@ -63,8 +74,8 @@ export default function Markdown({ children, showChords = false, prose = false }
 
   // TODO selectable text
   const rules: ComponentPropsWithoutRef<typeof MarkdownLib>['rules'] = {
-    paragraph: (node, children, _parent, styles) => (
-      <View key={node.key} style={styles._VIEW_SAFE_paragraph}>
+    paragraph: (node, children) => (
+      <View key={node.key} style={styles.paragraph}>
         <ThemedText>{children}</ThemedText>
       </View>
     ),
