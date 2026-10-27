@@ -52,7 +52,12 @@ export const SECTIONS: SectionSpec[] = [
     title: 'Translations',
     addLabel: 'Add translation',
     fields: [
-      { column: 'title', label: 'English title', kind: 'text' },
+      {
+        column: 'title',
+        label: 'English title',
+        kind: 'text',
+        hint: 'Title case: capitalize every word except articles, conjunctions and short prepositions.',
+      },
       ...VARIANT_FIELDS,
       { column: 'lyrics', label: 'Translated lyrics', kind: 'textarea', wide: true },
       { column: 'ai_generated', label: 'AI generated', kind: 'checkbox' },

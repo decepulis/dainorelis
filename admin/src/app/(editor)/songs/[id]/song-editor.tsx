@@ -282,7 +282,14 @@ export default function SongEditor({ song }: { song: Song }) {
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label htmlFor="name">Title</label>
-            <input id="name" name="name" defaultValue={draft?.name ?? song.name} required />
+            <input
+              id="name"
+              name="name"
+              defaultValue={draft?.name ?? song.name}
+              required
+              aria-describedby="name-hint"
+            />
+            <Hint id="name-hint">Sentence case: capitalize only the first word and proper nouns.</Hint>
           </div>
 
           <div>
