@@ -106,6 +106,11 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   `topScrollEdgeEffectThreshold` (iOS 27's bar background for screens without a native title, see
   `useTopScrollEdgeEffect`), which switches the top scroll edge effect to hard past the threshold on
   the main thread, observing the scroll view's contentOffset.
+- **react-native-gesture-handler** (web): 3.4.0's fix to `resetConfig`, which on 3.3 reset a detector's
+  `touchAction` to `none` whenever a gesture's config changed, so a finger couldn't scroll a list of swipeable rows.
+  Drop it when upgrading to 3.4+.
+- **react-native-reorderable-list** (web): `touchAction="pan-y"` on its gesture detector (in `src` and `lib`), so a
+  finger can scroll the list.
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
   switch, Fast Refresh) don't delete each other's file; on iOS, makes the view's `paddingBottom` a content inset
   (Android's viewer has none, so its pages end above the padding), so the last page clears the floating player.
