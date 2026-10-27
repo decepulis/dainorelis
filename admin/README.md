@@ -236,6 +236,44 @@ what reproduces Airtable's sort. Lithuanian collation orders `š` differently an
 would reshuffle the bundle — which also shifts the indices `song-festival.ts`
 refers to.
 
+## Media uploads
+
+The **Media** page lists the Cloudflare R2 bucket served at
+`https://media.dainorelis.app` and uploads to it. The browser sends the file
+straight to R2 through a presigned URL (Vercel functions accept at most 4.5 MB
+of request body, less than many recordings), so the admin's server only checks
+the editor is signed in, refuses to replace an existing file without
+confirmation, and signs the URL. Paste the uploaded file's URL into a song's
+PDF or audio field. There's no delete or rename: shipped app builds link to
+these URLs; remove a file from the Cloudflare dashboard if you must.
+
+Setup, once:
+
+1. **API token.** R2 → Manage API tokens → Create API token, permission
+   _Object Read & Write_, applied to the media bucket only. Put its access key
+   ID and secret, the account ID and the bucket name in the Vercel project as
+   `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ACCOUNT_ID` and `R2_BUCKET`
+   (see `.env.example`).
+2. **CORS.** The bucket must accept the browser's `PUT`. In the bucket's
+   Settings → CORS policy:
+
+   ```json
+   [
+     {
+       "AllowedOrigins": ["https://admin.dainorelis.app", "http://localhost:3100"],
+       "AllowedMethods": ["PUT"],
+       "AllowedHeaders": ["content-type"],
+       "MaxAgeSeconds": 3600
+     }
+   ]
+   ```
+
+   Vercel preview deployments have their own origins, so uploads from a
+   preview fail unless you add its URL here too.
+
+Replacing a file keeps its URL, but Cloudflare's cache and the apps' PDF cache
+may keep serving the old one for a while.
+
 ## Keeping Supabase awake
 
 Supabase pauses free-tier projects after seven days of inactivity, and
