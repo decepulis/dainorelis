@@ -114,11 +114,11 @@ export default function MenuView({
                   ? setOpenSubmenus(isOpen ? openSubmenus.filter((s) => s !== id) : [...openSubmenus, id])
                   : select(action)
               }
-              // react-native-web adds `hovered`
+              // react-native-web adds `hovered` (for a mouse; a tap doesn't leave it behind)
               style={(state) => [
                 styles.row,
                 { paddingLeft: padding * (0.75 + depth), opacity: disabled ? 0.4 : 1 },
-                (state as { hovered?: boolean }).hovered ? { backgroundColor: separator } : null,
+                state.pressed || (state as { hovered?: boolean }).hovered ? { backgroundColor: separator } : null,
               ]}
             >
               <View style={styles.check}>
@@ -161,13 +161,13 @@ export default function MenuView({
         accessibilityHint={accessibilityHint}
         onPress={shouldOpenOnLongPress ? undefined : open}
         onLongPress={shouldOpenOnLongPress ? open : undefined}
-        style={[
+        style={({ pressed }) => [
           {
             paddingLeft: hitSlop.left,
             paddingRight: hitSlop.right,
             paddingTop: hitSlop.top,
             paddingBottom: hitSlop.bottom,
-            opacity: anchor ? 0.5 : 1,
+            opacity: anchor || pressed ? 0.5 : 1,
           },
           style,
         ]}
