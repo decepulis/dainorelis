@@ -243,9 +243,12 @@ The **Media** page lists the Cloudflare R2 bucket served at
 straight to R2 through a presigned URL (Vercel functions accept at most 4.5 MB
 of request body, less than many recordings), so the admin's server only checks
 the editor is signed in, refuses to replace an existing file without
-confirmation, and signs the URL. Paste the uploaded file's URL into a song's
-PDF or audio field. There's no delete or rename: shipped app builds link to
-these URLs; remove a file from the Cloudflare dashboard if you must.
+confirmation, and signs the URL. The song editor's PDF, audio and video URL
+fields have an **Upload…** button that does the same and fills the field in
+(save the song afterwards). The fields still take any link, so a recording can
+link out to Spotify or YouTube instead, though the app only plays audio files
+for now. There's no delete or rename: shipped app builds link to these URLs;
+remove a file from the Cloudflare dashboard if you must.
 
 Setup, once:
 

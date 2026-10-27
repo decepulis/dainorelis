@@ -10,6 +10,7 @@ import { PRIMARY_BUTTON, TEXT_LINK } from '@/lib/styles';
 import { type EditorState, deleteSong, saveSong } from '../../actions';
 import SubmitButton from '../../submit-button';
 import { type FieldSpec, SECTIONS, type SectionSpec } from './fields';
+import UploadButton from './upload-button';
 
 type ChildRecord = {
   id: string;
@@ -101,6 +102,7 @@ function ChildField({
   field: FieldSpec;
   draft: Draft;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const name = `${table}:${record.id}:${field.column}`;
   const inputId = name.replace(/:/g, '-');
   const value = record[field.column];
@@ -140,6 +142,26 @@ function ChildField({
           defaultValue={draft?.[name] ?? text(value)}
           aria-describedby={hintId}
         />
+      ) : field.upload ? (
+        <div className="flex flex-wrap items-center gap-2">
+          <input
+            ref={inputRef}
+            id={inputId}
+            name={name}
+            type="url"
+            defaultValue={draft?.[name] ?? text(value)}
+            aria-describedby={hintId}
+            className="min-w-0 flex-1"
+          />
+          <UploadButton
+            accept={field.upload}
+            onUploaded={(url) => {
+              // A changed value is what marks the variant as touched for the save.
+              if (inputRef.current) inputRef.current.value = url;
+            }}
+            className={SUBTLE_BUTTON}
+          />
+        </div>
       ) : (
         <input
           id={inputId}

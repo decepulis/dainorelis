@@ -6,41 +6,8 @@ import { useRouter } from 'next/navigation';
 
 import { PRIMARY_BUTTON, TEXT_LINK } from '@/lib/styles';
 
-import { prepareUpload } from './actions';
 import CopyButton from './copy-button';
-
-/** "Čiūto Tūto (alto).PDF" → "ciuto-tuto-alto.pdf": safe in a URL without encoding. */
-function suggestKey(fileName: string): string {
-  const dot = fileName.lastIndexOf('.');
-  const stem = dot > 0 ? fileName.slice(0, dot) : fileName;
-  const extension = dot > 0 ? fileName.slice(dot).toLowerCase() : '';
-  const slug = stem
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-  return (slug || 'file') + extension;
-}
-
-/** fetch() can't report upload progress; XMLHttpRequest can. */
-function put(url: string, file: File, contentType: string, onProgress: (fraction: number) => void) {
-  return new Promise<void>((resolve, reject) => {
-    const request = new XMLHttpRequest();
-    request.open('PUT', url);
-    request.setRequestHeader('Content-Type', contentType);
-    request.upload.onprogress = (event) => {
-      if (event.lengthComputable) onProgress(event.loaded / event.total);
-    };
-    request.onload = () =>
-      request.status >= 200 && request.status < 300
-        ? resolve()
-        : reject(new Error(`The bucket answered ${request.status}.`));
-    // A CORS rejection lands here with no detail; see admin/README.md.
-    request.onerror = () => reject(new Error('The upload was blocked. Check the bucket’s CORS policy.'));
-    request.send(file);
-  });
-}
+import { suggestKey, uploadMedia } from './upload';
 
 type Status =
   | { state: 'idle' }
@@ -59,33 +26,18 @@ export default function Uploader() {
     if (!file) return;
 
     setStatus({ state: 'uploading', progress: 0 });
-    const contentType = file.type || 'application/octet-stream';
-    let prepared = await prepareUpload({ key, contentType, overwrite: false });
-    if ('exists' in prepared) {
-      const replace = window.confirm(
-        `${key} already exists. Replace it? Every song and app build that links to it will get the new file.`
-      );
-      if (!replace) {
-        setStatus({ state: 'idle' });
-        return;
-      }
-      prepared = await prepareUpload({ key, contentType, overwrite: true });
-    }
-    if ('error' in prepared) {
-      setStatus({ state: 'error', message: prepared.error });
-      return;
-    }
-    if ('exists' in prepared) return;
-
+    let url: string | null;
     try {
-      await put(prepared.uploadUrl, file, prepared.contentType, (progress) =>
-        setStatus({ state: 'uploading', progress })
-      );
+      url = await uploadMedia(file, key, (progress) => setStatus({ state: 'uploading', progress }));
     } catch (error) {
       setStatus({ state: 'error', message: error instanceof Error ? error.message : 'The upload failed.' });
       return;
     }
-    setStatus({ state: 'done', url: prepared.publicUrl });
+    if (!url) {
+      setStatus({ state: 'idle' });
+      return;
+    }
+    setStatus({ state: 'done', url });
     setFile(null);
     setKey('');
     (event.target as HTMLFormElement).reset();
@@ -101,7 +53,7 @@ export default function Uploader() {
         <input
           id="file"
           type="file"
-          accept="application/pdf,audio/*,image/*"
+          accept="application/pdf,audio/*,video/*,image/*"
           required
           disabled={uploading}
           onChange={(event) => {
