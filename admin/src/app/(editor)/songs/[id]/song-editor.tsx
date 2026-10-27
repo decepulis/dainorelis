@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useRef } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -252,6 +252,21 @@ export default function SongEditor({ song }: { song: Song }) {
   // After a failed save, show what was submitted rather than what is stored.
   const draft = state.values;
   const formRef = useRef<HTMLFormElement>(null);
+  const formKey = String(state.savedAt ?? 'initial');
+  // The form edited since its last save (keyed by that save, so a successful
+  // save, which remounts the form, clears it; a failed one doesn't).
+  const [editedForm, setEditedForm] = useState<string | null>(null);
+  const unsaved = editedForm === formKey;
+  const savedTime = state.savedAt
+    ? new Date(state.savedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    : null;
+
+  useEffect(() => {
+    if (!unsaved) return;
+    const warn = (event: BeforeUnloadEvent) => event.preventDefault();
+    window.addEventListener('beforeunload', warn);
+    return () => window.removeEventListener('beforeunload', warn);
+  }, [unsaved]);
 
   function submit(formData: FormData) {
     // After a failed save the fields' defaults are the draft, not what is
@@ -268,7 +283,7 @@ export default function SongEditor({ song }: { song: Song }) {
 
       {/* Outside the keyed form so it stays mounted; the time makes each save a change worth announcing. */}
       <p role="status" className="sr-only">
-        {state.savedAt && !state.error ? `Saved at ${new Date(state.savedAt).toLocaleTimeString()}.` : ''}
+        {savedTime && !state.error ? `Saved at ${savedTime}.` : ''}
       </p>
 
       {/*
@@ -276,7 +291,13 @@ export default function SongEditor({ song }: { song: Song }) {
         server values — including ids of records that were just added. A failed
         save keeps the key, and the fields fall back to `draft`.
       */}
-      <form ref={formRef} action={submit} key={state.savedAt ?? 'initial'} className="mt-4 flex flex-col gap-6">
+      <form
+        ref={formRef}
+        action={submit}
+        key={formKey}
+        onChange={() => setEditedForm(formKey)}
+        className="mt-4 flex flex-col gap-6"
+      >
         <input type="hidden" name="songId" value={song.id} />
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -391,12 +412,16 @@ export default function SongEditor({ song }: { song: Song }) {
           <button type="submit" name="intent" value="save" disabled={pending} className={PRIMARY_BUTTON}>
             {pending ? 'Saving…' : 'Save'}
           </button>
-          {state.savedAt && !state.error ? (
+          {unsaved ? (
+            <span className="text-sm font-medium text-amber-700 dark:text-amber-400">
+              Unsaved changes. Press Save to keep them.
+            </span>
+          ) : savedTime && !state.error ? (
             // Announced by the status region above the form instead: this one
             // remounts with the form, and a live region that arrives already
             // filled in is often not read out.
             <span aria-hidden="true" className="text-sm text-stone-500 dark:text-stone-400">
-              Saved.
+              Saved at {savedTime}.
             </span>
           ) : null}
           <span className="ml-auto font-mono text-xs text-stone-400 dark:text-stone-600">{song.id}</span>
