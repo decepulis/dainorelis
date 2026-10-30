@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
@@ -55,6 +56,7 @@ import useTopScrollEdgeEffect from '@/lib/hooks/useTopScrollEdgeEffect';
 import haptic from '@/lib/utils/haptic';
 import { siteMetadata } from '@/lib/utils/pageMetadata';
 import preloadImage from '@/lib/utils/preloadImage';
+import withAlpha from '@/lib/utils/withAlpha';
 
 // a lifted row stays opaque (the default fades it) and keeps the default slight grow
 const liftedRowAnimations = { opacity: 1 };
@@ -66,6 +68,8 @@ const bottomBarHeight = 44;
 const photoTopColor = '#403B44';
 // the photo's average, in its place until it loads
 const photoColor = '#4E5051';
+// how far down the photo the backdrop above it fades out: no taller than a navigation bar
+const photoTopFadeHeight = 44;
 const forestImage = require('@/assets/images/miskas_v3_fade.webp');
 const logoImage = require('@/assets/images/logo_white_v3.png');
 
@@ -425,6 +429,12 @@ export default function Index() {
           contentFit="cover"
           contentPosition="bottom"
         ></Image>
+        {/* the backdrop above fades into the photo's top edge */}
+        <LinearGradient
+          colors={[photoTopColor, withAlpha(photoTopColor, '00')]}
+          pointerEvents="none"
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, height: photoTopFadeHeight }}
+        />
         {/* the logo is separate so we can measure its extents */}
         <View
           onLayout={calculateTitleHeight}
