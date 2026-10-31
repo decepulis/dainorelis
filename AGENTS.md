@@ -220,7 +220,6 @@ change, retake the captures and rerun the script.
 
 - **`/patches`** - pnpm patches for dependencies (see Building)
 
-
 - **`/scripts`** - Data pipeline scripts (run with tsx)
   - `update-songs.ts` - Fetch all song data from the admin app's export endpoint
   - `generate-search-indices.ts` - Create Fuse.js search indices
