@@ -80,7 +80,7 @@ export interface Theme extends Omit<LibTheme, 'colors'> {
     separator: string;
   };
 }
-// Brand v3 (Audinys): docs/plans/brand-v3-type-and-color.md
+// Brand v3 (Audinys)
 export const LightTheme: Theme = {
   dark: false,
   colors: {
