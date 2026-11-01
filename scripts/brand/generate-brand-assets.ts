@@ -115,6 +115,33 @@ function readMark(source: string) {
   };
 }
 
+/**
+ * The star's dark-mode fill in icon.icon, as #rrggbb: Icon Composer owns it (set there, left alone by this script),
+ * and the dark splash follows it
+ */
+function darkStarFill() {
+  const file = `${images}/icon.icon/icon.json`;
+  type Fill = { appearance?: string; value: { solid?: string } | string };
+  const document: { groups: { layers: { name: string; 'fill-specializations'?: Fill[] }[] }[] } = JSON.parse(
+    readFileSync(file, 'utf8')
+  );
+  const layer = document.groups.flatMap((g) => g.layers).find((l) => l.name === 'star');
+  const value = layer?.['fill-specializations']?.find((f) => f.appearance === 'dark')?.value;
+  const rgb = typeof value === 'object' ? value.solid?.match(/^srgb:([\d.]+),([\d.]+),([\d.]+)/) : null;
+  if (!rgb) throw new Error(`${file}: expected the star layer to have a dark-mode srgb solid fill`);
+  return (
+    '#' +
+    rgb
+      .slice(1, 4)
+      .map((c) =>
+        Math.round(Number(c) * 255)
+          .toString(16)
+          .padStart(2, '0')
+      )
+      .join('')
+  );
+}
+
 const svg = (size: number, body: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${body}</svg>`;
 
@@ -201,6 +228,9 @@ async function main() {
   // imageWidth.
   const splashFraction = clamped('splash-icon.png', iconFraction * 0.81, fitting(1 / 3));
   await png(`${images}/splash-icon.png`, placed(1024, splashFraction), 1024);
+  // and the dark-mode splash (app.config.ts's splash `dark.image`), with the star in the dark icon's tint, so the
+  // launch continues from the dark icon too
+  await png(`${images}/splash-icon-dark.png`, placed(1024, splashFraction, diamond + star(darkStarFill())), 1024);
 
   // iOS 26 Icon Composer layers: full-canvas SVGs, so the layers stay registered to each other
   const layer = (content: string) => svg(1024, asDrawn(1024, content));
