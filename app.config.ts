@@ -120,7 +120,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
         resizeMode: 'contain',
         backgroundColor: brandColors.egle,
-        dark: { backgroundColor: brandColors.naktis },
+        // the dark icon's: its star tint (from icon.icon) on the dark background
+        dark: { image: './assets/images/splash-icon-dark.png', backgroundColor: brandColors.naktis },
       },
     ],
     [
