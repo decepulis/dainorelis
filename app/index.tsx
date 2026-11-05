@@ -18,6 +18,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Link, Stack } from 'expo-router';
 import { useHeaderHeight } from 'expo-router/react-navigation';
 
+import type { ListRef } from '@expo/ui/swift-ui';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6/static';
 
 import Button from '@/lib/components/Button';
@@ -37,12 +38,14 @@ import {
   closeOpenRow,
   listItemHeight,
 } from '@/lib/components/Index/ListItem';
-import Search, { IndexToolbar } from '@/lib/components/Index/Search';
+import NativeSongList, { type NativeSongListSection } from '@/lib/components/Index/NativeSongList';
+import Search, { IndexToolbar, type ScrollToOffsetRef } from '@/lib/components/Index/Search';
 import SectionIndex, { RowLayout, RowMeasurer, sectionIndexRowPadding } from '@/lib/components/Index/SectionIndex';
 import { GetTheAppButton } from '@/lib/components/StoreLinks';
 import ThemedText from '@/lib/components/ThemedText';
 import floatingBottomGap from '@/lib/constants/floatingBottomGap';
 import maxWidth from '@/lib/constants/maxWidth';
+import nativeSongList from '@/lib/constants/nativeSongList';
 import padding from '@/lib/constants/padding';
 import useAccessibilityInfo from '@/lib/hooks/useAccessibilityInfo';
 import { useDidImagesLoad } from '@/lib/hooks/useDidImagesLoad';
@@ -103,6 +106,16 @@ export default function Index() {
   const { t } = useTranslation();
 
   const listRef = useAnimatedRef<Animated.FlatList<any>>();
+  // PROTOTYPE: on iOS the list can be SwiftUI's (lib/constants/nativeSongList.ts), scrolled through its own ref
+  const nativeListRef = useRef<ListRef>(null);
+  // what search and a newly picked playlist scroll, whichever list is shown
+  const scrollRef: ScrollToOffsetRef = nativeSongList
+    ? {
+        current: {
+          scrollToOffset: ({ offset, animated }) => void nativeListRef.current?.scrollToOffset(offset, !!animated),
+        },
+      }
+    : listRef;
   // The list's scrolling takes part in gesture handling, like the reorderable list's, so it and a row's swipe
   // settle who gets a touch. Otherwise, on Android, a row's swipe could take a scroll's touch partway in and
   // stop the list after a few pixels.
@@ -152,6 +165,7 @@ export default function Index() {
   useEffect(() => {
     if (shownPlaylistId.current === selectedPlaylistId) return;
     shownPlaylistId.current = selectedPlaylistId;
+    // (the native list is a fresh one for each playlist, already at the top)
     listRef.current?.scrollToOffset({ offset: 0, animated: !isReduceMotionEnabled });
   }, [selectedPlaylistId, listRef, isReduceMotionEnabled]);
   // each reorderable playlist gets a fresh list (keyed below), and the FlatList comes back fresh after one
@@ -207,7 +221,8 @@ export default function Index() {
 
   // all songs, by letter, gets a jump-to-letter index. Rows wrap differently with the width and the text size, so
   // they're measured unseen first; the list then knows every row's place, and a section's header lands exactly
-  const isAllSongs = !playlist;
+  // (the native list has its own index, on iOS 26+)
+  const isAllSongs = !playlist && !nativeSongList;
   const hasHydrated = useHasHydrated();
   // the index shows with all songs, at the screen's edge or in a wide layout's gutter; where the gutter is too
   // narrow for it, it reaches over the rows, and their icons keep clear of it
@@ -370,6 +385,28 @@ export default function Index() {
       />
     ) : null;
 
+  // the native list's sections: a reorderable playlist is one; otherwise each header starts one (a letter in all
+  // songs, which the side index lists, or a curated playlist's programme section)
+  const shownUserPlaylistId = userPlaylists.some((p) => p.id === selectedPlaylistId) ? selectedPlaylistId : undefined;
+  const nativeSections: NativeSongListSection[] = [];
+  if (nativeSongList) {
+    for (const item of isReorderable ? reorderableItems : listItems) {
+      if (item.type === 'header') {
+        nativeSections.push({
+          key: item.id,
+          title: isHeaderVisible(item) ? item.item : undefined,
+          indexLabel: !playlist && !isSearching ? item.item : undefined,
+          songs: [],
+        });
+      } else {
+        if (!nativeSections.length) nativeSections.push({ key: 'songs', songs: [] });
+        nativeSections[nativeSections.length - 1].songs.push(item.item);
+      }
+    }
+  }
+  // wide, the rows' content keeps to the centred column
+  const rowGutter = wideLayoutMode ? (safeWidth - maxWidth) / 2 : 0;
+
   const topScrollEdgeEffect = useTopScrollEdgeEffect(listTop);
 
   // wide, the list's card sits on a darker backdrop. It's the scroll view's own background: a background on a view
@@ -489,13 +526,20 @@ export default function Index() {
     <>
       <Stack.Screen
         options={{
-          headerBackground: () => <HeaderBackground scrollRef={listRef} scrollOffset={scrollOffset} />,
+          headerBackground: () => (
+            <HeaderBackground scrollRef={nativeSongList ? undefined : listRef} scrollOffset={scrollOffset} />
+          ),
           headerTitleAlign: 'center',
           // web: a link to the app stores
           headerLeft: process.env.EXPO_OS === 'web' ? () => <GetTheAppButton /> : undefined,
           ...topScrollEdgeEffect,
           headerTitle: () => (
-            <HeaderTitle scrollRef={listRef} scrollOffset={scrollOffset} titleLayout={titleLayout} center>
+            <HeaderTitle
+              scrollRef={nativeSongList ? undefined : listRef}
+              scrollOffset={scrollOffset}
+              titleLayout={titleLayout}
+              center
+            >
               <HeaderLogo />
             </HeaderTitle>
           ),
@@ -513,7 +557,27 @@ export default function Index() {
         }}
       />
       <View style={styles.container}>
-        {isReorderable ? (
+        {nativeSongList ? (
+          <NativeSongList
+            // a fresh list for each playlist, starting from the top
+            key={selectedPlaylistId}
+            ref={nativeListRef}
+            sections={nativeSections}
+            header={<View style={{ paddingLeft: inset.left, paddingRight: inset.right }}>{listHeader}</View>}
+            headerHeight={listHeaderHeight}
+            playlistTitle={showPlaylistHeader ? playlist.name : undefined}
+            footer={listFooter}
+            width={width}
+            rowInsets={{ leading: inset.left + rowGutter + padding, trailing: inset.right + rowGutter + padding }}
+            scrollOffset={scrollOffset}
+            onMove={isReorderable && !isSearching ? moveSong : undefined}
+            favoriteIds={favoriteIds}
+            userPlaylists={userPlaylists}
+            toggleSong={toggleSong}
+            shownUserPlaylistId={shownUserPlaylistId}
+            onNewPlaylistWithSong={(songId) => promptCreatePlaylist([songId])}
+          />
+        ) : isReorderable ? (
           <ReorderableList
             // a fresh list for each playlist, starting from the top
             key={listKey}
@@ -603,7 +667,7 @@ export default function Index() {
         ) : null}
         {!isLiquidGlassStyleHeader() && (
           <Search
-            scrollRef={listRef}
+            scrollRef={scrollRef}
             top={listTop}
             selectedPlaylistId={selectedPlaylistId}
             setSelectedPlaylistId={setSelectedPlaylistId}
@@ -630,7 +694,7 @@ export default function Index() {
       {/* after the list: UIKit tracks the scroll view at the start of the screen's view hierarchy (for the
           navigation bar's scroll edge background), and the toolbar's host view would come first */}
       <IndexToolbar
-        listRef={listRef}
+        listRef={scrollRef}
         scrollToSearchOffset={listTop}
         selectedPlaylistId={selectedPlaylistId}
         setSelectedPlaylistId={setSelectedPlaylistId}

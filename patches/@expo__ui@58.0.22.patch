@@ -1,0 +1,261 @@
+diff --git a/build/swift-ui/List/index.d.ts b/build/swift-ui/List/index.d.ts
+index 0f3d4634c3fcfb4361000f4266a9ad5be8aa822b..fd56260be52950531c61a01a0d097ec1c8acf5d5 100644
+--- a/build/swift-ui/List/index.d.ts
++++ b/build/swift-ui/List/index.d.ts
+@@ -1,4 +1,9 @@
+ import { type CommonViewModifierProps } from '../types';
++// PATCH(dainorelis): the native list's methods
++export type ListRef = {
++    /** scrolls to `offset` points from the top of the list's content, clamped to the content */
++    scrollToOffset: (offset: number, animated: boolean) => Promise<void>;
++};
+ import { ListForEach } from './ListForEach';
+ export { ListForEach, type ListForEachProps, type ListForEachElementsProps } from './ListForEach';
+ export interface ListProps extends CommonViewModifierProps {
+@@ -15,6 +20,8 @@ export interface ListProps extends CommonViewModifierProps {
+      * Returns an array of selected item tags.
+      */
+     onSelectionChange?: (selection: (string | number)[]) => void;
++    /** PATCH(dainorelis) */
++    ref?: React.Ref<ListRef>;
+ }
+ /**
+  * A list component that renders its children using a native SwiftUI `List`.
+diff --git a/ios/ExpoUIModule.swift b/ios/ExpoUIModule.swift
+index 265f3186bb9e52f5b8d1f7dc7a95fa12e593459b..93af6928ed5ded05c99debd88d014619082936b3 100644
+--- a/ios/ExpoUIModule.swift
++++ b/ios/ExpoUIModule.swift
+@@ -170,7 +170,12 @@ public final class ExpoUIModule: Module {
+     ExpoUIView(LazyVStackView.self)
+     ExpoUIView(ImageView.self)
+     ExpoUIView(LabelView.self)
+-    ExpoUIView(ListView.self)
++    // PATCH(dainorelis): scrollToOffset
++    ExpoUIView(ListView.self) {
++      AsyncFunction("scrollToOffset") { (view: ListView, offset: Double, animated: Bool) in
++        view.scrollToOffset(offset, animated: animated)
++      }
++    }
+     ExpoUIView(DataListForEachView.self)
+     View(DataListForEachItemView.self)
+     View(DataListForEachPoolView.self)
+diff --git a/ios/ListView.swift b/ios/ListView.swift
+index bb93701e0b8b3e92d0e57490eedd8e0e5048ff7f..0051bbbda2e7aa3893507c6d1eede54476d58f7a 100644
+--- a/ios/ListView.swift
++++ b/ios/ListView.swift
+@@ -6,6 +6,8 @@ import SwiftUI
+ final class ListProps: UIBaseViewProps {
+   @Field var selection: [Either<String, Double>]?
+   var onSelectionChange = EventDispatcher()
++  // PATCH(dainorelis): finds the list's scroll view, for scrollToOffset
++  let scrollController = ListScrollController()
+ }
+ 
+ struct ListView: ExpoSwiftUI.View {
+@@ -17,6 +19,24 @@ struct ListView: ExpoSwiftUI.View {
+     list
+       .onGeometryChange(for: CGFloat.self, of: { $0.size.width }, action: { crossAxisSize = $0 })
+       .environment(\.containerCrossAxisSize, crossAxisSize)
++      // PATCH(dainorelis)
++      .background(scrollViewFinder)
++  }
++
++  // PATCH(dainorelis)
++  @ViewBuilder
++  private var scrollViewFinder: some View {
++#if canImport(UIKit)
++    ListScrollViewFinder(controller: props.scrollController)
++#else
++    EmptyView()
++#endif
++  }
++
++  // PATCH(dainorelis): scrolls to `offset` points from the top of the list's content, as React Native's
++  // scrollToOffset does, clamped to the content
++  func scrollToOffset(_ offset: Double, animated: Bool) {
++    props.scrollController.scrollToOffset(CGFloat(offset), animated: animated)
+   }
+ 
+   @ViewBuilder
+@@ -69,3 +89,77 @@ struct ListView: ExpoSwiftUI.View {
+     return result
+   }
+ }
++
++#if canImport(UIKit)
++// PATCH(dainorelis): SwiftUI has no offset-based scrolling for List, so this finds the UICollectionView behind it.
++// The finder sits in the list's background, a sibling of the collection view, so the search goes up from it and
++// takes the shallowest scroll view under each ancestor in turn: the list's own before any inside its rows.
++final class ListScrollController {
++  weak var anchorView: UIView?
++  private weak var cachedScrollView: UIScrollView?
++
++  func scrollView() -> UIScrollView? {
++    if let cachedScrollView, cachedScrollView.window != nil {
++      return cachedScrollView
++    }
++    var ancestor = anchorView?.superview
++    while let view = ancestor {
++      if let found = Self.shallowestScrollView(in: view) {
++        cachedScrollView = found
++        return found
++      }
++      ancestor = view.superview
++    }
++    return nil
++  }
++
++  func scrollToOffset(_ offset: CGFloat, animated: Bool) {
++    guard let scrollView = scrollView() else {
++      return
++    }
++    scrollView.layoutIfNeeded()
++    let inset = scrollView.adjustedContentInset
++    let minY = -inset.top
++    let maxY = max(minY, scrollView.contentSize.height - scrollView.bounds.height + inset.bottom)
++    let y = min(max(offset - inset.top, minY), maxY)
++    // stops a fling in progress, which would otherwise carry on from the new offset
++    scrollView.setContentOffset(scrollView.contentOffset, animated: false)
++    scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: animated)
++  }
++
++  private static func shallowestScrollView(in root: UIView) -> UIScrollView? {
++    var queue: [UIView] = root.subviews
++    var index = 0
++    while index < queue.count {
++      let view = queue[index]
++      index += 1
++      if let collectionView = view as? UICollectionView {
++        return collectionView
++      }
++      queue.append(contentsOf: view.subviews)
++    }
++    return nil
++  }
++}
++
++private struct ListScrollViewFinder: UIViewRepresentable {
++  let controller: ListScrollController
++
++  func makeUIView(context: Context) -> UIView {
++    let view = UIView()
++    view.isUserInteractionEnabled = false
++    view.isHidden = true
++    controller.anchorView = view
++    return view
++  }
++
++  func updateUIView(_ uiView: UIView, context: Context) {
++    controller.anchorView = uiView
++  }
++}
++#else
++// PATCH(dainorelis): no UIKit, nothing to scroll
++final class ListScrollController {
++  func scrollToOffset(_ offset: CGFloat, animated: Bool) {}
++}
++#endif
+diff --git a/ios/Modifiers/SectionIndexModifiers.swift b/ios/Modifiers/SectionIndexModifiers.swift
+new file mode 100644
+index 0000000000000000000000000000000000000000..23d2f3d58319ab24f025095a516b99735e8dc170
+--- /dev/null
++++ b/ios/Modifiers/SectionIndexModifiers.swift
+@@ -0,0 +1,51 @@
++// PATCH(dainorelis): iOS 26's native section index for List: a section's label in the index, and whether the
++// list shows the index. Below iOS 26 both are no-ops.
++
++import ExpoModulesCore
++import SwiftUI
++
++internal struct SectionIndexLabelModifier: ViewModifier, Record {
++  @Field var label: String = ""
++
++  func body(content: Content) -> some View {
++#if os(iOS)
++    if #available(iOS 26.0, *) {
++      content.sectionIndexLabel(Text(verbatim: label))
++    } else {
++      content
++    }
++#else
++    content
++#endif
++  }
++}
++
++internal enum SectionIndexVisibilityOptions: String, Enumerable {
++  case automatic
++  case visible
++  case hidden
++}
++
++internal struct ListSectionIndexVisibilityModifier: ViewModifier, Record {
++  @Field var visibility: SectionIndexVisibilityOptions = .automatic
++
++  func body(content: Content) -> some View {
++#if os(iOS)
++    if #available(iOS 26.0, *) {
++      content.listSectionIndexVisibility(resolved)
++    } else {
++      content
++    }
++#else
++    content
++#endif
++  }
++
++  private var resolved: Visibility {
++    switch visibility {
++    case .automatic: .automatic
++    case .visible: .visible
++    case .hidden: .hidden
++    }
++  }
++}
+diff --git a/ios/Modifiers/ViewModifierRegistry.swift b/ios/Modifiers/ViewModifierRegistry.swift
+index edef68aba43342c1c8bd636051deb99b55134326..0046f3e667382528a2a4b930fe8b7b7f0a2762d4 100644
+--- a/ios/Modifiers/ViewModifierRegistry.swift
++++ b/ios/Modifiers/ViewModifierRegistry.swift
+@@ -2252,6 +2252,15 @@ extension ViewModifierRegistry {
+       return try ListRowSeparatorTint(from: params, appContext: appContext)
+     }
+ 
++    // PATCH(dainorelis): iOS 26's section index
++    register("sectionIndexLabel") { params, appContext, _ in
++      return try SectionIndexLabelModifier(from: params, appContext: appContext)
++    }
++
++    register("listSectionIndexVisibility") { params, appContext, _ in
++      return try ListSectionIndexVisibilityModifier(from: params, appContext: appContext)
++    }
++
+     register("listRowSpacing") { params, appContext, _ in
+       return try ListRowSpacing(from: params, appContext: appContext)
+     }
+diff --git a/src/swift-ui/List/index.tsx b/src/swift-ui/List/index.tsx
+index a4ebca663b0b1cda3ca92420dd956a012c928567..7dfbc2e3f7689e4a78c1a79274a8f1d32c795ece 100644
+--- a/src/swift-ui/List/index.tsx
++++ b/src/swift-ui/List/index.tsx
+@@ -3,6 +3,12 @@ import { requireNativeView } from 'expo';
+ import { type ViewEvent } from '../../types';
+ import { createViewModifierEventListener } from '../modifiers/utils';
+ import { type CommonViewModifierProps } from '../types';
++
++// PATCH(dainorelis): the native list's methods
++export type ListRef = {
++  /** scrolls to `offset` points from the top of the list's content, clamped to the content */
++  scrollToOffset: (offset: number, animated: boolean) => Promise<void>;
++};
+ import { ListForEach } from './ListForEach';
+ 
+ export { ListForEach, type ListForEachProps, type ListForEachElementsProps } from './ListForEach';
+@@ -38,6 +44,9 @@ export interface ListProps extends CommonViewModifierProps {
+    * Returns an array of selected item tags.
+    */
+   onSelectionChange?: (selection: (string | number)[]) => void;
++
++  /** PATCH(dainorelis) */
++  ref?: React.Ref<ListRef>;
+ }
+ 
+ /**

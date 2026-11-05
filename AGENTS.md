@@ -111,6 +111,9 @@ it (`pnpm patch <pkg>@<new>`) whenever an upgrade bumps the package. Changes are
   Drop it when upgrading to 3.4+.
 - **react-native-reorderable-list** (web): `touchAction="pan-y"` on its gesture detector (in `src` and `lib`), so a
   finger can scroll the list.
+- **@expo/ui** (iOS; PROTOTYPE, for the native home list, `lib/constants/nativeSongList.ts`): the `sectionIndexLabel` and
+  `listSectionIndexVisibility` modifiers (iOS 26's List side index), and `scrollToOffset` on `List`'s ref (finds the
+  UICollectionView behind it), so search and the header can scroll a SwiftUI list as they do the FlatList.
 - **react-native-pdf**: cancels a pending download on remount so overlapping downloads (variant
   switch, Fast Refresh) don't delete each other's file; on iOS, makes the view's `paddingBottom` a content inset
   (Android's viewer has none, so its pages end above the padding), so the last page clears the floating player.

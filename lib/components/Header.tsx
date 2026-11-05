@@ -52,7 +52,13 @@ export function HeaderBackground({ scrollRef, scrollOffset: providedScrollOffset
   }
 
   return (
-    <Animated.View style={[{ height: '100%' }, typeof scrollRef !== 'undefined' ? headerStyle : {}]}>
+    <Animated.View
+      style={[
+        { height: '100%' },
+        // follows the scroll: the ref's, or (a list that reports its own, like the native one) the given offset
+        typeof scrollRef !== 'undefined' || providedScrollOffset ? headerStyle : {},
+      ]}
+    >
       <SystemView shadow style={{ flex: 1 }}></SystemView>
     </Animated.View>
   );

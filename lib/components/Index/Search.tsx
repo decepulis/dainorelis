@@ -2,13 +2,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, TextInput, type TextInputInstance, View } from 'react-native';
 import { KeyboardStickyView } from 'react-native-keyboard-controller';
-import Animated, {
-  AnimatedRef,
-  WithSpringConfig,
-  createAnimatedComponent,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import { WithSpringConfig, createAnimatedComponent, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { GlassContainer, GlassView } from 'expo-glass-effect';
@@ -39,8 +33,13 @@ const buttonSize = 44;
 const color = '#ffffff';
 const createPlaylistId = 'createPlaylist';
 
+/** what search scrolls: the FlatList, or the native list's stand-in (app/index.tsx) */
+export type ScrollToOffsetRef = {
+  current: { scrollToOffset: (params: { offset: number; animated?: boolean }) => void } | null;
+};
+
 type Props = {
-  scrollRef: AnimatedRef<Animated.FlatList<any>>;
+  scrollRef: ScrollToOffsetRef;
   top: number;
   selectedPlaylistId: string;
   setSelectedPlaylistId: (id: string) => void;
@@ -403,7 +402,7 @@ export default function Search({
 
 // the setters arrive already wrapped in startTransition by app/index.tsx
 type IndexToolbarProps = {
-  listRef: AnimatedRef<Animated.FlatList<any>>;
+  listRef: ScrollToOffsetRef;
   scrollToSearchOffset: number;
   selectedPlaylistId: string;
   setSelectedPlaylistId: (id: string) => void;
