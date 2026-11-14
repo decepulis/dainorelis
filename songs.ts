@@ -1972,7 +1972,7 @@ const songs: SongFile = [
   {
     "id": "rec9HnV5hr6DtWvqQ",
     "fields": {
-      "Name": "Ažuolėlio šakos linko",
+      "Name": "Ąžuolėlio šakos linko",
       "Lyrics": {
         "recZ0qH1ujTIZWkHK": {
           "Variant Name": "Žodžiai",
