@@ -1970,6 +1970,37 @@ const songs: SongFile = [
     }
   },
   {
+    "id": "rec9HnV5hr6DtWvqQ",
+    "fields": {
+      "Name": "Ažuolėlio šakos linko",
+      "Lyrics": {
+        "recZ0qH1ujTIZWkHK": {
+          "Variant Name": "Žodžiai",
+          "EN Variant Name": "Lyrics",
+          "Lyrics & Chords": "Ąžuolėlio šakos linko (3k)\nKai mus jaunus karan rinko.\n\nIr surinko, surikiavo (3k)\nŠautuvėliais apginklavo.\n\nIr nuvežė į Suvalkus (3k)\nIr nukirpo trumpai plaukus.\n\nSėk, sesute, žalią rūtą (3k)\nKad Lietuva laisva būtų.\n\nSėk, sesute, ir gvazdiką (3k)\nKad neliktų bolševikų.\n\nKelsim kardus į padangę (3k)\nUž Lietuvą mūsų brangią.\n\nUž Lietuvą, už tėvynę (3k)\nDuosiu šauti į krūtinę."
+        }
+      },
+      "Audio": {},
+      "PDFs": {
+        "rec3APTzhtvsL3ScA": {
+          "Variant Name": "Natos",
+          "EN Variant Name": "Score",
+          "URL": "https://media.dainorelis.app/azuolelio%20sakos%20linko.pdf"
+        }
+      },
+      "Translations": {
+        "recVCfxFtwineUZ3J": {
+          "Title": "The Oak Tree's Branches Bent Low",
+          "Variant Name": "Vertimas",
+          "EN Variant Name": "Translation",
+          "Lyrics": "The oak tree's branches bent low (3k)\nWhen they took us young ones off to war.\n\nThey gathered us and lined us up (3k)\nAnd armed us with rifles.\n\nThey took us off to Suvalkai (3k)\nAnd cut our hair short.\n\nSow, dear sister, the green rue (3k)\nSo that Lithuania may be free.\n\nSow, dear sister, carnations too (3k)\nSo that no Bolsheviks remain.\n\nWe'll raise our swords to the sky (3k)\nFor our dear Lithuania.\n\nFor Lithuania, for the homeland (3k)\nI'll let them shoot me in the chest.",
+          "AI Generated": true
+        }
+      },
+      "Music Author": "Partizanų daina"
+    }
+  },
+  {
     "id": "recMnbx9GPW4kGHjV",
     "fields": {
       "Name": "Balnokit, broliai, žirgus",
@@ -3697,15 +3728,15 @@ const songs: SongFile = [
     "fields": {
       "Name": "Ei, pirmyn (Jureivių daina)",
       "Lyrics": {
-        "reci51x0yvqSqhPlC": {
+        "recniQdPwxX129tTO": {
           "Variant Name": "Žodžiai 1",
           "EN Variant Name": "Lyrics 1",
-          "Lyrics & Chords": "Ei pirmyn, ei drasyn,\nJūreivį sparčiau\nNeški laivo vėliavą\nLietuvos plačiau.\n\nNuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia\nĮ jurą marš marš, į jurą marš, marš,\nĮ laivyną marš!\n\nNesitrauksim mes nuo jūros\nDievas mums padės,\nKursim, stiprinsim laivyną,\nTauta to norės.\n\nNuo jūrų iki jūrų…"
+          "Lyrics & Chords": "Ei, pirmyn, ei, drąsyn\nJūreiviai greičiau.\nNeškim laiko vėliavą,\nLietuvos plačiau.\n\n_Nuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia.\nĮ jūrą marš, marš marš marš\nĮ laivyną marš._\n\nNesitrauksim mes nuo jūros\nDievas mums padės.\nKursim, stiprinsim laivyną –\nTauta to norės. 2k\n\n_Nutilkit marių audros,\nPlaukia Lietuvos vaikai\nMūs jaunos sesės marš į jūrą\nJūron marš marš, į jūrą marš marš,\nĮ laivyną marš._\n\nNoras ir tvirta valia\nTraukia jūron vis.\nĮ jūružę, į pasaulį –\nMūsų obalsis. 2k\n\n_Nuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia.\nĮ jūrą marš, marš marš marš\nĮ laivyną marš._"
         },
-        "recniQdPwxX129tTO": {
+        "reci51x0yvqSqhPlC": {
           "Variant Name": "Žodžiai 2",
           "EN Variant Name": "Lyrics 2",
-          "Lyrics & Chords": "Ei, pirmyn, ei, drąsyn\nJūreiviai greičiau.\nNeškim laiko vėliavą,\nLietuvos plačiau.\n\n_Nuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia.\nĮ jūrą marš, marš marš marš\nĮ laivyną marš._\n\nNesitrauksim mes nuo jūros\nDievas mums padės.\nKursim, stiprinsim laivyną –\nTauta to norės. 2k\n\n_Nutilkit marių audros,\nPlaukia Lietuvos vaikai\nMūs jaunos sesės marš į jūrą\nJūron marš marš, į jūrą marš marš,\nĮ laivyną marš._\n\nNoras ir tvirta valia\nTraukia jūron vis.\nĮ jūružę, į pasaulį –\nMūsų obalsis. 2k\n\n_Nuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia.\nĮ jūrą marš, marš marš marš\nĮ laivyną marš._"
+          "Lyrics & Chords": "Ei pirmyn, ei drasyn,\nJūreivį sparčiau\nNeški laivo vėliavą\nLietuvos plačiau.\n\nNuo jūrų iki jūrų\nSklinda garsas Lietuvos,\nTai bunda Vytauto dvasia\nĮ jurą marš marš, į jurą marš, marš,\nĮ laivyną marš!\n\nNesitrauksim mes nuo jūros\nDievas mums padės,\nKursim, stiprinsim laivyną,\nTauta to norės.\n\nNuo jūrų iki jūrų…"
         }
       },
       "Audio": {},
