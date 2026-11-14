@@ -66,7 +66,7 @@ const measureDelay = 300;
 const bottomBarHeight = 44;
 // the forest photo's top edge (the average of miskas_v3_fade.webp's top row of pixels), in either mode
 const photoTopColor = '#403B44';
-// the photo's average, in its place until it loads
+// the photo's average, in its place until it loads (not after: the photo fades out at the bottom)
 const photoColor = '#4E5051';
 // how far down the photo the backdrop above it fades out: no taller than a navigation bar
 const photoTopFadeHeight = 44;
@@ -94,7 +94,7 @@ export default function Index() {
   const { width, height } = useFrame();
   const { fontScale } = useWindowDimensions();
   const headerHeight = useHeaderHeight();
-  const { setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
+  const { didBackgroundLoad, setDidBackgroundLoad, setDidLogoLoad } = useDidImagesLoad();
   const primary = useThemeColor('primary');
   const onPrimary = useThemeColor('onPrimary');
   const background = useThemeColor('background');
@@ -410,7 +410,8 @@ export default function Index() {
           paddingRight: inset.right + logoContainerMargin,
           // narrow, the rows hide the forest's lower half; clip it so it can't show in the gutters
           overflow: wideLayoutMode ? undefined : 'hidden',
-          backgroundColor: photoColor,
+          // only until the photo loads: its lower half fades to clear, onto the list's background
+          backgroundColor: didBackgroundLoad ? undefined : photoColor,
         }}
       >
         {/* the background itself */}
@@ -420,7 +421,10 @@ export default function Index() {
             top: 0,
             left: 0,
             right: 0,
-            height: ultraWideLayoutMode ? height : '200%',
+            // twice the header, so its opaque top half fills it and the fade falls under the rows. Native layout takes a
+            // percentage of the header's content box (just the logo, inside its padding), so it gets the number; the
+            // statically rendered web page knows no window, and CSS takes the padding box
+            height: ultraWideLayoutMode ? height : process.env.EXPO_OS === 'web' ? '200%' : listHeaderHeight * 2,
           }}
           source={forestImage}
           // a reorderable playlist gets its own list, which remounts this header: from memory it doesn't reload
