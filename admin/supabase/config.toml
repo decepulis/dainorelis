@@ -24,7 +24,10 @@ enable_signup = false
 enable_anonymous_sign_ins = false
 
 [auth.email]
-enable_signup = false
+# Despite its name, this is the Email provider switch (external_email_enabled):
+# false turns off password sign-in and resets for everyone. Signups are already
+# blocked by [auth] enable_signup above.
+enable_signup = true
 
 # Resend delivers the auth emails. Supabase's built-in mailer only sends to
 # organization members and won't let the templates below be edited.
