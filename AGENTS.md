@@ -297,6 +297,9 @@ change, retake the captures and rerun the script.
 ## Commits
 
 - **Cloud sessions (claude.ai/code) commit to a branch, never to `main`.** The owner reviews and merges.
+- **Credit the owner on commits authored as Claude.** Cloud sessions commit as `Claude <noreply@anthropic.com>`, so
+  end those messages with `Co-Authored-By: Darius Cepulis <de.cepulis@gmail.com>` beside the Claude trailer (the
+  address GitHub links to his account; never his work email).
 - **Synced song data is always its own commit** ("data: sync songs from the admin"): `songs.ts`,
   `song-festival.ts`, `title-index.json` and `lyric-index.json`, nothing else. The body lists what changed, by
   song title. Commit code separately.
