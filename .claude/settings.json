@@ -1,10 +1,16 @@
 {
+  "enabledPlugins": {
+    "expo@expo-plugins": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "xcode@claude-plugins-official": true
+  },
   "extraKnownMarketplaces": {
     "expo-plugins": {
-      "source": { "source": "github", "repo": "expo/skills" }
+      "source": {
+        "source": "github",
+        "repo": "expo/skills"
+      }
     }
-  },
-  "enabledPlugins": {
-    "expo@expo-plugins": true
   }
 }
