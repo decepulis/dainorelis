@@ -296,6 +296,19 @@ change, retake the captures and rerun the script.
 
 **React Compiler**: This project uses React Compiler for automatic optimization. Do not use manual memoization techniques like `useCallback`, `useMemo`, or `React.memo` - the compiler handles this automatically.
 
+## Commits
+
+- **Cloud sessions (claude.ai/code) commit to a branch, never to `main`.** The owner reviews and merges.
+- **Synced song data is always its own commit** ("data: sync songs from the admin"): `songs.ts`,
+  `song-festival.ts`, `title-index.json` and `lyric-index.json`, nothing else. The body lists what changed, by
+  song title. Commit code separately.
+- **Check visual work where it renders before pushing.** Run it on a simulator or emulator
+  (`.claude/skills/verify-on-device/SKILL.md`), or in a web environment if it only affects the web, and look at
+  every platform the change touches. Shared layout code renders differently on the web and on native: for
+  example, a percentage size on an absolutely positioned child resolves against the parent's padding box in CSS,
+  but against its content box in Yoga. A session without a simulator says so and leaves the change on a branch
+  for the owner to check.
+
 ## GitHub Issues
 
 When the owner reports an issue, write only what they said. No guessed causes, code pointers, proposed fixes or
